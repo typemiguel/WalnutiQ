@@ -1,5 +1,6 @@
 package model.theory;
 
+import model.util.ColumnLocation;
 import model.Region;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +17,9 @@ public class TestIdea
     public void setUp()
     {
         this.region = new Region(30, 40, 6, 8, 4.0f, 1, 2);
+
         this.emptyIdea = new Idea("Empty idea");
+
         Column column00 = this.region.getColumn(0, 0);
         Set<Column> activeColumns = new HashSet<Column>();
         activeColumns.add(column00);
@@ -37,10 +40,33 @@ public class TestIdea
         assertEquals(50.0f, this.bigIdea.getAttentionPercentage(), 0.01f);
     }
 
-    public void testGetColumns()
+    public void testGetColumnLocations()
     {
-        Set<Column> activeColumns = new HashSet<Column>();
-        assertEquals(1, this.bigIdea.getColumns().size());
+        ColumnLocation columnLocation = new ColumnLocation();
+        columnLocation.setX(0);
+        columnLocation.setY(0);
+
+        Set<ColumnLocation> setColumnLocations = new HashSet<ColumnLocation>();
+        setColumnLocations.add(columnLocation);
+
+        assertEquals(setColumnLocations, this.bigIdea.getColumnLocations());
+    }
+
+    public void testConvertToColumnLocations()
+    {
+        Column column11 = this.region.getColumn(1, 1);
+        Column column22 = this.region.getColumn(2, 2);
+
+        Set<Column> columnSet = new HashSet<Column>();
+        columnSet.add(column11);
+        columnSet.add(column22);
+
+        Set<ColumnLocation> columnLocationSet = new HashSet<ColumnLocation>();
+        columnLocationSet = Idea.convertToColumnLocations(columnSet);
+
+        assertTrue(columnLocationSet.contains(new ColumnLocation(1, 1)));
+        assertTrue(columnLocationSet.contains(new ColumnLocation(2, 2)));
+        assertFalse(columnLocationSet.contains(new ColumnLocation(3, 3)));
     }
 
     public void testAddColumns()
@@ -48,23 +74,16 @@ public class TestIdea
         Column column11 = this.region.getColumn(1, 1);
         Column column22 = this.region.getColumn(2, 2);
         Column column33 = this.region.getColumn(3, 3);
-        Column column44 = this.region.getColumn(4, 4);
 
         Set<Column> columnSet1 = new HashSet<Column>();
         columnSet1.add(column11);
         columnSet1.add(column22);
 
-        Set<Column> columnSet2 = new HashSet<Column>();
-        columnSet1.add(column11);
-        columnSet1.add(column22);
-        columnSet2.add(column33);
-        columnSet2.add(column44);
-
         this.emptyIdea.addColumns(columnSet1);
-        assertEquals(columnSet1, this.emptyIdea.getColumns());
-        assertFalse(this.emptyIdea.addColumns(columnSet1));
-        assertTrue(this.emptyIdea.addColumns(columnSet2));
-        assertEquals(4, this.emptyIdea.getColumns().size());
+        assertEquals(2, this.emptyIdea.getColumnLocations().size());
+        assertTrue(this.emptyIdea.getColumnLocations().contains(new ColumnLocation(1, 1)));
+        assertTrue(this.emptyIdea.getColumnLocations().contains(new ColumnLocation(2, 2)));
+        assertFalse(this.emptyIdea.getColumnLocations().contains(new ColumnLocation(3, 3)));
     }
 
     public void testRemoveColumn()
@@ -76,8 +95,8 @@ public class TestIdea
         // removed is not in Idea object
         assertFalse(this.bigIdea.removeColumn(column11));
 
-        assertEquals(1, this.bigIdea.getColumns().size());
+        assertEquals(1, this.bigIdea.getColumnLocations().size());
         assertTrue(this.bigIdea.removeColumn(column00));
-        assertEquals(0, this.bigIdea.getColumns().size());
+        assertEquals(0, this.bigIdea.getColumnLocations().size());
     }
 }

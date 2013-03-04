@@ -1,5 +1,6 @@
 package model.theory;
 
+import model.util.ColumnLocation;
 import java.util.HashSet;
 import model.Column;
 import java.util.Set;
@@ -14,7 +15,7 @@ import java.util.Set;
  */
 public class MemoryClassifier
 {
-    private Set<Column> regionOutput;
+    private Set<ColumnLocation> regionOutput;
     private Memory      memory;
 
 
@@ -25,7 +26,7 @@ public class MemoryClassifier
      *
      * @return HashSet of Column objects.
      */
-    public Set<Column> getRegionOutput()
+    public Set<ColumnLocation> getRegionOutput()
     {
         return this.regionOutput;
     }
@@ -39,7 +40,7 @@ public class MemoryClassifier
      */
     public MemoryClassifier(Memory memory)
     {
-        this.regionOutput = new HashSet<Column>();
+        this.regionOutput = new HashSet<ColumnLocation>();
         this.memory = memory;
     }
 
@@ -74,23 +75,23 @@ public class MemoryClassifier
     public void updateIdeas(Set<Column> regionOutput1)
     {
         // update Region output with it's activeColumns
-        this.regionOutput = regionOutput1;
+        this.regionOutput = Idea.convertToColumnLocations(regionOutput1);
 
-        // compare which set of columns in memories has the greatest
+        // compare which set of columns in memory has the greatest
         // intersection with regionOutput
-        Set<Column> intersectionSet = new HashSet<Column>(this.regionOutput);
+        Set<ColumnLocation> intersectionSet = new HashSet<ColumnLocation>(this.regionOutput);
 
         // iterate through all ideas in memory
         for (Idea idea : this.memory.getIdeas())
         {
             // intersection between two sets of Column objects
-            intersectionSet.retainAll(idea.getColumns());
+            intersectionSet.retainAll(idea.getColumnLocations());
             int intersectionSetSize = intersectionSet.size();
 
             // compute overlap of Region output with ideas in memory
             float attention =
                 ((float)intersectionSetSize)
-                    / ((float)idea.getColumns().size());
+                    / ((float)idea.getColumnLocations().size());
             float attentionPercentage = attention * 100;
 
             // Because a Idea object in the HashSet will be changed and thus

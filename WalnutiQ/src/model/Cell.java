@@ -322,10 +322,12 @@ public class Cell
                 if (positiveReinforcement)
                 {
                     // increase Segment's active Synapse permanence values
+                    segment.updatePermanencesInSet(segmentUpdateInformation.getActiveSynapses());
                 }
                 else
                 {
                     // decrease Segment's active Synapse permanence values
+                    segment.decreasePermanencesInSet(segmentUpdateInformation.getActiveSynapses());
                 }
             }
 
@@ -347,7 +349,6 @@ public class Cell
                         //segmentUpdateInformation.createSynapsesToLearningCells();
                     }
                 }
-
             }
         }
         // remove all Segment update information after being applied

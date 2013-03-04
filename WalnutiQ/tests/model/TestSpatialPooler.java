@@ -225,7 +225,7 @@ public class TestSpatialPooler
      *
      * @throws IOException
      */
-    public void testComputeOverlapScoresOfRegion()
+    public void testComputeAllOverlapScoresOfRegion()
         throws IOException
     {
         // 1) read a picture and store in byte[][]
@@ -234,7 +234,7 @@ public class TestSpatialPooler
         // this.region.setMinimumOverlapScore(18.0f);
         // 2) update every Abstract InputCell in this.region correctly
         this.spatialPooler.nextTimeStep(inputDataBytes);
-        this.spatialPooler.computeColumnOverlapScoresOfRegion();
+        this.spatialPooler.computeAllColumnOverlapScoresOfRegion();
 
         int[][] overlapScores = RegionConsoleViewer.getColumnOverlapScoresIntArray(this.spatialPooler);
         System.out.println("\n------testComputeOverlapScoresOfRegion()-------");

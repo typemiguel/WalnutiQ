@@ -433,6 +433,38 @@ public class Segment
             this.activeSynapses.size() >= Segment.SEGMENT_ACTIVE_SYNAPSES_THRESHOLD;
     }
 
+    /**
+     * Update (increase or decrease) all Synapse permanenceValues on this Segment based on if the Synapse
+     * is the in specified set of active Synapses.
+     */
+    public void updatePermanencesInSet(Set<Synapse> activeSynapses)
+    {
+        for (Synapse synapse : this.synapses)
+        {
+            if (activeSynapses.contains(synapse))
+            {
+                synapse.increasePermance();
+            }
+            else
+            {
+                synapse.decreasePermance();
+            }
+        }
+    }
+
+    /**
+     * Decrease the permanenceValues of all Synapses
+     */
+    public void decreasePermanencesInSet(Set<Synapse> activeSynapses)
+    {
+        for (Synapse synapse : this.synapses)
+        {
+            if (activeSynapses.contains(synapse))
+            {
+                synapse.decreasePermance();
+            }
+        }
+    }
 
     // ------------------------------------------------------------------
 

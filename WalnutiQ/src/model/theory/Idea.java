@@ -1,41 +1,54 @@
 package model.theory;
 
+import model.util.ColumnLocation;
 import model.Column;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Hypothesis: An idea = an millisecond activation state of a set of cells,
+ * segments, and synapses allowed by the connection strength of a regions
+ * distributed synapse permanence values(connection strengths).
+ */
 public class Idea
 {
-    private String name;
+    private String              name;
 
-    private float attentionPercentage;
+    private float               attentionPercentage;
 
     // a set of columns represents an idea
-    private Set<Column> columns;
+    private Set<ColumnLocation> columnLocations;
+
 
     public Idea(String idea)
     {
         this.name = idea;
         this.attentionPercentage = 0;
-        this.columns = new HashSet<Column>();
+        // this.columnIndices = new
+
+        this.columnLocations = new HashSet<ColumnLocation>();
     }
+
 
     public Idea(String idea, Set<Column> columns)
     {
         this.name = idea;
         this.attentionPercentage = 0;
-        this.columns = columns;
+        this.columnLocations = this.convertToColumnLocations(columns);
     }
+
 
     public String getName()
     {
         return this.name;
     }
 
+
     public float getAttentionPercentage()
     {
         return this.attentionPercentage;
     }
+
 
     public boolean setAttentionPercentage(float attentionPercentage)
     {
@@ -50,23 +63,44 @@ public class Idea
         }
     }
 
-    public Set<Column> getColumns()
+
+    public Set<ColumnLocation> getColumnLocations()
     {
-        return this.columns;
+        return this.columnLocations;
+    }
+
+
+    public static Set<ColumnLocation> convertToColumnLocations(
+        Set<Column> columns)
+    {
+        Set<ColumnLocation> columnLocations = new HashSet<ColumnLocation>();
+    
+        for (Column column : columns)
+        {
+            ColumnLocation columnLocation = new ColumnLocation();
+            columnLocation.setX(column.getX());
+            columnLocation.setY(column.getY());
+            columnLocations.add(columnLocation);
+        }
+        return columnLocations;
     }
 
 
     public boolean addColumns(Set<Column> columns)
     {
+        Set<ColumnLocation> columnLocations = new HashSet<ColumnLocation>();
+        columnLocations = this.convertToColumnLocations(columns);
+
         // the set within this Idea object is unioned with the parameter columns
         // set
-        if (this.columns.containsAll(columns))
+        if (this.columnLocations.containsAll(columnLocations))
         {
             return false;
         }
         else
         {
-            this.columns.addAll(columns);
+            // performs a union of the two sets
+            this.columnLocations.addAll(columnLocations);
             return true;
         }
     }
@@ -74,9 +108,11 @@ public class Idea
 
     public boolean removeColumn(Column column)
     {
-        if (this.columns.contains(column))
+        ColumnLocation columnLocation = new ColumnLocation(column);
+
+        if (this.columnLocations.contains(columnLocation))
         {
-            this.columns.remove(column);
+            this.columnLocations.remove(columnLocation);
             return true;
         }
         else
@@ -86,24 +122,53 @@ public class Idea
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Idea)) return false;
+    public String toString()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n============================");
+        stringBuilder.append("\n------Idea Information------");
+        stringBuilder.append("\n                 name:");
+        stringBuilder.append(this.getName());
+        stringBuilder.append("\n  attentionPercentage: ");
+        stringBuilder.append(this.getAttentionPercentage() + " %");
+        stringBuilder.append("\n      columnLocations: ");
+        stringBuilder.append(this.getColumnLocations());
+        stringBuilder.append("\n============================");
+        String synapseInformation = stringBuilder.toString();
+        return synapseInformation;
+    }
 
-        Idea idea = (Idea) o;
 
-        if (attentionPercentage != idea.attentionPercentage) return false;
-        if (columns != null ? !columns.equals(idea.columns) : idea.columns != null) return false;
-        if (name != null ? !name.equals(idea.name) : idea.name != null) return false;
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o)
+            return true;
+        if (!(o instanceof Idea))
+            return false;
+
+        Idea idea = (Idea)o;
+
+        if (attentionPercentage != idea.attentionPercentage)
+            return false;
+        if (columnLocations != null ? !columnLocations
+            .equals(idea.columnLocations) : idea.columnLocations != null)
+            return false;
+        if (name != null ? !name.equals(idea.name) : idea.name != null)
+            return false;
 
         return true;
     }
 
+
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int result = name != null ? name.hashCode() : 0;
         result = (int)(31 * result + attentionPercentage);
-        result = 31 * result + (columns != null ? columns.hashCode() : 0);
+        result =
+            31 * result
+                + (columnLocations != null ? columnLocations.hashCode() : 0);
         return result;
     }
 }

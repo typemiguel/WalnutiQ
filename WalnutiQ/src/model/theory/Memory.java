@@ -67,7 +67,7 @@ public class Memory
                 // different meaning
                 // ex. date means taking a girl on a date or the fruit
                 if (uniqueIdea.getName().equals(idea.getName()) ||
-                    uniqueIdea.getColumns().equals(idea.getColumns()))
+                    uniqueIdea.getColumnLocations().equals(idea.getColumnLocations()))
                 {
                     return false;
                 }

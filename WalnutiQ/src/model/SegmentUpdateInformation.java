@@ -57,6 +57,11 @@ public class SegmentUpdateInformation
         return this.segment;
     }
 
+    public Set<Synapse> getActiveSynapses()
+    {
+        return this.activeSynapses;
+    }
+
     public boolean getAddNewSynapsesState()
     {
         return this.addNewSynapsesState;
@@ -77,15 +82,19 @@ public class SegmentUpdateInformation
     }
 
     /**
-     * Create ____ new Synapses for this Segment to attach to the parameter
-     * of learningCells.
+     * Create learningCell set size new Synapses for this Segment to attach to
+     * the parameter of learningCells.
      * @param learningCells Set of available learning Cells to connect to with Synapses.
-     * @param addedSynapses The set to be populated with added Synapses.
+     * @param addedSynapses The set to be populated with one new Synapse for
+     * each learning Cell.
      */
     public void createSynapsesToLearningCells(Set<Cell> learningCells, Set<Synapse> addedSynapses)
     {
-
+        for (Cell cell : learningCells)
+        {
+            Synapse newSynapse = new Synapse(cell);
+            newSynapse.setPermanenceValue(0.0f);
+            addedSynapses.add(newSynapse);
+        }
     }
-
-
 }

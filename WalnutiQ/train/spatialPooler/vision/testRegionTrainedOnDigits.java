@@ -39,8 +39,6 @@ public class testRegionTrainedOnDigits
         this.topSpatialPooler = new SpatialPooler(this.topRegion);
 
         this.memory = new Memory();
-        // TODO: add memory to ideaClassifier after memory has been
-        // trained
         this.memoryClassifier = new MemoryClassifier(this.memory);
     }
 

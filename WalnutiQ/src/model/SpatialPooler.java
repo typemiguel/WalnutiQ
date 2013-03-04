@@ -79,8 +79,10 @@ public class SpatialPooler
     /**
      * Return a Region object's specified active Column object.
      *
-     * @param x X axis position of the Column object to be returned.
-     * @param y Y axis position of the Column object to be returned.
+     * @param x
+     *            X axis position of the Column object to be returned.
+     * @param y
+     *            Y axis position of the Column object to be returned.
      * @return All of the active columns within a SpatialPooler object
      *         containing a Region object.
      */
@@ -106,13 +108,13 @@ public class SpatialPooler
      */
     public void addActiveColumn(Column activeColumn)
     {
-            this.activeColumns.add(activeColumn);
+        this.activeColumns.add(activeColumn);
     }
 
 
     /**
-     * Given a list of columns, return the kth highest overlapScore value of
-     * a Column object.
+     * Given a list of columns, return the kth highest overlapScore value of a
+     * Column object.
      *
      * @param neighborColumns
      *            The list of column objects to be iterated through.
@@ -122,9 +124,7 @@ public class SpatialPooler
      * @return The overlapScore of the kth highest column, where k is
      *         newDesiredLocalAcitivity.
      */
-    int kthScoreOfColumns(
-        List<Column> neighborColumns,
-        int desiredLocalActivity)
+    int kthScoreOfColumns(List<Column> neighborColumns, int desiredLocalActivity)
     {
         // TreeSet data structures are automatically sorted.
         Set<Integer> overlapScores = new TreeSet<Integer>();
@@ -204,7 +204,7 @@ public class SpatialPooler
     /**
      * Compute each Column object's new overlapScore.
      */
-    void computeColumnOverlapScoresOfRegion()
+    void computeAllColumnOverlapScoresOfRegion()
     {
         for (Column column : this.getRegion().getColumns())
         {
@@ -278,12 +278,11 @@ public class SpatialPooler
 
     // ----------------------------------------------------------
     /**
-     * All SpatialPooler fields remain constant except spatialLearning.
-     *
-     * Update every Abstract InputCell in this Region object with the 2-D
-     * parameter of bytes for this Region to call performSpatialPooling on this
-     * time step's inputData. This method acts as a nextTimeStep() method for
-     * all InputCells within a Region.
+     * All SpatialPooler fields remain constant except spatialLearning. Update
+     * every Abstract InputCell in this Region object with the 2-D parameter of
+     * bytes for this Region to call performSpatialPooling on this time step's
+     * inputData. This method acts as a nextTimeStep() method for all InputCells
+     * within a Region.
      *
      * @param inputDataBytes
      *            Representation of new input at current time step.
@@ -299,7 +298,8 @@ public class SpatialPooler
             // Also not necessary to call on Region object because all fields
             // are constant for spatial pooling.
             // It is necessary to call nextTimeStep() for each Column object
-            // because certain fields are used for only one execution of spatial pooling
+            // because certain fields are used for only one execution of spatial
+// pooling
             // and then must be updated.
             column.nextTimeStep();
 
@@ -329,30 +329,26 @@ public class SpatialPooler
     }
 
 
-    // ----------------------------------------------------------
+    // ------------------------------------------------------------
     /**
-     * This method is performed on an array of bottom-up binary inputs from
-     * sensory data or the previous level that have already been set. This
-     * method also calls another method that computes the activeColumns(t)-the
-     * list of columns that win due to the bottom-up input at time t. Column
-     * object states are changed as a result of this method and the set of
-     * activeColumns is returned for time t.
+     * This method recomputes all column states within this functional region.
+     * Through local inhibition, only a sparse set of columns become active to
+     * represent the current 2D array of sensory data or a lower region's
+     * output.
      *
-     * @return A Region's computed activeColumns for a Region's current input.
+     * @return A sparse set of active columns within this region.
      */
     public Set<Column> performSpatialPoolingOnRegion()
     {
-        // -----------Compute Column Input OverlapScores-----------
-        this.computeColumnOverlapScoresOfRegion();
+        computeAllColumnOverlapScoresOfRegion();
 
-        // ----Compute Active Columns(Winners after inhibition)----
-        this.computeActiveColumnsOfRegion();
+        // a sparse set of columns become active after local inhibition
+        computeActiveColumnsOfRegion();
 
-        // --------------Synapse Boosting (Learning)---------------
-        this.regionLearnOneTimeStep();
+        // simulate learning by boosting specific synapses
+        regionLearnOneTimeStep();
 
-        // --------------------------------------------------------
-        return this.getActiveColumns();
+        return getActiveColumns();
     }
 
 

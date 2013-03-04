@@ -89,7 +89,7 @@ public class TemporalPooler
      */
     public void nextTimeStepForTemporalPooler()
     {
-
+        // only cell activities for the previous time step must be reset.
     }
 
     /**
