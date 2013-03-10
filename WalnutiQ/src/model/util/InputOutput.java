@@ -1,5 +1,6 @@
 package model.util;
 
+import model.theory.Memory;
 import model.Region;
 import model.theory.MemoryClassifier;
 import java.awt.image.BufferedImage;
@@ -13,12 +14,12 @@ import java.io.ObjectOutputStream;
 
 // -------------------------------------------------------------------------
 /**
- * Provides static methods for opening and saving objects used in the htm model.
+ * Provides static methods for opening and saving objects used in the model.
  *
- * @author Huanqing
+ * @author Quinn Liu
  * @version Jan 10, 2013
  */
-public class SaveOpenFile
+public class InputOutput
 {
     // ----------------------------------------------------------
     /**
@@ -48,13 +49,13 @@ public class SaveOpenFile
         return true;
     }
 
-    public static boolean saveMemoryClassifier(MemoryClassifier memoryClassifier, String relativePath)
+    public static boolean saveMemory(Memory memory, String relativePath)
     {
         try
         {
             FileOutputStream fos = new FileOutputStream(relativePath);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(memoryClassifier);
+            oos.writeObject(memory);
             oos.close();
         }
         catch (IOException e)
@@ -75,7 +76,7 @@ public class SaveOpenFile
      *        the file name at the end of the path.
      * @return The desired Region object.
      */
-    public static MemoryClassifier openRegion(String relativePath)
+    public static Region openRegion(String relativePath)
     {
         try
         {
@@ -86,7 +87,7 @@ public class SaveOpenFile
 
             if (readObject != null && readObject instanceof MemoryClassifier)
             {
-                return (MemoryClassifier)readObject;
+                return (Region)readObject;
             }
         }
         catch (IOException e)
@@ -100,7 +101,7 @@ public class SaveOpenFile
         return null;
     }
 
-    public static MemoryClassifier openMemoryClassifier(String relativePath)
+    public static Memory openMemory(String relativePath)
     {
         try
         {
@@ -109,9 +110,9 @@ public class SaveOpenFile
             Object readObject = ois.readObject();
             ois.close();
 
-            if (readObject != null && readObject instanceof MemoryClassifier)
+            if (readObject != null && readObject instanceof Memory)
             {
-                return (MemoryClassifier)readObject;
+                return (Memory)readObject;
             }
         }
         catch (IOException e)

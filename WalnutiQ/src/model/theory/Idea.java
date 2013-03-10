@@ -1,5 +1,6 @@
 package model.theory;
 
+import java.io.Serializable;
 import model.util.ColumnLocation;
 import model.Column;
 import java.util.HashSet;
@@ -10,7 +11,7 @@ import java.util.Set;
  * segments, and synapses allowed by the connection strength of a regions
  * distributed synapse permanence values(connection strengths).
  */
-public class Idea
+public class Idea implements Serializable
 {
     private String              name;
 
@@ -74,7 +75,7 @@ public class Idea
         Set<Column> columns)
     {
         Set<ColumnLocation> columnLocations = new HashSet<ColumnLocation>();
-    
+
         for (Column column : columns)
         {
             ColumnLocation columnLocation = new ColumnLocation();

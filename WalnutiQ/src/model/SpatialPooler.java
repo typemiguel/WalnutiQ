@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.TreeSet;
  * @author Quinn Liu
  * @version Oct 25, 2012
  */
-public class SpatialPooler
+public class SpatialPooler implements Serializable
 {
     private Region      region;
     /**

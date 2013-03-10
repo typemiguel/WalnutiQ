@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  * @author Quinn
  * @version Nov 17, 2012
  */
-public class TemporalPooler
+public class TemporalPooler implements Serializable
 {
     private Region      region;
     /**

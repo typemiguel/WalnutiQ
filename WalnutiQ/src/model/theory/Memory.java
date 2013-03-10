@@ -1,11 +1,13 @@
 package model.theory;
 
+import java.io.Serializable;
+import model.util.ColumnLocation;
 import java.util.Iterator;
 import model.Segment;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Memory
+public class Memory implements Serializable
 {
     // pick the idea that matches most closely to the output of a Region
     private Set<Idea> ideas;
@@ -95,6 +97,32 @@ public class Memory
         {
             return false;
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n=============================");
+        stringBuilder.append("\n-------Ideas in Memory-------");
+        for (Idea idea : this.ideas)
+        {
+            stringBuilder.append("\n" + idea.getName() + ": ");
+
+            int i = 1;
+                for (ColumnLocation columnLocation : idea.getColumnLocations())
+                {
+                    stringBuilder.append("(" + columnLocation.getX() + ", "+ columnLocation.getY() + ")");
+                    i++;
+                    if (i % 4 ==0)
+                    {
+                        stringBuilder.append("\n ");
+                    }
+                }
+        }
+        stringBuilder.append("\n=============================");
+        String brainActivityInformation = stringBuilder.toString();
+        return brainActivityInformation;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package model.theory;
 
+import java.io.Serializable;
 import model.util.ColumnLocation;
 import java.util.HashSet;
 import model.Column;
@@ -13,10 +14,10 @@ import java.util.Set;
  * @author Huanqing
  * @version Jan 14, 2013
  */
-public class MemoryClassifier
+public class MemoryClassifier implements Serializable
 {
     private Set<ColumnLocation> regionOutput;
-    private Memory      memory;
+    private Memory              memory;
 
 
     // ----------------------------------------------------------
@@ -59,18 +60,13 @@ public class MemoryClassifier
 
     // ----------------------------------------------------------
     /**
-     * Update all Idea objects within Memory with any different Columns that are
-     * becoming active. No Column objects are removed from any Idea objects.
-     *
-     * @param regionOutput
-     *            Active Columns of the Region object after executing the
-     *            spatial pooler algorithm once.
-     */
-    // ----------------------------------------------------------
-    /**
-     * Place a description of your method here.
+     * Update all Idea objects' attentionPercentages within Memory based on
+     * active Columns within regionOutput1. No Column objects are removed
+     * from any Idea objects.
      *
      * @param regionOutput1
+     *            Active Columns of the Region object after executing the
+     *            spatial pooler algorithm once.
      */
     public void updateIdeas(Set<Column> regionOutput1)
     {
@@ -79,7 +75,8 @@ public class MemoryClassifier
 
         // compare which set of columns in memory has the greatest
         // intersection with regionOutput
-        Set<ColumnLocation> intersectionSet = new HashSet<ColumnLocation>(this.regionOutput);
+        Set<ColumnLocation> intersectionSet =
+            new HashSet<ColumnLocation>(this.regionOutput);
 
         // iterate through all ideas in memory
         for (Idea idea : this.memory.getIdeas())

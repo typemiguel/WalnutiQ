@@ -1,9 +1,10 @@
 package model.util;
 
+import java.io.Serializable;
 import model.Column;
 
 // TODO: write test class
-public class ColumnLocation
+public class ColumnLocation implements Serializable
 {
     private int x;
     private int y;

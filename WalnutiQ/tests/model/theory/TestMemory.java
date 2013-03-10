@@ -72,4 +72,25 @@ public class TestMemory extends junit.framework.TestCase
         assertTrue(this.memory.removeIdea(twinIdea2));
         assertEquals(0, this.memory.getIdeas().size());
     }
+
+    public void testToString()
+    {
+        this.columns.add(this.region.getColumn(1, 1));
+        this.columns.add(this.region.getColumn(1, 2));
+        this.columns.add(this.region.getColumn(1, 3));
+        this.columns.add(this.region.getColumn(1, 4));
+        this.columns.add(this.region.getColumn(1, 5));
+        this.columns.add(this.region.getColumn(1, 6));
+        this.columns.add(this.region.getColumn(2, 1));
+        this.columns.add(this.region.getColumn(2, 2));
+        this.columns.add(this.region.getColumn(2, 3));
+        this.columns.add(this.region.getColumn(2, 4));
+        this.columns.add(this.region.getColumn(2, 5));
+        this.columns.add(this.region.getColumn(2, 6));
+        Idea idea = new Idea("Brain", this.columns);
+
+        this.memory.addIdea(idea);
+
+        System.out.println(this.memory.toString());
+    }
 }

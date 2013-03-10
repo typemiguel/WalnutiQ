@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -17,7 +18,7 @@ import java.util.Set;
  * @author Huanqing
  * @version Feb 9, 2013
  */
-public class SegmentUpdateInformation
+public class SegmentUpdateInformation implements Serializable
 {
     private Cell         cell;
     private Segment      segment;

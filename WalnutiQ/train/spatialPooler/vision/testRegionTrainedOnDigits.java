@@ -4,7 +4,7 @@ import model.theory.Idea;
 import java.util.HashSet;
 import model.Column;
 import java.util.Set;
-import model.util.SaveOpenFile;
+import model.util.InputOutput;
 import model.Region;
 import model.SpatialPooler;
 import java.awt.image.BufferedImage;
@@ -24,8 +24,7 @@ public class testRegionTrainedOnDigits
 {
     private Region           bottomRegion;
     private SpatialPooler    bottomSpatialPooler;
-    private Region           topRegion;
-    private SpatialPooler    topSpatialPooler;
+
     private Memory           memory;
     private MemoryClassifier memoryClassifier;
 
@@ -34,9 +33,6 @@ public class testRegionTrainedOnDigits
     {
         this.bottomRegion = new Region(30, 40, 6, 8, 20.0f, 2, 1);
         this.bottomSpatialPooler = new SpatialPooler(this.bottomRegion);
-
-        this.topRegion = new Region(6, 8, 3, 4, 50.0f, 2, 1);
-        this.topSpatialPooler = new SpatialPooler(this.topRegion);
 
         this.memory = new Memory();
         this.memoryClassifier = new MemoryClassifier(this.memory);
@@ -52,149 +48,77 @@ public class testRegionTrainedOnDigits
     public void testTrainedBottomRegionOnDigitZero()
         throws IOException
     {
-        this.trainRegionOnZero();
-        this.trainRegionOnOne();
+        this.trainSpatialPoolerOnImageIdea(this.memory, this.bottomSpatialPooler,
+            "Zero", "zero1.bmp", 1);
+//        this.trainSpatialPoolerOnImageIdea(this.memory, this.bottomSpatialPooler,
+//            "Zero", "zero1.bmp", 1);
 
-        // --------------------------Testing----------------------------------
-        this.bottomSpatialPooler.getRegion().setSpatialLearning(false);
-        Set<Column> activeColumns = new HashSet<Column>();
+//        // --------------------------Testing----------------------------------
+//        this.bottomSpatialPooler.getRegion().setSpatialLearning(false);
+//        byte[][] inputData = this.getDoubleByteArrayOfFile("zero0.bmp", this.bottomRegion);
+//        this.bottomSpatialPooler.nextTimeStep(inputData);
+//
+//        Set<Column> activeColumns = new HashSet<Column>();
+//        activeColumns.addAll(this.bottomSpatialPooler.performSpatialPoolingOnRegion());
+//        this.memoryClassifier.updateIdeas(activeColumns);
+//        // -------------------------------------------------------------------
 
-        byte[][] inputData0 =
-            this.getDoubleByteArrayOfFile("zero0.bmp", this.bottomRegion);
-        this.bottomSpatialPooler.nextTimeStep(inputData0);
-        activeColumns.addAll(this.bottomSpatialPooler
-            .performSpatialPoolingOnRegion());
-        this.memoryClassifier.updateIdeas(activeColumns);
-        // -------------------------------------------------------------------
-        System.out.println(this.memoryClassifier.toString());
-        this.saveAllFiles();
+        System.out.println("minimumOverlapScore: " + this.bottomRegion.getMinimumOverlapScore());
+        System.out.println(this.memory);
+        System.out.println(this.memoryClassifier);
+
+
+        this.saveRegionAndMemory();
         // TODO: add topRegion to bottomRegion
         // TODO: print synapse permanenceValues as a colored map
     }
 
-    private void trainRegionOnOne() throws IOException
-    {
-        this.bottomSpatialPooler.getRegion().setSpatialLearning(true);
-        Idea oneIdea = new Idea("One");
 
-        for (int i = 0; i < 1; i++)
-        {
-            Set<Column> activeColumnsForTraining = new HashSet<Column>();
-            byte[][] inputDataBytes =
-                this.getDoubleByteArrayOfFile("zero0.bmp", this.bottomRegion);
-
-            this.bottomSpatialPooler.nextTimeStep(inputDataBytes);
-            activeColumnsForTraining.addAll(this.bottomSpatialPooler
-                .performSpatialPoolingOnRegion());
-
-            oneIdea.addColumns(activeColumnsForTraining);
-            activeColumnsForTraining.clear();
-        }
-
-        for (int i = 0; i < 1; i++)
-        {
-            Set<Column> activeColumnsForTraining = new HashSet<Column>();
-            byte[][] inputDataBytes =
-                this.getDoubleByteArrayOfFile("zero1.bmp", this.bottomRegion);
-
-            this.bottomSpatialPooler.nextTimeStep(inputDataBytes);
-            activeColumnsForTraining.addAll(this.bottomSpatialPooler
-                .performSpatialPoolingOnRegion());
-
-            oneIdea.addColumns(activeColumnsForTraining);
-            activeColumnsForTraining.clear();
-        }
-
-        for (int i = 0; i < 1; i++)
-        {
-            Set<Column> activeColumnsForTraining = new HashSet<Column>();
-            byte[][] inputDataBytes =
-                this.getDoubleByteArrayOfFile("zero2.bmp", this.bottomRegion);
-
-            this.bottomSpatialPooler.nextTimeStep(inputDataBytes);
-            activeColumnsForTraining.addAll(this.bottomSpatialPooler
-                .performSpatialPoolingOnRegion());
-
-            oneIdea.addColumns(activeColumnsForTraining);
-            activeColumnsForTraining.clear();
-        }
-
-        this.memory.addIdea(oneIdea);
-    }
-
-
-    private void trainRegionOnZero()
+    public void trainSpatialPoolerOnImageIdea(
+        Memory memory,
+        SpatialPooler spatialPooler,
+        String ideaName,
+        String bmpFileName,
+        int numberOfTrainingIterations)
         throws IOException
     {
-        this.bottomSpatialPooler.getRegion().setSpatialLearning(true);
-        Idea zeroIdea = new Idea("Zero");
+        spatialPooler.getRegion().setSpatialLearning(true);
+        Idea idea = new Idea(ideaName);
 
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < numberOfTrainingIterations; i++)
         {
             Set<Column> activeColumnsForTraining = new HashSet<Column>();
             byte[][] inputDataBytes =
-                this.getDoubleByteArrayOfFile("zero0.bmp", this.bottomRegion);
+                this.getDoubleByteArrayOfFile(
+                    bmpFileName,
+                    spatialPooler.getRegion());
 
-            this.bottomSpatialPooler.nextTimeStep(inputDataBytes);
-            activeColumnsForTraining.addAll(this.bottomSpatialPooler
+            spatialPooler.nextTimeStep(inputDataBytes);
+            activeColumnsForTraining.addAll(spatialPooler
                 .performSpatialPoolingOnRegion());
 
-            zeroIdea.addColumns(activeColumnsForTraining);
+            idea.addColumns(activeColumnsForTraining);
             activeColumnsForTraining.clear();
         }
-
-        for (int i = 0; i < 1; i++)
-        {
-            Set<Column> activeColumnsForTraining = new HashSet<Column>();
-            byte[][] inputDataBytes =
-                this.getDoubleByteArrayOfFile("zero1.bmp", this.bottomRegion);
-
-            this.bottomSpatialPooler.nextTimeStep(inputDataBytes);
-            activeColumnsForTraining.addAll(this.bottomSpatialPooler
-                .performSpatialPoolingOnRegion());
-
-            zeroIdea.addColumns(activeColumnsForTraining);
-            activeColumnsForTraining.clear();
-        }
-
-        for (int i = 0; i < 1; i++)
-        {
-            Set<Column> activeColumnsForTraining = new HashSet<Column>();
-            byte[][] inputDataBytes =
-                this.getDoubleByteArrayOfFile("zero2.bmp", this.bottomRegion);
-
-            this.bottomSpatialPooler.nextTimeStep(inputDataBytes);
-            activeColumnsForTraining.addAll(this.bottomSpatialPooler
-                .performSpatialPoolingOnRegion());
-
-            zeroIdea.addColumns(activeColumnsForTraining);
-            activeColumnsForTraining.clear();
-        }
-
-        this.memory.addIdea(zeroIdea);
+        memory.addIdea(idea);
     }
 
-
-    private void saveAllFiles()
+    private void saveRegionAndMemory()
     {
-        // TODO: save BrainActivity object
-
         String bottomRegionRelativePath =
-            "savedModelObjects/htm/spatialPooler/vision/TrainedBottomRegion_Digits";
-        assertTrue(SaveOpenFile.saveRegion(
+            "savedModelObjects/spatialPooler/vision/TrainedBottomRegion_Digits";
+        assertTrue(InputOutput.saveRegion(
             this.bottomRegion,
             bottomRegionRelativePath));
-        /*
-        String memoryClassifierRelativePath =
-            "savedModelObjects/htm/spatialPooler/vision/MemoryClassifier_Digits";
-        assertTrue(SaveOpenFile.saveMemoryClassifier(
-            this.memoryClassifier,
-            memoryClassifierRelativePath));
-        */
+
+         String memoryRelativePath =
+         "savedModelObjects/spatialPooler/vision/TrainedMemory_Digits";
+         assertTrue(InputOutput.saveMemory(
+         this.memory,
+         memoryRelativePath));
     }
 
-
-    // ----------------------------------------------------------
+ // ----------------------------------------------------------
     /**
      * Returns the converted byte 2-D array of a .bmp file.
      *
@@ -222,4 +146,6 @@ public class testRegionTrainedOnDigits
         }
         return alphaInputData;
     }
+
+
 }
