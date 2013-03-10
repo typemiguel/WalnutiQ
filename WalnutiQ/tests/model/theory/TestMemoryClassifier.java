@@ -5,6 +5,14 @@ import model.Region;
 import java.util.HashSet;
 import java.util.Set;
 
+// -------------------------------------------------------------------------
+/**
+ *  Write a one-sentence summary of your class here.
+ *  Follow it with additional details about its purpose, what abstraction
+ *  it represents, and how to use it.
+ *
+ *  @author Quinn Liu
+ */
 public class TestMemoryClassifier
     extends junit.framework.TestCase
 {
@@ -37,41 +45,53 @@ public class TestMemoryClassifier
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testGetRegionOutput()
     {
-        Set<Column> regionOutput = new HashSet<Column>();
-        regionOutput.add(this.column00);
-        regionOutput.add(this.column11);
-        regionOutput.add(this.column22);
-        assertEquals(regionOutput, this.regionOutput);
+        Set<Column> regionOutput1 = new HashSet<Column>();
+        regionOutput1.add(this.column00);
+        regionOutput1.add(this.column11);
+        regionOutput1.add(this.column22);
+        assertEquals(regionOutput1, this.regionOutput);
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testGetMemory()
     {
         assertEquals(this.memory, this.memoryClassifer.getMemory());
     }
 
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testUpdateIdeas()
     {
-        Set<Column> regionOutput = new HashSet<Column>();
+        Set<Column> regionOutput1 = new HashSet<Column>();
         // simulate training by making a region output instance
         // have only one of the original Column objects of Idea Infinity
-        regionOutput.add(this.column00);
-        this.memoryClassifer.updateIdeas(regionOutput);
+        regionOutput1.add(this.column00);
+        this.memoryClassifer.updateIdeas(regionOutput1);
         // Idea Infinity will now have an attention percentage of ~= 33.3%
         assertEquals(33.3f, this.memoryClassifer.getMemory()
             .getIdea("Infinity").getAttentionPercentage(), 0.1f);
 
-        regionOutput.add(this.column11);
-        this.memoryClassifer.updateIdeas(regionOutput);
+        regionOutput1.add(this.column11);
+        this.memoryClassifer.updateIdeas(regionOutput1);
         // Idea Infinity will now have an attention percentage of ~= 66.6%
         assertEquals(66.6f, this.memoryClassifer.getMemory()
             .getIdea("Infinity").getAttentionPercentage(), 0.1f);
 
-        regionOutput.add(this.column22);
-        this.memoryClassifer.updateIdeas(regionOutput);
+        regionOutput1.add(this.column22);
+        this.memoryClassifer.updateIdeas(regionOutput1);
         // Idea Infinity will now have an attention percentage of ~= 99.9%
         assertEquals(99.9f, this.memoryClassifer.getMemory()
             .getIdea("Infinity").getAttentionPercentage(), 0.1f);

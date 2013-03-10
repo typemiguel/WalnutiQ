@@ -17,40 +17,54 @@ public class Idea implements Serializable
 
     private float               attentionPercentage;
 
-    // a set of columns represents an idea
+    // stores the millisecond activation state of a sparse distributed set of
+    // cells created by segments and the connection strength of synapses
     private Set<ColumnLocation> columnLocations;
 
-
-    public Idea(String idea)
+    /**
+     * Instantiate a new Idea object.
+     * @param ideaName The idea object's name.
+     */
+    public Idea(String ideaName)
     {
-        this.name = idea;
+        this.name = ideaName;
         this.attentionPercentage = 0;
-        // this.columnIndices = new
-
         this.columnLocations = new HashSet<ColumnLocation>();
     }
 
-
-    public Idea(String idea, Set<Column> columns)
+    /**
+     * Instantiate a new Idea object.
+     * @param ideaName The idea object's name.
+     * @param columns The unique set of columns that represent this idea.
+     */
+    public Idea(String ideaName, Set<Column> columns)
     {
-        this.name = idea;
+        this.name = ideaName;
         this.attentionPercentage = 0;
-        this.columnLocations = this.convertToColumnLocations(columns);
+        this.columnLocations = Idea.convertToColumnLocations(columns);
     }
 
-
+    /**
+     * @return Name of this idea object.
+     */
     public String getName()
     {
         return this.name;
     }
 
-
+    /**
+     * @return AttentionPercentage of this idea object to the current region
+     * output during training.
+     */
     public float getAttentionPercentage()
     {
         return this.attentionPercentage;
     }
 
-
+    /**
+     * @param attentionPercentage This idea object's attentionPercentage.
+     * @return This idea object's attentionPercentage.
+     */
     public boolean setAttentionPercentage(float attentionPercentage)
     {
         if (attentionPercentage >= 0 && attentionPercentage <= 100)
@@ -65,12 +79,19 @@ public class Idea implements Serializable
     }
 
 
+    /**
+     * @return This idea object's set of columnLocations.
+     */
     public Set<ColumnLocation> getColumnLocations()
     {
         return this.columnLocations;
     }
 
 
+    /**
+     * @param columns The Column objects to be converted to ColumnLocation objects.
+     * @return The converted set of ColumnLocation objects.
+     */
     public static Set<ColumnLocation> convertToColumnLocations(
         Set<Column> columns)
     {
@@ -86,27 +107,37 @@ public class Idea implements Serializable
         return columnLocations;
     }
 
-
+    /**
+     * @param columns The set of columns that might be added if not already in
+     * this idea object's set of columns.
+     * @return true if new column objects were added to this Idea objects set
+     * of columns; otherwise, return false.
+     */
     public boolean addColumns(Set<Column> columns)
     {
-        Set<ColumnLocation> columnLocations = new HashSet<ColumnLocation>();
-        columnLocations = this.convertToColumnLocations(columns);
+        Set<ColumnLocation> columnLocations1 = new HashSet<ColumnLocation>();
+        columnLocations1 = Idea.convertToColumnLocations(columns);
 
         // the set within this Idea object is unioned with the parameter columns
         // set
-        if (this.columnLocations.containsAll(columnLocations))
+        if (this.columnLocations.containsAll(columnLocations1))
         {
             return false;
         }
         else
         {
             // performs a union of the two sets
-            this.columnLocations.addAll(columnLocations);
+            this.columnLocations.addAll(columnLocations1);
             return true;
         }
     }
 
 
+    /**
+     * @param column The column to be removed from this idea if it exists.
+     * @return true if a columnLocation was removed from this idea object;
+     * otherwise, return false.
+     */
     public boolean removeColumn(Column column)
     {
         ColumnLocation columnLocation = new ColumnLocation(column);

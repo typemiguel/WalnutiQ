@@ -5,6 +5,12 @@ import model.Column;
 import java.util.HashSet;
 import model.Region;
 
+// -------------------------------------------------------------------------
+/**
+ *  This class tests all methods within class Memory.
+ *
+ *  @author Quinn Liu
+ */
 public class TestMemory extends junit.framework.TestCase
 {
     private Region region;
@@ -19,6 +25,10 @@ public class TestMemory extends junit.framework.TestCase
         this.memory = new Memory();
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testGetIdeas()
     {
         Idea twinIdea1 = new Idea("Date", this.columns);
@@ -28,10 +38,13 @@ public class TestMemory extends junit.framework.TestCase
         assertEquals(ideas, this.memory.getIdeas());
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testIsNewIdea()
     {
         Idea twinIdea1 = new Idea("Date", this.columns);
-        Idea twinIdea2 = new Idea("Date", this.columns);
         this.memory.addIdea(twinIdea1);
 
         // if 1st and 2nd "if statements" in method terminates to true
@@ -43,14 +56,18 @@ public class TestMemory extends junit.framework.TestCase
 
         Column column11 = this.region.getColumn(1, 1);
         this.columns.add(column11);
-        Idea twinIdea3 = new Idea("Date", this.columns);
-        assertFalse(this.memory.isNewIdea(twinIdea3));
+        Idea twinIdea2 = new Idea("Date", this.columns);
+        assertFalse(this.memory.isNewIdea(twinIdea2));
 
         // if 1st "if statement" terminates to false
         assertEquals(0, emptyMemory.getIdeas().size());
         assertTrue(emptyMemory.isNewIdea(twinIdea1));
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testAddIdea()
     {
         Idea newIdea = new Idea("New");
@@ -58,6 +75,10 @@ public class TestMemory extends junit.framework.TestCase
         assertFalse(this.memory.addIdea(newIdea));
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testRemoveIdea()
     {
         Idea twinIdea1 = new Idea("Date", this.columns);
@@ -73,6 +94,10 @@ public class TestMemory extends junit.framework.TestCase
         assertEquals(0, this.memory.getIdeas().size());
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testToString()
     {
         this.columns.add(this.region.getColumn(1, 1));

@@ -6,6 +6,13 @@ import java.util.HashSet;
 import java.util.Set;
 import model.*;
 
+// -------------------------------------------------------------------------
+/**
+ *  Test all methods within class Idea.
+ *
+ *  @author Huanqing
+ *  @version Mar 10, 2013
+ */
 public class TestIdea
     extends junit.framework.TestCase
 {
@@ -26,12 +33,20 @@ public class TestIdea
         this.bigIdea = new Idea("Big idea", activeColumns);
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testGetName()
     {
         assertEquals("Empty idea", this.emptyIdea.getName());
         assertEquals("Big idea", this.bigIdea.getName());
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testGetAndSetAttentionPercentage()
     {
         assertFalse(this.emptyIdea.setAttentionPercentage(-1));
@@ -40,6 +55,10 @@ public class TestIdea
         assertEquals(50.0f, this.bigIdea.getAttentionPercentage(), 0.01f);
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testGetColumnLocations()
     {
         ColumnLocation columnLocation = new ColumnLocation();
@@ -52,6 +71,10 @@ public class TestIdea
         assertEquals(setColumnLocations, this.bigIdea.getColumnLocations());
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testConvertToColumnLocations()
     {
         Column column11 = this.region.getColumn(1, 1);
@@ -69,11 +92,14 @@ public class TestIdea
         assertFalse(columnLocationSet.contains(new ColumnLocation(3, 3)));
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testAddColumns()
     {
         Column column11 = this.region.getColumn(1, 1);
         Column column22 = this.region.getColumn(2, 2);
-        Column column33 = this.region.getColumn(3, 3);
 
         Set<Column> columnSet1 = new HashSet<Column>();
         columnSet1.add(column11);
@@ -86,6 +112,10 @@ public class TestIdea
         assertFalse(this.emptyIdea.getColumnLocations().contains(new ColumnLocation(3, 3)));
     }
 
+    // ----------------------------------------------------------
+    /**
+     * Place a description of your method here.
+     */
     public void testRemoveColumn()
     {
         Column column00 = this.region.getColumn(0, 0);
