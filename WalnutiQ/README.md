@@ -3,7 +3,7 @@ WalnutiQ &copy;
   <p>
     Hi and welcome to my brain simulation research repository in Java! 
     This repository contains classes that will allow you to build your own
-    brain model, train it on numbers, view it's activity on the console, and
+    brain model, train it on data, view it's activity on the console, and
     test it's ability to recognize objects.
   </p>
   <p>
@@ -42,20 +42,6 @@ WalnutiQ &copy;
             <li>theory = test classes for all theory classes</li>
          </ul>
       </ul>  
-  <h6>inputData</h6>
-      <ul>
-         <li>spatialPooler</li>
-         <ul>
-            <li>vision = numbers zero to three as bitmaps</li>
-         </ul>
-      </ul> 
-  <h6>train</h6>
-      <ul>
-         <li>spatialPooler</li>
-         <ul>
-            <li>vision = any saved trained brain models through serialization</li>
-         </ul>
-      </ul>
   
   <p>
     If you are interested in working on this challenging and exciting project 
