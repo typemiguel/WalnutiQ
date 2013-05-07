@@ -9,7 +9,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
-public class MARKII_SpatialPooler extends Pooler {
+/**
+ * Provides implementation for running the spatial learning algorithm on a
+ * region. This class provides methods that simulate brain activity within
+ * the neocortex for object recognition.
+ *
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version MARK II | April 28, 2013
+ */
+public class MARKII_SpatialPooler extends MARKII_Pooler {
     private Set<MARKII_Column> activeColumns;
 
     public MARKII_SpatialPooler(MARKII_Region newRegion) {
@@ -248,7 +256,7 @@ public class MARKII_SpatialPooler extends Pooler {
      *
      * @return The average connected receptive field size.
      */
-    float averageReceptiveFieldSizeOfRegion() {
+    private float averageReceptiveFieldSizeOfRegion() {
 	double totalSynapseDistanceFromOriginColumn = 0.0;
 	int numberOfSynapses = 0;
 	MARKII_Column[][] columns = this.region.getColumns();

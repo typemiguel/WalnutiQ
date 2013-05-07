@@ -2,7 +2,7 @@ package model;
 
 import model.MARKII_Segment.SynapseUpdateState;
 
-public class TestMARKII_Segment extends junit.framework.TestCase{
+public class Test_MARKII_Segment extends junit.framework.TestCase{
 
 //    private MARKII_Segment<MARKII_AbstractCell> proximalSegment;
 //

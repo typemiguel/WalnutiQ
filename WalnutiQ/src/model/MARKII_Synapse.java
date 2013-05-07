@@ -58,7 +58,7 @@ public class MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
      */
     public MARKII_Synapse(CellType abstractCell, double initialPermanence) {
 	this.abstractCell = abstractCell;
-	this.permanenceValue = initialPermanence;
+	this.setPermanenceValue(initialPermanence);
     }
 
     /**
@@ -71,7 +71,7 @@ public class MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
      */
     public MARKII_Synapse(CellType abstractCell) {
 	this.abstractCell = abstractCell;
-	this.permanenceValue = INITIAL_PERMANENCE;
+	this.setPermanenceValue(INITIAL_PERMANENCE);
     }
 
     /**
@@ -93,7 +93,7 @@ public class MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
      */
     public boolean isConnected()
     {
-	return (this.permanenceValue >= MINIMAL_CONNECTED_PERMANCE);
+	return (this.getPermanenceValue() >= MINIMAL_CONNECTED_PERMANCE);
     }
 
     /**
@@ -101,8 +101,8 @@ public class MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
      * while forcing permanenceValue to always be < 1.0.
      */
     public void increasePermance() {
-	this.permanenceValue = Math.min(1.0, this.permanenceValue
-		+ PERMANCE_INCREASE);
+	this.setPermanenceValue(Math.min(1.0, this.getPermanenceValue()
+		+ PERMANCE_INCREASE));
     }
 
     /**
@@ -110,8 +110,8 @@ public class MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
      * while forcing permanenceValue to always be > 0.0.
      */
     public void decreasePermance() {
-	this.permanenceValue = Math.max(0.0, this.permanenceValue
-		- PERMANCE_DECREASE);
+	this.setPermanenceValue(Math.max(0.0, this.getPermanenceValue()
+		- PERMANCE_DECREASE));
     }
 
     @Override
@@ -123,7 +123,7 @@ public class MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
 	stringBuilder.append("\n       Connected to a: ");
 	stringBuilder.append("this.abstractCell.toString()");
 	stringBuilder.append("\n      permanenceValue: ");
-	stringBuilder.append(this.permanenceValue);
+	stringBuilder.append(this.getPermanenceValue());
 	stringBuilder.append("\n          isConnected: ");
 	if (this.getAbstractCell() == null) {
 	    stringBuilder.append("false");
@@ -142,7 +142,7 @@ public class MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
 	result = prime * result
 		+ ((abstractCell == null) ? 0 : abstractCell.hashCode());
 	long temp;
-	temp = Double.doubleToLongBits(permanenceValue);
+	temp = Double.doubleToLongBits(getPermanenceValue());
 	result = prime * result + (int) (temp ^ (temp >>> 32));
 	return result;
     }
@@ -161,9 +161,17 @@ public class MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
 		return false;
 	} else if (!abstractCell.equals(other.abstractCell))
 	    return false;
-	if (Double.doubleToLongBits(permanenceValue) != Double
-		.doubleToLongBits(other.permanenceValue))
+	if (Double.doubleToLongBits(getPermanenceValue()) != Double
+		.doubleToLongBits(other.getPermanenceValue()))
 	    return false;
 	return true;
+    }
+
+    public double getPermanenceValue() {
+	return permanenceValue;
+    }
+
+    public void setPermanenceValue(double permanenceValue) {
+	this.permanenceValue = permanenceValue;
     }
 }

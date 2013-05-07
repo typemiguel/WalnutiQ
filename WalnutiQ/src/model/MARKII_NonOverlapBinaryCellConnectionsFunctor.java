@@ -1,6 +1,14 @@
 package model;
 
-public class NonOverlapBinaryCellConnectionsFunctor implements
+/**
+ * A functor class that provides the implementation for connecting a lower
+ * region to a higher region with non-overlaping proximal segments.
+ *
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @author Michael Cogswell (cogswell@vt.edu)
+ * @version MARK II | April 28, 2013
+ */
+public class MARKII_NonOverlapBinaryCellConnectionsFunctor implements
 	ConnectionInterface {
     // connect two regions with overlap as undirected bipartite graph
     public void connect(MARKII_Region parentRegion, MARKII_Region childRegion) {
