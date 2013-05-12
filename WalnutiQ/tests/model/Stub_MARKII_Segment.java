@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 import model.MARKII_Segment.SynapseUpdateState;
 
-public class Stub_MARKII_Segment<CellType extends MARKII_AbstractCell> implements
+public class Stub_MARKII_Segment<CellType extends Stub_MARKII_AbstractCell> implements
 	Serializable {
-    private Set<MARKII_Synapse<CellType>> synapses;
+    private Set<Stub_MARKII_Synapse<CellType>> synapses;
 
     /**
      * Minimal percent of active synapses out of total synapses needed for a
@@ -24,7 +24,7 @@ public class Stub_MARKII_Segment<CellType extends MARKII_AbstractCell> implement
      * @author Michael Cogswell (cogswell@vt.edu)
      * @version MARK II | April 4, 2013
      */
-    public enum SynapseUpdateState {
+    public enum Stub_SynapseUpdateState {
 	/**
 	 * Increase permanence of synapses with an active abstractCell on one
 	 * segment.
@@ -43,7 +43,7 @@ public class Stub_MARKII_Segment<CellType extends MARKII_AbstractCell> implement
     }
 
     public Stub_MARKII_Segment() {
-	this.synapses = new HashSet<MARKII_Synapse<CellType>>();
+	this.synapses = new HashSet<Stub_MARKII_Synapse<CellType>>();
     }
 
     /**
@@ -53,7 +53,7 @@ public class Stub_MARKII_Segment<CellType extends MARKII_AbstractCell> implement
      */
     public boolean getActiveState() {
 	int numberOfActiveSynapses = 0;
-	for (MARKII_Synapse<CellType> synapse : this.synapses) {
+	for (Stub_MARKII_Synapse<CellType> synapse : this.synapses) {
 	    CellType abstractCell = synapse.getAbstractCell();
 	    if (synapse.isConnected() && abstractCell.getActiveState()) {
 		numberOfActiveSynapses++;
@@ -75,8 +75,8 @@ public class Stub_MARKII_Segment<CellType extends MARKII_AbstractCell> implement
      *            on a segment will be updated.
      *
      */
-    public void updateSynapsePermanences(SynapseUpdateState updateState) {
-	for (MARKII_Synapse<CellType> synapse : this.synapses) {
+    public void updateSynapsePermanences(Stub_SynapseUpdateState updateState) {
+	for (Stub_MARKII_Synapse<CellType> synapse : this.synapses) {
 	    switch (updateState) {
 	    case INCREASE_ACTIVE:
 		if (synapse.isConnected()
@@ -95,28 +95,33 @@ public class Stub_MARKII_Segment<CellType extends MARKII_AbstractCell> implement
     }
 
     // TODO: A proximalSegment should never connect 2 types of SensorCells
-    public boolean addSynapse(MARKII_Synapse<MARKII_AbstractCell> synapse) {
+    public boolean addSynapse(Stub_MARKII_Synapse<Stub_MARKII_AbstractCell> synapse) {
 	if (synapse != null) {
-	    this.synapses.add((MARKII_Synapse<CellType>) synapse);
+	    this.synapses.add((Stub_MARKII_Synapse<CellType>) synapse);
 	    return true;
 	} else {
 	    return false;
 	}
     }
 
-    public Set<MARKII_Synapse<CellType>> getSynapses() {
+    public Set<Stub_MARKII_Synapse<CellType>> getSynapses() {
 	return this.synapses;
     }
 
-    public void setSynapses(Set<MARKII_Synapse<CellType>> synapses) {
-	this.synapses = synapses;
+    public boolean setSynapses(Set<Stub_MARKII_Synapse<CellType>> synapses) {
+	if (synapses != null) {
+	    this.synapses = synapses;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     // TODO: make sure this is only called once
     public int getNumberOfActiveSynapses() {
 	int numberOfActiveSynapses = 0;
-	for (MARKII_Synapse synapse : synapses) {
-	    MARKII_AbstractCell cell = synapse.getAbstractCell();
+	for (Stub_MARKII_Synapse synapse : synapses) {
+	    Stub_MARKII_AbstractCell cell = synapse.getAbstractCell();
 	    if (cell != null && cell.getActiveState()) {
 		numberOfActiveSynapses++;
 	    }

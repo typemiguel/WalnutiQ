@@ -15,9 +15,9 @@ import java.util.List;
 public class MARKII_Neocortex {
     private MARKII_Region rootRegion;
     private MARKII_Region currentRegion; // analogous to current directory
-    private ConnectionInterface functor;
+    private MARKII_ConnectionInterface functor;
 
-    public MARKII_Neocortex(MARKII_Region rootRegion, ConnectionInterface functor) {
+    public MARKII_Neocortex(MARKII_Region rootRegion, MARKII_ConnectionInterface functor) {
 	this.rootRegion = rootRegion;
 	this.currentRegion = this.rootRegion;
 	this.functor = functor;

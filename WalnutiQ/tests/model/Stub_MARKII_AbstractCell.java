@@ -23,16 +23,26 @@ public abstract class Stub_MARKII_AbstractCell implements Serializable {
 	return this.x;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public boolean setX(int x) {
+	if (x >= 0) {
+	    this.x = x;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     public int getY() {
 	return this.y;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public boolean setY(int y) {
+	if (y >= 0) {
+	    this.y = y;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     @Override
@@ -51,7 +61,7 @@ public abstract class Stub_MARKII_AbstractCell implements Serializable {
 	    return false;
 	if (getClass() != obj.getClass())
 	    return false;
-	MARKII_AbstractCell other = (MARKII_AbstractCell) obj;
+	Stub_MARKII_AbstractCell other = (Stub_MARKII_AbstractCell) obj;
 	if (isActive != other.isActive)
 	    return false;
 	return true;

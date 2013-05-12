@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Stub_MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
+public class Stub_MARKII_Synapse<CellType extends Stub_MARKII_AbstractCell> implements
 	Serializable {
     private CellType abstractCell;
     private double permanenceValue;
@@ -63,16 +63,27 @@ public class Stub_MARKII_Synapse<CellType extends MARKII_AbstractCell> implement
 	}
     }
 
-    public void setAbstractCell(CellType abstractCell) {
-	this.abstractCell = abstractCell;
+    public boolean setAbstractCell(CellType abstractCell) {
+	if (abstractCell != null) {
+	    this.abstractCell = abstractCell;
+	    return true;
+	} else {
+	    return false;
+	}
+
     }
 
     public double getPermanenceValue() {
 	return this.permanenceValue;
     }
 
-    public void setPermanenceValue(double permanenceValue) {
-	this.permanenceValue = permanenceValue;
+    public boolean setPermanenceValue(double permanenceValue) {
+	if (permanenceValue >= 0.0 && permanenceValue <= 1.0) {
+	    this.permanenceValue = permanenceValue;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     /**
@@ -105,7 +116,7 @@ public class Stub_MARKII_Synapse<CellType extends MARKII_AbstractCell> implement
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
-	MARKII_AbstractCell cell = this.getAbstractCell();
+	Stub_MARKII_AbstractCell cell = this.getAbstractCell();
 	stringBuilder.append("\n============================");
 	stringBuilder.append("\n----Synapse Information-----");
 	stringBuilder.append("\n       Connected to a: ");
@@ -143,7 +154,7 @@ public class Stub_MARKII_Synapse<CellType extends MARKII_AbstractCell> implement
 	    return false;
 	if (getClass() != obj.getClass())
 	    return false;
-	MARKII_Synapse other = (MARKII_Synapse) obj;
+	Stub_MARKII_Synapse other = (Stub_MARKII_Synapse) obj;
 	if (abstractCell == null) {
 	    if (other.getAbstractCell() != null)
 		return false;

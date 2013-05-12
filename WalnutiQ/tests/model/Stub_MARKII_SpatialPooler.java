@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
-    private Set<MARKII_Column> activeColumns;
+public class Stub_MARKII_SpatialPooler extends Stub_MARKII_Pooler {
+    private Set<Stub_MARKII_Column> activeColumns;
 
-    public Stub_MARKII_SpatialPooler(MARKII_Region newRegion) {
+    public Stub_MARKII_SpatialPooler(Stub_MARKII_Region newRegion) {
 	this.region = newRegion;
-	this.activeColumns = new HashSet<MARKII_Column>();
+	this.activeColumns = new HashSet<Stub_MARKII_Column>();
     }
 
-    public Set<MARKII_Column> getActiveColumns() {
+    public Set<Stub_MARKII_Column> getActiveColumns() {
 	return this.activeColumns;
     }
 
@@ -26,8 +26,8 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
      *
      * @return A sparse set of active columns within this region.
      */
-    public Set<MARKII_Column> performSpatialPoolingOnRegion() {
-        MARKII_Column[][] columns = this.region.getColumns();
+    public Set<Stub_MARKII_Column> performSpatialPoolingOnRegion() {
+        Stub_MARKII_Column[][] columns = this.region.getColumns();
         for (int x = 0; x < columns.length; x++) {
             for (int y = 0; y < columns[0].length; y++) {
         	this.computeColumnOverlapScore(columns[x][y]);
@@ -49,13 +49,13 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
      * Column's overlapScore is below minOverlap, that Column's overlapScore is
      * set to 0.
      */
-    private void computeColumnOverlapScore(MARKII_Column column) {
+    private void computeColumnOverlapScore(Stub_MARKII_Column column) {
 	int newOverlapScore = column.getProximalSegment()
 		.getNumberOfActiveSynapses();
 	// compute minimumOverlapScore assuming all proximalSegments are
 	// connected
 	// to the same number of synapses
-	MARKII_Column[][] columns = this.region.getColumns();
+	Stub_MARKII_Column[][] columns = this.region.getColumns();
 	int regionMinimumOverlapScore = this.region.getMinimumOverlapScore();
 	if (newOverlapScore < regionMinimumOverlapScore) {
 	    newOverlapScore = 0;
@@ -71,8 +71,8 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
      * at time t.
      */
     private void computeActiveColumnsOfRegion() {
-	List<MARKII_Column> neighborColumns = new ArrayList<MARKII_Column>();
-	MARKII_Column[][] columns = this.region.getColumns();
+	List<Stub_MARKII_Column> neighborColumns = new ArrayList<Stub_MARKII_Column>();
+	Stub_MARKII_Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 		columns[x][y].setActiveState(false);
@@ -103,14 +103,14 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
      * for the Region is also computed and updated here.
      */
     private void regionLearnOneTimeStep() {
-	MARKII_Column[][] columns = this.region.getColumns();
+	Stub_MARKII_Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 		if (columns[x][y].getActiveState()) {
 		    // increase and decrease of proximal segment synapses based
 		    // on each Synapses's activeState
-		    Set<MARKII_Synapse<MARKII_AbstractCell>> synapses = columns[x][y].getProximalSegment().getSynapses();
-		    for (MARKII_Synapse<MARKII_AbstractCell> synapse : synapses) {
+		    Set<Stub_MARKII_Synapse<Stub_MARKII_AbstractCell>> synapses = columns[x][y].getProximalSegment().getSynapses();
+		    for (Stub_MARKII_Synapse<Stub_MARKII_AbstractCell> synapse : synapses) {
 			if (synapse.getAbstractCell() != null && synapse.getAbstractCell().getActiveState()) {
 			    synapse.increasePermance();
 			} else {
@@ -136,7 +136,7 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
 		    //    Column's synapses are boosted.
 		    this.updateNeighborColumns(x, y);
 
-		    List<MARKII_Column> neighborColumns = columns[x][y].getNeighborColumns();
+		    List<Stub_MARKII_Column> neighborColumns = columns[x][y].getNeighborColumns();
 
 		    float maximumActiveDutyCycle = columns[x][y].maximumActiveDutyCycle(neighborColumns);
 
@@ -187,8 +187,8 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
 	xFinal = Math.min(this.region.getXAxisLength(), xFinal + 1);
 	yFinal = Math.min(this.region.getYAxisLength(), yFinal + 1);
 
-	MARKII_Column[][] columns = this.region.getColumns();
-	List<MARKII_Column> neighborColumns = columns[columnXAxis][columnYAxis].getNeighborColumns();
+	Stub_MARKII_Column[][] columns = this.region.getColumns();
+	List<Stub_MARKII_Column> neighborColumns = columns[columnXAxis][columnYAxis].getNeighborColumns();
 
 	if (neighborColumns != null) {
 	    neighborColumns.clear(); // remove neighbors of column computed with
@@ -201,7 +201,7 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
 		    // TODO: To make inhibition a circle around input column,
 		    // change to remove corners of this rectangle inhibition
 		} else {
-		    MARKII_Column newColumn = columns[columnIndex][rowIndex];
+		    Stub_MARKII_Column newColumn = columns[columnIndex][rowIndex];
 		    if (newColumn != null) {
 			neighborColumns.add(newColumn);
 		    }
@@ -214,11 +214,11 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
      * Given a list of columns, return the kth highest overlapScore value of a
      * Column object within that list.
      */
-    private int kthScoreOfColumns(List<MARKII_Column> neighborColumns,
+    private int kthScoreOfColumns(List<Stub_MARKII_Column> neighborColumns,
 	    int desiredLocalActivity) {
 	// TreeSet data structures are automatically sorted.
 	Set<Integer> overlapScores = new TreeSet<Integer>();
-	for (MARKII_Column column : neighborColumns) {
+	for (Stub_MARKII_Column column : neighborColumns) {
 	    overlapScores.add(column.getOverlapScore());
 	}
 
@@ -252,13 +252,13 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
     private float averageReceptiveFieldSizeOfRegion() {
 	double totalSynapseDistanceFromOriginColumn = 0.0;
 	int numberOfSynapses = 0;
-	MARKII_Column[][] columns = this.region.getColumns();
+	Stub_MARKII_Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 		if (columns[x][y] != null) {
-		    Set<MARKII_Synapse<MARKII_AbstractCell>> synapses = columns[x][y].getProximalSegment().getSynapses();
-		    Set<MARKII_Synapse<MARKII_AbstractCell>> connectedSynapes = new HashSet<MARKII_Synapse<MARKII_AbstractCell>>();
-		    for (MARKII_Synapse<MARKII_AbstractCell> synapse : synapses) {
+		    Set<Stub_MARKII_Synapse<Stub_MARKII_AbstractCell>> synapses = columns[x][y].getProximalSegment().getSynapses();
+		    Set<Stub_MARKII_Synapse<Stub_MARKII_AbstractCell>> connectedSynapes = new HashSet<Stub_MARKII_Synapse<Stub_MARKII_AbstractCell>>();
+		    for (Stub_MARKII_Synapse<Stub_MARKII_AbstractCell> synapse : synapses) {
 			if (synapse.getAbstractCell() != null) {
 			    connectedSynapes.add(synapse);
 			}
@@ -267,7 +267,7 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
 		    // iterates over every connected synapses and sums the distances
 		    // from it's original Column to determine the average receptive
 		    // field
-		    for (MARKII_Synapse synapse : connectedSynapes) {
+		    for (Stub_MARKII_Synapse synapse : connectedSynapes) {
 			double dx = x - synapse.getAbstractCell().getX();
 			double dy = y - synapse.getAbstractCell().getY();
 			double synapseDistance = Math.sqrt(dx * dx + dy * dy);
@@ -289,7 +289,7 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
 	return (float) (totalSynapseDistanceFromOriginColumn / numberOfSynapses);
     }
 
-    private boolean addActiveColumn(MARKII_Column activeColumn) {
+    private boolean addActiveColumn(Stub_MARKII_Column activeColumn) {
 	if (activeColumn != null) {
 	    this.activeColumns.add(activeColumn);
 	    return true;
@@ -305,14 +305,14 @@ public class Stub_MARKII_SpatialPooler extends MARKII_Pooler {
      */
     private void updateOverlapDutyCycle(int columnXAxis, int columnYAxis)
     {
-	MARKII_Column[][] columns = this.region.getColumns();
+	Stub_MARKII_Column[][] columns = this.region.getColumns();
         float newOverlapDutyCycle =
-            (1.0f - MARKII_Column.EXPONENTIAL_MOVING_AVERAGE_AlPHA)
+            (1.0f - Stub_MARKII_Column.EXPONENTIAL_MOVING_AVERAGE_AlPHA)
                 * columns[columnXAxis][columnYAxis].getOverlapDutyCycle();
 
         if (columns[columnXAxis][columnYAxis].getOverlapScore() > this.region.getMinimumOverlapScore())
         {
-            newOverlapDutyCycle += MARKII_Column.EXPONENTIAL_MOVING_AVERAGE_AlPHA;
+            newOverlapDutyCycle += Stub_MARKII_Column.EXPONENTIAL_MOVING_AVERAGE_AlPHA;
         }
         columns[columnXAxis][columnYAxis].setOverlapDutyCycle(newOverlapDutyCycle);
     }

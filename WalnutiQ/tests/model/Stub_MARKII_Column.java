@@ -1,5 +1,7 @@
 package model;
 
+import model.Stub_MARKII_Segment.Stub_SynapseUpdateState;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,13 +13,13 @@ public class Stub_MARKII_Column implements Serializable {
     // the active columns do not have to be recomputed during the same iteration of spatial pooling
     private boolean isActive;
 
-    private MARKII_Neuron[] neurons;
+    private Stub_MARKII_Neuron[] neurons;
 
-    private MARKII_Segment<MARKII_AbstractCell> proximalSegment;
+    private Stub_MARKII_Segment<Stub_MARKII_AbstractCell> proximalSegment;
 
     // index position of chosen learning neuron within neurons array
     private int learningNeuronPosition; // may not be necessary
-    private List<MARKII_Column> neighborColumns;
+    private List<Stub_MARKII_Column> neighborColumns;
 
     private int overlapScore;
 
@@ -47,13 +49,13 @@ public class Stub_MARKII_Column implements Serializable {
     public final static float EXPONENTIAL_MOVING_AVERAGE_AlPHA = 0.005f;
 
     public Stub_MARKII_Column(int numberOfCells) {
-	this.neurons = new MARKII_Neuron[numberOfCells];
+	this.neurons = new Stub_MARKII_Neuron[numberOfCells];
 	for (int i = 0; i < numberOfCells; i++) {
-	    this.neurons[i] = new MARKII_Neuron();
+	    this.neurons[i] = new Stub_MARKII_Neuron();
 	}
-	this.proximalSegment = new MARKII_Segment<MARKII_AbstractCell>();
+	this.proximalSegment = new Stub_MARKII_Segment<Stub_MARKII_AbstractCell>();
 
-	this.neighborColumns = new ArrayList<MARKII_Column>();
+	this.neighborColumns = new ArrayList<Stub_MARKII_Column>();
 
 	this.overlapScore = 0;
 	this.boostValue = 1.0f;
@@ -70,7 +72,7 @@ public class Stub_MARKII_Column implements Serializable {
      */
     public void increaseProximalSegmentSynapsePermanences(int scaleFactor) {
 	for (int i = 0; i < scaleFactor; i++) {
-	    this.getProximalSegment().updateSynapsePermanences(SynapseUpdateState.INCREASE_ALL);
+	    this.getProximalSegment().updateSynapsePermanences(Stub_SynapseUpdateState.INCREASE_ALL);
 	}
     }
 
@@ -82,9 +84,9 @@ public class Stub_MARKII_Column implements Serializable {
      *            A list of Column objects.
      * @return The maximum acitveDutyCycle of a Column object.
      */
-    public float maximumActiveDutyCycle(List<MARKII_Column> neighborColumns) {
+    public float maximumActiveDutyCycle(List<Stub_MARKII_Column> neighborColumns) {
 	float maximumActiveDutyCycle = 0.0f;
-	for (MARKII_Column column : neighborColumns) {
+	for (Stub_MARKII_Column column : neighborColumns) {
 	    if (column.getActiveDutyCycle() > maximumActiveDutyCycle) {
 		maximumActiveDutyCycle = column.getActiveDutyCycle();
 	    }
@@ -163,15 +165,20 @@ public class Stub_MARKII_Column implements Serializable {
 	this.isActive = activeState;
     }
 
-    public MARKII_Neuron[] getNeurons() {
+    public Stub_MARKII_Neuron[] getNeurons() {
 	return this.neurons;
     }
 
-    public void setNeurons(MARKII_Neuron[] neurons) {
-	this.neurons = neurons;
+    public boolean setNeurons(Stub_MARKII_Neuron[] neurons) {
+	if (neurons != null) {
+	    this.neurons = neurons;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
-    public MARKII_Neuron getLearningNeuron() {
+    public Stub_MARKII_Neuron getLearningNeuron() {
 	return this.neurons[this.learningNeuronPosition];
     }
 
@@ -184,11 +191,11 @@ public class Stub_MARKII_Column implements Serializable {
 	}
     }
 
-    public List<MARKII_Column> getNeighborColumns() {
+    public List<Stub_MARKII_Column> getNeighborColumns() {
 	return this.neighborColumns;
     }
 
-    public boolean setNeighborColumns(List<MARKII_Column> neighborColumns) {
+    public boolean setNeighborColumns(List<Stub_MARKII_Column> neighborColumns) {
 	if (neighborColumns.size() > 0) {
 	    this.neighborColumns = neighborColumns;
 	    return true;
@@ -228,8 +235,13 @@ public class Stub_MARKII_Column implements Serializable {
 	return this.activeDutyCycle;
     }
 
-    public void setActiveDutyCycle(float activeDutyCycle) {
-	this.activeDutyCycle = activeDutyCycle;
+    public boolean setActiveDutyCycle(float activeDutyCycle) {
+	if (activeDutyCycle >= 0) {
+	    this.activeDutyCycle = activeDutyCycle;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     public float getOverlapDutyCycle() {
@@ -245,12 +257,17 @@ public class Stub_MARKII_Column implements Serializable {
 	}
     }
 
-    public MARKII_Segment<MARKII_AbstractCell> getProximalSegment() {
+    public Stub_MARKII_Segment<Stub_MARKII_AbstractCell> getProximalSegment() {
 	return this.proximalSegment;
     }
 
-    public void setProximalSegment(MARKII_Segment<MARKII_AbstractCell> proximalSegment) {
-	this.proximalSegment = proximalSegment;
+    public boolean setProximalSegment(Stub_MARKII_Segment<Stub_MARKII_AbstractCell> proximalSegment) {
+	if (proximalSegment != null) {
+	    this.proximalSegment = proximalSegment;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     @Override
@@ -303,7 +320,7 @@ public class Stub_MARKII_Column implements Serializable {
 	    return false;
 	if (getClass() != obj.getClass())
 	    return false;
-	MARKII_Column other = (MARKII_Column) obj;
+	Stub_MARKII_Column other = (Stub_MARKII_Column) obj;
 	if (Float.floatToIntBits(activeDutyCycle) != Float
 		.floatToIntBits(other.getActiveDutyCycle()))
 	    return false;

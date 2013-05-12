@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Stub_MARKII_Neuron extends MARKII_AbstractCell implements Serializable {
+public class Stub_MARKII_Neuron extends Stub_MARKII_AbstractCell implements Serializable {
     private boolean wasActive;
     private boolean isPredicting;
     private boolean wasPredicting;
-    private Set<MARKII_Segment<MARKII_Neuron>> distalSegments;
+    private Set<Stub_MARKII_Segment<Stub_MARKII_Neuron>> distalSegments;
 
     public Stub_MARKII_Neuron() {
 	super(); // Initializes isActive state
 	this.wasActive = false;
 	this.isPredicting = false;
 	this.wasPredicting = false;
-	this.distalSegments = new HashSet<MARKII_Segment<MARKII_Neuron>>();
+	this.distalSegments = new HashSet<Stub_MARKII_Segment<Stub_MARKII_Neuron>>();
     }
 
     /**
@@ -54,15 +54,20 @@ public class Stub_MARKII_Neuron extends MARKII_AbstractCell implements Serializa
 	this.wasPredicting = previousPredictingState;
     }
 
-    public Set<MARKII_Segment<MARKII_Neuron>> getDistalSegments() {
+    public Set<Stub_MARKII_Segment<Stub_MARKII_Neuron>> getDistalSegments() {
 	return this.distalSegments;
     }
 
-    public void setDistalSegments(Set<MARKII_Segment<MARKII_Neuron>> distalSegments) {
-	this.distalSegments = distalSegments;
+    public boolean setDistalSegments(Set<Stub_MARKII_Segment<Stub_MARKII_Neuron>> distalSegments) {
+	if (distalSegments != null) {
+	    this.distalSegments = distalSegments;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
-    public boolean addDistalSegment(MARKII_Segment<MARKII_Neuron> distalSegment) {
+    public boolean addDistalSegment(Stub_MARKII_Segment<Stub_MARKII_Neuron> distalSegment) {
 	if (distalSegment != null) {
 	    this.distalSegments.add(distalSegment);
 	    return true;
@@ -111,7 +116,7 @@ public class Stub_MARKII_Neuron extends MARKII_AbstractCell implements Serializa
 	    return false;
 	if (getClass() != obj.getClass())
 	    return false;
-	MARKII_Neuron other = (MARKII_Neuron) obj;
+	Stub_MARKII_Neuron other = (Stub_MARKII_Neuron) obj;
 	if (distalSegments == null) {
 	    if (other.getDistalSegments() != null)
 		return false;

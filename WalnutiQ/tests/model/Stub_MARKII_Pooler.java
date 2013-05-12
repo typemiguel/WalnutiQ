@@ -9,8 +9,13 @@ public abstract class Stub_MARKII_Pooler {
 	return this.region;
     }
 
-    public void setRegion(Stub_MARKII_Region region) {
-	this.region = region;
+    public boolean setRegion(Stub_MARKII_Region region) {
+	if (region != null) {
+	    this.region = region;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     public boolean changeRegion(Stub_MARKII_Region newRegion)

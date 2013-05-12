@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Stub_MARKII_Region implements Serializable {
     private String biologicalName;
-    private List<MARKII_Region> children;
+    private List<Stub_MARKII_Region> children;
 
-    private MARKII_Column[][] columns;
+    private Stub_MARKII_Column[][] columns;
 
     private double percentMinimumOverlapScore;
 
@@ -22,12 +22,12 @@ public class Stub_MARKII_Region implements Serializable {
 	    int numberOfColumnsAlongYAxis, int cellsPerColumn,
 	    double percentMinimumOverlapScore, int desiredLocalActivity) {
 	this.biologicalName = biologicalName;
-	this.children = new ArrayList<MARKII_Region>();
-	this.columns = new MARKII_Column[numberOfColumnsAlongXAxis][numberOfColumnsAlongYAxis];
+	this.children = new ArrayList<Stub_MARKII_Region>();
+	this.columns = new Stub_MARKII_Column[numberOfColumnsAlongXAxis][numberOfColumnsAlongYAxis];
 
 	for (int x = 0; x < numberOfColumnsAlongXAxis; x++) {
 	    for (int y = 0; y < numberOfColumnsAlongYAxis; y++) {
-		this.columns[x][y] = new MARKII_Column(cellsPerColumn);
+		this.columns[x][y] = new Stub_MARKII_Column(cellsPerColumn);
 	    }
 	}
 
@@ -36,7 +36,7 @@ public class Stub_MARKII_Region implements Serializable {
 	this.inhibitionRadius = 1; // TODO: fix class variable
     }
 
-    public boolean addChildRegion(MARKII_Region region) {
+    public boolean addChildRegion(Stub_MARKII_Region region) {
 	if (region != null)
 	{
 	    this.children.add(region);
@@ -47,20 +47,30 @@ public class Stub_MARKII_Region implements Serializable {
     }
 
     // --------------Getters and Setters---------------
-    public MARKII_Column[][] getColumns() {
+    public Stub_MARKII_Column[][] getColumns() {
 	return this.columns;
     }
 
-    public void setColumns(MARKII_Column[][] columns) {
-	this.columns = columns;
+    public boolean setColumns(Stub_MARKII_Column[][] columns) {
+	if (columns != null) {
+	    this.columns = columns;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     public String getBiologicalName() {
 	return this.biologicalName;
     }
 
-    public void setBiologicalName(String biologicalName) {
-	this.biologicalName = biologicalName;
+    public boolean setBiologicalName(String biologicalName) {
+	if (biologicalName != null) {
+	    this.biologicalName = biologicalName;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     public int getMinimumOverlapScore() {
@@ -70,16 +80,26 @@ public class Stub_MARKII_Region implements Serializable {
 		.getProximalSegment().getSynapses().size());
     }
 
-    public void setPercentMinimumOverlapScore(double percentMinimumOverlapScore) {
-	this.percentMinimumOverlapScore = this.percentMinimumOverlapScore;
+    public boolean setPercentMinimumOverlapScore(double percentMinimumOverlapScore) {
+	if (percentMinimumOverlapScore >= 0 && percentMinimumOverlapScore <= 100) {
+	    this.percentMinimumOverlapScore = this.percentMinimumOverlapScore;
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     public int getDesiredLocalActivity() {
 	return this.desiredLocalActivity;
     }
 
-    public void setDesiredLocalActivity(int desiredLocalActivity) {
-	this.desiredLocalActivity = desiredLocalActivity;
+    public boolean setDesiredLocalActivity(int desiredLocalActivity) {
+	if (desiredLocalActivity >= 0) {
+    		this.desiredLocalActivity = desiredLocalActivity;
+    		return true;
+	} else {
+	    return false;
+	}
     }
 
     public int getInhibitionRadius() {
@@ -112,7 +132,7 @@ public class Stub_MARKII_Region implements Serializable {
 	stringBuilder.append("\n       name of this region: ");
 	stringBuilder.append(this.biologicalName);
 	stringBuilder.append("\n     child region(s) names: ");
-	for (MARKII_Region region : this.children) {
+	for (Stub_MARKII_Region region : this.children) {
 	    stringBuilder.append(region.getBiologicalName() + ", ");
 	}
 	// do not show BinaryCellConnections

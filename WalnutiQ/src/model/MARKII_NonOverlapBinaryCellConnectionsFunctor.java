@@ -9,7 +9,7 @@ package model;
  * @version MARK II | April 28, 2013
  */
 public class MARKII_NonOverlapBinaryCellConnectionsFunctor implements
-	ConnectionInterface {
+	MARKII_ConnectionInterface {
     // connect two regions with overlap as undirected bipartite graph
     public void connect(MARKII_Region parentRegion, MARKII_Region childRegion) {
 	// adding synapses with neurons of childRegion to proximalSegments

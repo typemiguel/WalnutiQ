@@ -1,19 +1,19 @@
 package model;
 
 public class Stub_MARKII_NonOverlapBinaryCellConnectionsFunctor implements
-	ConnectionInterface {
+	Stub_MARKII_ConnectionInterface {
     // connect two regions with overlap as undirected bipartite graph
-    public void connect(MARKII_Region parentRegion, MARKII_Region childRegion) {
+    public void connect(Stub_MARKII_Region parentRegion, Stub_MARKII_Region childRegion) {
 	// adding synapses with neurons of childRegion to proximalSegments
 	// of parentRegion
 
-	MARKII_Column[][] parentColumns = parentRegion.getColumns();
+	Stub_MARKII_Column[][] parentColumns = parentRegion.getColumns();
 	int parentXAxisLength = parentColumns.length;
 	int parentYAxisLength = parentColumns[0].length;
 	for (int parentColumnX = 0; parentColumnX < parentXAxisLength; parentColumnX++) {
 	    for (int parentColumnY = 0; parentColumnY < parentYAxisLength; parentColumnY++) {
-		MARKII_Column parentColumn = parentColumns[parentColumnX][parentColumnY];
-		MARKII_Neuron[] neurons = parentColumn.getNeurons();
+		Stub_MARKII_Column parentColumn = parentColumns[parentColumnX][parentColumnY];
+		Stub_MARKII_Neuron[] neurons = parentColumn.getNeurons();
 
 		int xStart = (int) Math.ceil(parentColumnX / parentXAxisLength);
 		int yStart = (int) Math.ceil(parentColumnY / parentYAxisLength);
@@ -22,14 +22,14 @@ public class Stub_MARKII_NonOverlapBinaryCellConnectionsFunctor implements
 		int xEnd = (parentColumnX + 1) / parentXAxisLength;
 		int yEnd = (parentColumnY + 1) / parentYAxisLength;
 
-		MARKII_Column[][] childColumns = childRegion.getColumns();
+		Stub_MARKII_Column[][] childColumns = childRegion.getColumns();
 		for (int childColumnX = xStart; childColumnX < xEnd; childColumnX++) {
 		    for (int childColumnY = yStart; childColumnY < yEnd; childColumnY++) {
 
-			for (MARKII_Neuron childNeuron : childColumns[childColumnX][childColumnY]
+			for (Stub_MARKII_Neuron childNeuron : childColumns[childColumnX][childColumnY]
 				.getNeurons()) {
 			    parentColumn.getProximalSegment().addSynapse(
-				    new MARKII_Synapse(childNeuron, 0.3));
+				    new Stub_MARKII_Synapse(childNeuron, 0.3));
 			}
 		    }
 		}

@@ -1,6 +1,6 @@
 package model;
 
-public class Stub_MARKII_AudioCell extends MARKII_SensorCell {
+public class Stub_MARKII_AudioCell extends Stub_MARKII_SensorCell {
 
     public Stub_MARKII_AudioCell()
     {
