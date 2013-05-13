@@ -81,14 +81,14 @@ public class Stub_MARKII_Segment<CellType extends Stub_MARKII_AbstractCell> impl
 	    case INCREASE_ACTIVE:
 		if (synapse.isConnected()
 			&& synapse.getAbstractCell().getActiveState()) {
-		    synapse.increasePermance();
+		    synapse.increasePermanence();
 		}
 		break;
 	    case INCREASE_ALL:
-		synapse.increasePermance();
+		synapse.increasePermanence();
 		break;
 	    case DECREASE_ALL:
-		synapse.decreasePermance();
+		synapse.decreasePermanence();
 		break;
 	    }
 	}

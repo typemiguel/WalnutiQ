@@ -119,9 +119,9 @@ public class MARKII_SpatialPooler extends MARKII_Pooler {
 		    Set<MARKII_Synapse<MARKII_AbstractCell>> synapses = columns[x][y].getProximalSegment().getSynapses();
 		    for (MARKII_Synapse<MARKII_AbstractCell> synapse : synapses) {
 			if (synapse.getAbstractCell() != null && synapse.getAbstractCell().getActiveState()) {
-			    synapse.increasePermance();
+			    synapse.increasePermanence();
 			} else {
-			    synapse.decreasePermance();
+			    synapse.decreasePermanence();
 			}
 		    }
 		}

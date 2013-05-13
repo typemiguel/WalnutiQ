@@ -14,16 +14,4 @@ public abstract class MARKII_SensorCell extends MARKII_AbstractCell implements S
     public MARKII_SensorCell() {
 	super();
     }
-
-    @Override
-    public String toString() {
-	StringBuilder stringBuilder = new StringBuilder();
-	stringBuilder.append("\n===========================");
-	stringBuilder.append("\n------SensorCell Info------");
-	stringBuilder.append("\n        isActive: ");
-	stringBuilder.append(getActiveState());
-	stringBuilder.append("\n===========================");
-	String sensorCellInformation = stringBuilder.toString();
-	return sensorCellInformation;
-    }
 }

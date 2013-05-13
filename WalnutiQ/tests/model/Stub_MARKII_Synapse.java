@@ -99,7 +99,7 @@ public class Stub_MARKII_Synapse<CellType extends Stub_MARKII_AbstractCell> impl
      * Increase the permanenceValue of a Synapse object by PERMANENCE_INCREASE
      * while forcing permanenceValue to always be < 1.0.
      */
-    public void increasePermance() {
+    public void increasePermanence() {
 	this.permanenceValue = Math.min(1.0, this.permanenceValue
 		+ PERMANCE_INCREASE);
     }
@@ -108,7 +108,7 @@ public class Stub_MARKII_Synapse<CellType extends Stub_MARKII_AbstractCell> impl
      * Decrease the permanenceValue of a Synapse object by PERMANENCE_DECREASE
      * while forcing permanenceValue to always be > 0.0.
      */
-    public void decreasePermance() {
+    public void decreasePermanence() {
 	this.permanenceValue = Math.max(0.0, this.permanenceValue
 		- PERMANCE_DECREASE);
     }

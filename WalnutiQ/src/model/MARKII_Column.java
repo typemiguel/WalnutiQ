@@ -121,8 +121,6 @@ public class MARKII_Column implements Serializable {
 	this.activeDutyCycle = newActiveDutyCycle;
     }
 
-
-
     /**
      * Computes the boostValue of a Column during learning.
      *

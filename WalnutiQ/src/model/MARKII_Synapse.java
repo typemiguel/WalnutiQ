@@ -34,12 +34,12 @@ public class MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
     /**
      * Amount permanenceValue is increased during one iteration of learning.
      */
-    public static final double PERMANCE_INCREASE = 0.015;
+    public static final double PERMANENCE_INCREASE = 0.015;
 
     /**
      * Amount permanenceValue is decreased during one iteration of learning.
      */
-    public static final double PERMANCE_DECREASE = 0.005;
+    public static final double PERMANENCE_DECREASE = 0.005;
 
     /**
      * Minimal permanenceValue needed for a Synapse to be connected.
@@ -100,18 +100,18 @@ public class MARKII_Synapse<CellType extends MARKII_AbstractCell> implements
      * Increase the permanenceValue of a Synapse object by PERMANENCE_INCREASE
      * while forcing permanenceValue to always be < 1.0.
      */
-    public void increasePermance() {
+    public void increasePermanence() {
 	this.setPermanenceValue(Math.min(1.0, this.getPermanenceValue()
-		+ PERMANCE_INCREASE));
+		+ PERMANENCE_INCREASE));
     }
 
     /**
      * Decrease the permanenceValue of a Synapse object by PERMANENCE_DECREASE
      * while forcing permanenceValue to always be > 0.0.
      */
-    public void decreasePermance() {
+    public void decreasePermanence() {
 	this.setPermanenceValue(Math.max(0.0, this.getPermanenceValue()
-		- PERMANCE_DECREASE));
+		- PERMANENCE_DECREASE));
     }
 
     @Override

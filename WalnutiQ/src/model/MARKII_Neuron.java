@@ -78,6 +78,8 @@ public class MARKII_Neuron extends MARKII_AbstractCell implements Serializable {
 	StringBuilder stringBuilder = new StringBuilder();
 	stringBuilder.append("\n===========================");
 	stringBuilder.append("\n--------Neuron Info--------");
+	stringBuilder.append("\n          (x, y): ");
+	stringBuilder.append("(" + super.getX() + ", " + super.getY() + ")");
 	stringBuilder.append("\n            isActive: ");
 	stringBuilder.append(this.isActive);
 	stringBuilder.append("\n           wasActive: ");
