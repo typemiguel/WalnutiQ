@@ -26,24 +26,27 @@ WalnutiQ &copy;
   <h5>File tree:</h5>
   <h6>src</h6>
     <ul>
-        <li>model = all classes showing how MARK II fits into neurobiology</li>
+        <li>model : all classes showing how MARK II fits into neurobiology</li>
         <ul>
-            <li>MARK_II = = all classes containing the core logic for algorithms</li>
-            <li>theory = uses SpatialPooler class to build a object recognition 
-                method</li>
+            <li>MARK_II : classes containing the core logic for the
+                          neocortex simulating learning algorithms</li>
+            <li>theory : contains a MemoryClassifier(equivalent to a multiclass
+                         SVM) capable of identifying what category a new image
+                         is in given a neocortex that has been trained on
+                         images from this category.</li>
         </ul>
     </ul>         
   <h6>tests</h6>
     <ul>
         <li>model</li>
         <ul>
-            <li>MARK_II = stubs and test classes for all MARK_II classes</li>
-            <li>theory = test classes for all theory classes</li>
+            <li>MARK_II : stubs and test classes for all MARK_II classes</li>
+            <li>theory : test classes for all theory classes</li>
         </ul>
     </ul>  
       
   <p>
     If you are interested in working on this challenging and exciting project 
-    please contact quinnliu@vt.edu and visit "Brain Simulation Research" under 
-    "PROJECTS" at www.walnutiq.com for more information. Have a nice day!
+    please contact quinnliu@vt.edu and visit the "Brain Simulation" tab at 
+    www.walnutiq.com for more information. Have a nice day!
   </p>
