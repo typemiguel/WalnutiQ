@@ -1,7 +1,8 @@
 package model.theory;
 
+import model.MARK_II.Column;
+
 import java.util.HashSet;
-import model.MARKII_Column;
 import java.util.Set;
 
 /**
@@ -12,11 +13,11 @@ import java.util.Set;
  * @version MARK II | May 11, 2013
  */
 public class MemoryClassifier {
-    private Set<MARKII_Column> regionOutput;
+    private Set<Column> regionOutput;
     private Memory memory;
 
     public MemoryClassifier(Memory memory) {
-	this.regionOutput = new HashSet<MARKII_Column>();
+	this.regionOutput = new HashSet<Column>();
 	this.memory = memory;
     }
 
@@ -28,13 +29,13 @@ public class MemoryClassifier {
      *            Active Columns of the Region object after executing the
      *            spatial pooler algorithm once.
      */
-    public void updateIdeas(Set<MARKII_Column> regionOutput) {
+    public void updateIdeas(Set<Column> regionOutput) {
 	// update Region output with it's activeColumns
 	this.regionOutput = regionOutput;
 
 	// compare which set of columns in memories has the greatest
 	// intersection with regionOutput
-	Set<MARKII_Column> intersectionSet = new HashSet<MARKII_Column>(
+	Set<Column> intersectionSet = new HashSet<Column>(
 		this.regionOutput);
 
 	// iterate through all ideas in memory

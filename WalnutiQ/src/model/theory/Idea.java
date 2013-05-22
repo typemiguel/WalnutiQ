@@ -1,8 +1,9 @@
 package model.theory;
 
+import model.MARK_II.Column;
+
 import java.util.HashSet;
 import java.util.Set;
-import model.MARKII_Column;
 
 /**
  * Although this class only stores a set of columns. My current hypothesis of an
@@ -19,12 +20,12 @@ public class Idea {
     private float attentionPercentage;
 
     // NOTE: a set of columns do not represent an idea
-    private Set<MARKII_Column> columns;
+    private Set<Column> columns;
 
     public Idea(String name) {
 	this.name = name;
 	this.attentionPercentage = 0;
-	this.columns = new HashSet<MARKII_Column>();
+	this.columns = new HashSet<Column>();
     }
 
     public String getName() {
@@ -44,11 +45,11 @@ public class Idea {
 	}
     }
 
-    public Set<MARKII_Column> getColumns() {
+    public Set<Column> getColumns() {
 	return this.columns;
     }
 
-    public boolean addColumns(Set<MARKII_Column> columns) {
+    public boolean addColumns(Set<Column> columns) {
 	// the set within this idea object is unioned with the parameter set of
 	// columns
 	if (this.columns.containsAll(columns)) {
@@ -59,7 +60,7 @@ public class Idea {
 	}
     }
 
-    public boolean removeColumn(MARKII_Column column) {
+    public boolean removeColumn(Column column) {
         if (this.columns.contains(column)) {
             this.columns.remove(column);
             return true;
