@@ -7,10 +7,9 @@ WalnutiQ &copy;
     a real-time full human brain simulation. If you think about it, it’s kind 
     of funny that we can identify galaxies billions of light years away, 
     understand particles at the atomic scale, but still do not understand the 3 
-    pounds of matter that is between our ears.
-    
-    If you are interested in understanding a machine no human fully understands
-    please visit www.walnutiq.com for more information :)
+    pounds of matter that is between our ears. If you are interested in 
+    understanding a machine no human fully understands please visit 
+    www.walnutiq.com for more information :)
   </p>
   <p> 
     Here you will find classes that allow you to build a brain model (currently
@@ -57,9 +56,9 @@ WalnutiQ &copy;
             <li>theory = test classes for all theory classes</li>
         </ul>
     </ul>  
-  <h1>.project = When writing your code use the IDE This file will allow all of
-                 your files to be organized in the correct folder.</h1>
-  <h1>MARKII_UML.jpg = UML diagram of all classes</h1>
+  <h6>.project = When writing your code use the IDE This file will allow all of
+                 your files to be organized in the correct folder.</h6>
+  <h6>MARKII_UML.jpg = UML diagram of all classes</h6>
   <p> 
     Most importantly, this research is made possible by the countless 
     neuroscientists and engineers at Numenta(www.Numenta.com). Numenta has 
