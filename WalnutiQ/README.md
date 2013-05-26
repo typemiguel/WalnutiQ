@@ -56,9 +56,9 @@ WalnutiQ &copy;
             <li>theory = test classes for all theory classes</li>
         </ul>
     </ul>  
-  <h6>.project = When writing your code use the IDE This file will allow all of
-                 your files to be organized in the correct folder.</h6>
-  <h6>MARKII_UML.jpg = UML diagram of all classes</h6>
+  <h6>.project</h6><p> = When writing your code use the IDE This file will allow all of
+                 your files to be organized in the correct folder.</p>
+  <h6>MARKII_UML.jpg</h6><p> = UML diagram of all classes</p>
   <p> 
     Most importantly, this research is made possible by the countless 
     neuroscientists and engineers at Numenta(www.Numenta.com). Numenta has 
