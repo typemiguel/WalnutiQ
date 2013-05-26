@@ -1,52 +1,71 @@
 WalnutiQ &copy;
 ========
   <p>
-    Hi and welcome to my brain simulation research repository in Java! 
-    This repository contains classes that will allow you to build your own
-    brain model.MARK_II, train it on data, view it's activity on the console, and
-    test it's ability to recognize objects.
+    Hi and welcome to the WalnutiQ object-oriented brain model simulation 
+    repository in Java! The GOAL of this repository is store the code that 
+    would allow a 10 year old to understand the brain in it's entirety and allow
+    a real-time full human brain simulation. If you think about it, it’s kind 
+    of funny that we can identify galaxies billions of light years away, 
+    understand particles at the atomic scale, but still do not understand the 3 
+    pounds of matter that is between our ears.
+    
+    If you are interested in understanding a machine no human fully understands
+    please visit www.walnutiq.com for more information :)
   </p>
+  <p> 
+    Here you will find classes that allow you to build a brain model (currently
+    the second version called MARK II), train it on data, view it's activity as
+    text output, and test it's ability to recognize objects. All of the code 
+    here supports modeling of the human brain at a high level of abstraction 
+    while still allowing user access to individual neurons. 
+  </p>  
   <p>
-    The two main model.MARK_II classes for this project are SpatialPooler and 
-    TemporalPooler. The SpatialPooler class contains an algorithm that allows
-    your brain model.MARK_II(object of Region class) to learn what a particular object
-    is. The TemporalPooler class is still in the process of being implemented 
-    and tested. When completed, it's algorithm will allow your brain model.MARK_II
-    to predict future data after being trained on a sequence of data.
+    Two key classes for this project are SpatialPooler(WalnutiQ/src/
+    model/MARK_II/SpatialPooler.java) and TemporalPooler(WalnutiQ/src/
+    model/MARK_II/TemporalPooler.java). The SpatialPooler class contains an 
+    algorithm that allows your brain model(an object of NervousSystem.java class) 
+    to learn what a objects look like by training it on images. On the other hand,
+    the TemporalPooler class is still in the process of being implemented 
+    and tested. When completed, it's algorithm will allow your brain model
+    to predict future data after being trained on a sequence of data. Note, to 
+    use this code library, only 1 object of NervousSystem.java(WalnutiQ/src/
+    model/NervousSystem.java) will need to be created. 
    </p>
    <p> 
-    Most importantly, my research is made possible by the countless neuroscientists
-    and engineers at Numenta(www.Numenta.com). Numenta has designed a exciting 
-    new technology that accurately models the human neocortex(the part of the 
-    brain that makes you intelligent). They have generously released the 
-    pseudocode for their algorithms and this repository is my implementation of
-    their algorithms.
+    How to use all of the code: Youtube videos to be made shorty... 
   </p>
-  
-  <h5>File tree:</h5>
+     
+  <h5>What each file or folder is for:</h5>
   <h6>src</h6>
     <ul>
-        <li>model : all classes showing how MARK II fits into neurobiology</li>
+        <li>model = all neurobiology classes.</li>
         <ul>
-            <li>MARK_II : classes containing the core logic for the
-                          neocortex simulating learning algorithms</li>
-            <li>theory : contains a MemoryClassifier(equivalent to a multiclass
-                         SVM) capable of identifying what category a new image
-                         is in given a neocortex that has been trained on
-                         images from this category.</li>
+            <li>MARK_II = classes containing the core logic for the brain model,
+                          Includes data structures for basic brain structures 
+                          and algorithms that simulate how the brain learns.</li>
+            <li>theory = contains a class MemoryClassifier.java(equivalent to a 
+                         multiclass SVM) capable of identifying what category a 
+                         new image is in given a nervous system that has been 
+                         trained on images from this category.</li>
         </ul>
     </ul>         
   <h6>tests</h6>
     <ul>
         <li>model</li>
         <ul>
-            <li>MARK_II : stubs and test classes for all MARK_II classes</li>
-            <li>theory : test classes for all theory classes</li>
+            <li>MARK_II = stubs and test classes for all MARK_II classes</li>
+            <li>theory = test classes for all theory classes</li>
         </ul>
     </ul>  
-      
-  <p>
-    If you are interested in working on this challenging and exciting project 
-    please contact quinnliu@vt.edu and visit the "Brain Simulation" tab at 
-    www.walnutiq.com for more information. Have a nice day!
-  </p>
+  <h1>.project = When writing your code use the IDE This file will allow all of
+                 your files to be organized in the correct folder.</h1>
+  <h1>MARKII_UML.jpg = UML diagram of all classes</h1>
+  <p> 
+    Most importantly, this research is made possible by the countless 
+    neuroscientists and engineers at Numenta(www.Numenta.com). Numenta has 
+    designed a exciting new technology that accurately models the human 
+    neocortex(the part of the brain that makes you intelligent). They have 
+    generously released the pseudocode for their algorithms and this 
+    repository is an implementation of their algorithms using object-oriented 
+    programming and model-view-controller.
+ </p>
