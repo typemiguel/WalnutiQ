@@ -67,7 +67,7 @@ public class RegionToRegionRectangleConnect implements RegionToRegionConnect {
 			    // # of synapses connected/add = connectingRectangleXAxisLength *
 			    // connectingRectangleYAxisLength * column.getNeurons.length
 			    parentColumn.getProximalSegment().addSynapse(
-				    new Synapse<Cell>(childColumnXYNeuron));
+				    new Synapse<Cell>(childColumnXYNeuron, childColumnX, childColumnY));
 			}
 		    }
 		}

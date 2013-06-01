@@ -65,7 +65,7 @@ public class Stub_RegionToRegionRectangleConnect implements Stub_RegionToRegionC
 			    // # of synapses connected/add = connectingRectangleXAxisLength *
 			    // connectingRectangleYAxisLength * column.getNeurons.length
 			    parentColumn.getProximalSegment().addSynapse(
-				    new Stub_Synapse<Stub_Cell>(childColumnXYNeuron));
+				    new Stub_Synapse<Stub_Cell>(childColumnXYNeuron, childColumnX, childColumnY));
 			}
 		    }
 		}

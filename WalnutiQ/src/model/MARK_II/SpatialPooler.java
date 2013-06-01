@@ -308,10 +308,10 @@ public class SpatialPooler extends Pooler {
 		    // receptive
 		    // field
 		    for (Synapse synapse : connectedSynapes) {
-//			double dx = x - synapse.getAbstractCell().getX();
-//			double dy = y - synapse.getAbstractCell().getY();
-//			double synapseDistance = Math.sqrt(dx * dx + dy * dy);
-//			totalSynapseDistanceFromOriginColumn += synapseDistance;
+			double dx = x - synapse.getAbstractCellXPosition();
+			double dy = y - synapse.getAbstractCellYPosition();
+			double synapseDistance = Math.sqrt(dx * dx + dy * dy);
+			totalSynapseDistanceFromOriginColumn += synapseDistance;
 			numberOfSynapses++;
 		    }
 		}

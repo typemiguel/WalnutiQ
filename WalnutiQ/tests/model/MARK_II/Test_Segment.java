@@ -27,11 +27,11 @@ public class Test_Segment extends junit.framework.TestCase {
 	// add 1 active synapse
 	Stub_VisionCell activeVisionCell_1 = new Stub_VisionCell();
 	activeVisionCell_1.setActiveState(true);
-	tenSynapses.add(new Stub_Synapse<Stub_Cell>(new Stub_VisionCell(), 0.21));
+	tenSynapses.add(new Stub_Synapse<Stub_Cell>(new Stub_VisionCell(), 0.21, 1, 1));
 
 	// and 9 inactive synapses
 	for (int i = 1; i < 10; i++) {
-	    tenSynapses.add(new Stub_Synapse<Stub_Cell>(new Stub_VisionCell(), 0.20-i*0.01));
+	    tenSynapses.add(new Stub_Synapse<Stub_Cell>(new Stub_VisionCell(), 0.20-i*0.01, 1, 1));
 	}
 	assertEquals(10, tenSynapses.size());
 
@@ -40,14 +40,14 @@ public class Test_Segment extends junit.framework.TestCase {
 	assertFalse(this.proximalSegment.getActiveState());
 
 	// Case 2: number of active synapses within segment = activation threshold
-	this.proximalSegment.getSynapses().remove(new Stub_Synapse<Stub_Cell>(new Stub_VisionCell(), 0.19));
+	this.proximalSegment.getSynapses().remove(new Stub_Synapse<Stub_Cell>(new Stub_VisionCell(), 0.19, 1, 1));
 	Stub_VisionCell activeVisionCell_2 = new Stub_VisionCell();
 	activeVisionCell_2.setActiveState(true);
-	this.proximalSegment.getSynapses().add(new Stub_Synapse<Stub_Cell>(activeVisionCell_2, 0.22));
+	this.proximalSegment.getSynapses().add(new Stub_Synapse<Stub_Cell>(activeVisionCell_2, 0.22, 1, 1));
 	assertFalse(this.proximalSegment.getActiveState());
 
 	// Case 3: number of active synapses within segment > activation threshold
-	this.proximalSegment.getSynapses().remove(new Stub_Synapse<Stub_Cell>(new Stub_VisionCell(), 0.17));
+	this.proximalSegment.getSynapses().remove(new Stub_Synapse<Stub_Cell>(new Stub_VisionCell(), 0.17, 1, 1));
 	Stub_VisionCell activeVisionCell_3 = new Stub_VisionCell();
 	activeVisionCell_3.setActiveState(true);
 	//this.proximalSegment.getSynapses().add(new Stub_MARKII_Synapse<Stub_MARKII_AbstractCell>(activeVisionCell_3, 0.23));

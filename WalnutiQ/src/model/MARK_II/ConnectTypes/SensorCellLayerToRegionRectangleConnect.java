@@ -64,7 +64,7 @@ public class SensorCellLayerToRegionRectangleConnect implements SensorCellLayerT
 			// # of synapses connected/add to this proximal segment
 			// = connectingRectangleXAxisLength *
 			// connectingRectangleYAxisLength
-			column.getProximalSegment().addSynapse(new Synapse<Cell>(sensorCells[sensorCellX][sensorCellY]));
+			column.getProximalSegment().addSynapse(new Synapse<Cell>(sensorCells[sensorCellX][sensorCellY], sensorCellX, sensorCellY));
 		    }
 		}
 	    }

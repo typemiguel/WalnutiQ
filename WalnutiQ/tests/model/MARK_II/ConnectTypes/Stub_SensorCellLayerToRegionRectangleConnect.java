@@ -63,7 +63,7 @@ public class Stub_SensorCellLayerToRegionRectangleConnect implements Stub_Sensor
 			// # of synapses connected/add to this proximal segment
 			// = connectingRectangleXAxisLength *
 			// connectingRectangleYAxisLength
-			column.getProximalSegment().addSynapse(new Stub_Synapse<Stub_Cell>(sensorCells[sensorCellX][sensorCellY]));
+			column.getProximalSegment().addSynapse(new Stub_Synapse<Stub_Cell>(sensorCells[sensorCellX][sensorCellY], sensorCellX, sensorCellY));
 		    }
 		}
 	    }

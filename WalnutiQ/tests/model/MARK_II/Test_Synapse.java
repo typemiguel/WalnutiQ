@@ -12,9 +12,9 @@ public class Test_Synapse extends junit.framework.TestCase {
 	this.visionCell_1 = new Stub_VisionCell();
 	this.visionCell_null = null;
 	this.synapse_1 = new Stub_Synapse<Stub_Cell>(
-		this.visionCell_1);
+		this.visionCell_1, 1, 1);
 	this.synapse_2 = new Stub_Synapse<Stub_Cell>(
-		this.visionCell_1, 0.19);
+		this.visionCell_1, 0.19, 1, 1);
     }
 
     public void testMARKII_Synapse() {
@@ -24,7 +24,7 @@ public class Test_Synapse extends junit.framework.TestCase {
 
 	try {
 	    this.synapse_3 = new Stub_Synapse<Stub_Cell>(
-			this.visionCell_null, 0.21);
+			this.visionCell_null, 0.21, 1, 1);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
 	    // no implementation
@@ -32,7 +32,7 @@ public class Test_Synapse extends junit.framework.TestCase {
 
 	try {
 	    this.synapse_4 = new Stub_Synapse<Stub_Cell>(
-			this.visionCell_1, 1.1);
+			this.visionCell_1, 1.1, 1, 1);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
 	    // no implementation
@@ -40,7 +40,7 @@ public class Test_Synapse extends junit.framework.TestCase {
 
 	try {
 	    this.synapse_4 = new Stub_Synapse<Stub_Cell>(
-			this.visionCell_1, -0.1);
+			this.visionCell_1, -0.1, 1, 1);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
 	    // no implementation

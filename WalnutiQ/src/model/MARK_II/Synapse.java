@@ -33,6 +33,8 @@ public class Synapse<CellType extends Cell> implements
 	Serializable {
     private CellType abstractCell;
     private double permanenceValue;
+    private int abstractCellXPosition;
+    private int abstractCellYPosition;
 
     // class level variables that can be changed for all synapses
     /**
@@ -60,17 +62,18 @@ public class Synapse<CellType extends Cell> implements
      *            The AbstractCell object that will be providing data for a
      *            Synapse object.
      */
-    public Synapse(CellType abstractCell, double initialPermanence) {
+    public Synapse(CellType abstractCell, double initialPermanence, int abstractCellXPosition, int abstractCellYPosition) {
 	if (abstractCell == null) {
 	    throw new IllegalArgumentException(
 		    "abstractCell in Synapse constructor cannot be null");
 	} else if (initialPermanence < 0.0 || initialPermanence > 1.0) {
 	    throw new IllegalArgumentException(
 		    "initialPermanence in Synapse constructor must be between 0 and 1");
-	} else {
-	    this.abstractCell = abstractCell;
-	    this.permanenceValue = initialPermanence;
 	}
+	this.abstractCell = abstractCell;
+	this.permanenceValue = initialPermanence;
+	this.abstractCellXPosition = abstractCellXPosition;
+	this.abstractCellYPosition = abstractCellYPosition;
     }
 
     /**
@@ -81,7 +84,7 @@ public class Synapse<CellType extends Cell> implements
      *            The AbstractCell object that will be providing data for a
      *            Synapse object.
      */
-    public Synapse(CellType abstractCell) {
+    public Synapse(CellType abstractCell, int abstractCellXPosition, int abstractCellYPosition) {
 	if (abstractCell == null) {
 	    throw new IllegalArgumentException(
 		    "abstractCell in Synapse constructor cannot be null");
@@ -89,6 +92,8 @@ public class Synapse<CellType extends Cell> implements
 	    this.abstractCell = abstractCell;
 	    this.permanenceValue = INITIAL_PERMANENCE;
 	}
+	this.abstractCellXPosition = abstractCellXPosition;
+	this.abstractCellYPosition = abstractCellYPosition;
     }
 
     /**
@@ -130,6 +135,14 @@ public class Synapse<CellType extends Cell> implements
 		- PERMANENCE_DECREASE);
     }
 
+    public int getAbstractCellXPosition() {
+	return this.abstractCellXPosition;
+    }
+
+    public int getAbstractCellYPosition() {
+	return this.abstractCellYPosition;
+    }
+
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
@@ -138,6 +151,9 @@ public class Synapse<CellType extends Cell> implements
 	stringBuilder.append("\n----Synapse Information----");
 	stringBuilder.append("\n Connected to a: ");
 	stringBuilder.append(this.abstractCell.toString());
+	stringBuilder.append("\n Located at: ");
+	stringBuilder.append("(" + this.abstractCellXPosition + ", ");
+	stringBuilder.append(this.abstractCellYPosition + ")");
 	stringBuilder.append("\npermanenceValue: ");
 	stringBuilder.append(this.permanenceValue);
 	stringBuilder.append("\n    isConnected: ");
@@ -145,7 +161,7 @@ public class Synapse<CellType extends Cell> implements
 	    stringBuilder.append("false");
 	} else {
 	    stringBuilder.append("true");
-	}
+	};
 	stringBuilder.append("\n===========================");
 	String synapseInformation = stringBuilder.toString();
 	return synapseInformation;

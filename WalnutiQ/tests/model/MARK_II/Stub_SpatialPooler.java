@@ -300,12 +300,10 @@ public class Stub_SpatialPooler extends Stub_Pooler {
 		    // receptive
 		    // field
 		    for (Stub_Synapse synapse : connectedSynapes) {
-			// double dx = x - synapse.getAbstractCell().getX();
-			// double dy = y - synapse.getAbstractCell().getY();
-			// double synapseDistance = Math.sqrt(dx * dx + dy *
-			// dy);
-			// totalSynapseDistanceFromOriginColumn +=
-			// synapseDistance;
+			double dx = x - synapse.getAbstractCellXPosition();
+			double dy = y - synapse.getAbstractCellYPosition();
+			double synapseDistance = Math.sqrt(dx * dx + dy * dy);
+			totalSynapseDistanceFromOriginColumn += synapseDistance;
 			numberOfSynapses++;
 		    }
 		}

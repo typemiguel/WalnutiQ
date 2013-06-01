@@ -6,8 +6,8 @@ public class Stub_Synapse<CellType extends Stub_Cell>
 	implements Serializable {
     private CellType abstractCell;
     private double permanenceValue;
-    private int abstractCellX;
-    private int abstractCellY;
+    private int abstractCellXPosition;
+    private int abstractCellYPosition;
 
     // class level variables that can be changed for all synapses
     /**
@@ -35,17 +35,21 @@ public class Stub_Synapse<CellType extends Stub_Cell>
      *            The AbstractCell object that will be providing data for a
      *            Synapse object.
      */
-    public Stub_Synapse(CellType abstractCell, double initialPermanence) {
+    public Stub_Synapse(CellType abstractCell, double initialPermanence, int abstractCellXPosition, int abstractCellYPosition) {
 	if (abstractCell == null) {
 	    throw new IllegalArgumentException(
 		    "abstractCell in Synapse constructor cannot be null");
 	} else if (initialPermanence < 0.0 || initialPermanence > 1.0) {
 	    throw new IllegalArgumentException(
 		    "initialPermanence in Synapse constructor must be between 0 and 1");
-	} else {
-	    this.abstractCell = abstractCell;
-	    this.permanenceValue = initialPermanence;
+	} else if (abstractCellXPosition < 0 || abstractCellYPosition < 0) {
+	    throw new IllegalArgumentException("abstractCellXPosition & abstract"
+		    + "CellYPosition must be greater than 0");
 	}
+	this.abstractCell = abstractCell;
+	this.permanenceValue = initialPermanence;
+	this.abstractCellXPosition = abstractCellXPosition;
+	this.abstractCellYPosition = abstractCellYPosition;
     }
 
     /**
@@ -56,7 +60,7 @@ public class Stub_Synapse<CellType extends Stub_Cell>
      *            The AbstractCell object that will be providing data for a
      *            Synapse object.
      */
-    public Stub_Synapse(CellType abstractCell) {
+    public Stub_Synapse(CellType abstractCell, int abstractCellXPosition, int abstractCellYPosition) {
 	if (abstractCell == null) {
 	    throw new IllegalArgumentException(
 		    "abstractCell in Synapse constructor cannot be null");
@@ -64,6 +68,8 @@ public class Stub_Synapse<CellType extends Stub_Cell>
 	    this.abstractCell = abstractCell;
 	    this.permanenceValue = INITIAL_PERMANENCE;
 	}
+	this.abstractCellXPosition = abstractCellXPosition;
+	this.abstractCellYPosition = abstractCellYPosition;
     }
 
     /**
@@ -117,6 +123,14 @@ public class Stub_Synapse<CellType extends Stub_Cell>
 		- PERMANENCE_DECREASE);
     }
 
+    public int getAbstractCellXPosition() {
+	return this.abstractCellXPosition;
+    }
+
+    public int getAbstractCellYPosition() {
+	return this.abstractCellYPosition;
+    }
+
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
@@ -125,6 +139,9 @@ public class Stub_Synapse<CellType extends Stub_Cell>
 	stringBuilder.append("\n----Synapse Information----");
 	stringBuilder.append("\n Connected to a: ");
 	stringBuilder.append(this.abstractCell.toString());
+	stringBuilder.append("\n Located at: ");
+	stringBuilder.append("(" + this.abstractCellXPosition + ", ");
+	stringBuilder.append(this.abstractCellYPosition + ")");
 	stringBuilder.append("\npermanenceValue: ");
 	stringBuilder.append(this.permanenceValue);
 	stringBuilder.append("\n    isConnected: ");
