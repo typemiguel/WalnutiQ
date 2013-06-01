@@ -1,12 +1,10 @@
 package model.MARK_II;
 
-import model.MARK_II.Segment.SynapseUpdateState;
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Stub_Segment<CellType extends Stub_AbstractCell>
+public class Stub_Segment<CellType extends Stub_Cell>
 	implements Serializable {
     private Set<Stub_Synapse<CellType>> synapses;
 
@@ -89,7 +87,7 @@ public class Stub_Segment<CellType extends Stub_AbstractCell>
     }
 
     // TODO: A proximalSegment should never connect 2 types of SensorCells
-    public void addSynapse(Stub_Synapse<Stub_AbstractCell> synapse) {
+    public void addSynapse(Stub_Synapse<Stub_Cell> synapse) {
 	if (synapse == null) {
 	    throw new IllegalArgumentException(
 		    "synapse in Segment method addSynapse cannot be null");
@@ -113,7 +111,7 @@ public class Stub_Segment<CellType extends Stub_AbstractCell>
     public int getNumberOfActiveSynapses() {
 	int numberOfActiveSynapses = 0;
 	for (Stub_Synapse synapse : synapses) {
-	    Stub_AbstractCell cell = synapse.getAbstractCell();
+	    Stub_Cell cell = synapse.getAbstractCell();
 	    if (cell != null && cell.getActiveState()) {
 		numberOfActiveSynapses++;
 	    }

@@ -1,6 +1,5 @@
 package model.MARK_II;
 
-
 /**
  * A data structure that represents the layer of cells within the retina.
  *

@@ -118,9 +118,9 @@ public class Stub_SpatialPooler extends Stub_Pooler {
 		if (columns[x][y].getActiveState()) {
 		    // increase and decrease of proximal segment synapses based
 		    // on each Synapses's activeState
-		    Set<Stub_Synapse<Stub_AbstractCell>> synapses = columns[x][y]
+		    Set<Stub_Synapse<Stub_Cell>> synapses = columns[x][y]
 			    .getProximalSegment().getSynapses();
-		    for (Stub_Synapse<Stub_AbstractCell> synapse : synapses) {
+		    for (Stub_Synapse<Stub_Cell> synapse : synapses) {
 			if (synapse.getAbstractCell() != null
 				&& synapse.getAbstractCell().getActiveState()) {
 			    synapse.increasePermanence();
@@ -285,10 +285,10 @@ public class Stub_SpatialPooler extends Stub_Pooler {
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 		if (columns[x][y] != null) {
-		    Set<Stub_Synapse<Stub_AbstractCell>> synapses = columns[x][y]
+		    Set<Stub_Synapse<Stub_Cell>> synapses = columns[x][y]
 			    .getProximalSegment().getSynapses();
-		    Set<Stub_Synapse<Stub_AbstractCell>> connectedSynapes = new HashSet<Stub_Synapse<Stub_AbstractCell>>();
-		    for (Stub_Synapse<Stub_AbstractCell> synapse : synapses) {
+		    Set<Stub_Synapse<Stub_Cell>> connectedSynapes = new HashSet<Stub_Synapse<Stub_Cell>>();
+		    for (Stub_Synapse<Stub_Cell> synapse : synapses) {
 			if (synapse.getAbstractCell() != null) {
 			    connectedSynapes.add(synapse);
 			}

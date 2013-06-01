@@ -1,6 +1,6 @@
 package model.MARK_II;
 
-import java.util.List;
+import model.MARK_II.ConnectTypes.RegionToRegionConnect;
 
 /**
  * Neocortex is a undirected tree of regions. Creating a neocortex with multiple
@@ -15,9 +15,9 @@ import java.util.List;
 public class Neocortex {
     private Region rootRegion;
     private Region currentRegion; // analogous to current directory
-    private ConnectionType connectionType;
+    private RegionToRegionConnect connectType;
 
-    public Neocortex(Region rootRegion, ConnectionType neocortexRegionToNeocortexRegion) {
+    public Neocortex(Region rootRegion, RegionToRegionConnect neocortexRegionToNeocortexRegion) {
 	if (rootRegion == null) {
 	    throw new IllegalArgumentException(
 		    "rootRegion in Neocortex constructor cannot be null");
@@ -27,7 +27,7 @@ public class Neocortex {
 	}
 	this.rootRegion = rootRegion;
 	this.currentRegion = this.rootRegion;
-	this.connectionType = neocortexRegionToNeocortexRegion;
+	this.connectType = neocortexRegionToNeocortexRegion;
     }
 
     /**
@@ -57,7 +57,7 @@ public class Neocortex {
 	}
 	this.currentRegion.addChildRegion(childRegion);
 	// connect currentRegion to childRegion
-	connectionType.connect(this.currentRegion, childRegion);
+	connectType.connect(this.currentRegion, childRegion, 0, 0);
     }
 
     // TODO: post-order traversal with running learning algorithm

@@ -11,4 +11,8 @@ import java.io.Serializable;
  */
 public abstract class SensorCellLayer implements Serializable {
     public SensorCell[][] sensorCellLayer;
+
+    public SensorCell[][] getSensorCellLayer() {
+	return this.sensorCellLayer;
+    }
 }

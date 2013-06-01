@@ -1,5 +1,7 @@
 package model;
 
+import model.MARK_II.VisionCellLayer;
+
 /**
  * Nerves connecting to voluntary skeletal muscles and sensory receptors using
  * two types of directed segments(Axons).
@@ -14,10 +16,8 @@ package model;
 public class SomaticNervousSystem {
     private Eye eye;
 
-    public SomaticNervousSystem(int numberOfVisionCellsAlongXAxis,
-	    int numberOfVisionCellsAlongYAxis) {
-	this.eye = new Eye(numberOfVisionCellsAlongXAxis,
-		numberOfVisionCellsAlongYAxis);
+    public SomaticNervousSystem(VisionCellLayer retina) {
+	this.eye = new Eye(retina);
     }
 
     public Eye getEye() {

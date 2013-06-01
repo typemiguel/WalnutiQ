@@ -2,7 +2,7 @@ package model.MARK_II;
 
 import java.io.Serializable;
 
-public class Stub_Synapse<CellType extends Stub_AbstractCell>
+public class Stub_Synapse<CellType extends Stub_Cell>
 	implements Serializable {
     private CellType abstractCell;
     private double permanenceValue;
@@ -120,7 +120,7 @@ public class Stub_Synapse<CellType extends Stub_AbstractCell>
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
-	Stub_AbstractCell cell = this.getAbstractCell();
+	Stub_Cell cell = this.getAbstractCell();
 	stringBuilder.append("\n===========================");
 	stringBuilder.append("\n----Synapse Information----");
 	stringBuilder.append("\n Connected to a: ");

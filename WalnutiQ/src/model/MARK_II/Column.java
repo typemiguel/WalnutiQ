@@ -1,7 +1,5 @@
 package model.MARK_II;
 
-import model.MARK_II.Stub_Segment.Stub_SynapseUpdateState;
-
 import model.MARK_II.Segment.SynapseUpdateState;
 
 

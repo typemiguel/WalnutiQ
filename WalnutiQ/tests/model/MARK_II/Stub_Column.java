@@ -18,7 +18,7 @@ public class Stub_Column implements Serializable {
 
     private Stub_Neuron[] neurons;
 
-    private Stub_Segment<Stub_AbstractCell> proximalSegment;
+    private Stub_Segment<Stub_Cell> proximalSegment;
 
     // index position of chosen learning neuron within neurons array
     private int learningNeuronPosition; // may not be necessary
@@ -60,7 +60,7 @@ public class Stub_Column implements Serializable {
 	    for (int i = 0; i < numberOfCells; i++) {
 		this.neurons[i] = new Stub_Neuron();
 	    }
-	    this.proximalSegment = new Stub_Segment<Stub_AbstractCell>();
+	    this.proximalSegment = new Stub_Segment<Stub_Cell>();
 	    this.neighborColumns = new ArrayList<Stub_Column>();
 	    this.overlapScore = 0;
 	    this.boostValue = 1.0f;
@@ -261,12 +261,12 @@ public class Stub_Column implements Serializable {
 	this.overlapDutyCycle = overlapDutyCycle;
     }
 
-    public Stub_Segment<Stub_AbstractCell> getProximalSegment() {
+    public Stub_Segment<Stub_Cell> getProximalSegment() {
 	return this.proximalSegment;
     }
 
     public void  setProximalSegment(
-	    Stub_Segment<Stub_AbstractCell> proximalSegment) {
+	    Stub_Segment<Stub_Cell> proximalSegment) {
 	if (proximalSegment == null) {
 	    throw new IllegalArgumentException("proximalSegment in Column mehtod setProximalSegment cannot be null");
 	}

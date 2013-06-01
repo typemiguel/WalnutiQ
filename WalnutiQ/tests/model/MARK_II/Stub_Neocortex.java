@@ -1,22 +1,23 @@
 package model.MARK_II;
+import model.MARK_II.ConnectTypes.Stub_RegionToRegionConnect;
 
 public class Stub_Neocortex {
     private Stub_Region rootRegion;
     private Stub_Region currentRegion; // analogous to current directory
-    private Stub_ConnectionInterface functor;
+    private Stub_RegionToRegionConnect connectType;
 
     public Stub_Neocortex(Stub_Region rootRegion,
-	    Stub_ConnectionInterface functor) {
+	    Stub_RegionToRegionConnect connectType) {
 	if (rootRegion == null) {
 	    throw new IllegalArgumentException(
 		    "rootRegion in Neocortex constructor cannot be null");
-	} else if (functor == null) {
+	} else if (connectType == null) {
 	    throw new IllegalArgumentException(
 		    "functor in Neocortex constructor cannot be null");
 	}
 	this.rootRegion = rootRegion;
 	this.currentRegion = this.rootRegion;
-	this.functor = functor;
+	this.connectType = connectType;
     }
 
     /**
@@ -46,7 +47,7 @@ public class Stub_Neocortex {
 	}
 	this.currentRegion.addChildRegion(childRegion);
 	// connect currentRegion to childRegion
-	functor.connect(this.currentRegion, childRegion);
+	this.connectType.connect(childRegion, this.currentRegion, 0, 0);
     }
 
     public Stub_Region getRootRegion() {
@@ -73,16 +74,16 @@ public class Stub_Neocortex {
 	this.currentRegion = currentRegion;
     }
 
-    public Stub_ConnectionInterface getFunctor() {
-	return functor;
+    public Stub_RegionToRegionConnect getConnectType() {
+	return this.connectType;
     }
 
-    public void setFunctor(Stub_ConnectionInterface functor) {
-	if (functor == null) {
+    public void setConnectType(Stub_RegionToRegionConnect connectType) {
+	if (connectType == null) {
 	    throw new IllegalArgumentException(
-		    "functor in Neocortex method setFunctor cannot be null");
+		    "connectType in Neocortex method setConnectType cannot be null");
 	}
-	this.functor = functor;
+	this.connectType = connectType;
     }
 
     // TODO: post-order traversal with running learning algorithm

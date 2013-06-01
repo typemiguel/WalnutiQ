@@ -1,7 +1,6 @@
 package model.theory;
 
 import model.MARK_II.Column;
-
 import java.util.HashSet;
 import java.util.Set;
 

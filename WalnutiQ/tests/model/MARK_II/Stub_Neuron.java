@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Stub_Neuron extends Stub_AbstractCell implements
+public class Stub_Neuron extends Stub_Cell implements
 	Serializable {
     private boolean wasActive;
     private boolean isPredicting;

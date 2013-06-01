@@ -1,21 +1,19 @@
 package model.MARK_II;
 
-import org.junit.Test;
-
 public class Test_Synapse extends junit.framework.TestCase {
     private Stub_VisionCell visionCell_1;
     private Stub_VisionCell visionCell_null;
-    private Stub_Synapse<Stub_AbstractCell> synapse_1;
-    private Stub_Synapse<Stub_AbstractCell> synapse_2;
-    private Stub_Synapse<Stub_AbstractCell> synapse_3;
-    private Stub_Synapse<Stub_AbstractCell> synapse_4;
+    private Stub_Synapse<Stub_Cell> synapse_1;
+    private Stub_Synapse<Stub_Cell> synapse_2;
+    private Stub_Synapse<Stub_Cell> synapse_3;
+    private Stub_Synapse<Stub_Cell> synapse_4;
 
     public void setUp() {
 	this.visionCell_1 = new Stub_VisionCell();
 	this.visionCell_null = null;
-	this.synapse_1 = new Stub_Synapse<Stub_AbstractCell>(
+	this.synapse_1 = new Stub_Synapse<Stub_Cell>(
 		this.visionCell_1);
-	this.synapse_2 = new Stub_Synapse<Stub_AbstractCell>(
+	this.synapse_2 = new Stub_Synapse<Stub_Cell>(
 		this.visionCell_1, 0.19);
     }
 
@@ -25,7 +23,7 @@ public class Test_Synapse extends junit.framework.TestCase {
 	assertEquals(0.19, this.synapse_2.getPermanenceValue(), 0.001);
 
 	try {
-	    this.synapse_3 = new Stub_Synapse<Stub_AbstractCell>(
+	    this.synapse_3 = new Stub_Synapse<Stub_Cell>(
 			this.visionCell_null, 0.21);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
@@ -33,7 +31,7 @@ public class Test_Synapse extends junit.framework.TestCase {
 	}
 
 	try {
-	    this.synapse_4 = new Stub_Synapse<Stub_AbstractCell>(
+	    this.synapse_4 = new Stub_Synapse<Stub_Cell>(
 			this.visionCell_1, 1.1);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
@@ -41,7 +39,7 @@ public class Test_Synapse extends junit.framework.TestCase {
 	}
 
 	try {
-	    this.synapse_4 = new Stub_Synapse<Stub_AbstractCell>(
+	    this.synapse_4 = new Stub_Synapse<Stub_Cell>(
 			this.visionCell_1, -0.1);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {

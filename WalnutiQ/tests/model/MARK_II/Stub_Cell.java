@@ -2,10 +2,10 @@ package model.MARK_II;
 
 import java.io.Serializable;
 
-public abstract class Stub_AbstractCell implements Serializable {
+public abstract class Stub_Cell implements Serializable {
     protected boolean isActive;
 
-    public Stub_AbstractCell() {
+    public Stub_Cell() {
 	this.isActive = false;
     }
 

@@ -5,9 +5,8 @@ import model.MARK_II.VisionCellLayer;
 public class Eye {
     private VisionCellLayer retina;
 
-    public Eye(int numberOfVisionCellsAlongXAxis,
-	    int numberOfVisionCellsAlongYAxis) {
-	this.retina = new VisionCellLayer(numberOfVisionCellsAlongXAxis, numberOfVisionCellsAlongYAxis);
+    public Eye(VisionCellLayer retina) {
+	this.retina = retina;
     }
 
     public VisionCellLayer getRetina() {

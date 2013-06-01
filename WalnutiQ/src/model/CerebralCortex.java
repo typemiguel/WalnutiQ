@@ -1,8 +1,5 @@
 package model;
 
-import model.MARK_II.ConnectionType;
-import model.MARK_II.Region;
-
 import model.MARK_II.Neocortex;
 
 public class CerebralCortex {
@@ -10,8 +7,8 @@ public class CerebralCortex {
     private Paleocortex paleocortex;
     private Archicortex archicortex;
 
-    public CerebralCortex(Region rootRegion, ConnectionType neocortexRegionToNeocortexRegion) {
-	this.neocortex = new Neocortex(rootRegion, neocortexRegionToNeocortexRegion);
+    public CerebralCortex(Neocortex neocortex) {
+	this.neocortex = neocortex;
 	this.paleocortex = null;
 	this.archicortex = null;
     }

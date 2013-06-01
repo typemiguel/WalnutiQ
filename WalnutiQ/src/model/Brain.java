@@ -2,7 +2,6 @@ package model;
 
 import model.MARK_II.Neocortex;
 
-import model.MARK_II.ConnectionType;
 import model.MARK_II.Region;
 
 /**
@@ -45,22 +44,13 @@ public class Brain {
     private ReticularFormation reticularFormation;
     private Hypothalamus hypothalamus;
 
-    public Brain(Region rootRegion,
-	    ConnectionType neocortexRegionToNeocortexRegion,
-	    int numberOfVisionCellsAlongXAxis, int numberOfVisionCellsAlongYAxis) {
-	this.cerebrum = new Cerebrum(rootRegion, neocortexRegionToNeocortexRegion);
-	this.thalamus = new Thalamus(numberOfVisionCellsAlongXAxis,
-		numberOfVisionCellsAlongYAxis);
+    public Brain(Neocortex neocortex, Region region) {
+	this.cerebrum = new Cerebrum(neocortex);
+	this.thalamus = new Thalamus(region);
 	this.hindbrain = null;
 	this.midbrain = null;
 	this.reticularFormation = null;
 	this.hypothalamus = null;
-
-	// The retina is connected to the LGN in the NervousSystem constructor.
-	// The following connects the LGN to V1 region in neocortex using OverlapConnectFunctor.
-	LateralGeniculateNucleus LGN = this.thalamus.getLGN();
-	Neocortex neocortex = this.cerebrum.getCerebralCortex().getNeocortex();
-
     }
 
     public Cerebrum getCerebrum() {

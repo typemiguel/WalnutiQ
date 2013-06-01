@@ -1,12 +1,13 @@
 package model;
 
+import model.MARK_II.VisionCellLayer;
+
 public class PeripheralNervousSystem {
     private SomaticNervousSystem SNS;
     private AutonomicNervousSystem ANS;
 
-    public PeripheralNervousSystem(int numberOfVisionCellsAlongXAxis,
-	    int numberOfVisionCellsAlongYAxis) {
-	this.SNS = new SomaticNervousSystem(numberOfVisionCellsAlongXAxis, numberOfVisionCellsAlongYAxis);
+    public PeripheralNervousSystem(VisionCellLayer retina) {
+	this.SNS = new SomaticNervousSystem(retina);
 	this.ANS = null;
     }
 
