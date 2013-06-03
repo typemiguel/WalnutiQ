@@ -39,18 +39,18 @@ import model.MARK_II.Region;
 public class Brain {
     private Cerebrum cerebrum;
     private Thalamus thalamus;
-    private Hindbrain hindbrain;
-    private Midbrain midbrain;
-    private ReticularFormation reticularFormation;
-    private Hypothalamus hypothalamus;
+    // private Hindbrain hindbrain;
+    // private Midbrain midbrain;
+    // private ReticularFormation reticularFormation;
+    // private Hypothalamus hypothalamus;
 
-    public Brain(Neocortex neocortex, Region region) {
+    public Brain(Neocortex neocortex, LateralGeniculateNucleus LGN) {
 	this.cerebrum = new Cerebrum(neocortex);
-	this.thalamus = new Thalamus(region);
-	this.hindbrain = null;
-	this.midbrain = null;
-	this.reticularFormation = null;
-	this.hypothalamus = null;
+	this.thalamus = new Thalamus(LGN);
+	// this.hindbrain = null;
+	// this.midbrain = null;
+	// this.reticularFormation = null;
+	// this.hypothalamus = null;
     }
 
     public Cerebrum getCerebrum() {

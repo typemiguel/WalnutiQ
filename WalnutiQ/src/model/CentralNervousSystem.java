@@ -5,11 +5,11 @@ import model.MARK_II.Region;
 
 public class CentralNervousSystem {
     private Brain brain;
-    private SpinalCord spinalCord;
+    // private SpinalCord spinalCord;
 
-    public CentralNervousSystem(Neocortex neocortex, Region region) {
-	this.brain = new Brain(neocortex, region);
-	this.spinalCord = null;
+    public CentralNervousSystem(Neocortex neocortex, LateralGeniculateNucleus LGN) {
+	this.brain = new Brain(neocortex, LGN);
+	// this.spinalCord = null;
     }
 
     public Brain getBrain() {

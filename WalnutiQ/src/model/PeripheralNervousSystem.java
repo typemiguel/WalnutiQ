@@ -4,11 +4,11 @@ import model.MARK_II.VisionCellLayer;
 
 public class PeripheralNervousSystem {
     private SomaticNervousSystem SNS;
-    private AutonomicNervousSystem ANS;
+    // private AutonomicNervousSystem ANS;
 
-    public PeripheralNervousSystem(VisionCellLayer retina) {
+    public PeripheralNervousSystem(Retina retina) {
 	this.SNS = new SomaticNervousSystem(retina);
-	this.ANS = null;
+	// this.ANS = null;
     }
 
     public SomaticNervousSystem getSNS() {

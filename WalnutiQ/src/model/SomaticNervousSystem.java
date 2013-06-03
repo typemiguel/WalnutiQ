@@ -14,13 +14,13 @@ import model.MARK_II.VisionCellLayer;
  * activity from the CNS outward to the periphery(muscles and senses)
  */
 public class SomaticNervousSystem {
-    private Eye eye;
+    private Retina retina;
 
-    public SomaticNervousSystem(VisionCellLayer retina) {
-	this.eye = new Eye(retina);
+    public SomaticNervousSystem(Retina retina) {
+	this.retina = retina;
     }
 
-    public Eye getEye() {
-	return this.eye;
+    public Retina getRetina() {
+	return this.retina;
     }
 }
