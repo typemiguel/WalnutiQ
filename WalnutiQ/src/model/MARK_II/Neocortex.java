@@ -3,10 +3,15 @@ package model.MARK_II;
 import model.MARK_II.ConnectTypes.RegionToRegionConnect;
 
 /**
- * Neocortex is a undirected tree of regions. Creating a neocortex with multiple
- * regions is similar to creating a file system. You can change where you are
- * within the neocortex tree with the changeCurrentRegion(Region) and then add a
- * child region to the currentRegion with addRegion(Region).
+ * Neocortex is a undirected tree of Regions. Creating a Neocortex with multiple
+ * Regions is similar to creating a file system. You can change where you are
+ * within the Neocortex tree with the changeCurrentRegion(Region) and then add a
+ * child Region to the currentRegion with addRegion(Region).
+ *
+ * Input to Neocortex: activity of Cells within VisionCellLayer, AudioCellLayer,
+ * etc.
+ *
+ * Output from Neocortex: activity of Cells/Columns within root Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
@@ -17,13 +22,14 @@ public class Neocortex {
     private Region currentRegion; // analogous to current directory
     private RegionToRegionConnect connectType;
 
-    public Neocortex(Region rootRegion, RegionToRegionConnect neocortexRegionToNeocortexRegion) {
+    public Neocortex(Region rootRegion,
+	    RegionToRegionConnect neocortexRegionToNeocortexRegion) {
 	if (rootRegion == null) {
 	    throw new IllegalArgumentException(
 		    "rootRegion in Neocortex constructor cannot be null");
 	} else if (neocortexRegionToNeocortexRegion == null) {
 	    throw new IllegalArgumentException(
-		    "functor in Neocortex constructor cannot be null");
+		    "connectType in Neocortex constructor cannot be null");
 	}
 	this.rootRegion = rootRegion;
 	this.currentRegion = this.rootRegion;
@@ -32,10 +38,10 @@ public class Neocortex {
 
     /**
      * Sets the parameter newCurrentRegion as the currentRegion within
-     * Neocortex.
+     * neocortex.
      *
      * @param newCurrentRegion
-     *            The region you would like to add child region(s) to.
+     *            The Region you would like to add child region(s) to.
      */
     public void changeCurrentRegion(Region newCurrentRegion) {
 	if (newCurrentRegion == null) {
@@ -46,9 +52,13 @@ public class Neocortex {
 	this.currentRegion = newCurrentRegion;
     }
 
+    public Region getCurrentRegion() {
+	return this.currentRegion;
+    }
+
     /**
      * @param childRegion
-     *            The region to be added to the currentRegion.
+     *            The Region to be added to the currentRegion.
      */
     public void addToCurrentRegion(Region childRegion) {
 	if (childRegion == null) {

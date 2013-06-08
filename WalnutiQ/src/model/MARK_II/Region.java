@@ -5,8 +5,14 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Node within neocortex tree. A region object is an undirected graph of neuron
+ * Node within Neocortex tree. A Region object is an undirected graph of Neuron
  * nodes.
+ *
+ * Input to Region: activity of Cells within a SensorCellLayer. For example,
+ * VisionCellLayer, AudioCellLayer, etc.
+ *
+ * Output from Region: activity of Cells within this Region created by one or
+ * more of the Pooler algorithms.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | April 13, 2013
@@ -84,7 +90,7 @@ public class Region implements Serializable {
     public int getMinimumOverlapScore() {
 	// this assumes all proximal segments will have the same number of synapses
 
-	return (int) (this.percentMinimumOverlapScore * columns[0][0]
+	return (int) (this.percentMinimumOverlapScore/100 * columns[0][0]
 		.getProximalSegment().getSynapses().size());
     }
 
@@ -133,6 +139,7 @@ public class Region implements Serializable {
 	stringBuilder.append(this.columns[0][0].getNeurons().length);
 	stringBuilder.append("\npercentMinimumOverlapScore: ");
 	stringBuilder.append(this.percentMinimumOverlapScore);
+	stringBuilder.append(" %");
 	stringBuilder.append("\n      desiredLocalActivity: ");
 	stringBuilder.append(this.desiredLocalActivity);
 	stringBuilder.append("\n          inhibitionRadius: ");

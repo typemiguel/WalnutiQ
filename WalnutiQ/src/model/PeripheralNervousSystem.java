@@ -1,7 +1,9 @@
 package model;
 
-import model.MARK_II.VisionCellLayer;
-
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version June 5, 2013
+ */
 public class PeripheralNervousSystem {
     private SomaticNervousSystem SNS;
     // private AutonomicNervousSystem ANS;

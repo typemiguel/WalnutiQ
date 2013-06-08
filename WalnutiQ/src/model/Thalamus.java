@@ -1,7 +1,12 @@
 package model;
 
-import model.MARK_II.Region;
-
+/**
+ * "Relay station" for all sensory information(except smell) which
+ * is conveyed to the cortex.
+ *
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version June 5, 2013
+ */
 public class Thalamus {
     private LateralGeniculateNucleus LGN;
 

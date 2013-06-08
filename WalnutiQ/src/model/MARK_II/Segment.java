@@ -5,7 +5,12 @@ import java.util.Set;
 import java.util.HashSet;
 
 /**
- * Provides the implementation for a distal or a proximal segment.
+ * Provides the implementation for a distal or a proximal Segment.
+ *
+ * Input to Segment: activity of active Synapses connected to this Segment.
+ *
+ * Output from Segment: whether or not this Segment is active or not (
+ * return type of getActiveState()).
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
@@ -16,7 +21,7 @@ public class Segment<CellType extends Cell> implements
     private Set<Synapse<CellType>> synapses;
 
     /**
-     * Minimal percent of active synapses out of total synapses needed for a
+     * Minimal percent of active Synapses out of total Synapses needed for a
      * Segment to become active.
      */
     public static final double PERCENT_ACTIVE_SYNAPSES_THRESHOLD = 0.2;
@@ -24,7 +29,7 @@ public class Segment<CellType extends Cell> implements
     /**
      * Provides three enums to be used as parameters in the method
      * updateSynapsePermanences(enumParameter). These 3 enums describe the three
-     * different ways that synapse permanences on a segment can be updated.
+     * different ways that Synapse permanences on a Segment can be updated.
      *
      * @author Quinn Liu (quinnliu@vt.edu)
      * @author Michael Cogswell (cogswell@vt.edu)
@@ -32,18 +37,18 @@ public class Segment<CellType extends Cell> implements
      */
     public enum SynapseUpdateState {
 	/**
-	 * Increase permanence of synapses with an active abstractCell on one
-	 * segment.
+	 * Increase permanence of Synapses with an active Cell on one
+	 * Segment.
 	 */
 	INCREASE_ACTIVE,
 
 	/**
-	 * Increase permanence of all synapses on one segment.
+	 * Increase permanence of all Synapses on one Segment.
 	 */
 	INCREASE_ALL,
 
 	/**
-	 * Decrease permanence of all synapses on one segment.
+	 * Decrease permanence of all Synapses on one Segment.
 	 */
 	DECREASE_ALL
     }
@@ -53,14 +58,14 @@ public class Segment<CellType extends Cell> implements
     }
 
     /**
-     * @return true if this segment has more active synapses than the minimal
-     *         number of active synapses needed to activate this segment based
+     * @return true if this Segment has more active Synapses than the minimal
+     *         number of active Synapses needed to activate this Segment based
      *         on PERCENT_ACTIVE_SYNAPSES_THRESHOLD.
      */
     public boolean getActiveState() {
 	int numberOfActiveSynapses = 0;
 	for (Synapse<CellType> synapse : this.synapses) {
-	    CellType abstractCell = synapse.getAbstractCell();
+	    CellType abstractCell = synapse.getCell();
 	    if (synapse.isConnected() && abstractCell.getActiveState()) {
 		numberOfActiveSynapses++;
 	    }
@@ -77,8 +82,8 @@ public class Segment<CellType extends Cell> implements
 
     /**
      * @param updateState
-     *            This enum parameter determines how permanence of all synapses
-     *            on a segment will be updated.
+     *            This enum parameter determines how permanence of all Synapses
+     *            on a Segment will be updated.
      *
      */
     public void updateSynapsePermanences(SynapseUpdateState updateState) {
@@ -90,7 +95,7 @@ public class Segment<CellType extends Cell> implements
 	    switch (updateState) {
 	    case INCREASE_ACTIVE:
 		if (synapse.isConnected()
-			&& synapse.getAbstractCell().getActiveState()) {
+			&& synapse.getCell().getActiveState()) {
 		    synapse.increasePermanence();
 		}
 		break;
@@ -108,7 +113,7 @@ public class Segment<CellType extends Cell> implements
     public void addSynapse(Synapse<Cell> synapse) {
 	if (synapse == null) {
 	    throw new IllegalArgumentException(
-		    "synapse in Segment method addSynapse cannot be null");
+		    "Synapse in Segment class method addSynapse cannot be null");
 	}
 	this.synapses.add((Synapse<CellType>) synapse);
     }
@@ -121,7 +126,7 @@ public class Segment<CellType extends Cell> implements
     public int getNumberOfActiveSynapses() {
 	int numberOfActiveSynapses = 0;
 	for (Synapse synapse : synapses) {
-	    Cell cell = synapse.getAbstractCell();
+	    Cell cell = synapse.getCell();
 	    if (cell != null && cell.getActiveState()) {
 		numberOfActiveSynapses++;
 	    }

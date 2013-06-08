@@ -12,23 +12,27 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * A data structure that represents a single Column of neurons within a Region
- * object. A column contains a proximal segment and properties that determine
- * how the cells within this Column will be updated.
+ * A data structure that represents a single Column of Neurons within a Region
+ * object. A Column contains a proximal Segment and properties that determine
+ * how the Cells within this Column will be updated.
+ *
+ * Input to Column: # of active Synapses from this Column's proximal Segment.
+ *
+ * Output from Column: if this Column is active or not during spatialPooling.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | April 4, 2013
  */
 public class Column implements Serializable {
-    // also stored as number of active synapses. This variable is created so
-    // the active columns do not have to be recomputed during the same iteration of spatial pooling
+    // also stored as number of active Synapses. This variable is created so
+    // the active Columns do not have to be recomputed during the same iteration of spatial pooling
     private boolean isActive;
 
     private final Neuron[] neurons;
 
     private final Segment<Cell> proximalSegment;
 
-    // index position of chosen learning neuron within neurons array
+    // index position of chosen learning Neuron within Neurons array
     private int learningNeuronPosition; // may not be necessary
     private List<Column> neighborColumns;
 
@@ -62,7 +66,7 @@ public class Column implements Serializable {
     public Column(int numberOfCells) {
 	if (numberOfCells < 1) {
 	    throw new IllegalArgumentException(
-		    "numberOfCells in Column constructor cannot be less than 1");
+		    "numberOfCells in Column class constructor cannot be less than 1");
 	} else {
 	    this.neurons = new Neuron[numberOfCells];
 	    for (int i = 0; i < numberOfCells; i++) {
@@ -81,7 +85,7 @@ public class Column implements Serializable {
 
     /**
      * Increases the permenanceValue of every Synapse object in a Column's
-     * proximal segment by "scaleFactor" number of times.
+     * proximal Segment by "scaleFactor" number of times.
      *
      * @param scaleFactor
      *            Number of times to increasePermanences by PERMANENCE_INCREASE.
@@ -124,7 +128,7 @@ public class Column implements Serializable {
     public void updateActiveDutyCycle() {
 	// newActiveDutyCylce is reduced less and less as it's value approaches
 	// zero. However, newActiveDutyCylce is not always called but is always
-	// increased by the maximum decreasable rate. Thus, a column's
+	// increased by the maximum decreasable rate. Thus, a Column's
 	// activeDutyCycle has a upper bound of 1.
 	float newActiveDutyCycle = (1.0f - EXPONENTIAL_MOVING_AVERAGE_AlPHA)
 		* this.getActiveDutyCycle();
@@ -138,8 +142,8 @@ public class Column implements Serializable {
      * Computes the boostValue of a Column during learning.
      *
      * @param minimumDutyCycle
-     *            Represents the minimum desired firing rate for a cell. If a
-     *            cell's firing rate falls below this value, it will be boosted.
+     *            Represents the minimum desired firing rate for a Cell. If a
+     *            Cell's firing rate falls below this value, it will be boosted.
      * @return The boostValue of a Column.
      */
     // TODO: this method may only need to be in SpatialPooler
@@ -223,7 +227,7 @@ public class Column implements Serializable {
 		|| overlapScore >= this.proximalSegment.getSynapses().size()) {
 	    throw new IllegalArgumentException(
 		    "overlapScore in Column method setOverlapScore must be >= 0 and less than"
-			    + "the total number of synapses in this column's proximal segment.");
+			    + "the total number of Synapses in this column's proximal Segment.");
 	}
 	this.overlapScore = overlapScore;
     }

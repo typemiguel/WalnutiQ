@@ -1,8 +1,11 @@
 package model;
 
 import model.MARK_II.Neocortex;
-import model.MARK_II.Region;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version June 5, 2013
+ */
 public class CentralNervousSystem {
     private Brain brain;
     // private SpinalCord spinalCord;

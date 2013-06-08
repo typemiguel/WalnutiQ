@@ -5,9 +5,9 @@ import java.util.Set;
 import java.util.HashSet;
 
 /**
- * A neuron is active or non-active, predicting or not predicting at each time
+ * A Neuron is active or non-active, predicting or not predicting at each time
  * step. This Neuron only keeps track of these 2 states during the current time
- * step and the previous time step. A Neuron also has a set of distal segments.
+ * step and the previous time step. A Neuron also has a set of distal Segments.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
@@ -66,7 +66,7 @@ public class Neuron extends Cell implements Serializable {
     public void addDistalSegment(Segment<Neuron> distalSegment) {
 	if (distalSegment == null) {
 	    throw new IllegalArgumentException(
-		    "distalSegment in Neuron method addDistalSegment cannot be null");
+		    "distalSegment in neuron class method addDistalSegment cannot be null");
 	}
 	this.distalSegments.add(distalSegment);
     }

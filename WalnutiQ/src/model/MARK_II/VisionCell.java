@@ -1,7 +1,7 @@
 package model.MARK_II;
 
 /**
- * A data structure that represents a single vision cell within the retina.
+ * A data structure that represents a single VisionCell within the Retina.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | April 4, 2013

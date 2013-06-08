@@ -2,6 +2,10 @@ package model;
 
 import model.MARK_II.Neocortex;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version June 5, 2013
+ */
 public class CerebralCortex {
     private Neocortex neocortex;
     // private Paleocortex paleocortex;

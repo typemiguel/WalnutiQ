@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author Michael Cogswell (cogswell@vt.edu)
  * @version MARK II | April 4, 2013
  */
-public abstract class SensorCell extends Cell implements Serializable {
+public abstract class SensorCell extends Cell {
     public SensorCell() {
 	super();
     }

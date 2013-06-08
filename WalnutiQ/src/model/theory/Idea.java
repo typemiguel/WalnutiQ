@@ -5,11 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Although this class only stores a set of columns. My current hypothesis of an
- * idea is the sequence of events that lead up to a column of neurons to become
- * active within the brain. And idea includes the time it took for all of the
- * input cell properties, synapse properties, and neuron properties to active a
- * specific set of columns.
+ * Although this class only stores a set of Columns. My current hypothesis of an
+ * idea is the sequence of events that lead up to a Column of Neurons to become
+ * active within the Brain. An idea includes the time it took for all of the
+ * SensorCell properties, Synapse properties, and Neuron properties to active a
+ * specific set of Columns.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | May 11, 2013
@@ -18,7 +18,6 @@ public class Idea {
     private String name;
     private float attentionPercentage;
 
-    // NOTE: a set of columns do not represent an idea
     private Set<Column> columns;
 
     public Idea(String name) {
@@ -48,9 +47,9 @@ public class Idea {
 	return this.columns;
     }
 
-    public boolean addColumns(Set<Column> columns) {
-	// the set within this idea object is unioned with the parameter set of
-	// columns
+    public boolean unionColumns(Set<Column> columns) {
+	// the set within this Idea object is unioned with the parameter set of
+	// Columns
 	if (this.columns.containsAll(columns)) {
 	    return false;
 	} else {

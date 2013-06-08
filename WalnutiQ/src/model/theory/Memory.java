@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Memory {
-    // pick the idea that matches most closely to the output of a Region
+    // pick the Idea that matches most closely to the output of a Region
     private Set<Idea> ideas;
 
     public Memory() {
@@ -43,7 +43,7 @@ public class Memory {
     private boolean isNewIdea(Idea idea) {
 	if (this.ideas.size() != 0) {
 	    for (Idea uniqueIdea : this.ideas) {
-		// a new idea can be the same name as another idea but
+		// a new Idea can be the same name as another Idea but it must
 		// have a different meaning
 		// ex. date means taking a girl on a date or the fruit
 		if (uniqueIdea.getName().equals(idea.getName())
@@ -60,8 +60,8 @@ public class Memory {
     }
 
     public boolean removeIdea(Idea idea) {
-	// TODO: test if this works since idea objects have
-	// a hashset of column objects
+	// TODO: test if this works since Idea objects have
+	// a hashset of Column objects
 	if (this.ideas.contains(idea)) {
 	    this.ideas.remove(idea);
 	    return true;

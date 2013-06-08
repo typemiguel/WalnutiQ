@@ -8,6 +8,10 @@ import model.MARK_II.Column;
 
 import model.MARK_II.Region;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version MARK II | June 7, 2013
+ */
 public class RegionToRegionRectangleConnect implements RegionToRegionConnect {
     @Override
     public void connect(Region childRegion, Region parentRegion,

@@ -3,12 +3,12 @@ package model;
 import model.MARK_II.Region;
 
 /**
- *  Input into LGN = activity of cells within retina.
- *  Output into V1(leaf region of neocortex tree) = activity of neurons within
- *  this region due to it's unique connection to the retina.
+ * Input into LGN: activity of Cells within Retina.
  *
- *  @author Quinn Liu (quinnliu@vt.edu)
- *  @version MARK II | May 18, 2013
+ * Output of LGN: activity of Neurons from this Region.
+ *
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version MARK II | June 5, 2013
  */
 public class LateralGeniculateNucleus {
     private Region region;

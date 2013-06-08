@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This class represents attention levels of ideas within a memory object due to
- * current input on a trained or untrained region.
+ * This class represents attention levels of Ideas within a Memory object due to
+ * current input on a trained or untrained Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | May 11, 2013
@@ -32,18 +32,18 @@ public class MemoryClassifier {
 	// update Region output with it's activeColumns
 	this.regionOutput = regionOutput;
 
-	// compare which set of columns in memories has the greatest
+	// compare which set of Columns in memories has the greatest
 	// intersection with regionOutput
 	Set<Column> intersectionSet = new HashSet<Column>(
 		this.regionOutput);
 
-	// iterate through all ideas in memory
+	// iterate through all Ideas in Memory
 	for (Idea idea : this.memory.getIdeas()) {
 	    // intersection between two sets of Column objects
 	    intersectionSet.retainAll(idea.getColumns());
 	    int intersectionSetSize = intersectionSet.size();
 
-	    // compute overlap of Region output with ideas in memory
+	    // compute overlap of Region output with Ideas in Memory
 	    float attention = ((float) intersectionSetSize)
 		    / ((float) idea.getColumns().size());
 	    float attentionPercentage = attention * 100;
