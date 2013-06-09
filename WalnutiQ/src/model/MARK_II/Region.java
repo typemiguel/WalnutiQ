@@ -1,6 +1,5 @@
 package model.MARK_II;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -17,7 +16,7 @@ import java.util.ArrayList;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | April 13, 2013
  */
-public class Region implements Serializable {
+public class Region {
     private String biologicalName;
     private List<Region> children;
 

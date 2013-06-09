@@ -1,7 +1,5 @@
 package model.MARK_II;
 
-import java.io.Serializable;
-
 /**
  * A data structure that represents a single input bit from an external sensor
  * source.

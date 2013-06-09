@@ -1,7 +1,5 @@
 package model.MARK_II;
 
-import java.io.Serializable;
-
 /**
  * Provides the minimal behaviors for a Cell.
  *

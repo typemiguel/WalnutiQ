@@ -1,6 +1,5 @@
 package model.MARK_II;
 
-import java.io.Serializable;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -13,7 +12,7 @@ import java.util.HashSet;
  * @author Michael Cogswell (cogswell@vt.edu)
  * @version MARK II | April 4, 2013
  */
-public class Neuron extends Cell implements Serializable {
+public class Neuron extends Cell {
     private boolean wasActive;
     private boolean isPredicting;
     private boolean wasPredicting;

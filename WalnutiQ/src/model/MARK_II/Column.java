@@ -1,13 +1,7 @@
 package model.MARK_II;
 
 import model.MARK_II.Segment.SynapseUpdateState;
-
-
 import java.util.Arrays;
-
-
-import java.io.Serializable;
-import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -23,7 +17,7 @@ import java.util.ArrayList;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 8, 2013
  */
-public class Column implements Serializable {
+public class Column {
     // also stored as number of active Synapses. This variable is created so
     // the active Columns do not have to be recomputed during the same iteration of spatial pooling
     private boolean isActive;

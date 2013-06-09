@@ -192,4 +192,13 @@ public class Segment<CellType extends Cell> {
 	}
 	return false;
     }
+
+    Synapse getSynapse(int cellXPosition, int cellYPosition) {
+	for (Synapse synapse : this.synapses) {
+	    if (synapse.getCellXPosition() == cellXPosition && synapse.getCellYPosition() == cellYPosition) {
+		return synapse;
+	    }
+	}
+	return null;
+    }
 }

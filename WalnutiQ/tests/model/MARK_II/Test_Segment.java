@@ -1,5 +1,7 @@
 package model.MARK_II;
 
+import model.MARK_II.Segment.SynapseUpdateState;
+
 /**
  * SpatialPooler proximal Segments
  * 1) Segments should add new Synapses only during instantiation
@@ -25,13 +27,13 @@ public class Test_Segment extends junit.framework.TestCase {
 	// add 1 active synapse
 	VisionCell activeVisionCell_1 = new VisionCell();
 	activeVisionCell_1.setActiveState(true);
-	this.proximalSegment.addSynapse(new Synapse<Cell>(activeVisionCell_1, 0.2, 0, 1));
+	this.proximalSegment.addSynapse(new Synapse<Cell>(activeVisionCell_1, 0.2, 0, 0));
 
 	// add 9 inactive synapses
 	VisionCell inActiveVisionCell = null;
 	for (int i = 1; i < 10; i++) {
 	    	inActiveVisionCell = new VisionCell();
-		this.proximalSegment.addSynapse(new Synapse<Cell>(inActiveVisionCell, 0.2, i, 1));
+		this.proximalSegment.addSynapse(new Synapse<Cell>(inActiveVisionCell, 0.2, i, 0));
 	}
 	assertEquals(10, this.proximalSegment.getSynapses().size());
 
@@ -39,36 +41,43 @@ public class Test_Segment extends junit.framework.TestCase {
 	assertFalse(this.proximalSegment.getActiveState());
 
 	// Case 2: number of active synapses within segment = activation threshold
-	Synapse<Cell> synapseToRemove_1 = new Synapse<Cell>(inActiveVisionCell, 0.2, 1, 1);
+	Synapse<Cell> synapseToRemove_1 = new Synapse<Cell>(inActiveVisionCell, 0.2, 1, 0);
 	assertTrue(this.proximalSegment.removeSynapse(synapseToRemove_1));
 
 	VisionCell activeVisionCell_2 = new VisionCell();
 	activeVisionCell_2.setActiveState(true);
-	this.proximalSegment.getSynapses().add(new Synapse<Cell>(activeVisionCell_2, 0.2, 10, 1));
+	this.proximalSegment.getSynapses().add(new Synapse<Cell>(activeVisionCell_2, 0.2, 10, 0));
 	assertFalse(this.proximalSegment.getActiveState());
 
 	// Case 3: number of active synapses within segment > activation threshold
-	Synapse<Cell> synapseToRemove_2 = new Synapse<Cell>(inActiveVisionCell, 0.2, 2, 1);
+	Synapse<Cell> synapseToRemove_2 = new Synapse<Cell>(inActiveVisionCell, 0.2, 2, 0);
 	assertTrue(this.proximalSegment.removeSynapse(synapseToRemove_2));
 	VisionCell activeVisionCell_3 = new VisionCell();
 	activeVisionCell_3.setActiveState(true);
-	this.proximalSegment.getSynapses().add(new Synapse<Cell>(activeVisionCell_3, 0.2, 11, 1));
+	this.proximalSegment.getSynapses().add(new Synapse<Cell>(activeVisionCell_3, 0.2, 11, 0));
 	assertTrue(this.proximalSegment.getActiveState());
     }
 
     public void test_updateSynapsePermanences() {
+	// add 1 active synapse
+	VisionCell activeVisionCell = new VisionCell();
+	activeVisionCell.setActiveState(true);
+	this.proximalSegment.addSynapse(new Synapse<Cell>(activeVisionCell, 0.2, 0, 1));
 
-    }
+	// add 1 inactive synapse
+	VisionCell inActiveVisionCell = new VisionCell();
+	this.proximalSegment.addSynapse(new Synapse<Cell>(inActiveVisionCell, 0.2, 1, 1));
 
-    public void test_addSynapse() {
+	this.proximalSegment.updateSynapsePermanences(SynapseUpdateState.INCREASE_ACTIVE);
+	assertEquals(0.2 + Synapse.PERMANENCE_INCREASE, this.proximalSegment.getSynapse(0, 1).getPermanenceValue(), 0.0001);
+	assertEquals(0.2, this.proximalSegment.getSynapse(1, 1).getPermanenceValue(), 0.0001);
 
-    }
+	this.proximalSegment.updateSynapsePermanences(SynapseUpdateState.INCREASE_ALL);
+	assertEquals(0.2 + 2*Synapse.PERMANENCE_INCREASE, this.proximalSegment.getSynapse(0, 1).getPermanenceValue(), 0.0001);
+	assertEquals(0.2 + Synapse.PERMANENCE_INCREASE, this.proximalSegment.getSynapse(1, 1).getPermanenceValue(), 0.0001);
 
-    public void test_getNumberOfActiveSynapses() {
-
-    }
-
-    public void test_toString() {
-
+	this.proximalSegment.updateSynapsePermanences(SynapseUpdateState.DECREASE_ALL);
+	assertEquals(0.2 + 2*Synapse.PERMANENCE_INCREASE - Synapse.PERMANENCE_DECREASE, this.proximalSegment.getSynapse(0, 1).getPermanenceValue(), 0.0001);
+	assertEquals(0.2 + Synapse.PERMANENCE_INCREASE - Synapse.PERMANENCE_DECREASE, this.proximalSegment.getSynapse(1, 1).getPermanenceValue(), 0.0001);
     }
 }
