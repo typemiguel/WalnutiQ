@@ -20,8 +20,8 @@ WalnutiQ &copy;
   </p>  
   <p>
     Two key classes for this project are SpatialPooler(WalnutiQ/src/
-    model/MARK_II/SpatialPooler.java) and TemporalPooler(WalnutiQ/src/
-    model/MARK_II/TemporalPooler.java). The SpatialPooler class contains an 
+    model/model.MARK_II/SpatialPooler.java) and TemporalPooler(WalnutiQ/src/
+    model/model.MARK_II/TemporalPooler.java). The SpatialPooler class contains an 
     algorithm that allows your brain model(an object of NervousSystem.java class) 
     to learn what a objects look like by training it on images. On the other hand,
     the TemporalPooler class is still in the process of being implemented 
@@ -31,17 +31,23 @@ WalnutiQ &copy;
     model/NervousSystem.java) will need to be created. 
    </p>
    <p> 
-    How to use all of the code: Youtube videos to be made shorty... 
+    Youtube playlist that introduces you to the neuroscience background of this
+    repository can be viewed at http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f 
   </p>
      
   <h5>What each file or folder is for:</h5>
   <h6>src</h6>
     <ul>
-        <li>model = all neurobiology classes.</li>
+      <li>model = all neurobiology classes.</li>
         <ul>
-            <li>MARK_II = classes containing the core logic for the brain model,
-                          Includes data structures for basic brain structures 
-                          and algorithms that simulate how the brain learns.</li>
+          <li>MARK_II = classes containing the core logic for the brain model,
+                        Includes data structures for basic brain structures 
+                        and algorithms that simulate how the brain learns.</li>
+            <ul>
+              <li>ConnectTypes = classes allow the different brain 
+                        components in MARK II to connect to each other in a
+                        variety of ways.</li>
+            </ul>
             <li>theory = contains a class MemoryClassifier.java(equivalent to a 
                          multiclass SVM) capable of identifying what category a 
                          new image is in given a nervous system that has been 
@@ -52,10 +58,22 @@ WalnutiQ &copy;
     <ul>
         <li>model</li>
         <ul>
-            <li>MARK_II = stubs and test classes for all MARK_II classes</li>
+            <<li>MARK_II = test classes for all model.MARK_II classes</li>
+            <ul>
+              <li>ConnectTypes = test classes for all connect methods</li>
+            </ul>
             <li>theory = test classes for all theory classes</li>
         </ul>
     </ul>  
+  <h6>train</h6>  
+    <ul>
+        <li>model</li>
+        <ul>
+            <li>MARK_II = contains a class that demonstrates how to use the
+                          classes currently in the MARK II design.</li>
+        </ul>
+    </ul>  
+   
   <p><b>.project</b> = When writing your code use the IDE This file will allow all of
                  your files to be organized in the correct folder.</p>
   <p><b>MARKII_UML.jpg</b> = UML diagram of all classes</p>

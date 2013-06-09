@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Output from Column: if this Column is active or not during spatialPooling.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | April 4, 2013
+ * @version MARK II | June 8, 2013
  */
 public class Column implements Serializable {
     // also stored as number of active Synapses. This variable is created so

@@ -28,9 +28,9 @@ import java.io.Serializable;
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version MARK II | May 14, 2013
+ * @version MARK II | June 8, 2013
  * @param <GenericType>
- *            A synapse can be connected to either a sensorCell or a neuron.
+ *            A synapse can be connected to either a SensorCell or a Neuron.
  */
 public class Synapse<CellType extends Cell> implements Serializable {
     private CellType cell;
@@ -57,46 +57,36 @@ public class Synapse<CellType extends Cell> implements Serializable {
     public static final double INITIAL_PERMANENCE = 0.3;
 
     /**
-     * Create a new synapse object with an Cell object and given permanence
+     * Create a new Synapse object with an Cell object and INITIAL_PERMANENCE
      * value.
-     *
-     * @param cell
-     *            The Cell object that will be providing data for a Synapse
-     *            object.
      */
-    public Synapse(CellType cell, double initialPermanence,
-	    int abstractCellXPosition, int abstractCellYPosition) {
-	if (cell == null) {
-	    throw new IllegalArgumentException(
-		    "cell in Synapse class constructor cannot be null");
-	} else if (initialPermanence < 0.0 || initialPermanence > 1.0) {
-	    throw new IllegalArgumentException(
-		    "initialPermanence in Synapse class constructor must be between 0 and 1");
-	}
-	this.cell = cell;
-	this.permanenceValue = initialPermanence;
-	this.cellXPosition = abstractCellXPosition;
-	this.cellYPosition = abstractCellYPosition;
+    public Synapse(CellType cell, int cellXPosition, int cellYPosition) {
+        if (cell == null) {
+            throw new IllegalArgumentException(
+        	    "cell in Synapse class constructor cannot be null");
+        } else if (cellXPosition < 0 || cellYPosition < 0) {
+            throw new IllegalArgumentException(
+        	    "cellXPosition and cellYPosition in Synapse class constructor must be > 0");
+        }
+        this.cell = cell;
+        this.permanenceValue = INITIAL_PERMANENCE;
+        this.cellXPosition = cellXPosition;
+        this.cellYPosition = cellYPosition;
     }
 
     /**
-     * Create a new Synapse object with an Cell object and INITIAL_PERMANENCE
+     * Create a new synapse object with an Cell object and given permanence
      * value.
-     *
-     * @param cell
-     *            The Cell object that will be providing data for a Synapse
-     *            object.
      */
-    public Synapse(CellType cell, int cellXPosition, int cellYPosition) {
-	if (cell == null) {
+    public Synapse(CellType cell, double initialPermanence,
+	    int cellXPosition, int cellYPosition) {
+	this(cell, cellXPosition, cellYPosition);
+
+	if (initialPermanence < 0.0 || initialPermanence > 1.0) {
 	    throw new IllegalArgumentException(
-		    "cell in Synapse class constructor cannot be null");
-	} else {
-	    this.cell = cell;
-	    this.permanenceValue = INITIAL_PERMANENCE;
+		    "initialPermanence in Synapse class constructor must be between 0 and 1");
 	}
-	this.cellXPosition = cellXPosition;
-	this.cellYPosition = cellYPosition;
+	this.permanenceValue = initialPermanence;
     }
 
     /**
@@ -153,7 +143,7 @@ public class Synapse<CellType extends Cell> implements Serializable {
 	stringBuilder.append("\n----Synapse Information----");
 	stringBuilder.append("\n Connected to a: ");
 	stringBuilder.append(this.cell.toString());
-	stringBuilder.append("\n Located at: ");
+	stringBuilder.append("\n     Located at: ");
 	stringBuilder.append("(" + this.cellXPosition + ", ");
 	stringBuilder.append(this.cellYPosition + ")");
 	stringBuilder.append("\npermanenceValue: ");
@@ -175,6 +165,8 @@ public class Synapse<CellType extends Cell> implements Serializable {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result + ((cell == null) ? 0 : cell.hashCode());
+	result = prime * result + cellXPosition;
+	result = prime * result + cellYPosition;
 	long temp;
 	temp = Double.doubleToLongBits(permanenceValue);
 	result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -195,9 +187,22 @@ public class Synapse<CellType extends Cell> implements Serializable {
 		return false;
 	} else if (!cell.equals(other.cell))
 	    return false;
+	if (cellXPosition != other.cellXPosition)
+	    return false;
+	if (cellYPosition != other.cellYPosition)
+	    return false;
 	if (Double.doubleToLongBits(permanenceValue) != Double
 		.doubleToLongBits(other.permanenceValue))
 	    return false;
 	return true;
+    }
+
+    // package visible methods for test classes in the tests folder
+    double getPermanenceValue() {
+	return this.permanenceValue;
+    }
+
+    void setPermanenceValue(double permanenceValue) {
+	this.permanenceValue = permanenceValue;
     }
 }

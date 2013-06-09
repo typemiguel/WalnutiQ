@@ -1,6 +1,5 @@
 package model.MARK_II;
 
-import java.io.Serializable;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -9,15 +8,14 @@ import java.util.HashSet;
  *
  * Input to Segment: activity of active Synapses connected to this Segment.
  *
- * Output from Segment: whether or not this Segment is active or not (
- * return type of getActiveState()).
+ * Output from Segment: whether or not this Segment is active or not ( return
+ * type of getActiveState()).
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version MARK II | April 3, 2013
+ * @version MARK II | June 8, 2013
  */
-public class Segment<CellType extends Cell> implements
-	Serializable {
+public class Segment<CellType extends Cell> {
     private Set<Synapse<CellType>> synapses;
 
     /**
@@ -37,8 +35,7 @@ public class Segment<CellType extends Cell> implements
      */
     public enum SynapseUpdateState {
 	/**
-	 * Increase permanence of Synapses with an active Cell on one
-	 * Segment.
+	 * Increase permanence of Synapses with an active Cell on one Segment.
 	 */
 	INCREASE_ACTIVE,
 
@@ -94,8 +91,7 @@ public class Segment<CellType extends Cell> implements
 	for (Synapse<CellType> synapse : this.synapses) {
 	    switch (updateState) {
 	    case INCREASE_ACTIVE:
-		if (synapse.isConnected()
-			&& synapse.getCell().getActiveState()) {
+		if (synapse.isConnected() && synapse.getCell().getActiveState()) {
 		    synapse.increasePermanence();
 		}
 		break;
@@ -109,7 +105,8 @@ public class Segment<CellType extends Cell> implements
 	}
     }
 
-    // TODO: A proximalSegment should never connect 2 types of SensorCells
+    // TODO: Question: A proximalSegment should never connect 2 types of
+    // SensorCells?
     public void addSynapse(Synapse<Cell> synapse) {
 	if (synapse == null) {
 	    throw new IllegalArgumentException(
@@ -177,5 +174,22 @@ public class Segment<CellType extends Cell> implements
 	} else if (!synapses.equals(other.synapses))
 	    return false;
 	return true;
+    }
+
+    // package visible methods for test classes in the tests folder
+    boolean removeSynapse(Synapse synapseToRemove) {
+	for (Synapse synapse : this.synapses) {
+	    if (synapseToRemove.getCell().getClass().equals(synapse.getCell().getClass())
+		    && synapseToRemove.getPermanenceValue() == synapse
+			    .getPermanenceValue()
+		    && synapseToRemove.getCellXPosition() == synapse
+			    .getCellXPosition()
+		    && synapseToRemove.getCellYPosition() == synapse
+			    .getCellYPosition()) {
+		this.synapses.remove(synapse);
+		return true;
+	    }
+	}
+	return false;
     }
 }

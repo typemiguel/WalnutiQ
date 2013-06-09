@@ -4,7 +4,7 @@ package model.MARK_II;
  * A data structure that represents a single audio cell within the cochlea.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | April 4, 2013
+ * @version MARK II | June 8, 2013
  */
 public class AudioCell extends SensorCell {
 
