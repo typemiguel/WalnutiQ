@@ -1,6 +1,9 @@
 package model;
 
 import model.MARK_II.VisionCell;
+
+import java.awt.Color;
+
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -26,23 +29,23 @@ public class Retina {
 
     /**
      * Update the state of the Retina with the given .bmp file name.
+     *
      * @param BMPFileName
      */
     public void seeBMPImage(String BMPFileName) throws IOException {
 	BufferedImage image = ImageIO.read(getClass().getResource(BMPFileName));
 
-	for (int xPixel = 0; xPixel < this.visionCells.length; xPixel++)
-        {
-            for (int yPixel = 0; yPixel < this.visionCells[xPixel].length; yPixel++)
-            {
-                int color = image.getRGB(xPixel, yPixel);
-                if ((color >> 23) == 1) {
-                    this.visionCells[xPixel][yPixel].setActiveState(true);
-                } else {
-                    this.visionCells[xPixel][yPixel].setActiveState(false);
-                }
-            }
-        }
+	for (int yPixel = 0; yPixel < this.visionCells[0].length; yPixel++) {
+	    for (int xPixel = 0; xPixel < this.visionCells.length; xPixel++) {
+		int color = image.getRGB(xPixel, yPixel);
+		if (color == Color.BLACK.getRGB()) {
+		    this.visionCells[xPixel][yPixel].setActiveState(true);
+		} else {
+		    this.visionCells[xPixel][yPixel].setActiveState(false);
+		}
+	    }
+	    System.out.print("\n");
+	}
     }
 
     public void seeJPEGImage(String JPEGFileName) {
