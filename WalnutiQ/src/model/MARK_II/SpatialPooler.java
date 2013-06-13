@@ -76,6 +76,7 @@ public class SpatialPooler extends Pooler {
 	} else {
 	    newOverlapScore = (int) (newOverlapScore * column.getBoostValue());
 	}
+	System.out.println("newOverlapScore: " + newOverlapScore);
 	column.setOverlapScore(newOverlapScore);
     }
 

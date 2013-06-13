@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Output from Column: if this Column is active or not during spatialPooling.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 8, 2013
+ * @version MARK II | June 13, 2013
  */
 public class Column {
     // also stored as number of active Synapses. This variable is created so
@@ -62,11 +62,13 @@ public class Column {
 	    throw new IllegalArgumentException(
 		    "numberOfCells in Column class constructor cannot be less than 1");
 	} else {
+	    this.isActive = false;
 	    this.neurons = new Neuron[numberOfCells];
 	    for (int i = 0; i < numberOfCells; i++) {
 		this.neurons[i] = new Neuron();
 	    }
 	    this.proximalSegment = new Segment<Cell>();
+	    this.learningNeuronPosition = -1;
 	    this.neighborColumns = new ArrayList<Column>();
 	    this.overlapScore = 0;
 	    this.boostValue = 1.0f;
@@ -87,7 +89,9 @@ public class Column {
     public void increaseProximalSegmentSynapsePermanences(int scaleFactor) {
 	if (scaleFactor < 0) {
 	    throw new IllegalArgumentException(
-		    "scaleFactor cannot be less than 0");
+		    "scaleFactor parameter in Column class method " +
+		    "increaseProximalSegmentSynapsePermanences" +
+		    "cannot be less than 0");
 	} else {
 	    for (int i = 0; i < scaleFactor; i++) {
 		this.proximalSegment.updateSynapsePermanences(
@@ -105,6 +109,11 @@ public class Column {
      * @return The maximum acitveDutyCycle of a Column object.
      */
     public float maximumActiveDutyCycle(List<Column> neighborColumns) {
+	if (neighborColumns == null) {
+	    throw new IllegalArgumentException(
+		    "neighborColumns parameter in Column class method" +
+		    "maximumActiveDutyCycle cannot be null");
+	}
 	float maximumActiveDutyCycle = 0.0f;
 	for (Column column : neighborColumns) {
 	    if (column.getActiveDutyCycle() > maximumActiveDutyCycle) {
@@ -120,13 +129,16 @@ public class Column {
      * 1
      */
     public void updateActiveDutyCycle() {
-	// newActiveDutyCylce is reduced less and less as it's value approaches
-	// zero. However, newActiveDutyCylce is not always called but is always
-	// increased by the maximum decreasable rate. Thus, a Column's
-	// activeDutyCycle has a upper bound of 1.
+	// Note whenever updateActiveDutyCycle() is called, the activeDutyCycle
+	// is always decremented less and less but only incremented if the Column
+	// was active. Furthermore, the increment applied to activeDutyCycle
+	// when the Column is active is a constant representing the maximum
+	// decrement of activeDutyCycle from initial value 1. Because of this
+	// a Column's activeDutyCycle has a upper bound of 1.
 	float newActiveDutyCycle = (1.0f - EXPONENTIAL_MOVING_AVERAGE_AlPHA)
 		* this.getActiveDutyCycle();
-	if (this.getProximalSegment().getActiveState()) {
+	if (this.getActiveState()) {
+	    System.out.println("newActiveDutyCycle: " + newActiveDutyCycle);
 	    newActiveDutyCycle += EXPONENTIAL_MOVING_AVERAGE_AlPHA;
 	}
 	this.activeDutyCycle = newActiveDutyCycle;
@@ -144,7 +156,7 @@ public class Column {
     public float boostFunction(float minimumDutyCycle) {
 	if (minimumDutyCycle <= 0) {
 	    throw new IllegalArgumentException(
-		    "minimumDutyCycle in boostFunction method of Column cannot be less or equal to zero");
+		    "minimumDutyCycle in boostFunction method of Column cannot be <= 0");
 	}
 	if (this.getActiveDutyCycle() <= minimumDutyCycle) {
 	    // the boostValue increases linearly once the Column's
@@ -162,17 +174,10 @@ public class Column {
      * boostValue fields of this Column object to be recomputed.
      */
     public void nextTimeStep() {
-	// TODO: nextTimeStep for neurons and proximalSegment
 	this.overlapScore = 0;
 	this.neighborColumns.clear();
 	this.boostValue = 1.0f;
     }
-
-    // TODO: no method to updatePermanences() proximalSegment synapses from
-    // column
-    // instead get proximalSegment then call updateSynapsePermanences()
-
-    // no addConnectedSynapses()
 
     // -------------------Getters and Setters----------------------
     public void setActiveState(boolean activeState) {
@@ -188,6 +193,9 @@ public class Column {
     }
 
     public Neuron getLearningNeuron() {
+	if (this.learningNeuronPosition == -1) {
+	    throw new IllegalStateException("the learningNeuronPosition still needs to be set");
+	}
 	return this.neurons[this.learningNeuronPosition];
     }
 
@@ -239,6 +247,13 @@ public class Column {
 
     public float getActiveDutyCycle() {
 	return this.activeDutyCycle;
+    }
+
+    void setActiveDutyCycle(float activeDutyCycle) {
+	if (activeDutyCycle < 0) {
+	    throw new IllegalArgumentException("activeDutyCycle in Column mehtod setActiveDutyCycle must >= 0");
+	}
+	this.activeDutyCycle = activeDutyCycle;
     }
 
     public float getOverlapDutyCycle() {
