@@ -10,7 +10,7 @@ import model.MARK_II.Region;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 7, 2013
+ * @version MARK II | June 13, 2013
  */
 public class RegionToRegionRectangleConnect implements RegionToRegionConnect {
     @Override
@@ -23,6 +23,12 @@ public class RegionToRegionRectangleConnect implements RegionToRegionConnect {
 	} else if (childRegion == null) {
 	    throw new IllegalArgumentException(
 		    "childRegion in connect method cannot be null");
+	} else if (numberOfColumnsToOverlapAlongXAxisOfRegion < 0) {
+	    throw new IllegalArgumentException(
+		    "numberOfColumnsToOverlapAlongXAxisOfRegion in connect method cannot be < 0");
+	} else if (numberOfColumnsToOverlapAlongYAxisOfRegion < 0) {
+	    throw new IllegalArgumentException(
+		    "numberOfColumnsToOverlapAlongYAxisOfRegion in connect method cannot be < 0");
 	}
 	Column[][] parentRegionColumns = parentRegion.getColumns();
 	int parentRegionXAxisLength = parentRegionColumns.length; // = 8
@@ -46,10 +52,13 @@ public class RegionToRegionRectangleConnect implements RegionToRegionConnect {
 			* parentRegionYAxisLength - numberOfColumnsToOverlapAlongYAxisOfRegion)
 			/ parentRegionYAxisLength); // = 10
 
-	int shiftAmountXAxis = connectingRectangleXAxisLength - numberOfColumnsToOverlapAlongXAxisOfRegion; // = 10 - 2
-	int shiftAmountYAxis = connectingRectangleYAxisLength - numberOfColumnsToOverlapAlongYAxisOfRegion; // = 10 - 2
-	for (int parentColumnX = 0; parentColumnX < (parentRegionXAxisLength-shiftAmountXAxis); parentColumnX++) {
-	    for (int parentColumnY = 0; parentColumnY < (parentRegionYAxisLength-shiftAmountYAxis); parentColumnY++) {
+	int shiftAmountXAxis = connectingRectangleXAxisLength
+		- numberOfColumnsToOverlapAlongXAxisOfRegion; // = 10 - 2
+	int shiftAmountYAxis = connectingRectangleYAxisLength
+		- numberOfColumnsToOverlapAlongYAxisOfRegion; // = 10 - 2
+
+	for (int parentColumnX = 0; parentColumnX < parentRegionXAxisLength; parentColumnX++) {
+	    for (int parentColumnY = 0; parentColumnY < parentRegionYAxisLength; parentColumnY++) {
 
 		// xStart = 0, 8, 16, 24, 32, 40, 48, 56
 		// yStart = 0, 8, 16, 24, 32, 40, 48, 56
@@ -68,10 +77,13 @@ public class RegionToRegionRectangleConnect implements RegionToRegionConnect {
 
 			for (Neuron childColumnXYNeuron : childRegionColumns[childColumnX][childColumnY]
 				.getNeurons()) {
-			    // # of synapses connected/add = connectingRectangleXAxisLength *
-			    // connectingRectangleYAxisLength * column.getNeurons.length
+			    // # of synapses connected/add =
+			    // connectingRectangleXAxisLength *
+			    // connectingRectangleYAxisLength *
+			    // column.getNeurons.length
 			    parentColumn.getProximalSegment().addSynapse(
-				    new Synapse<Cell>(childColumnXYNeuron, childColumnX, childColumnY));
+				    new Synapse<Cell>(childColumnXYNeuron,
+					    childColumnX, childColumnY));
 			}
 		    }
 		}

@@ -9,7 +9,7 @@ import model.MARK_II.Synapse;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 7, 2013
+ * @version MARK II | June 13, 2013
  */
 public class SensorCellsToRegionRectangleConnect implements SensorCellsToRegionConnect {
     @Override
@@ -24,6 +24,12 @@ public class SensorCellsToRegionRectangleConnect implements SensorCellsToRegionC
 	    throw new IllegalArgumentException(
 		    "sensorCells in SensorCellsToRegionRectangleConnect class" +
 		    "connect method cannot be null");
+	} else if (numberOfColumnsToOverlapAlongXAxisOfSensorCells < 0) {
+	    throw new IllegalArgumentException(
+		    "numberOfColumnsToOverlapAlongXAxisOfSensorCells in connect method cannot be < 0");
+	} else if (numberOfColumnsToOverlapAlongYAxisOfSensorCells < 0) {
+	    throw new IllegalArgumentException(
+		    "numberOfColumnsToOverlapAlongYAxisOfSensorCells in connect method cannot be < 0");
 	}
 	Column[][] regionColumns = region.getColumns();
 	int regionXAxisLength = regionColumns.length; // = 8
@@ -49,8 +55,8 @@ public class SensorCellsToRegionRectangleConnect implements SensorCellsToRegionC
 
 	int shiftAmountXAxis = connectingRectangleXAxisLength - numberOfColumnsToOverlapAlongXAxisOfSensorCells; // = 10 - 2
 	int shiftAmountYAxis = connectingRectangleYAxisLength - numberOfColumnsToOverlapAlongYAxisOfSensorCells; // = 10 - 2
-	for (int columnX = 0; columnX < (regionXAxisLength-shiftAmountXAxis); columnX++) {
-	    for (int columnY = 0; columnY < (regionYAxisLength-shiftAmountYAxis); columnY++) {
+	for (int columnX = 0; columnX < regionXAxisLength; columnX++) {
+	    for (int columnY = 0; columnY < regionYAxisLength; columnY++) {
 
 		// xStart = 0, 8, 16, 24, 32, 40, 48, 56
 		// yStart = 0, 8, 16, 24, 32, 40, 48, 56
