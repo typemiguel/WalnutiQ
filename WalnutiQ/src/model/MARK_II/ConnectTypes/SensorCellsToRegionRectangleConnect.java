@@ -24,6 +24,13 @@ public class SensorCellsToRegionRectangleConnect implements SensorCellsToRegionC
 	    throw new IllegalArgumentException(
 		    "sensorCells in SensorCellsToRegionRectangleConnect class" +
 		    "connect method cannot be null");
+	} else if (sensorCells.length <= region
+		.getXAxisLength()
+		|| sensorCells[0].length <= region
+			.getYAxisLength()) {
+	    throw new IllegalArgumentException(
+		    "sensorCells in connect method cannot be smaller in X or Y " +
+		    "dimentions than the region");
 	} else if (numberOfColumnsToOverlapAlongXAxisOfSensorCells < 0) {
 	    throw new IllegalArgumentException(
 		    "numberOfColumnsToOverlapAlongXAxisOfSensorCells in connect method cannot be < 0");

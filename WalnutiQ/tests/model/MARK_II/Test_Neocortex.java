@@ -12,13 +12,13 @@ public class Test_Neocortex extends junit.framework.TestCase {
     private Neocortex neocortex;
 
     public void setUp() {
-	Region rootRegion = new Region("root", 8, 8, 4, 20, 3);
+	Region rootRegion = new Region("root", 6, 8, 4, 20, 3);
 	RegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
 	this.neocortex = new Neocortex(rootRegion, connectType);
     }
 
     public void test_addToCurrentRegion() {
-	Region childRegion = new Region("root", 16, 16, 4, 20, 3);
+	Region childRegion = new Region("root", 48, 64, 4, 20, 3);
 
 	Column[][] columns = this.neocortex.getCurrentRegion().getColumns();
 
@@ -26,6 +26,6 @@ public class Test_Neocortex extends junit.framework.TestCase {
 
 	this.neocortex.addToCurrentRegion(childRegion);
 
-	assertEquals(4, columns[0][0].getProximalSegment().getSynapses().size());
+	assertEquals(64, columns[0][0].getProximalSegment().getSynapses().size());
     }
 }

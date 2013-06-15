@@ -8,7 +8,7 @@ public class Test_Region extends junit.framework.TestCase {
     private Region region;
 
     public void setUp() {
-	this.region = new Region("root", 5, 7, 4, 20, 3);
+	this.region = new Region("region", 5, 7, 4, 20, 3);
     }
 
     public void test_Region() {
@@ -38,8 +38,8 @@ public class Test_Region extends junit.framework.TestCase {
     }
 
     public void test_toString() {
-	Region region2 = new Region("child1", 5, 7, 4, 20, 3);
-	Region region3 = new Region("child2", 5, 7, 4, 20, 3);
+	Region region2 = new Region("region2", 5, 7, 4, 20, 3);
+	Region region3 = new Region("region3", 5, 7, 4, 20, 3);
 
 	this.region.addChildRegion(region2);
 	this.region.addChildRegion(region3);

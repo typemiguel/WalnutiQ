@@ -22,7 +22,7 @@ public class VisionCell extends SensorCell {
 	stringBuilder.append("\nisActive: ");
 	stringBuilder.append(super.getActiveState());
 	stringBuilder.append("\n===================");
-	String sensorCellInformation = stringBuilder.toString();
-	return sensorCellInformation;
+	String visionCellInformation = stringBuilder.toString();
+	return visionCellInformation;
     }
 }

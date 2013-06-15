@@ -67,7 +67,7 @@ public class Neocortex {
 	}
 	this.currentRegion.addChildRegion(childRegion);
 	// connect currentRegion to childRegion
-	connectType.connect(this.currentRegion, childRegion, 0, 0);
+	this.connectType.connect(childRegion, this.currentRegion, 0, 0);
     }
 
     // TODO: post-order traversal with running learning algorithm

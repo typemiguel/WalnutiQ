@@ -60,7 +60,7 @@ public class SpatialPooler extends Pooler {
      * Column's overlapScore is below minOverlap, that Column's overlapScore is
      * set to 0.
      */
-    private void computeColumnOverlapScore(Column column) {
+    void computeColumnOverlapScore(Column column) {
 	if (column == null) {
 	    throw new IllegalArgumentException(
 		    "the Column in SpatialPooler method computeColumnOverlapScore cannot be null");
@@ -85,7 +85,7 @@ public class SpatialPooler extends Pooler {
      * activeColumns(t)-the list of Columns that win due to the bottom-up input
      * at time t.
      */
-    private void computeActiveColumnsOfRegion() {
+    void computeActiveColumnsOfRegion() {
 	List<Column> neighborColumns = new ArrayList<Column>();
 	Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
@@ -114,11 +114,11 @@ public class SpatialPooler extends Pooler {
     }
 
     /**
-     * This method models spike-timing dependent plasticity.
-     * Changes Synapses' permanenceValues based on input. The inhibitionRadius
-     * for the Region is also computed and updated here.
+     * This method models spike-timing dependent plasticity. This is also known
+     * as Hebb's Rule. The inhibitionRadius for the Region is also computed and
+     * updated here.
      */
-    private void regionLearnOneTimeStep() {
+    void regionLearnOneTimeStep() {
 	Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
@@ -130,8 +130,10 @@ public class SpatialPooler extends Pooler {
 		    for (Synapse<Cell> synapse : synapses) {
 			if (synapse.getCell() != null
 				&& synapse.getCell().getActiveState()) {
+			    // models long term potentiation
 			    synapse.increasePermanence();
 			} else {
+			    // models long term depression
 			    synapse.decreasePermanence();
 			}
 		    }
@@ -161,7 +163,8 @@ public class SpatialPooler extends Pooler {
 			    .maximumActiveDutyCycle(neighborColumns);
 
 		    // minDutyCycle represents the minimum desired firing rate
-		    // for a Column(number of times is becomes active over some number
+		    // for a Column(number of times is becomes active over some
+		    // number
 		    // of iterations).
 		    // If a Column's firing rate falls below this value, it will
 		    // be boosted.
@@ -193,13 +196,13 @@ public class SpatialPooler extends Pooler {
      * Adds all Columns within inhitionRadius of the parameter Column to the
      * neighborColumns field within the parameter Column.
      */
-    private void updateNeighborColumns(int columnXAxis, int columnYAxis) {
+    void updateNeighborColumns(int columnXAxis, int columnYAxis) {
 	if (columnXAxis < 0 || columnXAxis > this.region.getXAxisLength()
 		|| columnYAxis < 0
 		|| columnYAxis > this.region.getYAxisLength()) {
 	    throw new IllegalArgumentException(
 		    "the Column being updated by the updateNeighborColumns method"
-			    + "in SpatialPooler does not exist within the Region");
+			    + "in SpatialPooler class does not exist within the Region");
 	}
 	int localInhibitionRadius = this.region.getInhibitionRadius();
 	assert (localInhibitionRadius >= 0);
@@ -207,6 +210,8 @@ public class SpatialPooler extends Pooler {
 	// forced inhibition of adjacent Columns
 	int xInitial = Math.max(0, columnXAxis - localInhibitionRadius);
 	int yInitial = Math.max(0, columnYAxis - localInhibitionRadius);
+
+	System.out.println("xInitial, yInitial: " + xInitial + ", " + yInitial);
 	int xFinal = Math.min(this.region.getXAxisLength(), columnXAxis
 		+ localInhibitionRadius);
 	int yFinal = Math.min(this.region.getYAxisLength(), columnYAxis
@@ -215,6 +220,7 @@ public class SpatialPooler extends Pooler {
 	// to allow double for loop to reach end portion of this.allColumns
 	xFinal = Math.min(this.region.getXAxisLength(), xFinal + 1);
 	yFinal = Math.min(this.region.getYAxisLength(), yFinal + 1);
+	System.out.println("xFinal, yFinal: " + xFinal + ", " + yFinal);
 
 	Column[][] columns = this.region.getColumns();
 	List<Column> neighborColumns = columns[columnXAxis][columnYAxis]
@@ -244,7 +250,7 @@ public class SpatialPooler extends Pooler {
      * Given a list of Columns, return the kth highest overlapScore value of a
      * Column object within that list.
      */
-    private int kthScoreOfColumns(List<Column> neighborColumns,
+    int kthScoreOfColumns(List<Column> neighborColumns,
 	    int desiredLocalActivity) {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
@@ -278,13 +284,13 @@ public class SpatialPooler extends Pooler {
      * other words the total length of Segments for a Column divided by the
      * number of Segments. For spatial pooling since the number of Synapses from
      * proximal Segments to lower Region Neurons is constant after
-     * initialization, averageReceptiveFieldSize of a Column will remain constant,
-     * but will be different for different Columns based on how they are
-     * connected to the SensorCellLayer or lower Region.
+     * initialization, averageReceptiveFieldSize of a Column will remain
+     * constant, but will be different for different Columns based on how they
+     * are connected to the SensorCellLayer or lower Region.
      *
      * @return The average connected receptive field size.
      */
-    private float averageReceptiveFieldSizeOfRegion() {
+    float averageReceptiveFieldSizeOfRegion() {
 	double totalSynapseDistanceFromOriginColumn = 0.0;
 	int numberOfSynapses = 0;
 	Column[][] columns = this.region.getColumns();
@@ -318,7 +324,7 @@ public class SpatialPooler extends Pooler {
 	return (float) (totalSynapseDistanceFromOriginColumn / numberOfSynapses);
     }
 
-    private void addActiveColumn(Column activeColumn) {
+    void addActiveColumn(Column activeColumn) {
 	if (activeColumn == null) {
 	    throw new IllegalArgumentException(
 		    "activeColumn in SpatialPooler class method addActiveColumn cannot be null");
@@ -331,7 +337,7 @@ public class SpatialPooler extends Pooler {
      * than minimumDutyOverlap. Exponential Moving Average(EMA): St = a * Yt +
      * (1 - a) * St - 1.
      */
-    private void updateOverlapDutyCycle(int columnXAxis, int columnYAxis) {
+    void updateOverlapDutyCycle(int columnXAxis, int columnYAxis) {
 	if (columnXAxis < 0 || columnXAxis > this.region.getXAxisLength()
 		|| columnYAxis < 0
 		|| columnYAxis > this.region.getYAxisLength()) {
@@ -339,6 +345,13 @@ public class SpatialPooler extends Pooler {
 		    "the Column being updated by the updateOverlapDutyCycle method"
 			    + "in SpatialPooler does not exist within the Region");
 	}
+	// Note whenever updateOverlapDutyCycle() is called, the overlapDutyCycle
+	// is always decremented less and less but only incremented if the Column's
+	// overlapScore was greater than the Region's minimumOverlapScore.
+	// Furthermore, the increment applied to overlapDutyCycle is a constant
+	// representing the maximum decrement of overlapDutyCycle from initial
+	// value 1. Because of this a Column's overlapDutyCycle has a upper
+	// bound of 1.
 	Column[][] columns = this.region.getColumns();
 	float newOverlapDutyCycle = (1.0f - Column.EXPONENTIAL_MOVING_AVERAGE_AlPHA)
 		* columns[columnXAxis][columnYAxis].getOverlapDutyCycle();

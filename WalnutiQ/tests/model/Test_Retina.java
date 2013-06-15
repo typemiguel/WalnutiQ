@@ -22,21 +22,20 @@ public class Test_Retina extends junit.framework.TestCase {
 
     public void test_seeBMPImage() throws IOException {
 	this.retina.seeBMPImage("2.bmp");
-	// uncomment the following lins of code to see that visionCells was
-	// updated correctly :)
-//	VisionCell[][] visionCells = this.retina.getVisionCells();
-//
-//	for (int yPixel = 0; yPixel < visionCells[0].length; yPixel++)
-//        {
-//	    for (int xPixel = 0; xPixel < visionCells.length; xPixel++)
-//	    {
-//                if (visionCells[xPixel][yPixel].getActiveState() == true) {
-//                    System.out.print("1");
-//                } else {
-//                    System.out.print("0");
-//                }
-//	    }
-//	    System.out.print("\n");
-//        }
+
+	VisionCell[][] visionCells = this.retina.getVisionCells();
+
+	for (int yPixel = 0; yPixel < visionCells[0].length; yPixel++)
+        {
+	    for (int xPixel = 0; xPixel < visionCells.length; xPixel++)
+	    {
+                if (visionCells[xPixel][yPixel].getActiveState() == true) {
+                    System.out.print("1");
+                } else {
+                    System.out.print("0");
+                }
+	    }
+	    System.out.print("\n");
+        }
     }
 }

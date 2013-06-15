@@ -23,6 +23,13 @@ public class RegionToRegionRectangleConnect implements RegionToRegionConnect {
 	} else if (childRegion == null) {
 	    throw new IllegalArgumentException(
 		    "childRegion in connect method cannot be null");
+	} else if (childRegion.getXAxisLength() <= parentRegion
+		.getXAxisLength()
+		|| childRegion.getYAxisLength() <= parentRegion
+			.getYAxisLength()) {
+	    throw new IllegalArgumentException(
+		    "childRegion in connect method cannot be smaller in X or Y " +
+		    "dimentions than the parentRegion");
 	} else if (numberOfColumnsToOverlapAlongXAxisOfRegion < 0) {
 	    throw new IllegalArgumentException(
 		    "numberOfColumnsToOverlapAlongXAxisOfRegion in connect method cannot be < 0");

@@ -250,8 +250,8 @@ public class Column {
     }
 
     void setActiveDutyCycle(float activeDutyCycle) {
-	if (activeDutyCycle < 0) {
-	    throw new IllegalArgumentException("activeDutyCycle in Column mehtod setActiveDutyCycle must >= 0");
+	if (activeDutyCycle < 0 || activeDutyCycle > 1) {
+	    throw new IllegalArgumentException("activeDutyCycle in Column mehtod setActiveDutyCycle must >= 0 & <= 1");
 	}
 	this.activeDutyCycle = activeDutyCycle;
     }
@@ -261,8 +261,8 @@ public class Column {
     }
 
     public void setOverlapDutyCycle(float overlapDutyCycle) {
-	if (overlapDutyCycle < 0) {
-	    throw new IllegalArgumentException("overlapDutyCycle in Column mehtod setOverlapDutyCycle must >= 0");
+	if (overlapDutyCycle < 0 || overlapDutyCycle > 1) {
+	    throw new IllegalArgumentException("overlapDutyCycle in Column mehtod setOverlapDutyCycle must >= 0 & <= 1");
 	}
 	this.overlapDutyCycle = overlapDutyCycle;
     }
