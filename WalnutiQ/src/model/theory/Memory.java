@@ -3,6 +3,10 @@ package model.theory;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+* @author Quinn Liu (quinnliu@vt.edu)
+* @version MARK II | June 15, 2013
+*/
 public class Memory {
     // pick the Idea that matches most closely to the output of a Region
     private Set<Idea> ideas;
@@ -47,7 +51,8 @@ public class Memory {
 		// have a different meaning
 		// ex. date means taking a girl on a date or the fruit
 		if (uniqueIdea.getName().equals(idea.getName())
-			|| uniqueIdea.getColumns().equals(idea.getColumns())) {
+			|| uniqueIdea.getColumnPositions().equals(
+				idea.getColumnPositions())) {
 		    return false;
 		} else {
 		    return true;
@@ -61,7 +66,7 @@ public class Memory {
 
     public boolean removeIdea(Idea idea) {
 	// TODO: test if this works since Idea objects have
-	// a hashset of Column objects
+	// a hashset of ColumnPosition objects
 	if (this.ideas.contains(idea)) {
 	    this.ideas.remove(idea);
 	    return true;

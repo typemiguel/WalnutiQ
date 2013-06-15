@@ -1,5 +1,7 @@
 package model;
 
+import model.MARK_II.ColumnPosition;
+
 import model.theory.MemoryClassifier;
 import model.theory.Memory;
 import java.util.Set;
@@ -88,12 +90,12 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 	retina.seeBMPImage("2.bmp");
 
 	SpatialPooler spatialPooler = new SpatialPooler(LGNStructure);
-	Set<Column> LGNNeuronActivity = spatialPooler.performSpatialPoolingOnRegion();
+	Set<ColumnPosition> LGNNeuronActivity = spatialPooler.performSpatialPoolingOnRegion();
 
 	assertEquals(3, LGNNeuronActivity.size());
 
-	for (Column column : LGNNeuronActivity) {
-	    column.toString();
+	for (ColumnPosition columnPosition : LGNNeuronActivity) {
+	    columnPosition.toString();
 	}
 //	Idea twoIdea = new Idea("two");
 //	twoIdea.unionColumns(LGNNeuronActivity);

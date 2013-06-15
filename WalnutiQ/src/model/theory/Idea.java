@@ -1,29 +1,29 @@
 package model.theory;
 
-import model.MARK_II.Column;
+import model.MARK_II.ColumnPosition;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Although this class only stores a set of Columns. My current hypothesis of an
+ * Although this class only stores a set of ColumnPositions. My current hypothesis of an
  * idea is the sequence of events that lead up to a Column of Neurons to become
  * active within the Brain. An idea includes the time it took for all of the
  * SensorCell properties, Synapse properties, and Neuron properties to active a
  * specific set of Columns.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | May 11, 2013
+ * @version MARK II | June 15, 2013
  */
 public class Idea {
     private String name;
     private float attentionPercentage;
 
-    private Set<Column> columns;
+    private Set<ColumnPosition> columnPositions;
 
     public Idea(String name) {
 	this.name = name;
 	this.attentionPercentage = 0;
-	this.columns = new HashSet<Column>();
+	this.columnPositions = new HashSet<ColumnPosition>();
     }
 
     public String getName() {
@@ -43,24 +43,24 @@ public class Idea {
 	}
     }
 
-    public Set<Column> getColumns() {
-	return this.columns;
+    public Set<ColumnPosition> getColumnPositions() {
+	return this.columnPositions;
     }
 
-    public boolean unionColumns(Set<Column> columns) {
+    public boolean unionColumnPositions(Set<ColumnPosition> columnPositions) {
 	// the set within this Idea object is unioned with the parameter set of
-	// Columns
-	if (this.columns.containsAll(columns)) {
+	// ColumnPositions
+	if (this.columnPositions.containsAll(columnPositions)) {
 	    return false;
 	} else {
-	    this.columns.addAll(columns);
+	    this.columnPositions.addAll(columnPositions);
 	    return true;
 	}
     }
 
-    public boolean removeColumn(Column column) {
-        if (this.columns.contains(column)) {
-            this.columns.remove(column);
+    public boolean removeColumnPosition(ColumnPosition columnPosition) {
+        if (this.columnPositions.contains(columnPosition)) {
+            this.columnPositions.remove(columnPosition);
             return true;
         }
         else {
@@ -73,7 +73,7 @@ public class Idea {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result + Float.floatToIntBits(attentionPercentage);
-	result = prime * result + ((columns == null) ? 0 : columns.hashCode());
+	result = prime * result + ((columnPositions == null) ? 0 : columnPositions.hashCode());
 	result = prime * result + ((name == null) ? 0 : name.hashCode());
 	return result;
     }
@@ -90,10 +90,10 @@ public class Idea {
 	if (Float.floatToIntBits(attentionPercentage) != Float
 		.floatToIntBits(other.attentionPercentage))
 	    return false;
-	if (columns == null) {
-	    if (other.columns != null)
+	if (columnPositions == null) {
+	    if (other.columnPositions != null)
 		return false;
-	} else if (!columns.equals(other.columns))
+	} else if (!columnPositions.equals(other.columnPositions))
 	    return false;
 	if (name == null) {
 	    if (other.name != null)

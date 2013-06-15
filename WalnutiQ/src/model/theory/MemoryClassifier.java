@@ -1,5 +1,7 @@
 package model.theory;
 
+import model.MARK_II.ColumnPosition;
+
 import model.MARK_II.Column;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,43 +11,43 @@ import java.util.Set;
  * current input on a trained or untrained Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | May 11, 2013
+ * @version MARK II | June 15, 2013
  */
 public class MemoryClassifier {
-    private Set<Column> regionOutput;
+    private Set<ColumnPosition> regionOutput;
     private Memory memory;
 
     public MemoryClassifier(Memory memory) {
-	this.regionOutput = new HashSet<Column>();
+	this.regionOutput = new HashSet<ColumnPosition>();
 	this.memory = memory;
     }
 
     /**
-     * Update all Idea objects within Memory with any different Columns that are
-     * becoming active. No Column objects are removed from any Idea objects.
+     * Update all Idea objects within Memory with any different ColumnPositions
+     * that are becoming active. No ColumnPositions objects are removed from any Idea
+     * objects.
      *
      * @param regionOutput
      *            Active Columns of the Region object after executing the
      *            spatial pooler algorithm once.
      */
-    public void updateIdeas(Set<Column> regionOutput) {
+    public void updateIdeas(Set<ColumnPosition> regionOutput) {
 	// update Region output with it's activeColumns
 	this.regionOutput = regionOutput;
 
-	// compare which set of Columns in memories has the greatest
+	// compare which set of ColumnPositions in memories has the greatest
 	// intersection with regionOutput
-	Set<Column> intersectionSet = new HashSet<Column>(
-		this.regionOutput);
+	Set<ColumnPosition> intersectionSet = new HashSet<ColumnPosition>(this.regionOutput);
 
 	// iterate through all Ideas in Memory
 	for (Idea idea : this.memory.getIdeas()) {
-	    // intersection between two sets of Column objects
-	    intersectionSet.retainAll(idea.getColumns());
+	    // intersection between two sets of ColumnPosition objects
+	    intersectionSet.retainAll(idea.getColumnPositions());
 	    int intersectionSetSize = intersectionSet.size();
 
 	    // compute overlap of Region output with Ideas in Memory
 	    float attention = ((float) intersectionSetSize)
-		    / ((float) idea.getColumns().size());
+		    / ((float) idea.getColumnPositions().size());
 	    float attentionPercentage = attention * 100;
 
 	    // Because a Idea object in the HashSet will be changed and thus
@@ -59,20 +61,18 @@ public class MemoryClassifier {
     }
 
     @Override
-    public String toString()
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n=============================");
-        stringBuilder.append("\n------Neocortex Activity-----");
-        for (Idea idea : this.memory.getIdeas())
-        {
-            stringBuilder.append("\n" + idea.getName() + ": "
-                + idea.getAttentionPercentage() + "%");
-        }
-        stringBuilder.append("\nRegion ouput Column number: ");
-        stringBuilder.append(this.regionOutput.size());
-        stringBuilder.append("\n=============================");
-        String brainActivityInformation = stringBuilder.toString();
-        return brainActivityInformation;
+    public String toString() {
+	StringBuilder stringBuilder = new StringBuilder();
+	stringBuilder.append("\n=============================");
+	stringBuilder.append("\n------Neocortex Activity-----");
+	for (Idea idea : this.memory.getIdeas()) {
+	    stringBuilder.append("\n" + idea.getName() + ": "
+		    + idea.getAttentionPercentage() + "%");
+	}
+	stringBuilder.append("\nRegion ouput Column number: ");
+	stringBuilder.append(this.regionOutput.size());
+	stringBuilder.append("\n=============================");
+	String brainActivityInformation = stringBuilder.toString();
+	return brainActivityInformation;
     }
 }

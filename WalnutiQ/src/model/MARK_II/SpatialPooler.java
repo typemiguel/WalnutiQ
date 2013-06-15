@@ -15,10 +15,11 @@ import java.util.HashSet;
  * Neocortex for object recognition.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | April 28, 2013
+ * @version MARK II | June 15, 2013
  */
 public class SpatialPooler extends Pooler {
     private Set<Column> activeColumns;
+    private Set<ColumnPosition> activeColumnPositions;
 
     public SpatialPooler(Region newRegion) {
 	if (newRegion == null) {
@@ -27,6 +28,7 @@ public class SpatialPooler extends Pooler {
 	}
 	this.region = newRegion;
 	this.activeColumns = new HashSet<Column>();
+	this.activeColumnPositions = new HashSet<ColumnPosition>();
     }
 
     /**
@@ -37,7 +39,7 @@ public class SpatialPooler extends Pooler {
      *
      * @return A sparse set of active Columns within this Region.
      */
-    public Set<Column> performSpatialPoolingOnRegion() {
+    public Set<ColumnPosition> performSpatialPoolingOnRegion() {
 	Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
@@ -51,7 +53,7 @@ public class SpatialPooler extends Pooler {
 	// simulate learning by boosting specific Synapses
 	this.regionLearnOneTimeStep();
 
-	return this.activeColumns;
+	return this.activeColumnPositions;
     }
 
     /**
@@ -106,8 +108,9 @@ public class SpatialPooler extends Pooler {
 		if (columns[x][y].getOverlapScore() > 0
 			&& columns[x][y].getOverlapScore() >= minimumLocalOverlapScore) {
 		    columns[x][y].setActiveState(true);
-		    this.addActiveColumn(columns[x][y]); // use for temporal
-							 // pooler
+
+		    // this.addActiveColumn(columns[x][y]);
+		    this.activeColumnPositions.add(new ColumnPosition(x, y));
 		}
 	    }
 	}
