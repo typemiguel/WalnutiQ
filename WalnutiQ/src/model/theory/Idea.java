@@ -12,7 +12,7 @@ import java.util.Set;
  * specific set of Columns.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 15, 2013
+ * @version MARK II | June 18, 2013
  */
 public class Idea {
     private String name;
@@ -21,6 +21,10 @@ public class Idea {
     private Set<ColumnPosition> columnPositions;
 
     public Idea(String name) {
+	if (name == null) {
+            throw new IllegalArgumentException(
+        	    "name in Idea class constructor cannot be null");
+        }
 	this.name = name;
 	this.attentionPercentage = 0;
 	this.columnPositions = new HashSet<ColumnPosition>();
@@ -34,12 +38,12 @@ public class Idea {
 	return this.attentionPercentage;
     }
 
-    public boolean setAttentionPercentage(float attentionPercentage) {
-	if (attentionPercentage >= 0 && attentionPercentage <= 100) {
-	    this.attentionPercentage = attentionPercentage;
-	    return true;
+    public void setAttentionPercentage(float attentionPercentage) {
+	if (attentionPercentage < 0 || attentionPercentage > 100) {
+	    throw new IllegalArgumentException(
+		    "attentionPercentage in Idea class constructor must be between 0 and 100");
 	} else {
-	    return false;
+	    this.attentionPercentage = attentionPercentage;
 	}
     }
 
@@ -47,25 +51,17 @@ public class Idea {
 	return this.columnPositions;
     }
 
-    public boolean unionColumnPositions(Set<ColumnPosition> columnPositions) {
+    public void unionColumnPositions(Set<ColumnPosition> columnPositions) {
+	if (columnPositions == null) {
+            throw new IllegalArgumentException(
+        	    "columnPositions in Idea class unionColumnPositions method cannot be null");
+        }
 	// the set within this Idea object is unioned with the parameter set of
 	// ColumnPositions
 	if (this.columnPositions.containsAll(columnPositions)) {
-	    return false;
 	} else {
 	    this.columnPositions.addAll(columnPositions);
-	    return true;
 	}
-    }
-
-    public boolean removeColumnPosition(ColumnPosition columnPosition) {
-        if (this.columnPositions.contains(columnPosition)) {
-            this.columnPositions.remove(columnPosition);
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 
     @Override

@@ -11,13 +11,17 @@ import java.util.Set;
  * current input on a trained or untrained Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 15, 2013
+ * @version MARK II | June 18, 2013
  */
 public class MemoryClassifier {
     private Set<ColumnPosition> regionOutput;
     private Memory memory;
 
     public MemoryClassifier(Memory memory) {
+	if (memory == null) {
+            throw new IllegalArgumentException(
+        	    "memory in MemoryClassifier class constructor cannot be null");
+        }
 	this.regionOutput = new HashSet<ColumnPosition>();
 	this.memory = memory;
     }
@@ -32,6 +36,10 @@ public class MemoryClassifier {
      *            spatial pooler algorithm once.
      */
     public void updateIdeas(Set<ColumnPosition> regionOutput) {
+	if (regionOutput == null) {
+            throw new IllegalArgumentException(
+        	    "regionOutput in Memory class updateIdeas method cannot be null");
+        }
 	// update Region output with it's activeColumns
 	this.regionOutput = regionOutput;
 
@@ -54,9 +62,9 @@ public class MemoryClassifier {
 	    // have it's hash code changed, the Idea object must be returned,
 	    // the original object removed from the HashSet, the object's
 	    // fields changed, and then add it back to the HashSet.
-	    this.memory.removeIdea(idea);
+	    this.memory.getIdeas().remove(idea);
 	    idea.setAttentionPercentage(attentionPercentage);
-	    this.memory.addIdea(idea);
+	    this.memory.addNewIdea(idea);
 	}
     }
 

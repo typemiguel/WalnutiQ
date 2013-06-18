@@ -1,5 +1,9 @@
 package model.MARK_II;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version MARK II | June 18, 2013
+ */
 public class ColumnPosition {
     private int x; // x position within Region
     private int y; // y position within Region
