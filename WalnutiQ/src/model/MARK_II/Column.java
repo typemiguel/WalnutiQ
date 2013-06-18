@@ -89,8 +89,8 @@ public class Column {
     public void increaseProximalSegmentSynapsePermanences(int scaleFactor) {
 	if (scaleFactor < 0) {
 	    throw new IllegalArgumentException(
-		    "scaleFactor parameter in Column class method " +
-		    "increaseProximalSegmentSynapsePermanences" +
+		    "scaleFactor in Column class " +
+		    "increaseProximalSegmentSynapsePermanences method" +
 		    "cannot be less than 0");
 	} else {
 	    for (int i = 0; i < scaleFactor; i++) {
@@ -111,7 +111,7 @@ public class Column {
     public float maximumActiveDutyCycle(List<Column> neighborColumns) {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
-		    "neighborColumns parameter in Column class method" +
+		    "neighborColumns in Column class method " +
 		    "maximumActiveDutyCycle cannot be null");
 	}
 	float maximumActiveDutyCycle = 0.0f;
@@ -156,7 +156,7 @@ public class Column {
     public float boostFunction(float minimumDutyCycle) {
 	if (minimumDutyCycle <= 0) {
 	    throw new IllegalArgumentException(
-		    "minimumDutyCycle in boostFunction method of Column cannot be <= 0");
+		    "minimumDutyCycle in Column class boostFunction method cannot be <= 0");
 	}
 	if (this.getActiveDutyCycle() <= minimumDutyCycle) {
 	    // the boostValue increases linearly once the Column's
@@ -203,7 +203,7 @@ public class Column {
 	if (learningNeuronPosition < 0
 		|| learningNeuronPosition >= this.neurons.length) {
 	    throw new IllegalArgumentException(
-		    "learningNeuronPosition in Column method setLearningNeuron cannot be null");
+		    "learningNeuronPosition in Column class setLearningNeuron method cannot be null");
 	}
 	this.learningNeuronPosition = learningNeuronPosition;
     }
@@ -215,7 +215,7 @@ public class Column {
     public void setNeighborColumns(List<Column> neighborColumns) {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
-		    "neighborColumns in Column method setNeighborColumns cannot be null");
+		    "neighborColumns in Column class setNeighborColumns method cannot be null");
 	}
 	this.neighborColumns = neighborColumns;
     }
@@ -228,7 +228,7 @@ public class Column {
 	if (overlapScore < 0
 		|| overlapScore >= this.proximalSegment.getSynapses().size()) {
 	    throw new IllegalArgumentException(
-		    "overlapScore in Column method setOverlapScore must be >= 0 and less than"
+		    "overlapScore in Column class setOverlapScore method must be >= 0 and less than"
 			    + "the total number of Synapses in this column's proximal Segment.");
 	}
 	this.overlapScore = overlapScore;
@@ -240,7 +240,7 @@ public class Column {
 
     public void setBoostValue(float boostValue) {
 	if (boostValue < 0) {
-	    throw new IllegalArgumentException("boostValue in Column mehtod setBoostValue must >= 0");
+	    throw new IllegalArgumentException("boostValue in Column class setBoostValue method must >= 0");
 	}
 	this.boostValue = boostValue;
     }
@@ -251,7 +251,7 @@ public class Column {
 
     void setActiveDutyCycle(float activeDutyCycle) {
 	if (activeDutyCycle < 0 || activeDutyCycle > 1) {
-	    throw new IllegalArgumentException("activeDutyCycle in Column mehtod setActiveDutyCycle must >= 0 & <= 1");
+	    throw new IllegalArgumentException("activeDutyCycle in Column class setActiveDutyCycle method must >= 0 & <= 1");
 	}
 	this.activeDutyCycle = activeDutyCycle;
     }
@@ -262,7 +262,7 @@ public class Column {
 
     public void setOverlapDutyCycle(float overlapDutyCycle) {
 	if (overlapDutyCycle < 0 || overlapDutyCycle > 1) {
-	    throw new IllegalArgumentException("overlapDutyCycle in Column mehtod setOverlapDutyCycle must >= 0 & <= 1");
+	    throw new IllegalArgumentException("overlapDutyCycle in Column class setOverlapDutyCycle method must >= 0 & <= 1");
 	}
 	this.overlapDutyCycle = overlapDutyCycle;
     }

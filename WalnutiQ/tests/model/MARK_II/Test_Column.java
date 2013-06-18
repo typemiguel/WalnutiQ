@@ -58,7 +58,7 @@ public class Test_Column extends junit.framework.TestCase {
 	    this.column.maximumActiveDutyCycle(neighborColumns);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
-	    assertEquals("neighborColumns parameter in Column class method" +
+	    assertEquals("neighborColumns in Column class method " +
 		    "maximumActiveDutyCycle cannot be null",
 		    expected.getMessage());
 	}
@@ -108,7 +108,7 @@ public class Test_Column extends junit.framework.TestCase {
 	    this.column.boostFunction(-0.1f);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
-	    assertEquals("minimumDutyCycle in boostFunction method of Column cannot be <= 0",
+	    assertEquals("minimumDutyCycle in Column class boostFunction method cannot be <= 0",
 		    expected.getMessage());
 	}
 
