@@ -15,11 +15,13 @@ import java.util.HashSet;
  * Neocortex for object recognition.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 15, 2013
+ * @version MARK II | June 18, 2013
  */
 public class SpatialPooler extends Pooler {
     private Set<Column> activeColumns;
     private Set<ColumnPosition> activeColumnPositions;
+
+    private final float MINIMUM_COLUMN_FIRING_RATE = 0.01f;
 
     public SpatialPooler(Region newRegion) {
 	if (newRegion == null) {
@@ -69,6 +71,7 @@ public class SpatialPooler extends Pooler {
 	}
 	int newOverlapScore = column.getProximalSegment()
 		.getNumberOfActiveSynapses();
+
 	// compute minimumOverlapScore assuming all proximalSegments are
 	// connected to the same number of synapses
 	Column[][] columns = this.region.getColumns();
@@ -78,7 +81,6 @@ public class SpatialPooler extends Pooler {
 	} else {
 	    newOverlapScore = (int) (newOverlapScore * column.getBoostValue());
 	}
-	System.out.println("newOverlapScore: " + newOverlapScore);
 	column.setOverlapScore(newOverlapScore);
     }
 
@@ -94,11 +96,9 @@ public class SpatialPooler extends Pooler {
 	    for (int y = 0; y < columns[0].length; y++) {
 		columns[x][y].setActiveState(false);
 		this.updateNeighborColumns(x, y);
-		neighborColumns = columns[x][y].getNeighborColumns(); // necessary
-								      // for
-								      // calculating
-								      // kthScoreOfColumns
 
+		// necessary for calculating kthScoreOfColumns
+		neighborColumns = columns[x][y].getNeighborColumns();
 		int minimumLocalOverlapScore = this.kthScoreOfColumns(
 			neighborColumns, this.region.getDesiredLocalActivity());
 
@@ -144,6 +144,7 @@ public class SpatialPooler extends Pooler {
 	    }
 	}
 
+	// TODO: the remainder of this method still needs to be tested
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 		if (columns[x][y].getActiveState()) {
@@ -166,14 +167,12 @@ public class SpatialPooler extends Pooler {
 			    .maximumActiveDutyCycle(neighborColumns);
 
 		    // minDutyCycle represents the minimum desired firing rate
-		    // for a Column(number of times is becomes active over some
-		    // number
-		    // of iterations).
+		    // for a Column(number of times it becomes active over some
+		    // number of iterations).
 		    // If a Column's firing rate falls below this value, it will
 		    // be boosted.
-		    float minimumDutyCycle = 0.01f * maximumActiveDutyCycle;
-
-		    // TODO: make 0.01f a Region field percentMinimumFiringRate
+		    float minimumDutyCycle = this.MINIMUM_COLUMN_FIRING_RATE
+			    * maximumActiveDutyCycle;
 
 		    // 1) boost if activeDutyCycle is too low
 		    columns[x][y].updateActiveDutyCycle();
@@ -191,8 +190,8 @@ public class SpatialPooler extends Pooler {
 		}
 	    }
 	}
-	this.region
-		.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+	// this.region
+	// .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
 
     /**
@@ -214,7 +213,8 @@ public class SpatialPooler extends Pooler {
 	int xInitial = Math.max(0, columnXAxis - localInhibitionRadius);
 	int yInitial = Math.max(0, columnYAxis - localInhibitionRadius);
 
-	System.out.println("xInitial, yInitial: " + xInitial + ", " + yInitial);
+	// System.out.println("xInitial, yInitial: " + xInitial + ", " +
+	// yInitial);
 	int xFinal = Math.min(this.region.getXAxisLength(), columnXAxis
 		+ localInhibitionRadius);
 	int yFinal = Math.min(this.region.getYAxisLength(), columnYAxis
@@ -223,7 +223,7 @@ public class SpatialPooler extends Pooler {
 	// to allow double for loop to reach end portion of this.allColumns
 	xFinal = Math.min(this.region.getXAxisLength(), xFinal + 1);
 	yFinal = Math.min(this.region.getYAxisLength(), yFinal + 1);
-	System.out.println("xFinal, yFinal: " + xFinal + ", " + yFinal);
+	// System.out.println("xFinal, yFinal: " + xFinal + ", " + yFinal);
 
 	Column[][] columns = this.region.getColumns();
 	List<Column> neighborColumns = columns[columnXAxis][columnYAxis]
@@ -253,8 +253,7 @@ public class SpatialPooler extends Pooler {
      * Given a list of Columns, return the kth highest overlapScore value of a
      * Column object within that list.
      */
-    int kthScoreOfColumns(List<Column> neighborColumns,
-	    int desiredLocalActivity) {
+    int kthScoreOfColumns(List<Column> neighborColumns, int desiredLocalActivity) {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
 		    "neighborColumns in SpatialPooler method kthScoreOfColumns cannot be null");
@@ -284,9 +283,9 @@ public class SpatialPooler extends Pooler {
      * the Columns. The connected receptive field size of a Column includes only
      * the total distance of the Column's connected Synapses's cell's distance
      * from the Column divided by the number of Synapses the Column has. In
-     * other words the total length of Segments for a Column divided by the
-     * number of Segments. For spatial pooling since the number of Synapses from
-     * proximal Segments to lower Region Neurons is constant after
+     * other words the total length of Synapse distances for a Column divided by
+     * the number of Synapses. For spatial pooling since the number of Synapses
+     * from proximal Segments to lower Region Neurons is constant after
      * initialization, averageReceptiveFieldSize of a Column will remain
      * constant, but will be different for different Columns based on how they
      * are connected to the SensorCellLayer or lower Region.
@@ -295,35 +294,45 @@ public class SpatialPooler extends Pooler {
      */
     float averageReceptiveFieldSizeOfRegion() {
 	double totalSynapseDistanceFromOriginColumn = 0.0;
+
 	int numberOfSynapses = 0;
 	Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
-		if (columns[x][y] != null) {
-		    Set<Synapse<Cell>> synapses = columns[x][y]
-			    .getProximalSegment().getSynapses();
-		    Set<Synapse<Cell>> connectedSynapes = new HashSet<Synapse<Cell>>();
-		    for (Synapse<Cell> synapse : synapses) {
-			if (synapse.getCell() != null) {
-			    connectedSynapes.add(synapse);
-			}
-		    }
+		Set<Synapse<Cell>> synapses = columns[x][y]
+		    .getProximalSegment().getSynapses();
 
-		    // iterates over every connected Synapses and sums the
-		    // distances
-		    // from it's original Column to determine the average
-		    // receptive
-		    // field
-		    for (Synapse synapse : connectedSynapes) {
-			double dx = x - synapse.getCellXPosition();
-			double dy = y - synapse.getCellYPosition();
-			double synapseDistance = Math.sqrt(dx * dx + dy * dy);
-			totalSynapseDistanceFromOriginColumn += synapseDistance;
-			numberOfSynapses++;
+		Set<Synapse<Cell>> connectedSynapes = new HashSet<Synapse<Cell>>();
+
+		for (Synapse<Cell> synapse : synapses) {
+		    if (synapse.getCell() != null) {
+			connectedSynapes.add(synapse);
 		    }
+		}
+
+		System.out.println("connectedSynapses size: " + connectedSynapes.size());
+
+		// iterates over every connected Synapses and sums the
+		// distances from it's original Column to determine the
+		// average receptive field
+		for (Synapse synapse : connectedSynapes) {
+		    // NOTE: although it first appears these calculations are
+		    // incorrect since a Column at position (0, 0) is too close
+		    // to the lower Cell at (0, 0) because this is an AVERAGE
+		    // calculation it does not matter.
+		    double dx = x - synapse.getCellXPosition();
+		    double dy = y - synapse.getCellYPosition();
+		    System.out.println("x: " + x);
+		    System.out.println("y: " + y);
+		    System.out.println("synapseX: " + synapse.getCellXPosition());
+		    System.out.println("synapseY: " + synapse.getCellYPosition());
+		    double synapseDistance = Math.sqrt(dx * dx + dy * dy);
+		    totalSynapseDistanceFromOriginColumn += synapseDistance;
+		    numberOfSynapses++;
 		}
 	    }
 	}
+	System.out.println("numberOfSynapses: " + numberOfSynapses);
 	return (float) (totalSynapseDistanceFromOriginColumn / numberOfSynapses);
     }
 
@@ -348,8 +357,10 @@ public class SpatialPooler extends Pooler {
 		    "the Column being updated by the updateOverlapDutyCycle method"
 			    + "in SpatialPooler does not exist within the Region");
 	}
-	// Note whenever updateOverlapDutyCycle() is called, the overlapDutyCycle
-	// is always decremented less and less but only incremented if the Column's
+	// Note whenever updateOverlapDutyCycle() is called, the
+	// overlapDutyCycle
+	// is always decremented less and less but only incremented if the
+	// Column's
 	// overlapScore was greater than the Region's minimumOverlapScore.
 	// Furthermore, the increment applied to overlapDutyCycle is a constant
 	// representing the maximum decrement of overlapDutyCycle from initial

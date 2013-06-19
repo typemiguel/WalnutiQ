@@ -87,9 +87,10 @@ public class Region {
     }
 
     public int getMinimumOverlapScore() {
-	// this assumes all proximal segments will have the same number of synapses
+	// this assumes all proximal Segments will have the same number of
+	// Synapses
 
-	return (int) (this.percentMinimumOverlapScore/100 * columns[0][0]
+	return (int) (this.percentMinimumOverlapScore / 100 * columns[0][0]
 		.getProximalSegment().getSynapses().size());
     }
 
@@ -105,10 +106,21 @@ public class Region {
 	if (inhibitionRadius < 0 || inhibitionRadius > this.getXAxisLength()
 		|| inhibitionRadius > this.getYAxisLength()) {
 	    throw new IllegalArgumentException(
-		    "inhibition in Region method setInhibitionRadius must be >= 0 and < the number of columns along boths sides of the region");
+		    "inhibition in Region class setInhibitionRadius method must " +
+		    "be >= 0 and < the number of columns along boths sides of the region");
 	}
 	this.inhibitionRadius = inhibitionRadius;
     }
+
+//    void setPercentMinimumOverlapScore(double percentMinimumOverlapScore) {
+//	if (percentMinimumOverlapScore < 0
+//		|| percentMinimumOverlapScore > 1) {
+//	    throw new IllegalArgumentException(
+//		    "percentMinimumOverlapScore in Region class " +
+//		    "setPercentMinimumOverlapScore method must be >= 0 and <= 1");
+//	}
+//	this.percentMinimumOverlapScore = percentMinimumOverlapScore;
+//    }
 
     public int getXAxisLength() {
 	return this.columns.length;

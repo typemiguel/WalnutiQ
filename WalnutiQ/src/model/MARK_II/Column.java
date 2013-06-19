@@ -138,7 +138,6 @@ public class Column {
 	float newActiveDutyCycle = (1.0f - EXPONENTIAL_MOVING_AVERAGE_AlPHA)
 		* this.getActiveDutyCycle();
 	if (this.getActiveState()) {
-	    System.out.println("newActiveDutyCycle: " + newActiveDutyCycle);
 	    newActiveDutyCycle += EXPONENTIAL_MOVING_AVERAGE_AlPHA;
 	}
 	this.activeDutyCycle = newActiveDutyCycle;
