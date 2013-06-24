@@ -15,7 +15,7 @@ public abstract class Pooler {
     {
 	if (newRegion == null) {
 	    throw new IllegalArgumentException(
-		    "Region in Pooler method changeRegion cannot be null");
+		    "newRegion in Pooler class changeRegion method cannot be null");
 	}
 	this.region = newRegion;
     }

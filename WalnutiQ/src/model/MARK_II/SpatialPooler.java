@@ -190,8 +190,7 @@ public class SpatialPooler extends Pooler {
 		}
 	    }
 	}
-	// this.region
-	// .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+	this.region.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
 
     /**
@@ -295,12 +294,12 @@ public class SpatialPooler extends Pooler {
     float averageReceptiveFieldSizeOfRegion() {
 	double totalSynapseDistanceFromOriginColumn = 0.0;
 
-	int numberOfSynapses = 0;
+	int numberOfConnectedSynapses = 0;
 	Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 		Set<Synapse<Cell>> synapses = columns[x][y]
-		    .getProximalSegment().getSynapses();
+			.getProximalSegment().getSynapses();
 
 		Set<Synapse<Cell>> connectedSynapes = new HashSet<Synapse<Cell>>();
 
@@ -310,7 +309,8 @@ public class SpatialPooler extends Pooler {
 		    }
 		}
 
-		System.out.println("connectedSynapses size: " + connectedSynapes.size());
+		//System.out.println("connectedSynapses size: "
+		//	+ connectedSynapes.size());
 
 		// iterates over every connected Synapses and sums the
 		// distances from it's original Column to determine the
@@ -322,18 +322,53 @@ public class SpatialPooler extends Pooler {
 		    // calculation it does not matter.
 		    double dx = x - synapse.getCellXPosition();
 		    double dy = y - synapse.getCellYPosition();
-		    System.out.println("x: " + x);
-		    System.out.println("y: " + y);
-		    System.out.println("synapseX: " + synapse.getCellXPosition());
-		    System.out.println("synapseY: " + synapse.getCellYPosition());
+		    //System.out.println("x: " + x);
+		    //System.out.println("y: " + y);
+		    //System.out.println("synapseX: "
+		    //	    + synapse.getCellXPosition());
+		    //System.out.println("synapseY: "
+		    //	    + synapse.getCellYPosition());
 		    double synapseDistance = Math.sqrt(dx * dx + dy * dy);
 		    totalSynapseDistanceFromOriginColumn += synapseDistance;
-		    numberOfSynapses++;
+		    numberOfConnectedSynapses++;
 		}
 	    }
 	}
-	System.out.println("numberOfSynapses: " + numberOfSynapses);
-	return (float) (totalSynapseDistanceFromOriginColumn / numberOfSynapses);
+	//System.out.println("numberOfSynapses: " + numberOfConnectedSynapses);
+	float averageReceptiveFieldOfLowerLayer = (float) (totalSynapseDistanceFromOriginColumn / numberOfConnectedSynapses);
+
+	float squareRegionAxisLength = (float) Math.sqrt(this.region
+		.getXAxisLength() * this.region.getYAxisLength());
+
+	// get largest Synapse position of largest Column position
+	Column[][] allColumns = this.region.getColumns();
+	Column columnWithLargestIndex = allColumns[this.region.getXAxisLength() - 1][this.region
+		.getYAxisLength() - 1];
+
+	// now find input layer x and y axis lengths whether the input layer
+	// is a SensorCellLayer or a Region
+	Set<Synapse<Cell>> synapses = columnWithLargestIndex.getProximalSegment().getSynapses();
+	int greatestSynapseXIndex = 0;
+	int greatestSynapseYIndex = 0;
+	for (Synapse synapse : synapses) {
+	    if (synapse.getCellXPosition() > greatestSynapseXIndex) {
+		greatestSynapseXIndex = synapse.getCellXPosition();
+	    }
+	    if (synapse.getCellYPosition() > greatestSynapseYIndex) {
+		greatestSynapseYIndex = synapse.getCellYPosition();
+	    }
+	}
+	//System.out.println("greatestSynapseXIndex: " + greatestSynapseXIndex);
+	//System.out.println("greatestSynapseYIndex: " + greatestSynapseYIndex);
+
+	// you + 1 to each dimension because in the array the index begins at 0
+	// instead of 1
+	int squareLowerRegionAxisLength = (greatestSynapseXIndex + 1 + greatestSynapseYIndex + 1) / 2; // 66
+
+
+	float inhibitionRadius = (averageReceptiveFieldOfLowerLayer / squareLowerRegionAxisLength)
+		* squareRegionAxisLength;
+	return inhibitionRadius;
     }
 
     void addActiveColumn(Column activeColumn) {
@@ -381,13 +416,13 @@ public class SpatialPooler extends Pooler {
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
-	stringBuilder.append("\n=============================");
-	stringBuilder.append("\n--SpatialPooler Information--");
+	stringBuilder.append("\n===============================");
+	stringBuilder.append("\n---SpatialPooler Information---");
 	stringBuilder.append("\nbiological region name: ");
 	stringBuilder.append(this.region.getBiologicalName());
 	stringBuilder.append("\n# of activeColumns produced: ");
-	stringBuilder.append(this.activeColumns.size());
-	stringBuilder.append("\n=============================");
+	stringBuilder.append(this.activeColumnPositions.size());
+	stringBuilder.append("\n===============================");
 	String spatialPoolerInformation = stringBuilder.toString();
 	return spatialPoolerInformation;
     }

@@ -1,5 +1,12 @@
 package model.MARK_II;
 
+import java.io.IOException;
+
+import model.Retina;
+
+import model.MARK_II.ConnectTypes.SensorCellsToRegionConnect;
+import model.MARK_II.ConnectTypes.SensorCellsToRegionRectangleConnect;
+
 import model.util.RegionConsoleViewer;
 
 import java.util.Set;
@@ -18,28 +25,49 @@ import java.util.ArrayList;
  */
 public class Test_SpatialPooler extends junit.framework.TestCase {
 
-    private Region region;
-
+    private Region parentRegion;
     private SpatialPooler spatialPooler;
 
     public void setUp() {
-	this.region = new Region("V1", 8, 8, 4, 20, 3);
-	Region childRegion = new Region("LGN", 66, 66, 4, 20, 3);
+	this.parentRegion = new Region("parentRegion", 8, 8, 4, 20, 3);
+	Region childRegion = new Region("childRegion", 66, 66, 4, 20, 3);
 	RegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
-	connectType.connect(childRegion, this.region, 2, 2);
+	connectType.connect(childRegion, this.parentRegion, 2, 2);
 
-	this.spatialPooler = new SpatialPooler(this.region);
+	this.spatialPooler = new SpatialPooler(this.parentRegion);
     }
 
-    public void test_performSpatialPoolingOnRegion() {
+    public void test_performSpatialPoolingOnRegion() throws IOException {
+	Region region = new Region("region", 8, 8, 4, 50, 1);
+	this.spatialPooler.changeRegion(region);
 
+	VisionCell[][] visionCells = new VisionCell[65][65];
+	for (int x = 0; x < visionCells.length; x++) {
+	    for (int y = 0; y < visionCells[0].length; y++) {
+		visionCells[x][y] = new VisionCell();
+	    }
+	}
+
+	SensorCellsToRegionConnect connectType2 = new SensorCellsToRegionRectangleConnect();
+	connectType2.connect(visionCells, region, 2, 2);
+
+	// update VisionCells states
+	Retina retina = new Retina(visionCells);
+
+	retina.seeBMPImage("2.bmp");
+	Set<ColumnPosition> activeColumnPositions = this.spatialPooler.performSpatialPoolingOnRegion();
+	for (ColumnPosition columnPosition : activeColumnPositions) {
+	    System.out.println(columnPosition.toString());
+	}
+	System.out.println(this.spatialPooler.toString());
+	System.out.println(region.toString());
     }
 
     public void test_computeColumnOverlapScore() {
 	// when # of active Synapses on Column
 	// proximal Segment < regionMinimumOverlapScore
 	// Column new overlapScore = 0
-	Column[][] columns = this.region.getColumns();
+	Column[][] columns = this.parentRegion.getColumns();
 	assertEquals(0, columns[0][0].getProximalSegment()
 		.getNumberOfActiveSynapses());
 	assertEquals(100, columns[0][0].getProximalSegment().getSynapses()
@@ -80,7 +108,7 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
     }
 
     public void test_computeActiveColumnsOfRegion() {
-	Column[][] columns = this.region.getColumns();
+	Column[][] columns = this.parentRegion.getColumns();
 	columns[0][0].setOverlapScore(10);
 	columns[0][1].setOverlapScore(11);
 	columns[0][2].setOverlapScore(12);
@@ -108,19 +136,19 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	columns[4][4].setOverlapScore(25);
 	// all other Column overlapScores are 0
 
-	this.region.setInhibitionRadius(2);
+	this.parentRegion.setInhibitionRadius(2);
 
 	this.spatialPooler.computeActiveColumnsOfRegion();
 
 	char[][] columnActiveStates = RegionConsoleViewer
-		.getColumnActiveStatesCharArray(this.region);
+		.getColumnActiveStatesCharArray(this.parentRegion);
 	//System.out.println("\n--test_computeActiveColumnsOfRegion()--");
 	//RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
 
     }
 
     public void test_regionLearnOneTimeStep() {
-	Column[][] columns = this.region.getColumns();
+	Column[][] columns = this.parentRegion.getColumns();
 	Segment proximalSegment_00 = columns[0][0].getProximalSegment();
 	Synapse synapse_00 = proximalSegment_00.getSynapse(0, 0);
 
@@ -162,44 +190,44 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 
     public void test_updateNeighborColumns() {
 	// test on Column at position (0, 0) of Region
-	this.region.setInhibitionRadius(0);
+	this.parentRegion.setInhibitionRadius(0);
 	this.spatialPooler.updateNeighborColumns(0, 0);
-	Column[][] columns = this.region.getColumns();
+	Column[][] columns = this.parentRegion.getColumns();
 	List<Column> neighborColumns1 = columns[0][0].getNeighborColumns();
 	assertEquals(0, neighborColumns1.size());
 
-	this.region.setInhibitionRadius(1);
+	this.parentRegion.setInhibitionRadius(1);
 	this.spatialPooler.updateNeighborColumns(0, 0);
 	List<Column> neighborColumns2 = columns[0][0].getNeighborColumns();
 	assertEquals(3, neighborColumns2.size());
 
-	this.region.setInhibitionRadius(2);
+	this.parentRegion.setInhibitionRadius(2);
 	this.spatialPooler.updateNeighborColumns(0, 0);
 	List<Column> neighborColumns3 = columns[0][0].getNeighborColumns();
 	assertEquals(8, neighborColumns3.size());
 
-	this.region.setInhibitionRadius(3);
+	this.parentRegion.setInhibitionRadius(3);
 	this.spatialPooler.updateNeighborColumns(0, 0);
 	List<Column> neighborColumns4 = columns[0][0].getNeighborColumns();
 	assertEquals(15, neighborColumns4.size());
 
 	// test on Column at position (3, 3) of Region
-	this.region.setInhibitionRadius(0);
+	this.parentRegion.setInhibitionRadius(0);
 	this.spatialPooler.updateNeighborColumns(3, 3);
 	List<Column> neighborColumns5 = columns[3][3].getNeighborColumns();
 	assertEquals(0, neighborColumns5.size());
 
-	this.region.setInhibitionRadius(1);
+	this.parentRegion.setInhibitionRadius(1);
 	this.spatialPooler.updateNeighborColumns(3, 3);
 	List<Column> neighborColumns6 = columns[3][3].getNeighborColumns();
 	assertEquals(8, neighborColumns6.size());
 
-	this.region.setInhibitionRadius(2);
+	this.parentRegion.setInhibitionRadius(2);
 	this.spatialPooler.updateNeighborColumns(3, 3);
 	List<Column> neighborColumns7 = columns[3][3].getNeighborColumns();
 	assertEquals(24, neighborColumns7.size());
 
-	this.region.setInhibitionRadius(3);
+	this.parentRegion.setInhibitionRadius(3);
 	this.spatialPooler.updateNeighborColumns(3, 3);
 	List<Column> neighborColumns8 = columns[3][3].getNeighborColumns();
 	assertEquals(48, neighborColumns8.size());
@@ -208,7 +236,7 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
     public void test_kthScoreOfColumns() {
 	// change overlapScores of columns for testing
 	// the correct returning kth score
-	Column[][] columns = this.region.getColumns();
+	Column[][] columns = this.parentRegion.getColumns();
 	columns[1][3].setOverlapScore(24);
 	columns[2][3].setOverlapScore(1);
 	columns[2][5].setOverlapScore(26);
@@ -236,12 +264,11 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
     }
 
     public void test_averageReceptiveFieldSizeOfRegion() {
-	// TODO: what will averageReceptiveFieldSize be used for?
-	assertEquals(44.211, this.spatialPooler.averageReceptiveFieldSizeOfRegion(), 0.001);
+	assertEquals(5.358, this.spatialPooler.averageReceptiveFieldSizeOfRegion(), 0.001);
     }
 
     public void test_updateOverlapDutyCycle() {
-	Column[][] columns = this.region.getColumns();
+	Column[][] columns = this.parentRegion.getColumns();
 
 	this.spatialPooler.updateOverlapDutyCycle(0, 0);
 	assertEquals(0.995f, columns[0][0].getOverlapDutyCycle(), 0.0001);

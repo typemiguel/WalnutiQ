@@ -133,8 +133,8 @@ public class Region {
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
-	stringBuilder.append("\n====================================");
-	stringBuilder.append("\n------------Region Info-------------");
+	stringBuilder.append("\n==================================");
+	stringBuilder.append("\n-----------Region Info------------");
 	stringBuilder.append("\n       name of this region: ");
 	stringBuilder.append(this.biologicalName);
 	stringBuilder.append("\n     child region(s) names: ");
@@ -155,7 +155,7 @@ public class Region {
 	stringBuilder.append(this.desiredLocalActivity);
 	stringBuilder.append("\n          inhibitionRadius: ");
 	stringBuilder.append(this.inhibitionRadius);
-	stringBuilder.append("\n=====================================");
+	stringBuilder.append("\n===================================");
 	String regionInformation = stringBuilder.toString();
 	return regionInformation;
     }
