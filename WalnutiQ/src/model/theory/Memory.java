@@ -50,15 +50,17 @@ public class Memory {
 	    // have a different meaning
 	    // ex. date means taking a girl on a date or the fruit
 	    if (uniqueIdea.getName().equals(idea.getName())
-		|| uniqueIdea.getColumnPositions().equals(
+		&& uniqueIdea.getColumnPositions().equals(
 			idea.getColumnPositions())) {
 		return false;
 	    } else {
 		return true;
 	    }
 	}
-	return false;
+	return true;
     }
+
+
 
     @Override
     public int hashCode() {

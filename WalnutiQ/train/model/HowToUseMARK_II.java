@@ -22,7 +22,7 @@ import model.MARK_II.ConnectTypes.RegionToRegionConnect;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 11, 2013
+ * @version MARK II | June 23, 2013
  */
 public class HowToUseMARK_II extends junit.framework.TestCase {
     private NervousSystem nervousSystem;
@@ -92,7 +92,7 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 	SpatialPooler spatialPooler = new SpatialPooler(LGNStructure);
 	Set<ColumnPosition> LGNNeuronActivity = spatialPooler.performSpatialPoolingOnRegion();
 
-	assertEquals(3, LGNNeuronActivity.size());
+	assertEquals(11, LGNNeuronActivity.size());
 
 	for (ColumnPosition columnPosition : LGNNeuronActivity) {
 	    columnPosition.toString();

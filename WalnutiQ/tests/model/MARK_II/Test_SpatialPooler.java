@@ -57,10 +57,10 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	retina.seeBMPImage("2.bmp");
 	Set<ColumnPosition> activeColumnPositions = this.spatialPooler.performSpatialPoolingOnRegion();
 	for (ColumnPosition columnPosition : activeColumnPositions) {
-	    System.out.println(columnPosition.toString());
+	    //System.out.println(columnPosition.toString());
 	}
-	System.out.println(this.spatialPooler.toString());
-	System.out.println(region.toString());
+	//System.out.println(this.spatialPooler.toString());
+	//System.out.println(region.toString());
     }
 
     public void test_computeColumnOverlapScore() {

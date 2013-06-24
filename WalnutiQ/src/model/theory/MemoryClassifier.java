@@ -58,14 +58,12 @@ public class MemoryClassifier {
 		    / ((float) idea.getColumnPositions().size());
 	    float attentionPercentage = attention * 100;
 
-	    // Because a Idea object in the HashSet will be changed and thus
-	    // have it's hash code changed, the Idea object must be returned,
-	    // the original object removed from the HashSet, the object's
-	    // fields changed, and then add it back to the HashSet.
-	    this.memory.getIdeas().remove(idea);
 	    idea.setAttentionPercentage(attentionPercentage);
-	    this.memory.addNewIdea(idea);
 	}
+    }
+
+    Memory getMemory() {
+	return this.memory;
     }
 
     @Override
