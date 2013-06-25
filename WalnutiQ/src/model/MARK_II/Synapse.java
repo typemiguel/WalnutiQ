@@ -198,7 +198,7 @@ public class Synapse<CellType extends Cell> implements Serializable {
     }
 
     // package visible methods for test classes in the tests folder
-    double getPermanenceValue() {
+    public double getPermanenceValue() {
 	return this.permanenceValue;
     }
 

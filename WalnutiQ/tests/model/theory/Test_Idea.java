@@ -1,12 +1,8 @@
 package model.theory;
 
 import model.MARK_II.ColumnPosition;
-
 import java.util.HashSet;
-
 import java.util.Set;
-
-import model.MARK_II.Column;
 
 public class Test_Idea extends junit.framework.TestCase {
     private Idea idea;

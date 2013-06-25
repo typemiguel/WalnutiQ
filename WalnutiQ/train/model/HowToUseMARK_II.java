@@ -1,7 +1,8 @@
 package model;
 
-import model.MARK_II.ColumnPosition;
+import com.google.gson.Gson;
 
+import model.MARK_II.ColumnPosition;
 import model.theory.MemoryClassifier;
 import model.theory.Memory;
 import java.util.Set;
@@ -22,15 +23,15 @@ import model.MARK_II.ConnectTypes.RegionToRegionConnect;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 23, 2013
+ * @version MARK II | June 24, 2013
  */
 public class HowToUseMARK_II extends junit.framework.TestCase {
     private NervousSystem nervousSystem;
+    private MemoryClassifier digitsSVM;
 
     public void setUp() throws IOException {
-	System.out.println("Hello World!");
-
 	this.nervousSystem = this.constructConnectedNervousSystem();
+	this.digitsSVM = this.trainMemoryClassifierWithNervousSystem();
     }
 
     private NervousSystem constructConnectedNervousSystem() {
@@ -71,43 +72,56 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 	// connect LGN to V1 Region of Neocortex
 	Neocortex neocortex = nervousSystem.getCNS().getBrain().getCerebrum()
 		.getCerebralCortex().getNeocortex();
+
 	RegionToRegionConnect LGNToV1 = new RegionToRegionRectangleConnect();
 	LGNToV1.connect(LGN.getRegion(), neocortex.getCurrentRegion(), 0, 0);
 
 	return nervousSystem;
     }
 
-    public void test_NervousSystem() throws IOException {
+    private MemoryClassifier trainMemoryClassifierWithNervousSystem() throws IOException {
 	Retina retina = nervousSystem.getPNS().getSNS().getRetina();
 
-	Region LGNStructure = nervousSystem.getCNS().getBrain()
-		.getThalamus().getLGN().getRegion();
+	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
+		.getLGN().getRegion();
 
-	//Region V1 = nervousSystem.getCNS().getBrain().getCerebrum()
-	//	.getCerebralCortex().getNeocortex().getCurrentRegion();
+	// Region V1 = nervousSystem.getCNS().getBrain().getCerebrum()
+	// .getCerebralCortex().getNeocortex().getCurrentRegion();
 
 	// -------------train NervousSystem update Memory----------------
 	retina.seeBMPImage("2.bmp");
 
 	SpatialPooler spatialPooler = new SpatialPooler(LGNStructure);
-	Set<ColumnPosition> LGNNeuronActivity = spatialPooler.performSpatialPoolingOnRegion();
+	Set<ColumnPosition> LGNNeuronActivity = spatialPooler
+		.performSpatialPoolingOnRegion();
 
 	assertEquals(11, LGNNeuronActivity.size());
 
-	for (ColumnPosition columnPosition : LGNNeuronActivity) {
-	    columnPosition.toString();
-	}
-//	Idea twoIdea = new Idea("two");
-//	twoIdea.unionColumns(LGNNeuronActivity);
-//
-//	Memory digitsMemory = new Memory();
-//	digitsMemory.addIdea(twoIdea);
-//
-//	// TODO: train LGNStructure on many more different images of 2's
-//
-//
-//	// ------------test Memory of NervousSystem--------------------
-//	MemoryClassifier digitsSVM = new MemoryClassifier(digitsMemory);
+	Idea twoIdea = new Idea("two");
+	twoIdea.unionColumnPositions(LGNNeuronActivity);
+
+	Memory digitsMemory = new Memory();
+	digitsMemory.addNewIdea(twoIdea);
+
+	// TODO: train LGNStructure on many more different images of 2's
+
+	// ------------test Memory of NervousSystem--------------------
+	MemoryClassifier digitsSVM = new MemoryClassifier(digitsMemory);
+
+	// save MemoryClassifier object as a JSON file
+	Gson gson = new Gson();
+	String myObjectJson = gson.toJson(digitsSVM);
+	System.out.println(myObjectJson);
+	// TODO: save String into a file
+
+	return digitsSVM;
+    }
+
+    public void test_NervousSystem() throws IOException {
+	Retina retina = nervousSystem.getPNS().getSNS().getRetina();
+
+	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
+		.getLGN().getRegion();
 
 	// retina.seeBMPImage("new2.bmp");
 	// digitsSVM.updateIdeas(spatialPooler.performSpatialPoolingOnRegion());
