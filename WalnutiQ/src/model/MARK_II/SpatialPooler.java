@@ -15,7 +15,7 @@ import java.util.HashSet;
  * Neocortex for object recognition.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 18, 2013
+ * @version MARK II | June 26, 2013
  */
 public class SpatialPooler extends Pooler {
     private Set<Column> activeColumns;
@@ -123,25 +123,28 @@ public class SpatialPooler extends Pooler {
      */
     void regionLearnOneTimeStep() {
 	Column[][] columns = this.region.getColumns();
-	for (int x = 0; x < columns.length; x++) {
-	    for (int y = 0; y < columns[0].length; y++) {
-		if (columns[x][y].getActiveState()) {
-		    // increase and decrease of proximal segment synapses based
-		    // on each Synapses's activeState
-		    Set<Synapse<Cell>> synapses = columns[x][y]
-			    .getProximalSegment().getSynapses();
-		    for (Synapse<Cell> synapse : synapses) {
-			if (synapse.getCell() != null
-				&& synapse.getCell().getActiveState()) {
-			    // models long term potentiation
-			    synapse.increasePermanence();
-			} else {
-			    // models long term depression
-			    synapse.decreasePermanence();
+
+	if (super.getLearningState()) {
+	    for (int x = 0; x < columns.length; x++) {
+		    for (int y = 0; y < columns[0].length; y++) {
+			if (columns[x][y].getActiveState()) {
+			    // increase and decrease of proximal segment synapses based
+			    // on each Synapses's activeState
+			    Set<Synapse<Cell>> synapses = columns[x][y]
+				    .getProximalSegment().getSynapses();
+			    for (Synapse<Cell> synapse : synapses) {
+				if (synapse.getCell() != null
+					&& synapse.getCell().getActiveState()) {
+				    // models long term potentiation
+				    synapse.increasePermanence();
+				} else {
+				    // models long term depression
+				    synapse.decreasePermanence();
+				}
+			    }
 			}
 		    }
 		}
-	    }
 	}
 
 	// TODO: the remainder of this method still needs to be tested
@@ -182,7 +185,8 @@ public class SpatialPooler extends Pooler {
 
 		    // 2) boost if overlapDutyCycle is too low
 		    this.updateOverlapDutyCycle(x, y);
-		    if (columns[x][y].getOverlapDutyCycle() < minimumDutyCycle) {
+		    if (columns[x][y].getOverlapDutyCycle() < minimumDutyCycle &&
+			    this.getLearningState()) {
 			columns[x][y]
 				.increaseProximalSegmentSynapsePermanences(10);
 			// TODO: more biologically accurate

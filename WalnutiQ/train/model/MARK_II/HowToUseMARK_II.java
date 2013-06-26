@@ -93,6 +93,7 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 	retina.seeBMPImage("2.bmp");
 
 	SpatialPooler spatialPooler = new SpatialPooler(LGNStructure);
+	spatialPooler.setLearningState(true);
 	Set<ColumnPosition> LGNNeuronActivity = spatialPooler
 		.performSpatialPoolingOnRegion();
 

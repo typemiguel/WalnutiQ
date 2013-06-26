@@ -101,6 +101,13 @@ public class Test_Column extends junit.framework.TestCase {
 	this.column.setActiveState(true);
 	this.column.updateActiveDutyCycle();
 	assertEquals(0.98024f, this.column.getActiveDutyCycle(), 0.0001);
+
+	this.column.setActiveState(true);
+	this.column.updateActiveDutyCycle();
+	assertEquals(0.98034f, this.column.getActiveDutyCycle(), 0.0001);
+
+	this.column.updateActiveDutyCycle();
+	assertEquals(0.98044f, this.column.getActiveDutyCycle(), 0.0001);
     }
 
     public void test_boostFunction() {

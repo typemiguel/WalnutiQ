@@ -35,6 +35,7 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	connectType.connect(childRegion, this.parentRegion, 2, 2);
 
 	this.spatialPooler = new SpatialPooler(this.parentRegion);
+	this.spatialPooler.setLearningState(true);
     }
 
     public void test_performSpatialPoolingOnRegion() throws IOException {
