@@ -26,9 +26,9 @@ Please go to the folder WalnutiQ/train/model.MARK_II/HowToUseMARK_II.java to vie
 example of how to use all of the code.
      
   <h5>What each file or folder is for:</h5>
-  -images
+  1.images
      -model.MARK_II = images to be used for training. 
-  -src
+  2.src
     -model
       -MARK_II = classes containing the core logic for the brain model.MARK_II,
                  Includes data structures for basic brain structures 
@@ -39,18 +39,18 @@ example of how to use all of the code.
                 multiclass SVM) capable of identifying what category a 
                 new image is in given a nervous system that has been 
                 trained on images from this category.         
-  -tests
+  3.tests
      -model
         -MARK_II = test classes for all model.MARK_II classes
      -ConnectTypes = test classes for all connect methods
      -theory = test classes for all theory classes
-  -train  
+  4.train  
      -model
         -MARK_II = contains a class that demonstrates how to use the
                       classes currently in the MARK II design.   
-  -.project = When writing your code use the IDE This file will allow all of
+  5..project = When writing your code use the IDE This file will allow all of
                  your files to be organized in the correct folder.
-  -MARKII_UML.jpg = UML diagram of all classes
+  6.MARKII_UML.jpg = UML diagram of all classes
   
 Most importantly, this research is made possible by the countless 
 neuroscientists and engineers at Numenta(www.Numenta.com). Numenta has 
