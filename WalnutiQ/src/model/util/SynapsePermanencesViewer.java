@@ -12,8 +12,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
+ * Creates a Grid where each square represents a Synapse of a Region's 2d array
+ * of proximal Segments.
+ *
+ * A square colored red = Synapse is not connected
+ *
+ *                           dark grey    grey    light grey    white
+ * Synapse permanenceValue =    0.2        0.5       0.8         1.0
+ *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 24, 2013
+ * @version MARK II | June 26, 2013
  */
 public class SynapsePermanencesViewer {
     private int greatestSynapseXIndex;
@@ -110,12 +118,14 @@ public class SynapsePermanencesViewer {
     }
 
     public static void main(String[] args) {
-	Region parentRegion = new Region("V2", 8, 8, 1, 20, 1);
-	Region childRegion = new Region("V1", 64, 64, 1, 20, 3);
-	RegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
-	connectType.connect(childRegion, parentRegion, 0, 0);
+	//Region parentRegion = new Region("V2", 8, 8, 1, 20, 1);
+	//Region childRegion = new Region("V1", 64, 64, 1, 20, 3);
+	//RegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
+	//connectType.connect(childRegion, parentRegion, 0, 0);
 
-	SynapsePermanencesViewer object = new SynapsePermanencesViewer(
-		parentRegion);
+	// Open a saved JSON Region file here...
+
+	//SynapsePermanencesViewer object = new SynapsePermanencesViewer(
+	//	parentRegion);
     }
 }

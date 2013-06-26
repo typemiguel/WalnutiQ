@@ -1,12 +1,11 @@
-package model;
+package model.MARK_II;
 
+import model.util.JsonFileInputOutput;
 import com.google.gson.Gson;
-
 import model.MARK_II.ColumnPosition;
 import model.theory.MemoryClassifier;
 import model.theory.Memory;
 import java.util.Set;
-import model.MARK_II.Column;
 import model.theory.Idea;
 import model.MARK_II.SpatialPooler;
 import java.io.IOException;
@@ -28,6 +27,7 @@ import model.MARK_II.ConnectTypes.RegionToRegionConnect;
 public class HowToUseMARK_II extends junit.framework.TestCase {
     private NervousSystem nervousSystem;
     private MemoryClassifier digitsSVM;
+    Gson gson = new Gson();
 
     public void setUp() throws IOException {
 	this.nervousSystem = this.constructConnectedNervousSystem();
@@ -79,7 +79,8 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 	return nervousSystem;
     }
 
-    private MemoryClassifier trainMemoryClassifierWithNervousSystem() throws IOException {
+    private MemoryClassifier trainMemoryClassifierWithNervousSystem()
+	    throws IOException {
 	Retina retina = nervousSystem.getPNS().getSNS().getRetina();
 
 	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
@@ -105,19 +106,23 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 
 	// TODO: train LGNStructure on many more different images of 2's
 
-	// ------------test Memory of NervousSystem--------------------
 	MemoryClassifier digitsSVM = new MemoryClassifier(digitsMemory);
 
 	// save MemoryClassifier object as a JSON file
-	Gson gson = new Gson();
-	String myObjectJson = gson.toJson(digitsSVM);
-	System.out.println(myObjectJson);
-	// TODO: save String into a file
+	String myObjectJson = this.gson.toJson(digitsSVM);
+	JsonFileInputOutput.saveObjectToTextFile(myObjectJson,
+		"./train/model/MARK_II/MemoryClassifier_Digits.txt");
 
 	return digitsSVM;
     }
 
-    public void test_NervousSystem() throws IOException {
+    public void test_MemoryClassifierOnNewImages() throws IOException {
+	String memoryClassifierAsString = JsonFileInputOutput
+		.openObjectInTextFile("./train/model/MARK_II/MemoryClassifier_Digits.txt");
+	MemoryClassifier mc = this.gson.fromJson(memoryClassifierAsString,
+		MemoryClassifier.class);
+	System.out.println(mc.toString());
+
 	Retina retina = nervousSystem.getPNS().getSNS().getRetina();
 
 	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
