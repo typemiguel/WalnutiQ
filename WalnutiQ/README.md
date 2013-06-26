@@ -11,46 +11,47 @@ Here you will find classes that allow you to build a brain model.MARK_II (curren
 the second version called MARK II), train it on data, view it's activity as
 text and visual output, and test it's ability to recognize objects. All of the code 
 here supports modeling of the human brain at a high level of abstraction 
-while still allowing user access to individual neurons.
+while still allowing user access to individual neurons. Follow the following steps
+to begin understanding how to use this repository:
     
-Please watch the following playlist to become familiar with the neuroscience
+1. Please watch the following playlist to become familiar with the neuroscience
 behind this repository at http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f
  
-Please download the following JSON file saver/opener library to allow MARK II 
+2. Please download the following JSON file saver/opener library to allow MARK II 
 objects to be saved and opened: http://db.tt/1hwFbzcq
     
-Add this library(.jar file) by right-clicking your 
+3. Add this library(.jar file) by right-clicking your 
 project in the package explorer --> Build Path --> Add External Archives...
   
-Please go to the folder WalnutiQ/train/model.MARK_II/HowToUseMARK_II.java to view an
+4. Pull code and go to the folder WalnutiQ/train/model.MARK_II/HowToUseMARK_II.java to view an
 example of how to use all of the code.
      
   <h5>What each file or folder is for:</h5>
-  1.images
-     -model.MARK_II = images to be used for training. 
-  2.src
-    -model
-      -MARK_II = classes containing the core logic for the brain model.MARK_II,
-                 Includes data structures for basic brain structures 
-                 and algorithms that simulate how the brain learns.        
-    -ConnectTypes = classes allow the different brain components in MARK II to 
-                      connect to each other in a variety of ways.
-    -theory = contains a class MemoryClassifier.java(equivalent to a 
-                multiclass SVM) capable of identifying what category a 
-                new image is in given a nervous system that has been 
-                trained on images from this category.         
-  3.tests
-     -model
-        -MARK_II = test classes for all model.MARK_II classes
-     -ConnectTypes = test classes for all connect methods
-     -theory = test classes for all theory classes
-  4.train  
-     -model
-        -MARK_II = contains a class that demonstrates how to use the
+  - images
+     - model.MARK_II = images to be used for training. 
+  - src
+    - model
+      - MARK_II = classes containing the core logic for the brain model.MARK_II,
+                  Includes data structures for basic brain structures 
+                  and algorithms that simulate how the brain learns.        
+    - ConnectTypes = classes allow the different brain components in MARK II to 
+                     connect to each other in a variety of ways.
+    - theory = contains a class MemoryClassifier.java(equivalent to a 
+               multiclass SVM) capable of identifying what category a 
+               new image is in given a nervous system that has been 
+               trained on images from this category.         
+  - tests
+     - model
+        - MARK_II = test classes for all model.MARK_II classes
+     - ConnectTypes = test classes for all connect methods
+     - theory = test classes for all theory classes
+  - train  
+     - model
+        - MARK_II = contains a class that demonstrates how to use the
                       classes currently in the MARK II design.   
-  5..project = When writing your code use the IDE This file will allow all of
+  - .project = When writing your code use the IDE This file will allow all of
                  your files to be organized in the correct folder.
-  6.MARKII_UML.jpg = UML diagram of all classes
+  - MARKII_UML.jpg = UML diagram of all classes
   
 Most importantly, this research is made possible by the countless 
 neuroscientists and engineers at Numenta(www.Numenta.com). Numenta has 
