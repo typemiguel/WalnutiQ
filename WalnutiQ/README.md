@@ -28,29 +28,29 @@ example of how to use all of the code.
      
   <h5>What each file or folder is for:</h5>
   - images
-     - model.MARK_II = images to be used for training. 
+      + model = images to be used for training. 
   - src
-    - model
-      - MARK_II = classes containing the core logic for the brain model.MARK_II,
-                  Includes data structures for basic brain structures 
-                  and algorithms that simulate how the brain learns.        
-    - ConnectTypes = classes allow the different brain components in MARK II to 
-                     connect to each other in a variety of ways.
-    - theory = contains a class MemoryClassifier.java(equivalent to a 
-               multiclass SVM) capable of identifying what category a 
-               new image is in given a nervous system that has been 
-               trained on images from this category.         
+      + model
+          - MARK_II = classes containing the core logic for the brain model.MARK_II,
+                      Includes data structures for basic brain structures 
+                      and algorithms that simulate how the brain learns.        
+      + ConnectTypes = classes allow the different brain components in MARK II to 
+                       connect to each other in a variety of ways.
+      + theory = contains a class MemoryClassifier.java(equivalent to a 
+                 multiclass SVM) capable of identifying what category a 
+                 new image is in given a nervous system that has been 
+                 trained on images from this category.         
   - tests
-     - model
-        - MARK_II = test classes for all model.MARK_II classes
-     - ConnectTypes = test classes for all connect methods
-     - theory = test classes for all theory classes
+      + model
+          - MARK_II = test classes for all model.MARK_II classes
+      + ConnectTypes = test classes for all connect methods
+      + theory = test classes for all theory classes
   - train  
-     - model
-        - MARK_II = contains a class that demonstrates how to use the
+      + model
+          - MARK_II = contains a class that demonstrates how to use the
                       classes currently in the MARK II design.   
   - .project = When writing your code use the IDE This file will allow all of
-                 your files to be organized in the correct folder.
+                     your files to be organized in the correct folder.
   - MARKII_UML.jpg = UML diagram of all classes
   
 Most importantly, this research is made possible by the countless 
