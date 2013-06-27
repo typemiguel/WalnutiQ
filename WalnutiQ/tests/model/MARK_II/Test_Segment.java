@@ -14,10 +14,10 @@ import model.MARK_II.Segment.SynapseUpdateState;
  * @version MARK II | June 8, 2013
  */
 public class Test_Segment extends junit.framework.TestCase {
-    private Segment<Cell> proximalSegment;
+    private Segment proximalSegment;
 
     public void setUp() {
-	this.proximalSegment = new Segment<Cell>();
+	this.proximalSegment = new Segment();
     }
 
     public void test_getActiveState() {

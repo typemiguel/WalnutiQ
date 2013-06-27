@@ -22,16 +22,21 @@ import model.MARK_II.ConnectTypes.RegionToRegionConnect;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 24, 2013
+ * @version MARK II | June 26, 2013
  */
 public class HowToUseMARK_II extends junit.framework.TestCase {
     private NervousSystem nervousSystem;
-    private MemoryClassifier digitsSVM;
-    Gson gson = new Gson();
+    private MemoryClassifier memoryClassifier_Digits;
+
+    private Gson gson1;
+    private Gson gson2;
 
     public void setUp() throws IOException {
 	this.nervousSystem = this.constructConnectedNervousSystem();
-	this.digitsSVM = this.trainMemoryClassifierWithNervousSystem();
+	this.memoryClassifier_Digits = this.trainMemoryClassifierWithNervousSystem();
+
+	this.gson1 = new Gson();
+	this.gson2 = new Gson();
     }
 
     private NervousSystem constructConnectedNervousSystem() {
@@ -83,7 +88,7 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 	    throws IOException {
 	Retina retina = nervousSystem.getPNS().getSNS().getRetina();
 
-	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
+	Region LGNRegion = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();
 
 	// Region V1 = nervousSystem.getCNS().getBrain().getCerebrum()
@@ -92,12 +97,17 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 	// -------------train NervousSystem update Memory----------------
 	retina.seeBMPImage("2.bmp");
 
-	SpatialPooler spatialPooler = new SpatialPooler(LGNStructure);
+	SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
 	spatialPooler.setLearningState(true);
 	Set<ColumnPosition> LGNNeuronActivity = spatialPooler
 		.performSpatialPoolingOnRegion();
 
 	assertEquals(11, LGNNeuronActivity.size());
+
+	// save LGNRegion to be viewed
+	//String regionObject = this.gson1.toJson(LGNRegion);
+	//JsonFileInputOutput.saveObjectToTextFile(regionObject,
+	//	"./train/model/MARK_II/Region_LGN.txt");
 
 	Idea twoIdea = new Idea("two");
 	twoIdea.unionColumnPositions(LGNNeuronActivity);
@@ -107,20 +117,20 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 
 	// TODO: train LGNStructure on many more different images of 2's
 
-	MemoryClassifier digitsSVM = new MemoryClassifier(digitsMemory);
+	MemoryClassifier memoryClassifier_digits = new MemoryClassifier(digitsMemory);
 
 	// save MemoryClassifier object as a JSON file
-	String myObjectJson = this.gson.toJson(digitsSVM);
-	JsonFileInputOutput.saveObjectToTextFile(myObjectJson,
+	String memoryClassifierObject = this.gson2.toJson(memoryClassifier_digits);
+	JsonFileInputOutput.saveObjectToTextFile(memoryClassifierObject,
 		"./train/model/MARK_II/MemoryClassifier_Digits.txt");
 
-	return digitsSVM;
+	return memoryClassifier_digits;
     }
 
     public void test_MemoryClassifierOnNewImages() throws IOException {
 	String memoryClassifierAsString = JsonFileInputOutput
 		.openObjectInTextFile("./train/model/MARK_II/MemoryClassifier_Digits.txt");
-	MemoryClassifier mc = this.gson.fromJson(memoryClassifierAsString,
+	MemoryClassifier mc = this.gson1.fromJson(memoryClassifierAsString,
 		MemoryClassifier.class);
 	System.out.println(mc.toString());
 

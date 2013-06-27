@@ -1,5 +1,11 @@
 package model.util;
 
+import java.io.IOException;
+
+import com.google.gson.Gson;
+
+import model.theory.MemoryClassifier;
+
 import model.MARK_II.Cell;
 import model.MARK_II.Column;
 import model.MARK_II.Region;
@@ -17,8 +23,7 @@ import javax.swing.JPanel;
  *
  * A square colored red = Synapse is not connected
  *
- *                           dark grey    grey    light grey    white
- * Synapse permanenceValue =    0.2        0.5       0.8         1.0
+ * dark grey grey light grey white Synapse permanenceValue = 0.2 0.5 0.8 1.0
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 26, 2013
@@ -80,7 +85,8 @@ public class SynapsePermanencesViewer {
 
     public SynapsePermanencesViewer(Region region) {
 	String biologicalName = region.getBiologicalName();
-	JFrame frame = new JFrame(biologicalName + " proximal segment synapse permanences");
+	JFrame frame = new JFrame(biologicalName
+		+ " proximal segment synapse permanences");
 	this.findLowerLayerDimensions(region);
 	frame.setContentPane(this.createContentPane(region));
 
@@ -117,15 +123,16 @@ public class SynapsePermanencesViewer {
 	this.greatestSynapseYIndex += 1;
     }
 
-    public static void main(String[] args) {
-	//Region parentRegion = new Region("V2", 8, 8, 1, 20, 1);
-	//Region childRegion = new Region("V1", 64, 64, 1, 20, 3);
-	//RegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
-	//connectType.connect(childRegion, parentRegion, 0, 0);
+    public static void main(String[] args) throws IOException {
+	// Region parentRegion = new Region("V2", 8, 8, 1, 20, 1);
+	// Region childRegion = new Region("V1", 64, 64, 1, 20, 3);
+	// RegionToRegionConnect connectType = new
+	// RegionToRegionRectangleConnect();
+	// connectType.connect(childRegion, parentRegion, 0, 0);
 
 	// Open a saved JSON Region file here...
 
-	//SynapsePermanencesViewer object = new SynapsePermanencesViewer(
-	//	parentRegion);
+	// SynapsePermanencesViewer object = new SynapsePermanencesViewer(
+	// parentRegion);
     }
 }

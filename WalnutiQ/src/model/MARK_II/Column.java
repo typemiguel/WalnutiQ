@@ -24,7 +24,7 @@ public class Column {
 
     private final Neuron[] neurons;
 
-    private final Segment<Cell> proximalSegment;
+    private final Segment proximalSegment;
 
     // index position of chosen learning Neuron within Neurons array
     private int learningNeuronPosition; // may not be necessary
@@ -67,7 +67,7 @@ public class Column {
 	    for (int i = 0; i < numberOfCells; i++) {
 		this.neurons[i] = new Neuron();
 	    }
-	    this.proximalSegment = new Segment<Cell>();
+	    this.proximalSegment = new Segment();
 	    this.learningNeuronPosition = -1;
 	    this.neighborColumns = new ArrayList<Column>();
 	    this.overlapScore = 0;
@@ -266,7 +266,7 @@ public class Column {
 	this.overlapDutyCycle = overlapDutyCycle;
     }
 
-    public Segment<Cell> getProximalSegment() {
+    public Segment getProximalSegment() {
 	return this.proximalSegment;
     }
 

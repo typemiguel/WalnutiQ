@@ -16,14 +16,14 @@ public class Neuron extends Cell {
     private boolean wasActive;
     private boolean isPredicting;
     private boolean wasPredicting;
-    private Set<Segment<Neuron>> distalSegments;
+    private Set<Segment> distalSegments;
 
     public Neuron() {
 	super(); // Initializes isActive state
 	this.wasActive = false;
 	this.isPredicting = false;
 	this.wasPredicting = false;
-	this.distalSegments = new HashSet<Segment<Neuron>>();
+	this.distalSegments = new HashSet<Segment>();
     }
 
     /**
@@ -58,11 +58,11 @@ public class Neuron extends Cell {
 	this.wasPredicting = previousPredictingState;
     }
 
-    public Set<Segment<Neuron>> getDistalSegments() {
+    public Set<Segment> getDistalSegments() {
 	return this.distalSegments;
     }
 
-    public void addDistalSegment(Segment<Neuron> distalSegment) {
+    public void addDistalSegment(Segment distalSegment) {
 	if (distalSegment == null) {
 	    throw new IllegalArgumentException(
 		    "distalSegment in neuron class method addDistalSegment cannot be null");

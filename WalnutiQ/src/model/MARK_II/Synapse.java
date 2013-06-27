@@ -1,6 +1,7 @@
 package model.MARK_II;
 
 import java.io.Serializable;
+import model.MARK_II.Cell;
 
 /**
  * A data structure that partly represents the connection strength from a
@@ -32,8 +33,8 @@ import java.io.Serializable;
  * @param <GenericType>
  *            A synapse can be connected to either a SensorCell or a Neuron.
  */
-public class Synapse<CellType extends Cell> implements Serializable {
-    private CellType cell;
+public class Synapse<Cell> implements Serializable {
+    private Cell cell;
     private double permanenceValue;
     private int cellXPosition;
     private int cellYPosition;
@@ -60,7 +61,7 @@ public class Synapse<CellType extends Cell> implements Serializable {
      * Create a new Synapse object with an Cell object and INITIAL_PERMANENCE
      * value.
      */
-    public Synapse(CellType cell, int cellXPosition, int cellYPosition) {
+    public Synapse(Cell cell, int cellXPosition, int cellYPosition) {
         if (cell == null) {
             throw new IllegalArgumentException(
         	    "cell in Synapse class constructor cannot be null");
@@ -78,7 +79,7 @@ public class Synapse<CellType extends Cell> implements Serializable {
      * Create a new synapse object with an Cell object and given permanence
      * value.
      */
-    public Synapse(CellType cell, double initialPermanence,
+    public Synapse(Cell cell, double initialPermanence,
 	    int cellXPosition, int cellYPosition) {
 	this(cell, cellXPosition, cellYPosition);
 
@@ -92,7 +93,7 @@ public class Synapse<CellType extends Cell> implements Serializable {
     /**
      * @return This Synapse's Cell if it is connected. Otherwise return null.
      */
-    public CellType getCell() {
+    public Cell getCell() {
 	if (this.isConnected()) {
 	    return this.cell;
 	} else {

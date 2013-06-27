@@ -93,7 +93,8 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	int i = 0;
 	for (Synapse inactiveSynapse : oneHundredInactiveSynapses) {
 	    if (i < 21) {
-		inactiveSynapse.getCell().setActiveState(true);
+		Cell cell = (Cell) inactiveSynapse.getCell();
+		cell.setActiveState(true);
 		i++;
 	    } else {
 		break;
@@ -160,14 +161,15 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
         // true .315 .295
         // false.300 .300
 	columns[0][0].setActiveState(true);
-	synapse_00.getCell().setActiveState(true);
+	Cell cell_00 = (Cell) synapse_00.getCell();
+	cell_00.setActiveState(true);
 	assertEquals(0.3f, synapse_00.getPermanenceValue(), 0.001);
 	this.spatialPooler.regionLearnOneTimeStep();
 	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
 
 	// now the Synapse permanenceValue is decreased
 	columns[0][0].setActiveState(true);
-	synapse_00.getCell().setActiveState(false);
+	cell_00.setActiveState(false);
 	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
 	this.spatialPooler.regionLearnOneTimeStep();
 	assertEquals(0.310f, synapse_00.getPermanenceValue(), 0.001);
@@ -175,13 +177,13 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	// when Column activeState is false a Synapse's permanenceValue does
 	// not change whether the Synapse is active itself or not
 	columns[0][0].setActiveState(false);
-	synapse_00.getCell().setActiveState(true);
+	cell_00.setActiveState(true);
 	assertEquals(0.310f, synapse_00.getPermanenceValue(), 0.001);
 	this.spatialPooler.regionLearnOneTimeStep();
 	assertEquals(0.310f, synapse_00.getPermanenceValue(), 0.001);
 
 	columns[0][0].setActiveState(false);
-	synapse_00.getCell().setActiveState(false);
+	cell_00.setActiveState(false);
 	assertEquals(0.310f, synapse_00.getPermanenceValue(), 0.001);
 	this.spatialPooler.regionLearnOneTimeStep();
 	assertEquals(0.310f, synapse_00.getPermanenceValue(), 0.001);

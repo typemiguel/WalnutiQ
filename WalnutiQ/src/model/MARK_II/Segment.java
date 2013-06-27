@@ -2,6 +2,7 @@ package model.MARK_II;
 
 import java.util.Set;
 import java.util.HashSet;
+import model.MARK_II.Cell;
 
 /**
  * Provides the implementation for a distal or a proximal Segment.
@@ -15,8 +16,8 @@ import java.util.HashSet;
  * @author Michael Cogswell (cogswell@vt.edu)
  * @version MARK II | June 8, 2013
  */
-public class Segment<CellType extends Cell> {
-    private Set<Synapse<CellType>> synapses;
+public class Segment {
+    private Set<Synapse<Cell>> synapses;
 
     /**
      * Minimal percent of active Synapses out of total Synapses needed for a
@@ -51,7 +52,7 @@ public class Segment<CellType extends Cell> {
     }
 
     public Segment() {
-	this.synapses = new HashSet<Synapse<CellType>>();
+	this.synapses = new HashSet<Synapse<Cell>>();
     }
 
     /**
@@ -61,8 +62,8 @@ public class Segment<CellType extends Cell> {
      */
     public boolean getActiveState() {
 	int numberOfActiveSynapses = 0;
-	for (Synapse<CellType> synapse : this.synapses) {
-	    CellType abstractCell = synapse.getCell();
+	for (Synapse<Cell> synapse : this.synapses) {
+	    Cell abstractCell = synapse.getCell();
 	    if (synapse.isConnected() && abstractCell.getActiveState()) {
 		numberOfActiveSynapses++;
 	    }
@@ -88,7 +89,7 @@ public class Segment<CellType extends Cell> {
 	    throw new IllegalArgumentException(
 		    "updateState in Segment method updateSynapsePermanences cannot be null");
 	}
-	for (Synapse<CellType> synapse : this.synapses) {
+	for (Synapse<Cell> synapse : this.synapses) {
 	    switch (updateState) {
 	    case INCREASE_ACTIVE:
 		if (synapse.isConnected() && synapse.getCell().getActiveState()) {
@@ -112,10 +113,10 @@ public class Segment<CellType extends Cell> {
 	    throw new IllegalArgumentException(
 		    "Synapse in Segment class method addSynapse cannot be null");
 	}
-	this.synapses.add((Synapse<CellType>) synapse);
+	this.synapses.add((Synapse<Cell>) synapse);
     }
 
-    public Set<Synapse<CellType>> getSynapses() {
+    public Set<Synapse<Cell>> getSynapses() {
 	return this.synapses;
     }
 
@@ -123,7 +124,7 @@ public class Segment<CellType extends Cell> {
     public int getNumberOfActiveSynapses() {
 	int numberOfActiveSynapses = 0;
 	for (Synapse synapse : synapses) {
-	    Cell cell = synapse.getCell();
+	    Cell cell = (Cell) synapse.getCell();
 	    if (cell != null && cell.getActiveState()) {
 		numberOfActiveSynapses++;
 	    }
