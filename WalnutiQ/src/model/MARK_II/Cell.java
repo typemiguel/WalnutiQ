@@ -7,7 +7,7 @@ package model.MARK_II;
  * @author Michael Cogswell (cogswell@vt.edu)
  * @version MARK II | June 8, 2013
  */
-public abstract class Cell {
+public class Cell {
     protected boolean isActive;
 
     public Cell() {
