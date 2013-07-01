@@ -28,15 +28,12 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
     private NervousSystem nervousSystem;
     private MemoryClassifier memoryClassifier_Digits;
 
-    private Gson gson1;
-    private Gson gson2;
+    private Gson gson;
 
     public void setUp() throws IOException {
+	this.gson = new Gson();
 	this.nervousSystem = this.constructConnectedNervousSystem();
 	this.memoryClassifier_Digits = this.trainMemoryClassifierWithNervousSystem();
-
-	this.gson1 = new Gson();
-	this.gson2 = new Gson();
     }
 
     private NervousSystem constructConnectedNervousSystem() {
@@ -120,7 +117,7 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 	MemoryClassifier memoryClassifier_digits = new MemoryClassifier(digitsMemory);
 
 	// save MemoryClassifier object as a JSON file
-	String memoryClassifierObject = this.gson2.toJson(memoryClassifier_digits);
+	String memoryClassifierObject = this.gson.toJson(memoryClassifier_digits);
 	JsonFileInputOutput.saveObjectToTextFile(memoryClassifierObject,
 		"./train/model/MARK_II/MemoryClassifier_Digits.txt");
 
@@ -130,7 +127,7 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
     public void test_MemoryClassifierOnNewImages() throws IOException {
 	String memoryClassifierAsString = JsonFileInputOutput
 		.openObjectInTextFile("./train/model/MARK_II/MemoryClassifier_Digits.txt");
-	MemoryClassifier mc = this.gson1.fromJson(memoryClassifierAsString,
+	MemoryClassifier mc = this.gson.fromJson(memoryClassifierAsString,
 		MemoryClassifier.class);
 	System.out.println(mc.toString());
 
