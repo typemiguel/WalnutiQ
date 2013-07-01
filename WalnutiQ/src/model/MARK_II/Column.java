@@ -19,7 +19,8 @@ import java.util.ArrayList;
  */
 public class Column {
     // also stored as number of active Synapses. This variable is created so
-    // the active Columns do not have to be recomputed during the same iteration of spatial pooling
+    // the active Columns do not have to be recomputed during the same iteration
+    // of spatial pooling
     private boolean isActive;
 
     private final Neuron[] neurons;
@@ -88,14 +89,13 @@ public class Column {
      */
     public void increaseProximalSegmentSynapsePermanences(int scaleFactor) {
 	if (scaleFactor < 0) {
-	    throw new IllegalArgumentException(
-		    "scaleFactor in Column class " +
-		    "increaseProximalSegmentSynapsePermanences method" +
-		    "cannot be less than 0");
+	    throw new IllegalArgumentException("scaleFactor in Column class "
+		    + "increaseProximalSegmentSynapsePermanences method"
+		    + "cannot be less than 0");
 	} else {
 	    for (int i = 0; i < scaleFactor; i++) {
-		this.proximalSegment.updateSynapsePermanences(
-			SynapseUpdateState.INCREASE_ALL);
+		this.proximalSegment
+			.updateSynapsePermanences(SynapseUpdateState.INCREASE_ALL);
 	    }
 	}
     }
@@ -111,8 +111,8 @@ public class Column {
     public float maximumActiveDutyCycle(List<Column> neighborColumns) {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
-		    "neighborColumns in Column class method " +
-		    "maximumActiveDutyCycle cannot be null");
+		    "neighborColumns in Column class method "
+			    + "maximumActiveDutyCycle cannot be null");
 	}
 	float maximumActiveDutyCycle = 0.0f;
 	for (Column column : neighborColumns) {
@@ -130,7 +130,8 @@ public class Column {
      */
     public void updateActiveDutyCycle() {
 	// Note whenever updateActiveDutyCycle() is called, the activeDutyCycle
-	// is always decremented less and less but only incremented if the Column
+	// is always decremented less and less but only incremented if the
+	// Column
 	// was active. Furthermore, the increment applied to activeDutyCycle
 	// when the Column is active is a constant representing the maximum
 	// decrement of activeDutyCycle from initial value 1. Because of this
@@ -193,7 +194,8 @@ public class Column {
 
     public Neuron getLearningNeuron() {
 	if (this.learningNeuronPosition == -1) {
-	    throw new IllegalStateException("the learningNeuronPosition still needs to be set");
+	    throw new IllegalStateException(
+		    "the learningNeuronPosition still needs to be set");
 	}
 	return this.neurons[this.learningNeuronPosition];
     }
@@ -215,6 +217,9 @@ public class Column {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
 		    "neighborColumns in Column class setNeighborColumns method cannot be null");
+	} else if (neighborColumns.size() == 0) {
+	    throw new IllegalArgumentException(
+		    "neighborColumns size in Column class setNeighborColumns method must be > 0");
 	}
 	this.neighborColumns = neighborColumns;
     }
@@ -224,10 +229,12 @@ public class Column {
     }
 
     public void setOverlapScore(int overlapScore) {
-	if (overlapScore < 0
-		|| overlapScore >= this.proximalSegment.getSynapses().size()) {
+	if (overlapScore < 0) {
 	    throw new IllegalArgumentException(
-		    "overlapScore in Column class setOverlapScore method must be >= 0 and less than"
+		    "overlapScore in Column class setOverlapScore method must be >= 0.");
+	} else if (overlapScore > this.proximalSegment.getSynapses().size()) {
+	    throw new IllegalArgumentException(
+		    "overlapScore in Column class setOverlapScore method must be <= "
 			    + "the total number of Synapses in this column's proximal Segment.");
 	}
 	this.overlapScore = overlapScore;
@@ -239,7 +246,8 @@ public class Column {
 
     public void setBoostValue(float boostValue) {
 	if (boostValue < 0) {
-	    throw new IllegalArgumentException("boostValue in Column class setBoostValue method must >= 0");
+	    throw new IllegalArgumentException(
+		    "boostValue in Column class setBoostValue method must >= 0");
 	}
 	this.boostValue = boostValue;
     }
@@ -250,7 +258,8 @@ public class Column {
 
     void setActiveDutyCycle(float activeDutyCycle) {
 	if (activeDutyCycle < 0 || activeDutyCycle > 1) {
-	    throw new IllegalArgumentException("activeDutyCycle in Column class setActiveDutyCycle method must >= 0 & <= 1");
+	    throw new IllegalArgumentException(
+		    "activeDutyCycle in Column class setActiveDutyCycle method must >= 0 & <= 1");
 	}
 	this.activeDutyCycle = activeDutyCycle;
     }
@@ -261,7 +270,8 @@ public class Column {
 
     public void setOverlapDutyCycle(float overlapDutyCycle) {
 	if (overlapDutyCycle < 0 || overlapDutyCycle > 1) {
-	    throw new IllegalArgumentException("overlapDutyCycle in Column class setOverlapDutyCycle method must >= 0 & <= 1");
+	    throw new IllegalArgumentException(
+		    "overlapDutyCycle in Column class setOverlapDutyCycle method must >= 0 & <= 1");
 	}
 	this.overlapDutyCycle = overlapDutyCycle;
     }
