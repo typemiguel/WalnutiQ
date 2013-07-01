@@ -1,11 +1,10 @@
 package model.MARK_II;
 
+import java.awt.Dimension;
+
 import java.util.ArrayList;
-
 import java.util.TreeSet;
-
 import java.util.List;
-
 import java.util.Set;
 import java.util.HashSet;
 
@@ -126,25 +125,26 @@ public class SpatialPooler extends Pooler {
 
 	if (super.getLearningState()) {
 	    for (int x = 0; x < columns.length; x++) {
-		    for (int y = 0; y < columns[0].length; y++) {
-			if (columns[x][y].getActiveState()) {
-			    // increase and decrease of proximal segment synapses based
-			    // on each Synapses's activeState
-			    Set<Synapse<Cell>> synapses = columns[x][y]
-				    .getProximalSegment().getSynapses();
-			    for (Synapse<Cell> synapse : synapses) {
-				if (synapse.getCell() != null
-					&& synapse.getCell().getActiveState()) {
-				    // models long term potentiation
-				    synapse.increasePermanence();
-				} else {
-				    // models long term depression
-				    synapse.decreasePermanence();
-				}
+		for (int y = 0; y < columns[0].length; y++) {
+		    if (columns[x][y].getActiveState()) {
+			// increase and decrease of proximal segment synapses
+			// based
+			// on each Synapses's activeState
+			Set<Synapse<Cell>> synapses = columns[x][y]
+				.getProximalSegment().getSynapses();
+			for (Synapse<Cell> synapse : synapses) {
+			    if (synapse.getCell() != null
+				    && synapse.getCell().getActiveState()) {
+				// models long term potentiation
+				synapse.increasePermanence();
+			    } else {
+				// models long term depression
+				synapse.decreasePermanence();
 			    }
 			}
 		    }
 		}
+	    }
 	}
 
 	// TODO: the remainder of this method still needs to be tested
@@ -161,32 +161,39 @@ public class SpatialPooler extends Pooler {
 		    // 2) If overlapDutyCycle(measures connected Synapses with
 		    // inputs) is too low, the permanence values of the
 		    // Column's Synapses are boosted.
-		    this.updateNeighborColumns(x, y);
 
+		    // neighborColumns are already up to date.
 		    List<Column> neighborColumns = columns[x][y]
 			    .getNeighborColumns();
 
 		    float maximumActiveDutyCycle = columns[x][y]
 			    .maximumActiveDutyCycle(neighborColumns);
+		    if (maximumActiveDutyCycle == 0) {
+			maximumActiveDutyCycle = 0.1f;
+		    }
+
+		    // neighborColumns are no longer necessary for calculations
+		    // in this time step
+		    columns[x][y].getNeighborColumns().clear();
 
 		    // minDutyCycle represents the minimum desired firing rate
 		    // for a Column(number of times it becomes active over some
 		    // number of iterations).
 		    // If a Column's firing rate falls below this value, it will
 		    // be boosted.
-		    float minimumDutyCycle = this.MINIMUM_COLUMN_FIRING_RATE
+		    float minimumActiveDutyCycle = this.MINIMUM_COLUMN_FIRING_RATE
 			    * maximumActiveDutyCycle;
 
 		    // 1) boost if activeDutyCycle is too low
 		    columns[x][y].updateActiveDutyCycle();
 
 		    columns[x][y].setBoostValue(columns[x][y]
-			    .boostFunction(minimumDutyCycle));
+			    .boostFunction(minimumActiveDutyCycle));
 
 		    // 2) boost if overlapDutyCycle is too low
 		    this.updateOverlapDutyCycle(x, y);
-		    if (columns[x][y].getOverlapDutyCycle() < minimumDutyCycle &&
-			    this.getLearningState()) {
+		    if (columns[x][y].getOverlapDutyCycle() < minimumActiveDutyCycle
+			    && this.getLearningState()) {
 			columns[x][y]
 				.increaseProximalSegmentSynapsePermanences(10);
 			// TODO: more biologically accurate
@@ -194,7 +201,8 @@ public class SpatialPooler extends Pooler {
 		}
 	    }
 	}
-	this.region.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+	this.region
+		.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
 
     /**
@@ -232,7 +240,7 @@ public class SpatialPooler extends Pooler {
 	List<Column> neighborColumns = columns[columnXAxis][columnYAxis]
 		.getNeighborColumns();
 
-	if (neighborColumns != null) {
+	if (neighborColumns.size() != 0) {
 	    neighborColumns.clear(); // remove neighbors of Column computed with
 				     // old inhibitionRadius
 	}
@@ -313,9 +321,6 @@ public class SpatialPooler extends Pooler {
 		    }
 		}
 
-		//System.out.println("connectedSynapses size: "
-		//	+ connectedSynapes.size());
-
 		// iterates over every connected Synapses and sums the
 		// distances from it's original Column to determine the
 		// average receptive field
@@ -326,49 +331,23 @@ public class SpatialPooler extends Pooler {
 		    // calculation it does not matter.
 		    double dx = x - synapse.getCellXPosition();
 		    double dy = y - synapse.getCellYPosition();
-		    //System.out.println("x: " + x);
-		    //System.out.println("y: " + y);
-		    //System.out.println("synapseX: "
-		    //	    + synapse.getCellXPosition());
-		    //System.out.println("synapseY: "
-		    //	    + synapse.getCellYPosition());
 		    double synapseDistance = Math.sqrt(dx * dx + dy * dy);
 		    totalSynapseDistanceFromOriginColumn += synapseDistance;
 		    numberOfConnectedSynapses++;
 		}
 	    }
 	}
-	//System.out.println("numberOfSynapses: " + numberOfConnectedSynapses);
 	float averageReceptiveFieldOfLowerLayer = (float) (totalSynapseDistanceFromOriginColumn / numberOfConnectedSynapses);
 
 	float squareRegionAxisLength = (float) Math.sqrt(this.region
 		.getXAxisLength() * this.region.getYAxisLength());
 
-	// get largest Synapse position of largest Column position
-	Column[][] allColumns = this.region.getColumns();
-	Column columnWithLargestIndex = allColumns[this.region.getXAxisLength() - 1][this.region
-		.getYAxisLength() - 1];
+	Dimension bottomLayerDimensions = this.region.getBottomLayerXYAxisLength();
+	int greatestSynapseXIndex = bottomLayerDimensions.width;
+	int greatestSynapseYIndex = bottomLayerDimensions.height;
 
-	// now find input layer x and y axis lengths whether the input layer
-	// is a SensorCellLayer or a Region
-	Set<Synapse<Cell>> synapses = columnWithLargestIndex.getProximalSegment().getSynapses();
-	int greatestSynapseXIndex = 0;
-	int greatestSynapseYIndex = 0;
-	for (Synapse synapse : synapses) {
-	    if (synapse.getCellXPosition() > greatestSynapseXIndex) {
-		greatestSynapseXIndex = synapse.getCellXPosition();
-	    }
-	    if (synapse.getCellYPosition() > greatestSynapseYIndex) {
-		greatestSynapseYIndex = synapse.getCellYPosition();
-	    }
-	}
-	//System.out.println("greatestSynapseXIndex: " + greatestSynapseXIndex);
-	//System.out.println("greatestSynapseYIndex: " + greatestSynapseYIndex);
-
-	// you + 1 to each dimension because in the array the index begins at 0
-	// instead of 1
-	int squareLowerRegionAxisLength = (greatestSynapseXIndex + 1 + greatestSynapseYIndex + 1) / 2; // 66
-
+	int squareLowerRegionAxisLength = (greatestSynapseXIndex
+		+ greatestSynapseYIndex) / 2;
 
 	float inhibitionRadius = (averageReceptiveFieldOfLowerLayer / squareLowerRegionAxisLength)
 		* squareRegionAxisLength;
@@ -415,6 +394,10 @@ public class SpatialPooler extends Pooler {
 	}
 	columns[columnXAxis][columnYAxis]
 		.setOverlapDutyCycle(newOverlapDutyCycle);
+    }
+
+    public Region getRegion() {
+	return this.region;
     }
 
     @Override
