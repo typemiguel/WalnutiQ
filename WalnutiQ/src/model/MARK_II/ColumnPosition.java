@@ -1,6 +1,8 @@
 package model.MARK_II;
 
 /**
+ * Represents the position of a Column within a Region.
+ *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 18, 2013
  */
