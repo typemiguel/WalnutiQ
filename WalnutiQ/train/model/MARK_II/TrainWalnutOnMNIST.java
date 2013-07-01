@@ -1,22 +1,19 @@
 package model.MARK_II;
 
 import model.util.RegionConsoleViewer;
-
 import com.google.gson.Gson;
-
 import java.util.Set;
-
 import model.theory.MemoryClassifier;
-
 import java.io.IOException;
-
 import mnist.tools.MnistManager;
-
 import model.MARK_II.ConnectTypes.SensorCellsToRegionConnect;
 import model.MARK_II.ConnectTypes.SensorCellsToRegionRectangleConnect;
-
 import model.Retina;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version MARK II | June 29, 2013
+ */
 public class TrainWalnutOnMNIST extends junit.framework.TestCase {
     private Retina retina;
     private Region LGNRegion;
