@@ -1,7 +1,6 @@
 package model.MARK_II.ConnectTypes;
 
 import model.MARK_II.Column;
-
 import model.MARK_II.Region;
 
 /**
