@@ -1,6 +1,5 @@
 package model;
 
-
 import model.MARK_II.Neocortex;
 
 /**
