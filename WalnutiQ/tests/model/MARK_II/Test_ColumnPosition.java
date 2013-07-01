@@ -1,5 +1,9 @@
 package model.MARK_II;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version MARK II | June 18, 2013
+ */
 public class Test_ColumnPosition extends junit.framework.TestCase {
     private ColumnPosition columnPosition69;
     private ColumnPosition columnPosition_69;

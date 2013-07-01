@@ -3,7 +3,6 @@ package model.MARK_II;
 import java.util.List;
 import java.util.ArrayList;
 
-
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 13, 2013

@@ -1,22 +1,14 @@
 package model.MARK_II;
 
 import java.io.IOException;
-
 import model.Retina;
-
 import model.MARK_II.ConnectTypes.SensorCellsToRegionConnect;
 import model.MARK_II.ConnectTypes.SensorCellsToRegionRectangleConnect;
-
 import model.util.RegionConsoleViewer;
-
 import java.util.Set;
-
 import model.MARK_II.ConnectTypes.RegionToRegionConnect;
-
 import model.MARK_II.ConnectTypes.RegionToRegionRectangleConnect;
-
 import java.util.List;
-
 import java.util.ArrayList;
 
 /**
@@ -62,6 +54,8 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	}
 	//System.out.println(this.spatialPooler.toString());
 	//System.out.println(region.toString());
+
+	this.parentRegion = this.spatialPooler.getRegion();
     }
 
     public void test_computeColumnOverlapScore() {

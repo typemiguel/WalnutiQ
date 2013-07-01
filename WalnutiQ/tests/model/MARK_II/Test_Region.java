@@ -1,8 +1,12 @@
 package model.MARK_II;
 
+import java.awt.Dimension;
+import model.MARK_II.ConnectTypes.RegionToRegionRectangleConnect;
+import model.MARK_II.ConnectTypes.RegionToRegionConnect;
+
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 13, 2013
+ * @version MARK II | June 29, 2013
  */
 public class Test_Region extends junit.framework.TestCase {
     private Region region;
@@ -35,6 +39,16 @@ public class Test_Region extends junit.framework.TestCase {
 	    assertEquals("percentMinimumOverlapScore in Region constructor must be between 0 and 100",
 		    expected.getMessage());
 	}
+    }
+
+    public void test_getBottomLayerXYAxisLength() {
+	Region bottomLayer = new Region("bottomLayer", 25, 35, 1, 50, 1);
+	RegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
+	connectType.connect(bottomLayer, this.region, 0, 0);
+
+	Dimension bottomLayerDimensions = this.region.getBottomLayerXYAxisLength();
+	assertEquals(25, bottomLayerDimensions.width);
+	assertEquals(35, bottomLayerDimensions.height);
     }
 
     public void test_toString() {
