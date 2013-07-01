@@ -3,7 +3,6 @@ package model.MARK_II.ConnectTypes;
 import model.MARK_II.SensorCell;
 import model.MARK_II.Cell;
 import model.MARK_II.Column;
-import model.MARK_II.Neuron;
 import model.MARK_II.Region;
 import model.MARK_II.Synapse;
 
