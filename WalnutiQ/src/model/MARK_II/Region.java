@@ -1,5 +1,7 @@
 package model.MARK_II;
 
+import java.awt.Dimension;
+import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -128,6 +130,29 @@ public class Region {
 
     public int getYAxisLength() {
 	return this.columns[0].length;
+    }
+
+    public Dimension getBottomLayerXYAxisLength() {
+	// get largest Synapse position of largest Column position
+	Column columnWithLargestIndex = this.columns[this.columns.length - 1][this.columns[0].length - 1];
+
+	// now find input layer x and y axis lengths whether the input layer
+	// is a SensorCellLayer or a Region
+	Set<Synapse<Cell>> synapses = columnWithLargestIndex
+		.getProximalSegment().getSynapses();
+	int greatestSynapseXIndex = 0;
+	int greatestSynapseYIndex = 0;
+	for (Synapse synapse : synapses) {
+	    if (synapse.getCellXPosition() > greatestSynapseXIndex) {
+		greatestSynapseXIndex = synapse.getCellXPosition();
+	    }
+	    if (synapse.getCellYPosition() > greatestSynapseYIndex) {
+		greatestSynapseYIndex = synapse.getCellYPosition();
+	    }
+	}
+	// you + 1 to each dimension because in the array the index begins at 0
+	// instead of 1
+	return new Dimension(greatestSynapseXIndex + 1, greatestSynapseYIndex + 1);
     }
 
     @Override
