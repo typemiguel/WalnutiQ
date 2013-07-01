@@ -3,9 +3,7 @@ package model.util;
 import java.util.Set;
 import model.MARK_II.Cell;
 import model.MARK_II.Synapse;
-
 import java.awt.Dimension;
-
 import model.MARK_II.Column;
 import model.MARK_II.Region;
 
@@ -64,7 +62,7 @@ public class RegionConsoleViewer {
      * location rounded down in the tenth decimal place.
      *
      * For example, a Synapse with a permanenceValue of 0.36 will be represented
-     * as a 3.
+     * as a 3 in the int[][] array being returned.
      */
     public static int[][] getSynapsePermanencesIntArray(Region region) {
 	//System.out.println(region.toString());
@@ -78,7 +76,7 @@ public class RegionConsoleViewer {
 			.getProximalSegment().getSynapses();
 		//System.out.println("synapses size: " + synapses.size());
 
-		for (Synapse synapse : synapses) {
+		for (Synapse<Cell> synapse : synapses) {
 		    //  permanenceTimesTen = round((0.9999 - 0.05555) * 10)
 		    int permanenceTimesTen = (int) Math.round(((synapse.getPermanenceValue() - 0.055555) * 10));
 		    //System.out.println("permanenceTimesTen: " + permanenceTimesTen);
