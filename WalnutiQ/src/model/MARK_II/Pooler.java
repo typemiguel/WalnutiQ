@@ -1,7 +1,7 @@
 package model.MARK_II;
 
 /**
- * Abstract class extended by SpatialPooler.java and TemporalPooler.java class.
+ * Abstract class extended by SpatialPooler.java and TemporalPooler.java classes.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 26, 2013
@@ -10,7 +10,8 @@ public abstract class Pooler {
     protected Region region;
     private boolean learningState;
 
-    // TODO: how to make this code parallel
+    // TODO: how do you make the learning algorithms code parallel for a tree
+    // of Regions?
 
     public void changeRegion(Region newRegion)
     {
