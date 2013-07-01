@@ -1,11 +1,10 @@
 package model.util;
 
+import java.awt.Dimension;
+
 import java.io.IOException;
-
 import com.google.gson.Gson;
-
 import model.theory.MemoryClassifier;
-
 import model.MARK_II.Cell;
 import model.MARK_II.Column;
 import model.MARK_II.Region;
@@ -43,7 +42,6 @@ public class SynapsePermanencesViewer {
 	    for (int y = 0; y < columns[x].length; y++) {
 		Set<Synapse<Cell>> synapses = columns[x][y]
 			.getProximalSegment().getSynapses();
-		System.out.println("synapses size: " + synapses.size());
 		for (Synapse synapse : synapses) {
 		    int permanenceRepresentedAsGreyScale = 0;
 		    Color greyScaleValue;
@@ -53,8 +51,6 @@ public class SynapsePermanencesViewer {
 			     // permanenceValue between 0.2 and 1.0
 			permanenceRepresentedAsGreyScale = (int) (255 * synapse
 				.getPermanenceValue());
-			System.out.println("additionalRed: "
-				+ permanenceRepresentedAsGreyScale);
 			greyScaleValue = new Color(
 				permanenceRepresentedAsGreyScale,
 				permanenceRepresentedAsGreyScale,
@@ -87,40 +83,21 @@ public class SynapsePermanencesViewer {
 	String biologicalName = region.getBiologicalName();
 	JFrame frame = new JFrame(biologicalName
 		+ " proximal segment synapse permanences");
-	this.findLowerLayerDimensions(region);
+	Dimension bottomLayerDimensions = region.getBottomLayerXYAxisLength();
+	this.greatestSynapseXIndex = bottomLayerDimensions.width;
+	this.greatestSynapseYIndex = bottomLayerDimensions.height;
+	System.out.println("X: " + this.greatestSynapseXIndex);
 	frame.setContentPane(this.createContentPane(region));
 
 	int frameX = this.greatestSynapseXIndex * this.squareLength
-		+ this.greatestSynapseXIndex * this.distanceBetweenSquares + 3
-		* this.squareLength;
+		+ this.greatestSynapseXIndex * this.distanceBetweenSquares;
 	int frameY = this.greatestSynapseYIndex * this.squareLength
-		+ this.greatestSynapseYIndex * this.distanceBetweenSquares + 5
-		* this.squareLength;
-	frame.setSize(frameX, frameY);
+		+ this.greatestSynapseYIndex * this.distanceBetweenSquares;
+	// For an currently unknown reason the bottom right corner of the frame
+	// is offset by 17 pixels in the x direction and 40 pixels in the right
+	// direction. The "+ 17" and "+ 40" are to compensate.
+	frame.setSize(frameX + 17, frameY + 40);
 	frame.setVisible(true);
-    }
-
-    void findLowerLayerDimensions(Region region) {
-	// get largest Synapse position of largest Column position
-	Column[][] allColumns = region.getColumns();
-	Column columnWithLargestIndex = allColumns[region.getXAxisLength() - 1][region
-		.getYAxisLength() - 1];
-	// now find input layer x and y axis lengths whether the input layer
-	// is a SensorCellLayer or a Region
-	Set<Synapse<Cell>> synapses = columnWithLargestIndex
-		.getProximalSegment().getSynapses();
-	for (Synapse synapse : synapses) {
-	    if (synapse.getCellXPosition() > this.greatestSynapseXIndex) {
-		this.greatestSynapseXIndex = synapse.getCellXPosition();
-	    }
-	    if (synapse.getCellYPosition() > this.greatestSynapseYIndex) {
-		this.greatestSynapseYIndex = synapse.getCellYPosition();
-	    }
-	}
-	// above computation finds largest index in a 2D array which is always
-	// one less in both x and y axis
-	this.greatestSynapseXIndex += 1;
-	this.greatestSynapseYIndex += 1;
     }
 
     public static void main(String[] args) throws IOException {
@@ -131,8 +108,11 @@ public class SynapsePermanencesViewer {
 	// connectType.connect(childRegion, parentRegion, 0, 0);
 
 	// Open a saved JSON Region file here...
+	String regionAsString = JsonFileInputOutput
+		.openObjectInTextFile("./tests/model/util/test_saveRegionObject.txt");
+	Gson gson2 = new Gson();
+	Region LGNRegion = gson2.fromJson(regionAsString, Region.class);
 
-	// SynapsePermanencesViewer object = new SynapsePermanencesViewer(
-	// parentRegion);
+	SynapsePermanencesViewer object = new SynapsePermanencesViewer(LGNRegion);
     }
 }
