@@ -1,12 +1,12 @@
 package model;
 
-
-import java.awt.Color;
-
 import java.io.IOException;
-
 import model.MARK_II.VisionCell;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version June 5, 2013
+ */
 public class Test_Retina extends junit.framework.TestCase {
     private Retina retina;
 
