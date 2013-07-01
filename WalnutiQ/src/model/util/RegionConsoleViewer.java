@@ -1,5 +1,11 @@
 package model.util;
 
+import java.util.Set;
+import model.MARK_II.Cell;
+import model.MARK_II.Synapse;
+
+import java.awt.Dimension;
+
 import model.MARK_II.Column;
 import model.MARK_II.Region;
 
@@ -15,29 +21,22 @@ public class RegionConsoleViewer {
      * @param region
      * @return A 2-D char array of Columns' overlapScores.
      */
-    public static char[][] getColumnActiveStatesCharArray(
-        Region region)
-    {
-        char[][] columnActiveStates =
-            new char[region.getXAxisLength()][region.getYAxisLength()];
-        Column[][] columns = region.getColumns();
-        for (int x = 0; x < columnActiveStates.length; x++)
-        {
-            for (int y = 0; y < columnActiveStates[x].length; y++)
-            {
-                if (columns[x][y].getActiveState())
-                {
-                    // 'a' represents an active Column at a specific time step
-                    columnActiveStates[x][y] = 'a';
-                }
-                else
-                {
-                    // 'i' represents an inactive Column at a specific time step
-                    columnActiveStates[x][y] = 'i';
-                }
-            }
-        }
-        return columnActiveStates;
+    public static char[][] getColumnActiveStatesCharArray(Region region) {
+	char[][] columnActiveStates = new char[region.getXAxisLength()][region
+		.getYAxisLength()];
+	Column[][] columns = region.getColumns();
+	for (int x = 0; x < columnActiveStates.length; x++) {
+	    for (int y = 0; y < columnActiveStates[x].length; y++) {
+		if (columns[x][y].getActiveState()) {
+		    // 'a' represents an active Column at a specific time step
+		    columnActiveStates[x][y] = 'a';
+		} else {
+		    // 'i' represents an inactive Column at a specific time step
+		    columnActiveStates[x][y] = 'i';
+		}
+	    }
+	}
+	return columnActiveStates;
     }
 
     /**
@@ -47,20 +46,47 @@ public class RegionConsoleViewer {
      * @param region
      * @return A 2-D integer array of Columns' overlapScores.
      */
-    public static int[][] getColumnOverlapScoresIntArray(
-        Region region)
-    {
-        int[][] columnOverlapScores =
-            new int[region.getXAxisLength()][region.getYAxisLength()];
-        Column[][] columns = region.getColumns();
-        for (int x = 0; x < columnOverlapScores.length; x++)
-        {
-            for (int y = 0; y < columnOverlapScores[x].length; y++)
-            {
-                columnOverlapScores[x][y] = columns[x][y].getOverlapScore();
-            }
-        }
-        return columnOverlapScores;
+    public static int[][] getColumnOverlapScoresIntArray(Region region) {
+	int[][] columnOverlapScores = new int[region.getXAxisLength()][region
+		.getYAxisLength()];
+	Column[][] columns = region.getColumns();
+	for (int x = 0; x < columnOverlapScores.length; x++) {
+	    for (int y = 0; y < columnOverlapScores[x].length; y++) {
+		columnOverlapScores[x][y] = columns[x][y].getOverlapScore();
+	    }
+	}
+	return columnOverlapScores;
+    }
+
+    /**
+     * 0 means the SensorCell is disconnected from the Synapse at that location.
+     * Any number 2-9 represents the permanenceValue of the Synapse at that
+     * location rounded down in the tenth decimal place.
+     *
+     * For example, a Synapse with a permanenceValue of 0.36 will be represented
+     * as a 3.
+     */
+    public static int[][] getSynapsePermanencesIntArray(Region region) {
+	//System.out.println(region.toString());
+	Dimension bottomLayerDimensions = region.getBottomLayerXYAxisLength();
+	int[][] synapsePermanences = new int[bottomLayerDimensions.width][bottomLayerDimensions.height];
+
+	Column[][] columns = region.getColumns();
+	for (int x = 0; x < columns.length; x++) {
+	    for (int y = 0; y < columns[x].length; y++) {
+		Set<Synapse<Cell>> synapses = columns[x][y]
+			.getProximalSegment().getSynapses();
+		//System.out.println("synapses size: " + synapses.size());
+
+		for (Synapse synapse : synapses) {
+		    //  permanenceTimesTen = round((0.9999 - 0.05555) * 10)
+		    int permanenceTimesTen = (int) Math.round(((synapse.getPermanenceValue() - 0.055555) * 10));
+		    //System.out.println("permanenceTimesTen: " + permanenceTimesTen);
+		    synapsePermanences[synapse.getCellXPosition()][synapse.getCellYPosition()] = permanenceTimesTen;
+		}
+	    }
+	}
+	return synapsePermanences;
     }
 
     /**
@@ -69,16 +95,13 @@ public class RegionConsoleViewer {
      * @param doubleByteArray
      *            The 2-D byte array to be printed.
      */
-    public static void printDoubleByteArray(byte[][] doubleByteArray)
-    {
-        for (int x = 0; x < doubleByteArray.length; x++)
-        {
-            System.out.println();
-            for (int y = 0; y < doubleByteArray[x].length; y++)
-            {
-                System.out.print(doubleByteArray[x][y]);
-            }
-        }
+    public static void printDoubleByteArray(byte[][] doubleByteArray) {
+	for (int x = 0; x < doubleByteArray.length; x++) {
+	    System.out.println();
+	    for (int y = 0; y < doubleByteArray[x].length; y++) {
+		System.out.print(doubleByteArray[x][y]);
+	    }
+	}
     }
 
     /**
@@ -87,16 +110,13 @@ public class RegionConsoleViewer {
      * @param doubleIntArray
      *            The 2-D int array to be printed.
      */
-    public static void printDoubleIntArray(int[][] doubleIntArray)
-    {
-        for (int x = 0; x < doubleIntArray.length; x++)
-        {
-            System.out.println();
-            for (int y = 0; y < doubleIntArray[x].length; y++)
-            {
-                System.out.print(doubleIntArray[x][y]);
-            }
-        }
+    public static void printDoubleIntArray(int[][] doubleIntArray) {
+	for (int x = 0; x < doubleIntArray.length; x++) {
+	    System.out.println();
+	    for (int y = 0; y < doubleIntArray[x].length; y++) {
+		System.out.print(doubleIntArray[x][y]);
+	    }
+	}
     }
 
     /**
@@ -105,15 +125,12 @@ public class RegionConsoleViewer {
      * @param doubleCharArray
      *            The 2-D char array to be printed.
      */
-    public static void printDoubleCharArray(char[][] doubleCharArray)
-    {
-        for (int x = 0; x < doubleCharArray.length; x++)
-        {
-            System.out.println();
-            for (int y = 0; y < doubleCharArray[x].length; y++)
-            {
-                System.out.print(doubleCharArray[x][y]);
-            }
-        }
+    public static void printDoubleCharArray(char[][] doubleCharArray) {
+	for (int x = 0; x < doubleCharArray.length; x++) {
+	    System.out.println();
+	    for (int y = 0; y < doubleCharArray[x].length; y++) {
+		System.out.print(doubleCharArray[x][y]);
+	    }
+	}
     }
 }

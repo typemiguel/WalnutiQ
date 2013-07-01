@@ -1,7 +1,5 @@
 package model;
 
-
-
 /**
  * Nerves connecting to voluntary skeletal muscles and sensory receptors using
  * two types of directed Segments(Axons).

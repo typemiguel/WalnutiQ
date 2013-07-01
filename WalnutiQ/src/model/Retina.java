@@ -1,9 +1,7 @@
 package model;
 
 import model.MARK_II.VisionCell;
-
 import java.awt.Color;
-
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -44,7 +42,25 @@ public class Retina {
 		    this.visionCells[xPixel][yPixel].setActiveState(false);
 		}
 	    }
-	    System.out.print("\n");
+	}
+    }
+
+    /**
+     * @param image
+     *            Any element in the 2D array with a value of zero will mean the
+     *            corresponding VisionCell 2D array element will have
+     *            activeState set to false. Any other number sets activeState to
+     *            true.
+     */
+    public void see2DIntArray(int[][] image) {
+	for (int yPixel = 0; yPixel < this.visionCells[0].length; yPixel++) {
+	    for (int xPixel = 0; xPixel < this.visionCells.length; xPixel++) {
+		if (image[xPixel][yPixel] != 0) {
+		    this.visionCells[xPixel][yPixel].setActiveState(true);
+		} else {
+		    this.visionCells[xPixel][yPixel].setActiveState(false);
+		}
+	    }
 	}
     }
 

@@ -1,6 +1,5 @@
 package model;
 
-
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 5, 2013
