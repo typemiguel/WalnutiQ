@@ -34,22 +34,28 @@ example of how to use all of the code.
           - MARK_II = classes containing the core logic for the brain model.MARK_II,
                       Includes data structures for basic brain structures 
                       and algorithms that simulate how the brain learns.        
-      + ConnectTypes = classes allow the different brain components in MARK II to 
-                       connect to each other in a variety of ways.
-      + theory = contains a class MemoryClassifier.java(equivalent to a 
-                 multiclass SVM) capable of identifying what category a 
-                 new image is in given a nervous system that has been 
-                 trained on images from this category.         
-  - tests
+          - ConnectTypes = classes allow the different brain components in MARK II to 
+                           connect to each other in a variety of ways.
+          - theory = contains a class MemoryClassifier.java(equivalent to a 
+                     multiclass SVM) capable of identifying what category a 
+                     new image is in given a nervous system that has been 
+                     trained on images from this category.    
+          - util = classes that enable the brain model properties to be viewable
+               graphically and efficiently saved and opened.  
+  - tests = test classes for important classes in src folder
       + model
-          - MARK_II = test classes for all model.MARK_II classes
-      + ConnectTypes = test classes for all connect methods
-      + theory = test classes for all theory classes
+          - MARK_II 
+          - ConnectTypes 
+          - theory 
+          - util 
   - train  
       + model
-          - MARK_II = contains a class that demonstrates how to use the
-                      classes currently in the MARK II design.   
-  - .project = When writing your code use the IDE This file will allow all of
+          - MARK_II = demonstrations of how to build and train a partial brain model
+                      on a popular handwritten digit data set.
+  - images
+      + MNIST = contains a popular handwritten digit data set
+      + model = a small set of handwritten digits used in the classes in folder tests
+  - .project = When writing your code using the IDE this file will allow all of
                      your files to be organized in the correct folder.
   - MARKII_UML.jpg = UML diagram of all classes
   
