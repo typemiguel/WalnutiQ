@@ -22,6 +22,14 @@ public class ColumnPosition {
 	this.y = y;
     }
 
+    public int getX() {
+	return this.x;
+    }
+
+    public int getY() {
+	return this.y;
+    }
+
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
