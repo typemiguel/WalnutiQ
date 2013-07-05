@@ -29,17 +29,17 @@ public class MemoryClassifier {
      * that are becoming active. No ColumnPositions objects are removed from any Idea
      * objects.
      *
-     * @param regionOutput
+     * @param spatialPoolerOutput
      *            Active Columns of the Region object after executing the
-     *            spatial pooler algorithm once.
+     *            spatial pooler algorithm on it during one time step.
      */
-    public void updateIdeas(Set<ColumnPosition> regionOutput) {
-	if (regionOutput == null) {
+    public void updateIdeas(Set<ColumnPosition> spatialPoolerOutput) {
+	if (spatialPoolerOutput == null) {
             throw new IllegalArgumentException(
         	    "regionOutput in Memory class updateIdeas method cannot be null");
         }
 	// update Region output with it's activeColumns
-	this.regionOutput = regionOutput;
+	this.regionOutput = spatialPoolerOutput;
 
 	// compare which set of ColumnPositions in memories has the greatest
 	// intersection with regionOutput
