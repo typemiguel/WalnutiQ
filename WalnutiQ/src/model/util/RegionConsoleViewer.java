@@ -65,7 +65,7 @@ public class RegionConsoleViewer {
      * as a 3 in the int[][] array being returned.
      */
     public static int[][] getSynapsePermanencesIntArray(Region region) {
-	//System.out.println(region.toString());
+	// System.out.println(region.toString());
 	Dimension bottomLayerDimensions = region.getBottomLayerXYAxisLength();
 	int[][] synapsePermanences = new int[bottomLayerDimensions.width][bottomLayerDimensions.height];
 
@@ -74,13 +74,21 @@ public class RegionConsoleViewer {
 	    for (int y = 0; y < columns[x].length; y++) {
 		Set<Synapse<Cell>> synapses = columns[x][y]
 			.getProximalSegment().getSynapses();
-		//System.out.println("synapses size: " + synapses.size());
+		// System.out.println("synapses size: " + synapses.size());
 
 		for (Synapse<Cell> synapse : synapses) {
-		    //  permanenceTimesTen = round((0.9999 - 0.05555) * 10)
-		    int permanenceTimesTen = (int) Math.round(((synapse.getPermanenceValue() - 0.055555) * 10));
-		    //System.out.println("permanenceTimesTen: " + permanenceTimesTen);
-		    synapsePermanences[synapse.getCellXPosition()][synapse.getCellYPosition()] = permanenceTimesTen;
+		    if (synapse.getPermanenceValue() < 0.2) {
+			synapsePermanences[synapse.getCellXPosition()][synapse
+				.getCellYPosition()] = 0;
+		    } else {
+			// permanenceTimesTen = round((0.9999 - 0.05555) * 10)
+			int permanenceTimesTen = (int) Math.round(((synapse
+				.getPermanenceValue() - 0.055555) * 10));
+			// System.out.println("permanenceTimesTen: " +
+			// permanenceTimesTen);
+			synapsePermanences[synapse.getCellXPosition()][synapse
+				.getCellYPosition()] = permanenceTimesTen;
+		    }
 		}
 	    }
 	}
@@ -112,7 +120,7 @@ public class RegionConsoleViewer {
 	for (int x = 0; x < doubleIntArray.length; x++) {
 	    System.out.println();
 	    for (int y = 0; y < doubleIntArray[x].length; y++) {
-		System.out.print(doubleIntArray[x][y]);
+		System.out.printf("%4d", doubleIntArray[x][y]);
 	    }
 	}
     }
