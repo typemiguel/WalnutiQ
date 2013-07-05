@@ -1,5 +1,6 @@
 package model.theory;
 
+import model.MARK_II.Region;
 import java.util.HashSet;
 import java.util.Set;
 import model.MARK_II.ColumnPosition;
@@ -19,10 +20,11 @@ public class Test_MemoryClassifier extends junit.framework.TestCase {
 	columnPositions.add(column_00);
 	columnPositions.add(column_01);
 
-	Idea idea_1 = new Idea("revenge");
+	Region region = new Region("region", 8, 8, 1, 50, 1);
+	Idea idea_1 = new Idea("revenge", region);
 	idea_1.unionColumnPositions(columnPositions);
 
-	Idea idea_2 = new Idea("forgiveness");
+	Idea idea_2 = new Idea("forgiveness", region);
 	ColumnPosition column_02 = new ColumnPosition(0, 2);
 	columnPositions.add(column_02);
 	idea_2.unionColumnPositions(columnPositions);
