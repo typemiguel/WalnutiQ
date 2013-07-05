@@ -29,9 +29,15 @@ public class Test_MemoryClassifier extends junit.framework.TestCase {
 	columnPositions.add(column_02);
 	idea_2.unionColumnPositions(columnPositions);
 
+	Idea idea_3 = new Idea("love", region);
+	ColumnPosition column_03 = new ColumnPosition(0, 3);
+	columnPositions.add(column_03);
+	idea_3.unionColumnPositions(columnPositions);
+
 	Memory memory = new Memory();
 	memory.addNewIdea(idea_1);
 	memory.addNewIdea(idea_2);
+	memory.addNewIdea(idea_3);
 	this.memoryClassifier = new MemoryClassifier(memory);
     }
 
@@ -46,6 +52,18 @@ public class Test_MemoryClassifier extends junit.framework.TestCase {
 	assertEquals(33.3,
 		this.memoryClassifier.getMemory().getIdea("forgiveness")
 			.getAttentionPercentage(), 0.1);
-	//System.out.println(this.memoryClassifier.toString());
+	// System.out.println(this.memoryClassifier.toString());
+    }
+
+    public void test_getCurrentIdeaNameClassification() {
+	this.memoryClassifier.getMemory().getIdea("revenge")
+		.setAttentionPercentage(0);
+	this.memoryClassifier.getMemory().getIdea("forgiveness")
+		.setAttentionPercentage(31);
+	this.memoryClassifier.getMemory().getIdea("love")
+		.setAttentionPercentage(69);
+
+	assertEquals("love",
+		this.memoryClassifier.getCurrentIdeaNameClassification());
     }
 }
