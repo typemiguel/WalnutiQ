@@ -1,13 +1,13 @@
 WalnutiQ 
 ========
-Hi and welcome to the WalnutiQ, a brain model.MARK_II simulation 
-in Java! The GOAL of this repository is store the code that 
+Hi and welcome to the WalnutiQ, a human brain model simulation 
+in Java! The goal of this repository is store the code that 
 would allow a 10 year old to understand the brain in it's entirety and allow
-a real-time human brain simulation. If you are interested in 
-understanding a machine no human fully understands please visit 
+a real-time human brain simulation. If you are interested the 
+only requirement is passion and a readiness to fail. Please visit 
 www.walnutiq.com for more information :)
  
-Here you will find classes that allow you to build a brain model.MARK_II (currently
+Here you will find classes that allow you to build a brain model (currently
 the second version called MARK II), train it on data, view it's activity as
 text and visual output, and test it's ability to recognize objects. All of the code 
 here supports modeling of the human brain at a high level of abstraction 
@@ -17,18 +17,24 @@ to begin understanding how to use this repository:
 1. Please watch the following playlist to become familiar with the neuroscience
 behind this repository at http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f
  
-2. Please download the following JSON file saver/opener library to allow MARK II 
-objects to be saved and opened: http://db.tt/1hwFbzcq
+2. Please download the following libraries: 
+1) JSON file saver/opener library to allow custom MARK II objects to be saved and opened
+at: https://code.google.com/p/google-gson/downloads/list
+
+2) MNIST tools library to allow you to easy use the images in the MNIST 
+handwritten digits data set at: https://code.google.com/p/mnist-tools/downloads/detail?name=mnist-tools.zip&can=2&q=
     
-3. Add this library(.jar file) by right-clicking your 
-project in the package explorer --> Build Path --> Add External Archives...
+3. In Eclipse, add these libraries(.jar file) by right-clicking your project in 
+the package explorer --> Build Path --> Add External Archives...
   
-4. Pull code and go to the folder WalnutiQ/train/model.MARK_II/HowToUseMARK_II.java to view an
+4. Pull code and go to the folder WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java to view an
 example of how to use all of the code.
      
-  <h5>What each file or folder is for:</h5>
+  <h5>What each file or folder in this repository is for:</h5>
   - images
-      + model = images to be used for training. 
+      + digits
+          - MNIST = unique files that contain training images and testing images.
+      + model = images used in testing the MARK II model.
   - src
       + model
           - MARK_II = classes containing the core logic for the brain model.MARK_II,
@@ -52,9 +58,6 @@ example of how to use all of the code.
       + model
           - MARK_II = demonstrations of how to build and train a partial brain model
                       on a popular handwritten digit data set.
-  - images
-      + MNIST = contains a popular handwritten digit data set
-      + model = a small set of handwritten digits used in the classes in folder tests
   - .project = When writing your code using the IDE this file will allow all of
                      your files to be organized in the correct folder.
   - MARKII_UML.jpg = UML diagram of all classes
@@ -65,4 +68,4 @@ designed a exciting new technology that accurately models the human
 neocortex(the part of the brain that makes you intelligent). They have 
 generously released the pseudocode for their algorithms and this 
 repository is an implementation of their algorithms using object-oriented 
-programming and model.MARK_II-view-controller.
+programming.
