@@ -106,7 +106,7 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 	//JsonFileInputOutput.saveObjectToTextFile(regionObject,
 	//	"./train/model/MARK_II/Region_LGN.txt");
 
-	Idea twoIdea = new Idea("two");
+	Idea twoIdea = new Idea("two", LGNRegion);
 	twoIdea.unionColumnPositions(LGNNeuronActivity);
 
 	Memory digitsMemory = new Memory();
