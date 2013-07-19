@@ -14,22 +14,25 @@ here supports modeling of the human brain at a high level of abstraction
 while still allowing user access to individual neurons. Follow the following steps
 to begin understanding how to use this repository:
     
-1. Please watch the following playlist to become familiar with the neuroscience
-behind this repository at http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f
+1. Please watch the following playlist to become familiar with the
+   neuroscience behind this repository at:
+   http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f
  
 2. Please download the following libraries: 
+
   - JSON file saver/opener library to allow custom MARK II objects to be 
-    saved and opened
-    at: https://code.google.com/p/google-gson/downloads/list
+    saved and opened at: 
+    https://code.google.com/p/google-gson/downloads/list
 
   - MNIST tools library to allow you to easy use the images in the MNIST 
-    handwritten digits data set at: https://code.google.com/p/mnist-tools/downloads/detail?name=mnist-tools.zip&can=2&q=
+    handwritten digits data set at: 
+    https://code.google.com/p/mnist-tools/downloads/detail?name=mnist-tools.zip&can=2&q=
     
 3. In Eclipse, add these libraries(.jar file) by right-clicking your project in 
-the package explorer --> Build Path --> Add External Archives...
+   the package explorer --> Build Path --> Add External Archives...
   
 4. Pull code and go to the folder WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java to view an
-example of how to use all of the code.
+   example of how to use all of the code.
      
   <h5>What each file or folder in this repository is for:</h5>
   - images
