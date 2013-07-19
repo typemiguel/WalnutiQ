@@ -79,6 +79,10 @@ public class SynapsePermanencesViewer {
 	return synapseLayer;
     }
 
+    /**
+     * This method only works for a Region with no overlapping Synapses on it's
+     * Proximal Segments.
+     */
     public SynapsePermanencesViewer(Region region) {
 	String biologicalName = region.getBiologicalName();
 	JFrame frame = new JFrame(biologicalName
