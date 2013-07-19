@@ -106,8 +106,8 @@ public class Segment {
 	}
     }
 
-    // TODO: Question: A proximalSegment should never connect 2 types of
-    // SensorCells?
+    // TODO: Question: A proximalSegment should never connect 2 different types of
+    // SensorCells? For example AudioCell and VisionCell
     public void addSynapse(Synapse<Cell> synapse) {
 	if (synapse == null) {
 	    throw new IllegalArgumentException(

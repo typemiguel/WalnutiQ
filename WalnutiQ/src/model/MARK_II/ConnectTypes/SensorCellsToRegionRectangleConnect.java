@@ -41,9 +41,8 @@ public class SensorCellsToRegionRectangleConnect implements SensorCellsToRegionC
 	int regionXAxisLength = regionColumns.length; // = 8
 	int regionYAxisLength = regionColumns[0].length; // = 8
 
-	SensorCell[][] sensorCellLayer = sensorCells;
-	int sensorCellsXAxisLength = sensorCellLayer.length; // = 66
-	int sensorCellsYAxisLength = sensorCellLayer[0].length; // = 66
+	int sensorCellsXAxisLength = sensorCells.length; // = 66
+	int sensorCellsYAxisLength = sensorCells[0].length; // = 66
 
 	// TODO: add missing exceptions for connectingRectangle dimension >= 8
 
@@ -81,7 +80,7 @@ public class SensorCellsToRegionRectangleConnect implements SensorCellsToRegionC
 			// # of Synapses connected/add to this proximal Segment
 			// = connectingRectangleXAxisLength *
 			// connectingRectangleYAxisLength
-			column.getProximalSegment().addSynapse(new Synapse<Cell>(sensorCellLayer[sensorCellX][sensorCellY], sensorCellX, sensorCellY));
+			column.getProximalSegment().addSynapse(new Synapse<Cell>(sensorCells[sensorCellX][sensorCellY], sensorCellX, sensorCellY));
 		    }
 		}
 	    }

@@ -18,7 +18,7 @@ public class Test_SensorCellsToRegionRectangleConnect extends
 	this.connectType = new SensorCellsToRegionRectangleConnect();
     }
 
-    public void test_Connect() {
+    public void test_connect() {
 	Region leafRegion = new Region("leafRegion", 8, 8, 4, 20, 3);
 	SensorCell[][] sensorCells = new VisionCell[66][66];
 	for (int x = 0; x < sensorCells.length; x++) {
