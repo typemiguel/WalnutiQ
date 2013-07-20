@@ -1,6 +1,5 @@
 package model.MARK_II;
 
-import java.io.Serializable;
 import model.MARK_II.Cell;
 
 /**
@@ -33,7 +32,7 @@ import model.MARK_II.Cell;
  * @param <GenericType>
  *            A synapse can be connected to either a SensorCell or a Neuron.
  */
-public class Synapse<Cell> implements Serializable {
+public class Synapse<Cell> {
     private Cell cell;
     private double permanenceValue;
     private int cellXPosition;
