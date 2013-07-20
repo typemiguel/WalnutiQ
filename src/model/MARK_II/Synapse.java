@@ -29,10 +29,10 @@ import model.MARK_II.Cell;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
  * @version MARK II | June 8, 2013
- * @param <GenericType>
+ * @param <Cell>
  *            A synapse can be connected to either a SensorCell or a Neuron.
  */
-public class Synapse<Cell> {
+public class Synapse<CellType extends Cell> {
     private Cell cell;
     private double permanenceValue;
     private int cellXPosition;
@@ -133,6 +133,14 @@ public class Synapse<Cell> {
 
     public int getCellYPosition() {
 	return this.cellYPosition;
+    }
+
+    public boolean getPreviousActiveState() {
+	if (this.isConnected() && this.cell.getPreviousActiveState()) {
+	    return true;
+	} else {
+	    return false;
+	}
     }
 
     @Override
