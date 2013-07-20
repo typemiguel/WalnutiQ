@@ -96,8 +96,8 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 
 	SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
 	spatialPooler.setLearningState(true);
-	Set<ColumnPosition> LGNNeuronActivity = spatialPooler
-		.performSpatialPoolingOnRegion();
+	spatialPooler.performSpatialPoolingOnRegion();
+	Set<ColumnPosition> LGNNeuronActivity = spatialPooler.getActiveColumnPositions();
 
 	assertEquals(11, LGNNeuronActivity.size());
 

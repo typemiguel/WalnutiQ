@@ -39,7 +39,7 @@ public class SpatialPooler extends Pooler {
      *
      * @return A sparse set of active Columns within this Region.
      */
-    public Set<ColumnPosition> performSpatialPoolingOnRegion() {
+    public Set<Column> performSpatialPoolingOnRegion() {
 	Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
@@ -53,6 +53,10 @@ public class SpatialPooler extends Pooler {
 	// simulate learning by boosting specific Synapses
 	this.regionLearnOneTimeStep();
 
+	return this.activeColumns;
+    }
+
+    public Set<ColumnPosition> getActiveColumnPositions() {
 	return this.activeColumnPositions;
     }
 
@@ -107,7 +111,7 @@ public class SpatialPooler extends Pooler {
 			&& columns[x][y].getOverlapScore() >= minimumLocalOverlapScore) {
 		    columns[x][y].setActiveState(true);
 
-		    // this.addActiveColumn(columns[x][y]);
+		    this.addActiveColumn(columns[x][y]);
 		    this.activeColumnPositions.add(new ColumnPosition(x, y));
 		}
 	    }

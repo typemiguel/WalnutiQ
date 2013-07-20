@@ -102,9 +102,9 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	    this.updateOccuranceOfTrainingDigits(imageLabel);
 
 	    this.retina.see2DIntArray(image); // VisionCells states updated
-
+	    this.spatialPooler.performSpatialPoolingOnRegion();
 	    Set<ColumnPosition> columnActivity = this.spatialPooler
-		    .performSpatialPoolingOnRegion();
+		    .getActiveColumnPositions();
 
 	    // update each Idea with the frequency of each ColumnPosition
 	    // appearing from the output of the SpatialPooler
@@ -155,9 +155,10 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	    this.updateOccuranceOfTestingDigits(imageLabel);
 
 	    this.retina.see2DIntArray(image); // VisionCells states updated
+	    this.spatialPooler.performSpatialPoolingOnRegion();
 
 	    Set<ColumnPosition> columnActivity = this.spatialPooler
-		    .performSpatialPoolingOnRegion();
+		    .getActiveColumnPositions();
 	    this.memoryClassifier_Digits.updateIdeas(columnActivity);
 
 	    String digitIdeaName = this.memoryClassifier_Digits

@@ -48,7 +48,8 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	Retina retina = new Retina(visionCells);
 
 	retina.seeBMPImage("2.bmp");
-	Set<ColumnPosition> activeColumnPositions = this.spatialPooler.performSpatialPoolingOnRegion();
+	this.spatialPooler.performSpatialPoolingOnRegion();
+	Set<ColumnPosition> activeColumnPositions = this.spatialPooler.getActiveColumnPositions();
 	for (ColumnPosition columnPosition : activeColumnPositions) {
 	    //System.out.println(columnPosition.toString());
 	}
