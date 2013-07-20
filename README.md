@@ -19,7 +19,6 @@ to begin understanding how to use this repository:
    http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f
  
 2. Please download the following libraries: 
-
   - JSON file saver/opener library to allow custom MARK II objects to be 
     saved and opened at: 
     https://code.google.com/p/google-gson/downloads/list
@@ -29,7 +28,7 @@ to begin understanding how to use this repository:
     https://code.google.com/p/mnist-tools/downloads/detail?name=mnist-tools.zip&can=2&q=
     
 3. In Eclipse, add these libraries(.jar file) by right-clicking your project in 
-   the package explorer --> Build Path --> Add External Archives...
+   the package explorer => Build Path => Add External Archives...
   
 4. Pull code and go to the folder WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java to view an
    example of how to use all of the code.
