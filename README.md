@@ -22,7 +22,6 @@ to begin understanding how to use this repository:
   - JSON file saver/opener library to allow custom MARK II objects to be 
     saved and opened at: 
     https://code.google.com/p/google-gson/downloads/list
-
   - MNIST tools library to allow you to easy use the images in the MNIST 
     handwritten digits data set at: 
     https://code.google.com/p/mnist-tools/downloads/detail?name=mnist-tools.zip&can=2&q=
