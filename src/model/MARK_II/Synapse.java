@@ -136,6 +136,8 @@ public class Synapse<CellType extends Cell> {
     }
 
     public boolean getPreviousActiveState() {
+	System.out.println("cell isActive: " + cell.getActiveState());
+	System.out.println("cell wasActive: " + cell.getPreviousActiveState());
 	if (this.isConnected() && this.cell.getPreviousActiveState()) {
 	    return true;
 	} else {
