@@ -1,5 +1,9 @@
 package model.MARK_II;
 
+import java.util.ArrayList;
+
+import java.util.List;
+
 import java.util.Set;
 import java.util.HashSet;
 
@@ -10,20 +14,77 @@ import java.util.HashSet;
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version MARK II | April 4, 2013
+ * @version MARK II | July 21, 2013
  */
 public class Neuron extends Cell {
-    private boolean wasActive;
     private boolean isPredicting;
     private boolean wasPredicting;
     private Set<Segment> distalSegments;
 
     public Neuron() {
 	super(); // Initializes isActive state
-	this.wasActive = false;
 	this.isPredicting = false;
 	this.wasPredicting = false;
 	this.distalSegments = new HashSet<Segment>();
+    }
+
+    /**
+     * Return a Segment that was active in the previous time step. If more than
+     * one Segment was was active, sequence segments are considered, and finally
+     * if more than one sequence segment that was active in the previous time
+     * step, the segment with the most activity is returned.
+     *
+     * @return A Segment that was active in the previous time step; otherwise null.
+     */
+    public Segment getBestPreviousActiveSegment() {
+	List<Segment> previousActiveSegments = new ArrayList<Segment>();
+	List<Segment> previousActiveSequenceSegments = new ArrayList<Segment>();
+
+	for (Segment distalSegment : this.distalSegments) {
+	    if (distalSegment.getPreviousActiveState()
+		    && distalSegment.getSequenceState()) {
+		previousActiveSegments.add(distalSegment);
+		previousActiveSequenceSegments.add(distalSegment);
+	    } else if (distalSegment.getPreviousActiveState()) {
+		previousActiveSegments.add(distalSegment);
+	    }
+	}
+
+	// the most active sequence Segment at t-1
+	if (previousActiveSequenceSegments.size() > 1) {
+	    Segment mostActiveSequenceSegment = previousActiveSequenceSegments.get(0);
+	    int maximumPreviousActiveSynapses = 0;
+	    for (Segment sequenceSegment : previousActiveSequenceSegments) {
+		int previousActiveSynapses = sequenceSegment
+			.getNumberOfPreviousActiveSynapses();
+		if (maximumPreviousActiveSynapses < previousActiveSynapses) {
+		    maximumPreviousActiveSynapses = previousActiveSynapses;
+		    mostActiveSequenceSegment = sequenceSegment;
+		}
+	    }
+	    return mostActiveSequenceSegment;
+	} else if (previousActiveSequenceSegments.size() == 1) {
+	    return previousActiveSequenceSegments.get(0);
+	} else {
+	    // get the most active nonsequence Segment at t-1
+	    if (previousActiveSegments.size() > 1) {
+		Segment mostActiveSegment = previousActiveSegments.get(0);
+		int maximumPreviousActiveSynapses = 0;
+		for (Segment segment : previousActiveSegments) {
+		    int previousActiveSynapses = segment
+			    .getNumberOfPreviousActiveSynapses();
+		    if (maximumPreviousActiveSynapses < previousActiveSynapses) {
+			maximumPreviousActiveSynapses = previousActiveSynapses;
+			mostActiveSegment = segment;
+		    }
+		}
+		return mostActiveSegment;
+	    } else if (previousActiveSegments.size() == 1) {
+		return previousActiveSegments.get(0);
+	    } else {
+		return null;
+	    }
+	}
     }
 
     /**
@@ -38,16 +99,12 @@ public class Neuron extends Cell {
 	this.isPredicting = false;
     }
 
-    public boolean getPreviousActiveState() {
-	return this.wasActive;
-    }
-
-    public void setPreviousActiveState(boolean previousActiveState) {
-	this.wasActive = previousActiveState;
-    }
-
     public boolean getPredictingState() {
 	return this.isPredicting;
+    }
+
+    public void setPredictingState(boolean predictingState) {
+	this.isPredicting = predictingState;
     }
 
     public boolean getPreviousPredictingState() {
