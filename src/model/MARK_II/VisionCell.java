@@ -19,8 +19,10 @@ public class VisionCell extends SensorCell {
 	StringBuilder stringBuilder = new StringBuilder();
 	stringBuilder.append("\n===================");
 	stringBuilder.append("\n--VisionCell Info--");
-	stringBuilder.append("\nisActive: ");
+	stringBuilder.append("\n isActive: ");
 	stringBuilder.append(super.getActiveState());
+	stringBuilder.append("\nwasActive: ");
+	stringBuilder.append(super.getPreviousActiveState());
 	stringBuilder.append("\n===================");
 	String visionCellInformation = stringBuilder.toString();
 	return visionCellInformation;
