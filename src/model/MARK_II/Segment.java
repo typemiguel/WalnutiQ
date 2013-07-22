@@ -14,10 +14,13 @@ import model.MARK_II.Cell;
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version MARK II | June 8, 2013
+ * @version MARK II | July 19, 2013
  */
 public class Segment {
     private Set<Synapse<Cell>> synapses;
+
+    private boolean wasActive;
+    private boolean sequenceState;
 
     /**
      * Minimal percent of active Synapses out of total Synapses needed for a
@@ -53,6 +56,9 @@ public class Segment {
 
     public Segment() {
 	this.synapses = new HashSet<Synapse<Cell>>();
+
+	this.wasActive = false;
+	this.sequenceState = false;
     }
 
     /**
@@ -120,7 +126,6 @@ public class Segment {
 	return this.synapses;
     }
 
-    // TODO: make sure this is only called once
     public int getNumberOfActiveSynapses() {
 	int numberOfActiveSynapses = 0;
 	for (Synapse synapse : synapses) {
@@ -132,6 +137,34 @@ public class Segment {
 	return numberOfActiveSynapses;
     }
 
+    public boolean getPreviousActiveState() {
+	return this.wasActive;
+    }
+
+    public void setPreviousActiveState(boolean previousActiveState) {
+	this.wasActive = previousActiveState;
+    }
+
+    public boolean getSequenceState()
+    {
+        return this.sequenceState;
+    }
+
+    public void setSequenceState(boolean sequenceState)
+    {
+        this.sequenceState = sequenceState;
+    }
+
+    public int getNumberOfPreviousActiveSynapses() {
+	int numberOfPreviousActiveSynapses = 0;
+	for (Synapse synapse : synapses) {
+	    if (synapse.isConnected() && synapse.getCell().getPreviousActiveState()) {
+		numberOfPreviousActiveSynapses++;
+	    }
+	}
+	return numberOfPreviousActiveSynapses;
+    }
+
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
@@ -139,7 +172,13 @@ public class Segment {
 	stringBuilder.append("\n------------Segment Info------------");
 	stringBuilder.append("\n                active state: ");
 	stringBuilder.append(this.getActiveState());
-	stringBuilder.append("\n          number of synapses: ");
+	stringBuilder.append("\n       previous active state: ");
+	stringBuilder.append(this.wasActive);
+	stringBuilder.append("\n              sequence state: ");
+	stringBuilder.append(this.sequenceState);
+	stringBuilder.append("\n  # previous active synapses: ");
+	stringBuilder.append(this.getNumberOfPreviousActiveSynapses());
+	stringBuilder.append("\n    number of total synapses: ");
 	stringBuilder.append(this.synapses.size());
 	stringBuilder.append("\nminimum activation threshold: ");
 	stringBuilder
@@ -155,8 +194,10 @@ public class Segment {
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
+	result = prime * result + (sequenceState ? 1231 : 1237);
 	result = prime * result
 		+ ((synapses == null) ? 0 : synapses.hashCode());
+	result = prime * result + (wasActive ? 1231 : 1237);
 	return result;
     }
 
@@ -169,10 +210,14 @@ public class Segment {
 	if (getClass() != obj.getClass())
 	    return false;
 	Segment other = (Segment) obj;
+	if (sequenceState != other.sequenceState)
+	    return false;
 	if (synapses == null) {
 	    if (other.synapses != null)
 		return false;
 	} else if (!synapses.equals(other.synapses))
+	    return false;
+	if (wasActive != other.wasActive)
 	    return false;
 	return true;
     }
