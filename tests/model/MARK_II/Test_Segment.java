@@ -9,7 +9,7 @@ import model.MARK_II.Segment.SynapseUpdateState;
  * permanences of all active Synapses on itself
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 8, 2013
+ * @version MARK II | July 21, 2013
  */
 public class Test_Segment extends junit.framework.TestCase {
     private Segment proximalSegment;
@@ -115,5 +115,38 @@ public class Test_Segment extends junit.framework.TestCase {
 	this.proximalSegment.addSynapse(synapse_1);
 	this.proximalSegment.addSynapse(synapse_2);
 	assertEquals(1, this.proximalSegment.getSynapses().size());
+    }
+
+    public void test_getNumberOfPreviousActiveSynapses() {
+	// case 1: a Cell was previously active and Synapse is now connected
+	VisionCell visionCell_1 = new VisionCell();
+	visionCell_1.setActiveState(true);
+	visionCell_1.setPreviousActiveState(true);
+	Synapse<Cell> synapse_1 = new Synapse<Cell>(visionCell_1, 0.3, 0, 0);
+
+	// case 2: a Cell was previously active and Synapse is now NOT connected
+	VisionCell visionCell_2 = new VisionCell();
+	visionCell_2.setActiveState(true);
+	visionCell_2.setPreviousActiveState(true);
+	Synapse<Cell> synapse_2 = new Synapse<Cell>(visionCell_2, 0.1, 0, 1);
+
+	// case 3: a Cell was previously NOT active and Synapse is now connected
+	VisionCell visionCell_3 = new VisionCell();
+	visionCell_3.setActiveState(true);
+	visionCell_3.setPreviousActiveState(false);
+	Synapse<Cell> synapse_3 = new Synapse<Cell>(visionCell_3, 0.3, 0, 2);
+
+	// case 4: a Cell was previously NOT active and Synapse is now NOT
+	// connected
+	VisionCell visionCell_4 = new VisionCell();
+	visionCell_4.setActiveState(true);
+	visionCell_4.setPreviousActiveState(false);
+	Synapse<Cell> synapse_4 = new Synapse<Cell>(visionCell_4, 0.1, 0, 2);
+
+	this.proximalSegment.addSynapse(synapse_1);
+	this.proximalSegment.addSynapse(synapse_2);
+	this.proximalSegment.addSynapse(synapse_3);
+	this.proximalSegment.addSynapse(synapse_4);
+	assertEquals(1, this.proximalSegment.getNumberOfPreviousActiveSynapses());
     }
 }
