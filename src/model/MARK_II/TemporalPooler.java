@@ -21,7 +21,7 @@ import java.util.Set;
  * SpatialPooler.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | July 21, 2013
+ * @version MARK II | July 22, 2013
  */
 public class TemporalPooler extends Pooler {
 
@@ -41,7 +41,7 @@ public class TemporalPooler extends Pooler {
 	    boolean bottomUpPredicted = false;
 	    for (Neuron neuron : column.getNeurons()) {
 		if (neuron.getPreviousPredictingState() == true) {
-		    Segment bestSegment = neuron.getBestPreviousActiveSegment();
+		    DistalSegment bestSegment = neuron.getBestPreviousActiveSegment();
 		    if (bestSegment != null && bestSegment.getSequenceState()) {
 			bottomUpPredicted = true;
 			neuron.setActiveState(true);

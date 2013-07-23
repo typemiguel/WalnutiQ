@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 /**
  * A data structure that represents a single Column of Neurons within a Region
- * object. A Column contains a proximal Segment and properties that determine
+ * object. A Column contains a ProximalSegment and properties that determine
  * how the Cells within this Column will be updated.
  *
- * Input to Column: # of active Synapses from this Column's proximal Segment.
+ * Input to Column: # of active Synapses from this Column's ProximalSegment.
  *
- * Output from Column: if this Column is active or not during spatialPooling.
+ * Output from Column: if this Column is active or not during spatial pooling.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 13, 2013
@@ -68,7 +68,7 @@ public class Column {
 	    for (int i = 0; i < numberOfCells; i++) {
 		this.neurons[i] = new Neuron();
 	    }
-	    this.proximalSegment = new Segment();
+	    this.proximalSegment = new ProximalSegment();
 	    this.learningNeuronPosition = -1;
 	    this.neighborColumns = new ArrayList<Column>();
 	    this.overlapScore = 0;

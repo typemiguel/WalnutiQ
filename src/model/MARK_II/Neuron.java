@@ -1,31 +1,29 @@
 package model.MARK_II;
 
 import java.util.ArrayList;
-
 import java.util.List;
-
 import java.util.Set;
 import java.util.HashSet;
 
 /**
  * A Neuron is active or non-active, predicting or not predicting at each time
  * step. This Neuron only keeps track of these 2 states during the current time
- * step and the previous time step. A Neuron also has a set of distal Segments.
+ * step and the previous time step. A Neuron also has a set of DistalSegments.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version MARK II | July 21, 2013
+ * @version MARK II | July 22, 2013
  */
 public class Neuron extends Cell {
     private boolean isPredicting;
     private boolean wasPredicting;
-    private Set<Segment> distalSegments;
+    private Set<DistalSegment> distalSegments;
 
     public Neuron() {
 	super(); // Initializes isActive state
 	this.isPredicting = false;
 	this.wasPredicting = false;
-	this.distalSegments = new HashSet<Segment>();
+	this.distalSegments = new HashSet<DistalSegment>();
     }
 
     /**
@@ -36,11 +34,11 @@ public class Neuron extends Cell {
      *
      * @return A Segment that was active in the previous time step; otherwise null.
      */
-    public Segment getBestPreviousActiveSegment() {
-	List<Segment> previousActiveSegments = new ArrayList<Segment>();
-	List<Segment> previousActiveSequenceSegments = new ArrayList<Segment>();
+    public DistalSegment getBestPreviousActiveSegment() {
+	List<DistalSegment> previousActiveSegments = new ArrayList<DistalSegment>();
+	List<DistalSegment> previousActiveSequenceSegments = new ArrayList<DistalSegment>();
 
-	for (Segment distalSegment : this.distalSegments) {
+	for (DistalSegment distalSegment : this.distalSegments) {
 	    if (distalSegment.getPreviousActiveState()
 		    && distalSegment.getSequenceState()) {
 		previousActiveSegments.add(distalSegment);
@@ -52,9 +50,9 @@ public class Neuron extends Cell {
 
 	// the most active sequence Segment at t-1
 	if (previousActiveSequenceSegments.size() > 1) {
-	    Segment mostActiveSequenceSegment = previousActiveSequenceSegments.get(0);
+	    DistalSegment mostActiveSequenceSegment = previousActiveSequenceSegments.get(0);
 	    int maximumPreviousActiveSynapses = 0;
-	    for (Segment sequenceSegment : previousActiveSequenceSegments) {
+	    for (DistalSegment sequenceSegment : previousActiveSequenceSegments) {
 		int previousActiveSynapses = sequenceSegment
 			.getNumberOfPreviousActiveSynapses();
 		if (maximumPreviousActiveSynapses < previousActiveSynapses) {
@@ -68,9 +66,9 @@ public class Neuron extends Cell {
 	} else {
 	    // get the most active nonsequence Segment at t-1
 	    if (previousActiveSegments.size() > 1) {
-		Segment mostActiveSegment = previousActiveSegments.get(0);
+		DistalSegment mostActiveSegment = previousActiveSegments.get(0);
 		int maximumPreviousActiveSynapses = 0;
-		for (Segment segment : previousActiveSegments) {
+		for (DistalSegment segment : previousActiveSegments) {
 		    int previousActiveSynapses = segment
 			    .getNumberOfPreviousActiveSynapses();
 		    if (maximumPreviousActiveSynapses < previousActiveSynapses) {
@@ -115,11 +113,11 @@ public class Neuron extends Cell {
 	this.wasPredicting = previousPredictingState;
     }
 
-    public Set<Segment> getDistalSegments() {
+    public Set<DistalSegment> getDistalSegments() {
 	return this.distalSegments;
     }
 
-    public void addDistalSegment(Segment distalSegment) {
+    public void addDistalSegment(DistalSegment distalSegment) {
 	if (distalSegment == null) {
 	    throw new IllegalArgumentException(
 		    "distalSegment in neuron class method addDistalSegment cannot be null");
@@ -132,15 +130,15 @@ public class Neuron extends Cell {
 	StringBuilder stringBuilder = new StringBuilder();
 	stringBuilder.append("\n===========================");
 	stringBuilder.append("\n--------Neuron Info--------");
-	stringBuilder.append("\n            isActive: ");
+	stringBuilder.append("\n           isActive: ");
 	stringBuilder.append(this.isActive);
-	stringBuilder.append("\n           wasActive: ");
+	stringBuilder.append("\n          wasActive: ");
 	stringBuilder.append(this.wasActive);
-	stringBuilder.append("\n        isPredicting: ");
+	stringBuilder.append("\n       isPredicting: ");
 	stringBuilder.append(this.isPredicting);
-	stringBuilder.append("\n       wasPredicting: ");
+	stringBuilder.append("\n      wasPredicting: ");
 	stringBuilder.append(this.wasPredicting);
-	stringBuilder.append("\n# of distal segments: ");
+	stringBuilder.append("\n# of DistalSegments: ");
 	stringBuilder.append(this.distalSegments.size());
 	stringBuilder.append("\n===========================");
 	String NeuronInformation = stringBuilder.toString();
@@ -150,11 +148,10 @@ public class Neuron extends Cell {
     @Override
     public int hashCode() {
 	final int prime = 31;
-	int result = 1;
+	int result = super.hashCode();
 	result = prime * result
 		+ ((distalSegments == null) ? 0 : distalSegments.hashCode());
 	result = prime * result + (isPredicting ? 1231 : 1237);
-	result = prime * result + (wasActive ? 1231 : 1237);
 	result = prime * result + (wasPredicting ? 1231 : 1237);
 	return result;
     }
@@ -163,7 +160,7 @@ public class Neuron extends Cell {
     public boolean equals(Object obj) {
 	if (this == obj)
 	    return true;
-	if (obj == null)
+	if (!super.equals(obj))
 	    return false;
 	if (getClass() != obj.getClass())
 	    return false;
@@ -174,8 +171,6 @@ public class Neuron extends Cell {
 	} else if (!distalSegments.equals(other.distalSegments))
 	    return false;
 	if (isPredicting != other.isPredicting)
-	    return false;
-	if (wasActive != other.wasActive)
 	    return false;
 	if (wasPredicting != other.wasPredicting)
 	    return false;

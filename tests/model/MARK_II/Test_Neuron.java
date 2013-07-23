@@ -2,7 +2,7 @@ package model.MARK_II;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | July 21, 2013
+ * @version MARK II | July 22, 2013
  */
 public class Test_Neuron extends junit.framework.TestCase {
     private Neuron neuron;
@@ -16,7 +16,7 @@ public class Test_Neuron extends junit.framework.TestCase {
 	assertNull(this.neuron.getBestPreviousActiveSegment());
 
 	// previousActiveSegments size = 1 with no sequence Segments
-	Segment distalSegment_1 = new Segment();
+	DistalSegment distalSegment_1 = new DistalSegment();
 	distalSegment_1.setPreviousActiveState(true);
 	this.neuron.addDistalSegment(distalSegment_1);
 	assertEquals(distalSegment_1,
@@ -27,7 +27,7 @@ public class Test_Neuron extends junit.framework.TestCase {
 	activeVisionCell_1.setPreviousActiveState(true);
 	Synapse<Cell> previousActiveSynapse_1 = new Synapse<Cell>(activeVisionCell_1, 0.3, 0, 0);
 
-	Segment distalSegment_2 = new Segment();
+	DistalSegment distalSegment_2 = new DistalSegment();
 	distalSegment_2.addSynapse(previousActiveSynapse_1);
 	distalSegment_2.setPreviousActiveState(true);
 	this.neuron.addDistalSegment(distalSegment_2);
@@ -35,7 +35,7 @@ public class Test_Neuron extends junit.framework.TestCase {
 		this.neuron.getBestPreviousActiveSegment());
 
 	// previousActiveSegments size = 3 with 1 sequence Segment
-	Segment distalSegment_3 = new Segment();
+	DistalSegment distalSegment_3 = new DistalSegment();
 	distalSegment_3.setPreviousActiveState(true);
 	distalSegment_3.setSequenceState(true);
 	this.neuron.addDistalSegment(distalSegment_3);
@@ -44,7 +44,7 @@ public class Test_Neuron extends junit.framework.TestCase {
 
 	// previousActiveSegments size = 3 with
 	// 2 sequence Segments
-	Segment distalSegment_4 = new Segment();
+	DistalSegment distalSegment_4 = new DistalSegment();
 	distalSegment_4.addSynapse(previousActiveSynapse_1);
 	distalSegment_4.setPreviousActiveState(true);
 	distalSegment_4.setSequenceState(true);

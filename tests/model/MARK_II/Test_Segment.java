@@ -3,19 +3,23 @@ package model.MARK_II;
 import model.MARK_II.Segment.SynapseUpdateState;
 
 /**
- * SpatialPooler proximal Segments 1) Segments should add new Synapses only
- * during instantiation 2) Segments can: - increase permanences of all Synapses
- * on itself - decrease permanences of all Synapses on itself - increase
- * permanences of all active Synapses on itself
+ * SpatialPooler ProximalSegments
+ * 1) Segments should add new Synapses only during instantiation
+ * 2) Segments can:
+ *    - increase permanences of all Synapses on itself
+ *    - decrease permanences of all Synapses on itself
+ *    - increase permanences of all active Synapses on itself
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | July 21, 2013
+ * @version MARK II | July 22, 2013
  */
 public class Test_Segment extends junit.framework.TestCase {
     private Segment proximalSegment;
+    private DistalSegment distalSegment;
 
     public void setUp() {
-	this.proximalSegment = new Segment();
+	this.proximalSegment = new ProximalSegment();
+	this.distalSegment = new DistalSegment();
     }
 
     public void test_getActiveState() {
@@ -23,13 +27,13 @@ public class Test_Segment extends junit.framework.TestCase {
 	// Synapses
 	// if the PERCENT_ACTIVE_SYNAPSES_THRESHOLD is 0.2
 
-	// add 1 active synapse
+	// add 1 active Synapse
 	VisionCell activeVisionCell_1 = new VisionCell();
 	activeVisionCell_1.setActiveState(true);
 	this.proximalSegment.addSynapse(new Synapse<Cell>(activeVisionCell_1,
 		0.2, 0, 0));
 
-	// add 9 inactive synapses
+	// add 9 inactive Synapses
 	VisionCell inActiveVisionCell = null;
 	for (int i = 1; i < 10; i++) {
 	    inActiveVisionCell = new VisionCell();
@@ -38,11 +42,11 @@ public class Test_Segment extends junit.framework.TestCase {
 	}
 	assertEquals(10, this.proximalSegment.getSynapses().size());
 
-	// Case 1: number of active synapses within segment < activation
+	// Case 1: number of active Synapses within Segment < activation
 	// threshold
 	assertFalse(this.proximalSegment.getActiveState());
 
-	// Case 2: number of active synapses within segment = activation
+	// Case 2: number of active Synapses within Segment = activation
 	// threshold
 	Synapse<Cell> synapseToRemove_1 = new Synapse<Cell>(inActiveVisionCell,
 		0.2, 1, 0);
@@ -54,7 +58,7 @@ public class Test_Segment extends junit.framework.TestCase {
 		new Synapse<Cell>(activeVisionCell_2, 0.2, 10, 0));
 	assertFalse(this.proximalSegment.getActiveState());
 
-	// Case 3: number of active synapses within segment > activation
+	// Case 3: number of active Synapses within Segment > activation
 	// threshold
 	Synapse<Cell> synapseToRemove_2 = new Synapse<Cell>(inActiveVisionCell,
 		0.2, 2, 0);
@@ -67,13 +71,13 @@ public class Test_Segment extends junit.framework.TestCase {
     }
 
     public void test_updateSynapsePermanences() {
-	// add 1 active synapse
+	// add 1 active Synapse
 	VisionCell activeVisionCell = new VisionCell();
 	activeVisionCell.setActiveState(true);
 	this.proximalSegment.addSynapse(new Synapse<Cell>(activeVisionCell,
 		0.2, 0, 1));
 
-	// add 1 inactive synapse
+	// add 1 inactive Synapse
 	VisionCell inActiveVisionCell = new VisionCell();
 	this.proximalSegment.addSynapse(new Synapse<Cell>(inActiveVisionCell,
 		0.2, 1, 1));
@@ -143,10 +147,10 @@ public class Test_Segment extends junit.framework.TestCase {
 	visionCell_4.setPreviousActiveState(false);
 	Synapse<Cell> synapse_4 = new Synapse<Cell>(visionCell_4, 0.1, 0, 2);
 
-	this.proximalSegment.addSynapse(synapse_1);
-	this.proximalSegment.addSynapse(synapse_2);
-	this.proximalSegment.addSynapse(synapse_3);
-	this.proximalSegment.addSynapse(synapse_4);
-	assertEquals(1, this.proximalSegment.getNumberOfPreviousActiveSynapses());
+	this.distalSegment.addSynapse(synapse_1);
+	this.distalSegment.addSynapse(synapse_2);
+	this.distalSegment.addSynapse(synapse_3);
+	this.distalSegment.addSynapse(synapse_4);
+	assertEquals(1, this.distalSegment.getNumberOfPreviousActiveSynapses());
     }
 }
