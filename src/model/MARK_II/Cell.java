@@ -5,7 +5,7 @@ package model.MARK_II;
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version MARK II | July 20, 2013
+ * @version MARK II | July 22, 2013
  */
 public class Cell {
     protected boolean isActive;
@@ -42,18 +42,12 @@ public class Cell {
     }
 
     @Override
-    public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (obj == null)
-	    return false;
-	if (getClass() != obj.getClass())
-	    return false;
-	Cell other = (Cell) obj;
-	if (isActive != other.isActive)
-	    return false;
-	if (wasActive != other.wasActive)
-	    return false;
-	return true;
+    public boolean equals(Object object) {
+	boolean result = false;
+	if (object instanceof Cell) {
+	    Cell otherCell = (Cell) object;
+	    result = (this.isActive == otherCell.isActive && this.wasActive == otherCell.wasActive);
+	}
+	return result;
     }
 }
