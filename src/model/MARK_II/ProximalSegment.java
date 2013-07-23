@@ -33,4 +33,6 @@ public class ProximalSegment extends Segment {
 	String columnInformation = stringBuilder.toString();
 	return columnInformation;
     }
+
+
 }
