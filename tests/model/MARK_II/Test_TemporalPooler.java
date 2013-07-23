@@ -18,4 +18,12 @@ public class Test_TemporalPooler extends junit.framework.TestCase {
 	connectType.connect(childRegion, this.parentRegion, 2, 2);
 	this.temporalPooler = new TemporalPooler(this.parentRegion);
     }
+
+    public void test_computeActiveStateOfAllNeurons() {
+
+    }
+
+    public void test_computePredictiveStateOfAllNeurons() {
+
+    }
 }
