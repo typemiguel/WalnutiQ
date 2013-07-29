@@ -139,8 +139,8 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 
 	char[][] columnActiveStates = RegionConsoleViewer
 		.getColumnActiveStatesCharArray(this.parentRegion);
-	//System.out.println("\n--test_computeActiveColumnsOfRegion()--");
-	//RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
+	System.out.println("\n--test_computeActiveColumnsOfRegion()--");
+	RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
 
     }
 
