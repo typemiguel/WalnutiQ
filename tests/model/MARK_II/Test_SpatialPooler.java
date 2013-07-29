@@ -140,6 +140,7 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	char[][] columnActiveStates = RegionConsoleViewer
 		.getColumnActiveStatesCharArray(this.parentRegion);
 	System.out.println("\n--test_computeActiveColumnsOfRegion()--");
+	System.out.println(this.parentRegion.toString());
 	RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
     }
 
@@ -273,9 +274,5 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	columns[0][0].setOverlapDutyCycle(0.5f);
 	this.spatialPooler.updateOverlapDutyCycle(0, 0);
 	assertEquals(0.4975f, columns[0][0].getOverlapDutyCycle(), 0.0001);
-    }
-
-    public void test_toString() {
-	// System.out.println(this.spatialPooler.toString());
     }
 }

@@ -92,30 +92,33 @@ public class SpatialPooler extends Pooler {
      * at time t.
      */
     void computeActiveColumnsOfRegion() {
-	List<Column> neighborColumns = new ArrayList<Column>();
 	Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 		columns[x][y].setActiveState(false);
-		this.updateNeighborColumns(x, y); // <== GSON problem
-		//
-		// // necessary for calculating kthScoreOfColumns
-		// neighborColumns = columns[x][y].getNeighborColumns();
-		// int minimumLocalOverlapScore = this.kthScoreOfColumns(
-		// neighborColumns, this.region.getDesiredLocalActivity());
-		//
-		// // more than (this.region.desiredLocalActivity) number of
-		// // columns can become active since it is applied to each
-		// Column
-		// // object's neighborColumns
-		// if (columns[x][y].getOverlapScore() > 0
-		// && columns[x][y].getOverlapScore() >=
-		// minimumLocalOverlapScore) {
-		// columns[x][y].setActiveState(true);
-		//
-		// this.addActiveColumn(columns[x][y]);
-		// this.activeColumnPositions.add(new ColumnPosition(x, y));
-		// }
+		this.updateNeighborColumns(x, y);
+
+		// necessary for calculating kthScoreOfColumns
+		List<ColumnPosition> neighborColumnPositions = new ArrayList<ColumnPosition>();
+		neighborColumnPositions = columns[x][y].getNeighborColumns();
+		List<Column> neighborColumns = new ArrayList<Column>();
+		for (ColumnPosition columnPosition : neighborColumnPositions) {
+		    neighborColumns.add(columns[columnPosition.getX()][columnPosition.getY()]);
+		}
+
+		int minimumLocalOverlapScore = this.kthScoreOfColumns(
+			neighborColumns, this.region.getDesiredLocalActivity());
+
+		// more than (this.region.desiredLocalActivity) number of
+		// columns can become active since it is applied to each
+		// Column object's neighborColumns
+		if (columns[x][y].getOverlapScore() > 0
+			&& columns[x][y].getOverlapScore() >= minimumLocalOverlapScore) {
+		    columns[x][y].setActiveState(true);
+
+		    this.addActiveColumn(columns[x][y]);
+		    this.activeColumnPositions.add(new ColumnPosition(x, y));
+		}
 	    }
 	}
     }
@@ -174,7 +177,9 @@ public class SpatialPooler extends Pooler {
 		    List<Column> neighborColumns = new ArrayList<Column>();
 		    for (ColumnPosition columnPosition : neighborColumnPositions) {
 			// add the Column object to neighborColumns
-			neighborColumns.add(columns[columnPosition.getX()][columnPosition.getY()]);
+			neighborColumns
+				.add(columns[columnPosition.getX()][columnPosition
+					.getY()]);
 		    }
 
 		    float maximumActiveDutyCycle = this.region
@@ -415,7 +420,7 @@ public class SpatialPooler extends Pooler {
 	StringBuilder stringBuilder = new StringBuilder();
 	stringBuilder.append("\n===============================");
 	stringBuilder.append("\n---SpatialPooler Information---");
-	stringBuilder.append("\nbiological region name: ");
+	stringBuilder.append("\n     biological region name: ");
 	stringBuilder.append(this.region.getBiologicalName());
 	stringBuilder.append("\n# of activeColumns produced: ");
 	stringBuilder.append(this.activeColumnPositions.size());
