@@ -144,36 +144,4 @@ public class Neuron extends Cell {
 	String NeuronInformation = stringBuilder.toString();
 	return NeuronInformation;
     }
-
-    @Override
-    public int hashCode() {
-	final int prime = 31;
-	int result = super.hashCode();
-	result = prime * result
-		+ ((distalSegments == null) ? 0 : distalSegments.hashCode());
-	result = prime * result + (isPredicting ? 1231 : 1237);
-	result = prime * result + (wasPredicting ? 1231 : 1237);
-	return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (!super.equals(obj))
-	    return false;
-	if (getClass() != obj.getClass())
-	    return false;
-	Neuron other = (Neuron) obj;
-	if (distalSegments == null) {
-	    if (other.distalSegments != null)
-		return false;
-	} else if (!distalSegments.equals(other.distalSegments))
-	    return false;
-	if (isPredicting != other.isPredicting)
-	    return false;
-	if (wasPredicting != other.wasPredicting)
-	    return false;
-	return true;
-    }
 }

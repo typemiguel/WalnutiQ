@@ -17,15 +17,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- * Creates a Grid where each square represents a Synapse of a Region's 2d array
- * of proximal Segments.
- *
- * A square colored red = Synapse is not connected
- *
- * dark grey grey light grey white Synapse permanenceValue = 0.2 0.5 0.8 1.0
+ * Creates a Grid where each colored square represents a non overlapping Synapse
+ * of a Region's 2d array of proximal Segments. The square's color represents
+ * the Synapse's permanenceValue based on the following scale:
+ * BLACK = Synapse not connected to Cell;
+ * DARK RED ~= 0.25;
+ * LIGHT RED ~= 1.0
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 26, 2013
+ * @version MARK II | July 29, 2013
  */
 public class SynapsePermanencesViewer {
     private int greatestSynapseXIndex;
@@ -46,15 +46,15 @@ public class SynapsePermanencesViewer {
 		    int permanenceRepresentedAsGreyScale = 0;
 		    Color greyScaleValue;
 		    if (!synapse.isConnected()) {
-			greyScaleValue = new Color(255, 0, 0);
+			greyScaleValue = new Color(0, 0, 0);
 		    } else { // synapse is connected
 			     // permanenceValue between 0.2 and 1.0
 			permanenceRepresentedAsGreyScale = (int) (255 * synapse
 				.getPermanenceValue());
 			greyScaleValue = new Color(
 				permanenceRepresentedAsGreyScale,
-				permanenceRepresentedAsGreyScale,
-				permanenceRepresentedAsGreyScale);
+				0,
+				0);
 		    }
 
 		    JPanel redSquare = new JPanel();
@@ -117,6 +117,7 @@ public class SynapsePermanencesViewer {
 	Gson gson2 = new Gson();
 	Region LGNRegion = gson2.fromJson(regionAsString, Region.class);
 
-	SynapsePermanencesViewer object = new SynapsePermanencesViewer(LGNRegion);
+	SynapsePermanencesViewer object = new SynapsePermanencesViewer(
+		LGNRegion);
     }
 }

@@ -59,31 +59,4 @@ public class Memory {
 	}
 	return true;
     }
-
-
-
-    @Override
-    public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((ideas == null) ? 0 : ideas.hashCode());
-	return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (obj == null)
-	    return false;
-	if (getClass() != obj.getClass())
-	    return false;
-	Memory other = (Memory) obj;
-	if (ideas == null) {
-	    if (other.ideas != null)
-		return false;
-	} else if (!ideas.equals(other.ideas))
-	    return false;
-	return true;
-    }
 }

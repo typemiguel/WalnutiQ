@@ -1,11 +1,8 @@
 package model.MARK_II;
 
-import java.util.List;
-import java.util.ArrayList;
-
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 13, 2013
+ * @version MARK II | July 29, 2013
  */
 public class Test_Column extends junit.framework.TestCase {
     private Column column;
@@ -49,34 +46,6 @@ public class Test_Column extends junit.framework.TestCase {
         assertEquals(1.0, this.column.getActiveDutyCycle(), 0.01);
 
         assertEquals(1.0, this.column.getOverlapDutyCycle(), 0.01);
-    }
-
-    public void test_maximumActiveDutyCycle() {
-	try {
-	    List<Column> neighborColumns = null;
-	    this.column.maximumActiveDutyCycle(neighborColumns);
-	    fail("should've thrown an exception!");
-	} catch (IllegalArgumentException expected) {
-	    assertEquals("neighborColumns in Column class method " +
-		    "maximumActiveDutyCycle cannot be null",
-		    expected.getMessage());
-	}
-
-	Column column1 = new Column(2);
-	Column column2 = new Column(2);
-	Column column3 = new Column(2);
-
-	column1.setActiveDutyCycle(0.1f);
-	column2.setActiveDutyCycle(0.2f);
-	column3.setActiveDutyCycle(0.3f);
-
-	List<Column> neighborColumns = new ArrayList<Column>();
-	neighborColumns.add(column1);
-	neighborColumns.add(column2);
-	neighborColumns.add(column3);
-
-	assertEquals(0.3f, this.column.maximumActiveDutyCycle(neighborColumns), 0.001);
-
     }
 
     public void test_updateActiveDutyCycle() {

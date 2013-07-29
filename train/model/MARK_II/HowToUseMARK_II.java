@@ -129,7 +129,7 @@ public class HowToUseMARK_II extends junit.framework.TestCase {
 		.openObjectInTextFile("./train/model/MARK_II/MemoryClassifier_Digits.txt");
 	MemoryClassifier mc = this.gson.fromJson(memoryClassifierAsString,
 		MemoryClassifier.class);
-	System.out.println(mc.toString());
+	//System.out.println(mc.toString());
 
 	Retina retina = nervousSystem.getPNS().getSNS().getRetina();
 

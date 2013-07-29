@@ -13,7 +13,7 @@ import java.util.HashSet;
  * Neocortex for object recognition.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 26, 2013
+ * @version MARK II | July 29, 2013
  */
 public class SpatialPooler extends Pooler {
     private Set<Column> activeColumns;
@@ -48,9 +48,9 @@ public class SpatialPooler extends Pooler {
 	}
 
 	// a sparse set of Columns become active after local inhibition
-	this.computeActiveColumnsOfRegion();
+	this.computeActiveColumnsOfRegion(); // <== GSON problem
 
-	// simulate learning by boosting specific Synapses
+	// // simulate learning by boosting specific Synapses
 	this.regionLearnOneTimeStep();
 
 	return this.activeColumns;
@@ -92,7 +92,6 @@ public class SpatialPooler extends Pooler {
      * at time t.
      */
     void computeActiveColumnsOfRegion() {
-	List<Column> neighborColumns = new ArrayList<Column>();
 	Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
@@ -100,13 +99,19 @@ public class SpatialPooler extends Pooler {
 		this.updateNeighborColumns(x, y);
 
 		// necessary for calculating kthScoreOfColumns
-		neighborColumns = columns[x][y].getNeighborColumns();
+		List<ColumnPosition> neighborColumnPositions = new ArrayList<ColumnPosition>();
+		neighborColumnPositions = columns[x][y].getNeighborColumns();
+		List<Column> neighborColumns = new ArrayList<Column>();
+		for (ColumnPosition columnPosition : neighborColumnPositions) {
+		    neighborColumns.add(columns[columnPosition.getX()][columnPosition.getY()]);
+		}
+
 		int minimumLocalOverlapScore = this.kthScoreOfColumns(
 			neighborColumns, this.region.getDesiredLocalActivity());
 
 		// more than (this.region.desiredLocalActivity) number of
-		// columns can become active since it is applied to each Column
-		// object's neighborColumns
+		// columns can become active since it is applied to each
+		// Column object's neighborColumns
 		if (columns[x][y].getOverlapScore() > 0
 			&& columns[x][y].getOverlapScore() >= minimumLocalOverlapScore) {
 		    columns[x][y].setActiveState(true);
@@ -166,10 +171,18 @@ public class SpatialPooler extends Pooler {
 		    // Column's Synapses are boosted.
 
 		    // neighborColumns are already up to date.
-		    List<Column> neighborColumns = columns[x][y]
+		    List<ColumnPosition> neighborColumnPositions = columns[x][y]
 			    .getNeighborColumns();
 
-		    float maximumActiveDutyCycle = columns[x][y]
+		    List<Column> neighborColumns = new ArrayList<Column>();
+		    for (ColumnPosition columnPosition : neighborColumnPositions) {
+			// add the Column object to neighborColumns
+			neighborColumns
+				.add(columns[columnPosition.getX()][columnPosition
+					.getY()]);
+		    }
+
+		    float maximumActiveDutyCycle = this.region
 			    .maximumActiveDutyCycle(neighborColumns);
 		    if (maximumActiveDutyCycle == 0) {
 			maximumActiveDutyCycle = 0.1f;
@@ -240,12 +253,10 @@ public class SpatialPooler extends Pooler {
 	// System.out.println("xFinal, yFinal: " + xFinal + ", " + yFinal);
 
 	Column[][] columns = this.region.getColumns();
-	List<Column> neighborColumns = columns[columnXAxis][columnYAxis]
-		.getNeighborColumns();
 
-	if (neighborColumns.size() != 0) {
-	    neighborColumns.clear(); // remove neighbors of Column computed with
-				     // old inhibitionRadius
+	if (columns[columnXAxis][columnYAxis].getNeighborColumns().size() != 0) {
+	    // remove neighbors of Column computed with old inhibitionRadius
+	    columns[columnXAxis][columnYAxis].getNeighborColumns().clear();
 	}
 
 	for (int columnIndex = xInitial; columnIndex < xFinal; columnIndex++) {
@@ -256,7 +267,8 @@ public class SpatialPooler extends Pooler {
 		} else {
 		    Column newColumn = columns[columnIndex][rowIndex];
 		    if (newColumn != null) {
-			neighborColumns.add(newColumn);
+			columns[columnXAxis][columnYAxis].getNeighborColumns()
+				.add(new ColumnPosition(columnIndex, rowIndex));
 		    }
 		}
 	    }
@@ -345,12 +357,12 @@ public class SpatialPooler extends Pooler {
 	float squareRegionAxisLength = (float) Math.sqrt(this.region
 		.getXAxisLength() * this.region.getYAxisLength());
 
-	Dimension bottomLayerDimensions = this.region.getBottomLayerXYAxisLength();
+	Dimension bottomLayerDimensions = this.region
+		.getBottomLayerXYAxisLength();
 	int greatestSynapseXIndex = bottomLayerDimensions.width;
 	int greatestSynapseYIndex = bottomLayerDimensions.height;
 
-	int squareLowerRegionAxisLength = (greatestSynapseXIndex
-		+ greatestSynapseYIndex) / 2;
+	int squareLowerRegionAxisLength = (greatestSynapseXIndex + greatestSynapseYIndex) / 2;
 
 	float inhibitionRadius = (averageReceptiveFieldOfLowerLayer / squareLowerRegionAxisLength)
 		* squareRegionAxisLength;
@@ -408,7 +420,7 @@ public class SpatialPooler extends Pooler {
 	StringBuilder stringBuilder = new StringBuilder();
 	stringBuilder.append("\n===============================");
 	stringBuilder.append("\n---SpatialPooler Information---");
-	stringBuilder.append("\nbiological region name: ");
+	stringBuilder.append("\n     biological region name: ");
 	stringBuilder.append(this.region.getBiologicalName());
 	stringBuilder.append("\n# of activeColumns produced: ");
 	stringBuilder.append(this.activeColumnPositions.size());
