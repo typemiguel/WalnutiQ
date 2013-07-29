@@ -1,5 +1,7 @@
 package model.util;
 
+import model.MARK_II.Column;
+
 import com.google.gson.Gson;
 
 import java.util.Set;
@@ -13,7 +15,6 @@ import model.Retina;
 import model.MARK_II.Region;
 import model.MARK_II.VisionCell;
 
-
 public class Test_SynapsePermanencesViewer extends junit.framework.TestCase {
     SynapsePermanencesViewer spv;
     private Region LGNRegion;
@@ -25,7 +26,7 @@ public class Test_SynapsePermanencesViewer extends junit.framework.TestCase {
     public void test_saveRegionToBeOpenedInSynapsePermanencesViewer()
 	    throws IOException {
 	// construct LGN
-	this.LGNRegion = new Region("LGN", 8, 8, 1, 50, 3);
+	this.LGNRegion = new Region("LGN", 8, 8, 1, 50, 2);
 	LateralGeniculateNucleus unconnectedLGN = new LateralGeniculateNucleus(
 		this.LGNRegion);
 
@@ -42,12 +43,13 @@ public class Test_SynapsePermanencesViewer extends junit.framework.TestCase {
 	retinaToLGN.connect(visionCells, this.LGNRegion, 0, 0);
 	retina.seeBMPImage("2.bmp");
 
-//	SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
-//	spatialPooler.setLearningState(true);
-//	Set<ColumnPosition> LGNNeuronActivity = spatialPooler
-//		.performSpatialPoolingOnRegion();
-//
-//	assertEquals(11, LGNNeuronActivity.size());
+	SpatialPooler spatialPooler = new SpatialPooler(this.LGNRegion);
+	spatialPooler.setLearningState(true);
+	spatialPooler.performSpatialPoolingOnRegion();
+	Set<ColumnPosition> LGNNeuronActivity = spatialPooler
+		.getActiveColumnPositions();
+
+	assertEquals(11, LGNNeuronActivity.size());
 
 	Gson gson = new Gson();
 	String regionObject = gson.toJson(this.LGNRegion);

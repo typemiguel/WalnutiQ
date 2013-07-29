@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 19, 2013
+ * @version MARK II | July 29, 2013
  */
 public class Test_SpatialPooler extends junit.framework.TestCase {
 
@@ -139,9 +139,8 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 
 	char[][] columnActiveStates = RegionConsoleViewer
 		.getColumnActiveStatesCharArray(this.parentRegion);
-	//System.out.println("\n--test_computeActiveColumnsOfRegion()--");
-	//RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
-
+	System.out.println("\n--test_computeActiveColumnsOfRegion()--");
+	RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
     }
 
     public void test_regionLearnOneTimeStep() {
@@ -191,43 +190,43 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	this.parentRegion.setInhibitionRadius(0);
 	this.spatialPooler.updateNeighborColumns(0, 0);
 	Column[][] columns = this.parentRegion.getColumns();
-	List<Column> neighborColumns1 = columns[0][0].getNeighborColumns();
+	List<ColumnPosition> neighborColumns1 = columns[0][0].getNeighborColumns();
 	assertEquals(0, neighborColumns1.size());
 
 	this.parentRegion.setInhibitionRadius(1);
 	this.spatialPooler.updateNeighborColumns(0, 0);
-	List<Column> neighborColumns2 = columns[0][0].getNeighborColumns();
+	List<ColumnPosition> neighborColumns2 = columns[0][0].getNeighborColumns();
 	assertEquals(3, neighborColumns2.size());
 
 	this.parentRegion.setInhibitionRadius(2);
 	this.spatialPooler.updateNeighborColumns(0, 0);
-	List<Column> neighborColumns3 = columns[0][0].getNeighborColumns();
+	List<ColumnPosition> neighborColumns3 = columns[0][0].getNeighborColumns();
 	assertEquals(8, neighborColumns3.size());
 
 	this.parentRegion.setInhibitionRadius(3);
 	this.spatialPooler.updateNeighborColumns(0, 0);
-	List<Column> neighborColumns4 = columns[0][0].getNeighborColumns();
+	List<ColumnPosition> neighborColumns4 = columns[0][0].getNeighborColumns();
 	assertEquals(15, neighborColumns4.size());
 
 	// test on Column at position (3, 3) of Region
 	this.parentRegion.setInhibitionRadius(0);
 	this.spatialPooler.updateNeighborColumns(3, 3);
-	List<Column> neighborColumns5 = columns[3][3].getNeighborColumns();
+	List<ColumnPosition> neighborColumns5 = columns[3][3].getNeighborColumns();
 	assertEquals(0, neighborColumns5.size());
 
 	this.parentRegion.setInhibitionRadius(1);
 	this.spatialPooler.updateNeighborColumns(3, 3);
-	List<Column> neighborColumns6 = columns[3][3].getNeighborColumns();
+	List<ColumnPosition> neighborColumns6 = columns[3][3].getNeighborColumns();
 	assertEquals(8, neighborColumns6.size());
 
 	this.parentRegion.setInhibitionRadius(2);
 	this.spatialPooler.updateNeighborColumns(3, 3);
-	List<Column> neighborColumns7 = columns[3][3].getNeighborColumns();
+	List<ColumnPosition> neighborColumns7 = columns[3][3].getNeighborColumns();
 	assertEquals(24, neighborColumns7.size());
 
 	this.parentRegion.setInhibitionRadius(3);
 	this.spatialPooler.updateNeighborColumns(3, 3);
-	List<Column> neighborColumns8 = columns[3][3].getNeighborColumns();
+	List<ColumnPosition> neighborColumns8 = columns[3][3].getNeighborColumns();
 	assertEquals(48, neighborColumns8.size());
     }
 

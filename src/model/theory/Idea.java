@@ -1,7 +1,6 @@
 package model.theory;
 
 import model.MARK_II.Region;
-
 import model.MARK_II.ColumnPosition;
 import java.util.HashSet;
 import java.util.Set;
@@ -176,7 +175,6 @@ public class Idea {
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + Float.floatToIntBits(attentionPercentage);
 	result = prime * result
 		+ ((columnPositions == null) ? 0 : columnPositions.hashCode());
 	result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -192,9 +190,6 @@ public class Idea {
 	if (getClass() != obj.getClass())
 	    return false;
 	Idea other = (Idea) obj;
-	if (Float.floatToIntBits(attentionPercentage) != Float
-		.floatToIntBits(other.attentionPercentage))
-	    return false;
 	if (columnPositions == null) {
 	    if (other.columnPositions != null)
 		return false;

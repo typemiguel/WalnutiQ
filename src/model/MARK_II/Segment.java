@@ -151,30 +151,4 @@ public class Segment {
 	}
 	return null;
     }
-
-    @Override
-    public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result
-		+ ((synapses == null) ? 0 : synapses.hashCode());
-	return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (obj == null)
-	    return false;
-	if (getClass() != obj.getClass())
-	    return false;
-	Segment other = (Segment) obj;
-	if (synapses == null) {
-	    if (other.synapses != null)
-		return false;
-	} else if (!synapses.equals(other.synapses))
-	    return false;
-	return true;
-    }
 }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * more of the Pooler algorithms.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | April 13, 2013
+ * @version MARK II | July 29, 2013
  */
 public class Region {
     private String biologicalName;
@@ -153,6 +153,29 @@ public class Region {
 	// you + 1 to each dimension because in the array the index begins at 0
 	// instead of 1
 	return new Dimension(greatestSynapseXIndex + 1, greatestSynapseYIndex + 1);
+    }
+
+    /**
+     * Returns the maximum activeDutyCycle within a given ArrayList of Column
+     * objects.
+     *
+     * @param neighborColumns
+     *            A list of Column objects.
+     * @return The maximum acitveDutyCycle of a Column object.
+     */
+    public float maximumActiveDutyCycle(List<Column> neighborColumns) {
+	if (neighborColumns == null) {
+	    throw new IllegalArgumentException(
+		    "neighborColumns in Column class method "
+			    + "maximumActiveDutyCycle cannot be null");
+	}
+	float maximumActiveDutyCycle = 0.0f;
+	for (Column column : neighborColumns) {
+	    if (column.getActiveDutyCycle() > maximumActiveDutyCycle) {
+		maximumActiveDutyCycle = column.getActiveDutyCycle();
+	    }
+	}
+	return maximumActiveDutyCycle;
     }
 
     @Override

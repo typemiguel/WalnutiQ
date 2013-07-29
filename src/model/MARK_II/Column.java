@@ -1,7 +1,6 @@
 package model.MARK_II;
 
 import model.MARK_II.Segment.SynapseUpdateState;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
  * Output from Column: if this Column is active or not during spatial pooling.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 13, 2013
+ * @version MARK II | July 29, 2013
  */
 public class Column {
     // also stored as number of active Synapses. This variable is created so
@@ -29,7 +28,7 @@ public class Column {
 
     // index position of chosen learning Neuron within Neurons array
     private int learningNeuronPosition; // may not be necessary
-    private List<Column> neighborColumns;
+    private List<ColumnPosition> neighborColumnPositions;
 
     private int overlapScore;
 
@@ -70,7 +69,7 @@ public class Column {
 	    }
 	    this.proximalSegment = new ProximalSegment();
 	    this.learningNeuronPosition = -1;
-	    this.neighborColumns = new ArrayList<Column>();
+	    this.neighborColumnPositions = new ArrayList<ColumnPosition>();
 	    this.overlapScore = 0;
 	    this.boostValue = 1.0f;
 	    this.activeDutyCycle = 1.0f; // Must be greater than 0, or will stay
@@ -98,29 +97,6 @@ public class Column {
 			.updateSynapsePermanences(SynapseUpdateState.INCREASE_ALL);
 	    }
 	}
-    }
-
-    /**
-     * Returns the maximum activeDutyCycle within a given ArrayList of Column
-     * objects.
-     *
-     * @param neighborColumns
-     *            A list of Column objects.
-     * @return The maximum acitveDutyCycle of a Column object.
-     */
-    public float maximumActiveDutyCycle(List<Column> neighborColumns) {
-	if (neighborColumns == null) {
-	    throw new IllegalArgumentException(
-		    "neighborColumns in Column class method "
-			    + "maximumActiveDutyCycle cannot be null");
-	}
-	float maximumActiveDutyCycle = 0.0f;
-	for (Column column : neighborColumns) {
-	    if (column.getActiveDutyCycle() > maximumActiveDutyCycle) {
-		maximumActiveDutyCycle = column.getActiveDutyCycle();
-	    }
-	}
-	return maximumActiveDutyCycle;
     }
 
     /**
@@ -175,7 +151,7 @@ public class Column {
      */
     public void nextTimeStep() {
 	this.overlapScore = 0;
-	this.neighborColumns.clear();
+	this.neighborColumnPositions.clear();
 	this.boostValue = 1.0f;
     }
 
@@ -209,11 +185,11 @@ public class Column {
 	this.learningNeuronPosition = learningNeuronPosition;
     }
 
-    public List<Column> getNeighborColumns() {
-	return this.neighborColumns;
+    public List<ColumnPosition> getNeighborColumns() {
+	return this.neighborColumnPositions;
     }
 
-    public void setNeighborColumns(List<Column> neighborColumns) {
+    public void setNeighborColumns(List<ColumnPosition> neighborColumns) {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
 		    "neighborColumns in Column class setNeighborColumns method cannot be null");
@@ -221,7 +197,7 @@ public class Column {
 	    throw new IllegalArgumentException(
 		    "neighborColumns size in Column class setNeighborColumns method must be > 0");
 	}
-	this.neighborColumns = neighborColumns;
+	this.neighborColumnPositions = neighborColumns;
     }
 
     public int getOverlapScore() {
@@ -292,7 +268,7 @@ public class Column {
 	stringBuilder.append("\n     learning cell position: ");
 	stringBuilder.append(this.learningNeuronPosition);
 	stringBuilder.append("\n  number of neighborColumns: ");
-	stringBuilder.append(this.neighborColumns.size());
+	stringBuilder.append(this.neighborColumnPositions.size());
 	stringBuilder.append("\n               overlapScore: ");
 	stringBuilder.append(this.overlapScore);
 	stringBuilder.append("\n                 boostValue: ");
@@ -302,66 +278,9 @@ public class Column {
 	stringBuilder.append("\n           overlapDutyCycle: ");
 	stringBuilder.append(this.overlapDutyCycle);
 	stringBuilder.append("\n exponential moving average: ");
-	stringBuilder.append(this.EXPONENTIAL_MOVING_AVERAGE_AlPHA);
+	stringBuilder.append(Column.EXPONENTIAL_MOVING_AVERAGE_AlPHA);
 	stringBuilder.append("\n=====================================");
 	String columnInformation = stringBuilder.toString();
 	return columnInformation;
-    }
-
-    @Override
-    public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + Float.floatToIntBits(activeDutyCycle);
-	result = prime * result + Float.floatToIntBits(boostValue);
-	result = prime * result + (isActive ? 1231 : 1237);
-	result = prime * result + learningNeuronPosition;
-	result = prime * result
-		+ ((neighborColumns == null) ? 0 : neighborColumns.hashCode());
-	result = prime * result + Arrays.hashCode(neurons);
-	result = prime * result + Float.floatToIntBits(overlapDutyCycle);
-	result = prime * result + overlapScore;
-	result = prime * result
-		+ ((proximalSegment == null) ? 0 : proximalSegment.hashCode());
-	return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (obj == null)
-	    return false;
-	if (getClass() != obj.getClass())
-	    return false;
-	Column other = (Column) obj;
-	if (Float.floatToIntBits(activeDutyCycle) != Float
-		.floatToIntBits(other.activeDutyCycle))
-	    return false;
-	if (Float.floatToIntBits(boostValue) != Float
-		.floatToIntBits(other.boostValue))
-	    return false;
-	if (isActive != other.isActive)
-	    return false;
-	if (learningNeuronPosition != other.learningNeuronPosition)
-	    return false;
-	if (neighborColumns == null) {
-	    if (other.neighborColumns != null)
-		return false;
-	} else if (!neighborColumns.equals(other.neighborColumns))
-	    return false;
-	if (!Arrays.equals(neurons, other.neurons))
-	    return false;
-	if (Float.floatToIntBits(overlapDutyCycle) != Float
-		.floatToIntBits(other.overlapDutyCycle))
-	    return false;
-	if (overlapScore != other.overlapScore)
-	    return false;
-	if (proximalSegment == null) {
-	    if (other.proximalSegment != null)
-		return false;
-	} else if (!proximalSegment.equals(other.proximalSegment))
-	    return false;
-	return true;
     }
 }

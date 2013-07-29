@@ -1,12 +1,14 @@
 package model.MARK_II;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Dimension;
 import model.MARK_II.ConnectTypes.RegionToRegionRectangleConnect;
 import model.MARK_II.ConnectTypes.RegionToRegionConnect;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 29, 2013
+ * @version MARK II | July 29, 2013
  */
 public class Test_Region extends junit.framework.TestCase {
     private Region region;
@@ -49,6 +51,33 @@ public class Test_Region extends junit.framework.TestCase {
 	Dimension bottomLayerDimensions = this.region.getBottomLayerXYAxisLength();
 	assertEquals(25, bottomLayerDimensions.width);
 	assertEquals(35, bottomLayerDimensions.height);
+    }
+
+    public void test_maximumActiveDutyCycle() {
+	try {
+	    List<Column> neighborColumns = null;
+	    this.region.maximumActiveDutyCycle(neighborColumns);
+	    fail("should've thrown an exception!");
+	} catch (IllegalArgumentException expected) {
+	    assertEquals("neighborColumns in Column class method " +
+		    "maximumActiveDutyCycle cannot be null",
+		    expected.getMessage());
+	}
+
+	Column column1 = new Column(2);
+	Column column2 = new Column(2);
+	Column column3 = new Column(2);
+
+	column1.setActiveDutyCycle(0.1f);
+	column2.setActiveDutyCycle(0.2f);
+	column3.setActiveDutyCycle(0.3f);
+
+	List<Column> neighborColumns = new ArrayList<Column>();
+	neighborColumns.add(column1);
+	neighborColumns.add(column2);
+	neighborColumns.add(column3);
+
+	assertEquals(0.3f, this.region.maximumActiveDutyCycle(neighborColumns), 0.001);
     }
 
     public void test_toString() {
