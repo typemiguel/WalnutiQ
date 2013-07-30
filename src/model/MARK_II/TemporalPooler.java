@@ -4,24 +4,18 @@ import java.util.Set;
 
 /**
  * Provides implementation for running the temporal pooling algorithm on a
- * Region. The input to the TemporalPooler is the activeColumns at time t
- * computed by the SpatialPooler. The TemporalPooler computes the active and
- * predictive state for each Neuron at the current timestep t. The boolean OR of
- * the active and predictive states for each neuron forms the output of the
- * TemporalPooler for the next Region in the hierarchy.
+ * Region with and without learning. The TemporalPooler computes the active and
+ * predictive state for each Neuron at the current timestep t.
  *
- * The algorithm in split into 3 distinct phases that occur in sequence:
- * Phase 1) compute the active state for each Neuron
- * Phase 2) compute the predictive state for each Neuron
- * Phase 3) update Synapse permanences
- *
- * Phase 3 is only required for learning. However, unlike spatial pooling,
- * Phases 1 and 2 contain some learning-specific operations when learning is
- * turned on. TemporalPooler is significantly more complicated than
+ * Input into TemporalPooler: activeColumns at time t computed by the
  * SpatialPooler.
  *
+ * Output from TemporalPooler: boolean OR of the active and predictive states
+ * for each neuron forms the output of the TemporalPooler for the next Region in
+ * the hierarchy.
+ *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | July 22, 2013
+ * @version MARK II | July 29, 2013
  */
 public class TemporalPooler extends Pooler {
 
@@ -29,9 +23,7 @@ public class TemporalPooler extends Pooler {
 	this.region = newRegion;
     }
 
-    // return Set<NeuronPositions>
-    public void performTemporalPoolingOnRegion(Set<Column> activeColumns) {
-	// inference alone
+    public void performInferenceOnRegion(Set<Column> activeColumns) {
 	this.computeActiveStateOfAllNeurons(activeColumns); // Phase 1
 	this.computePredictiveStateOfAllNeurons(activeColumns); // Phase 2
     }
@@ -41,7 +33,8 @@ public class TemporalPooler extends Pooler {
 	    boolean bottomUpPredicted = false;
 	    for (Neuron neuron : column.getNeurons()) {
 		if (neuron.getPreviousPredictingState() == true) {
-		    DistalSegment bestSegment = neuron.getBestPreviousActiveSegment();
+		    DistalSegment bestSegment = neuron
+			    .getBestPreviousActiveSegment();
 		    if (bestSegment != null && bestSegment.getSequenceState()) {
 			bottomUpPredicted = true;
 			neuron.setActiveState(true);
@@ -66,5 +59,21 @@ public class TemporalPooler extends Pooler {
 		}
 	    }
 	}
+    }
+
+    /**
+     * The algorithm in split into 3 distinct phases that occur in sequence:
+     *
+     * Phase 3 is only required for learning. However, unlike spatial pooling,
+     * Phases 1 and 2 contain some learning-specific operations when learning is
+     * turned on. TemporalPooler is significantly more complicated than
+     * SpatialPooler.
+     */
+    public void performTemporalPoolingOnRegion(Set<Column> activeColumns) {
+	// Phase 1) compute the active state for each Neuron
+
+	// Phase 2) compute the predictive state for each Neuron
+
+	// Phase 3) update Synapse permanences
     }
 }
