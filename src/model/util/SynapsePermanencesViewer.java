@@ -1,17 +1,13 @@
 package model.util;
 
 import java.awt.Dimension;
-
 import java.io.IOException;
 import com.google.gson.Gson;
-import model.theory.MemoryClassifier;
 import model.MARK_II.Cell;
 import model.MARK_II.Column;
 import model.MARK_II.Region;
 import model.MARK_II.Synapse;
 import java.util.Set;
-import model.MARK_II.ConnectTypes.RegionToRegionConnect;
-import model.MARK_II.ConnectTypes.RegionToRegionRectangleConnect;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -105,12 +101,6 @@ public class SynapsePermanencesViewer {
     }
 
     public static void main(String[] args) throws IOException {
-	// Region parentRegion = new Region("V2", 8, 8, 1, 20, 1);
-	// Region childRegion = new Region("V1", 64, 64, 1, 20, 3);
-	// RegionToRegionConnect connectType = new
-	// RegionToRegionRectangleConnect();
-	// connectType.connect(childRegion, parentRegion, 0, 0);
-
 	// Open a saved JSON Region file here...
 	String regionAsString = JsonFileInputOutput
 		.openObjectInTextFile("./tests/model/util/test_saveRegionObject.txt");
