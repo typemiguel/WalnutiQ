@@ -89,7 +89,7 @@ public class Test_Synapse extends junit.framework.TestCase {
     }
 
     public void test_toString() {
-	System.out.println(this.synapse_1.toString());
-	System.out.println(this.synapse_2.toString());
+	//System.out.println(this.synapse_1.toString());
+	//System.out.println(this.synapse_2.toString());
     }
 }

@@ -19,8 +19,4 @@ public class Test_ColumnPosition extends junit.framework.TestCase {
 	assertTrue(this.columnPosition69.equals(this.columnPosition_69));
 	assertFalse(this.columnPosition69.equals(this.columnPosition96));
     }
-
-    public void test_toString() {
-	System.out.println(this.columnPosition69.toString());
-    }
 }

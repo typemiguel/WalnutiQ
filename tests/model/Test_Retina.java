@@ -30,12 +30,12 @@ public class Test_Retina extends junit.framework.TestCase {
 	    for (int xPixel = 0; xPixel < visionCells.length; xPixel++)
 	    {
                 if (visionCells[xPixel][yPixel].getActiveState() == true) {
-                    System.out.print("1");
+                    //System.out.print("1");
                 } else {
-                    System.out.print("0");
+                    //System.out.print("0");
                 }
 	    }
-	    System.out.print("\n");
+	    //System.out.print("\n");
         }
     }
 }

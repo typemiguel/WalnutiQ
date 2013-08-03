@@ -2,7 +2,7 @@ package model.MARK_II;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | July 29, 2013
+ * @version MARK II | August 3, 2013
  */
 public class Test_Column extends junit.framework.TestCase {
     private Column column;
@@ -83,12 +83,13 @@ public class Test_Column extends junit.framework.TestCase {
 	    // decrease activeDutyCycle
 	    this.column.setActiveState(false);
 	    this.column.updateActiveDutyCycle();
-	    System.out.println("decrease: " + this.column.getActiveDutyCycle());
+	    //System.out.println("decrease: " + this.column.getActiveDutyCycle());
 	    // increase activeDutyCycle
 	    this.column.setActiveState(true);
 	    this.column.updateActiveDutyCycle();
-	    System.out.println("increase: " + this.column.getActiveDutyCycle());
+	    //System.out.println("increase: " + this.column.getActiveDutyCycle());
 	}
+	assertEquals(0.50, this.column.getActiveDutyCycle(), 0.01);
     }
 
     public void test_boostFunction() {

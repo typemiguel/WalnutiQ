@@ -87,6 +87,6 @@ public class Test_Region extends junit.framework.TestCase {
 	this.region.addChildRegion(region2);
 	this.region.addChildRegion(region3);
 
-	System.out.println(this.region.toString());
+	//System.out.println(this.region.toString());
     }
 }
