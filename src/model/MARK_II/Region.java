@@ -207,4 +207,30 @@ public class Region {
 	String regionInformation = stringBuilder.toString();
 	return regionInformation;
     }
+
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result
+		+ ((biologicalName == null) ? 0 : biologicalName.hashCode());
+	return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Region other = (Region) obj;
+	if (biologicalName == null) {
+	    if (other.biologicalName != null)
+		return false;
+	} else if (!biologicalName.equals(other.biologicalName))
+	    return false;
+	return true;
+    }
 }
