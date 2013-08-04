@@ -38,7 +38,6 @@ public class TemporalPooler extends Pooler {
 		    if (bestSegment != null && bestSegment.getSequenceState()) {
 			bottomUpPredicted = true;
 			neuron.setActiveState(true);
-			System.out.println("single neuron activated");
 		    }
 		}
 	    }
