@@ -92,12 +92,16 @@ public class Synapse<CellType extends Cell> {
     /**
      * @return This Synapse's Cell if it is connected. Otherwise return null.
      */
-    public Cell getCell() {
+    public Cell getConnectedCell() {
 	if (this.isConnected()) {
 	    return this.cell;
 	} else {
 	    return null;
 	}
+    }
+
+    public Cell getCell() {
+	return this.cell;
     }
 
     /**
@@ -138,7 +142,7 @@ public class Synapse<CellType extends Cell> {
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
-	Cell cell = this.getCell();
+	Cell cell = this.getConnectedCell();
 	stringBuilder.append("\n===========================");
 	stringBuilder.append("\n----Synapse Information----");
 	stringBuilder.append("\n Connected to a: ");
@@ -149,7 +153,7 @@ public class Synapse<CellType extends Cell> {
 	stringBuilder.append("\npermanenceValue: ");
 	stringBuilder.append(this.permanenceValue);
 	stringBuilder.append("\n    isConnected: ");
-	if (this.getCell() == null) {
+	if (this.getConnectedCell() == null) {
 	    stringBuilder.append("false");
 	} else {
 	    stringBuilder.append("true");

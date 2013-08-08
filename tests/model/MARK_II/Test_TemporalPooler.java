@@ -1,9 +1,7 @@
 package model.MARK_II;
 
 import java.util.HashSet;
-
 import java.util.Set;
-
 import model.MARK_II.ConnectTypes.RegionToRegionConnect;
 import model.MARK_II.ConnectTypes.RegionToRegionRectangleConnect;
 
@@ -108,5 +106,32 @@ public class Test_TemporalPooler extends junit.framework.TestCase {
 		}
 	    }
 	}
+    }
+
+    public void test_getBestActiveSegment() {
+	Neuron neuron_1 = new Neuron();
+	assertNull(this.temporalPooler.getBestActiveSegment(neuron_1));
+
+	DistalSegment distalSegment_1 = new DistalSegment();
+	neuron_1.addDistalSegment(distalSegment_1);
+	assertEquals(distalSegment_1,
+		this.temporalPooler.getBestActiveSegment(neuron_1));
+
+	DistalSegment distalSegment_2 = new DistalSegment();
+	VisionCell visionCell_1 = new VisionCell();
+	visionCell_1.setActiveState(true);
+	Synapse synapse_1 = new Synapse<Cell>(visionCell_1, 0, 0);
+	distalSegment_2.addSynapse(synapse_1);
+	neuron_1.addDistalSegment(distalSegment_2);
+
+	DistalSegment distalSegment_3 = new DistalSegment();
+	VisionCell visionCell_2 = new VisionCell();
+	visionCell_2.setActiveState(true);
+	Synapse synapse_2 = new Synapse<Cell>(visionCell_2, 0, 1);
+	distalSegment_3.addSynapse(synapse_1);
+	distalSegment_3.addSynapse(synapse_2);
+	neuron_1.addDistalSegment(distalSegment_3);
+	assertEquals(distalSegment_3,
+		this.temporalPooler.getBestActiveSegment(neuron_1));
     }
 }

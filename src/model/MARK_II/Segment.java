@@ -58,7 +58,7 @@ public class Segment {
     public boolean getActiveState() {
 	int numberOfActiveSynapses = 0;
 	for (Synapse<Cell> synapse : this.synapses) {
-	    Cell abstractCell = synapse.getCell();
+	    Cell abstractCell = synapse.getConnectedCell();
 	    if (synapse.isConnected() && abstractCell.getActiveState()) {
 		numberOfActiveSynapses++;
 	    }
@@ -87,7 +87,7 @@ public class Segment {
 	for (Synapse<Cell> synapse : this.synapses) {
 	    switch (updateState) {
 	    case INCREASE_ACTIVE:
-		if (synapse.isConnected() && synapse.getCell().getActiveState()) {
+		if (synapse.isConnected() && synapse.getConnectedCell().getActiveState()) {
 		    synapse.increasePermanence();
 		}
 		break;
@@ -118,7 +118,7 @@ public class Segment {
     public int getNumberOfActiveSynapses() {
 	int numberOfActiveSynapses = 0;
 	for (Synapse synapse : synapses) {
-	    Cell cell = (Cell) synapse.getCell();
+	    Cell cell = (Cell) synapse.getConnectedCell();
 	    if (cell != null && cell.getActiveState()) {
 		numberOfActiveSynapses++;
 	    }
@@ -129,7 +129,7 @@ public class Segment {
     // package visible methods for test classes in the tests folder
     boolean removeSynapse(Synapse synapseToRemove) {
 	for (Synapse synapse : this.synapses) {
-	    if (synapseToRemove.getCell().getClass().equals(synapse.getCell().getClass())
+	    if (synapseToRemove.getConnectedCell().getClass().equals(synapse.getConnectedCell().getClass())
 		    && synapseToRemove.getPermanenceValue() == synapse
 			    .getPermanenceValue()
 		    && synapseToRemove.getCellXPosition() == synapse

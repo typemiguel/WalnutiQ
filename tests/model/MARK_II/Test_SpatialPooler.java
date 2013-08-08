@@ -88,7 +88,7 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
 	int i = 0;
 	for (Synapse inactiveSynapse : oneHundredInactiveSynapses) {
 	    if (i < 21) {
-		Cell cell = (Cell) inactiveSynapse.getCell();
+		Cell cell = (Cell) inactiveSynapse.getConnectedCell();
 		cell.setActiveState(true);
 		i++;
 	    } else {
@@ -156,7 +156,7 @@ public class Test_SpatialPooler extends junit.framework.TestCase {
         // true .315 .295
         // false.300 .300
 	columns[0][0].setActiveState(true);
-	Cell cell_00 = (Cell) synapse_00.getCell();
+	Cell cell_00 = (Cell) synapse_00.getConnectedCell();
 	cell_00.setActiveState(true);
 	assertEquals(0.3f, synapse_00.getPermanenceValue(), 0.001);
 	this.spatialPooler.regionLearnOneTimeStep();

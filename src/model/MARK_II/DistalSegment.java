@@ -40,7 +40,7 @@ public class DistalSegment extends Segment {
     public int getNumberOfPreviousActiveSynapses() {
 	int numberOfPreviousActiveSynapses = 0;
 	for (Synapse synapse : synapses) {
-	    if (synapse.isConnected() && synapse.getCell().getPreviousActiveState()) {
+	    if (synapse.isConnected() && synapse.getConnectedCell().getPreviousActiveState()) {
 		numberOfPreviousActiveSynapses++;
 	    }
 	}

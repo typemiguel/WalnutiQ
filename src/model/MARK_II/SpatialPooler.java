@@ -141,8 +141,8 @@ public class SpatialPooler extends Pooler {
 			Set<Synapse<Cell>> synapses = columns[x][y]
 				.getProximalSegment().getSynapses();
 			for (Synapse<Cell> synapse : synapses) {
-			    if (synapse.getCell() != null
-				    && synapse.getCell().getActiveState()) {
+			    if (synapse.getConnectedCell() != null
+				    && synapse.getConnectedCell().getActiveState()) {
 				// models long term potentiation
 				synapse.increasePermanence();
 			    } else {
@@ -331,7 +331,7 @@ public class SpatialPooler extends Pooler {
 		Set<Synapse<Cell>> connectedSynapes = new HashSet<Synapse<Cell>>();
 
 		for (Synapse<Cell> synapse : synapses) {
-		    if (synapse.getCell() != null) {
+		    if (synapse.getConnectedCell() != null) {
 			connectedSynapes.add(synapse);
 		    }
 		}
