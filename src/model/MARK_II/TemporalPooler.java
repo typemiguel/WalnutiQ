@@ -1,7 +1,6 @@
 package model.MARK_II;
 
 import java.util.HashSet;
-
 import java.util.Set;
 
 /**
@@ -17,14 +16,16 @@ import java.util.Set;
  * the hierarchy.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | August 3, 2013
+ * @version MARK II | August 8, 2013
  */
 public class TemporalPooler extends Pooler {
 
     // list of Synapses and Segments to update in this.region
+    private SegmentUpdateList segmentUpdateList;
 
     public TemporalPooler(Region newRegion) {
 	this.region = newRegion;
+	this.segmentUpdateList = new SegmentUpdateList();
     }
 
     public void performInferenceOnRegion(Set<Column> activeColumns) {
@@ -113,20 +114,21 @@ public class TemporalPooler extends Pooler {
 		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
 		column.setLearningNeuronPosition(bestNeuronIndex);
 
-		// a new Segment is added to the best Neuron???
-
-		// segmentUpdateInfo =
-		// getPreviouslyActiveSynapsesToUpdate(segment)???
-
-		// sUpdate.sequenceSegment = true
-		// segmentUpdateList.add(sUpdate)
-
 		// ----------pseudocode----------
 		// l,s = getBestMatchingCell(c, t-1)
 		// learnState(c, i, t) = 1
 		// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true)
 		// sUpdate.sequenceSegment = true
 		// segmentUpdateList.add(sUpdate)
+		Set<Synapse<Cell>> synapses = this
+			.getSynapsesWithPreviousActiveCellsToUpdate(column
+				.getLearningNeuron()
+				.getBestPreviousActiveSegment());
+
+		SegmentUpdate segmentUpdate = new SegmentUpdate();
+		segmentUpdate.setExistingActiveSynapses(synapses);
+		segmentUpdate.setSequenceState(true);
+		this.segmentUpdateList.getSegmentUpdates().add(segmentUpdate);
 	    }
 	}
     }
@@ -177,7 +179,8 @@ public class TemporalPooler extends Pooler {
 	return bestMatchingNeuronIndex;
     }
 
-    void getPreviousSynapsesToUpdate(Segment segment) {
+    Set<Synapse<Cell>> getSynapsesWithPreviousActiveCellsToUpdate(
+	    Segment segment) {
 	Set<Synapse<Cell>> synapses = segment.getSynapses();
 	Set<Synapse<Cell>> synapseWithPreviousActiveCells = new HashSet<Synapse<Cell>>();
 	for (Synapse synapse : synapses) {
@@ -185,6 +188,7 @@ public class TemporalPooler extends Pooler {
 		synapseWithPreviousActiveCells.add(synapse);
 	    }
 	}
+	return synapseWithPreviousActiveCells;
     }
 
     /**
