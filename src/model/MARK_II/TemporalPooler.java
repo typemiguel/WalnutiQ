@@ -111,24 +111,22 @@ public class TemporalPooler extends Pooler {
 		}
 	    }
 	    if (learningCellChosen == false) {
-		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
-		column.setLearningNeuronPosition(bestNeuronIndex);
-
 		// ----------pseudocode----------
 		// l,s = getBestMatchingCell(c, t-1)
 		// learnState(c, i, t) = 1
 		// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true)
 		// sUpdate.sequenceSegment = true
 		// segmentUpdateList.add(sUpdate)
+		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
+		column.setLearningNeuronPosition(bestNeuronIndex);
+
 		Set<Synapse<Cell>> synapses = this
 			.getSynapsesWithPreviousActiveCellsToUpdate(column
 				.getLearningNeuron()
 				.getBestPreviousActiveSegment());
 
-		SegmentUpdate segmentUpdate = new SegmentUpdate();
-		segmentUpdate.setExistingActiveSynapses(synapses);
-		segmentUpdate.setSequenceState(true);
-		this.segmentUpdateList.getSegmentUpdates().add(segmentUpdate);
+		this.segmentUpdateList.getSegmentUpdates().add(
+			new SegmentUpdate(synapses, true));
 	    }
 	}
     }
@@ -189,6 +187,20 @@ public class TemporalPooler extends Pooler {
 	    }
 	}
 	return synapseWithPreviousActiveCells;
+	// if newSynapses is true, then newSynapseCount - count(activeSynapses)
+	// synapses are added to activeSynapses. These synapses are randomly
+	// chosen from the set of cells that have learnState output = 1
+    }
+
+    Set<Synapse<Cell>> getSynapseWithActiveCellsToUpdate(Segment segment) {
+	Set<Synapse<Cell>> synapses = segment.getSynapses();
+	Set<Synapse<Cell>> synapseWithActiveCells = new HashSet<Synapse<Cell>>();
+	for (Synapse synapse : synapses) {
+	    if (synapse.getCell().getActiveState()) {
+		synapseWithActiveCells.add(synapse);
+	    }
+	}
+	return synapseWithActiveCells;
     }
 
     /**
@@ -201,34 +213,54 @@ public class TemporalPooler extends Pooler {
 	    for (Neuron neuron : column.getNeurons()) {
 		for (Segment segment : neuron.getDistalSegments()) {
 		    if (segment.getActiveState()) {
-			neuron.setPredictingState(true);
+			// ----------pseudocode-------------
+			// predictiveState(c, i, t) = 1
+			//
+			// activeUpdate = getSegmentActiveSynapses(c, i, s, t,
+			// false)
+			// segmentUpdateList.add(activeUpdate)
 
-			// reinforcement of the currently active distalSegment
-
-			// listOfSynapsesToUpdate =
-			// getActiveSyanpsesToUpdate(segment)
-			// segmentUpdateList.add(listOfSynapsesToUpdate)
-
-			// reinforcement of a distalSegment that could have
-			// predicted this activation
-
-			Segment predictingSegment = neuron
-				.getBestPreviousActiveSegment();
+			// predSegment = getBestMatchingSegment(c, i, t-1)
 			// predUpdate = getSegmentActiveSynapses(c, i,
 			// predSegment, t-1, true)
 			// segmentUpdateList.add(predUpdate)
+
+			neuron.setPredictingState(true);
+
+			// reinforcement of the currently active distalSegment
+			Set<Synapse<Cell>> synapsesWithActiveCells_1 = this
+				.getSynapseWithActiveCellsToUpdate(segment);
+			this.segmentUpdateList.getSegmentUpdates().add(
+				new SegmentUpdate(synapsesWithActiveCells_1,
+					false));
+
+			Segment predictingSegment = neuron
+				.getBestPreviousActiveSegment();
+			Set<Synapse<Cell>> synapsesWithActiveCells_2 = this
+				.getSynapsesWithPreviousActiveCellsToUpdate(predictingSegment);
+			this.segmentUpdateList.getSegmentUpdates().add(
+				new SegmentUpdate(synapsesWithActiveCells_2,
+					false));
 		    }
 		}
 	    }
 	}
     }
 
+    /**
+     * Carries out learning. Segment updates that have been queued up are
+     * actually implemented once we get feed-forward input and the cell is
+     * chosen as a learning cell. Otherwie, if the cell ever stops predicting
+     * for any reason, we negatively reinforce the segments.
+     */
     void phaseThree(Set<Column> activeColumns) {
 	for (Column column : activeColumns) {
 	    for (Neuron neuron : column.getNeurons()) {
+
 		// if learnState(s, i, t) == 1 then
 		// adaptSegments(segmentUpdateList(c, i), true)
 		// segmentUpdateList(c, i).delete()
+
 		// else if predictiveState(c, i, t) == 0 and predictiveState(c,
 		// i, t-1) == 1 then
 		// adaptSegments(segmentUpdateList(c,i), false)

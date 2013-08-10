@@ -5,27 +5,32 @@ import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | August 8, 2013
+ * @version MARK II | August 10, 2013
  */
 public class SegmentUpdate {
     // segment index (-1 if its a new segment)
 
-    private Set<Synapse<Cell>> existingActiveSynapses;
+    private Set<Synapse<Cell>> synapses;
 
     private boolean sequenceState;
 
     public SegmentUpdate() {
-	this.existingActiveSynapses = new HashSet<Synapse<Cell>>();
+	this.synapses = new HashSet<Synapse<Cell>>();
 	this.sequenceState = false;
     }
 
-    public Set<Synapse<Cell>> getExistingActiveSynapses() {
-	return this.existingActiveSynapses;
+    public SegmentUpdate(Set<Synapse<Cell>> synapses, boolean sequenceState) {
+	this.synapses = synapses;
+	this.sequenceState = sequenceState;
     }
 
-    public void setExistingActiveSynapses(
-	    Set<Synapse<Cell>> existingActiveSynapses) {
-	this.existingActiveSynapses = existingActiveSynapses;
+    public Set<Synapse<Cell>> getSynapses() {
+	return this.synapses;
+    }
+
+    public void setSynapses(
+	    Set<Synapse<Cell>> synapses) {
+	this.synapses = synapses;
     }
 
     public boolean getSequenceState() {
