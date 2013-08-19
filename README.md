@@ -3,9 +3,9 @@ WalnutiQ
 Hi and welcome to the WalnutiQ, a human brain model simulation 
 in Java! The goal of this repository is store the code that 
 would allow a 10 year old to understand the brain in it's entirety and allow
-a real-time human brain simulation. If you are interested the 
-only requirement is passion and a readiness to fail. Please visit 
-www.walnutiq.com for more information :)
+a real-time human brain simulation. If you are interested in becoming a 
+researcher/developer the only requirement is passion and a readiness to fail. 
+Please visit www.walnutiq.com for more information :)
  
 Here you will find classes that allow you to build a brain model (currently
 the second version called MARK II), train it on data, view it's activity as
@@ -29,7 +29,7 @@ to begin understanding how to use this repository:
 3. In Eclipse, add these libraries(.jar file) by right-clicking your project in 
    the package explorer => Build Path => Add External Archives...
   
-4. Pull code and go to the folder WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java to view an
+4. Clone code and go to the folder WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java to view an
    example of how to use all of the code.
      
   <h5>What each file or folder in this repository is for:</h5>
