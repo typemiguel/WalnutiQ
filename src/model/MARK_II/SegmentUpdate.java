@@ -5,32 +5,43 @@ import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | August 10, 2013
+ * @version MARK II | August 11, 2013
  */
 public class SegmentUpdate {
     // segment index (-1 if its a new segment)
 
-    private Set<Synapse<Cell>> synapses;
+    private Set<Synapse<Cell>> synapsesWithActiveCells;
+    private Set<Synapse<Cell>> synapsesWithDeactiveCells;
 
     private boolean sequenceState;
 
     public SegmentUpdate() {
-	this.synapses = new HashSet<Synapse<Cell>>();
+	this.synapsesWithActiveCells = new HashSet<Synapse<Cell>>();
+	this.synapsesWithDeactiveCells = new HashSet<Synapse<Cell>>();
 	this.sequenceState = false;
     }
 
-    public SegmentUpdate(Set<Synapse<Cell>> synapses, boolean sequenceState) {
-	this.synapses = synapses;
+    public SegmentUpdate(Set<Synapse<Cell>> synapsesWithActiveCells, Set<Synapse<Cell>> synapsesWithDeactiveCells, boolean sequenceState) {
+	this.synapsesWithActiveCells = synapsesWithActiveCells;
+	this.synapsesWithDeactiveCells = synapsesWithDeactiveCells;
 	this.sequenceState = sequenceState;
     }
 
-    public Set<Synapse<Cell>> getSynapses() {
-	return this.synapses;
+    public Set<Synapse<Cell>> getSynapsesWithActiveCells() {
+	return this.synapsesWithActiveCells;
     }
 
-    public void setSynapses(
-	    Set<Synapse<Cell>> synapses) {
-	this.synapses = synapses;
+    public Set<Synapse<Cell>> getSynapsesWithDeactiveCells() {
+	return this.synapsesWithDeactiveCells;
+    }
+
+    public void setSynapsesWithActiveCells(
+	    Set<Synapse<Cell>> synapsesWithActiveCells) {
+	this.synapsesWithActiveCells = synapsesWithActiveCells;
+    }
+
+    public void setSynapsesWithDeactiveCells(Set<Synapse<Cell>> synapsesWithDeactiveCells) {
+	this.synapsesWithDeactiveCells = synapsesWithDeactiveCells;
     }
 
     public boolean getSequenceState() {

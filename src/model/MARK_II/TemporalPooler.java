@@ -15,8 +15,22 @@ import java.util.Set;
  * for each neuron forms the output of the TemporalPooler for the next Region in
  * the hierarchy.
  *
+ * ----------------------------Notes------------------------------------ in the
+ * temporal pooler, we randomly add active synapses to each segment during
+ * learning
+ *
+ * newSynapseCount = the maximum number of synapses added to a segment during
+ * learning
+ *
+ * When an input is unexpected, all the cells in a particular column become
+ * active in the same time step. Only one of these cells(the cell that best
+ * matches the input) has its learnState turned on. We only add synapses from
+ * cells that have learnState set to one(this avoids overrepresenting a fully
+ * active column in dendritic segments).
+ * -----------------------------------------------------------------------
+ *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | August 8, 2013
+ * @version MARK II | August 10, 2013
  */
 public class TemporalPooler extends Pooler {
 
@@ -76,57 +90,81 @@ public class TemporalPooler extends Pooler {
      * SpatialPooler.
      */
     public Region performTemporalPoolingOnRegion(Set<Column> activeColumns) {
-	// Phase 1) compute the active state for each Neuron
 	this.phaseOne(activeColumns);
+	this.phaseTwo(activeColumns);
 
-	// Phase 2) compute the predictive state for each Neuron
-
-	// Phase 3) update Synapse permanences
+	// TODO: call phaseThree correctly
 	return this.region;
     }
 
+    /**
+     * Compute the active state for each Neuron in activeColumns.
+     * Then in each active Column a learning Cell is chosen.
+     */
     void phaseOne(Set<Column> activeColumns) {
+	// for c in activeColumns(t)
 	for (Column column : activeColumns) {
+	    // buPredicted = false
 	    boolean bottomUpPredicted = false;
+
+	    // lcChosen = false
 	    boolean learningCellChosen = false;
+
 	    Neuron[] neurons = column.getNeurons();
+
+	    // for i = 0 to cellsPerColumn - 1
 	    for (int i = 0; i < neurons.length; i++) {
+		// if predictiveState(c, i, t-1) == true then
 		if (neurons[i].getPreviousPredictingState() == true) {
+		    // s = getActiveSegment(c, i, t-1, activeState)
 		    DistalSegment bestSegment = neurons[i]
 			    .getBestPreviousActiveSegment();
+
+		    // if s.sequenceSegment == true then
 		    if (bestSegment != null && bestSegment.getSequenceState()) {
+			// buPredicted = true
 			bottomUpPredicted = true;
+
+			// activeState(c, i, t) = 1
 			neurons[i].setActiveState(true);
-			if (bestSegment.getPreviousActiveState()) {// from
-								   // learning
+
+			// if segmentActive(s, t-1, learnState) then
+			if (bestSegment.getPreviousActiveState()) {
+			    // lcChosen = true
 			    learningCellChosen = true;
+
+			    // learnState(c, i, t) = 1
 			    column.setLearningNeuronPosition(i);
 			}
 		    }
 		}
 	    }
+	    // if buPredicted == false then
 	    if (bottomUpPredicted == false) {
+		// for i = 0 to cellsPerColumn - 1
 		for (Neuron neuron : column.getNeurons()) {
+		    // activeState(c, i, t) = 1
 		    neuron.setActiveState(true);
 		}
 	    }
+	    // if lcChosen == false then
 	    if (learningCellChosen == false) {
-		// ----------pseudocode----------
 		// l,s = getBestMatchingCell(c, t-1)
-		// learnState(c, i, t) = 1
-		// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true)
-		// sUpdate.sequenceSegment = true
-		// segmentUpdateList.add(sUpdate)
 		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
+
+		// learnState(c, i, t) = 1
 		column.setLearningNeuronPosition(bestNeuronIndex);
 
+		// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true)
 		Set<Synapse<Cell>> synapses = this
 			.getSynapsesWithPreviousActiveCellsToUpdate(column
 				.getLearningNeuron()
 				.getBestPreviousActiveSegment());
 
+		// sUpdate.sequenceSegment = true
+		// segmentUpdateList.add(sUpdate)
 		this.segmentUpdateList.getSegmentUpdates().add(
-			new SegmentUpdate(synapses, true));
+			new SegmentUpdate(synapses, null, true));
 	    }
 	}
     }
@@ -209,38 +247,39 @@ public class TemporalPooler extends Pooler {
      * active.
      */
     void phaseTwo(Set<Column> activeColumns) {
+	// for c, i in cells
 	for (Column column : activeColumns) {
 	    for (Neuron neuron : column.getNeurons()) {
+		// for s in segments(c, i)
 		for (Segment segment : neuron.getDistalSegments()) {
+		    // if segmentActive(s, t, activeState) then
 		    if (segment.getActiveState()) {
-			// ----------pseudocode-------------
 			// predictiveState(c, i, t) = 1
-			//
-			// activeUpdate = getSegmentActiveSynapses(c, i, s, t,
-			// false)
-			// segmentUpdateList.add(activeUpdate)
-
-			// predSegment = getBestMatchingSegment(c, i, t-1)
-			// predUpdate = getSegmentActiveSynapses(c, i,
-			// predSegment, t-1, true)
-			// segmentUpdateList.add(predUpdate)
-
 			neuron.setPredictingState(true);
 
-			// reinforcement of the currently active distalSegment
+			// activeUpdate = getSegmentActiveSynapses(c, i, s, t,
+			// false)
 			Set<Synapse<Cell>> synapsesWithActiveCells_1 = this
 				.getSynapseWithActiveCellsToUpdate(segment);
+
+			// segmentUpdateList.add(activeUpdate)
 			this.segmentUpdateList.getSegmentUpdates().add(
 				new SegmentUpdate(synapsesWithActiveCells_1,
-					false));
+					null, false));
 
+			// predSegment = getBestMatchingSegment(c, i, t-1)
 			Segment predictingSegment = neuron
 				.getBestPreviousActiveSegment();
+
+			// predUpdate = getSegmentActiveSynapses(c, i,
+			// predSegment, t-1, true)
 			Set<Synapse<Cell>> synapsesWithActiveCells_2 = this
 				.getSynapsesWithPreviousActiveCellsToUpdate(predictingSegment);
+
+			// segmentUpdateList.add(predUpdate)
 			this.segmentUpdateList.getSegmentUpdates().add(
 				new SegmentUpdate(synapsesWithActiveCells_2,
-					false));
+					null, false));
 		    }
 		}
 	    }
@@ -249,23 +288,54 @@ public class TemporalPooler extends Pooler {
 
     /**
      * Carries out learning. Segment updates that have been queued up are
-     * actually implemented once we get feed-forward input and the cell is
-     * chosen as a learning cell. Otherwie, if the cell ever stops predicting
-     * for any reason, we negatively reinforce the segments.
+     * actually implemented once we get feed-forward input and a Neuron is
+     * chosen as a learning Neuron. Otherwise, if the Neuron ever stops
+     * predicting for any reason, we negatively reinforce the Segments.
      */
     void phaseThree(Set<Column> activeColumns) {
+	// for c, i in cells
 	for (Column column : activeColumns) {
-	    for (Neuron neuron : column.getNeurons()) {
+	    // if learnState(c, i, t) == 1 then
+	    Neuron learningNeuron = column.getLearningNeuron();
 
-		// if learnState(s, i, t) == 1 then
-		// adaptSegments(segmentUpdateList(c, i), true)
-		// segmentUpdateList(c, i).delete()
+	        // adaptSegments(segmentUpdateList(c, i), true)
+	        // segmentUpdateList(c, i).delete()
 
-		// else if predictiveState(c, i, t) == 0 and predictiveState(c,
-		// i, t-1) == 1 then
-		// adaptSegments(segmentUpdateList(c,i), false)
-		// segmentUpdateList(c,i).delete()
+	    // else if predictiveState(c, i, t) == 0 and predictiveState(c, i,
+	        // t-1) == 1 then
+	        // adaptSegments(segmentUpdateList(c,i), false)
+	        // segmentUpdateList(c,i).delete()
+	}
+    }
+
+    /**
+     * Iterates through the Synapses of a SegmentUpdate and reinforces each
+     * Synapse. If positiveReinforcement is true then Synapses on the list get
+     * their permanenceValues incremented by permanenceIncrease. All other
+     * Synapses get their permanenceValue decremented by permanenceDecrease. If
+     * positiveReinforcement is false, then Synapses on the list get their
+     * permanenceValues decremented by permanenceDecrease. Finally, any Synapses
+     * in SegmentUpdate that do not yet exist get added with a permanenceValue
+     * of initialPermanence.
+     */
+    void adaptSegments(SegmentUpdate segmentUpdate,
+	    boolean positiveReinforcement) {
+	Set<Synapse<Cell>> synapsesWithActiveCells = segmentUpdate
+		.getSynapsesWithActiveCells();
+	Set<Synapse<Cell>> synapsesWithDeactiveCells = segmentUpdate
+		.getSynapsesWithDeactiveCells();
+	if (positiveReinforcement) {
+	    for (Synapse synapse : synapsesWithActiveCells) {
+		synapse.increasePermanence();
+	    }
+	    for (Synapse synapse : synapsesWithDeactiveCells) {
+		synapse.decreasePermanence();
+	    }
+	} else {
+	    for (Synapse synapse : synapsesWithActiveCells) {
+		synapse.decreasePermanence();
 	    }
 	}
+	// TODO: add Synapses in SegmentUpdate that do not yet exist
     }
 }
