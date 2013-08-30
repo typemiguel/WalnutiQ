@@ -8,7 +8,8 @@ package model.MARK_II;
  * @version MARK II | July 22, 2013
  */
 public class Cell {
-    protected boolean isActive;
+    protected boolean isActive; // biologically equivalent to generating 1 or
+				// more spikes
     protected boolean wasActive;
 
     public Cell() {

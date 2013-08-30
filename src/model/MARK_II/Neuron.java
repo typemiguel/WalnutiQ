@@ -15,7 +15,8 @@ import java.util.HashSet;
  * @version MARK II | July 22, 2013
  */
 public class Neuron extends Cell {
-    private boolean isPredicting;
+    private boolean isPredicting; // biologically equivalent to depolarized
+				  // Neuron
     private boolean wasPredicting;
     private Set<DistalSegment> distalSegments;
 
@@ -32,7 +33,8 @@ public class Neuron extends Cell {
      * if more than one sequence segment that was active in the previous time
      * step, the segment with the most activity is returned.
      *
-     * @return A Segment that was active in the previous time step; otherwise null.
+     * @return A Segment that was active in the previous time step; otherwise
+     *         null.
      */
     public DistalSegment getBestPreviousActiveSegment() {
 	List<DistalSegment> previousActiveSegments = new ArrayList<DistalSegment>();
@@ -50,7 +52,8 @@ public class Neuron extends Cell {
 
 	// the most active sequence Segment at t-1
 	if (previousActiveSequenceSegments.size() > 1) {
-	    DistalSegment mostActiveSequenceSegment = previousActiveSequenceSegments.get(0);
+	    DistalSegment mostActiveSequenceSegment = previousActiveSequenceSegments
+		    .get(0);
 	    int maximumPreviousActiveSynapses = 0;
 	    for (DistalSegment sequenceSegment : previousActiveSequenceSegments) {
 		int previousActiveSynapses = sequenceSegment
