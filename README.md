@@ -29,7 +29,7 @@ to begin understanding how to use this repository:
 3. In Eclipse, add these libraries(.jar file) by right-clicking your project in 
    the package explorer => Build Path => Add External Archives...
   
-4. Clone code and go to the folder WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java to view an
+4. Fork this repo and go to the folder WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java to view an
    example of how to use all of the code.
      
   <h5>What each file or folder in this repository is for:</h5>
