@@ -1,5 +1,7 @@
 package model.MARK_II;
 
+import java.util.List;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,7 +32,7 @@ import java.util.Set;
  * -----------------------------------------------------------------------
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | August 10, 2013
+ * @version MARK II | August 24, 2013
  */
 public class TemporalPooler extends Pooler {
 
@@ -98,8 +100,8 @@ public class TemporalPooler extends Pooler {
     }
 
     /**
-     * Compute the active state for each Neuron in activeColumns.
-     * Then in each active Column a learning Cell is chosen.
+     * Compute the active state for each Neuron in activeColumns. Then in each
+     * active Column a learning Cell is chosen.
      */
     void phaseOne(Set<Column> activeColumns) {
 	// for c in activeColumns(t)
@@ -110,9 +112,8 @@ public class TemporalPooler extends Pooler {
 	    // lcChosen = false
 	    boolean learningCellChosen = false;
 
-	    Neuron[] neurons = column.getNeurons();
-
 	    // for i = 0 to cellsPerColumn - 1
+	    Neuron[] neurons = column.getNeurons();
 	    for (int i = 0; i < neurons.length; i++) {
 		// if predictiveState(c, i, t-1) == true then
 		if (neurons[i].getPreviousPredictingState() == true) {
@@ -156,15 +157,20 @@ public class TemporalPooler extends Pooler {
 		column.setLearningNeuronPosition(bestNeuronIndex);
 
 		// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true)
-		Set<Synapse<Cell>> synapses = this
-			.getSynapsesWithPreviousActiveCellsToUpdate(column
+		Set<Synapse<Cell>> synapsesWithPreviousActiveCells = this
+			.getSynapsesWithPreviousCellsToUpdate(column
 				.getLearningNeuron()
-				.getBestPreviousActiveSegment());
+				.getBestPreviousActiveSegment(), true);
+		Set<Synapse<Cell>> synapsesWithPreviousDeactiveCells = this
+			.getSynapsesWithPreviousCellsToUpdate(column
+				.getLearningNeuron()
+				.getBestPreviousActiveSegment(), false);
 
 		// sUpdate.sequenceSegment = true
 		// segmentUpdateList.add(sUpdate)
 		this.segmentUpdateList.getSegmentUpdates().add(
-			new SegmentUpdate(synapses, null, true));
+			new SegmentUpdate(synapsesWithPreviousActiveCells,
+				synapsesWithPreviousDeactiveCells, true));
 	    }
 	}
     }
@@ -215,30 +221,49 @@ public class TemporalPooler extends Pooler {
 	return bestMatchingNeuronIndex;
     }
 
-    Set<Synapse<Cell>> getSynapsesWithPreviousActiveCellsToUpdate(
-	    Segment segment) {
+    /**
+     * @param previousActiveCells
+     *            Whether to return Cells that previous active or deactive.
+     */
+    Set<Synapse<Cell>> getSynapsesWithPreviousCellsToUpdate(Segment segment,
+	    boolean previousActiveCells) {
 	Set<Synapse<Cell>> synapses = segment.getSynapses();
-	Set<Synapse<Cell>> synapseWithPreviousActiveCells = new HashSet<Synapse<Cell>>();
+	Set<Synapse<Cell>> synapseWithPreviousActiveOrDeactiveCells = new HashSet<Synapse<Cell>>();
 	for (Synapse synapse : synapses) {
-	    if (synapse.getCell().getPreviousActiveState()) {
-		synapseWithPreviousActiveCells.add(synapse);
+	    if (previousActiveCells) {
+		if (synapse.getCell().getPreviousActiveState() == true) {
+		    synapseWithPreviousActiveOrDeactiveCells.add(synapse);
+		}
+	    } else { // add Cells that were previously not active
+		if (synapse.getCell().getPreviousActiveState() == false) {
+		    synapseWithPreviousActiveOrDeactiveCells.add(synapse);
+		}
 	    }
+
 	}
-	return synapseWithPreviousActiveCells;
-	// if newSynapses is true, then newSynapseCount - count(activeSynapses)
+	return synapseWithPreviousActiveOrDeactiveCells;
+	// TODO: if newSynapses is true, then newSynapseCount -
+	// count(activeSynapses)
 	// synapses are added to activeSynapses. These synapses are randomly
 	// chosen from the set of cells that have learnState output = 1
     }
 
-    Set<Synapse<Cell>> getSynapseWithActiveCellsToUpdate(Segment segment) {
+    Set<Synapse<Cell>> getSynapseWithCellsToUpdate(Segment segment, boolean
+	    activeCells) {
 	Set<Synapse<Cell>> synapses = segment.getSynapses();
-	Set<Synapse<Cell>> synapseWithActiveCells = new HashSet<Synapse<Cell>>();
+	Set<Synapse<Cell>> synapseWithActiveOrDeactiveCells = new HashSet<Synapse<Cell>>();
 	for (Synapse synapse : synapses) {
-	    if (synapse.getCell().getActiveState()) {
-		synapseWithActiveCells.add(synapse);
+	    if (activeCells) {
+		if (synapse.getCell().getActiveState() == true) {
+		    synapseWithActiveOrDeactiveCells.add(synapse);
+		}
+	    } else {
+		if (synapse.getCell().getActiveState() == false) {
+		    synapseWithActiveOrDeactiveCells.add(synapse);
+		}
 	    }
 	}
-	return synapseWithActiveCells;
+	return synapseWithActiveOrDeactiveCells;
     }
 
     /**
@@ -260,12 +285,14 @@ public class TemporalPooler extends Pooler {
 			// activeUpdate = getSegmentActiveSynapses(c, i, s, t,
 			// false)
 			Set<Synapse<Cell>> synapsesWithActiveCells_1 = this
-				.getSynapseWithActiveCellsToUpdate(segment);
+				.getSynapseWithCellsToUpdate(segment, true);
+			Set<Synapse<Cell>> synapsesWithDeactiveCells_1 = this.
+				getSynapseWithCellsToUpdate(segment, false);
 
 			// segmentUpdateList.add(activeUpdate)
 			this.segmentUpdateList.getSegmentUpdates().add(
 				new SegmentUpdate(synapsesWithActiveCells_1,
-					null, false));
+					synapsesWithDeactiveCells_1, false));
 
 			// predSegment = getBestMatchingSegment(c, i, t-1)
 			Segment predictingSegment = neuron
@@ -274,12 +301,14 @@ public class TemporalPooler extends Pooler {
 			// predUpdate = getSegmentActiveSynapses(c, i,
 			// predSegment, t-1, true)
 			Set<Synapse<Cell>> synapsesWithActiveCells_2 = this
-				.getSynapsesWithPreviousActiveCellsToUpdate(predictingSegment);
+				.getSynapsesWithPreviousCellsToUpdate(predictingSegment, true);
+			Set<Synapse<Cell>> synapsesWithDeactiveCells_2 = this
+				.getSynapsesWithPreviousCellsToUpdate(predictingSegment, false);
 
 			// segmentUpdateList.add(predUpdate)
 			this.segmentUpdateList.getSegmentUpdates().add(
 				new SegmentUpdate(synapsesWithActiveCells_2,
-					null, false));
+					synapsesWithDeactiveCells_2, false));
 		    }
 		}
 	    }
@@ -295,16 +324,24 @@ public class TemporalPooler extends Pooler {
     void phaseThree(Set<Column> activeColumns) {
 	// for c, i in cells
 	for (Column column : activeColumns) {
+	    for (Neuron neuron : column.getNeurons()) {
+		// TODO: reimplement learnState to be a property of the Neuron
+	    }
+
 	    // if learnState(c, i, t) == 1 then
 	    Neuron learningNeuron = column.getLearningNeuron();
 
-	        // adaptSegments(segmentUpdateList(c, i), true)
-	        // segmentUpdateList(c, i).delete()
+	    // adaptSegments(segmentUpdateList(c, i), true)
+	    List<SegmentUpdate> segmentUpdates = this.segmentUpdateList.getSegmentUpdates();
+	    for (SegmentUpdate segmentUpdate : segmentUpdates) {
+		this.adaptSegments(segmentUpdate, true);
+	    }
+	    // segmentUpdateList(c, i).delete() TODO: how to implement?
 
 	    // else if predictiveState(c, i, t) == 0 and predictiveState(c, i,
-	        // t-1) == 1 then
-	        // adaptSegments(segmentUpdateList(c,i), false)
-	        // segmentUpdateList(c,i).delete()
+	    // t-1) == 1 then
+	    // adaptSegments(segmentUpdateList(c,i), false)
+	    // segmentUpdateList(c,i).delete()
 	}
     }
 
@@ -325,14 +362,14 @@ public class TemporalPooler extends Pooler {
 	Set<Synapse<Cell>> synapsesWithDeactiveCells = segmentUpdate
 		.getSynapsesWithDeactiveCells();
 	if (positiveReinforcement) {
-	    for (Synapse synapse : synapsesWithActiveCells) {
+	    for (Synapse<Cell> synapse : synapsesWithActiveCells) {
 		synapse.increasePermanence();
 	    }
-	    for (Synapse synapse : synapsesWithDeactiveCells) {
+	    for (Synapse<Cell> synapse : synapsesWithDeactiveCells) {
 		synapse.decreasePermanence();
 	    }
 	} else {
-	    for (Synapse synapse : synapsesWithActiveCells) {
+	    for (Synapse<Cell> synapse : synapsesWithActiveCells) {
 		synapse.decreasePermanence();
 	    }
 	}
