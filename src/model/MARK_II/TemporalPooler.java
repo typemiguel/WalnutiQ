@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * Provides implementation for running the temporal pooling algorithm on a
  * Region with and without learning. The TemporalPooler computes the active and
- * predictive state for each Neuron at the current timestep t.
+ * predictive state for each Neuron at the current time step t.
  *
  * Input into TemporalPooler: activeColumns at time t computed by the
  * SpatialPooler.
@@ -27,7 +27,7 @@ import java.util.Set;
  * When an input is unexpected, all the cells in a particular column become
  * active in the same time step. Only one of these cells(the cell that best
  * matches the input) has its learnState turned on. We only add synapses from
- * cells that have learnState set to one(this avoids overrepresenting a fully
+ * cells that have learnState set to one(this avoids over representing a fully
  * active column in dendritic segments).
  * -----------------------------------------------------------------------
  *
