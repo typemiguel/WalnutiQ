@@ -4,7 +4,7 @@ package model.MARK_II;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | July 22, 2013
  */
-public class Test_Neuron extends junit.framework.TestCase {
+public class NeuronTest extends junit.framework.TestCase {
     private Neuron neuron;
 
     public void setUp() {

@@ -9,7 +9,7 @@ import java.util.HashSet;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 23, 2013
  */
-public class Test_Memory extends junit.framework.TestCase {
+public class MemoryTest extends junit.framework.TestCase {
     private Memory memory;
     private Region region;
 

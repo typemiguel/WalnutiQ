@@ -4,7 +4,7 @@ package model.MARK_II;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 8, 2013
  */
-public class Test_Synapse extends junit.framework.TestCase {
+public class SynapseTest extends junit.framework.TestCase {
     private VisionCell visionCell_1;
     private VisionCell visionCell_NULL;
 

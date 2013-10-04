@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | July 29, 2013
  */
-public class Test_SpatialPooler extends junit.framework.TestCase {
+public class SpatialPoolerTest extends junit.framework.TestCase {
 
     private Region parentRegion;
     private SpatialPooler spatialPooler;

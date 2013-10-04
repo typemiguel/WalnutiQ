@@ -14,7 +14,7 @@ import model.MARK_II.VisionCell;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | July 29, 2013
  */
-public class Test_SynapsePermanencesViewer extends junit.framework.TestCase {
+public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
     SynapsePermanencesViewer spv;
     private Region LGNRegion;
 

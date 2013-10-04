@@ -7,7 +7,7 @@ import model.MARK_II.ConnectTypes.RegionToRegionConnect;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 13, 2013
  */
-public class Test_Neocortex extends junit.framework.TestCase {
+public class NeocortexTest extends junit.framework.TestCase {
     private Neocortex neocortex;
 
     public void setUp() {

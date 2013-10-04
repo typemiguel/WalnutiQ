@@ -22,7 +22,7 @@ import model.util.JsonFileInputOutput;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 26, 2013
  */
-public class Test_JsonFileInputOutput extends junit.framework.TestCase {
+public class JsonFileInputOutputTest extends junit.framework.TestCase {
     private Gson gson;
 
     public void setUp() {

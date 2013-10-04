@@ -10,7 +10,7 @@ import model.MARK_II.VisionCell;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | July 14th, 2013
  */
-public class Test_SensorCellsToRegionRandomConnect extends
+public class SensorCellsToRegionRandomConnectTest extends
 	junit.framework.TestCase {
 
     private SensorCellsToRegionRandomConnect connectType;

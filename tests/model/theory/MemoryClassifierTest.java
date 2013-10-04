@@ -9,7 +9,7 @@ import model.MARK_II.ColumnPosition;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 23, 2013
  */
-public class Test_MemoryClassifier extends junit.framework.TestCase {
+public class MemoryClassifierTest extends junit.framework.TestCase {
     private MemoryClassifier memoryClassifier;
 
     public void setUp() {

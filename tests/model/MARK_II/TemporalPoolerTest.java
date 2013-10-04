@@ -9,7 +9,7 @@ import model.MARK_II.ConnectTypes.RegionToRegionRectangleConnect;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | August 3, 2013
  */
-public class Test_TemporalPooler extends junit.framework.TestCase {
+public class TemporalPoolerTest extends junit.framework.TestCase {
     private Region parentRegion;
     private TemporalPooler temporalPooler;
 

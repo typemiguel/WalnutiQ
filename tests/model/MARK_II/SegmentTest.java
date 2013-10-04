@@ -13,7 +13,7 @@ import model.MARK_II.Segment.SynapseUpdateState;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | July 22, 2013
  */
-public class Test_Segment extends junit.framework.TestCase {
+public class SegmentTest extends junit.framework.TestCase {
     private Segment proximalSegment;
     private DistalSegment distalSegment;
 

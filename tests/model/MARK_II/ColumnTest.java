@@ -4,7 +4,7 @@ package model.MARK_II;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | August 3, 2013
  */
-public class Test_Column extends junit.framework.TestCase {
+public class ColumnTest extends junit.framework.TestCase {
     private Column column;
 
     public void setUp() {

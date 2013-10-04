@@ -7,7 +7,7 @@ import model.MARK_II.Region;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version MARK II | June 13, 2013
  */
-public class Test_RegionToRegionRectangleConnect extends
+public class RegionToRegionRectangleConnectTest extends
 	junit.framework.TestCase {
     private RegionToRegionConnect connectType;
 
