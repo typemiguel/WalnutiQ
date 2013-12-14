@@ -8,7 +8,7 @@ researcher/developer the only requirement is passion and a readiness to fail.
 Please visit www.walnutiq.com for more information :)
  
 Here you will find classes that allow you to build a brain model (currently
-the second version called MARK II), train it on data, view it's activity as
+the 1st version called MARK I), train it on data, view it's activity as
 text and visual output, and test it's ability to recognize objects. All of the code 
 here supports modeling of the human brain at a high level of abstraction 
 while still allowing user access to individual neurons. Follow the following steps
@@ -29,10 +29,10 @@ to begin understanding how to use this repository:
 3. In Eclipse, add these libraries(.jar file) by right-clicking your project in 
    the package explorer => Build Path => Add External Archives...
   
-4. Fork this repo and go to the folder WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java to view an
+4. Fork this repo and go to the folder ```WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java``` to view an
    example of how to use all of the code.
      
-  <h5>What each file or folder in this repository is for:</h5>
+  <h4>What each file or folder in this repository is for:</h4>
   - images
       + digits
           - MNIST = unique files that contain training images and testing images.
