@@ -5,7 +5,7 @@ import java.util.Set;
 
 /**
 * @author Quinn Liu (quinnliu@vt.edu)
-* @version MARK II | June 18, 2013
+* @version MARK I | June 18, 2013
 */
 public class Memory {
     // pick the Idea that matches most closely to the output of a Region

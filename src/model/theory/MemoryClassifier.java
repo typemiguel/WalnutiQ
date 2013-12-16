@@ -1,6 +1,7 @@
 package model.theory;
 
-import model.MARK_II.ColumnPosition;
+import model.MARK_I.ColumnPosition;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +10,7 @@ import java.util.Set;
  * current input on a trained or untrained Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 18, 2013
+ * @version MARK I | June 18, 2013
  */
 public class MemoryClassifier {
     private Set<ColumnPosition> regionOutput;

@@ -1,17 +1,13 @@
 package model.util;
 
-import java.util.Set;
-import model.MARK_II.ColumnPosition;
-import model.MARK_II.ConnectTypes.SensorCellsToRegionConnect;
-import model.MARK_II.ConnectTypes.SensorCellsToRegionRectangleConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
+
+import model.MARK_I.Region;
+import model.MARK_I.SpatialPooler;
+import model.MARK_I.VisionCell;
+
 import model.Retina;
-import model.MARK_II.VisionCell;
-import model.MARK_II.SpatialPooler;
-import model.MARK_II.ConnectTypes.RegionToRegionConnect;
-import model.MARK_II.ConnectTypes.RegionToRegionRectangleConnect;
-import model.MARK_II.Column;
-import model.MARK_II.Region;
-import java.util.List;
 import java.io.IOException;
 import com.google.gson.Gson;
 import model.theory.Memory;
@@ -20,7 +16,7 @@ import model.util.JsonFileInputOutput;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 26, 2013
+ * @version MARK I | June 26, 2013
  */
 public class JsonFileInputOutputTest extends junit.framework.TestCase {
     private Gson gson;

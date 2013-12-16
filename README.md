@@ -39,7 +39,7 @@ to begin understanding how to use this repository:
       + model = images used in testing the MARK II model.
   - src
       + model
-          - MARK_II = classes containing the core logic for the brain model.MARK_II,
+          - MARK_II = classes containing the core logic for the brain model.MARK_I,
                       Includes data structures for basic brain structures 
                       and algorithms that simulate how the brain learns.        
           - ConnectTypes = classes allow the different brain components in MARK II to 

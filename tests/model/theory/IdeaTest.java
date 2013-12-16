@@ -1,17 +1,13 @@
 package model.theory;
 
-import model.MARK_II.Cell;
-import model.MARK_II.Synapse;
-
-import model.MARK_II.Region;
-
-import model.MARK_II.ColumnPosition;
+import model.MARK_I.ColumnPosition;
+import model.MARK_I.Region;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 18, 2013
+ * @version MARK I | June 18, 2013
  */
 public class IdeaTest extends junit.framework.TestCase {
     private Idea idea;

@@ -1,13 +1,14 @@
 package model.theory;
 
-import model.MARK_II.Region;
+import model.MARK_I.ColumnPosition;
+import model.MARK_I.Region;
+
 import java.util.HashSet;
 import java.util.Set;
-import model.MARK_II.ColumnPosition;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 23, 2013
+ * @version MARK I | June 23, 2013
  */
 public class MemoryClassifierTest extends junit.framework.TestCase {
     private MemoryClassifier memoryClassifier;

@@ -1,18 +1,20 @@
 package model.util;
 
+import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
+
+import model.MARK_I.Region;
+import model.MARK_I.SpatialPooler;
+import model.MARK_I.VisionCell;
+
 import com.google.gson.Gson;
-import model.MARK_II.SpatialPooler;
 import java.io.IOException;
-import model.MARK_II.ConnectTypes.SensorCellsToRegionConnect;
-import model.MARK_II.ConnectTypes.SensorCellsToRegionRectangleConnect;
 import model.LateralGeniculateNucleus;
 import model.Retina;
-import model.MARK_II.Region;
-import model.MARK_II.VisionCell;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | July 29, 2013
+ * @version MARK I | July 29, 2013
  */
 public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
     SynapsePermanencesViewer spv;

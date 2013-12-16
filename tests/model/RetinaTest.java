@@ -1,7 +1,8 @@
 package model;
 
+import model.MARK_I.VisionCell;
+
 import java.io.IOException;
-import model.MARK_II.VisionCell;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)

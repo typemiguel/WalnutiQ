@@ -1,6 +1,6 @@
 package model;
 
-import model.MARK_II.Region;
+import model.MARK_I.Region;
 
 /**
  * Input into LGN: activity of Cells within Retina.
@@ -8,7 +8,7 @@ import model.MARK_II.Region;
  * Output of LGN: activity of Neurons from this Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK II | June 5, 2013
+ * @version MARK I | June 5, 2013
  */
 public class LateralGeniculateNucleus {
     private Region region;
