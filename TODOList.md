@@ -1,8 +1,9 @@
 Research/Programming TO DO List
 ===============================
 Read First: Before working on a item below, please put your e-mail in the task [your e-mail here]
-        so that anyone else interested will be able to collaborate with you. Good luck!
-<b>Researching Tasks</b>
+so that anyone else interested will be able to collaborate with you. Good luck!
+
+<h2>Researching Tasks</h2>
   - Hard) Decide how to implement optical pathway.
 	Detailed biological image 1: http://db.tt/T0Gs7lMe image 2: http://db.tt/IDQYLbr1 
 	--circle connect from retine to LGN    -random connect from LGN to V1
@@ -50,7 +51,7 @@ Read First: Before working on a item below, please put your e-mail in the task [
 	Possible explanation: convergence micropasia
 
 
-<b>Programming Tasks</b>
+<h2>Programming Tasks</h2>
   - Medium) inhibitionRadius of active Columns is not working correctly
 	+ see printout of computeActiveColumns
 	+ Remove all System.out.println used in Test_SpatialPooler
@@ -71,35 +72,28 @@ Read First: Before working on a item below, please put your e-mail in the task [
   - Easy) Exceptions for Temporal class when done implementation
 
 <b>Computer Vision Research Comparison Chart</b>
-NOTE: All comments should be made to be objective as possible
-Image Recognition Techniques
-Pros
-Cons
+NOTE: All comments on below Image Recognition Techniques should be made to be objective as possible
+
 Bag of Words/Features
+  - Because only a frequency of a unique set of pixels are stored there is no spatial information being stored.
+  - Does not work for images with more than one object.
+  - Not capable of being unsupervised or able to learn by itself.
 
-
-1) Because only a frequency of a unique set of pixels are stored there is no spatial information being stored.
-2) Does not work for images with more than one object.
-3) Not capable of being unsupervised or able to learn by itself.
 Support Vector Machine
+  - Not visualizable after 3 features are learned(all useful support vector machines will have more than 3 features)
 
-
-1) Not visualizable after 3 features are learned(all useful support vector machines will have more than 3 features)
 WalnutiQ 
-1) Based on human neocortex biology theory
-2) Implemented with global and local inhibition to specifically for vision research
+  - Based on human neocortex biology theory
+  - Implemented with global and local inhibition to specifically for vision research
+  - Hard to find the parameters used during training to create a good image classifier
+  - Only has spatial pooling implemented and not yet TemporalPooling
 
-
-1) Hard to find the parameters used during training to create a good image classifier
-3) Only has spatial pooling implemented and not yet TemporalPooling
 NuPIC
-1) Based on human neocortex biology theory
-1) Implemented source code is hard to understand
+  - Based on human neocortex biology theory
+  - Implemented source code is hard to understand
+  
 Deep Learning Neural Networks
 
-
-
-
-
--------------------------------------------------------References------------------------------------------------------
+References
+==========
 [1] https://www.dropbox.com/s/dpdywrbf2hp6wld/AI2008.pdf
