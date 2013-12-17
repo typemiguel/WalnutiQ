@@ -1,5 +1,8 @@
 WalnutiQ 
 ========
+
+[![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
+
 Hi and welcome to the WalnutiQ, a human brain model simulation 
 in Java! The goal of this repository is store the code that 
 would allow a 10 year old to understand the brain in it's entirety and allow
