@@ -3,3 +3,6 @@
 bin/
 .settings
 MARKI_UML.ucls
+
+.gradle
+build/
