@@ -143,7 +143,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	String memoryClassifierObject = gson
 		.toJson(this.memoryClassifier_Digits);
 	JsonFileInputOutput.saveObjectToTextFile(memoryClassifierObject,
-		"./train/model/MARK_II/MemoryClassifier_MNIST_Digits.txt");
+		"./train/model/MARK_I/MemoryClassifier_MNIST_Digits.txt");
 
 	// ---------------------------Testing----------------------------------
 	MnistManager mm = new MnistManager(
@@ -151,7 +151,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 		"./images/digits/MNIST/train-labels.idx1-ubyte");
 
 	this.spatialPooler.setLearningState(false);
-	int numberOfImagesToTest = 100;
+	int numberOfImagesToTest = 1000;
 
 	int correctClassifications = 0;
 	for (int i = 1; i < (numberOfImagesToTest + 1); i++) {
