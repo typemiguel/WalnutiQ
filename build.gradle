@@ -1,1 +1,14 @@
-apply plugin: 'java'          
+apply plugin: 'java'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/model'
+        }
+    }
+}
+
+dependencies {
+    runtime files('libs/mnist-tools.jar', 'libs/gson-2.2.4.jar')
+    runtime fileTree(dir: 'libs', include: '*.jar')
+}        
