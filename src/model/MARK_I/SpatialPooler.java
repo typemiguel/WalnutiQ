@@ -103,7 +103,9 @@ public class SpatialPooler extends Pooler {
 		neighborColumnPositions = columns[x][y].getNeighborColumns();
 		List<Column> neighborColumns = new ArrayList<Column>();
 		for (ColumnPosition columnPosition : neighborColumnPositions) {
-		    neighborColumns.add(columns[columnPosition.getX()][columnPosition.getY()]);
+		    neighborColumns
+			    .add(columns[columnPosition.getX()][columnPosition
+				    .getY()]);
 		}
 
 		int minimumLocalOverlapScore = this.kthScoreOfColumns(
@@ -142,7 +144,8 @@ public class SpatialPooler extends Pooler {
 				.getProximalSegment().getSynapses();
 			for (Synapse<Cell> synapse : synapses) {
 			    if (synapse.getConnectedCell() != null
-				    && synapse.getConnectedCell().getActiveState()) {
+				    && synapse.getConnectedCell()
+					    .getActiveState()) {
 				// models long term potentiation
 				synapse.increasePermanence();
 			    } else {
@@ -224,6 +227,11 @@ public class SpatialPooler extends Pooler {
     /**
      * Adds all Columns within inhitionRadius of the parameter Column to the
      * neighborColumns field within the parameter Column.
+     *
+     * @param columnXAxis
+     *            position of Column within Region along x-axis
+     * @param columnYAxis
+     *            position of Column within Region along y-axis
      */
     void updateNeighborColumns(int columnXAxis, int columnYAxis) {
 	if (columnXAxis < 0 || columnXAxis > this.region.getXAxisLength()
@@ -276,15 +284,17 @@ public class SpatialPooler extends Pooler {
     }
 
     /**
-     * Given a list of Columns, return the kth highest overlapScore value of a
-     * Column object within that list.
+     * @param neighborColumns
+     * @param desiredLocalActivity
+     * @return the kth highest overlapScore value of a Column object within the
+     *         neighborColumns list.
      */
     int kthScoreOfColumns(List<Column> neighborColumns, int desiredLocalActivity) {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
 		    "neighborColumns in SpatialPooler method kthScoreOfColumns cannot be null");
 	}
-	// TreeSet data structures are automatically sorted.
+	// TreeSet data structures' elements are automatically sorted.
 	Set<Integer> overlapScores = new TreeSet<Integer>();
 	for (Column column : neighborColumns) {
 	    overlapScores.add(column.getOverlapScore());
@@ -339,7 +349,7 @@ public class SpatialPooler extends Pooler {
 		// iterates over every connected Synapses and sums the
 		// distances from it's original Column to determine the
 		// average receptive field
-		for (Synapse synapse : connectedSynapes) {
+		for (Synapse<?> synapse : connectedSynapes) {
 		    // NOTE: although it first appears these calculations are
 		    // incorrect since a Column at position (0, 0) is too close
 		    // to the lower Cell at (0, 0) because this is an AVERAGE

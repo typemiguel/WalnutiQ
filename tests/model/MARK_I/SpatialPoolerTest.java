@@ -89,8 +89,7 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	// Column new overlapScore = # of active Synapses * Column boostValue
 
 	// the current regionMinimumOverlapScore is 20 active Synapses out of
-	// 100
-	// total Synapses
+	// 100 total Synapses
 
 	// to test if method is working correctly add 21 synapses
 	Set<Synapse<Cell>> oneHundredInactiveSynapses = columns[0][0]
