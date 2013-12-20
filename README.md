@@ -28,12 +28,15 @@ to begin understanding how to use this repository:
   - MNIST tools library to allow you to easy use the images in the MNIST 
     handwritten digits data set at: 
     https://code.google.com/p/mnist-tools/downloads/detail?name=mnist-tools.zip&can=2&q=
-    
-3. In Eclipse, add these libraries(.jar file) by right-clicking your project in 
+
+3. Fork this repo and clone it locally. Then import it as a project into Eclipse.
+
+4. In Eclipse, add these libraries(.jar file) by right-clicking your project in 
    the package explorer => Build Path => Add External Archives...
+
+5. In Eclipse, also add JUnit 4 & jre7 to your build path. Then right click the "WalnutiQ" folder and select "Run As" -> "JUnit Test". Make sure all tests pass!
   
-4. Fork this repo and go to the folder ```WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java``` to view an
-   example of how to use all of the code.
+6. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_II/HowToUseMARK_II.java```
      
   <h4>What each file or folder in this repository is for:</h4>
   - images
