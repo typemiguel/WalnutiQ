@@ -4,18 +4,19 @@ Read First: Before working on a item below, please put your e-mail in the task [
 so that anyone else interested will be able to collaborate with you. Good luck!
 
 <h2>Researching Tasks</h2>
+  - ???) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
+
   - Hard) Decide how to implement optical pathway.
-	Detailed biological image 1: http://db.tt/T0Gs7lMe image 2: http://db.tt/IDQYLbr1 
-	--circle connect from retine to LGN    -random connect from LGN to V1
-	- input picture => active cells from bottom region to top region => motor output => next 
-	input picture!
+	  Detailed biological image 1: http://db.tt/T0Gs7lMe image 2: http://db.tt/IDQYLbr1 
+	  + circle connect from retine to LGN    
+    + random connect from LGN to V1
+	  + input picture => active cells from bottom region to top region => motor output => next 
+	  input picture!
 
   - Easy) Draw MARK II with 2 regions layer 3 of lower region connecting to layer 3 of upper region
 
   - Hard) Begin drawing detailed diagram of connections in the human brain with 2 retine
-	Retina=>LGN =>V1 =>V2 =>V4=>IT (Reference [1]) 
-
-  - ???) Reunderstand neural network digit recognition system
+	  Retina=>LGN =>V1 =>V2 =>V4=>IT (Reference [1]) 
 
   - Hard) Encorder transducer for retine. Find ted talk about it
 
@@ -41,37 +42,38 @@ so that anyone else interested will be able to collaborate with you. Good luck!
     Connection with No overlap, Green..., Blue... How to implement Retine.java?
 
   - ???) Theory of muscle control with no initial control(how does a baby control it’s bladder)
-	Theory behind cascades with controlling the eye, build software eye model
-	+ Every region of the neocortex generates motor behavior
-	+ http://www.youtube.com/watch?v=1_eT5bsS4bQ
-	+ thoughts: muscle output goes back to the bottom of neocortex as input
+    Theory behind cascades with controlling the eye, build software eye model
+	  + Every region of the neocortex generates motor behavior
+	  + http://www.youtube.com/watch?v=1_eT5bsS4bQ
+	  + thoughts: muscle output goes back to the bottom of neocortex as input
 
   - Very Hard) Biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
-	Interesting facts: moon illusion disappears when you inverse input
-	Possible explanation: convergence micropasia
+	  Interesting facts: moon illusion disappears when you inverse input
+	  Possible explanation: convergence micropasia
 
 
 <h2>Programming Tasks</h2>
-  - Medium) inhibitionRadius of active Columns is not working correctly
-	+ see printout of computeActiveColumns
-	+ Remove all System.out.println used in Test_SpatialPooler
+  - ???) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
 
   - Very Hard) Implement TemporalPooler class. Use 50% done implementation from MARK I.
-	(Requires a lot of understanding of output of SpatialPooler class) [quinnliu@vt.edu]
-	http://www.youtube.com/watch?v=QLDlBRAlSAM
+    (Requires a lot of understanding of output of SpatialPooler class) [quinnliu@vt.edu]
+    http://www.youtube.com/watch?v=QLDlBRAlSAM
+
+  - Medium) inhibitionRadius of active Columns is not working correctly
+	  + see printout of computeActiveColumns
+	  + Remove all System.out.println used in Test_SpatialPooler
 
   - Easy) Enforce global inhibition for performSpatialPooling(int percentOutput)
 	
   - Medium) Iterate through a directory during training instead of one image file. 
-	+ http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
-
-  - ???) Running Java in ubuntu remote server Amazon ec2 t1.micro instance for free
+	  + http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
 
   - Very Hard) Train MARK II on MNIST handwritten digit dataset 
 
   - Easy) Exceptions for Temporal class when done implementation
 
-<b>Computer Vision Research Comparison Chart</b>
+<h3>Computer Vision Research Comparison Chart</h3>
+
 NOTE: All comments on below Image Recognition Techniques should be made to be objective as possible
 
 Bag of Words/Features
