@@ -106,7 +106,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	// save LGNRegion to be viewed
 	//String regionObject = this.gson1.toJson(LGNRegion);
 	//JsonFileInputOutput.saveObjectToTextFile(regionObject,
-	//	"./train/model/MARK_II/Region_LGN.txt");
+	//	"./train/model/MARK_I/Region_LGN.txt");
 
 	Idea twoIdea = new Idea("two", LGNRegion);
 	twoIdea.unionColumnPositions(LGNNeuronActivity);
@@ -121,14 +121,14 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	// save MemoryClassifier object as a JSON file
 	String memoryClassifierObject = this.gson.toJson(memoryClassifier_digits);
 	JsonFileInputOutput.saveObjectToTextFile(memoryClassifierObject,
-		"./train/model/MARK_II/MemoryClassifier_Digits.txt");
+		"./train/model/MARK_I/MemoryClassifier_Digits.txt");
 
 	return memoryClassifier_digits;
     }
 
     public void test_MemoryClassifierOnNewImages() throws IOException {
 	String memoryClassifierAsString = JsonFileInputOutput
-		.openObjectInTextFile("./train/model/MARK_II/MemoryClassifier_Digits.txt");
+		.openObjectInTextFile("./train/model/MARK_I/MemoryClassifier_Digits.txt");
 	MemoryClassifier mc = this.gson.fromJson(memoryClassifierAsString,
 		MemoryClassifier.class);
 	//System.out.println(mc.toString());
