@@ -15,7 +15,9 @@ import java.awt.Dimension;
 public class RegionConsoleViewer {
     /**
      * Returns a 2-D array of chars representing each Column's activeState
-     * within a Region inside of a SpatialPooler object.
+     * within a Region inside of a SpatialPooler object. 'a' represents an
+     * active Column while 'i' represents an inactive Column for the current
+     * time step.
      *
      * @param region
      * @return A 2-D char array of Columns' overlapScores.

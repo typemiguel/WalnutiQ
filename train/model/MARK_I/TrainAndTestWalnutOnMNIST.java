@@ -180,13 +180,14 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	    // .getCurrentIdeaNameClassification());
 	}
 
-	System.out.println("total images tested: " + numberOfImagesToTest);
-	System.out.println("# of correct classifications: "
-		+ correctClassifications);
-	int incorrectClassifications = numberOfImagesToTest
-		- correctClassifications;
-	System.out.println("# of incorrect classifications: "
-		+ incorrectClassifications);
+	// TODO: assert equals with output stream
+//	System.out.println("total images tested: " + numberOfImagesToTest);
+//	System.out.println("# of correct classifications: "
+//		+ correctClassifications);
+//	int incorrectClassifications = numberOfImagesToTest
+//		- correctClassifications;
+//	System.out.println("# of incorrect classifications: "
+//		+ incorrectClassifications);
     }
 
     private int convertStringDigitToInt(String number) {

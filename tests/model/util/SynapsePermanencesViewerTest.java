@@ -66,6 +66,7 @@ public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
 		.openObjectInTextFile("./tests/model/util/test_saveRegionObject.txt");
 	Gson gson = new Gson();
 	Region LGNRegion = gson.fromJson(regionAsString, Region.class);
-	System.out.println(LGNRegion.toString());
+	// TODO: assert equals with output stream
+	//System.out.println(LGNRegion.toString());
     }
 }

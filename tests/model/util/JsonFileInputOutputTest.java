@@ -74,8 +74,10 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
 //	assertEquals(11, LGNNeuronActivity.size());
 
 	Region trainedLGNRegion = spatialPooler.getRegion();
-	System.out.println(LGNRegion.toString());
-	System.out.println(trainedLGNRegion.toString());
+
+	// TODO: assert equals with output stream
+	//System.out.println(LGNRegion.toString());
+	//System.out.println(trainedLGNRegion.toString());
 
 	Gson gson2 = new Gson();
 	String regionObject = gson2.toJson(trainedLGNRegion); // <== Cannot both be

@@ -62,6 +62,7 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	Set<ColumnPosition> activeColumnPositions = this.spatialPooler.getActiveColumnPositions();
 	for (ColumnPosition columnPosition : activeColumnPositions) {
 	    //System.out.println(columnPosition.toString());
+	    // TODO: assert equals with output stream
 	}
 	//System.out.println(this.spatialPooler.toString());
 	//System.out.println(region.toString());
@@ -148,9 +149,14 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 
 	char[][] columnActiveStates = RegionConsoleViewer
 		.getColumnActiveStatesCharArray(this.parentRegion);
-	System.out.println("\n--test_computeActiveColumnsOfRegion()--");
-	System.out.println(this.parentRegion.toString());
-	RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
+
+	// TODO: assert equals with output stream
+	//System.out.println("\n--test_computeActiveColumnsOfRegion()--");
+	//System.out.println(this.parentRegion.toString());
+
+	// TODO: columns along row 5 are all active next to each other?
+	// How did inhibition radius reduce to 0 so quickly? Set minimum of 1?
+	//RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
     }
 
     public void test_regionLearnOneTimeStep() {
