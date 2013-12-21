@@ -1,20 +1,26 @@
 apply plugin: 'java'
 
+repositories {
+    mavenCentral()
+}
+
 sourceSets {
     main {
         java {
             srcDir 'src/model'
         }
     }
-    
+
     test {
-        srcDirs = ["tests/model"]
+        java {
+            srcDir 'tests/model'
+        }
     }
 }
 
 dependencies {
     compile files('libs/mnist-tools.jar', 'libs/gson-2.2.4.jar')
     runtime fileTree(dir: 'libs', include: '*.jar')
-    
+
     testCompile group: 'junit', name: 'junit', version: '4.+'
-}        
+}     
