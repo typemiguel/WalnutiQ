@@ -9,6 +9,9 @@ sourceSets {
         java {
             srcDir 'src/model'
         }
+        resources {
+            srcDir 'images/model'
+        }
     }
 
     test {
