@@ -7,19 +7,16 @@ repositories {
 sourceSets {
     main {
         java {
-            srcDir 'src/model'
-        }
-        resources {
-            srcDir 'images/model'
+            srcDir 'src'
         }
     }
 
     test {
         java {
-            srcDir 'tests/model'
+            srcDir 'tests'
         }
         resources {
-            srcDir 'images/model'
+            srcDir 'images'
         }
     }
 }
