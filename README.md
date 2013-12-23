@@ -20,10 +20,12 @@ Setup in Eclipse
 ================
 1. Fork this repo and clone it locally. Then import it as a project into Eclipse.
 
-2. In Eclipse, add all the libraries(.jar file) in the folder ```libs/``` by right-clicking your project in 
+2. In Eclipse, add all the libraries (.jar file) in the folder ```libs/``` by right-clicking your project in 
    the package explorer => Build Path => Add External Archives...
 
 3. In Eclipse, also add JUnit 4 & jre7 to your build path. Then right click the ```WalnutiQ/``` folder and select "Run As" => "JUnit Test". Make sure all tests pass!
+
+4. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
   
 Setup in Gradle
 ===============
@@ -37,7 +39,7 @@ Setup in Gradle
 
 5. Go to the folder ```build/reports/tests/```. Double click on the file ```index.html``` and make sure all tests pass!
 
-<h3>View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```</h3>
+6. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
 
 <h4>What each file or folder in this repository is for:</h4>
   - images
