@@ -4,6 +4,8 @@ Read First: Before working on a item below, please put your e-mail in the task [
 so that anyone else interested will be able to collaborate with you. Good luck!
 
 <h2>Researching Tasks</h2>
+  - Hard) Finish implementation of Temporal Pooler and make a release for MARK I [quinnliu@vt.edu]
+
   - ???) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
 
   - Hard) Decide how to implement optical pathway.
@@ -11,7 +13,7 @@ so that anyone else interested will be able to collaborate with you. Good luck!
 	  + circle connect from retine to LGN    
     + random connect from LGN to V1
 	  + input picture => active cells from bottom region to top region => motor output => next 
-	  input picture!
+	  input picture! Draw complete picture
 
   - Easy) Draw MARK II with 2 regions layer 3 of lower region connecting to layer 3 of upper region
 
@@ -21,12 +23,8 @@ so that anyone else interested will be able to collaborate with you. Good luck!
   - Hard) Encorder transducer for retine. Find ted talk about it
 
   - Very Hard) http://math.stackexchange.com/questions/442497/combinatorics-arrangement-problem
-    + estimate with 64x1 coin flips?
     + partial answer from MIT combinatorics professor: http://db.tt/tnwPBW65
-    + look into circle packing where all circles touch with minimal radius
-    + construction of codes?
-
-  - ???) How many sequences can Temporal Pooler learn? Use combinatorics
+    + write a back tracking algorithm to calculate answer 
 
   - Medium) Research Mammal Audio System and think about AudioCell implementation
     Human auditory range: 64 Hertz to 15,000 Hertz (middle aged adult) research how a cochlear implant really
@@ -47,21 +45,20 @@ so that anyone else interested will be able to collaborate with you. Good luck!
 	  + http://www.youtube.com/watch?v=1_eT5bsS4bQ
 	  + thoughts: muscle output goes back to the bottom of neocortex as input
 
-  - Very Hard) Biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
+  - Very Hard) Write up biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
 	  Interesting facts: moon illusion disappears when you inverse input
 	  Possible explanation: convergence micropasia
-
 
 <h2>Programming Tasks</h2>
   - ???) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
 
-  - Very Hard) Implement TemporalPooler class. Use 50% done implementation from MARK I.
+  - Very Hard) Implement TemporalPooler class. Use 50% done implementation from MARK 0.
     (Requires a lot of understanding of output of SpatialPooler class) [quinnliu@vt.edu]
     http://www.youtube.com/watch?v=QLDlBRAlSAM
 
   - Medium) inhibitionRadius of active Columns is not working correctly
 	  + see printout of computeActiveColumns
-	  + Remove all System.out.println used in Test_SpatialPooler
+	  + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)
 
   - Easy) Enforce global inhibition for performSpatialPooling(int percentOutput)
 	

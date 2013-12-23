@@ -9,8 +9,8 @@ real-time human brain. If you are interested in becoming a
 researcher/developer the only requirement is passion and a readiness to fail. 
  
 Here you will find classes that allow you to build a partial human brain model (currently
-the 1st version called MARK I), train MARK I on input data, view MARK I's activity as
-text and visual output, and test MARK I's ability to recognize objects. All of the code 
+the 1st version called MARK I), train it on input data, view its activity as
+text and visual output, and test its ability to recognize objects. All of the code 
 here supports modeling of the human brain at a high level of abstraction while still 
 allowing user access to individual neuron properties. If you are lost please watch the 
 following playlist to become familiar with the neuroscience behind this repository at:
@@ -29,7 +29,7 @@ Setup in Eclipse
   
 Setup in Gradle
 ===============
-1. Install Gradle with these [instructions](https://db.tt/DMF3ww2D)
+1. Install Gradle with these [instructions for Windows/Mac/Linux](https://db.tt/DMF3ww2D)
 
 2. Fork this repo and clone it locally
 
