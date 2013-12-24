@@ -52,10 +52,10 @@ like to work on. Happy coding!
 <h2>Setup WalnutiQ with Gradle in Linux/Mac/Windows</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
 ```
-unix> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
-unix> sudo unzip -q gradle-1.10-bin.zip -d /usr/local/
-unix> echo "export GRADLE_HOME=/usr/local/gradle-1.10" >> .profile
-unix> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
+linux> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
+linux> sudo unzip -q gradle-1.10-bin.zip -d /usr/local/
+linux> echo "export GRADLE_HOME=/usr/local/gradle-1.10" >> .profile
+linux> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
 ```
 
 2. Or install Gradle with these [instructions for Windows](https://db.tt/DMF3ww2D)
@@ -81,22 +81,22 @@ would like to work on. Happy coding!
 <h2>What each file/folder in this repository is for:</h2>
   - images
       + digits
-          - MNIST = Unique files that contain training images and testing images.
-      + model = Images used in testing the MARK I model
-  - libs = Contains .jar files needed to run the program
+          - MNIST = unique files that contain training images and testing images
+      + model = images used in testing the MARK I model
+  - libs = contains .jar files needed to run the program
   - src
       + model
-          - MARK_I = Classes containing the core logic for the brain model.MARK_I.
-                     Includes data structures for basic brain structures 
-                     and algorithms that simulate how the brain learns.     
-            + connectTypes = Classes allow the different brain components in MARK I to 
+          - MARK_I = the core logic for the partial brain model. Includes abstract data types
+          			 for basic brain structures and learning algorithms that simulate how 
+          			 the brain learns
+            + connectTypes = Classes allow the different brain structures in MARK I to 
                              connect to each other in a variety of ways
           - theory = Contains a class MemoryClassifier.java for identifying what
                      category a new image is in given a nervous system that has been 
-                     trained on images from this category   
-          - util = Classes that enable the brain model properties to be viewable
+                     trained on images from this category (Currently not working)
+          - util = Classes that enable the brain model properties to be viewed
                    graphically and efficiently saved and opened
-  - tests = test classes for important classes in src folder
+  - tests = test classes for important classes in the ```src/``` folder
       + model
           - MARK_I
             + connectTypes
@@ -104,14 +104,17 @@ would like to work on. Happy coding!
           - util 
   - train  
       + model
-          - MARK_I = Demonstrations of how to build and train a partial brain model
-                     on a popular handwritten digit data set
-  - .gitignore = Contains names of files not to add to this repository
-  - .project = When writing your code using the IDE this file will allow all of
+          - MARK_I = demonstrations of how to build and train a partial brain model
+                     on a popular handwritten digit data set called MNIST
+  - .gitignore = contains names of files/folders not to add to this repository
+  - .project = when writing your code using Eclipse this file will allow all of
                your files to be organized in the correct folder
-  - .travis.yml = Tells travis how to test files here
-  - MARKI_UML.jpg = UML diagram of all classes
-  - MARKI_UML.ucls = Creates the image file "MARKI_UML.jpg"
-  - README.md = The file you are reading right now!
-  - TODOList.md = List of research & programming tasks to do
-  - build.gradle = Builds this project using gradle
+  - .travis.yml = tells [our travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) how to test the files here
+  - MARKI_UML.jpg = UML diagram of all important classes for MARK I model
+  - MARKI_UML.ucls = creates the image file ```MARKI_UML.jpg```
+  - README.md = the file you are reading right now
+  - TODOList.md = list of research & programming tasks to do
+  - build.gradle = instructions for compiling the code in this repository using Gradle
+
+===============================================================
+Please contact me at quinnliu@vt.edu if you have any questions! 
