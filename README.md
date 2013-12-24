@@ -39,17 +39,17 @@ unix> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
 
 2. Or install Gradle with these [instructions for Windows](https://db.tt/DMF3ww2D)
 
-2. Fork this repo and clone it locally
+3. Fork this repo and clone it locally
 
-3. Navigate into the ```WalnutiQ/``` folder
+4. Navigate into the ```WalnutiQ/``` folder
 
-4. Type in the command line ```gradle build```
+5. Type in the command line ```gradle build```
 
-5. Go to the folder ```build/reports/tests/```. View the file ```index.html``` in a browser and make sure all tests pass!
+6. Go to the folder ```build/reports/tests/```. View the file ```index.html``` in a browser and make sure all tests pass!
 
-6. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
+7. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
 
-7. Happy coding!
+8. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>
   - images
@@ -79,15 +79,15 @@ unix> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
       + model
           - MARK_I = Demonstrations of how to build and train a partial brain model
                      on a popular handwritten digit data set
-  - .gitignore = contains names of files not to add to this repository
+  - .gitignore = Contains names of files not to add to this repository
   - .project = When writing your code using the IDE this file will allow all of
                your files to be organized in the correct folder
   - .travis.yml = Tells travis how to test files here
   - MARKI_UML.jpg = UML diagram of all classes
-  - MARKI_UML.ucls = creates the image file ```MARKI_UML.jpg```
-  - README.md = the file you are reading right now!
-  - TODOList.md = list of research & programming tasks to do
-  - build.gradle = builds this project using gradle
+  - MARKI_UML.ucls = Creates the image file "MARKI_UML.jpg"
+  - README.md = The file you are reading right now!
+  - TODOList.md = List of research & programming tasks to do
+  - build.gradle = Builds this project using gradle
   
 Most importantly, this research is made possible by the countless 
 neuroscientists and engineers at [Numenta](http://numenta.org/). Numenta has 
