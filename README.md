@@ -13,8 +13,8 @@ the 1st version called MARK I), train it on input data, view its activity as
 text and visual output, and test its ability to recognize objects. All of the code 
 here supports modeling of the human brain at a high level of abstraction while still 
 allowing user access to individual neuron properties. If you are lost please watch the 
-following playlist to become familiar with the neuroscience behind this repository at:
-http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f
+this [youtube playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
+to become familiar with the neuroscience behind this repository.
 
 <h2>Setup WalnutiQ in Eclipse</h2>
 1. Fork this repo and clone it locally. Then import it as a project into Eclipse.

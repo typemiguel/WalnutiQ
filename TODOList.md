@@ -4,6 +4,9 @@ Read First: Before working on a item below, please put your e-mail in the task [
 so that anyone else interested will be able to collaborate with you. Good luck!
 
 <h2>Researching Tasks</h2>
+  - Easy) Redraw MARK I and label it MARK 0 since we begin counting from 0 as computer scientists at www.walnutiq.com 
+    [quinnliu@vt.edu]
+
   - Hard) Finish implementation of Temporal Pooler and make a release for MARK I [quinnliu@vt.edu]
 
   - ???) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
@@ -50,7 +53,7 @@ so that anyone else interested will be able to collaborate with you. Good luck!
 	  Possible explanation: convergence micropasia
 
 <h2>Programming Tasks</h2>
-  - ???) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
+  - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
 
   - Very Hard) Implement TemporalPooler class. Use 50% done implementation from MARK 0.
     (Requires a lot of understanding of output of SpatialPooler class) [quinnliu@vt.edu]
