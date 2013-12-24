@@ -1,32 +1,41 @@
 WalnutiQ 
 ========
 
-[![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
+[![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)]
+(https://travis-ci.org/quinnliu/WalnutiQ)
 
 Welcome! WalnutiQ is a human brain model simulation in Java! 
-The goal of this repository is to store the code that can simulate a 
-real-time human brain. If you are interested in becoming a 
-researcher/developer the only requirement is passion and a readiness to fail. 
+The goal of this repository is to store the code that can 
+simulate a real-time human brain. If you are interested in 
+becoming a researcher/developer the only requirement is passion 
+and a readiness to fail. 
  
-Here you will find classes that allow you to build a partial human brain model (currently
-the 1st version called MARK I), train it on input data, view its activity as
-text and visual output, and test its ability to recognize objects. All of the code 
-here supports modeling of the human brain at a high level of abstraction while still 
-allowing user access to individual neuron properties. If you are lost please watch the 
-this [youtube playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
+Here you will find classes that allow you to build a partial 
+human brain model, train it on input data, view its activity 
+as text and visual output, and test its ability to recognize 
+objects. All of the code here supports modeling of the human 
+brain at a high level of abstraction while still allowing user
+access to individual neuron properties. If you are lost please 
+watch the this [youtube playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
 to become familiar with the neuroscience behind this repository.
 
 <h2>Setup WalnutiQ in Eclipse</h2>
-1. Fork this repo and clone it locally. Then import it as a project into Eclipse.
+1. Fork this repo and clone it locally. Then import it as a 
+project into Eclipse.
 
-2. In Eclipse, add all the libraries (.jar file) in the folder ```libs/``` by right-clicking your project in 
-   the package explorer => Build Path => Add External Archives...
+2. In Eclipse, add all the libraries (.jar file) in the folder 
+```libs/``` by right-clicking your project in the package explorer 
+=> Build Path => Add External Archives...
 
-3. In Eclipse, also add JUnit 4 & jre7 to your build path. Then right click the ```WalnutiQ/``` folder and select "Run As" => "JUnit Test". Make sure all tests pass!
+3. In Eclipse, also add JUnit 4 & jre7 to your build path. Then 
+right click the ```WalnutiQ/``` folder and select "Run As" => 
+"JUnit Test". Make sure all tests pass!
 
-4. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
+4. View an example of how all the code is used in the file: 
+```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
 
-5. View the [TODO List](./TODOList.md) and find a task you would like to work on. Happy coding!
+5. View the [TODO List](./TODOList.md) and find a task you would 
+like to work on. Happy coding!
   
 <h2>Setup WalnutiQ with Gradle in Linux/Mac/Windows</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
@@ -43,19 +52,23 @@ unix> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
 
 4. Navigate into the ```WalnutiQ/``` folder
 
-5. Type in the command line ```gradle build```. This may take a minute so no worries.
+5. Type in the command line ```gradle build```. This may take 
+a minute so no worries.
 
-6. Go to the folder ```build/reports/tests/```. View the file ```index.html``` in a browser and make sure all tests pass!
+6. Go to the folder ```build/reports/tests/```. View the file 
+```index.html``` in a browser and make sure all tests pass!
 
-7. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
+7. View an example of how all the code is used in the file: 
+```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
 
-8. View the [TODO List](./TODOList.md) and find a task you would like to work on. Happy coding!
+8. View the [TODO List](./TODOList.md) and find a task you 
+would like to work on. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>
   - images
       + digits
           - MNIST = Unique files that contain training images and testing images.
-      + model = Images used in testing the MARK II model
+      + model = Images used in testing the MARK I model
   - libs = Contains .jar files needed to run the program
   - src
       + model
