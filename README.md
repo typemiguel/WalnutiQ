@@ -32,7 +32,9 @@ right click the ```WalnutiQ/``` folder and select "Run As" =>
 "JUnit Test". Make sure all tests pass!
 
 4. View an example of how all the code is used in the file: 
-```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
+```
+WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java
+```
 
 5. View the [TODO List](./TODOList.md) and find a task you would 
 like to work on. Happy coding!
@@ -59,7 +61,9 @@ a minute so no worries.
 ```index.html``` in a browser and make sure all tests pass!
 
 7. View an example of how all the code is used in the file: 
-```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
+```
+WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java
+```
 
 8. View the [TODO List](./TODOList.md) and find a task you 
 would like to work on. Happy coding!
