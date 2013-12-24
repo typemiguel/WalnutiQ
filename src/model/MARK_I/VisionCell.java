@@ -4,7 +4,7 @@ package model.MARK_I;
  * A data structure that represents a single VisionCell within the Retina.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | April 4, 2013
+ * @version April 4, 2013
  */
 public class VisionCell extends SensorCell {
 

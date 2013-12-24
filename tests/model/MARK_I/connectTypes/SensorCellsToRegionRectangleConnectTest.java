@@ -10,7 +10,7 @@ import model.MARK_I.VisionCell;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 13, 2013
+ * @version June 13, 2013
  */
 public class SensorCellsToRegionRectangleConnectTest extends
 	junit.framework.TestCase {

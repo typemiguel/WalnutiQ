@@ -28,7 +28,7 @@ import model.MARK_I.Cell;
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version MARK I | June 8, 2013
+ * @version June 8, 2013
  * @param <Cell>
  *            A synapse can be connected to either a SensorCell or a Neuron.
  */

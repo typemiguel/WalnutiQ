@@ -13,7 +13,7 @@ import java.util.HashSet;
  * Neocortex for object recognition.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 29, 2013
+ * @version July 29, 2013
  */
 public class SpatialPooler extends Pooler {
     private Set<Column> activeColumns;

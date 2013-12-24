@@ -7,10 +7,9 @@ import model.MARK_I.Column;
 import model.MARK_I.Neocortex;
 import model.MARK_I.Region;
 
-
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 13, 2013
+ * @version June 13, 2013
  */
 public class NeocortexTest extends junit.framework.TestCase {
     private Neocortex neocortex;
@@ -30,6 +29,7 @@ public class NeocortexTest extends junit.framework.TestCase {
 
 	this.neocortex.addToCurrentRegion(childRegion);
 
-	assertEquals(64, columns[0][0].getProximalSegment().getSynapses().size());
+	assertEquals(64, columns[0][0].getProximalSegment().getSynapses()
+		.size());
     }
 }

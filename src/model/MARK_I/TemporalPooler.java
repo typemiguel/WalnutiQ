@@ -32,7 +32,7 @@ import java.util.Set;
  * -----------------------------------------------------------------------
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | August 24, 2013
+ * @version August 24, 2013
  */
 public class TemporalPooler extends Pooler {
 

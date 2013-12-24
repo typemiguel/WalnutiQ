@@ -12,7 +12,7 @@ import java.awt.Dimension;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 29, 2013
+ * @version July 29, 2013
  */
 public class RegionTest extends junit.framework.TestCase {
     private Region region;

@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 18, 2013
+ * @version July 18, 2013
  */
 public class SensorCellsToRegionRandomConnect implements
 	SensorCellsToRegionConnect {

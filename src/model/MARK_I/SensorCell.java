@@ -6,7 +6,7 @@ package model.MARK_I;
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version MARK I | April 4, 2013
+ * @version April 4, 2013
  */
 public abstract class SensorCell extends Cell {
     public SensorCell() {

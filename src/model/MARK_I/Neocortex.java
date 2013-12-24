@@ -15,7 +15,7 @@ import model.MARK_I.connectTypes.RegionToRegionConnect;
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version MARK I | June 8, 2013
+ * @version June 8, 2013
  */
 public class Neocortex {
     private Region rootRegion;

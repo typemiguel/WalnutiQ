@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * more of the Pooler algorithms.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 29, 2013
+ * @version July 29, 2013
  */
 public class Region {
     private String biologicalName;

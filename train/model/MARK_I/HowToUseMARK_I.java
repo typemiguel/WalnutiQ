@@ -24,7 +24,7 @@ import model.LateralGeniculateNucleus;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 26, 2013
+ * @version June 26, 2013
  */
 public class HowToUseMARK_I extends junit.framework.TestCase {
     private NervousSystem nervousSystem;

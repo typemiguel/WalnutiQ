@@ -10,7 +10,7 @@ import java.awt.Dimension;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 18, 2013
+ * @version June 18, 2013
  */
 public class RegionConsoleViewer {
     /**

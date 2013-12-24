@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | August 8, 2013
+ * @version August 8, 2013
  */
 public class SegmentUpdateList {
     List<SegmentUpdate> segmentUpdates;

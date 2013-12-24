@@ -4,7 +4,7 @@ import model.MARK_I.ColumnPosition;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 18, 2013
+ * @version June 18, 2013
  */
 public class ColumnPositionTest extends junit.framework.TestCase {
     private ColumnPosition columnPosition69;

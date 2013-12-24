@@ -12,7 +12,7 @@ import java.util.HashSet;
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version MARK I | July 22, 2013
+ * @version July 22, 2013
  */
 public class Neuron extends Cell {
     private boolean isPredicting; // biologically equivalent to depolarized

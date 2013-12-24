@@ -16,7 +16,7 @@ import model.util.JsonFileInputOutput;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 26, 2013
+ * @version June 26, 2013
  */
 public class JsonFileInputOutputTest extends junit.framework.TestCase {
     private Gson gson;

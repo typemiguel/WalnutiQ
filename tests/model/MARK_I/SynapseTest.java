@@ -6,7 +6,7 @@ import model.MARK_I.VisionCell;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 8, 2013
+ * @version June 8, 2013
  */
 public class SynapseTest extends junit.framework.TestCase {
     private VisionCell visionCell_1;

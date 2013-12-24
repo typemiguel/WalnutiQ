@@ -17,7 +17,7 @@ import model.MARK_I.Segment.SynapseUpdateState;
  *    - increase permanences of all active Synapses on itself
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 22, 2013
+ * @version July 22, 2013
  */
 public class SegmentTest extends junit.framework.TestCase {
     private Segment proximalSegment;

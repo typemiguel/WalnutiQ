@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 18, 2013
+ * @version June 18, 2013
  */
 public class IdeaTest extends junit.framework.TestCase {
     private Idea idea;

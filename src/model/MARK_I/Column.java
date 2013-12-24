@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Output from Column: if this Column is active or not during spatial pooling.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 29, 2013
+ * @version July 29, 2013
  */
 public class Column {
     // also stored as number of active Synapses. This variable is created so

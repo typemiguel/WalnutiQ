@@ -10,7 +10,7 @@ import java.util.Set;
  * current input on a trained or untrained Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 18, 2013
+ * @version June 18, 2013
  */
 public class MemoryClassifier {
     private Set<ColumnPosition> regionOutput;

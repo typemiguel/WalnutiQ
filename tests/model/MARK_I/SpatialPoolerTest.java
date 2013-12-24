@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 29, 2013
+ * @version July 29, 2013
  */
 public class SpatialPoolerTest extends junit.framework.TestCase {
 

@@ -8,7 +8,7 @@ import model.MARK_I.Region;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 13, 2013
+ * @version June 13, 2013
  */
 public class RegionToRegionRectangleConnectTest extends
 	junit.framework.TestCase {

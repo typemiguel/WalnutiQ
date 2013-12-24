@@ -8,7 +8,7 @@ import model.MARK_I.VisionCell;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 22, 2013
+ * @version July 22, 2013
  */
 public class NeuronTest extends junit.framework.TestCase {
     private Neuron neuron;

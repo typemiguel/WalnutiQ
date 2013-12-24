@@ -12,7 +12,7 @@ import java.io.BufferedWriter;
  * it is very efficient.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 26, 2013
+ * @version June 26, 2013
  */
 public class JsonFileInputOutput {
 

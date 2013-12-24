@@ -6,7 +6,7 @@ package model.MARK_I;
  * Output from ProximalSegment: whether or not this Segment is currently active.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 22, 2013
+ * @version July 22, 2013
  */
 public class ProximalSegment extends Segment {
 

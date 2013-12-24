@@ -5,7 +5,7 @@ import model.MARK_I.Neuron;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | August 3, 2013
+ * @version August 3, 2013
  */
 public class ColumnTest extends junit.framework.TestCase {
     private Column column;

@@ -8,7 +8,7 @@ import model.MARK_I.Region;
  * Output of LGN: activity of Neurons from this Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 5, 2013
+ * @version June 5, 2013
  */
 public class LateralGeniculateNucleus {
     private Region region;

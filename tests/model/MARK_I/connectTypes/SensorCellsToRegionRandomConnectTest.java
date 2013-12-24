@@ -8,7 +8,7 @@ import model.MARK_I.VisionCell;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 14th, 2013
+ * @version July 14th, 2013
  */
 public class SensorCellsToRegionRandomConnectTest extends
 	junit.framework.TestCase {

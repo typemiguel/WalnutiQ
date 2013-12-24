@@ -5,7 +5,7 @@ import model.MARK_I.SensorCell;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 7, 2013
+ * @version June 7, 2013
  */
 public class SensorCellsToRegionCircleConnect implements SensorCellsToRegionConnect {
 

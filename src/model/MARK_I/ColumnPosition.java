@@ -4,7 +4,7 @@ package model.MARK_I;
  * Represents the position of a Column within a Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 18, 2013
+ * @version June 18, 2013
  */
 public class ColumnPosition {
     private int x; // x position within Region

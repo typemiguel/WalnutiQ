@@ -14,7 +14,7 @@ import model.Retina;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 29, 2013
+ * @version July 29, 2013
  */
 public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
     SynapsePermanencesViewer spv;

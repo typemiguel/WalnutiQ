@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 23, 2013
+ * @version June 23, 2013
  */
 public class MemoryTest extends junit.framework.TestCase {
     private Memory memory;

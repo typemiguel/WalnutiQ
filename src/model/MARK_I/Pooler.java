@@ -4,7 +4,7 @@ package model.MARK_I;
  * Abstract class extended by SpatialPooler.java and TemporalPooler.java classes.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | June 26, 2013
+ * @version June 26, 2013
  */
 public abstract class Pooler {
     protected Region region;

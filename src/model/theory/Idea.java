@@ -14,7 +14,7 @@ import java.util.Set;
  * properties to active a specific set of Columns.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 2, 2013
+ * @version July 2, 2013
  */
 public class Idea {
     private String name;

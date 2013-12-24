@@ -21,7 +21,7 @@ import model.Retina;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 5, 2013
+ * @version July 5, 2013
  */
 public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
     private Retina retina;

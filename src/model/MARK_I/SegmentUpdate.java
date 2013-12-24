@@ -5,7 +5,7 @@ import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | August 11, 2013
+ * @version August 11, 2013
  */
 public class SegmentUpdate {
     // segment index (-1 if its a new segment)

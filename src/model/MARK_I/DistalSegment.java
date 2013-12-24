@@ -7,7 +7,7 @@ package model.MARK_I;
  * previously active, or a sequence Segment.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version MARK I | July 22, 2013
+ * @version July 22, 2013
  */
 public class DistalSegment extends Segment {
     private boolean wasActive;
