@@ -16,8 +16,8 @@ allowing user access to individual neuron properties. If you are lost please wat
 following playlist to become familiar with the neuroscience behind this repository at:
 http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f
 
-Setup in Eclipse 
-================
+Setup WalnutiQ in Eclipse 
+=========================
 1. Fork this repo and clone it locally. Then import it as a project into Eclipse.
 
 2. In Eclipse, add all the libraries (.jar file) in the folder ```libs/``` by right-clicking your project in 
@@ -27,9 +27,17 @@ Setup in Eclipse
 
 4. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
   
-Setup in Gradle
-===============
-1. Install Gradle with these [instructions for Windows/Mac/Linux](https://db.tt/DMF3ww2D)
+Setup WalnutiQ with Gradle in Linux/Windows/Mac
+===============================================
+1. Install Gradle in Linux OR Mac by typing to the command line:
+```
+unix> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
+unix> sudo unzip -q gradle-1.10-bin.zip -d /usr/local/
+unix> echo "export GRADLE_HOME=/usr/local/gradle-1.10" >> .profile
+unix> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
+```
+
+2. Install Gradle with these [instructions for Windows](https://db.tt/DMF3ww2D)
 
 2. Fork this repo and clone it locally
 
@@ -41,7 +49,8 @@ Setup in Gradle
 
 6. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
 
-<h4>What each file or folder in this repository is for:</h4>
+What each file/folder in this repository is for:
+===================================================
   - images
       + digits
           - MNIST = Unique files that contain training images and testing images.
