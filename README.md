@@ -26,7 +26,7 @@ http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f
 
 4. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
 
-5. Happy coding!
+5. View the [TODO List](./TODOList.md) and find a task you would like to work on. Happy coding!
   
 <h2>Setup WalnutiQ with Gradle in Linux/Mac/Windows</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
@@ -43,13 +43,13 @@ unix> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
 
 4. Navigate into the ```WalnutiQ/``` folder
 
-5. Type in the command line ```gradle build```
+5. Type in the command line ```gradle build```. This may take a minute so no worries.
 
 6. Go to the folder ```build/reports/tests/```. View the file ```index.html``` in a browser and make sure all tests pass!
 
 7. View an example of how all the code is used in the file: ```WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java```
 
-8. Happy coding!
+8. View the [TODO List](./TODOList.md) and find a task you would like to work on. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>
   - images
