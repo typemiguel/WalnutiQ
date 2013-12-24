@@ -19,6 +19,15 @@ access to individual neuron properties. If you are lost please
 watch the this [youtube playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
 to become familiar with the neuroscience behind this repository.
 
+Most importantly, this research is made possible by the countless 
+neuroscientists and engineers at [Numenta](http://numenta.org/). 
+Numenta has designed a exciting new technology that accurately models 
+layers 3 & 4 of the human neocortex (75% of the brain). They have 
+generously released the pseudocode for their algorithms and this 
+repository is an extensioned implementation of their algorithms 
+using object-oriented programming. View a long (but great) explanation 
+of their research by reading their [white paper](https://db.tt/FuQWQuwE).
+
 <h2>Setup WalnutiQ in Eclipse</h2>
 1. Fork this repo and clone it locally. Then import it as a 
 project into Eclipse.
@@ -105,10 +114,3 @@ would like to work on. Happy coding!
   - README.md = The file you are reading right now!
   - TODOList.md = List of research & programming tasks to do
   - build.gradle = Builds this project using gradle
-  
-Most importantly, this research is made possible by the countless 
-neuroscientists and engineers at [Numenta](http://numenta.org/). Numenta has 
-designed a exciting new technology that accurately models the human 
-neocortex. They have generously released the pseudocode for their algorithms and this 
-repository is an extensioned implementation of their algorithms using object-oriented 
-programming.
