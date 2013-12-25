@@ -6,9 +6,9 @@ WalnutiQ
 
 Welcome! WalnutiQ is a human brain model simulation in Java! 
 The goal of this repository is to store the code that can 
-simulate a real-time human brain. If you are interested in 
-becoming a researcher/developer the only requirement is passion 
-and a readiness to fail. 
+simulate a human brain in real-time. If you are interested in 
+becoming a researcher/developer the only requirement is passion.
+If you are lucky enough to have found it we will work well together.
  
 Here you will find classes that allow you to build a partial 
 human brain model, train it on input data, view its activity 
@@ -16,21 +16,21 @@ as text and visual output, and test its ability to recognize
 objects. All of the code here supports modeling of the human 
 brain at a high level of abstraction while still allowing user
 access to individual neuron properties. If you are lost please 
-watch the this [youtube playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
+watch this [video playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
 to become familiar with the neuroscience behind this repository.
 
 Most importantly, this research is made possible by the intelligent
 neuroscientists and engineers at [Numenta](http://numenta.org/). 
 Numenta has designed a exciting new technology that accurately models 
 layers 3 & 4 of the human neocortex. They have generously released 
-the pseudocode for their algorithms and this repository is an 
+the pseudocode for their learning algorithms and this repository is an 
 extensioned implementation of their algorithms using object-oriented 
 programming. Make sure to read Numenta's long (but great) explanation 
-of their research by reading their [white paper](https://db.tt/FuQWQuwE) 
+of their research in this [white paper](https://db.tt/FuQWQuwE) 
 to better understand the theory behind this repository.
 
 <h2>Setup WalnutiQ in Eclipse</h2>
-1. Fork this repo and clone it locally. Then import it as a 
+1. Fork this repository and clone it locally. Then import it as a 
 project into Eclipse.
 
 2. In Eclipse, add all the libraries (.jar file) in the folder 
@@ -60,22 +60,19 @@ linux> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
 
 2. Or install Gradle with these [instructions for Windows](https://db.tt/DMF3ww2D)
 
-3. Fork this repo and clone it locally
+3. Fork this repo and clone it locally. Navigate into the ```WalnutiQ/``` folder
 
-4. Navigate into the ```WalnutiQ/``` folder
+4. Type in the command line ```gradle build```. This may take a minute so no worries.
 
-5. Type in the command line ```gradle build```. This may take 
-a minute so no worries.
-
-6. Go to the folder ```build/reports/tests/```. View the file 
+5. Go to the folder ```build/reports/tests/```. View the file 
 ```index.html``` in a browser and make sure all tests pass!
 
-7. View an example of how all the code is used in the file: 
+6. View an example of how all the code is used in the file: 
 ```
 WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java
 ```
 
-8. View the [TODO List](./TODOList.md) and find a task you 
+7. View the [TODO List](./TODOList.md) and find a task you 
 would like to work on. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>
@@ -89,12 +86,12 @@ would like to work on. Happy coding!
           - MARK_I = the core logic for the partial brain model. Includes abstract data types
           			 for basic brain structures and learning algorithms that simulate how 
           			 the brain learns
-            + connectTypes = Classes allow the different brain structures in MARK I to 
+            + connectTypes = classes allow the different brain structures in MARK I to 
                              connect to each other in a variety of ways
-          - theory = Contains a class MemoryClassifier.java for identifying what
+          - theory = contains a class MemoryClassifier.java for identifying what
                      category a new image is in given a nervous system that has been 
                      trained on images from this category (Currently not working)
-          - util = Classes that enable the brain model properties to be viewed
+          - util = classes that enable the brain model properties to be viewed
                    graphically and efficiently saved and opened
   - tests = test classes for important classes in the ```src/``` folder
       + model
@@ -109,7 +106,8 @@ would like to work on. Happy coding!
   - .gitignore = contains names of files/folders not to add to this repository
   - .project = when writing your code using Eclipse this file will allow all of
                your files to be organized in the correct folder
-  - .travis.yml = tells [our travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) how to test the files here
+  - .travis.yml = tells [our custom travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) 
+    how to test the files here
   - MARKI_UML.jpg = UML diagram of all important classes for MARK I model
   - MARKI_UML.ucls = creates the image file ```MARKI_UML.jpg```
   - README.md = the file you are reading right now
