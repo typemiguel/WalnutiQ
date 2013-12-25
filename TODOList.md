@@ -53,6 +53,8 @@ so that anyone else interested will be able to collaborate with you. Good luck!
 	  Possible explanation: convergence micropasia
 
 <h2>Programming Tasks</h2>
+  - ???) Consider following ideas about interfaces: http://codereview.stackexchange.com/questions/38060/review-of-java-interface-for-constructing-brain-model/38065?noredirect=1#38065
+  
   - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
 
   - Very Hard) Implement TemporalPooler class. Use 50% done implementation from MARK 0.
