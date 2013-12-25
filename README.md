@@ -30,24 +30,18 @@ of their research in this [white paper](https://db.tt/FuQWQuwE)
 to better understand the theory behind this repository.
 
 <h2>Setup WalnutiQ in Eclipse</h2>
-1. Fork this repository and clone it locally. Then import it as a 
+1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
+
+2. Fork this repository and clone it locally. Then import it as a 
 project into Eclipse.
 
-2. In Eclipse, add all the libraries (.jar file) in the folder 
+3. In Eclipse, add all the libraries (.jar file) in the folder 
 ```libs/``` by right-clicking your project in the package explorer 
 => Build Path => Add External Archives...
 
-3. In Eclipse, also add JUnit 4 & jre7 to your build path. Then 
+4. In Eclipse, also add JUnit 4 & jre7 to your build path. Then 
 right click the ```WalnutiQ/``` folder and select "Run As" => 
 "JUnit Test". Make sure all tests pass!
-
-4. View an example of how all the code is used in the file: 
-```
-WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java
-```
-
-5. View the [TODO List](./TODOList.md) and find a task you would 
-like to work on. Happy coding!
   
 <h2>Setup WalnutiQ with Gradle in Linux/Mac/Windows</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
@@ -63,16 +57,18 @@ linux> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
 3. Fork this repo and clone it locally. Navigate into the ```WalnutiQ/``` folder
 
 4. Type in the command line ```gradle build```. This may take a minute so no worries.
+Go to the folder ```build/reports/tests/```. View the file ```index.html``` in 
+a browser and make sure all tests pass!
 
-5. Go to the folder ```build/reports/tests/```. View the file 
-```index.html``` in a browser and make sure all tests pass!
+Getting Started
+===============
 
-6. View an example of how all the code is used in the file: 
+1. View an example of how all the code is used in the file: 
 ```
 WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java
 ```
 
-7. View the [TODO List](./TODOList.md) and find a task you 
+2. View the [TODO List](./TODOList.md) and find a task you 
 would like to work on. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>
