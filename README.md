@@ -29,7 +29,7 @@ programming. Make sure to read Numenta's long (but great) explanation
 of their research in this [white paper](https://db.tt/FuQWQuwE) 
 to better understand the theory behind this repository.
 
-<h2>Setup WalnutiQ in Eclipse</h2>
+<h2>Setup WalnutiQ with Eclipse in Linux/Mac/Windows</h2>
 1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
 
 2. Fork this repository and clone it locally. Then import it as a 
