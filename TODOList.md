@@ -51,6 +51,8 @@ so that anyone else interested will be able to collaborate with you. Good luck!
   - Hard) Finish implementation of Temporal Pooler and make a release for MARK I [quinnliu@vt.edu]
 
   - ???) Consider following ideas about interfaces: http://codereview.stackexchange.com/questions/38060/review-of-java-interface-for-constructing-brain-model/38065?noredirect=1#38065
+
+  - ???) Learn Swarming and see if it is worth implementing https://github.com/numenta/nupic/wiki/Swarming-Algorithm
   
   - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
 
