@@ -1,6 +1,8 @@
 WalnutiQ 
 ========
 
+"*find a way*" - Diana Nyad
+
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)]
 (https://travis-ci.org/quinnliu/WalnutiQ)
 
@@ -110,6 +112,5 @@ would like to work on. Happy coding!
   - TODOList.md = list of research & programming tasks to do
   - build.gradle = instructions for compiling the code in this repository using Gradle
 
-Cool quote: "*find a way*" - Diana Nyad
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 
