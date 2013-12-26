@@ -29,7 +29,7 @@ programming. Make sure to read Numenta's long (but great) explanation
 of their research in this [white paper](https://db.tt/FuQWQuwE) 
 to better understand the theory behind this repository.
 
-<h2>Setup WalnutiQ with Eclipse in Linux/Mac/Windows</h2>
+<h2>Setup in Linux/Mac/Windows with Eclipse</h2>
 1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
 
 2. Fork this repository and clone it locally. Then import it as a 
@@ -43,7 +43,7 @@ project into Eclipse.
 right click the ```WalnutiQ/``` folder and select "Run As" => 
 "JUnit Test". Make sure all tests pass!
   
-<h2>Setup WalnutiQ with Gradle in Linux/Mac/Windows</h2>
+<h2>Setup in Linux/Mac/Windows with Gradle</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
 ```
 linux> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
@@ -110,5 +110,6 @@ would like to work on. Happy coding!
   - TODOList.md = list of research & programming tasks to do
   - build.gradle = instructions for compiling the code in this repository using Gradle
 
+Cool quote: "*find a way*" - Diana Nyad
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 
