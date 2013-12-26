@@ -13,7 +13,7 @@ so that anyone else interested will be able to collaborate with you. Good luck!
 	  + input picture => active cells from bottom region to top region => motor output => next 
 	  input picture! Draw complete picture
 
-  - Easy) Draw MARK II with 2 regions layer 3 of lower region connecting to layer 3 of upper region
+  - Easy) Draw MARK I with 2 regions layer 3 of lower region connecting to layer 3 of upper region
 
   - Hard) Begin drawing detailed diagram of connections in the human brain with 2 retine
 	  Retina=>LGN =>V1 =>V2 =>V4=>IT (Reference [1]) 
@@ -29,7 +29,7 @@ so that anyone else interested will be able to collaborate with you. Good luck!
     works, making a sound wave in the environment into an electrical signal
 
   - Hard) Write up a easy/intuitive explanation of how the illusion of the Hermann grid is created
-    using WalnutiQ MARK II model:
+    using WalnutiQ MARK I model:
     + https://www.dropbox.com/s/03a9sujz36xj5vw/2013-06-17%2010.40.44.jpg
     + http://www.nku.edu/~issues/illusions/HermannGrid.htm
 
@@ -69,7 +69,7 @@ so that anyone else interested will be able to collaborate with you. Good luck!
   - Medium) Iterate through a directory during training instead of one image file. 
 	  + http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
 
-  - Very Hard) Train MARK II on MNIST handwritten digit dataset 
+  - Very Hard) Train MARK I on MNIST handwritten digit dataset 
 
   - Easy) Exceptions for Temporal class when done implementation
 
