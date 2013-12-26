@@ -9,8 +9,8 @@ WalnutiQ
 Welcome! WalnutiQ is a human brain model simulation in Java! 
 The goal of this repository is to store the code that can 
 simulate a human brain in real-time. If you are interested in 
-becoming a researcher/developer the only requirement is passion.
-If you are lucky enough to have found it we will work well together.
+becoming a researcher/developer the only requirement is passion
+for understanding the brain.
  
 Here you will find classes that allow you to build a partial 
 human brain model, train it on input data, view its activity 
@@ -71,7 +71,8 @@ WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java
 ```
 
 2. View the [TODO List](./TODOList.md) and find a task you 
-would like to work on. Happy coding!
+would like to work on or suggest a new task if you kind of know what you
+are doing. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>
   - images

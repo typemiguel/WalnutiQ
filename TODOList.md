@@ -4,6 +4,8 @@ Read First: Before working on a item below, please put your e-mail in the task [
 so that anyone else interested will be able to collaborate with you. Good luck!
 
 <h2>Researching Tasks</h2>
+  - Easy) Label MARK NULLA image at www.walnutiq.com
+
   - Hard) Finish implementation of Temporal Pooler and make a release for MARK I [quinnliu@vt.edu]
 
   - ???) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
