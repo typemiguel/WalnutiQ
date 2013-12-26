@@ -4,10 +4,6 @@ Read First: Before working on a item below, please put your e-mail in the task [
 so that anyone else interested will be able to collaborate with you. Good luck!
 
 <h2>Researching Tasks</h2>
-  - Easy) Label MARK NULLA image at www.walnutiq.com
-
-  - Hard) Finish implementation of Temporal Pooler and make a release for MARK I [quinnliu@vt.edu]
-
   - ???) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
 
   - Hard) Decide how to implement optical pathway.
@@ -52,6 +48,8 @@ so that anyone else interested will be able to collaborate with you. Good luck!
 	  Possible explanation: convergence micropasia
 
 <h2>Programming Tasks</h2>
+  - Hard) Finish implementation of Temporal Pooler and make a release for MARK I [quinnliu@vt.edu]
+
   - ???) Consider following ideas about interfaces: http://codereview.stackexchange.com/questions/38060/review-of-java-interface-for-constructing-brain-model/38065?noredirect=1#38065
   
   - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
