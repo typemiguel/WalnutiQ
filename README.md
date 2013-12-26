@@ -43,7 +43,7 @@ project into Eclipse.
 
 4. In Eclipse, also add JUnit 4 & jre7 to your build path. Then 
 right click the ```WalnutiQ/``` folder and select "Run As" => 
-"JUnit Test". Make sure all tests pass!
+JUnit Test. Make sure all tests pass!
   
 <h2>Setup in Linux/Mac/Windows with Gradle</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
