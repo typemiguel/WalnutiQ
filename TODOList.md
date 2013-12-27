@@ -4,8 +4,6 @@ Read First: Before working on a item below, please put your e-mail in the task [
 so that anyone else interested will be able to collaborate with you. Good luck!
 
 <h2>Researching Tasks</h2>
-  - Easy) Send e-mails to interested groups [quinnliu@vt.edu]
-
   - ???) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
 
   - Hard) Decide how to implement optical pathway.
@@ -54,7 +52,8 @@ so that anyone else interested will be able to collaborate with you. Good luck!
 
   - ???) Consider following ideas about interfaces: http://codereview.stackexchange.com/questions/38060/review-of-java-interface-for-constructing-brain-model/38065?noredirect=1#38065
 
-  - ???) Learn Swarming and see if it is worth implementing https://github.com/numenta/nupic/wiki/Swarming-Algorithm
+  - ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
+  https://github.com/numenta/nupic/wiki/Swarming-Algorithm
   
   - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
 
