@@ -292,7 +292,7 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="33" language="java" name="model.Retina" project="WalnutiQ" file="/WalnutiQ/src/model/Retina.java" 
+  <class id="33" language="java" name="model.Retine" project="WalnutiQ" file="/WalnutiQ/src/model/Retine.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="153" width="164" x="78" y="490"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 

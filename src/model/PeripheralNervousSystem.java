@@ -8,7 +8,7 @@ public class PeripheralNervousSystem {
     private SomaticNervousSystem SNS;
     // private AutonomicNervousSystem ANS;
 
-    public PeripheralNervousSystem(Retina retina) {
+    public PeripheralNervousSystem(Retine retina) {
 	this.SNS = new SomaticNervousSystem(retina);
 	// this.ANS = null;
     }

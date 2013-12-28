@@ -10,7 +10,7 @@ public class NervousSystem {
     private CentralNervousSystem CNS;
     private PeripheralNervousSystem PNS;
 
-    public NervousSystem(Neocortex neocortex, LateralGeniculateNucleus LGN, Retina retina) {
+    public NervousSystem(Neocortex neocortex, LateralGeniculateNucleus LGN, Retine retina) {
 	this.CNS = new CentralNervousSystem(neocortex, LGN);
 	this.PNS = new PeripheralNervousSystem(retina);
     }

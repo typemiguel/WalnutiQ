@@ -17,14 +17,14 @@ import java.util.Set;
 import model.theory.MemoryClassifier;
 import java.io.IOException;
 import mnist.tools.MnistManager;
-import model.Retina;
+import model.Retine;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version July 5, 2013
  */
 public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
-    private Retina retina;
+    private Retine retina;
     private Region region_LGN;
     private SpatialPooler spatialPooler;
 
@@ -62,7 +62,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 		visionCells[x][y] = new VisionCell();
 	    }
 	}
-	this.retina = new Retina(visionCells);
+	this.retina = new Retine(visionCells);
 
 	// TODO: size of region can be 4, 7, 14
 	// TODO: percentMinimumOverlapScore = 1 to 99

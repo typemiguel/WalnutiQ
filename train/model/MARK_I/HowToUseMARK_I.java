@@ -18,7 +18,7 @@ import model.theory.Memory;
 import java.util.Set;
 import model.theory.Idea;
 import java.io.IOException;
-import model.Retina;
+import model.Retine;
 import model.NervousSystem;
 import model.LateralGeniculateNucleus;
 
@@ -28,14 +28,16 @@ import model.LateralGeniculateNucleus;
  */
 public class HowToUseMARK_I extends junit.framework.TestCase {
     private NervousSystem nervousSystem;
-    private MemoryClassifier memoryClassifier_Digits;
 
     private Gson gson;
+    private MemoryClassifier memoryClassifier_Digits;
 
     public void setUp() throws IOException {
-	this.gson = new Gson();
 	this.nervousSystem = this.constructConnectedNervousSystem();
-	this.memoryClassifier_Digits = this.trainMemoryClassifierWithNervousSystem();
+
+	this.gson = new Gson();
+	this.memoryClassifier_Digits = this
+		.trainMemoryClassifierWithNervousSystem();
     }
 
     private NervousSystem constructConnectedNervousSystem() {
@@ -50,28 +52,28 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	LateralGeniculateNucleus unconnectedLGN = new LateralGeniculateNucleus(
 		LGNRegion);
 
-	// construct Retina
+	// construct Retine
 	VisionCell[][] visionCells = new VisionCell[65][65];
 	for (int x = 0; x < visionCells.length; x++) {
 	    for (int y = 0; y < visionCells[0].length; y++) {
 		visionCells[x][y] = new VisionCell();
 	    }
 	}
-	Retina unconnectedRetina = new Retina(visionCells);
+	Retine unconnectedRetina = new Retine(visionCells);
 
 	// construct 1 object of NervousSystem to encapsulate all classes in
-	// MARK II
+	// MARK I
 	NervousSystem nervousSystem = new NervousSystem(unconnectedNeocortex,
 		unconnectedLGN, unconnectedRetina);
 
-	// connect Retina to LGN
-	Retina retina = nervousSystem.getPNS().getSNS().getRetina();
+	// connect Retine to LGN
+	Retine retine = nervousSystem.getPNS().getSNS().getRetina();
 
 	LateralGeniculateNucleus LGN = nervousSystem.getCNS().getBrain()
 		.getThalamus().getLGN();
 
 	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
-	retinaToLGN.connect(retina.getVisionCells(), LGN.getRegion(), 0, 0);
+	retinaToLGN.connect(retine.getVisionCells(), LGN.getRegion(), 0, 0);
 
 	// connect LGN to V1 Region of Neocortex
 	Neocortex neocortex = nervousSystem.getCNS().getBrain().getCerebrum()
@@ -85,7 +87,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 
     private MemoryClassifier trainMemoryClassifierWithNervousSystem()
 	    throws IOException {
-	Retina retina = nervousSystem.getPNS().getSNS().getRetina();
+	Retine retina = nervousSystem.getPNS().getSNS().getRetina();
 
 	Region LGNRegion = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();
@@ -99,14 +101,15 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
 	spatialPooler.setLearningState(true);
 	spatialPooler.performSpatialPoolingOnRegion();
-	Set<ColumnPosition> LGNNeuronActivity = spatialPooler.getActiveColumnPositions();
+	Set<ColumnPosition> LGNNeuronActivity = spatialPooler
+		.getActiveColumnPositions();
 
 	assertEquals(11, LGNNeuronActivity.size());
 
 	// save LGNRegion to be viewed
-	//String regionObject = this.gson1.toJson(LGNRegion);
-	//JsonFileInputOutput.saveObjectToTextFile(regionObject,
-	//	"./train/model/MARK_I/Region_LGN.txt");
+	// String regionObject = this.gson1.toJson(LGNRegion);
+	// JsonFileInputOutput.saveObjectToTextFile(regionObject,
+	// "./train/model/MARK_I/Region_LGN.txt");
 
 	Idea twoIdea = new Idea("two", LGNRegion);
 	twoIdea.unionColumnPositions(LGNNeuronActivity);
@@ -116,10 +119,12 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 
 	// TODO: train LGNStructure on many more different images of 2's
 
-	MemoryClassifier memoryClassifier_digits = new MemoryClassifier(digitsMemory);
+	MemoryClassifier memoryClassifier_digits = new MemoryClassifier(
+		digitsMemory);
 
 	// save MemoryClassifier object as a JSON file
-	String memoryClassifierObject = this.gson.toJson(memoryClassifier_digits);
+	String memoryClassifierObject = this.gson
+		.toJson(memoryClassifier_digits);
 	JsonFileInputOutput.saveObjectToTextFile(memoryClassifierObject,
 		"./train/model/MARK_I/MemoryClassifier_Digits.txt");
 
@@ -131,9 +136,9 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 		.openObjectInTextFile("./train/model/MARK_I/MemoryClassifier_Digits.txt");
 	MemoryClassifier mc = this.gson.fromJson(memoryClassifierAsString,
 		MemoryClassifier.class);
-	//System.out.println(mc.toString());
+	// System.out.println(mc.toString());
 
-	Retina retina = nervousSystem.getPNS().getSNS().getRetina();
+	Retine retina = nervousSystem.getPNS().getSNS().getRetina();
 
 	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();

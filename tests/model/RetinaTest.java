@@ -9,7 +9,7 @@ import java.io.IOException;
  * @version June 5, 2013
  */
 public class RetinaTest extends junit.framework.TestCase {
-    private Retina retina;
+    private Retine retina;
 
     public void setUp() {
 	VisionCell[][] visionCells = new VisionCell[65][65];
@@ -18,7 +18,7 @@ public class RetinaTest extends junit.framework.TestCase {
 		visionCells[x][y] = new VisionCell();
 	    }
 	}
-	this.retina = new Retina(visionCells);
+	this.retina = new Retine(visionCells);
     }
 
     public void test_seeBMPImage() throws IOException {

@@ -7,7 +7,7 @@ import model.MARK_I.Region;
 import model.MARK_I.SpatialPooler;
 import model.MARK_I.VisionCell;
 
-import model.Retina;
+import model.Retine;
 import java.io.IOException;
 import com.google.gson.Gson;
 import model.theory.Memory;
@@ -57,7 +57,7 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
 		visionCells[x][y] = new VisionCell();
 	    }
 	}
-	Retina retina = new Retina(visionCells);
+	Retine retina = new Retine(visionCells);
 
 	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
 	retinaToLGN.connect(retina.getVisionCells(), LGNRegion, 0, 0);
