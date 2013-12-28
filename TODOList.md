@@ -48,20 +48,18 @@ so that anyone else interested will be able to collaborate with you. Good luck!
 	  Possible explanation: convergence micropasia
 
 <h2>Programming Tasks</h2>
-  - Hard) Finish implementation of Temporal Pooler and make a release for MARK I [quinnliu@vt.edu]
-
-  - ???) Consider following ideas about interfaces: http://codereview.stackexchange.com/questions/38060/review-of-java-interface-for-constructing-brain-model/38065?noredirect=1#38065
-
-  - ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
-  https://github.com/numenta/nupic/wiki/Swarming-Algorithm
-  
   - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
     + http://stackoverflow.com/questions/20795666/gradle-build-failing-on-amazon-ec2-t1-micro-instance-on-ubuntu-12-10 
     + http://stackoverflow.com/questions/20811785/updating-amazon-ec2-t1-micro-instance-jvm-and-gradle 
 
-  - Very Hard) Implement TemporalPooler class. Use 50% done implementation from MARK 0.
+  - Very Hard) Implement TemporalPooler class and make a release for MARK I. Use 50% done implementation from MARK 0.
     (Requires a lot of understanding of output of SpatialPooler class) [quinnliu@vt.edu]
     http://www.youtube.com/watch?v=QLDlBRAlSAM
+    
+  - ???) Consider following ideas about interfaces: http://codereview.stackexchange.com/questions/38060/review-of-java-interface-for-constructing-brain-model/38065?noredirect=1#38065
+
+  - ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
+  https://github.com/numenta/nupic/wiki/Swarming-Algorithm
 
   - Medium) inhibitionRadius of active Columns is not working correctly
 	  + see printout of computeActiveColumns
