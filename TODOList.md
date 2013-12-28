@@ -8,6 +8,8 @@ will be able to collaborate with you.
 2. Please only change the dates of files within the WalnutiQ repository only after major logical edits.
 
 <h2>Researching Tasks</h2>
+  - Easy) Update video for code overview on github [quinnliu@vt.edu]
+  
   - ???) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
 
   - Hard) Decide how to implement optical pathway.
@@ -56,9 +58,8 @@ will be able to collaborate with you.
     + http://stackoverflow.com/questions/20795666/gradle-build-failing-on-amazon-ec2-t1-micro-instance-on-ubuntu-12-10 
     + http://stackoverflow.com/questions/20811785/updating-amazon-ec2-t1-micro-instance-jvm-and-gradle 
 
-  - Very Hard) Implement TemporalPooler class and make a release for MARK I. Use 50% done implementation from MARK 0.
-    (Requires a lot of understanding of output of SpatialPooler class) [quinnliu@vt.edu]
-    http://www.youtube.com/watch?v=QLDlBRAlSAM
+  - Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of SpatialPooler class [quinnliu@vt.edu]
+    + http://www.youtube.com/watch?v=QLDlBRAlSAM
 
   - ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
   https://github.com/numenta/nupic/wiki/Swarming-Algorithm
@@ -72,9 +73,9 @@ will be able to collaborate with you.
   - Medium) Iterate through a directory during training instead of one image file. 
 	  + http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
 
-  - Very Hard) Train MARK I on MNIST handwritten digit dataset 
+  - Very Hard) Train & Test MARK I on MNIST handwritten digit dataset 
 
-  - Easy) Exceptions for Temporal class when done implementation
+  - Easy) Throw exceptions for TemporalPooler.java class when done implementation
 
 <h3>Computer Vision Research Comparison Chart</h3>
 
