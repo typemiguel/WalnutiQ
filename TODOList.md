@@ -55,8 +55,9 @@ so that anyone else interested will be able to collaborate with you. Good luck!
   - ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
   https://github.com/numenta/nupic/wiki/Swarming-Algorithm
   
-  - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle
-  http://stackoverflow.com/questions/20795666/gradle-build-failing-on-amazon-ec2-t1-micro-instance-on-ubuntu-12-10 [quinnliu@vt.edu]
+  - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
+    + http://stackoverflow.com/questions/20795666/gradle-build-failing-on-amazon-ec2-t1-micro-instance-on-ubuntu-12-10 
+    + http://stackoverflow.com/questions/20811785/updating-amazon-ec2-t1-micro-instance-jvm-and-gradle 
 
   - Very Hard) Implement TemporalPooler class. Use 50% done implementation from MARK 0.
     (Requires a lot of understanding of output of SpatialPooler class) [quinnliu@vt.edu]
