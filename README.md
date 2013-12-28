@@ -82,25 +82,24 @@ are doing. Happy coding!
   - referencedLibraries = contains .jar files needed to run the program
   - src
       + model
-          - MARK_I = the core logic for the partial brain model. Includes abstract data types
-          			 for basic brain structures and learning algorithms that simulate how 
-          			 the brain learns
-            + connectTypes = classes allow the different brain structures in MARK I to 
-                             connect to each other in a variety of ways
-          - theory = contains a class MemoryClassifier.java for identifying what
-                     category a new image is in given a nervous system that has been 
-                     trained on images from this category (Currently not working)
-          - util = classes that enable the brain model properties to be viewed
-                   graphically and efficiently saved and opened
+          - [MARK_I](./src/model/MARK_I) = the core logic for the partial brain model. Includes abstract data types
+          	for basic brain structures and learning algorithms that simulate how 
+          	the brain learns
+            + [connectTypes](./src/model/MARK_I/connectTypes) = classes allow the different brain structures in MARK I to 
+              connect to each other in a variety of ways
+          - [theory](./src/model/theory) = contains a class MemoryClassifier.java for identifying what
+            category a new image is in given a nervous system that has been trained on images from this category (Currently not working)
+          - [util](./src/model/util) = classes that enable the brain model properties to be viewed
+            graphically and efficiently saved and opened
   - tests = test classes for important classes in the ```src/``` folder
       + model
-          - MARK_I
-            + connectTypes
-          - theory 
-          - util 
+          - [MARK_I](./tests/model/MARK_I)
+            + [connectTypes](./tests/model/MARK_I/connectTypes)
+          - [theory](./tests/model/theory)
+          - [util](./tests/model/util)
   - train  
       + model
-          - MARK_I = demonstrations of how to build and train a partial brain model
+          - [MARK_I](./train/model/MARK_I) = demonstrations of how to build and train a partial brain model
                      on a popular handwritten digit data set called MNIST
   - .gitignore = contains names of files/folders not to add to this repository
   - .project = when writing your code using Eclipse this file will allow all of
