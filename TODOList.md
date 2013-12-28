@@ -59,8 +59,6 @@ will be able to collaborate with you.
   - Very Hard) Implement TemporalPooler class and make a release for MARK I. Use 50% done implementation from MARK 0.
     (Requires a lot of understanding of output of SpatialPooler class) [quinnliu@vt.edu]
     http://www.youtube.com/watch?v=QLDlBRAlSAM
-    
-  - ???) Consider following ideas about interfaces: http://codereview.stackexchange.com/questions/38060/review-of-java-interface-for-constructing-brain-model/38065?noredirect=1#38065
 
   - ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
   https://github.com/numenta/nupic/wiki/Swarming-Algorithm
