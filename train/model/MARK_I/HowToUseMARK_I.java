@@ -53,19 +53,18 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 
 	// connect Retine to LGN
 	Retine retine = nervousSystem.getPNS().getSNS().getRetine();
-
 	LateralGeniculateNucleus LGN = nervousSystem.getCNS().getBrain()
 		.getThalamus().getLGN();
-
-	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
-	retinaToLGN.connect(retine.getVisionCells(), LGN.getRegion(), 0, 0);
+	SensorCellsToRegionConnect sensorCellsToRegionConnect = new SensorCellsToRegionRectangleConnect();
+	sensorCellsToRegionConnect.connect(retine.getVisionCells(),
+		LGN.getRegion(), 0, 0);
 
 	// connect LGN to V1 Region of Neocortex
 	Neocortex neocortex = nervousSystem.getCNS().getBrain().getCerebrum()
 		.getCerebralCortex().getNeocortex();
-
-	RegionToRegionConnect LGNToV1 = new RegionToRegionRectangleConnect();
-	LGNToV1.connect(LGN.getRegion(), neocortex.getCurrentRegion(), 0, 0);
+	RegionToRegionConnect regionToRegionConnect = new RegionToRegionRectangleConnect();
+	regionToRegionConnect.connect(LGN.getRegion(),
+		neocortex.getCurrentRegion(), 0, 0);
 
 	return nervousSystem;
     }
