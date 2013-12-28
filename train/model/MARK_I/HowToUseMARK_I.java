@@ -9,7 +9,6 @@ import model.MARK_I.ColumnPosition;
 import model.MARK_I.Neocortex;
 import model.MARK_I.Region;
 import model.MARK_I.SpatialPooler;
-import model.MARK_I.VisionCell;
 
 import model.util.JsonFileInputOutput;
 import com.google.gson.Gson;
@@ -47,17 +46,8 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	LateralGeniculateNucleus unconnectedLGN = new LateralGeniculateNucleus(
 		new Region("LGN", 8, 8, 1, 50, 3));
 
-	// construct Retine
-	VisionCell[][] visionCells = new VisionCell[65][65];
-	for (int x = 0; x < visionCells.length; x++) {
-	    for (int y = 0; y < visionCells[0].length; y++) {
-		visionCells[x][y] = new VisionCell();
-	    }
-	}
-	Retine unconnectedRetina = new Retine(visionCells);
+	Retine unconnectedRetina = new Retine(65, 65);
 
-	// construct 1 object of NervousSystem to encapsulate all classes in
-	// MARK I
 	NervousSystem nervousSystem = new NervousSystem(unconnectedNeocortex,
 		unconnectedLGN, unconnectedRetina);
 
