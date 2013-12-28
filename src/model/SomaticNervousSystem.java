@@ -17,8 +17,8 @@ package model;
 public class SomaticNervousSystem {
     private Retine retine;
 
-    public SomaticNervousSystem(Retine retina) {
-	this.retine = retina;
+    public SomaticNervousSystem(Retine retine) {
+	this.retine = retine;
     }
 
     public Retine getRetine() {
