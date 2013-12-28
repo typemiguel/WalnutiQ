@@ -24,7 +24,7 @@ import model.LateralGeniculateNucleus;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version June 26, 2013
+ * @version Dec 28, 2013
  */
 public class HowToUseMARK_I extends junit.framework.TestCase {
     private NervousSystem nervousSystem;
@@ -41,16 +41,11 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
     }
 
     private NervousSystem constructConnectedNervousSystem() {
-	// construct Neocortex with just V1
-	Region rootRegionOfNeocortex = new Region("V1", 4, 4, 4, 50, 3);
-	RegionToRegionConnect neocortexConnectType = new RegionToRegionRectangleConnect();
-	Neocortex unconnectedNeocortex = new Neocortex(rootRegionOfNeocortex,
-		neocortexConnectType);
+	Neocortex unconnectedNeocortex = new Neocortex(new Region("V1", 4, 4,
+		4, 50, 3), new RegionToRegionRectangleConnect());
 
-	// construct LGN
-	Region LGNRegion = new Region("LGN", 8, 8, 1, 50, 3);
 	LateralGeniculateNucleus unconnectedLGN = new LateralGeniculateNucleus(
-		LGNRegion);
+		new Region("LGN", 8, 8, 1, 50, 3));
 
 	// construct Retine
 	VisionCell[][] visionCells = new VisionCell[65][65];
@@ -67,7 +62,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 		unconnectedLGN, unconnectedRetina);
 
 	// connect Retine to LGN
-	Retine retine = nervousSystem.getPNS().getSNS().getRetina();
+	Retine retine = nervousSystem.getPNS().getSNS().getRetine();
 
 	LateralGeniculateNucleus LGN = nervousSystem.getCNS().getBrain()
 		.getThalamus().getLGN();
@@ -87,7 +82,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 
     private MemoryClassifier trainMemoryClassifierWithNervousSystem()
 	    throws IOException {
-	Retine retina = nervousSystem.getPNS().getSNS().getRetina();
+	Retine retina = nervousSystem.getPNS().getSNS().getRetine();
 
 	Region LGNRegion = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();
@@ -138,7 +133,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 		MemoryClassifier.class);
 	// System.out.println(mc.toString());
 
-	Retine retina = nervousSystem.getPNS().getSNS().getRetina();
+	Retine retina = nervousSystem.getPNS().getSNS().getRetine();
 
 	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();

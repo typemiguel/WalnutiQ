@@ -15,13 +15,13 @@ package model;
  * @version June 5, 2013
  */
 public class SomaticNervousSystem {
-    private Retine retina;
+    private Retine retine;
 
     public SomaticNervousSystem(Retine retina) {
-	this.retina = retina;
+	this.retine = retina;
     }
 
-    public Retine getRetina() {
-	return this.retina;
+    public Retine getRetine() {
+	return this.retine;
     }
 }

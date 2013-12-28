@@ -8,15 +8,26 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 /**
- * Input to Retina: images of different possible formats.
+ * Input to Retine: images of different possible formats.
  *
- * Output of Retina: activity of Cells within VisionCells.
+ * Output of Retine: activity of Cells within VisionCells.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version June 5, 2013
+ * @version Dec 28, 2013
  */
 public class Retine {
     private VisionCell[][] visionCells;
+
+    public Retine(int numberOfVisionCellsAlongXAxis,
+	    int numberOfVisionCellsAlongYAxis) {
+	this.visionCells = new VisionCell[numberOfVisionCellsAlongXAxis][numberOfVisionCellsAlongYAxis];
+
+	for (int x = 0; x < this.visionCells.length; x++) {
+	    for (int y = 0; y < this.visionCells[0].length; y++) {
+		this.visionCells[x][y] = new VisionCell();
+	    }
+	}
+    }
 
     public Retine(VisionCell[][] visionCells) {
 	this.visionCells = visionCells;
@@ -27,7 +38,7 @@ public class Retine {
     }
 
     /**
-     * Update the state of the Retina with the given .bmp file name.
+     * Update the state of the Retine with the given .bmp file name.
      *
      * @param BMPFileName
      */

@@ -1,7 +1,11 @@
 Research/Programming TO DO List
 ===============================
-Read First: Before working on a item below, please put your e-mail in the task [your e-mail here]
-so that anyone else interested will be able to collaborate with you. Good luck!
+Read First: 
+
+1. Before working on a item below, please put your e-mail in the task so that anyone else interested 
+will be able to collaborate with you.
+
+2. Please only change the dates of files within the WalnutiQ repository only after major logical edits.
 
 <h2>Researching Tasks</h2>
   - ???) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
