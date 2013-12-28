@@ -79,7 +79,7 @@ are doing. Happy coding!
       + digits
           - MNIST = unique files that contain training images and testing images
       + model = images used in testing the MARK I model
-  - libs = contains .jar files needed to run the program
+  - referencedLibraries = contains .jar files needed to run the program
   - src
       + model
           - MARK_I = the core logic for the partial brain model. Includes abstract data types
