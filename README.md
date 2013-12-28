@@ -77,7 +77,7 @@ are doing. Happy coding!
 <h2>What each file/folder in this repository is for:</h2>
   - images
       + digits
-          - [MNIST](./images/digits) = unique files that contain training images and testing images
+          - [MNIST](./images/digits/MNIST) = unique files that contain training images and testing images
       + model = images used in testing the MARK I model
   - referencedLibraries = contains .jar files needed to run the program
   - src
