@@ -38,7 +38,7 @@ to better understand the theory behind this repository.
 project into Eclipse.
 
 3. In Eclipse, add all the libraries (.jar file) in the folder 
-```libs/``` by right-clicking your project in the package explorer 
+```referencedLibraries/``` by right-clicking your project in the package explorer 
 => Build Path => Add External Archives...
 
 4. In Eclipse, also add JUnit 4 & jre7 to your build path. Then 
