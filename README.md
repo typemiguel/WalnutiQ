@@ -3,8 +3,7 @@ WalnutiQ
 
 "*find a way*" - Diana Nyad
 
-[![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)]
-(https://travis-ci.org/quinnliu/WalnutiQ)
+[![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 
 Welcome! WalnutiQ is a human brain model simulation in Java! 
 The goal of this repository is to store the code that can 
@@ -62,8 +61,7 @@ linux> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
 Go to the folder ```build/reports/tests/```. View the file ```index.html``` in 
 a browser and make sure all tests pass!
 
-Getting Started
-===============
+<h2>How to Contribute</h2>
 
 1. View an example of how all the code is used in the file: 
 ```

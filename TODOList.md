@@ -48,6 +48,7 @@ will be able to collaborate with you.
 	  + Every region of the neocortex generates motor behavior
 	  + http://www.youtube.com/watch?v=1_eT5bsS4bQ
 	  + thoughts: muscle output goes back to the bottom of neocortex as input
+    + upside tongue touching. If you flip your tongue upside down and then touch the left side your brain will process it is being on the right side. 
 
   - Very Hard) Write up biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
 	  Interesting facts: moon illusion disappears when you inverse input
