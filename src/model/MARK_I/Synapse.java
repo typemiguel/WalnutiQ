@@ -15,8 +15,9 @@ import model.MARK_I.Cell;
  * algorithms involving Synapses more efficient and minimally reduces the
  * learning algorithms performance.
  *
- * MARKII Synapse data structure models the following neuroscience ideas: 1)
- * synaptic plasticity(Hebbian plasticity) 2) longterm potentiation/depression
+ * The MARK I Synapse data structure models the following neuroscience ideas:
+ * 1) synaptic plasticity(Hebbian plasticity)
+ * 2) longterm potentiation/depression
  *
  * NOTE: When getting the activeState or previousActiveState of a Synapse make
  * sure to check that the Synapse is connected to it's Cell by calling
@@ -116,6 +117,8 @@ public class Synapse<CellType extends Cell> {
     /**
      * Increase the permanenceValue of a Synapse object by PERMANENCE_INCREASE
      * while forcing permanenceValue to always be < 1.0.
+     *
+     * Simulates longterm potentiation in a real Synapse.
      */
     public void increasePermanence() {
 	this.permanenceValue = Math.min(1.0, this.permanenceValue
@@ -125,6 +128,8 @@ public class Synapse<CellType extends Cell> {
     /**
      * Decrease the permanenceValue of a Synapse object by PERMANENCE_DECREASE
      * while forcing permanenceValue to always be > 0.0.
+     *
+     * Simulates longterm depression in a real Synapse.
      */
     public void decreasePermanence() {
 	this.permanenceValue = Math.max(0.0, this.permanenceValue
