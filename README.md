@@ -104,6 +104,7 @@ are doing. Happy coding!
                your files to be organized in the correct folder
   - .travis.yml = tells [our custom travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) 
     how to test the files here
+  - BrainTheories.md = list of brain theories with support and simple explanation
   - MARKI_UML.jpg = UML diagram of all important classes for MARK I model
   - MARKI_UML.ucls = creates the image file ```MARKI_UML.jpg```
   - README.md = the file you are reading right now
