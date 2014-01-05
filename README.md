@@ -1,5 +1,5 @@
-WalnutiQ 
-========
+[WalnutiQ](http://walnutiq.com/)
+==========
 
 "*find a way*" - Diana Nyad
 
@@ -21,7 +21,7 @@ watch this [video playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgdd
 to become familiar with the neuroscience behind this repository.
 
 Most importantly, this research is made possible by the intelligent
-neuroscientists and engineers at company [Numenta](http://numenta.org/). 
+neuroscientists and engineers at the company [Numenta](http://numenta.org/). 
 Numenta has designed a exciting new technology that accurately models 
 layers 3 & 4 (out of 6 layers) in the human neocortex. They have generously released 
 the pseudocode for their learning algorithms and this repository is an 
