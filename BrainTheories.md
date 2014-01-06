@@ -11,3 +11,8 @@ Brain Theories Rated By Importance
    - Reasoning: If different parts of the neocortex (contains auditory cortex, somatosensory, and others..)
    can be given new input and learn to process this new input, then we can guess there is a single learning 
    algorithm in all parts of the neocortex.
+
+2. The majority of what we call intelligence is developed during the first 2 years of life
+   - Support: 
+   - Reasoning: About 10^14 synapses in the brain. About 10^8 seconds in 2 years. That means about 10^6 synapses are formed
+     per second in a fetus and infant.

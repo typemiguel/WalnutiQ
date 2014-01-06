@@ -6,18 +6,21 @@ import java.util.Set;
 import java.util.HashSet;
 
 /**
- * A Neuron is active or non-active, predicting or not predicting at each time
- * step. This Neuron only keeps track of these 2 states during the current time
- * step and the previous time step. A Neuron also has a set of DistalSegments.
+ * A Neuron has 3 different states?
+ * 1) 3 spikes per second
+ * 2) 10+ spikes per second
+ * 3) 0 spikes per second
+ * Support: https://db.tt/QFqA4Dta
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
  * @version July 22, 2013
  */
 public class Neuron extends Cell {
-    private boolean isPredicting; // biologically equivalent to depolarized
-				  // Neuron
+    private boolean isPredicting; // biologically equivalent to depolarized Neuron
     private boolean wasPredicting;
+
+    // neurons have about 1,000 synapses each
     private Set<DistalSegment> distalSegments;
 
     public Neuron() {

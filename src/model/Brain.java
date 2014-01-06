@@ -3,6 +3,9 @@ package model;
 import model.MARK_I.Neocortex;
 
 /**
+ * Adult human brains contain about 10^11 neurons with 10^3 synapses each
+ * for a total of about 10^14 synapses in the adult human brain.
+ *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 5, 2013
  */
