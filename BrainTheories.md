@@ -1,6 +1,6 @@
-Brain Theories Rated By Importance
-==================================
-1. One learning algorithm in the brain
+Brain Theories Numbered By Importance
+=====================================
+1. One learning algorithm in the neocortex of the brain
    - Support: 
      + google "Roe et al., 1992"
        - Summary: If you cut the wires from the ear to the auditory cortex and rewire the optic nerve to the

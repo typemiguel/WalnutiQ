@@ -1,34 +1,35 @@
 Research/Programming TO DO List
 ===============================
-Read First: 
-
-1. Before working on a item below, please put your e-mail in the task so that anyone else interested 
+Read First: Before working on a item below, please put your e-mail in the task so that anyone else interested 
 will be able to collaborate with you.
 
-2. Please only change the dates of files within the WalnutiQ repository only after major logical edits.
+<h2>Researching Tasks</h2>  
+  - Medium) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
+    + Currently doing so by building neural network digit recognition with good notes here:
+    https://github.com/quinnliu/MachineLearning/tree/master/unsupervisedLearning/neuralNetworks
 
-<h2>Researching Tasks</h2>
-  - Easy) Update video for code overview on github [quinnliu@vt.edu]
-  
-  - ???) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
-
-  - Hard) Decide how to implement optical pathway.
+  - Hard) Decide how to implement complete vision + action pathway by drawing MARK I
 	  Detailed biological image 1: http://db.tt/T0Gs7lMe image 2: http://db.tt/IDQYLbr1 
 	  + circle connect from retine to LGN    
     + random connect from LGN to V1
 	  + input picture => active cells from bottom region to top region => motor output => next 
 	  input picture! Draw complete picture
-
-  - Easy) Draw MARK I with 2 regions layer 3 of lower region connecting to layer 3 of upper region
-
-  - Hard) Begin drawing detailed diagram of connections in the human brain with 2 retine
+    + Begin drawing detailed diagram of connections in the human brain with 2 retine
 	  Retina=>LGN =>V1 =>V2 =>V4=>IT (Reference [1]) 
 
-  - Hard) Encorder transducer for retine. Find ted talk about it
+  - ???) Theory of muscle control with no initial control(how does a baby control it’s bladder)
+    Theory behind cascades with controlling the eye, build software eye model
+    + Every region of the neocortex generates motor behavior
+    + http://www.youtube.com/watch?v=1_eT5bsS4bQ
+    + thoughts: muscle output goes back to the bottom of neocortex as input
+    + upside tongue touching. If you flip your tongue upside down and then touch the left side your brain will process it is being on the right side. 
+
+
+  - Hard) Encorder transducer for retine? Find ted talk about it
 
   - Very Hard) http://math.stackexchange.com/questions/442497/combinatorics-arrangement-problem
     + partial answer from MIT combinatorics professor: http://db.tt/tnwPBW65
-    + write a back tracking algorithm to calculate answer 
+    + code a back tracking algorithm to calculate answer 
 
   - Medium) Research Mammal Audio System and think about AudioCell implementation
     Human auditory range: 64 Hertz to 15,000 Hertz (middle aged adult) research how a cochlear implant really
@@ -43,13 +44,6 @@ will be able to collaborate with you.
     different level of cell activity. How do the photoreceptors do so? Red Rectangluar
     Connection with No overlap, Green..., Blue... How to implement Retine.java?
 
-  - ???) Theory of muscle control with no initial control(how does a baby control it’s bladder)
-    Theory behind cascades with controlling the eye, build software eye model
-	  + Every region of the neocortex generates motor behavior
-	  + http://www.youtube.com/watch?v=1_eT5bsS4bQ
-	  + thoughts: muscle output goes back to the bottom of neocortex as input
-    + upside tongue touching. If you flip your tongue upside down and then touch the left side your brain will process it is being on the right side. 
-
   - Very Hard) Write up biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
 	  Interesting facts: moon illusion disappears when you inverse input
 	  Possible explanation: convergence micropasia
@@ -62,19 +56,17 @@ will be able to collaborate with you.
   - Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of SpatialPooler class [quinnliu@vt.edu]
     + http://www.youtube.com/watch?v=QLDlBRAlSAM
 
+  - Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
+    + see printout of computeActiveColumns
+    + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)
+
   - ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
   https://github.com/numenta/nupic/wiki/Swarming-Algorithm
-
-  - Medium) inhibitionRadius of active Columns is not working correctly
-	  + see printout of computeActiveColumns
-	  + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)
 
   - Easy) Enforce global inhibition for performSpatialPooling(int percentOutput)
 	
   - Medium) Iterate through a directory during training instead of one image file. 
 	  + http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
-
-  - Very Hard) Train & Test MARK I on MNIST handwritten digit dataset 
 
   - Easy) Throw exceptions for TemporalPooler.java class when done implementation
 
