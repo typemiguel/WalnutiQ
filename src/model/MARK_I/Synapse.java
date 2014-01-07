@@ -34,6 +34,13 @@ import model.MARK_I.Cell;
  *            A synapse can be connected to either a SensorCell or a Neuron.
  */
 public class Synapse<CellType extends Cell> {
+    /**
+     * When a Synapse's Cell is active, the Synapse will create excitatory
+     * post-synaptic potential (EPSPs). However, when a Synapse's Cell is
+     * not active it will not contribute to the spiking of the 
+     * post-synaptic Neuron which is not inhibitory like an inhibitory post 
+     * synaptic potential (IPSPs). 
+     */
     private Cell cell;
     private double permanenceValue;
     private int cellXPosition;
