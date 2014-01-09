@@ -7,6 +7,9 @@ will be able to collaborate with you.
   - Medium) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
     + Currently doing so by building neural network digit recognition with good notes here:
     https://github.com/quinnliu/MachineLearning/tree/master/unsupervisedLearning/neuralNetworks
+      - Able to get 2 layer neural network to get 95% (and 3 layer 97%) correct on MNIST handwritten digit 
+      dataset. The principles of neural network training should also be able to be applied to training MARK I
+      to achieve very similiar results!!!
 
   - Hard) Decide how to implement complete vision + action pathway by drawing MARK I
 	  Detailed biological image 1: http://db.tt/T0Gs7lMe image 2: http://db.tt/IDQYLbr1 
