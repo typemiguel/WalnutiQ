@@ -59,6 +59,8 @@ will be able to collaborate with you.
   - Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of SpatialPooler class [quinnliu@vt.edu]
     + http://www.youtube.com/watch?v=QLDlBRAlSAM
 
+  - Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to allow complex features to be learned by Neurons.
+
   - Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
     + see printout of computeActiveColumns
     + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)

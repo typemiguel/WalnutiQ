@@ -15,7 +15,9 @@ import model.MARK_I.Cell;
  * algorithms involving Synapses more efficient and minimally reduces the
  * learning algorithms performance.
  *
- * The MARK I Synapse data structure models the following neuroscience ideas:
+ * There are 2 types of synapses in the brain. he MARK I Synapse data structure 
+ * models the chemical synapse and not the electrical synapse using the 
+ * following neuroscience ideas:
  * 1) synaptic plasticity(Hebbian plasticity)
  * 2) longterm potentiation/depression
  *

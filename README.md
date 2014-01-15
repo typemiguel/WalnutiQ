@@ -1,4 +1,4 @@
-[WalnutiQ](http://walnutiq.com/)
+[WalnutiQ](http://walnutiq.com)
 ==========
 
 "*find a way*" - Diana Nyad
