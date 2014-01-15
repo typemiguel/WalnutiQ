@@ -3,6 +3,9 @@ package model;
 import model.MARK_I.Neocortex;
 
 /**
+ * A layered sheet of neurons. About 1/8th inch thick with approximately 30 billion 
+ * neurons. Each neuron with about 10,000 synapses.
+ * 
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 5, 2013
  */

@@ -15,11 +15,13 @@ import model.MARK_I.Cell;
  * algorithms involving Synapses more efficient and minimally reduces the
  * learning algorithms performance.
  *
- * There are 2 types of synapses in the brain. he MARK I Synapse data structure 
+ * There are 2 types of synapses in the brain. The MARK I Synapse data structure 
  * models the chemical synapse and not the electrical synapse using the 
  * following neuroscience ideas:
- * 1) synaptic plasticity(Hebbian plasticity)
- * 2) longterm potentiation/depression
+ * 1) synaptic plasticity(also known as Hebbian plasticity) = If neuron A repeatedly
+ *    takes part in firing neuron B, then the synapses from A to B are strengthened.
+ * 2) longterm potentiation/depression = Experimentally observed increase/decrease in 
+ *    synaptic strength that lasts for hours or days.
  *
  * NOTE: When getting the activeState or previousActiveState of a Synapse make
  * sure to check that the Synapse is connected to it's Cell by calling

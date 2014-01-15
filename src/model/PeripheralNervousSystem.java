@@ -6,6 +6,12 @@ package model;
  */
 public class PeripheralNervousSystem {
     private SomaticNervousSystem SNS;
+
+    /*
+     * Works below the level of consciousness controlling
+     * heart rate, digestion, respiratory rate, ...
+     * Support from actual experiments: TODO
+     */
     // private AutonomicNervousSystem ANS;
 
     public PeripheralNervousSystem(Retine retine) {
