@@ -6,6 +6,8 @@ import java.util.Set;
 import java.util.HashSet;
 
 /**
+ * Simulates a cortical pyramidal cell.
+ *
  * A Neuron has 3 different states?
  * 1) 3 spikes per second
  * 2) 10+ spikes per second
@@ -20,7 +22,7 @@ public class Neuron extends Cell {
     private boolean isPredicting; // biologically equivalent to depolarized Neuron
     private boolean wasPredicting;
 
-    // neurons have about 1,000 synapses each
+    // human Neurons have up to 10,000 synapses each
     private Set<DistalSegment> distalSegments;
 
     public Neuron() {

@@ -1,6 +1,9 @@
 package model.MARK_I;
 
 /**
+ * Simulates (basal) dendrites on a Neuron that extend to other Neuron's dendrites
+ * within the same layer of the Neocortex.
+ *
  * Input to DistalSegment: activity of active Synapses connected to this Segment.
  *
  * Output from DistalSegment: whether or not this Segment is currently active,
