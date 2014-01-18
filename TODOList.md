@@ -52,9 +52,6 @@ will be able to collaborate with you.
 	  Possible explanation: convergence micropasia
 
 <h2>Programming Tasks</h2>
-  - Medium) Make MARK I fully generic: 
-            http://stackoverflow.com/questions/21209436/how-to-make-object-oriented-java-project-fully-generic
-
   - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
     + http://stackoverflow.com/questions/20795666/gradle-build-failing-on-amazon-ec2-t1-micro-instance-on-ubuntu-12-10 
     + http://stackoverflow.com/questions/20811785/updating-amazon-ec2-t1-micro-instance-jvm-and-gradle 
