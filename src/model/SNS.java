@@ -14,10 +14,10 @@ package model;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 5, 2013
  */
-public class SomaticNervousSystem {
+public class SNS {
     private Retine retine;
 
-    public SomaticNervousSystem(Retine retine) {
+    public SNS(Retine retine) {
 	this.retine = retine;
     }
 

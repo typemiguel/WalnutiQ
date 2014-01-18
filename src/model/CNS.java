@@ -6,7 +6,7 @@ import model.MARK_I.Neocortex;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 5, 2013
  */
-public class CentralNervousSystem {
+public class CNS {
     private Brain brain;
 
     /**
@@ -19,7 +19,7 @@ public class CentralNervousSystem {
      */
     // private SpinalCord spinalCord;
 
-    public CentralNervousSystem(Neocortex neocortex, LateralGeniculateNucleus LGN) {
+    public CNS(Neocortex neocortex, LGN LGN) {
 	this.brain = new Brain(neocortex, LGN);
 	// this.spinalCord = null;
     }

@@ -9,7 +9,7 @@ import model.MARK_I.VisionCell;
 
 import com.google.gson.Gson;
 import java.io.IOException;
-import model.LateralGeniculateNucleus;
+import model.LGN;
 import model.Retine;
 
 /**
@@ -28,7 +28,7 @@ public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
 	    throws IOException {
 	// construct LGN
 	this.LGNRegion = new Region("LGN", 8, 8, 1, 50, 10);
-	LateralGeniculateNucleus unconnectedLGN = new LateralGeniculateNucleus(
+	LGN unconnectedLGN = new LGN(
 		this.LGNRegion);
 
 	// construct Retina

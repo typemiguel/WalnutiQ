@@ -7,19 +7,19 @@ import model.MARK_I.Neocortex;
  * @version June 5, 2013
  */
 public class NervousSystem {
-    private CentralNervousSystem CNS;
-    private PeripheralNervousSystem PNS;
+    private CNS CNS;
+    private PNS PNS;
 
-    public NervousSystem(Neocortex neocortex, LateralGeniculateNucleus LGN, Retine retina) {
-	this.CNS = new CentralNervousSystem(neocortex, LGN);
-	this.PNS = new PeripheralNervousSystem(retina);
+    public NervousSystem(Neocortex neocortex, LGN LGN, Retine retina) {
+	this.CNS = new CNS(neocortex, LGN);
+	this.PNS = new PNS(retina);
     }
 
-    public CentralNervousSystem getCNS() {
+    public CNS getCNS() {
 	return this.CNS;
     }
 
-    public PeripheralNervousSystem getPNS() {
+    public PNS getPNS() {
 	return this.PNS;
     }
 }

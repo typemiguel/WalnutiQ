@@ -10,10 +10,10 @@ import model.MARK_I.Region;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 5, 2013
  */
-public class LateralGeniculateNucleus {
+public class LGN {
     private Region region;
 
-    public LateralGeniculateNucleus(Region region) {
+    public LGN(Region region) {
 	// how should desiredLocalActivity be calculated
 	this.region = region;
     }

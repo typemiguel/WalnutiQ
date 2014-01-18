@@ -4,8 +4,8 @@ package model;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 5, 2013
  */
-public class PeripheralNervousSystem {
-    private SomaticNervousSystem SNS;
+public class PNS {
+    private SNS SNS;
 
     /*
      * Works below the level of consciousness controlling
@@ -14,12 +14,12 @@ public class PeripheralNervousSystem {
      */
     // private AutonomicNervousSystem ANS;
 
-    public PeripheralNervousSystem(Retine retine) {
-	this.SNS = new SomaticNervousSystem(retine);
+    public PNS(Retine retine) {
+	this.SNS = new SNS(retine);
 	// this.ANS = null;
     }
 
-    public SomaticNervousSystem getSNS() {
+    public SNS getSNS() {
 	return this.SNS;
     }
 }

@@ -19,7 +19,7 @@ import model.theory.Idea;
 import java.io.IOException;
 import model.Retine;
 import model.NervousSystem;
-import model.LateralGeniculateNucleus;
+import model.LGN;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
@@ -43,7 +43,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	Neocortex unconnectedNeocortex = new Neocortex(new Region("V1", 4, 4,
 		4, 50, 3), new RegionToRegionRectangleConnect());
 
-	LateralGeniculateNucleus unconnectedLGN = new LateralGeniculateNucleus(
+	LGN unconnectedLGN = new LGN(
 		new Region("LGN", 8, 8, 1, 50, 3));
 
 	Retine unconnectedRetina = new Retine(65, 65);
@@ -53,7 +53,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 
 	// connect Retine to LGN
 	Retine retine = nervousSystem.getPNS().getSNS().getRetine();
-	LateralGeniculateNucleus LGN = nervousSystem.getCNS().getBrain()
+	LGN LGN = nervousSystem.getCNS().getBrain()
 		.getThalamus().getLGN();
 	SensorCellsToRegionConnect sensorCellsToRegionConnect = new SensorCellsToRegionRectangleConnect();
 	sensorCellsToRegionConnect.connect(retine.getVisionCells(),

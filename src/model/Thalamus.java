@@ -8,13 +8,13 @@ package model;
  * @version June 5, 2013
  */
 public class Thalamus {
-    private LateralGeniculateNucleus LGN;
+    private LGN LGN;
 
-    public Thalamus(LateralGeniculateNucleus LGN) {
+    public Thalamus(LGN LGN) {
 	this.LGN = LGN;
     }
 
-    public LateralGeniculateNucleus getLGN() {
+    public LGN getLGN() {
 	return this.LGN;
     }
 }

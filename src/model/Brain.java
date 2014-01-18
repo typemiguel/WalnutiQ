@@ -14,23 +14,26 @@ public class Brain {
     private Thalamus thalamus;
 
     // private Hypothalamus hypothalamus; = regulates basic needs, fighting,
-        // fleeing, feeding, and mating
+    // 					    fleeing, feeding, and mating
 
     // TODO: how is this known? Do they just what which parts of the brain
-        // spike up during fMRI? Nothing below is very exact
-    // private Hindbrain hindbrain;
-        // Medulla Oblongata = breathing, muscle tone and blood pressure
-        // Pons = involved in sleep and arousal
-        // Cerebellum = coordination and timing of voluntary movements,
-        //              sense of equilibrium, language, attention, ...
-    // private Midbrain midbrain; = eye movements, visual and auditory reflexes
-    // private ReticularFormation reticularFormation; = modulates muscle 
-        // reflexes, breathing, pain perception, sleep, arousal
+    // spike up during fMRI? Nothing below is very exact
 
-    public Brain(Neocortex neocortex, LateralGeniculateNucleus LGN) {
+    // private Hindbrain hindbrain;
+    //   Medulla Oblongata = breathing, muscle tone and blood pressure
+    //   Pons = involved in sleep and arousal
+    //   Cerebellum = coordination and timing of voluntary movements,
+    //                sense of equilibrium, language, attention, ...
+
+    // private Midbrain midbrain; = eye movements, visual and auditory reflexes
+
+    // private ReticularFormation reticularFormation; = modulates muscle
+    //                     reflexes, breathing, pain perception, sleep, arousal
+
+    public Brain(Neocortex neocortex, LGN LGN) {
 	this.cerebrum = new Cerebrum(neocortex);
 	this.thalamus = new Thalamus(LGN);
-    // this.hypothalamus = null;
+	// this.hypothalamus = null;
 	// this.hindbrain = null;
 	// this.midbrain = null;
 	// this.reticularFormation = null;
