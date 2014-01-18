@@ -115,6 +115,11 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	return memoryClassifier_digits;
     }
 
+    /**
+     * Use the build NervousSystem instance and use the retine to view a .bmp
+     * image.
+     * @throws IOException
+     */
     public void test_MemoryClassifierOnNewImages() throws IOException {
 	String memoryClassifierAsString = JsonFileInputOutput
 		.openObjectInTextFile("./train/model/MARK_I/MemoryClassifier_Digits.txt");
@@ -122,12 +127,12 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 		MemoryClassifier.class);
 	// System.out.println(mc.toString());
 
-	Retine retina = nervousSystem.getPNS().getSNS().getRetine();
+	Retine retine = nervousSystem.getPNS().getSNS().getRetine();
 
 	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();
 
-	// retina.seeBMPImage("new2.bmp");
+	// retine.seeBMPImage("new2.bmp");
 	// digitsSVM.updateIdeas(spatialPooler.performSpatialPoolingOnRegion());
 	// digitsSVM.toString();
     }
