@@ -18,7 +18,6 @@ Brain Theories Numbered By Importance
 
 3. The majority of what we call intelligence is developed during the first 2 years of life
    - Support: 
-   - Reasoning: About 10^14 synapses in the brain. About 10^8 seconds in 2 years. That means about 10^6 synapses are formed
-     per second in a fetus and infant.
+   - Reasoning: About 10^14 synapses in the brain by 2 years of age. About 10^8 seconds in 2 years. That means about 10^6 synapses are formed per second in a fetus and infant.
 
 4. Consciousness partially exists through the LIMITED neural circuits for smell. Does olfaction pass through the thalamus?

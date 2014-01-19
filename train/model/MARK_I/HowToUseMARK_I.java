@@ -55,11 +55,11 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	Retine retine = nervousSystem.getPNS().getSNS().getRetine();
 	LGN LGN = nervousSystem.getCNS().getBrain()
 		.getThalamus().getLGN();
-	SensorCellsToRegionConnect sensorCellsToRegionConnect = new SensorCellsToRegionRectangleConnect();
-	sensorCellsToRegionConnect.connect(retine.getVisionCells(),
+	SensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
+	opticNerve.connect(retine.getVisionCells(),
 		LGN.getRegion(), 0, 0);
 
-	// connect LGN to V1 Region of Neocortex
+	// connect LGN to very small part of V1 Region of Neocortex
 	Neocortex neocortex = nervousSystem.getCNS().getBrain().getCerebrum()
 		.getCerebralCortex().getNeocortex();
 	RegionToRegionConnect regionToRegionConnect = new RegionToRegionRectangleConnect();
@@ -71,7 +71,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 
     private MemoryClassifier trainMemoryClassifierWithNervousSystem()
 	    throws IOException {
-	Retine retina = nervousSystem.getPNS().getSNS().getRetine();
+	Retine retine = nervousSystem.getPNS().getSNS().getRetine();
 
 	Region LGNRegion = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();
@@ -80,7 +80,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	// .getCerebralCortex().getNeocortex().getCurrentRegion();
 
 	// -------------train NervousSystem update Memory----------------
-	retina.seeBMPImage("2.bmp");
+	retine.seeBMPImage("2.bmp");
 
 	SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
 	spatialPooler.setLearningState(true);

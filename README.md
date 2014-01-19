@@ -107,7 +107,7 @@ are doing. Happy coding!
   - BrainTheories.md = list of brain theories with support and simple explanation
   - README.md = the file you are reading right now
   - TODOList.md = list of research & programming tasks to do
-  - build.gradle = instructions for compiling the code in this repository using Gradle
+  - build.gradle = Groovy language code for compiling all of the code in this repository using Gradle
 
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 
