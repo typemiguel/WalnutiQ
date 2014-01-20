@@ -1,7 +1,7 @@
 [WalnutiQ](http://walnutiq.com)
 ==========
 
-"*nothing is impossible*" - Dove Cameron
+"*nothing is impossible*" ~ Dove Cameron
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 

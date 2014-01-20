@@ -53,8 +53,7 @@ will be able to collaborate with you.
 
 <h2>Programming Tasks</h2>
   - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
-    + http://stackoverflow.com/questions/20795666/gradle-build-failing-on-amazon-ec2-t1-micro-instance-on-ubuntu-12-10 
-    + http://stackoverflow.com/questions/20811785/updating-amazon-ec2-t1-micro-instance-jvm-and-gradle 
+    + http://stackoverflow.com/questions/21226096/how-to-install-gradle-into-a-cloud-9-ide/21227171?noredirect=1#21227171
 
   - Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of SpatialPooler class [quinnliu@vt.edu]
     + http://www.youtube.com/watch?v=QLDlBRAlSAM
