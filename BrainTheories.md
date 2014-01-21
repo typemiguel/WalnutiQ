@@ -21,3 +21,9 @@ Brain Theories Numbered By Importance
    - Reasoning: About 10^14 synapses in the brain by 2 years of age. About 10^8 seconds in 2 years. That means about 10^6 synapses are formed per second in a fetus and infant.
 
 4. Consciousness partially exists through the LIMITED neural circuits for smell. Does olfaction pass through the thalamus?
+
+5. Spatial Pooling efficiently stores sensory information as the activation of a fixed set of neurons in sequence in a hierarchy.
+   - Support:
+   - Experimental Data:
+
+6. After you change your password it takes about 5 bad predictions over time to fix your habit. This is directly tied to changing synapse permanence increase and decrease rate based on # of cells incorrectly predicted.

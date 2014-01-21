@@ -1,7 +1,7 @@
 [WalnutiQ](http://walnutiq.com)
 ==========
 
-"*nothing is impossible*" ~ Dove Cameron
+“*When we hit our lowest point, we are open to the greatest change.*” ~ Avatar Anng
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 
