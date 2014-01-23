@@ -25,36 +25,35 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
              + Begin drawing detailed diagram of connections in the human brain with 2 retine
 	             Retine => LGN => V1 => V2 => V4 => IT (Reference [1]) 
 
-  - ???) Theory of muscle control with no initial control(how does a baby control it’s bladder)
-    Theory behind cascades with controlling the eye, build software eye model
-    + Every region of the neocortex generates motor behavior
-    + http://www.youtube.com/watch?v=1_eT5bsS4bQ
-    + thoughts: muscle output goes back to the bottom of neocortex as input
-    + upside tongue touching. If you flip your tongue upside down and then touch the left side your brain will process it is being on the right side. 
-    + look into Andrew Schwartz monkey robotic arm experiment at University of Pittsburgh
+  - 4. ???) Theory of muscle control with no initial control(how does a baby control it’s bladder)
+            Theory behind cascades with controlling the eye, build software eye model
+            + Every region of the neocortex generates motor behavior
+            + http://www.youtube.com/watch?v=1_eT5bsS4bQ
+            + thoughts: muscle output goes back to the bottom of neocortex as input
+            + upside tongue touching. If you flip your tongue upside down and then touch the left side your brain will process it
+              is being on the right side. 
+            + look into Andrew Schwartz monkey robotic arm experiment at University of Pittsburgh
 
-  - Hard) Encorder transducer for retine? Find ted talk about it
+  - 5. Hard) Encorder transducer for retine? Find ted talk about it
 
-  - Very Hard) http://math.stackexchange.com/questions/442497/combinatorics-arrangement-problem
-    + partial answer from MIT combinatorics professor: http://db.tt/tnwPBW65
-    + code a back tracking algorithm to calculate answer 
+  - 6. Very Hard) http://math.stackexchange.com/questions/442497/combinatorics-arrangement-problem
+                  + partial answer from MIT combinatorics professor: http://db.tt/tnwPBW65
+                  + code a back tracking algorithm to calculate answer 
 
-  - Medium) Research Mammal Audio System and think about AudioCell implementation
-    Human auditory range: 64 Hertz to 15,000 Hertz (middle aged adult) research how a cochlear implant really
-    works, making a sound wave in the environment into an electrical signal
+  - 7. Medium) Research Mammal Audio System and think about AudioCell implementation
+               Human auditory range: 64 Hertz to 15,000 Hertz (middle aged adult) research how a cochlear implant really
+               works, making a sound wave in the environment into an electrical signal
 
-  - Hard) Write up a easy/intuitive explanation of how the illusion of the Hermann grid is created
-    using WalnutiQ MARK I model:
-    + https://www.dropbox.com/s/03a9sujz36xj5vw/2013-06-17%2010.40.44.jpg
-    + http://www.nku.edu/~issues/illusions/HermannGrid.htm
+  - 8. Hard) Write up a easy/intuitive explanation of how the illusion of the Hermann grid is created
+             using WalnutiQ MARK I model:
+             + https://www.dropbox.com/s/03a9sujz36xj5vw/2013-06-17%2010.40.44.jpg
+             + http://www.nku.edu/~issues/illusions/HermannGrid.htm
 
-  - Medium) How does brian code for different shades of grey. Different greys must produce 
-    different level of cell activity. How do the photoreceptors do so? Red Rectangluar
-    Connection with No overlap, Green..., Blue... How to implement Retine.java?
+  - 9. Medium) How does brian code for different shades of grey. Different greys must produce different level of cell activity.
+               How do the photoreceptors do so? Red Rectangluar. Connection with No overlap, Green..., Blue... How to implement Retine.java?
 
-  - Very Hard) Write up biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
-	  Interesting facts: moon illusion disappears when you inverse input
-	  Possible explanation: convergence micropasia
+  - 10. Very Hard) Write up biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
+                   Interesting facts: moon illusion disappears when you inverse input. Possible explanation: convergence micropasia
 
 <h2>Programming Tasks</h2>
   - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
