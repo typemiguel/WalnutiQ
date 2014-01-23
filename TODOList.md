@@ -12,6 +12,9 @@ will be able to collaborate with you.
       - Build a very large heriarchical neural network using MARK I model where each neuron does have about 10,000 synapses
       and see if it is any better.
 
+  - Hard) Read through this email:
+  https://mail.google.com/mail/u/0/#inbox/143bb52fc872e539
+
   - Hard) Decide how to implement complete vision + action pathway by drawing MARK I
 	  Detailed biological image 1: http://db.tt/T0Gs7lMe image 2: http://db.tt/IDQYLbr1 
 	  + circle connect from retine to LGN    
