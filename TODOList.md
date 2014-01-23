@@ -56,17 +56,19 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
                    Interesting facts: moon illusion disappears when you inverse input. Possible explanation: convergence micropasia
 
 <h2>Programming Tasks</h2>
-  - Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
-    + http://stackoverflow.com/questions/21226096/how-to-install-gradle-into-a-cloud-9-ide/21227171?noredirect=1#21227171
+  - 1. Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
+               + http://stackoverflow.com/questions/21226096/how-to-install-gradle-into-a-cloud-9-ide/21227171?noredirect=1#21227171
 
-  - Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of SpatialPooler class [quinnliu@vt.edu]
-    + http://www.youtube.com/watch?v=QLDlBRAlSAM
+  - 2. Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of
+                  SpatialPooler class [quinnliu@vt.edu]
+                  + http://www.youtube.com/watch?v=QLDlBRAlSAM
 
-  - Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to allow complex features to be learned by Neurons.
+  - 3. Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to
+               allow complex features to be learned by Neurons.
 
-  - Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
-    + see printout of computeActiveColumns
-    + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)
+  - 4. Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
+               + see printout of computeActiveColumns
+               + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)
 
   - ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
   https://github.com/numenta/nupic/wiki/Swarming-Algorithm
