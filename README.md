@@ -1,7 +1,7 @@
 [WalnutiQ](http://walnutiq.com)
 ==========
 
-“*When we hit our lowest point, we are open to the greatest change.*” ~ Avatar Aang
+“*Unless someone like you cares a whole awful lot, nothing is going to get better. It's not.*” ~ Dr. Seuss
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 
