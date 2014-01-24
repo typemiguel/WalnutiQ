@@ -31,7 +31,8 @@ of their research in this [white paper](https://db.tt/FuQWQuwE)
 to better understand the theory behind this repository.
 
 <h2>Setup in Linux/Mac/Windows with Eclipse</h2>
-0. TODO: Follow along with video here to install.
+0. TODO: Follow along with this [video](link to youtube video) here to install as the install
+gets a little confusing.
 
 1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
 
@@ -40,9 +41,9 @@ project into Eclipse.
 
 3. IMPORTANT: You will notice that your folders will have "red X's". To fix this right 
 click your ```src``` folder then hover over "New", then click "Source Folder". 
-Then give it the "Folder name:" src. You will also need to do this for the folders 
+Then give it the "Folder name:" src. You will also need to do this same process for the folders 
 ```tests```, ```images```, and ```train```. Make sure when you type the "Folder name:"
-you put in the folder name of the folder you right clicked.
+you put in the folder name of the folder you previously just right clicked.
 
 4. In Eclipse, add all the libraries (.jar file) in the folder 
 ```referencedLibraries/``` by right-clicking your project in the package explorer 
