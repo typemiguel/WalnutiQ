@@ -31,9 +31,6 @@ of their research in this [white paper](https://db.tt/FuQWQuwE)
 to better understand the theory behind this repository.
 
 <h2>Setup in Linux/Mac/Windows with Eclipse</h2>
-0. TODO: Follow along with this [video](link to youtube video) here to install as the install
-gets a little confusing.
-
 1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
 
 2. Fork this repository and clone it locally. Then import it as a 
