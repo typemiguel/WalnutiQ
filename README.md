@@ -7,9 +7,11 @@
 
 Welcome! WalnutiQ is a human brain model simulation in Java! 
 The goal of this repository is to store the code that can 
-simulate a human brain in real-time. If you are interested in 
-becoming a researcher/developer the only requirement is passion
-for understanding the brain.
+simulate a human brain in real-time. Building a brain machine 
+without emotions more intelligent than the the smartest humans 
+will give us the ability to solve many of the problems we are 
+currently too stupid to solve. If you are interested in becoming a 
+researcher/developer the only requirement is passion for understanding the brain.
  
 Here you will find classes that allow you to build a partial 
 human brain model, train it on input data, view its activity 
