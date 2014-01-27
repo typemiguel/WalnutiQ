@@ -3,19 +3,20 @@ Research/Programming TO DO List
 Read First: Before working on a item below, please put your e-mail in the task so that anyone else interested 
 will be able to collaborate with you. All tasks are also numbered by the amount of importance.
 
-<h2>Researching Tasks</h2>  
-  1. Very Hard) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
+<h2>Researching Tasks</h2>
+<ol>
+  <li> Very Hard) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
        + Currently doing so by building neural network digit recognition with good notes here:
          https://github.com/quinnliu/MachineLearning/tree/master/unsupervisedLearning/neuralNetworks
            - Able to get 2 layer neural network to get 95% (and 3 layer neural network to get 97%) correct on MNIST handwritten  
              digit dataset (without overfitting the data set). The principles of neural network training should also be able to be applied to training MARK I to achieve very similiar results!!!
            - Build a very large heriarchical neural network using MARK I model where each neuron does have about 10,000 synapses
              and see if it is any better.
-
-  2. Hard) Read through this email and consider NEW temporal pooling ideas and structure of building vision system with CLA 
+</li>
+  <li> Hard) Read through this email and consider NEW temporal pooling ideas and structure of building vision system with CLA 
              regions in hierarchy: https://mail.google.com/mail/u/0/#inbox/143bb52fc872e539
-
-  3. Hard) Decide how to implement complete vision & action pathway by drawing MARK I 
+</li>
+  <li> Hard) Decide how to implement complete vision & action pathway by drawing MARK I 
              + Detailed biological image 1: http://db.tt/T0Gs7lMe image 2: http://db.tt/IDQYLbr1 
                - Reference this neuron modeling repo: https://github.com/quinnliu/ComputationalNeuroscience
 	               + circle connect from retine to LGN ? Relate back to Computational Neuroscience
@@ -24,8 +25,8 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
                complete picture
              + Begin drawing detailed diagram of connections in the human brain with 2 retine
 	             Retine => LGN => V1 => V2 => V4 => IT (Reference [1]) 
-
-  4. ???) Theory of muscle control with no initial control(how does a baby control it’s bladder)
+</li>
+  <li> ???) Theory of muscle control with no initial control(how does a baby control it’s bladder)
             Theory behind cascades with controlling the eye, build software eye model
             + Every region of the neocortex generates motor behavior
             + http://www.youtube.com/watch?v=1_eT5bsS4bQ
@@ -33,28 +34,29 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
             + upside tongue touching. If you flip your tongue upside down and then touch the left side your brain will process it
               is being on the right side. 
             + look into Andrew Schwartz monkey robotic arm experiment at University of Pittsburgh
-
-  5. Hard) Encorder transducer for retine? Find ted talk about it
-
-  6. Very Hard) http://math.stackexchange.com/questions/442497/combinatorics-arrangement-problem
+</li>
+  <li> Hard) Encorder transducer for retine? Find ted talk about it
+</li>
+  <li> Very Hard) http://math.stackexchange.com/questions/442497/combinatorics-arrangement-problem
                   + partial answer from MIT combinatorics professor: http://db.tt/tnwPBW65
                   + code a back tracking algorithm to calculate answer 
-
-  7. Medium) Research Mammal Audio System and think about AudioCell implementation
+</li>
+  <li> Medium) Research Mammal Audio System and think about AudioCell implementation
                Human auditory range: 64 Hertz to 15,000 Hertz (middle aged adult) research how a cochlear implant really
                works, making a sound wave in the environment into an electrical signal
-
-  8. Hard) Write up a easy/intuitive explanation of how the illusion of the Hermann grid is created
+</li>
+  <li> Hard) Write up a easy/intuitive explanation of how the illusion of the Hermann grid is created
              using WalnutiQ MARK I model:
              + https://www.dropbox.com/s/03a9sujz36xj5vw/2013-06-17%2010.40.44.jpg
              + http://www.nku.edu/~issues/illusions/HermannGrid.htm
-
-  9. Medium) How does brian code for different shades of grey. Different greys must produce different level of cell activity.
+</li>
+  <li> Medium) How does brian code for different shades of grey. Different greys must produce different level of cell activity.
                How do the photoreceptors do so? Red Rectangluar. Connection with No overlap, Green..., Blue... How to implement Retine.java?
-
-  10. Very Hard) Write up biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
+</li>
+  <li> Very Hard) Write up biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
                    Interesting facts: moon illusion disappears when you inverse input. Possible explanation: convergence micropasia
-
+</li>
+</ol>
 <h2>Programming Tasks</h2>
 <ol>
   <li> Hard) Make the image input go through the retine(simulating a difference of gaussian filter) to create a sparse input for the LGN -> V1
