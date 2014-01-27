@@ -48,7 +48,7 @@ public class SpatialPooler extends Pooler {
 	}
 
 	// a sparse set of Columns become active after local inhibition
-	this.computeActiveColumnsOfRegion(); // <== GSON problem
+	this.computeActiveColumnsOfRegion();
 
 	// // simulate learning by boosting specific Synapses
 	this.regionLearnOneTimeStep();
