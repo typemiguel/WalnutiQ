@@ -10,10 +10,10 @@ The goal of this repository is to store code that can
 simulate a human brain in real-time. A brain machine 
 without emotions which is more intelligent than the smartest humans 
 will potentially be able to solve many of the problems which currently plague the world. 
-If you are interested in becoming a researcher/developer the only requirement is passion 
-for understanding the brain.
+If you are interested in becoming a researcher/developer, the only requirement is passion 
+for applying brain models to solve real world problems.
  
-Here you will find classes that allow you to build a partial 
+Here you will find code that allow you to build a partial 
 human brain model, train it on input data, view its activity 
 as text and visual output, and test its ability to recognize 
 objects. All of the code here supports modeling of the human 
