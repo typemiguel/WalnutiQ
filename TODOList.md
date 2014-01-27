@@ -57,32 +57,31 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
 
 <h2>Programming Tasks</h2>
 <ol>
-  <li> Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
-               + http://stackoverflow.com/questions/21226096/how-to-install-gradle-into-a-cloud-9-ide/21227171?noredirect=1#21227171
+  <li> Hard) Make the image input go through the retine(simulating a difference of gaussian filter) to create a sparse input for the LGN -> V1
 </li>
-  2. Hard) Make the image input go through the retine(simulating a difference of gaussian filter) to create a sparse input for the LGN -> V1
-
-  3. Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of
+ <li> Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of
                   SpatialPooler class [quinnliu@vt.edu]
                   + http://www.youtube.com/watch?v=QLDlBRAlSAM
-
-  4. Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to
+</li>
+<li>
+   Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to
                allow complex features to be learned by Neurons.
-
-  5. Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
+</li>
+<li> Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
                + see printout of computeActiveColumns
                + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)
-
-  6. ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
+</li>
+<li> ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
             + https://github.com/numenta/nupic/wiki/Swarming-Algorithm
-
-  7. Easy) Enforce global inhibition for performSpatialPooling(int percentOutput)
-	
-  8. Medium) Iterate through a directory during training instead of one image file. 
+</li>
+<li> Easy) Enforce global inhibition for performSpatialPooling(int percentOutput)
+</li>	
+<li> Medium) Iterate through a directory during training instead of one image file. 
 	             + http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
-
-  9. Easy) Throw exceptions for TemporalPooler.java class when done implementation
-
+</li>
+ <li> Easy) Throw exceptions for TemporalPooler.java class when done implementation
+</li>
+</ol>
 <h3>Computer Vision Research Comparison Chart</h3>
 
 NOTE: All comments on below Image Recognition Techniques should be made to be objective as possible
