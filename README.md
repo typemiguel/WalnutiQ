@@ -13,22 +13,22 @@ will potentially be able to solve many of the problems which currently plague th
 If you are interested in becoming a researcher/developer, the only requirement is passion 
 for applying brain models to solve real world problems.
  
-Here you will find code that allow you to build a partial 
+Here you will find code that allows you to build a partial 
 human brain model, train it on input data, view its activity 
 as text and visual output, and test its ability to recognize 
 objects. All of the code here supports modeling of the human 
 brain at a high level of abstraction while still allowing user
-access to individual neuron properties. If you are lost please 
+access to individual neuron properties. For more information please 
 watch this [video playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
 to become familiar with the neuroscience behind this repository.
 
 Most importantly, this research is made possible by the intelligent
 neuroscientists and engineers at the company [Numenta](http://numenta.org/). 
 Numenta has designed a exciting new technology that accurately models 
-layers 3 & 4 (out of 6 layers) in the human neocortex. They have generously released 
-the pseudocode for their learning algorithms and this repository is an 
+layers 3 & 4 of the human neocortex. They have generously released 
+the pseudocode for their learning algorithms, and this repository is an 
 extended implementation of their algorithms using object-oriented 
-programming. Make sure to read Numenta's great (but long) explanation 
+programming. Make sure to read Numenta's great explanation 
 of their research in this [white paper](https://db.tt/FuQWQuwE) 
 to better understand the theory behind this repository.
 
