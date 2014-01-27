@@ -56,34 +56,32 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
                    Interesting facts: moon illusion disappears when you inverse input. Possible explanation: convergence micropasia
 
 <h2>Programming Tasks</h2>
-  1. Medium) Get WalnutiQ building successfully on free remote Cloud 9 server. Getting this working is very important
-       + http://c9.io/quinnliu/walnutiq
-
-  2. Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
+<ol>
+  <li> Medium) Running Java in ubuntu remote server Amazon ec2 t1.micro instance using gradle [quinnliu@vt.edu]
                + http://stackoverflow.com/questions/21226096/how-to-install-gradle-into-a-cloud-9-ide/21227171?noredirect=1#21227171
+</li>
+  2. Hard) Make the image input go through the retine(simulating a difference of gaussian filter) to create a sparse input for the LGN -> V1
 
-  3. Hard) Make the image input go through the retine(simulating a difference of gaussian filter) to create a sparse input for the LGN -> V1
-
-  4. Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of
+  3. Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of
                   SpatialPooler class [quinnliu@vt.edu]
                   + http://www.youtube.com/watch?v=QLDlBRAlSAM
 
-  5. Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to
+  4. Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to
                allow complex features to be learned by Neurons.
 
-  6. Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
+  5. Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
                + see printout of computeActiveColumns
                + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)
 
-  7. ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
+  6. ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
             + https://github.com/numenta/nupic/wiki/Swarming-Algorithm
 
-  8. Easy) Enforce global inhibition for performSpatialPooling(int percentOutput)
+  7. Easy) Enforce global inhibition for performSpatialPooling(int percentOutput)
 	
-  9. Medium) Iterate through a directory during training instead of one image file. 
+  8. Medium) Iterate through a directory during training instead of one image file. 
 	             + http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
 
-  10. Easy) Throw exceptions for TemporalPooler.java class when done implementation
+  9. Easy) Throw exceptions for TemporalPooler.java class when done implementation
 
 <h3>Computer Vision Research Comparison Chart</h3>
 
