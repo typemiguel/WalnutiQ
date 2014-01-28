@@ -4,86 +4,84 @@ Read First: Before working on a item below, please put your e-mail in the task s
 will be able to collaborate with you. All tasks are also numbered by the amount of importance.
 
 <h2>Researching Tasks</h2>
-<ol>
-  <li> Very Hard) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
-       + Currently doing so by building neural network digit recognition with good notes here:
-         https://github.com/quinnliu/MachineLearning/tree/master/unsupervisedLearning/neuralNetworks
-           - Able to get 2 layer neural network to get 95% (and 3 layer neural network to get 97%) correct on MNIST handwritten  
-             digit dataset (without overfitting the data set). The principles of neural network training should also be able to be applied to training MARK I to achieve very similiar results!!!
-           - Build a very large heriarchical neural network using MARK I model where each neuron does have about 10,000 synapses
-             and see if it is any better.
-</li>
-  <li> Hard) Read through this email and consider NEW temporal pooling ideas and structure of building vision system with CLA 
-             regions in hierarchy: https://mail.google.com/mail/u/0/#inbox/143bb52fc872e539
-</li>
-  <li> Hard) Decide how to implement complete vision & action pathway by drawing MARK I 
-             + Detailed biological image 1: http://db.tt/T0Gs7lMe image 2: http://db.tt/IDQYLbr1 
-               - Reference this neuron modeling repo: https://github.com/quinnliu/ComputationalNeuroscience
-	               + circle connect from retine to LGN ? Relate back to Computational Neuroscience
-                 + random connect from LGN to V1 ? 
-	           + input picture => active cells from bottom region to top region => motor output => next input picture! Draw 
-               complete picture
-             + Begin drawing detailed diagram of connections in the human brain with 2 retine
-	             Retine => LGN => V1 => V2 => V4 => IT (Reference [1]) 
-</li>
-  <li> ???) Theory of muscle control with no initial control(how does a baby control it’s bladder)
-            Theory behind cascades with controlling the eye, build software eye model
-            + Every region of the neocortex generates motor behavior
-            + http://www.youtube.com/watch?v=1_eT5bsS4bQ
-            + thoughts: muscle output goes back to the bottom of neocortex as input
-            + upside tongue touching. If you flip your tongue upside down and then touch the left side your brain will process it
-              is being on the right side. 
-            + look into Andrew Schwartz monkey robotic arm experiment at University of Pittsburgh
-</li>
-  <li> Hard) Encorder transducer for retine? Find ted talk about it
-</li>
-  <li> Very Hard) http://math.stackexchange.com/questions/442497/combinatorics-arrangement-problem
-                  + partial answer from MIT combinatorics professor: http://db.tt/tnwPBW65
-                  + code a back tracking algorithm to calculate answer 
-</li>
-  <li> Medium) Research Mammal Audio System and think about AudioCell implementation
-               Human auditory range: 64 Hertz to 15,000 Hertz (middle aged adult) research how a cochlear implant really
-               works, making a sound wave in the environment into an electrical signal
-</li>
-  <li> Hard) Write up a easy/intuitive explanation of how the illusion of the Hermann grid is created
-             using WalnutiQ MARK I model:
-             + https://www.dropbox.com/s/03a9sujz36xj5vw/2013-06-17%2010.40.44.jpg
-             + http://www.nku.edu/~issues/illusions/HermannGrid.htm
-</li>
-  <li> Medium) How does brian code for different shades of grey. Different greys must produce different level of cell activity.
-               How do the photoreceptors do so? Red Rectangluar. Connection with No overlap, Green..., Blue... How to implement Retine.java?
-</li>
-  <li> Very Hard) Write up biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
-                   Interesting facts: moon illusion disappears when you inverse input. Possible explanation: convergence micropasia
-</li>
-</ol>
+
+- Very Hard) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
+  + Currently doing so by building neural network digit recognition with good notes here:
+    https://github.com/quinnliu/MachineLearning/tree/master/unsupervisedLearning/neuralNetworks
+    - Able to get 2 layer neural network to get 95% (and 3 layer neural network to get 97%) correct on MNIST handwritten  
+      digit dataset (without overfitting the data set). The principles of neural network training should also be able to be applied to training MARK I to achieve very similiar results!!!
+    - Build a very large heriarchical neural network using MARK I model where each neuron does have about 10,000 synapses
+      and see if it is any better.
+
+- Hard) Read through this email and consider NEW temporal pooling ideas and structure of building vision system with CLA 
+        regions in hierarchy: https://mail.google.com/mail/u/0/#inbox/143bb52fc872e539
+
+- Hard) Decide how to implement complete vision & action pathway by drawing MARK I 
+        + Detailed biological image 1: http://db.tt/T0Gs7lMe image 2: http://db.tt/IDQYLbr1 
+          - Reference this neuron modeling repo: https://github.com/quinnliu/ComputationalNeuroscience
+	          + circle connect from retine to LGN ? Relate back to Computational Neuroscience
+            + random connect from LGN to V1 ? 
+	      + input picture => active cells from bottom region to top region => motor output => next input picture! Draw 
+          complete picture
+        + Begin drawing detailed diagram of connections in the human brain with 2 retine
+	        Retine => LGN => V1 => V2 => V4 => IT (Reference [1]) 
+
+- ???) Theory of muscle control with no initial control(how does a baby control it’s bladder)
+       Theory behind cascades with controlling the eye, build software eye model
+       + Every region of the neocortex generates motor behavior
+       + http://www.youtube.com/watch?v=1_eT5bsS4bQ
+       + thoughts: muscle output goes back to the bottom of neocortex as input
+       + upside tongue touching. If you flip your tongue upside down and then touch the left side your brain will process it
+         is being on the right side. 
+       + look into Andrew Schwartz monkey robotic arm experiment at University of Pittsburgh
+
+- Hard) Encorder transducer for retine? Find ted talk about it
+
+- Very Hard) http://math.stackexchange.com/questions/442497/combinatorics-arrangement-problem
+             + partial answer from MIT combinatorics professor: http://db.tt/tnwPBW65
+             + code a back tracking algorithm to calculate answer 
+
+- Medium) Research Mammal Audio System and think about AudioCell implementation
+          Human auditory range: 64 Hertz to 15,000 Hertz (middle aged adult) research how a cochlear implant really
+          works, making a sound wave in the environment into an electrical signal
+
+- Hard) Write up a easy/intuitive explanation of how the illusion of the Hermann grid is created
+        using WalnutiQ MARK I model:
+        + https://www.dropbox.com/s/03a9sujz36xj5vw/2013-06-17%2010.40.44.jpg
+        + http://www.nku.edu/~issues/illusions/HermannGrid.htm
+
+- Medium) How does brian code for different shades of grey. Different greys must produce different level of cell activity.
+          How do the photoreceptors do so? Red Rectangluar. Connection with No overlap, Green..., Blue... How to implement Retine.java?
+
+- Very Hard) Write up biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
+             Interesting facts: moon illusion disappears when you inverse input. Possible explanation: convergence micropasia
+
 <h2>Programming Tasks</h2>
-<ol>
-  <li> Hard) Make the image input go through the retine(simulating a difference of gaussian filter) to create a sparse input for the LGN -> V1
-</li>
- <li> Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of
-                  SpatialPooler class [quinnliu@vt.edu]
-                  + http://www.youtube.com/watch?v=QLDlBRAlSAM
-</li>
-<li>
-   Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to
-               allow complex features to be learned by Neurons.
-</li>
-<li> Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
-               + see printout of computeActiveColumns
-               + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)
-</li>
-<li> ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
-            + https://github.com/numenta/nupic/wiki/Swarming-Algorithm
-</li>
-<li> Easy) Enforce global inhibition for performSpatialPooling(int percentOutput)
-</li>	
-<li> Medium) Iterate through a directory during training instead of one image file. 
-	             + http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
-</li>
- <li> Easy) Throw exceptions for TemporalPooler.java class when done implementation
-</li>
-</ol>
+
+- Hard) Make the image input go through the retine(simulating a difference of gaussian filter) to create a sparse input for the LGN -> V1
+
+- Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of
+             SpatialPooler class [quinnliu@vt.edu]
+             + http://www.youtube.com/watch?v=QLDlBRAlSAM
+
+
+- Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to
+          allow complex features to be learned by Neurons.
+
+- Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
+          + see printout of computeActiveColumns
+          + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)
+
+- ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
+       + https://github.com/numenta/nupic/wiki/Swarming-Algorithm
+
+- Easy) Enforce global inhibition for performSpatialPooling(int percentOutput)
+
+- Medium) Iterate through a directory during training instead of one image file. 
+	        + http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
+
+- Easy) Throw exceptions for TemporalPooler.java class when done implementation
+
 <h3>Computer Vision Research Comparison Chart</h3>
 
 NOTE: All comments on below Image Recognition Techniques should be made to be objective as possible

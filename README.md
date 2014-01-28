@@ -8,8 +8,8 @@
 Welcome! WalnutiQ is a human brain model simulation in Java. 
 The goal of this repository is to store code that can 
 simulate a human brain in real-time. A brain machine 
-without emotions which is more intelligent than the smartest humans 
-will potentially be able to solve many of the problems which currently plague the world. 
+built on biological principles will potentially be able to 
+solve many of the problems which currently plague the world. 
 If you are interested in becoming a researcher/developer, the only requirement is passion 
 for applying brain models to solve real world problems.
  
@@ -22,8 +22,8 @@ access to individual neuron properties. For more information please
 watch this [video playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
 to become familiar with the neuroscience behind this repository.
 
-Most importantly, this research is made possible by the intelligent
-neuroscientists and engineers at the company [Numenta](http://numenta.org/). 
+Most importantly, this research is made possible by the 
+neuroscientists and engineers at [Numenta](http://numenta.org/). 
 Numenta has designed a exciting new technology that accurately models 
 layers 3 & 4 of the human neocortex. They have generously released 
 the pseudocode for their learning algorithms, and this repository is an 
