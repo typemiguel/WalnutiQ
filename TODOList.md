@@ -5,6 +5,8 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
 
 <h2>Researching Tasks</h2>
 
+- Easy) Remove MARK I label on research poster. [quinnliu@vt.edu]
+
 - Very Hard) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
   + Currently doing so by building neural network digit recognition with good notes here:
     https://github.com/quinnliu/MachineLearning/tree/master/unsupervisedLearning/neuralNetworks
@@ -57,6 +59,11 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
              Interesting facts: moon illusion disappears when you inverse input. Possible explanation: convergence micropasia
 
 <h2>Programming Tasks</h2>
+
+- Very Hard) Implement back propagation model on MARK I model.
+             + https://github.com/quinnliu/MachineLearning/tree/master/unsupervisedLearning/neuralNetworks/learningWithBackpropagation
+
+- Medium) Create a class to show how 2 different inputs produce the same output.
 
 - Hard) Make the image input go through the retine(simulating a difference of gaussian filter) to create a sparse input for the LGN -> V1
 

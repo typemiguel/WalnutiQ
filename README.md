@@ -54,11 +54,11 @@ right click the ```WalnutiQ/``` folder and select "Run As" =>
   
 <h2>Setup in Linux/Mac/Windows with Gradle</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
-```
-linux> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
-linux> sudo unzip -q gradle-1.10-bin.zip -d /usr/local/
-linux> echo "export GRADLE_HOME=/usr/local/gradle-1.10" >> .profile
-linux> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
+```sh
+prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
+prompt> sudo unzip -q gradle-1.10-bin.zip -d /usr/local/
+prompt> echo "export GRADLE_HOME=/usr/local/gradle-1.10" >> .profile
+prompt> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
 ```
 
 2. Or install Gradle with these [instructions for Windows](https://db.tt/DMF3ww2D)
