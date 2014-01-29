@@ -73,7 +73,7 @@ a browser and make sure all tests pass!
 
 1. View an example of how all the code is used in the file: 
 ```
-WalnutiQ/train/model/MARK_I/HowToUseMARK_I.java
+WalnutiQ/experiments/model/MARK_I/HowToUseMARK_I.java
 ```
 
 2. View the [TODO List](./TODOList.md) and find a task you 
@@ -103,9 +103,9 @@ are doing. Happy coding!
             + [connectTypes](./tests/model/MARK_I/connectTypes)
           - [theory](./tests/model/theory)
           - [util](./tests/model/util)
-  - train  
+  - experiments  
       + model
-          - [MARK_I](./train/model/MARK_I) = demonstrations of how to build and train a partial brain model
+          - [MARK_I](./experiments/model/MARK_I) = demonstrations of how to build and experiment with a partial brain model
                      on a popular handwritten digit data set called MNIST
   - .gitignore = contains names of files/folders not to add to this repository
   - .project = when writing your code using Eclipse this file will allow all of
