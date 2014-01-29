@@ -143,7 +143,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	String memoryClassifierObject = gson
 		.toJson(this.memoryClassifier_Digits);
 	JsonFileInputOutput.saveObjectToTextFile(memoryClassifierObject,
-		"./train/model/MARK_I/MemoryClassifier_MNIST_Digits.txt");
+		"./experiments/model/MARK_I/MemoryClassifier_MNIST_Digits.txt");
 
 	// ---------------------------Testing----------------------------------
 	MnistManager mm = new MnistManager(
