@@ -54,6 +54,7 @@ right click the ```WalnutiQ/``` folder and select "Run As" =>
   
 <h2>Setup in Linux/Mac/Windows with Gradle</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
+
 ```sh
 prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
 prompt> sudo unzip -q gradle-1.10-bin.zip -d /usr/local/
@@ -72,6 +73,7 @@ a browser and make sure all tests pass!
 <h2>How to Contribute</h2>
 
 1. View an example of how all the code is used in the file: 
+
 ```
 WalnutiQ/experiments/model/MARK_I/vision/HowToUseMARK_I.java
 ```
