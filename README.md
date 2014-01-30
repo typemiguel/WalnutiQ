@@ -54,13 +54,12 @@ right click the ```WalnutiQ/``` folder and select "Run As" =>
   
 <h2>Setup in Linux/Mac/Windows with Gradle</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
-
-```sh
-prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
-prompt> sudo unzip -q gradle-1.10-bin.zip -d /usr/local/
-prompt> echo "export GRADLE_HOME=/usr/local/gradle-1.10" >> .profile
-prompt> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
-```
+   ```sh
+   prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
+   prompt> sudo unzip -q gradle-1.10-bin.zip -d /usr/local/
+   prompt> echo "export GRADLE_HOME=/usr/local/gradle-1.10" >> .profile
+   prompt> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
+   ```
 
 2. Or install Gradle with these [instructions for Windows](https://db.tt/DMF3ww2D)
 
@@ -73,14 +72,13 @@ a browser and make sure all tests pass!
 <h2>How to Contribute</h2>
 
 1. View an example of how all the code is used in the file: 
-
-```
-WalnutiQ/experiments/model/MARK_I/vision/HowToUseMARK_I.java
-```
+   ```
+   WalnutiQ/experiments/model/MARK_I/vision/HowToUseMARK_I.java
+   ```
 
 2. View the [TODO List](./TODOList.md) and find a task you 
-would like to work on or suggest a new task if you kind of know what you
-are doing. Happy coding!
+   would like to work on or suggest a new task if you kind of know what you
+   are doing. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>
   - experiments  
