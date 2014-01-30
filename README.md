@@ -83,8 +83,9 @@ are doing. Happy coding!
 <h2>What each file/folder in this repository is for:</h2>
   - experiments  
       + model
-          - [MARK_I](./experiments/model/MARK_I) = demonstrations of how to build and experiment with a partial brain model
-                     on a popular handwritten digit data set called MNIST
+          - MARK_I
+            + [vision](./experiments/model/MARK_I/vision) = experiments with partial visual pathway models on a popular handwritten digit data
+              set called MNIST
   - images
       + digits
           - [MNIST](./images/digits/MNIST) = unique files that contain training images and testing images
