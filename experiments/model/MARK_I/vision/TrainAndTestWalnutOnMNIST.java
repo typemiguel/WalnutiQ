@@ -1,4 +1,4 @@
-package model.MARK_I;
+package model.MARK_I.vision;
 
 import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
@@ -142,8 +142,9 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	Gson gson = new Gson();
 	String memoryClassifierObject = gson
 		.toJson(this.memoryClassifier_Digits);
-	JsonFileInputOutput.saveObjectToTextFile(memoryClassifierObject,
-		"./experiments/model/MARK_I/MemoryClassifier_MNIST_Digits.txt");
+	JsonFileInputOutput
+		.saveObjectToTextFile(memoryClassifierObject,
+			"./experiments/model/MARK_I/vision/MemoryClassifier_MNIST_Digits.txt");
 
 	// ---------------------------Testing----------------------------------
 	MnistManager mm = new MnistManager(
@@ -181,13 +182,13 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	}
 
 	// TODO: assert equals with output stream
-//	System.out.println("total images tested: " + numberOfImagesToTest);
-//	System.out.println("# of correct classifications: "
-//		+ correctClassifications);
-//	int incorrectClassifications = numberOfImagesToTest
-//		- correctClassifications;
-//	System.out.println("# of incorrect classifications: "
-//		+ incorrectClassifications);
+	// System.out.println("total images tested: " + numberOfImagesToTest);
+	// System.out.println("# of correct classifications: "
+	// + correctClassifications);
+	// int incorrectClassifications = numberOfImagesToTest
+	// - correctClassifications;
+	// System.out.println("# of incorrect classifications: "
+	// + incorrectClassifications);
     }
 
     private int convertStringDigitToInt(String number) {

@@ -73,7 +73,7 @@ a browser and make sure all tests pass!
 
 1. View an example of how all the code is used in the file: 
 ```
-WalnutiQ/experiments/model/MARK_I/HowToUseMARK_I.java
+WalnutiQ/experiments/model/MARK_I/vision/HowToUseMARK_I.java
 ```
 
 2. View the [TODO List](./TODOList.md) and find a task you 
@@ -81,6 +81,10 @@ would like to work on or suggest a new task if you kind of know what you
 are doing. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>
+  - experiments  
+      + model
+          - [MARK_I](./experiments/model/MARK_I) = demonstrations of how to build and experiment with a partial brain model
+                     on a popular handwritten digit data set called MNIST
   - images
       + digits
           - [MNIST](./images/digits/MNIST) = unique files that contain training images and testing images
@@ -103,10 +107,6 @@ are doing. Happy coding!
             + [connectTypes](./tests/model/MARK_I/connectTypes)
           - [theory](./tests/model/theory)
           - [util](./tests/model/util)
-  - experiments  
-      + model
-          - [MARK_I](./experiments/model/MARK_I) = demonstrations of how to build and experiment with a partial brain model
-                     on a popular handwritten digit data set called MNIST
   - .gitignore = contains names of files/folders not to add to this repository
   - .project = when writing your code using Eclipse this file will allow all of
                your files to be organized in the correct folder

@@ -1,4 +1,4 @@
-package model.MARK_I;
+package model.MARK_I.vision;
 
 import model.MARK_I.connectTypes.RegionToRegionConnect;
 import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
@@ -110,7 +110,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	String memoryClassifierObject = this.gson
 		.toJson(memoryClassifier_digits);
 	JsonFileInputOutput.saveObjectToTextFile(memoryClassifierObject,
-		"./experiments/model/MARK_I/MemoryClassifier_Digits.txt");
+		"./experiments/model/MARK_I/vision/MemoryClassifier_Digits.txt");
 
 	return memoryClassifier_digits;
     }
@@ -122,7 +122,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
      */
     public void test_MemoryClassifierOnNewImages() throws IOException {
 	String memoryClassifierAsString = JsonFileInputOutput
-		.openObjectInTextFile("./experiments/model/MARK_I/MemoryClassifier_Digits.txt");
+		.openObjectInTextFile("./experiments/model/MARK_I/vision/MemoryClassifier_Digits.txt");
 	MemoryClassifier mc = this.gson.fromJson(memoryClassifierAsString,
 		MemoryClassifier.class);
 	// System.out.println(mc.toString());
