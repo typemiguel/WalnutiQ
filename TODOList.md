@@ -37,15 +37,9 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
          is being on the right side. 
        + look into Andrew Schwartz monkey robotic arm experiment at University of Pittsburgh
 
-- Hard) Encorder transducer for retine? Find ted talk about it
-
 - Very Hard) http://math.stackexchange.com/questions/442497/combinatorics-arrangement-problem
              + partial answer from MIT combinatorics professor: http://db.tt/tnwPBW65
              + code a back tracking algorithm to calculate answer 
-
-- Medium) Research Mammal Audio System and think about AudioCell implementation
-          Human auditory range: 64 Hertz to 15,000 Hertz (middle aged adult) research how a cochlear implant really
-          works, making a sound wave in the environment into an electrical signal
 
 - Hard) Write up a easy/intuitive explanation of how the illusion of the Hermann grid is created
         using WalnutiQ MARK I model:
@@ -67,10 +61,11 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
 
 - Hard) Make the image input go through the retine(simulating a difference of gaussian filter) to create a sparse input for the LGN -> V1
 
-- Very Hard) Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of
-             SpatialPooler class [quinnliu@vt.edu]
-             + http://www.youtube.com/watch?v=QLDlBRAlSAM
-
+- ON HOLD) Temporary on HOLD since Numenta is changing their temporal pooling algorithm
+           + Implement TemporalPooler class and make a release for MARK I. Requires a lot of understanding of output of
+             SpatialPooler class 
+           + http://www.youtube.com/watch?v=QLDlBRAlSAM
+           + Throw exceptions for TemporalPooler.java class when done implementation
 
 - Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to
           allow complex features to be learned by Neurons.
@@ -86,8 +81,6 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
 
 - Medium) Iterate through a directory during training instead of one image file. 
 	        + http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
-
-- Easy) Throw exceptions for TemporalPooler.java class when done implementation
 
 <h3>Computer Vision Research Comparison Chart</h3>
 
