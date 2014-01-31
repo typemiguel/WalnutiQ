@@ -72,7 +72,7 @@ a browser and make sure all tests pass!
 <h2>How to Contribute</h2>
 
 1. View an example of how all the code is used in the file 
-   [HowToUseMARK_I.java](WalnutiQ/experiments/model/MARK_I/visionHowToUseMARK_I.java)
+   [HowToUseMARK_I.java](./experiments/model/MARK_I/vision/HowToUseMARK_I.java)
 
 2. View the [TODO List](./TODOList.md) and find a task you 
    would like to work on or suggest a new task if you kind of know what you
