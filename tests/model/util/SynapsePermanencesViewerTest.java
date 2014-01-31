@@ -28,21 +28,13 @@ public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
 	    throws IOException {
 	// construct LGN
 	this.LGNRegion = new Region("LGN", 8, 8, 1, 50, 10);
-	LGN unconnectedLGN = new LGN(
-		this.LGNRegion);
+	LGN unconnectedLGN = new LGN(this.LGNRegion);
 
-	// construct Retina
-	VisionCell[][] visionCells = new VisionCell[64][64];
-	for (int x = 0; x < visionCells.length; x++) {
-	    for (int y = 0; y < visionCells[0].length; y++) {
-		visionCells[x][y] = new VisionCell();
-	    }
-	}
-	Retine retina = new Retine(visionCells);
+	Retine retine = new Retine(66, 66);
 
 	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
-	retinaToLGN.connect(visionCells, this.LGNRegion, 0, 0);
-	retina.seeBMPImage("2.bmp");
+	retinaToLGN.connect(retine.getVisionCells(), this.LGNRegion, 0, 0);
+	retine.seeBMPImage("2.bmp");
 
 	SpatialPooler spatialPooler = new SpatialPooler(this.LGNRegion);
 	spatialPooler.setLearningState(true);
@@ -51,9 +43,9 @@ public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
 	    spatialPooler.performSpatialPoolingOnRegion();
 	}
 
-	//Set<ColumnPosition> LGNNeuronActivity = spatialPooler
-	//	.getActiveColumnPositions();
-	//assertEquals(11, LGNNeuronActivity.size());
+	// Set<ColumnPosition> LGNNeuronActivity = spatialPooler
+	// .getActiveColumnPositions();
+	// assertEquals(11, LGNNeuronActivity.size());
 
 	Gson gson = new Gson();
 	String regionObject = gson.toJson(this.LGNRegion);
@@ -67,6 +59,6 @@ public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
 	Gson gson = new Gson();
 	Region LGNRegion = gson.fromJson(regionAsString, Region.class);
 	// TODO: assert equals with output stream
-	//System.out.println(LGNRegion.toString());
+	// System.out.println(LGNRegion.toString());
     }
 }

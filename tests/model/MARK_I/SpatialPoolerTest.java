@@ -44,28 +44,22 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	Region region = new Region("region", 8, 8, 4, 50, 1);
 	this.spatialPooler.changeRegion(region);
 
-	VisionCell[][] visionCells = new VisionCell[65][65];
-	for (int x = 0; x < visionCells.length; x++) {
-	    for (int y = 0; y < visionCells[0].length; y++) {
-		visionCells[x][y] = new VisionCell();
-	    }
-	}
+	// update VisionCells states
+	Retine retine = new Retine(66, 66);
 
 	SensorCellsToRegionConnect connectType2 = new SensorCellsToRegionRectangleConnect();
-	connectType2.connect(visionCells, region, 2, 2);
+	connectType2.connect(retine.getVisionCells(), region, 2, 2);
 
-	// update VisionCells states
-	Retine retina = new Retine(visionCells);
-
-	retina.seeBMPImage("2.bmp");
+	retine.seeBMPImage("2.bmp");
 	this.spatialPooler.performSpatialPoolingOnRegion();
-	Set<ColumnPosition> activeColumnPositions = this.spatialPooler.getActiveColumnPositions();
+	Set<ColumnPosition> activeColumnPositions = this.spatialPooler
+		.getActiveColumnPositions();
 	for (ColumnPosition columnPosition : activeColumnPositions) {
-	    //System.out.println(columnPosition.toString());
+	    // System.out.println(columnPosition.toString());
 	    // TODO: assert equals with output stream
 	}
-	//System.out.println(this.spatialPooler.toString());
-	//System.out.println(region.toString());
+	// System.out.println(this.spatialPooler.toString());
+	// System.out.println(region.toString());
 
 	this.parentRegion = this.spatialPooler.getRegion();
     }
@@ -151,12 +145,12 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 		.getColumnActiveStatesCharArray(this.parentRegion);
 
 	// TODO: assert equals with output stream
-	//System.out.println("\n--test_computeActiveColumnsOfRegion()--");
-	//System.out.println(this.parentRegion.toString());
+	// System.out.println("\n--test_computeActiveColumnsOfRegion()--");
+	// System.out.println(this.parentRegion.toString());
 
 	// TODO: columns along row 5 are all active next to each other?
 	// How did inhibition radius reduce to 0 so quickly? Set minimum of 1?
-	//RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
+	// RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
     }
 
     public void test_regionLearnOneTimeStep() {
@@ -165,11 +159,11 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	Synapse synapse_00 = proximalSegment_00.getSynapse(0, 0);
 
 	// An "and" truth table of column.updatePermanences()
-        // X-Axis: Column activeState
-        // Y-Axis: Synapse/InputCell activeState
-        // -----true false
-        // true .315 .295
-        // false.300 .300
+	// X-Axis: Column activeState
+	// Y-Axis: Synapse/InputCell activeState
+	// -----true false
+	// true .315 .295
+	// false.300 .300
 	columns[0][0].setActiveState(true);
 	Cell cell_00 = (Cell) synapse_00.getConnectedCell();
 	cell_00.setActiveState(true);
@@ -206,43 +200,51 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	this.parentRegion.setInhibitionRadius(0);
 	this.spatialPooler.updateNeighborColumns(0, 0);
 	Column[][] columns = this.parentRegion.getColumns();
-	List<ColumnPosition> neighborColumns1 = columns[0][0].getNeighborColumns();
+	List<ColumnPosition> neighborColumns1 = columns[0][0]
+		.getNeighborColumns();
 	assertEquals(0, neighborColumns1.size());
 
 	this.parentRegion.setInhibitionRadius(1);
 	this.spatialPooler.updateNeighborColumns(0, 0);
-	List<ColumnPosition> neighborColumns2 = columns[0][0].getNeighborColumns();
+	List<ColumnPosition> neighborColumns2 = columns[0][0]
+		.getNeighborColumns();
 	assertEquals(3, neighborColumns2.size());
 
 	this.parentRegion.setInhibitionRadius(2);
 	this.spatialPooler.updateNeighborColumns(0, 0);
-	List<ColumnPosition> neighborColumns3 = columns[0][0].getNeighborColumns();
+	List<ColumnPosition> neighborColumns3 = columns[0][0]
+		.getNeighborColumns();
 	assertEquals(8, neighborColumns3.size());
 
 	this.parentRegion.setInhibitionRadius(3);
 	this.spatialPooler.updateNeighborColumns(0, 0);
-	List<ColumnPosition> neighborColumns4 = columns[0][0].getNeighborColumns();
+	List<ColumnPosition> neighborColumns4 = columns[0][0]
+		.getNeighborColumns();
 	assertEquals(15, neighborColumns4.size());
 
 	// test on Column at position (3, 3) of Region
 	this.parentRegion.setInhibitionRadius(0);
 	this.spatialPooler.updateNeighborColumns(3, 3);
-	List<ColumnPosition> neighborColumns5 = columns[3][3].getNeighborColumns();
+	List<ColumnPosition> neighborColumns5 = columns[3][3]
+		.getNeighborColumns();
 	assertEquals(0, neighborColumns5.size());
 
 	this.parentRegion.setInhibitionRadius(1);
 	this.spatialPooler.updateNeighborColumns(3, 3);
-	List<ColumnPosition> neighborColumns6 = columns[3][3].getNeighborColumns();
+	List<ColumnPosition> neighborColumns6 = columns[3][3]
+		.getNeighborColumns();
 	assertEquals(8, neighborColumns6.size());
 
 	this.parentRegion.setInhibitionRadius(2);
 	this.spatialPooler.updateNeighborColumns(3, 3);
-	List<ColumnPosition> neighborColumns7 = columns[3][3].getNeighborColumns();
+	List<ColumnPosition> neighborColumns7 = columns[3][3]
+		.getNeighborColumns();
 	assertEquals(24, neighborColumns7.size());
 
 	this.parentRegion.setInhibitionRadius(3);
 	this.spatialPooler.updateNeighborColumns(3, 3);
-	List<ColumnPosition> neighborColumns8 = columns[3][3].getNeighborColumns();
+	List<ColumnPosition> neighborColumns8 = columns[3][3]
+		.getNeighborColumns();
 	assertEquals(48, neighborColumns8.size());
     }
 
@@ -277,7 +279,8 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_averageReceptiveFieldSizeOfRegion() {
-	assertEquals(5.358, this.spatialPooler.averageReceptiveFieldSizeOfRegion(), 0.001);
+	assertEquals(5.358,
+		this.spatialPooler.averageReceptiveFieldSizeOfRegion(), 0.001);
     }
 
     public void test_updateOverlapDutyCycle() {

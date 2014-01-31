@@ -29,10 +29,6 @@ public class Retine {
 	}
     }
 
-    public Retine(VisionCell[][] visionCells) {
-	this.visionCells = visionCells;
-    }
-
     public VisionCell[][] getVisionCells() {
 	return this.visionCells;
     }

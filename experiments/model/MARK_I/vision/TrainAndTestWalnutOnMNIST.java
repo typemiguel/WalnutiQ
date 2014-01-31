@@ -24,7 +24,7 @@ import model.Retine;
  * @version July 5, 2013
  */
 public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
-    private Retine retina;
+    private Retine retine;
     private Region region_LGN;
     private SpatialPooler spatialPooler;
 
@@ -46,7 +46,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 
     public void setUp() throws IOException {
 	// Walnut = a partial human brain model
-	this.constructWalnut();
+	this.constructWalnut_MARK_NULLA();
 
 	// 10 means how many elements are in this array with a starting index at
 	// 0 - 9
@@ -54,15 +54,9 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	this.occurranceOfTestingDigits = new int[10];
     }
 
-    private void constructWalnut() {
+    private void constructWalnut_MARK_NULLA() {
 	// all images in MNIST are 28 x 28 pixels
-	VisionCell[][] visionCells = new VisionCell[27][27];
-	for (int x = 0; x < visionCells.length; x++) {
-	    for (int y = 0; y < visionCells[0].length; y++) {
-		visionCells[x][y] = new VisionCell();
-	    }
-	}
-	this.retina = new Retine(visionCells);
+	this.retine = new Retine(28, 28);
 
 	// TODO: size of region can be 4, 7, 14
 	// TODO: percentMinimumOverlapScore = 1 to 99
@@ -73,7 +67,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	// region_LGN size)
 	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
 	retinaToLGN
-		.connect(this.retina.getVisionCells(), this.region_LGN, 0, 0);
+		.connect(this.retine.getVisionCells(), this.region_LGN, 0, 0);
 
 	this.spatialPooler = new SpatialPooler(this.region_LGN);
 	this.spatialPooler.setLearningState(true);
@@ -107,7 +101,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	    int imageLabel = m.readLabel();
 	    this.updateOccuranceOfTrainingDigits(imageLabel);
 
-	    this.retina.see2DIntArray(image); // VisionCells states updated
+	    this.retine.see2DIntArray(image); // VisionCells states updated
 	    this.spatialPooler.performSpatialPoolingOnRegion();
 	    Set<ColumnPosition> columnActivity = this.spatialPooler
 		    .getActiveColumnPositions();
@@ -161,7 +155,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	    int imageLabel = mm.readLabel();
 	    this.updateOccuranceOfTestingDigits(imageLabel);
 
-	    this.retina.see2DIntArray(image); // VisionCells states updated
+	    this.retine.see2DIntArray(image); // VisionCells states updated
 	    this.spatialPooler.performSpatialPoolingOnRegion();
 
 	    Set<ColumnPosition> columnActivity = this.spatialPooler

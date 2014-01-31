@@ -50,23 +50,16 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
     public void test_saveRegionObject() throws IOException {
 	Region LGNRegion = new Region("LGNRegion", 8, 8, 1, 50, 3);
 
-	// construct Retina
-	VisionCell[][] visionCells = new VisionCell[65][65];
-	for (int x = 0; x < visionCells.length; x++) {
-	    for (int y = 0; y < visionCells[0].length; y++) {
-		visionCells[x][y] = new VisionCell();
-	    }
-	}
-	Retine retina = new Retine(visionCells);
+	Retine retine = new Retine(66, 66);
 
 	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
-	retinaToLGN.connect(retina.getVisionCells(), LGNRegion, 0, 0);
+	retinaToLGN.connect(retine.getVisionCells(), LGNRegion, 0, 0);
 
 	// run spatial pooling on a image
 	SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
 	spatialPooler.setLearningState(true);
 
-	retina.seeBMPImage("2.bmp");
+	retine.seeBMPImage("2.bmp");
 //	Set<ColumnPosition> LGNNeuronActivity = spatialPooler // <= Cannot both
 //							      // be uncommented
 //		.performSpatialPoolingOnRegion();
