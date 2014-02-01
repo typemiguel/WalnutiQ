@@ -33,7 +33,6 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
 	MemoryClassifier memoryClassifier_digits = new MemoryClassifier(
 		digitsMemory);
 
-	// save MemoryClassifier object as a JSON file
 	String memoryClassifierObject = this.gson
 		.toJson(memoryClassifier_digits);
 	JsonFileInputOutput.saveObjectToTextFile(memoryClassifierObject,
@@ -79,9 +78,9 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
     public void test_openRegionObject() throws IOException {
 	String regionAsString = JsonFileInputOutput
 		.openObjectInTextFile("./tests/model/util/test_saveRegionObject.txt");
+
 	Gson gson2 = new Gson();
-	// System.out.println(regionAsString);
-	Region LGNRegion = gson2.fromJson(regionAsString, Region.class);
-	// System.out.println(LGNRegion.toString());
+	Region trainedLGNRegion = gson2.fromJson(regionAsString, Region.class);
+	assertEquals("LGNRegion", trainedLGNRegion.getBiologicalName());
     }
 }
