@@ -1,5 +1,7 @@
 package model.util;
 
+import model.MARK_I.Column;
+import java.util.Set;
 import model.theory.Idea;
 import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
@@ -53,34 +55,25 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
 
 	Retina retina = new Retina(66, 66);
 
-	SensorCellsToRegionConnect retineToLGN = new SensorCellsToRegionRectangleConnect();
-	retineToLGN.connect(retina.getVisionCells(), LGNRegion, 0, 0);
+	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
+	retinaToLGN.connect(retina.getVisionCells(), LGNRegion, 0, 0);
 
 	// run spatial pooling on a image
 	SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
 	spatialPooler.setLearningState(true);
 
 	retina.seeBMPImage("2.bmp");
-	// Set<ColumnPosition> LGNNeuronActivity = spatialPooler // <= Cannot
-	// both
-	// // be uncommented
-	// .performSpatialPoolingOnRegion();
-	//
-	// assertEquals(11, LGNNeuronActivity.size());
+	Set<Column> LGNNeuronActivity = spatialPooler
+		.performSpatialPoolingOnRegion();
 
-	Region trainedLGNRegion = spatialPooler.getRegion();
-
-	// TODO: assert equals with output stream
-	// System.out.println(LGNRegion.toString());
-	// System.out.println(trainedLGNRegion.toString());
+	assertEquals(11, LGNNeuronActivity.size());
 
 	Gson gson2 = new Gson();
-	String regionObject = gson2.toJson(trainedLGNRegion); // <== Cannot both
-							      // be
-	// uncommented
+	Region trainedLGNRegion = spatialPooler.getRegion();
+	String regionObject = gson2.toJson(trainedLGNRegion);
 
-	// JsonFileInputOutput.saveObjectToTextFile(regionObject,
-	// "./tests/model/util/test_saveRegionObject.txt");
+	JsonFileInputOutput.saveObjectToTextFile(regionObject,
+		"./tests/model/util/test_saveRegionObject.txt");
     }
 
     public void test_openRegionObject() throws IOException {
