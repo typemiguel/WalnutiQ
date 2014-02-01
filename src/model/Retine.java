@@ -37,17 +37,24 @@ public class Retine {
      * Update the state of the Retine with the given .bmp file name.
      *
      * @param BMPFileName
+     * @throws IOException
      */
     public void seeBMPImage(String BMPFileName) throws IOException {
 	BufferedImage image = ImageIO.read(getClass().getResource(BMPFileName));
 
-	for (int yPixel = 0; yPixel < this.visionCells[0].length; yPixel++) {
-	    for (int xPixel = 0; xPixel < this.visionCells.length; xPixel++) {
-		int color = image.getRGB(xPixel, yPixel);
-		if (color == Color.BLACK.getRGB()) {
-		    this.visionCells[xPixel][yPixel].setActiveState(true);
+	int numberOfRows = this.visionCells.length;
+	int numberOfColumns = this.visionCells[0].length;
+
+	for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
+	    for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
+		int RGBcolor = image.getRGB(currentRow, currentColumn);
+
+		if (RGBcolor == Color.BLACK.getRGB()) {
+		    this.visionCells[currentRow][currentColumn]
+			    .setActiveState(true);
 		} else {
-		    this.visionCells[xPixel][yPixel].setActiveState(false);
+		    this.visionCells[currentRow][currentColumn]
+			    .setActiveState(false);
 		}
 	    }
 	}

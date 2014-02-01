@@ -20,5 +20,6 @@ package model.MARK_I.vision;
  */
 public class NoiseInvarianceExperiment {
     // TODO: reproduce results found here http://www.walnutiq.com/#!poster/c16gs
-
+    // TODO: use images in folder images/model/2.bmp and
+    // images/model/2_with_noise.bmp
 }
