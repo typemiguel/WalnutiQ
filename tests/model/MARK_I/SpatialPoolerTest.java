@@ -15,7 +15,7 @@ import model.MARK_I.Synapse;
 import model.MARK_I.VisionCell;
 
 import java.io.IOException;
-import model.Retine;
+import model.Retina;
 import model.util.RegionConsoleViewer;
 import java.util.Set;
 import java.util.List;
@@ -45,7 +45,7 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	this.spatialPooler.changeRegion(region);
 
 	// update VisionCells states
-	Retine retine = new Retine(66, 66);
+	Retina retine = new Retina(66, 66);
 
 	SensorCellsToRegionConnect connectType2 = new SensorCellsToRegionRectangleConnect();
 	connectType2.connect(retine.getVisionCells(), region, 2, 2);

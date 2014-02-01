@@ -15,10 +15,10 @@ import java.io.IOException;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Dec 28, 2013
  */
-public class Retine {
+public class Retina {
     private VisionCell[][] visionCells;
 
-    public Retine(int numberOfVisionCellsAlongXAxis,
+    public Retina(int numberOfVisionCellsAlongXAxis,
 	    int numberOfVisionCellsAlongYAxis) {
 	this.visionCells = new VisionCell[numberOfVisionCellsAlongXAxis][numberOfVisionCellsAlongYAxis];
 

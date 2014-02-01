@@ -5,7 +5,7 @@ import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.MARK_I.Region;
 import model.MARK_I.SpatialPooler;
-import model.Retine;
+import model.Retina;
 import java.io.IOException;
 import com.google.gson.Gson;
 import model.theory.Memory;
@@ -51,16 +51,16 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
     public void test_saveRegionObject() throws IOException {
 	Region LGNRegion = new Region("LGNRegion", 8, 8, 1, 50, 3);
 
-	Retine retine = new Retine(66, 66);
+	Retina retina = new Retina(66, 66);
 
-	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
-	retinaToLGN.connect(retine.getVisionCells(), LGNRegion, 0, 0);
+	SensorCellsToRegionConnect retineToLGN = new SensorCellsToRegionRectangleConnect();
+	retineToLGN.connect(retina.getVisionCells(), LGNRegion, 0, 0);
 
 	// run spatial pooling on a image
 	SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
 	spatialPooler.setLearningState(true);
 
-	retine.seeBMPImage("2.bmp");
+	retina.seeBMPImage("2.bmp");
 	// Set<ColumnPosition> LGNNeuronActivity = spatialPooler // <= Cannot
 	// both
 	// // be uncommented

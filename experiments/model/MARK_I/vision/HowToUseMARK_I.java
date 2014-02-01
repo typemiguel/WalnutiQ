@@ -17,7 +17,7 @@ import model.theory.Memory;
 import java.util.Set;
 import model.theory.Idea;
 import java.io.IOException;
-import model.Retine;
+import model.Retina;
 import model.NervousSystem;
 import model.LGN;
 
@@ -46,13 +46,13 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	LGN unconnectedLGN = new LGN(
 		new Region("LGN", 8, 8, 1, 50, 3));
 
-	Retine unconnectedRetina = new Retine(65, 65);
+	Retina unconnectedRetina = new Retina(65, 65);
 
 	NervousSystem nervousSystem = new NervousSystem(unconnectedNeocortex,
 		unconnectedLGN, unconnectedRetina);
 
 	// connect Retine to LGN
-	Retine retine = nervousSystem.getPNS().getSNS().getRetine();
+	Retina retine = nervousSystem.getPNS().getSNS().getRetine();
 	LGN LGN = nervousSystem.getCNS().getBrain()
 		.getThalamus().getLGN();
 	SensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
@@ -71,7 +71,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 
     private MemoryClassifier trainMemoryClassifierWithNervousSystem()
 	    throws IOException {
-	Retine retine = nervousSystem.getPNS().getSNS().getRetine();
+	Retina retine = nervousSystem.getPNS().getSNS().getRetine();
 
 	Region LGNRegion = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();
@@ -127,7 +127,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 		MemoryClassifier.class);
 	// System.out.println(mc.toString());
 
-	Retine retine = nervousSystem.getPNS().getSNS().getRetine();
+	Retina retine = nervousSystem.getPNS().getSNS().getRetine();
 
 	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();

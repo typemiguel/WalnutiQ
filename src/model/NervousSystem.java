@@ -10,7 +10,7 @@ public class NervousSystem {
     private CNS CNS;
     private PNS PNS;
 
-    public NervousSystem(Neocortex neocortex, LGN LGN, Retine retina) {
+    public NervousSystem(Neocortex neocortex, LGN LGN, Retina retina) {
 	this.CNS = new CNS(neocortex, LGN);
 	this.PNS = new PNS(retina);
     }

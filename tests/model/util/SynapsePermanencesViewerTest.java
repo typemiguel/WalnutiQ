@@ -10,7 +10,7 @@ import model.MARK_I.VisionCell;
 import com.google.gson.Gson;
 import java.io.IOException;
 import model.LGN;
-import model.Retine;
+import model.Retina;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
@@ -30,7 +30,7 @@ public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
 	this.LGNRegion = new Region("LGN", 8, 8, 1, 50, 10);
 	LGN unconnectedLGN = new LGN(this.LGNRegion);
 
-	Retine retine = new Retine(66, 66);
+	Retina retine = new Retina(66, 66);
 
 	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
 	retinaToLGN.connect(retine.getVisionCells(), this.LGNRegion, 0, 0);

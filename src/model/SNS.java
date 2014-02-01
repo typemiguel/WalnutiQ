@@ -15,13 +15,13 @@ package model;
  * @version June 5, 2013
  */
 public class SNS {
-    private Retine retine;
+    private Retina retine;
 
-    public SNS(Retine retine) {
+    public SNS(Retina retine) {
 	this.retine = retine;
     }
 
-    public Retine getRetine() {
+    public Retina getRetine() {
 	return this.retine;
     }
 }

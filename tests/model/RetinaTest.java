@@ -8,11 +8,11 @@ import java.io.IOException;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 5, 2013
  */
-public class RetineTest extends junit.framework.TestCase {
-    private Retine retine;
+public class RetinaTest extends junit.framework.TestCase {
+    private Retina retine;
 
     public void setUp() {
-	this.retine = new Retine(66, 66);
+	this.retine = new Retina(66, 66);
     }
 
     public void test_seeBMPImage() throws IOException {
