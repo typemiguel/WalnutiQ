@@ -62,7 +62,7 @@ public class MemoryClassifier {
 	}
     }
 
-    Memory getMemory() {
+    public Memory getMemory() {
 	return this.memory;
     }
 
