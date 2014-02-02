@@ -43,7 +43,7 @@ will be able to collaborate with you. Also, tasks near the top of their section 
 - Very Hard) Implement back propagation model on MARK I model.
              + https://github.com/quinnliu/MachineLearning/tree/master/unsupervisedLearning/neuralNetworks/learningWithBackpropagation
 
-- Medium) Create a class to show how 2 different inputs produce the same output.
+- Medium) Create a class to show how 2 different inputs produce the same output. [quinnliu@vt.edu]
 
 - Hard) Make the image input go through the retine(simulating a difference of gaussian filter) to create a sparse input for the LGN -> V1
 

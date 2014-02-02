@@ -1,15 +1,12 @@
 package model.MARK_I.vision;
 
-import model.MARK_I.VisionCell;
-
-import java.io.IOException;
-
 import java.util.Set;
+
 import model.MARK_I.ColumnPosition;
 
+import java.io.IOException;
 import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
-
 import model.Retina;
 import model.MARK_I.Region;
 import model.MARK_I.SpatialPooler;
@@ -30,7 +27,7 @@ import model.MARK_I.SpatialPooler;
  * between locations in the input image.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version Jan 29, 2014
+ * @version Feb 2, 2014
  */
 public class NoiseInvarianceExperiment extends junit.framework.TestCase {
     private Retina retina;
@@ -54,7 +51,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
     public void test_runNoiseInvarianceExperiment() throws IOException {
 	this.retina.seeBMPImage("2.bmp");
 
-//	this.spatialPooler.performSpatialPoolingOnRegion();
-//	Set<ColumnPosition> columnActivity = this.spatialPooler
+	this.spatialPooler.performSpatialPoolingOnRegion();
+	Set<ColumnPosition> columnActivity = this.spatialPooler.getActiveColumnPositions();
     }
 }
