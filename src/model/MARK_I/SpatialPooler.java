@@ -57,12 +57,13 @@ public class SpatialPooler extends Pooler {
     }
 
     /**
-     * If only the column positions computed by spatial pooling are needed
-     * use this method to return a set of just the column positions that were
-     * active in the most recent iteration of spatial pooling. For example
-     * instead of using:
+     * If only the column positions computed by spatial pooling are needed use
+     * this method to return a set of just the column positions that were active
+     * in the most recent iteration of spatial pooling. For example instead of
+     * using:
      *
-     * Set<Column> columnActivity = spatialPooler.performSpatialPoolingOnRegion();
+     * Set<Column> columnActivity =
+     * spatialPooler.performSpatialPoolingOnRegion();
      *
      * Now use:
      *
