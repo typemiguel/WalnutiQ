@@ -5,8 +5,6 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
 
 <h2>Researching Tasks</h2>
 
-- Easy) Remove MARK I label on research poster. [quinnliu@vt.edu]
-
 - Very Hard) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
   + Currently doing so by building neural network digit recognition with good notes here:
     https://github.com/quinnliu/MachineLearning/tree/master/unsupervisedLearning/neuralNetworks
