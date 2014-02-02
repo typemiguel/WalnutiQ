@@ -5,6 +5,8 @@ will be able to collaborate with you. Also, tasks near the top of their section 
 
 <h2>Researching Tasks</h2>
 
+- ???) Learn how to use github issues page and move all below tasks to issues page
+
 - Very Hard) Reunderstand neural network digit recognition system [quinnliu@vt.edu]
   + Currently doing so by building neural network digit recognition with good notes here:
     https://github.com/quinnliu/MachineLearning/tree/master/unsupervisedLearning/neuralNetworks

@@ -1,7 +1,7 @@
 [WalnutiQ](http://walnutiq.com)
 ==========
 
-“*Unless someone like you cares a whole awful lot, nothing is going to get better. It's not.*” ~ Dr. Seuss
+“*Truth is ever to be found in the simplicity, and not the multiplicity and confusion of things.*” ~ Sir Isaac Newton
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 
