@@ -35,20 +35,8 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
          is being on the right side. 
        + look into Andrew Schwartz monkey robotic arm experiment at University of Pittsburgh
 
-- Very Hard) http://math.stackexchange.com/questions/442497/combinatorics-arrangement-problem
-             + partial answer from MIT combinatorics professor: http://db.tt/tnwPBW65
-             + code a back tracking algorithm to calculate answer 
-
-- Hard) Write up a easy/intuitive explanation of how the illusion of the Hermann grid is created
-        using WalnutiQ MARK I model:
-        + https://www.dropbox.com/s/03a9sujz36xj5vw/2013-06-17%2010.40.44.jpg
-        + http://www.nku.edu/~issues/illusions/HermannGrid.htm
-
 - Medium) How does brian code for different shades of grey. Different greys must produce different level of cell activity.
           How do the photoreceptors do so? Red Rectangluar. Connection with No overlap, Green..., Blue... How to implement Retine.java?
-
-- Very Hard) Write up biologically accurate explanation of ebbinghaus illusion, ponzo illusion,
-             Interesting facts: moon illusion disappears when you inverse input. Possible explanation: convergence micropasia
 
 <h2>Programming Tasks</h2>
 
@@ -64,9 +52,6 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
              SpatialPooler class 
            + http://www.youtube.com/watch?v=QLDlBRAlSAM
            + Throw exceptions for TemporalPooler.java class when done implementation
-
-- Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to
-          allow complex features to be learned by Neurons.
 
 - ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
        + https://github.com/numenta/nupic/wiki/Swarming-Algorithm
