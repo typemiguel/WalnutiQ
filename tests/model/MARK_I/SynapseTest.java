@@ -91,9 +91,4 @@ public class SynapseTest extends junit.framework.TestCase {
 	this.synapse_1.decreasePermanence();
 	assertEquals(0.0, this.synapse_1.getPermanenceValue(), 0.0001);
     }
-
-    public void test_toString() {
-	//System.out.println(this.synapse_1.toString());
-	//System.out.println(this.synapse_2.toString());
-    }
 }
