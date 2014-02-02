@@ -59,10 +59,12 @@ public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
 	Gson gson = new Gson();
 	Region LGNRegion = gson.fromJson(regionAsString, Region.class);
 
-//	assertEquals("LGN", LGNRegion.getBiologicalName());
-//	assertEquals(8, LGNRegion.getXAxisLength());
-//	assertEquals(8, LGNRegion.getYAxisLength());
-//	assertEquals(10, LGNRegion.getDesiredLocalActivity());
-//	assertEquals(5, LGNRegion.getInhibitionRadius());
+	// uncommenting the following code causes a build error with grade
+	// in oracle jdk 7
+	// assertEquals("LGN", LGNRegion.getBiologicalName());
+	// assertEquals(8, LGNRegion.getXAxisLength());
+	// assertEquals(8, LGNRegion.getYAxisLength());
+	// assertEquals(10, LGNRegion.getDesiredLocalActivity());
+	// assertEquals(5, LGNRegion.getInhibitionRadius());
     }
 }
