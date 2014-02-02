@@ -24,7 +24,7 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
 	      + input picture => active cells from bottom region to top region => motor output => next input picture! Draw 
           complete picture
         + Begin drawing detailed diagram of connections in the human brain with 2 retine
-	        Retine => LGN => V1 => V2 => V4 => IT (Reference [1]) 
+	        Retine => LGN => V1 => V2 => V4 => IT (Reference Below[1]) 
 
 - ???) Theory of muscle control with no initial control(how does a baby control it’s bladder)
        Theory behind cascades with controlling the eye, build software eye model
@@ -60,30 +60,6 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
 
 - Medium) Iterate through a directory during training instead of one image file. 
 	        + http://stackoverflow.com/questions/14407040/iterating-through-a-directory-in-java
-
-<h3>Computer Vision Research Comparison Chart</h3>
-
-NOTE: All comments on below Image Recognition Techniques should be made to be objective as possible
-
-Bag of Words/Features
-  - Because only a frequency of a unique set of pixels are stored there is no spatial information being stored.
-  - Does not work for images with more than one object.
-  - Not capable of being unsupervised or able to learn by itself.
-
-Support Vector Machine
-  - Not visualizable after 3 features are learned(all useful support vector machines will have more than 3 features)
-
-WalnutiQ 
-  - Based on human neocortex biology theory
-  - Implemented with global and local inhibition to specifically for vision research
-  - Hard to find the parameters used during training to create a good image classifier
-  - Only has spatial pooling implemented and not yet TemporalPooling
-
-NuPIC
-  - Based on human neocortex biology theory
-  - Implemented source code is hard to understand
-  
-Deep Learning Neural Networks
 
 References
 ==========
