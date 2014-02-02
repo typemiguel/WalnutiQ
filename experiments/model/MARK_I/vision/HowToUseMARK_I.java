@@ -43,21 +43,18 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	Neocortex unconnectedNeocortex = new Neocortex(new Region("V1", 4, 4,
 		4, 50, 3), new RegionToRegionRectangleConnect());
 
-	LGN unconnectedLGN = new LGN(
-		new Region("LGN", 8, 8, 1, 50, 3));
+	LGN unconnectedLGN = new LGN(new Region("LGN", 8, 8, 1, 50, 3));
 
 	Retina unconnectedRetina = new Retina(65, 65);
 
 	NervousSystem nervousSystem = new NervousSystem(unconnectedNeocortex,
 		unconnectedLGN, unconnectedRetina);
 
-	// connect Retine to LGN
-	Retina retine = nervousSystem.getPNS().getSNS().getRetine();
-	LGN LGN = nervousSystem.getCNS().getBrain()
-		.getThalamus().getLGN();
+	// connect Retina to LGN
+	Retina retina = nervousSystem.getPNS().getSNS().getRetine();
+	LGN LGN = nervousSystem.getCNS().getBrain().getThalamus().getLGN();
 	SensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
-	opticNerve.connect(retine.getVisionCells(),
-		LGN.getRegion(), 0, 0);
+	opticNerve.connect(retina.getVisionCells(), LGN.getRegion(), 0, 0);
 
 	// connect LGN to very small part of V1 Region of Neocortex
 	Neocortex neocortex = nervousSystem.getCNS().getBrain().getCerebrum()
@@ -71,7 +68,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 
     private MemoryClassifier trainMemoryClassifierWithNervousSystem()
 	    throws IOException {
-	Retina retine = nervousSystem.getPNS().getSNS().getRetine();
+	Retina retina = nervousSystem.getPNS().getSNS().getRetine();
 
 	Region LGNRegion = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();
@@ -80,7 +77,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	// .getCerebralCortex().getNeocortex().getCurrentRegion();
 
 	// -------------train NervousSystem update Memory----------------
-	retine.seeBMPImage("2.bmp");
+	retina.seeBMPImage("2.bmp");
 
 	SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
 	spatialPooler.setLearningState(true);
@@ -109,8 +106,9 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	// save MemoryClassifier object as a JSON file
 	String memoryClassifierObject = this.gson
 		.toJson(memoryClassifier_digits);
-	JsonFileInputOutput.saveObjectToTextFile(memoryClassifierObject,
-		"./experiments/model/MARK_I/vision/MemoryClassifier_Digits.txt");
+	JsonFileInputOutput
+		.saveObjectToTextFile(memoryClassifierObject,
+			"./experiments/model/MARK_I/vision/MemoryClassifier_Digits.txt");
 
 	return memoryClassifier_digits;
     }
@@ -118,6 +116,7 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
     /**
      * Use the build NervousSystem instance and use the retine to view a .bmp
      * image.
+     *
      * @throws IOException
      */
     public void test_MemoryClassifierOnNewImages() throws IOException {
@@ -125,14 +124,13 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 		.openObjectInTextFile("./experiments/model/MARK_I/vision/MemoryClassifier_Digits.txt");
 	MemoryClassifier mc = this.gson.fromJson(memoryClassifierAsString,
 		MemoryClassifier.class);
-	// System.out.println(mc.toString());
 
-	Retina retine = nervousSystem.getPNS().getSNS().getRetine();
+	Retina retina = nervousSystem.getPNS().getSNS().getRetine();
 
 	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();
 
-	// retine.seeBMPImage("new2.bmp");
+	// retina.seeBMPImage("new2.bmp");
 	// digitsSVM.updateIdeas(spatialPooler.performSpatialPoolingOnRegion());
 	// digitsSVM.toString();
     }

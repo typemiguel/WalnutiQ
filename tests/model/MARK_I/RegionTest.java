@@ -26,7 +26,8 @@ public class RegionTest extends junit.framework.TestCase {
 	    this.region = new Region("V1", 0, 7, 4, 20, 3);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
-	    assertEquals("numberOfColumnsAlongXAxis in Region constructor cannot be less than 1",
+	    assertEquals(
+		    "numberOfColumnsAlongXAxis in Region constructor cannot be less than 1",
 		    expected.getMessage());
 	}
 
@@ -34,7 +35,8 @@ public class RegionTest extends junit.framework.TestCase {
 	    this.region = new Region("V1", 5, 7, 0, 20, 3);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
-	    assertEquals("cellsPerColumn in Region constructor cannot be less than 1",
+	    assertEquals(
+		    "cellsPerColumn in Region constructor cannot be less than 1",
 		    expected.getMessage());
 	}
 
@@ -42,7 +44,8 @@ public class RegionTest extends junit.framework.TestCase {
 	    this.region = new Region("V1", 5, 7, 1, -20, 3);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
-	    assertEquals("percentMinimumOverlapScore in Region constructor must be between 0 and 100",
+	    assertEquals(
+		    "percentMinimumOverlapScore in Region constructor must be between 0 and 100",
 		    expected.getMessage());
 	}
     }
@@ -52,7 +55,8 @@ public class RegionTest extends junit.framework.TestCase {
 	RegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
 	connectType.connect(bottomLayer, this.region, 0, 0);
 
-	Dimension bottomLayerDimensions = this.region.getBottomLayerXYAxisLength();
+	Dimension bottomLayerDimensions = this.region
+		.getBottomLayerXYAxisLength();
 	assertEquals(25, bottomLayerDimensions.width);
 	assertEquals(35, bottomLayerDimensions.height);
     }
@@ -63,8 +67,8 @@ public class RegionTest extends junit.framework.TestCase {
 	    this.region.maximumActiveDutyCycle(neighborColumns);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
-	    assertEquals("neighborColumns in Column class method " +
-		    "maximumActiveDutyCycle cannot be null",
+	    assertEquals("neighborColumns in Column class method "
+		    + "maximumActiveDutyCycle cannot be null",
 		    expected.getMessage());
 	}
 
@@ -81,7 +85,8 @@ public class RegionTest extends junit.framework.TestCase {
 	neighborColumns.add(column2);
 	neighborColumns.add(column3);
 
-	assertEquals(0.3f, this.region.maximumActiveDutyCycle(neighborColumns), 0.001);
+	assertEquals(0.3f, this.region.maximumActiveDutyCycle(neighborColumns),
+		0.001);
     }
 
     public void test_toString() {
@@ -91,6 +96,18 @@ public class RegionTest extends junit.framework.TestCase {
 	this.region.addChildRegion(region2);
 	this.region.addChildRegion(region3);
 
-	//System.out.println(this.region.toString());
+	String correctConsoleOutput = "\n==================================\n"
+		+ "-----------Region Info------------\n"
+		+ "       name of this region: region\n"
+		+ "     child region(s) names: region2, region3, \n"
+		+ " # of Columns along X-axis: 5\n"
+		+ " # of Columns along Y-axis: 7\n"
+		+ " 	       # of layers: 4\n"
+		+ "percentMinimumOverlapScore: 20.0 %\n"
+		+ "      desiredLocalActivity: 3\n"
+		+ "          inhibitionRadius: 1\n"
+		+ "===================================";
+
+	assertEquals(correctConsoleOutput, this.region.toString());
     }
 }

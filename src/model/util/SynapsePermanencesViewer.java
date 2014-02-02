@@ -87,7 +87,6 @@ public class SynapsePermanencesViewer {
 	Dimension bottomLayerDimensions = region.getBottomLayerXYAxisLength();
 	this.greatestSynapseXIndex = bottomLayerDimensions.width;
 	this.greatestSynapseYIndex = bottomLayerDimensions.height;
-	System.out.println("X: " + this.greatestSynapseXIndex);
 	frame.setContentPane(this.createContentPane(region));
 
 	int frameX = this.greatestSynapseXIndex * this.squareLength

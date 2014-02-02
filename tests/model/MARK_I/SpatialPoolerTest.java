@@ -54,14 +54,8 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	this.spatialPooler.performSpatialPoolingOnRegion();
 	Set<ColumnPosition> activeColumnPositions = this.spatialPooler
 		.getActiveColumnPositions();
-	for (ColumnPosition columnPosition : activeColumnPositions) {
-	    // System.out.println(columnPosition.toString());
-	    // TODO: assert equals with output stream
-	}
-	// System.out.println(this.spatialPooler.toString());
-	// System.out.println(region.toString());
 
-	this.parentRegion = this.spatialPooler.getRegion();
+	assertEquals(5, activeColumnPositions.size());
     }
 
     public void test_computeColumnOverlapScore() {
