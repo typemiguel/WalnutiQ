@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Node within Neocortex tree. A Region object is an undirected graph of Neuron
  * nodes.
  *
- * Input to Region: activity of Cells within a SensorCellLayer. For example,
- * VisionCellLayer, AudioCellLayer, etc.
+ * Input to Region: activity of Cells within a SensorCellLayer or lower
+ * Region. For example, VisionCellLayer, AudioCellLayer, etc.
  *
  * Output from Region: activity of Cells within this Region created by one or
  * more of the Pooler algorithms.

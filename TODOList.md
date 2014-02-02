@@ -1,7 +1,7 @@
 Research/Programming TO DO List
 ===============================
 Read First: Before working on a item below, please put your e-mail in the task so that anyone else interested 
-will be able to collaborate with you. All tasks are also numbered by the amount of importance.
+will be able to collaborate with you. Also, tasks near the top of their section should be relatively more important.
 
 <h2>Researching Tasks</h2>
 

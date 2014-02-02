@@ -6,8 +6,6 @@ import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.MARK_I.ColumnPosition;
 import model.MARK_I.Region;
 import model.MARK_I.SpatialPooler;
-import model.MARK_I.VisionCell;
-
 import model.util.JsonFileInputOutput;
 import model.theory.Memory;
 import model.theory.Idea;
@@ -24,7 +22,7 @@ import model.Retina;
  * @version July 5, 2013
  */
 public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
-    private Retina retine;
+    private Retina retina;
     private Region region_LGN;
     private SpatialPooler spatialPooler;
 
@@ -56,7 +54,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 
     private void constructWalnut_MARK_NULLA() {
 	// all images in MNIST are 28 x 28 pixels
-	this.retine = new Retina(28, 28);
+	this.retina = new Retina(28, 28);
 
 	// TODO: size of region can be 4, 7, 14
 	// TODO: percentMinimumOverlapScore = 1 to 99
@@ -67,7 +65,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	// region_LGN size)
 	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
 	retinaToLGN
-		.connect(this.retine.getVisionCells(), this.region_LGN, 0, 0);
+		.connect(this.retina.getVisionCells(), this.region_LGN, 0, 0);
 
 	this.spatialPooler = new SpatialPooler(this.region_LGN);
 	this.spatialPooler.setLearningState(true);
@@ -101,7 +99,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	    int imageLabel = m.readLabel();
 	    this.updateOccuranceOfTrainingDigits(imageLabel);
 
-	    this.retine.see2DIntArray(image); // VisionCells states updated
+	    this.retina.see2DIntArray(image); // VisionCells states updated
 	    this.spatialPooler.performSpatialPoolingOnRegion();
 	    Set<ColumnPosition> columnActivity = this.spatialPooler
 		    .getActiveColumnPositions();
@@ -155,7 +153,7 @@ public class TrainAndTestWalnutOnMNIST extends junit.framework.TestCase {
 	    int imageLabel = mm.readLabel();
 	    this.updateOccuranceOfTestingDigits(imageLabel);
 
-	    this.retine.see2DIntArray(image); // VisionCells states updated
+	    this.retina.see2DIntArray(image); // VisionCells states updated
 	    this.spatialPooler.performSpatialPoolingOnRegion();
 
 	    Set<ColumnPosition> columnActivity = this.spatialPooler

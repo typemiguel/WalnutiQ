@@ -130,8 +130,8 @@ public class HowToUseMARK_I extends junit.framework.TestCase {
 	Region LGNStructure = nervousSystem.getCNS().getBrain().getThalamus()
 		.getLGN().getRegion();
 
-	// retina.seeBMPImage("new2.bmp");
-	// digitsSVM.updateIdeas(spatialPooler.performSpatialPoolingOnRegion());
-	// digitsSVM.toString();
+//	retina.seeBMPImage("new2.bmp");
+//	digitsClassifier.updateIdeas(spatialPooler.performSpatialPoolingOnRegion());
+//	digitsClassifier.toString();
     }
 }

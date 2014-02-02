@@ -1,5 +1,19 @@
 package model.MARK_I.vision;
 
+import model.MARK_I.VisionCell;
+
+import java.io.IOException;
+
+import java.util.Set;
+import model.MARK_I.ColumnPosition;
+
+import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
+
+import model.Retina;
+import model.MARK_I.Region;
+import model.MARK_I.SpatialPooler;
+
 /**
  * -------------------------------Purpose---------------------------------------
  * To show the spatial pooling learning algorithm produces similar results even
@@ -18,8 +32,29 @@ package model.MARK_I.vision;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Jan 29, 2014
  */
-public class NoiseInvarianceExperiment {
-    // TODO: reproduce results found here http://www.walnutiq.com/#!poster/c16gs
-    // TODO: use images in folder images/model/2.bmp and
-    // images/model/2_with_noise.bmp
+public class NoiseInvarianceExperiment extends junit.framework.TestCase {
+    private Retina retina;
+    private Region region;
+    private SpatialPooler spatialPooler;
+
+    public void setUp() {
+	// images in folder images/model/2.bmp and
+	// images/model/2_with_noise.bmp are 66x66 pixels
+	this.retina = new Retina(66, 66);
+
+	this.region = new Region("Region", 8, 8, 1, 20, 3);
+
+	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
+	retinaToLGN.connect(this.retina.getVisionCells(), this.region, 2, 2);
+
+	this.spatialPooler = new SpatialPooler(this.region);
+	this.spatialPooler.setLearningState(true);
+    }
+
+    public void test_runNoiseInvarianceExperiment() throws IOException {
+	this.retina.seeBMPImage("2.bmp");
+
+//	this.spatialPooler.performSpatialPoolingOnRegion();
+//	Set<ColumnPosition> columnActivity = this.spatialPooler
+    }
 }

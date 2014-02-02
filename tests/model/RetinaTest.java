@@ -9,19 +9,19 @@ import java.io.IOException;
  * @version June 5, 2013
  */
 public class RetinaTest extends junit.framework.TestCase {
-    private Retina retine;
+    private Retina retina;
 
     public void setUp() {
-	this.retine = new Retina(66, 66);
+	this.retina = new Retina(66, 66);
     }
 
     public void test_seeBMPImage() throws IOException {
 	// comparing the entire 66x66 pixel .bmp image is too much so just
 	// test specific vision cells
 
-	this.retine.seeBMPImage("2.bmp");
+	this.retina.seeBMPImage("2.bmp");
 
-	VisionCell[][] visionCells = this.retine.getVisionCells();
+	VisionCell[][] visionCells = this.retina.getVisionCells();
 
 	// line 8 of 2.bmp = 0000000000000000000000000000011111111111...
 	// index =           0123456789012345678901234567890123456789...
