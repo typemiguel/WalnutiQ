@@ -70,10 +70,6 @@ will be able to collaborate with you. All tasks are also numbered by the amount 
 - Medium) initialization of permanenceValue for all Synapses should be randomized around CONNECTED_PERMANENCE_VALUE to
           allow complex features to be learned by Neurons.
 
-- Medium) inhibitionRadius of active Columns is not working correctly [quinnliu@vt.edu]
-          + see printout of computeActiveColumns
-          + Remove all System.out.println used in Test_SpatialPooler and change to assertEquals(...)
-
 - ???) Learn Swarming algorithm and see if it is worth implementing for WalnutiQ 
        + https://github.com/numenta/nupic/wiki/Swarming-Algorithm
 
