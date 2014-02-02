@@ -81,6 +81,6 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
 
 	Gson gson2 = new Gson();
 	Region trainedLGNRegion = gson2.fromJson(regionAsString, Region.class);
-	assertEquals("LGNRegion", trainedLGNRegion.getBiologicalName());
+	assertEquals("LGN", trainedLGNRegion.getBiologicalName());
     }
 }

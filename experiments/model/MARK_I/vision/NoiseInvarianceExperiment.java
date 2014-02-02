@@ -35,8 +35,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
     private SpatialPooler spatialPooler;
 
     public void setUp() {
-	// images in folder images/model/2.bmp and
-	// images/model/2_with_noise.bmp are 66x66 pixels
+	// images in folder images/model/ are 66x66 pixels
 	this.retina = new Retina(66, 66);
 
 	this.region = new Region("Region", 8, 8, 1, 20, 3);
@@ -55,7 +54,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	Set<ColumnPosition> columnActivityAfterSeeingImage2 = this.spatialPooler
 		.getActiveColumnPositions();
 
-	this.retina.seeBMPImage("2_with_noise.bmp");
+	this.retina.seeBMPImage("2_with_some_noise.bmp");
 	this.spatialPooler.performSpatialPoolingOnRegion();
 	Set<ColumnPosition> columnActivityAfterSeeingImage2_with_noise = this.spatialPooler
 		.getActiveColumnPositions();
