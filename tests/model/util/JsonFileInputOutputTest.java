@@ -50,7 +50,7 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
     }
 
     public void test_saveRegionObject() throws IOException {
-	Region LGNRegion = new Region("LGNRegion", 8, 8, 1, 50, 3);
+	Region LGNRegion = new Region("LGN", 8, 8, 1, 50, 3);
 
 	Retina retina = new Retina(66, 66);
 
@@ -81,6 +81,6 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
 
 	Gson gson2 = new Gson();
 	Region trainedLGNRegion = gson2.fromJson(regionAsString, Region.class);
-	assertEquals("LGNRegion", trainedLGNRegion.getBiologicalName());
+	assertEquals("LGN", trainedLGNRegion.getBiologicalName());
     }
 }

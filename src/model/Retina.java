@@ -68,12 +68,17 @@ public class Retina {
      *            true.
      */
     public void see2DIntArray(int[][] image) {
-	for (int yPixel = 0; yPixel < this.visionCells[0].length; yPixel++) {
-	    for (int xPixel = 0; xPixel < this.visionCells.length; xPixel++) {
-		if (image[xPixel][yPixel] != 0) {
-		    this.visionCells[xPixel][yPixel].setActiveState(true);
+	int numberOfRows = this.visionCells.length;
+	int numberOfColumns = this.visionCells[0].length;
+
+	for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
+	    for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
+		if (image[currentColumn][currentRow] != 0) {
+		    this.visionCells[currentRow][currentColumn]
+			    .setActiveState(true);
 		} else {
-		    this.visionCells[xPixel][yPixel].setActiveState(false);
+		    this.visionCells[currentRow][currentColumn]
+			    .setActiveState(false);
 		}
 	    }
 	}
