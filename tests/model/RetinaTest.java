@@ -1,12 +1,11 @@
 package model;
 
 import model.MARK_I.VisionCell;
-
 import java.io.IOException;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version June 5, 2013
+ * @version Feb 3, 2014
  */
 public class RetinaTest extends junit.framework.TestCase {
     private Retina retina;
@@ -28,5 +27,8 @@ public class RetinaTest extends junit.framework.TestCase {
 	assertFalse(visionCells[8][28].getActiveState());
 
 	assertTrue(visionCells[25][10].getActiveState());
+
+	this.retina.seeBMPImage("2_with_some_noise.bmp");
+	// TODO: assert vision cells in retina has changed
     }
 }

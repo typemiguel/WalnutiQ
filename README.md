@@ -1,7 +1,7 @@
 [WalnutiQ](http://walnutiq.com)
 ==========
 
-“*Truth is ever to be found in the simplicity, and not the multiplicity and confusion of things.*” ~ Sir Isaac Newton
+“*I had no idea how it was possible. I just thought it's a dream and I want to do it.*” ~ Bertrand Piccard
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 
@@ -110,7 +110,7 @@ a browser and make sure all tests pass!
   - .project = when writing your code using Eclipse this file will allow all of
                your files to be organized in the correct folder
   - .travis.yml = tells [our custom travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) 
-    how to test the files here
+                  what versions of Java to test the files here
   - BrainTheories.md = list of brain theories with support and simple explanation
   - README.md = the file you are reading right now
   - TODOList.md = list of research & programming tasks to do
