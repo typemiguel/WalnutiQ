@@ -1,6 +1,10 @@
 package model;
 
-import model.MARK_I.VisionCell;
+import java.awt.Color;
+
+import java.io.IOException;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 public class Array2DTest extends junit.framework.TestCase {
 
@@ -13,6 +17,13 @@ public class Array2DTest extends junit.framework.TestCase {
 	array2D[1][3] = 1;
 
 	printBMPImageToConsole(array2D);
+    }
+
+    public void test_getBufferImageDotGetRGB() throws IOException {
+	BufferedImage image = ImageIO.read(getClass().getResource(
+		"Array2DTest.bmp"));
+
+	assertEquals(Color.BLACK.getRGB(), image.getRGB(3, 1));
     }
 
     private static void printBMPImageToConsole(int[][] visionCells) {

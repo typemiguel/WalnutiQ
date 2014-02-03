@@ -13,17 +13,17 @@ import java.io.IOException;
  * Output of Retine: activity of Cells within VisionCells.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version Dec 28, 2013
+ * @version Feb 3, 2014
  */
 public class Retina {
     private VisionCell[][] visionCells;
 
-    public Retina(int numberOfVisionCellsAlongXAxis,
-	    int numberOfVisionCellsAlongYAxis) {
+    public Retina(int numberOfVisionCellsAlongYAxis,
+	    int numberOfVisionCellsAlongXAxis) {
 	this.visionCells = new VisionCell[numberOfVisionCellsAlongXAxis][numberOfVisionCellsAlongYAxis];
 
-	for (int x = 0; x < this.visionCells.length; x++) {
-	    for (int y = 0; y < this.visionCells[0].length; y++) {
+	for (int y = 0; y < numberOfVisionCellsAlongYAxis; y++) {
+	    for (int x = 0; x < numberOfVisionCellsAlongXAxis; x++) {
 		this.visionCells[x][y] = new VisionCell();
 	    }
 	}
@@ -82,9 +82,5 @@ public class Retina {
 		}
 	    }
 	}
-    }
-
-    public void seeJPEGImage(String JPEGFileName) {
-	// TODO: implement...
     }
 }
