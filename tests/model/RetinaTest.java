@@ -27,28 +27,31 @@ public class RetinaTest extends junit.framework.TestCase {
 	// ///////// index = 0123456789012345678901234567890123456789...
 	assertFalse(visionCells[7][28].getActiveState());
 
-	//assertTrue(visionCells[7][29].getActiveState());
+	// assertTrue(visionCells[7][29].getActiveState());
 
 	// ---------------------------------------------------------------------
-	//this.retina.seeBMPImage("2_with_some_noise.bmp");
+	// this.retina.seeBMPImage("2_with_some_noise.bmp");
 
 	// line 8 of 2_with_some_noise.bmp
 	// ///// = 0000000000000000000001000000011011111111...
 	// index = 0123456789012345678901234567890123456789...
 
-	//assertFalse(visionCells[8][28].getActiveState());
+	// assertFalse(visionCells[8][28].getActiveState());
 
-	//assertTrue(visionCells[8][31].getActiveState());
+	// assertTrue(visionCells[8][31].getActiveState());
 
-	//(this.retina.getVisionCells());
+	// (this.retina.getVisionCells());
 
 	// TODO: assert vision cells in retina has changed
     }
 
     private static void printBMPImageToConsole(VisionCell[][] visionCells) {
-	for (int yPixel = 0; yPixel < visionCells[0].length; yPixel++) {
-	    for (int xPixel = 0; xPixel < visionCells.length; xPixel++) {
-		if (visionCells[xPixel][yPixel].getActiveState() == true) {
+	int numberOfRows = visionCells.length;
+	int numberOfColumns = visionCells[0].length;
+
+	for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
+	    for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
+		if (visionCells[currentRow][currentColumn].getActiveState() == true) {
 		    System.out.print("1");
 		} else {
 		    System.out.print("0");
