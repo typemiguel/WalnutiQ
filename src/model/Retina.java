@@ -47,7 +47,7 @@ public class Retina {
 
 	for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
 	    for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
-		int RGBcolor = image.getRGB(currentRow, currentColumn);
+		int RGBcolor = image.getRGB(currentColumn, currentRow);
 
 		if (RGBcolor == Color.BLACK.getRGB()) {
 		    this.visionCells[currentRow][currentColumn]
