@@ -26,20 +26,20 @@ public class RetinaTest extends junit.framework.TestCase {
 	// line 8 of 2.bmp = 0000000000000000000000000000011111111111...
 	// ///////// index = 0123456789012345678901234567890123456789...
 	assertFalse(visionCells[7][28].getActiveState());
-
 	assertTrue(visionCells[7][29].getActiveState());
 
 	// make sure vision cell states in retina has changed after looking at a
 	// new image
+
+	assertFalse(visionCells[7][21].getActiveState());
+	assertTrue(visionCells[7][31].getActiveState());
 
 	this.retina.seeBMPImage("2_with_some_noise.bmp");
 
 	// line 8 of 2_with_some_noise.bmp
 	// ///// = 0000000000000000000001000000011011111111...
 	// index = 0123456789012345678901234567890123456789...
-
 	assertTrue(visionCells[7][21].getActiveState());
-
 	assertFalse(visionCells[7][31].getActiveState());
     }
 

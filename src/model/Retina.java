@@ -1,7 +1,6 @@
 package model;
 
 import model.MARK_I.VisionCell;
-
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
