@@ -113,7 +113,6 @@ a browser and make sure all tests pass!
                   what versions of Java to test the files here
   - BrainTheories.md = list of brain theories with support and simple explanation
   - README.md = the file you are reading right now
-  - TODOList.md = list of research & programming tasks to do
   - build.gradle = Groovy language code for compiling all of the code in this repository using Gradle
 
 ===============================================================
