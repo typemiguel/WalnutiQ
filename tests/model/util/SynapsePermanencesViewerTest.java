@@ -49,13 +49,14 @@ public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
 
 	Gson gson = new Gson();
 	String regionObject = gson.toJson(this.region);
-	JsonFileInputOutput.saveObjectToTextFile(regionObject,
-		"./tests/model/util/test_saveRegionObject.txt");
+	JsonFileInputOutput
+		.saveObjectToTextFile(regionObject,
+			"./tests/model/util/test_saveRegionToBeOpenedInSynapsePermanencesViewer.txt");
     }
 
     public void test_openRegionObject() throws IOException {
 	String regionAsString = JsonFileInputOutput
-		.openObjectInTextFile("./tests/model/util/test_saveRegionObject.txt");
+		.openObjectInTextFile("./tests/model/util/test_saveRegionToBeOpenedInSynapsePermanencesViewer.txt");
 	Gson gson = new Gson();
 	Region deserializedRegion = gson.fromJson(regionAsString, Region.class);
 

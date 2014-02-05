@@ -16,10 +16,8 @@ import javax.swing.JPanel;
 /**
  * Creates a Grid where each colored square represents a non overlapping Synapse
  * of a Region's 2d array of proximal Segments. The square's color represents
- * the Synapse's permanenceValue based on the following scale:
- * BLACK = Synapse not connected to Cell;
- * DARK RED ~= 0.25;
- * LIGHT RED ~= 1.0
+ * the Synapse's permanenceValue based on the following scale: BLACK = Synapse
+ * not connected to Cell; DARK RED ~= 0.25; LIGHT RED ~= 1.0
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version July 29, 2013
@@ -35,8 +33,8 @@ public class SynapsePermanencesViewer {
 	synapseLayer.setLayout(null);
 
 	Column[][] columns = region.getColumns();
-	for (int x = 0; x < columns.length; x++) {
-	    for (int y = 0; y < columns[x].length; y++) {
+	for (int y = 0; y < columns.length; y++) {
+	    for (int x = 0; x < columns[y].length; x++) {
 		Set<Synapse<Cell>> synapses = columns[x][y]
 			.getProximalSegment().getSynapses();
 		for (Synapse synapse : synapses) {
@@ -49,9 +47,7 @@ public class SynapsePermanencesViewer {
 			permanenceRepresentedAsGreyScale = (int) (255 * synapse
 				.getPermanenceValue());
 			greyScaleValue = new Color(
-				permanenceRepresentedAsGreyScale,
-				0,
-				0);
+				permanenceRepresentedAsGreyScale, 0, 0);
 		    }
 
 		    JPanel redSquare = new JPanel();
