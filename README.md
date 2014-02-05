@@ -74,8 +74,8 @@ a browser and make sure all tests pass!
 1. View an example of how all the code is used in the file 
    [HowToUseMARK_I.java](./experiments/model/MARK_I/vision/HowToUseMARK_I.java)
 
-2. View the [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) and asign a issue you 
-   would like to work on or suggest a new issue if you kind of know what you are doing. Happy coding!
+2. View the [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) for this repo and asign a issue to 
+   yourself you would like to work on or suggest a new issue if you kind of know what you are doing. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>
   - experiments  
