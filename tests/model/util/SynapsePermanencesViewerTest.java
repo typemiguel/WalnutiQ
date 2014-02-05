@@ -61,9 +61,6 @@ public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
 	Gson gson = new Gson();
 	Region deserializedRegion = gson.fromJson(regionAsString, Region.class);
 
-	// uncommenting the following code causes a build error with grade
-	// in oracleJDK7 but is fine with openJDK7 & openJDK6
-
 	assertEquals("Region", deserializedRegion.getBiologicalName());
 	assertEquals(8, deserializedRegion.getXAxisLength());
 	assertEquals(8, deserializedRegion.getYAxisLength());
