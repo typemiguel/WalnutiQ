@@ -38,10 +38,10 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	// images in folder images/model/ are 66x66 pixels
 	this.retina = new Retina(66, 66);
 
-	this.region = new Region("Region", 8, 8, 1, 20, 3);
+	this.region = new Region("Region", 8, 8, 1, 50, 1);
 
-	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
-	retinaToLGN.connect(this.retina.getVisionCells(), this.region, 2, 2);
+	SensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
+	retinaToRegion.connect(this.retina.getVisionCells(), this.region, 0, 0);
 
 	this.spatialPooler = new SpatialPooler(this.region);
 	this.spatialPooler.setLearningState(true);
@@ -54,35 +54,37 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	Set<ColumnPosition> columnActivityAfterSeeingImage2 = this.spatialPooler
 		.getActiveColumnPositions();
 
-//	for (ColumnPosition columnPosition: columnActivityAfterSeeingImage2) {
-//	    System.out.println(columnPosition.toString());
-//	}
-
+	// for (ColumnPosition columnPosition: columnActivityAfterSeeingImage2)
+	// {
+	// System.out.println(columnPosition.toString());
+	// }
 
 	this.retina.seeBMPImage("2_with_some_noise.bmp");
 	this.spatialPooler.performSpatialPoolingOnRegion();
 	Set<ColumnPosition> columnActivityAfterSeeingImage2_with_some_noise = this.spatialPooler
 		.getActiveColumnPositions();
+	assertEquals(5, columnActivityAfterSeeingImage2.size());
 
-//	for (ColumnPosition columnPosition: columnActivityAfterSeeingImage2_with_some_noise) {
-//	    System.out.println(columnPosition.toString());
-//	}
-//
-//	// TODO: even though there is some noise the spatial pooling algorithm
-//	// produces the exact same output
-//	assertEquals(columnActivityAfterSeeingImage2.size(),
-//		columnActivityAfterSeeingImage2_with_some_noise.size());
-//
+	// for (ColumnPosition columnPosition:
+	// columnActivityAfterSeeingImage2_with_some_noise) {
+	// System.out.println(columnPosition.toString());
+	// }
+	//
+	// // TODO: even though there is some noise the spatial pooling
+	// algorithm
+	// // produces the exact same output
+	assertEquals(5, columnActivityAfterSeeingImage2_with_some_noise.size());
+
 	// TODO: input not changing?
 	this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
 	this.spatialPooler.performSpatialPoolingOnRegion();
 	Set<ColumnPosition> columnActivityAfterSeeingImage2_with_alot_of_noise = this.spatialPooler
 		.getActiveColumnPositions();
-//	// TODO: check if column positions are the same
-//	assertEquals(14,
-//		columnActivityAfterSeeingImage2_with_alot_of_noise.size());
+	// // TODO: show column positions are different now
+	assertEquals(5,
+		columnActivityAfterSeeingImage2_with_alot_of_noise.size());
 
-	for (ColumnPosition columnPosition: columnActivityAfterSeeingImage2_with_alot_of_noise) {
+	for (ColumnPosition columnPosition : columnActivityAfterSeeingImage2_with_alot_of_noise) {
 	    System.out.println(columnPosition.toString());
 	}
     }
