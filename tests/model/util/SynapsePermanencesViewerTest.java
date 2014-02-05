@@ -54,18 +54,20 @@ public class SynapsePermanencesViewerTest extends junit.framework.TestCase {
 			"./tests/model/util/test_saveRegionToBeOpenedInSynapsePermanencesViewer.txt");
     }
 
-    public void test_openRegionObject() throws IOException {
+    public void test_openRegionToBeOpenedInSynapsePermanencesViewer()
+	    throws IOException {
 	String regionAsString = JsonFileInputOutput
 		.openObjectInTextFile("./tests/model/util/test_saveRegionToBeOpenedInSynapsePermanencesViewer.txt");
 	Gson gson = new Gson();
 	Region deserializedRegion = gson.fromJson(regionAsString, Region.class);
 
 	// uncommenting the following code causes a build error with grade
-	// in oracle jdk 7
-	// assertEquals("LGN", LGNRegion.getBiologicalName());
-	// assertEquals(8, LGNRegion.getXAxisLength());
-	// assertEquals(8, LGNRegion.getYAxisLength());
-	// assertEquals(10, LGNRegion.getDesiredLocalActivity());
-	// assertEquals(5, LGNRegion.getInhibitionRadius());
+	// in oracleJDK7 but is fine with openJDK7 & openJDK6
+
+	assertEquals("Region", deserializedRegion.getBiologicalName());
+	assertEquals(8, deserializedRegion.getXAxisLength());
+	assertEquals(8, deserializedRegion.getYAxisLength());
+	assertEquals(10, deserializedRegion.getDesiredLocalActivity());
+	assertEquals(5, deserializedRegion.getInhibitionRadius());
     }
 }

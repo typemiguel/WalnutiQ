@@ -33,8 +33,8 @@ public class SynapsePermanencesViewer {
 	synapseLayer.setLayout(null);
 
 	Column[][] columns = region.getColumns();
-	for (int y = 0; y < columns.length; y++) {
-	    for (int x = 0; x < columns[y].length; x++) {
+	for (int x = 0; x < columns.length; x++) {
+	    for (int y = 0; y < columns[x].length; y++) {
 		Set<Synapse<Cell>> synapses = columns[x][y]
 			.getProximalSegment().getSynapses();
 		for (Synapse synapse : synapses) {
@@ -91,7 +91,8 @@ public class SynapsePermanencesViewer {
 		+ this.greatestSynapseYIndex * this.distanceBetweenSquares;
 	// For an currently unknown reason the bottom right corner of the frame
 	// is offset by 17 pixels in the x direction and 40 pixels in the right
-	// direction. The "+ 17" and "+ 40" are to compensate.
+	// direction. The "+ 17" and "+ 40" are to compensate for the unkown
+	// bug
 	frame.setSize(frameX + 17, frameY + 40);
 	frame.setVisible(true);
     }
@@ -99,7 +100,7 @@ public class SynapsePermanencesViewer {
     public static void main(String[] args) throws IOException {
 	// Open a saved JSON Region file here...
 	String regionAsString = JsonFileInputOutput
-		.openObjectInTextFile("./tests/model/util/test_saveRegionObject.txt");
+		.openObjectInTextFile("./tests/model/util/test_saveRegionToBeOpenedInSynapsePermanencesViewer.txt");
 	Gson gson2 = new Gson();
 	Region LGNRegion = gson2.fromJson(regionAsString, Region.class);
 
