@@ -42,7 +42,6 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	Region region = new Region("region", 8, 8, 4, 50, 1);
 	this.spatialPooler.changeRegion(region);
 
-	// update VisionCells states
 	Retina retina = new Retina(66, 66);
 
 	SensorCellsToRegionConnect connectType2 = new SensorCellsToRegionRectangleConnect();
@@ -50,10 +49,14 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 
 	retina.seeBMPImage("2.bmp");
 	this.spatialPooler.performSpatialPoolingOnRegion();
-	Set<ColumnPosition> activeColumnPositions = this.spatialPooler
+	Set<ColumnPosition> columnActivityAfterSeeingImage2 = this.spatialPooler
 		.getActiveColumnPositions();
 
-	assertEquals(5, activeColumnPositions.size());
+	assertEquals(5, columnActivityAfterSeeingImage2.size());
+
+	for (ColumnPosition columnPosition : columnActivityAfterSeeingImage2) {
+	    System.out.println(columnPosition.toString());
+	}
     }
 
     public void test_computeColumnOverlapScore() {
