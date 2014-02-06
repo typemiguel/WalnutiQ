@@ -1,7 +1,7 @@
 [WalnutiQ](http://walnutiq.com)
 ==========
 
-“*I had no idea how it was possible. I just thought it's a dream and I want to do it.*” ~ Bertrand Piccard
+“*Be thankful for what you have; you'll end up having more. If you concentrate on what you don't have, you will never, ever have enough.*” ~ Oprah Winfrey
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 

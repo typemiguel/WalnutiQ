@@ -41,6 +41,10 @@ public class Retina {
     public void seeBMPImage(String BMPFileName) throws IOException {
 	BufferedImage image = ImageIO.read(getClass().getResource(BMPFileName));
 
+	// IMPORTANT: A coordinate system for the retina is the 1st quadrant
+	// of the Cartesian coordinate system. For example, when the retina
+	// sees an image that is 50x25 pixels, the most top right of the image
+	// corresponds to VisionCell[49][24].
 	int numberOfRows = this.visionCells.length;
 	int numberOfColumns = this.visionCells[0].length;
 
