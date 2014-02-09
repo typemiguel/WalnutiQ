@@ -19,11 +19,11 @@ public class Retina {
 
     public Retina(int numberOfVisionCellsAlongYAxis,
 	    int numberOfVisionCellsAlongXAxis) {
-	this.visionCells = new VisionCell[numberOfVisionCellsAlongXAxis][numberOfVisionCellsAlongYAxis];
+	this.visionCells = new VisionCell[numberOfVisionCellsAlongYAxis][numberOfVisionCellsAlongXAxis];
 
-	for (int y = 0; y < numberOfVisionCellsAlongYAxis; y++) {
-	    for (int x = 0; x < numberOfVisionCellsAlongXAxis; x++) {
-		this.visionCells[x][y] = new VisionCell();
+	for (int currentRow = 0; currentRow < numberOfVisionCellsAlongYAxis; currentRow++) {
+	    for (int currentColumn = 0; currentColumn < numberOfVisionCellsAlongXAxis; currentColumn++) {
+		this.visionCells[currentRow][currentColumn] = new VisionCell();
 	    }
 	}
     }
@@ -41,15 +41,11 @@ public class Retina {
     public void seeBMPImage(String BMPFileName) throws IOException {
 	BufferedImage image = ImageIO.read(getClass().getResource(BMPFileName));
 
-	// IMPORTANT: A coordinate system for the retina is the 1st quadrant
-	// of the Cartesian coordinate system. For example, when the retina
-	// sees an image that is 50x25 pixels, the most top right of the image
-	// corresponds to VisionCell[49][24].
 	int numberOfRows = this.visionCells.length;
 	int numberOfColumns = this.visionCells[0].length;
 
-	for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
-	    for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
+	for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
+	    for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
 		int RGBcolor = image.getRGB(currentColumn, currentRow);
 
 		if (RGBcolor == Color.BLACK.getRGB()) {
@@ -74,8 +70,8 @@ public class Retina {
 	int numberOfRows = this.visionCells.length;
 	int numberOfColumns = this.visionCells[0].length;
 
-	for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
-	    for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
+	for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
+	    for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
 		if (image[currentColumn][currentRow] != 0) {
 		    this.visionCells[currentRow][currentColumn]
 			    .setActiveState(true);

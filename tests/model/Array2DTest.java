@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 public class Array2DTest extends junit.framework.TestCase {
 
     public void setUp() {
-
+	// not necessary
     }
 
     public void test_2DArray() {
@@ -23,6 +23,7 @@ public class Array2DTest extends junit.framework.TestCase {
 	BufferedImage image = ImageIO.read(getClass().getResource(
 		"Array2DTest.bmp"));
 
+	// image.getRGB(x, y)
 	assertEquals(Color.BLACK.getRGB(), image.getRGB(3, 1));
     }
 

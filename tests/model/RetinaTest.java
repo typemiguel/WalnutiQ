@@ -11,35 +11,42 @@ public class RetinaTest extends junit.framework.TestCase {
     private Retina retina;
 
     public void setUp() {
-	this.retina = new Retina(66, 66);
+	this.retina = new Retina(5, 15);
     }
 
     public void test_seeBMPImage() throws IOException {
-	// comparing the entire 66x66 pixel .bmp image is too much so just
-	// test specific vision cells
+	this.retina.seeBMPImage("Array2DTest.bmp");
 
-	this.retina.seeBMPImage("2.bmp");
 	printBMPImageToConsole(this.retina.getVisionCells());
 
 	VisionCell[][] visionCells = this.retina.getVisionCells();
+	assertTrue(visionCells[1][3].getActiveState());
 
-	// line 8 of 2.bmp = 0000000000000000000000000000011111111111...
-	// ///////// index = 0123456789012345678901234567890123456789...
-	assertFalse(visionCells[7][28].getActiveState());
-	assertTrue(visionCells[7][29].getActiveState());
+	// comparing the entire 66x66 pixel .bmp image is too much so just
+	// test specific vision cells
 
-	// ---------------------------------------------------------------------
-	// make sure vision cell states in retina has changed after looking at a
-	// new image
-	assertFalse(visionCells[7][21].getActiveState());
-	assertTrue(visionCells[7][31].getActiveState());
-	this.retina.seeBMPImage("2_with_some_noise.bmp");
-
-	// line 8 of 2_with_some_noise.bmp
-	// ///// = 0000000000000000000001000000011011111111...
-	// index = 0123456789012345678901234567890123456789...
-	assertTrue(visionCells[7][21].getActiveState());
-	assertFalse(visionCells[7][31].getActiveState());
+//	this.retina.seeBMPImage("2.bmp");
+//	printBMPImageToConsole(this.retina.getVisionCells());
+//
+//	VisionCell[][] visionCells = this.retina.getVisionCells();
+//
+//	// line 8 of 2.bmp = 0000000000000000000000000000011111111111...
+//	// ///////// index = 0123456789012345678901234567890123456789...
+//	assertFalse(visionCells[7][28].getActiveState());
+//	assertTrue(visionCells[7][29].getActiveState());
+//
+//	// ---------------------------------------------------------------------
+//	// make sure vision cell states in retina has changed after looking at a
+//	// new image
+//	assertFalse(visionCells[7][21].getActiveState());
+//	assertTrue(visionCells[7][31].getActiveState());
+//	this.retina.seeBMPImage("2_with_some_noise.bmp");
+//
+//	// line 8 of 2_with_some_noise.bmp
+//	// ///// = 0000000000000000000001000000011011111111...
+//	// index = 0123456789012345678901234567890123456789...
+//	assertTrue(visionCells[7][21].getActiveState());
+//	assertFalse(visionCells[7][31].getActiveState());
     }
 
     private static void printBMPImageToConsole(VisionCell[][] visionCells) {
