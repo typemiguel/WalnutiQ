@@ -30,6 +30,8 @@ public class Array2DTest extends junit.framework.TestCase {
     private static void printBMPImageToConsole(int[][] visionCells) {
 	int numberOfRows = visionCells.length;
 	int numberOfColumns = visionCells[0].length;
+	System.out.println("numberOfRows = " + numberOfRows);
+	System.out.println("numberOfColumns = " + numberOfColumns);
 
 	for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
 	    for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
