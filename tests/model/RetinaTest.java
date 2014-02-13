@@ -5,7 +5,7 @@ import java.io.IOException;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version Feb 3, 2014
+ * @version Feb 9, 2014
  */
 public class RetinaTest extends junit.framework.TestCase {
     private Retina retina;
@@ -26,6 +26,8 @@ public class RetinaTest extends junit.framework.TestCase {
     private static void printBMPImageToConsole(VisionCell[][] visionCells) {
 	int numberOfRows = visionCells.length;
 	int numberOfColumns = visionCells[0].length;
+	System.out.println("numberOfRows = " + numberOfRows);
+	System.out.println("numberOfColumns = " + numberOfColumns);
 
 	for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
 	    for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {

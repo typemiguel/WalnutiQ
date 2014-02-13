@@ -7,9 +7,9 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 /**
- * Input to Retine: images of different possible formats.
+ * Input to Retina: images of different possible formats.
  *
- * Output of Retine: activity of Cells within VisionCells.
+ * Output of Retina: activity of Cells within VisionCells.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Feb 3, 2014
