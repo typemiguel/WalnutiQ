@@ -1,7 +1,9 @@
 [WalnutiQ](http://walnutiq.com)
 ==========
 
-“*Be thankful for what you have; you'll end up having more. If you concentrate on what you don't have, you will never, ever have enough.*” ~ Oprah Winfrey
+“*Perfection is achieved, not when there is nothing
+more to add, but when there is nothing left to take
+away.*” ~ Antoine de Saint-Exupery
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 
