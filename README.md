@@ -3,7 +3,8 @@
 
 “*Perfection is achieved, not when there is nothing
 more to add, but when there is nothing left to take
-away.*” ~ Antoine de Saint-Exupery
+away.*”  
+~ Antoine de Saint-Exupery
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 
@@ -113,6 +114,8 @@ a browser and make sure all tests pass!
   - .travis.yml = tells [our custom travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) 
                   what versions of Java to test the files here
   - BrainTheories.md = list of brain theories with support and simple explanation
+  - LICENSE.txt = MIT liscense basically saying you can do whatever you want the code here but it would be very cool of you to 
+                  do something nice with it.
   - README.md = the file you are reading right now
   - build.gradle = Groovy language code for compiling all of the code in this repository using Gradle
 
