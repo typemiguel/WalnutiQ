@@ -4,6 +4,7 @@
 “*Perfection is achieved, not when there is nothing
 more to add, but when there is nothing left to take
 away.*”  
+
 ~ Antoine de Saint-Exupery
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
@@ -13,8 +14,14 @@ The goal of this repository is to store code that can
 simulate a human brain in real-time. A brain machine 
 built on biological principles will potentially be able to 
 solve many of the problems which currently plague the world. 
-If you are interested in becoming a researcher/developer, the only requirement is passion 
-for applying brain models to solve real world problems.
+If you are interested in becoming a researcher/developer, the 
+only requirement is interest in understanding how the brain 
+really works. If you have no programming experience there are
+plenty of research tasks I need your help on [here](https://github.com/quinnliu/WalnutiQ/issues?labels=Research).
+If you are interested in gaining programming experience by
+building brain models I would be happy to google hangout with 
+you or meet you in person regardless of your programming
+experience! Feel free to e-mail me at quinnliu@vt.edu to get coffee/lunch/dinner.
  
 Here you will find code that allows you to build a partial 
 human brain model, train it on input data, view its activity 
@@ -35,7 +42,7 @@ programming. Make sure to read Numenta's great explanation
 of their research in this [white paper](https://db.tt/FuQWQuwE) 
 to better understand the theory behind this repository.
 
-<h2>Setup in Linux/Mac/Windows with Eclipse</h2>
+<h2>Setup in Linux/Mac/Windows with Eclipse(like Microsoft Word but for writing code)</h2>
 1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
 
 2. Fork this repository and clone it locally. Then import it as a 
@@ -55,7 +62,7 @@ you put in the folder name of the folder you previously just right clicked.
 right click the ```WalnutiQ/``` folder and select "Run As" => 
 "JUnit Test". Make sure all tests pass!
   
-<h2>Setup in Linux/Mac/Windows with Gradle</h2>
+<h2>Setup in Linux/Mac/Windows with Gradle(Builds your Java code)</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
    ```sh
    prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
