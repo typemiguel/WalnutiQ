@@ -12,17 +12,9 @@ away.*”
 Welcome! WalnutiQ is a human brain model simulation in Java. 
 The goal of this repository is to store code that can 
 simulate a human brain in real-time. A brain machine 
-built on biological principles will potentially be able to 
-solve many of the problems which currently plague the world. 
-If you are interested in becoming a researcher/developer, the 
-only requirement is interest in understanding how the brain 
-really works. If you have no programming experience there are
-plenty of research tasks I need your help on [here](https://github.com/quinnliu/WalnutiQ/issues?labels=Research).
-If you are interested in gaining programming experience by
-building brain models I would be happy to google hangout with 
-you or meet you in person regardless of your programming
-experience! Feel free to e-mail me at quinnliu@vt.edu to get coffee/lunch/dinner.
- 
+built on biological principles will be able to 
+solve many of the problems which currently plague the world.
+
 Here you will find code that allows you to build a partial 
 human brain model, train it on input data, view its activity 
 as text and visual output, and test its ability to recognize 
@@ -31,6 +23,16 @@ brain at a high level of abstraction while still allowing user
 access to individual neuron properties. For more information please 
 watch this [video playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
 to become familiar with the neuroscience behind this repository.
+
+If you are interested in becoming a researcher/developer, the 
+only requirement is interest in understanding how the brain 
+really works. If you have no programming experience there are
+plenty of research tasks I need your help on [here](https://github.com/quinnliu/WalnutiQ/issues?labels=Research).
+If you are interested in gaining programming experience by
+building brain models I would be happy to google hangout with 
+you or meet you in person regardless of your programming
+experience! Feel free to e-mail me at quinnliu@vt.edu to get 
+coffee/lunch/dinner to talk brains.
 
 Most importantly, this research is made possible by the 
 neuroscientists and engineers at [Numenta](http://numenta.org/). 
