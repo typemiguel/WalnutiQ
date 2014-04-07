@@ -15,29 +15,22 @@ public class RetinaTest extends junit.framework.TestCase {
     }
 
     public void test_seeBMPImage() throws IOException {
+	/**
+	 * Array2DTest.bmp =
+	 * 000000000000000
+         * 000100000000000
+         * 000000000000000
+         * 000000000000000
+         * 000000000000000
+	 */
 	this.retina.seeBMPImage("Array2DTest.bmp");
 
-	printBMPImageToConsole(this.retina.getVisionCells());
-
 	VisionCell[][] visionCells = this.retina.getVisionCells();
-	assertTrue(visionCells[1][3].getActiveState());
-    }
-
-    private static void printBMPImageToConsole(VisionCell[][] visionCells) {
 	int numberOfRows = visionCells.length;
 	int numberOfColumns = visionCells[0].length;
-	System.out.println("numberOfRows = " + numberOfRows);
-	System.out.println("numberOfColumns = " + numberOfColumns);
-
-	for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
-	    for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
-		if (visionCells[currentRow][currentColumn].getActiveState() == true) {
-		    System.out.print("1");
-		} else {
-		    System.out.print("0");
-		}
-	    }
-	    System.out.print("\n");
-	}
+	assertEquals(5, numberOfRows);
+	assertEquals(15, numberOfColumns);
+	assertTrue(visionCells[1][3].getActiveState());
+	assertFalse(visionCells[0][3].getActiveState());
     }
 }

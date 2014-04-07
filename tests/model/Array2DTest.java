@@ -21,8 +21,6 @@ public class Array2DTest extends junit.framework.TestCase {
 
     public void test_2DArray() {
 	this.array2D[1][3] = 1;
-
-	printBMPImageToConsole(this.array2D);
     }
 
     public void test_getBufferImageDotGetRGB() throws IOException {
@@ -31,23 +29,5 @@ public class Array2DTest extends junit.framework.TestCase {
 
 	// image.getRGB(x, y)
 	assertEquals(Color.BLACK.getRGB(), image.getRGB(3, 1));
-    }
-
-    private static void printBMPImageToConsole(int[][] visionCells) {
-	int numberOfRows = visionCells.length;
-	int numberOfColumns = visionCells[0].length;
-	System.out.println("numberOfRows = " + numberOfRows);
-	System.out.println("numberOfColumns = " + numberOfColumns);
-
-	for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
-	    for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
-		if (visionCells[currentRow][currentColumn] == 1) {
-		    System.out.print("1");
-		} else {
-		    System.out.print("0");
-		}
-	    }
-	    System.out.print("\n");
-	}
     }
 }
