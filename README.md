@@ -1,11 +1,10 @@
 [WalnutiQ](http://walnutiq.com)
 ==========
 
-“*Perfection is achieved, not when there is nothing
-more to add, but when there is nothing left to take
-away.*”  
+“*In another life I would make you stay so I don't have to say that you were the one
+that got away.*”  
 
-~ Antoine de Saint-Exupery
+~ Katheryn Elizabeth Hudson
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 

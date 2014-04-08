@@ -43,9 +43,6 @@ public class RegionToRegionRectangleConnect implements RegionToRegionConnect {
 	int childRegionXAxisLength = childRegionColumns.length; // = 66
 	int childRegionYAxisLength = childRegionColumns[0].length; // = 66
 
-	// TODO: add missing exceptions for connectingRectangle dimension >= 8
-
-	// TODO: view formula derivation and details at www.walnutiq.com/...
 	int connectingRectangleXAxisLength = Math
 		.round((childRegionXAxisLength
 			+ numberOfColumnsToOverlapAlongXAxisOfRegion
