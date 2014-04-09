@@ -1,4 +1,10 @@
-package model.MARK_I.spatialPoolingSparseDistributedRepresentation;
+package model.MARK_I.SDR;
+
+import java.io.File;
+
+import java.io.FileWriter;
+
+import java.io.BufferedWriter;
 
 import java.util.Set;
 import model.MARK_I.ColumnPosition;
@@ -21,14 +27,17 @@ import model.Retina;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Apr 9, 2014
  */
-public class TestMethods {
+public class RunOnce {
     /**
      * optimization algorithm = QNSTOP
      *
      * a,b,c is list of parameters size of retina & region are initially
      * constant for this experiment
+     *
+     * view for diagrams about solving this problem @
+     * https://github.com/quinnliu/WalnutiQ/issues/21
      */
-    public void getSpatialPoolingScoreWithGivenParametersForMarkNullaModel(
+    public static void getSpatialPoolingScoreWithGivenParametersForMarkNullaModel(
 	    double percentMinimumOverlapScore, double desiredLocalActivity)
 	    throws IOException {
 
@@ -61,7 +70,6 @@ public class TestMethods {
 	yAverage = yAverage / columnActivityAfterSeeingImage2.size();
 
 	double sparsityScore = 0;
-	double numberOfActiveColumnsScore = 0;
 
 	for (ColumnPosition columnPosition : columnActivityAfterSeeingImage2) {
 	    sparsityScore += Math.pow(columnPosition.getX() - xAverage, 2)
@@ -71,10 +79,40 @@ public class TestMethods {
 	sparsityScore = Math.sqrt(sparsityScore);
 
 	// TODO: add calculations for double numberOfActiveColumnsScore
+	double numberOfActiveColumnsScore = 0;
+	int desiredNumberOfActiveColumns = 10; // TODO: add computation later
+	int actualNumberOfActiveColumns = columnActivityAfterSeeingImage2
+		.size();
+	double difference = Math.abs(desiredNumberOfActiveColumns
+		- actualNumberOfActiveColumns);
+	if (difference == 0) {
+	    difference += 0.1; // 1 / 0.1 = 10 which is a great score
+			       // as it should be since desired was = to actual
+	}
+
+	numberOfActiveColumnsScore = 1 / difference;
 
 	double sparseDistributedRepresentationScore = sparsityScore
 		+ numberOfActiveColumnsScore;
 
-	// TODO: print sparseDistributedRepresentationScore to file
+	try {
+	    BufferedWriter out = new BufferedWriter(new FileWriter(
+		    "./experiments/model/MARK_I/SDR/currentSDRScore.txt"));
+	    out.write(Double.toString(sparseDistributedRepresentationScore));
+	    out.close();
+	} catch (IOException e) {
+	}
+
+//	BufferedWriter bw = null;
+//	try {
+//	    bw = new BufferedWriter(new FileWriter(new File("./experiments/model/MARK_I/SDR/currentSDRScore.txt")));
+//	    bw.write(Double.toString(sparseDistributedRepresentationScore));
+//	} finally {
+//	    try {
+//		bw.close();
+//	    } catch (Exception e) {
+//
+//	    }
+//	}
     }
 }
