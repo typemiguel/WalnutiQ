@@ -38,7 +38,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	// images in folder images/model/ are 66x66 pixels
 	this.retina = new Retina(66, 66);
 
-	this.region = new Region("Region", 8, 8, 1, 50, 3);
+	this.region = new Region("Region", 8, 8, 1, 40, 3);
 
 	SensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
 	retinaToRegion.connect(this.retina.getVisionCells(), this.region, 0, 0);
@@ -56,7 +56,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	Set<ColumnPosition> columnActivityAfterSeeingImage2 = this.spatialPooler
 		.getActiveColumnPositions();
 	// = (6,5)(6, 3)(6, 2)(5, 3)(3, 5)(2, 2)(1, 3)(1, 2)(2, 5)(1, 5)(4, 4)
-	assertEquals(11, columnActivityAfterSeeingImage2.size());
+	assertEquals(13, columnActivityAfterSeeingImage2.size());
 
 	for (ColumnPosition columnPosition : columnActivityAfterSeeingImage2) {
 	    System.out.println(columnPosition.toString());
@@ -69,7 +69,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 //	Set<ColumnPosition> columnActivityAfterSeeingImage2_with_some_noise = this.spatialPooler
 //		.getActiveColumnPositions();
 //	// = (6,5)(6, 3)(6, 2)(5, 3)(3, 5)(2, 2)(1, 3)(1, 2)(2, 5)(1, 5)(4, 4)
-//	assertEquals(11, columnActivityAfterSeeingImage2_with_some_noise.size());
+//	assertEquals(12, columnActivityAfterSeeingImage2_with_some_noise.size());
 //
 //	for (ColumnPosition columnPosition : columnActivityAfterSeeingImage2_with_some_noise) {
 //	    System.out.println(columnPosition.toString());
@@ -78,14 +78,14 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	// -------------------"2_with_alot_of_noise.bmp"------------------
 
 //	this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
-
+//
 //	this.spatialPooler.performSpatialPoolingOnRegion();
 //	Set<ColumnPosition> columnActivityAfterSeeingImage2_with_alot_of_noise = this.spatialPooler
 //		.getActiveColumnPositions();
-	// = (6,5)(6, 3)(6, 2)(5, 3)(3, 5)(2, 2)(1, 3)(2, 5)(1, 5)(4, 4)
-//	assertEquals(10,
+//	// = (6,5)(6, 3)(6, 2)(5, 3)(3, 5)(2, 2)(1, 3)(2, 5)(1, 5)(4, 4)
+//	assertEquals(14,
 //		columnActivityAfterSeeingImage2_with_alot_of_noise.size());
-
+//
 //	for (ColumnPosition columnPosition : columnActivityAfterSeeingImage2_with_alot_of_noise) {
 //	    System.out.println(columnPosition.toString());
 //	}

@@ -53,10 +53,6 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 		.getActiveColumnPositions();
 
 	assertEquals(5, columnActivityAfterSeeingImage2.size());
-
-	for (ColumnPosition columnPosition : columnActivityAfterSeeingImage2) {
-	    System.out.println(columnPosition.toString());
-	}
     }
 
     public void test_computeColumnOverlapScore() {
