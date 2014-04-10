@@ -21,8 +21,11 @@ public class FindOptimalParametersForSDRTest extends junit.framework.TestCase {
      */
     public void testGetSpatialPoolingScoreWithGivenParametersForMarkNullaModel()
 	    throws IOException {
-//	FindOptimalParametersForSDR
-//		.printToFileSDRScoreFor1RetinaTo1RegionModel(50, 3,
-//			"./experiments/model/MARK_I/SDR/currentSDRScore.txt");
+	assertEquals(
+		8.827,
+		FindOptimalParametersForSDR
+			.printToFileSDRScoreFor1RetinaTo1RegionModel(50, 3,
+				"./experiments/model/MARK_I/SDR/currentSDRScore.txt"),
+		.001);
     }
 }

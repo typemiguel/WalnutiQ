@@ -12,28 +12,34 @@ import model.MARK_I.Region;
 import model.Retina;
 
 /**
+ * Why: There are about a dozen parameters that are very important to how the
+ * neurons in the model interact with each other. We need to find the best value
+ * for these parameters to allow the brain algorithms to work efficiently.
+ *
+ * What: This class contains many different ways a partial brain model can be
+ * constructed.
+ *
+ * How: A optimization algorithm will call 1 of the methods below over and over
+ * until it has found parameters that produce the best score.
+ *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Apr 10, 2014
  */
 public class FindOptimalParametersForSDR {
 
     /**
-     * Contains methods for running a simple MARK NULLA model with given
-     * parameters & returning a score based on how well spatial pooling created
-     * a sparse distributed representation.
-     *
-     * optimization algorithm = QNSTOP
-     *
-     * a,b,c is list of parameters size of retina & region are initially
-     * constant for this experiment
+     * Builds a simple 1 Retina to 1 Region model with given parameters, runs
+     * the spatial pooling algorithm once, computes a score based on the output
+     * of the spatial pooling algorithm.
      *
      * @param percentMinimumOverlapScore
      * @param desiredLocalActivity
      * @param locationOfFileWithFileNameToSaveScore
+     * @return The SDR score.
      *
      * @throws IOException
      */
-    public static void printToFileSDRScoreFor1RetinaTo1RegionModel(
+    public static double printToFileSDRScoreFor1RetinaTo1RegionModel(
 	    double percentMinimumOverlapScore, double desiredLocalActivity,
 	    String locationOfFileWithFileNameToSaveScore) throws IOException {
 	Retina retina = new Retina(66, 66);
@@ -58,6 +64,7 @@ public class FindOptimalParametersForSDR {
 
 	double SDRScore = sdrScoreCalculator.getSDRScore();
 
+	// print SDRScore to file
 	try {
 	    BufferedWriter out2 = new BufferedWriter(new FileWriter(
 		    locationOfFileWithFileNameToSaveScore));
@@ -66,5 +73,7 @@ public class FindOptimalParametersForSDR {
 	} catch (IOException e) {
 
 	}
+
+	return SDRScore;
     }
 }

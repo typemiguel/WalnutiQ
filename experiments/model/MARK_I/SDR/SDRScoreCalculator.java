@@ -4,11 +4,14 @@ import java.util.Set;
 import model.MARK_I.ColumnPosition;
 
 /**
- * Write a one-sentence summary of your class here. Follow it with additional
- * details about its purpose, what abstraction it represents, and how to use it.
+ * Uses the equation found here https://github.com/quinnliu/WalnutiQ/issues/21
+ * for computating a score for the SDR created by spatial pooling.
  *
- * view for diagrams about solving this problem @
- * https://github.com/quinnliu/WalnutiQ/issues/21
+ * Input from constructor: set of active column positions produced by spatial
+ * pooling.
+ *
+ * Output from calling public method: a score where the larger the score
+ * represents a better sparse distributed representation.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Apr 10, 2014
@@ -23,7 +26,8 @@ public class SDRScoreCalculator {
     private double sparseDistributedRepresentationScore;
 
     /**
-     * Create a new SDRScoreCalculator object.
+     * Computes the SDR score for the given set of column positions.
+     *
      * @param columnActivityAfterSeeingImage
      */
     public SDRScoreCalculator(Set<ColumnPosition> columnActivityAfterSeeingImage) {
@@ -68,6 +72,9 @@ public class SDRScoreCalculator {
 	this.yAverage = this.yAverage / columnActivityAfterSeeingImage.size();
     }
 
+    /**
+     * @return SDR score computed from given set of active column positions.
+     */
     public double getSDRScore() {
 	return this.sparseDistributedRepresentationScore;
     }
