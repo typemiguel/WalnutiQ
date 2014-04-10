@@ -9,12 +9,20 @@ import java.io.IOException;
 public class FindOptimalParametersForSDRTest extends junit.framework.TestCase {
 
     public void setUp() {
+	// not necessary since all methods in class FindOptimalParametersForSDR
+	// are static(meaning you can directly call them without creating an
+	// object)
     }
 
+    /**
+     * Place a description of your method here.
+     *
+     * @throws IOException
+     */
     public void testGetSpatialPoolingScoreWithGivenParametersForMarkNullaModel()
 	    throws IOException {
 //	FindOptimalParametersForSDR
-//		.getSpatialPoolingScoreWithGivenParametersForMarkNullaModel(50,
-//			3);
+//		.printToFileSDRScoreFor1RetinaTo1RegionModel(50, 3,
+//			"./experiments/model/MARK_I/SDR/currentSDRScore.txt");
     }
 }
