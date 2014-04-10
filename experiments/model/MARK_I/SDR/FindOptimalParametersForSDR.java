@@ -1,34 +1,27 @@
 package model.MARK_I.SDR;
 
-import java.io.File;
-
 import java.io.FileWriter;
-
 import java.io.BufferedWriter;
-
 import java.util.Set;
 import model.MARK_I.ColumnPosition;
-
 import java.io.IOException;
-
 import model.MARK_I.SpatialPooler;
 import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
-
 import model.MARK_I.Region;
-
 import model.Retina;
 
 /**
- * Contains methods for running a simple MARK NULLA model with given parameters
- * & returning a score based on how well spatial pooling created a sparse
- * distributed representation.
- *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version Apr 9, 2014
+ * @version Apr 10, 2014
  */
-public class RunOnce {
+public class FindOptimalParametersForSDR {
+
     /**
+     * Contains methods for running a simple MARK NULLA model with given
+     * parameters & returning a score based on how well spatial pooling created
+     * a sparse distributed representation.
+     *
      * optimization algorithm = QNSTOP
      *
      * a,b,c is list of parameters size of retina & region are initially
@@ -36,14 +29,15 @@ public class RunOnce {
      *
      * view for diagrams about solving this problem @
      * https://github.com/quinnliu/WalnutiQ/issues/21
+     *
+     * @throws IOException
      */
-    public static void getSpatialPoolingScoreWithGivenParametersForMarkNullaModel(
-	    double percentMinimumOverlapScore, double desiredLocalActivity)
+    public static void getSpatialPoolingScoreWithGivenParametersForMarkNullaModel(double percentMinimumOverlapScore,
+	    double desiredLocalActivity)
 	    throws IOException {
-
 	Retina retina = new Retina(66, 66);
-	Region region = new Region("Region", 8, 8, 1,
-		percentMinimumOverlapScore, (int) desiredLocalActivity);
+	Region region = new Region("Region", 8, 8, 1, percentMinimumOverlapScore,
+		(int) desiredLocalActivity);
 
 	SensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
 	retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
@@ -78,14 +72,13 @@ public class RunOnce {
 
 	sparsityScore = Math.sqrt(sparsityScore);
 
-	// TODO: add calculations for double numberOfActiveColumnsScore
 	double numberOfActiveColumnsScore = 0;
 	int desiredNumberOfActiveColumns = 10; // TODO: add computation later
 	int actualNumberOfActiveColumns = columnActivityAfterSeeingImage2
 		.size();
 	double difference = Math.abs(desiredNumberOfActiveColumns
 		- actualNumberOfActiveColumns);
-	if (difference == 0) {
+	if (difference < 0.1 && difference > -0.1) {
 	    difference += 0.1; // 1 / 0.1 = 10 which is a great score
 			       // as it should be since desired was = to actual
 	}
@@ -96,23 +89,17 @@ public class RunOnce {
 		+ numberOfActiveColumnsScore;
 
 	try {
-	    BufferedWriter out = new BufferedWriter(new FileWriter(
-		    "./experiments/model/MARK_I/SDR/currentSDRScore.txt"));
-	    out.write(Double.toString(sparseDistributedRepresentationScore));
-	    out.close();
-	} catch (IOException e) {
-	}
+	    // BufferedWriter out = new BufferedWriter(new FileWriter(
+	    // "./experiments/model/MARK_I/SDR/currentSDRScore.txt"));
+	    // out.write(Double.toString(sparseDistributedRepresentationScore));
+	    // out.close();
 
-//	BufferedWriter bw = null;
-//	try {
-//	    bw = new BufferedWriter(new FileWriter(new File("./experiments/model/MARK_I/SDR/currentSDRScore.txt")));
-//	    bw.write(Double.toString(sparseDistributedRepresentationScore));
-//	} finally {
-//	    try {
-//		bw.close();
-//	    } catch (Exception e) {
-//
-//	    }
-//	}
+	    BufferedWriter out2 = new BufferedWriter(new FileWriter(
+		    "./currentSDRScore.txt"));
+	    out2.write(Double.toString(sparseDistributedRepresentationScore));
+	    out2.close();
+	} catch (IOException e) {
+
+	}
     }
 }
