@@ -22,7 +22,7 @@ public class Region {
     private String biologicalName;
     private List<Region> children;
 
-    private final Column[][] columns;
+    private Column[][] columns;
 
     private final double percentMinimumOverlapScore;
 
