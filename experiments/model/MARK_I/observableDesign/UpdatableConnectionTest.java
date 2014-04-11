@@ -1,12 +1,12 @@
 package model.MARK_I.observableDesign;
 
 public class UpdatableConnectionTest extends junit.framework.TestCase {
-    private SimpleRetina retina;
+    private Retina retina;
     //private SimpleRegion region;
     //private SimpleSpatialPooler spatialPooler;
 
     public void setUp() {
-	this.retina = new SimpleRetina();
+	this.retina = new Retina();
 
 	// need to make Region contain a Retina
 
