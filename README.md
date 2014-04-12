@@ -89,10 +89,13 @@ project into Eclipse.
 <h2>How to Contribute</h2>
 
 1. View an example of how some of the code is used in the file
-   [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java)
+   [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/HowMARK_I_FitsInToBrainAnatomy.java)
 
-2. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) 
-   for this repo and asign a issue to yourself you would like to work on or suggest
+2. View an example of how the current model can be instantiated as a simplified human visual pathway
+   in [HowMARK_I_FitsInToBrainAnatomy.java](./experiments/model/MARK_I/vision/HowMARK_I_FitsInToBrainAnatomy.java)
+
+3. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) and create a new issue
+   with a question if you are confused. Otherwise, asign a issue to yourself you would like to work on or suggest
    a new issue if you kind of know what you are doing. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>

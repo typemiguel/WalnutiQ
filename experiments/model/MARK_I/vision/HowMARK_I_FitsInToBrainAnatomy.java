@@ -20,11 +20,14 @@ import model.LGN;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version Dec 28, 2013
+ * @version April 12, 2014
  */
 public class HowMARK_I_FitsInToBrainAnatomy extends junit.framework.TestCase {
     private NervousSystem partialNervousSystem;
 
+    /**
+     * For saving the Java NervousSystem object as a JSON file later on.
+     */
     private Gson gson;
 
     public void setUp() throws IOException {
