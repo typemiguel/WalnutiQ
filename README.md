@@ -1,8 +1,8 @@
 [WalnutiQ](http://walnutiq.com)
 ==========
 
-“*In another life I would make you stay so I don't have to say that you were the one
-that got away.*”  
+“*In another life I would make you stay so I don't have to say
+that you were the one that got away.*”  
 
 ~ Katheryn Elizabeth Hudson
 
@@ -46,25 +46,28 @@ programming. Make sure to read Numenta's great explanation
 of their research in this [white paper](https://db.tt/FuQWQuwE) 
 to better understand the theory behind this repository.
 
-<h2>Setup in Linux/Mac/Windows with Eclipse(like Microsoft Word but for writing code)</h2>
+<h2>Setup in Linux/Mac/Windows with Eclipse(like Microsoft Word
+    but for writing code)</h2>
 1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
 
 2. Fork this repository and clone it locally. Then import it as a 
 project into Eclipse.
 
-3. IMPORTANT: You will notice that your folders will have "red X's". To fix this right 
-click your ```src``` folder then hover over "New", then click "Source Folder". 
-Then give it the "Folder name:" src. You will also need to do this same process for the folders 
-```tests```, ```images```, and ```experiments```. Make sure when you type the "Folder name:"
-you put in the folder name of the folder you previously just right clicked.
+3. IMPORTANT: You will notice that your folders will have "red X's". 
+   To fix this right click your `src` folder then hover over "New", 
+   then click "Source Folder". Then give it the "Folder name:" src. 
+   You will also need to do this same process for the folders 
+   `tests`, `images`, and `experiments`. Make sure 
+   when you type the "Folder name:" you put in the folder name of 
+   the folder you previously just right clicked.
 
 4. In Eclipse, add all the libraries (.jar file) in the folder 
-```referencedLibraries/``` by right-clicking your project in the package explorer 
-=> Build Path => Add External Archives...
+   `referencedLibraries/` by right-clicking your project in 
+   the package explorer => Build Path => Add External Archives...
 
 5. In Eclipse, also add JUnit 4 & jre7 to your build path. Then 
-right click the ```WalnutiQ/``` folder and select "Run As" => 
-"JUnit Test". Make sure all tests pass!
+   right click the `WalnutiQ/` folder and select "Run As" => 
+   "JUnit Test". Make sure all tests pass!
   
 <h2>Setup in Linux/Mac/Windows with Gradle(Builds your Java code)</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
@@ -77,47 +80,50 @@ right click the ```WalnutiQ/``` folder and select "Run As" =>
 
 2. Or install Gradle with these [instructions for Windows](https://db.tt/DMF3ww2D)
 
-3. Fork this repo and clone it locally. Navigate into the ```WalnutiQ/``` folder
+3. Fork this repo and clone it locally. Navigate into the `WalnutiQ/` folder
 
-4. Type in the command line ```gradle build```. This may take a minute so no worries.
-Go to the folder ```build/reports/tests/```. View the file ```index.html``` in 
-a browser and make sure all tests pass!
+4. Type in the command line `gradle build`. This may take a minute so no worries.
+   Go to the folder `build/reports/tests/`. View the file `index.html` in 
+   a browser and make sure all tests pass!
 
 <h2>How to Contribute</h2>
 
 1. View an example of how some of the code is used in the file
    [NoiseInvarianceExperiment](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java)
 
-2. View the [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) for this repo and asign a issue to 
-   yourself you would like to work on or suggest a new issue if you kind of know what you are doing. Happy coding!
+2. View the [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) 
+   for this repo and asign a issue to yourself you would like to work on or suggest
+   a new issue if you kind of know what you are doing. Happy coding!
 
 <h2>What each file/folder in this repository is for:</h2>
   - experiments  
       + model
           - MARK_I
-            + [vision](./experiments/model/MARK_I/vision) = experiments with partial visual pathway models on a popular handwritten digit data
+            + [SDR](./experiments/model/MARK_I/SDR) = allows construction of different WalnutiQ
+              models from command line for this repo https://github.com/quinnliu/CallWalnutiQ. 
+            + [vision](./experiments/model/MARK_I/vision) = experiments with partial 
+              visual pathway models on a popular handwritten digit data
               set called MNIST
   - images
       + digits
-          - [MNIST](./images/digits/MNIST) = unique files that contain training images and testing images
+          - [MNIST](./images/digits/MNIST) = unique files that contain training images 
+            and testing images
       + model = images used in testing the MARK I model
-  - referencedLibraries = contains .jar files needed to run the program
+  - referencedLibraries = contains .jar files(of other people's code) needed to run WalnutiQ
   - src
       + model
-          - [MARK_I](./src/model/MARK_I) = the core logic for the partial brain model. Includes abstract data types
-          	for basic brain structures and learning algorithms that simulate how 
-          	the brain learns
+          - [MARK_I](./src/model/MARK_I) = the core logic for the partial brain model. 
+            Includes abstract data types for basic brain structures and learning 
+            algorithms that simulate how the brain learns
             + [connectTypes](./src/model/MARK_I/connectTypes) = classes allow the different brain structures in MARK I to 
               connect to each other in a variety of ways
-          - [theory](./src/model/theory) = contains a class MemoryClassifier.java for identifying what
-            category a new image is in given a nervous system that has been trained on images from this category (Currently not working)
           - [util](./src/model/util) = classes that enable the brain model properties to be viewed
             graphically and efficiently saved and opened
   - tests = test classes for important classes in the ```src/``` folder
       + model
           - [MARK_I](./tests/model/MARK_I)
             + [connectTypes](./tests/model/MARK_I/connectTypes)
-          - [theory](./tests/model/theory)
+            + [SDR](./tests/model/MARK_I/SDR)
           - [util](./tests/model/util)
   - .gitignore = contains names of files/folders not to add to this repository
   - .project = when writing your code using Eclipse this file will allow all of
