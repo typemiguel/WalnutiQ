@@ -85,8 +85,8 @@ a browser and make sure all tests pass!
 
 <h2>How to Contribute</h2>
 
-1. View an example of how all the code is used in the file 
-   [HowToUseMARK_I.java](./experiments/model/MARK_I/vision/HowToUseMARK_I.java)
+1. View an example of how some of the code is used in the file
+   [NoiseInvarianceExperiment](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java)
 
 2. View the [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) for this repo and asign a issue to 
    yourself you would like to work on or suggest a new issue if you kind of know what you are doing. Happy coding!
