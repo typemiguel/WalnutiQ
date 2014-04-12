@@ -69,7 +69,7 @@ project into Eclipse.
    right click the `WalnutiQ/` folder and select "Run As" => 
    "JUnit Test". Make sure all tests pass!
   
-<h2>Setup in Linux/Mac/Windows with Gradle(Builds your Java code)</h2>
+<h2>Setup in Linux/Mac/Windows with Gradle(Builds our Java code)</h2>
 1. Install Gradle in Linux OR Mac by typing to the command line:
    ```sh
    prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
@@ -77,7 +77,7 @@ project into Eclipse.
    prompt> echo "export GRADLE_HOME=/usr/local/gradle-1.10" >> .profile
    prompt> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
    ```
-
+   
 2. Or install Gradle with these [instructions for Windows](https://db.tt/DMF3ww2D)
 
 3. Fork this repo and clone it locally. Navigate into the `WalnutiQ/` folder
@@ -89,9 +89,9 @@ project into Eclipse.
 <h2>How to Contribute</h2>
 
 1. View an example of how some of the code is used in the file
-   [NoiseInvarianceExperiment](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java)
+   [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java)
 
-2. View the [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) 
+2. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) 
    for this repo and asign a issue to yourself you would like to work on or suggest
    a new issue if you kind of know what you are doing. Happy coding!
 

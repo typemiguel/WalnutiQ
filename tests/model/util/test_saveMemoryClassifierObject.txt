@@ -1,1 +1,0 @@
-{"regionOutput":[],"memory":{"ideas":[{"name":"love your enemy","attentionPercentage":0.0,"columnPositions":[],"activationFrequenciesOfColumns":[[0,0],[0,0]]}]}}
