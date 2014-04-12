@@ -1,8 +1,9 @@
 package model.MARK_I.observableDesign;
 
+import java.util.Observable;
 import model.MARK_I.VisionCell;
 
-public class Retina {
+public class Retina extends Observable {
     private VisionCell visionCell;
 
     public Retina() {
@@ -19,5 +20,7 @@ public class Retina {
 	} else {
 	    this.visionCell.setActiveState(false);
 	}
+	this.setChanged();
+	this.notifyObservers(blackOrWhite);
     }
 }
