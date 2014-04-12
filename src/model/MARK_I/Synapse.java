@@ -1,9 +1,5 @@
 package model.MARK_I;
 
-import java.util.Observable;
-
-import java.util.Observer;
-
 import model.MARK_I.Cell;
 
 /**
@@ -41,7 +37,7 @@ import model.MARK_I.Cell;
  * @param <Cell>
  *            A synapse can be connected to either a SensorCell or a Neuron.
  */
-public class Synapse<CellType extends Cell> implements Observer {
+public class Synapse<CellType extends Cell> {
     /**
      * When a Synapse's Cell is active, the Synapse will create excitatory
      * post-synaptic potential (EPSPs). However, when a Synapse's Cell is not
@@ -157,22 +153,6 @@ public class Synapse<CellType extends Cell> implements Observer {
 
     public int getCellYPosition() {
 	return this.cellYPosition;
-    }
-
-    @Override
-    public void update(Observable arg0, Object blackOrWhiteObject) {
-	String blackOrWhite = (String) blackOrWhiteObject;
-	if (blackOrWhite.equals("black")) {
-	    this.cell.setActiveState(true);
-	    System.out.println("set cell in Synapse to true in Synapse");
-	    // permanence increases in method regionLearnOneTimeStep() in
-	    // SpatialPooler.java
-	} else {
-	    this.cell.setActiveState(false);
-	    System.out.println("set cell in Synapse to false in Synapse");
-	    // permanence decreases in method regionLearnOneTimeStep() in
-	    // SpatialPooler.java
-	}
     }
 
     @Override
