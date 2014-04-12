@@ -46,23 +46,17 @@ public class ColumnPosition {
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + x;
-	result = prime * result + y;
+	result = prime * result + this.x;
+	result = prime * result + this.y;
 	return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (obj == null)
+	ColumnPosition otherColumnPosition = (ColumnPosition) obj;
+	if (this.x != otherColumnPosition.x)
 	    return false;
-	if (getClass() != obj.getClass())
-	    return false;
-	ColumnPosition other = (ColumnPosition) obj;
-	if (x != other.x)
-	    return false;
-	if (y != other.y)
+	if (this.y != otherColumnPosition.y)
 	    return false;
 	return true;
     }
