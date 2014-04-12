@@ -28,7 +28,7 @@ public class Segment {
      *
      * @author Quinn Liu (quinnliu@vt.edu)
      * @author Michael Cogswell (cogswell@vt.edu)
-     * @version MARK II | April 4, 2013
+     * @version MARK I | April 4, 2013
      */
     public enum SynapseUpdateState {
 	/**

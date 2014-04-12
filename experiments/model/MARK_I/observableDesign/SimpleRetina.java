@@ -3,10 +3,10 @@ package model.MARK_I.observableDesign;
 import java.util.Observable;
 import model.MARK_I.VisionCell;
 
-public class Retina extends Observable {
+public class SimpleRetina extends Observable {
     private VisionCell visionCell;
 
-    public Retina() {
+    public SimpleRetina() {
 	this.visionCell = new VisionCell();
     }
 
