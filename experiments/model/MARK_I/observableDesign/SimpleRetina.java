@@ -17,8 +17,10 @@ public class SimpleRetina extends Observable {
     public void seeBMPImage(String blackOrWhite) {
 	if (blackOrWhite.equals("black")) {
 	    this.visionCell.setActiveState(true);
+	    System.out.println("set visionCell to true in SimpleRetina");
 	} else {
 	    this.visionCell.setActiveState(false);
+	    System.out.println("set visionCell to false in SimpleRetina");
 	}
 	this.setChanged();
 	this.notifyObservers(blackOrWhite);

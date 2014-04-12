@@ -164,10 +164,12 @@ public class Synapse<CellType extends Cell> implements Observer {
 	String blackOrWhite = (String) blackOrWhiteObject;
 	if (blackOrWhite.equals("black")) {
 	    this.cell.setActiveState(true);
+	    System.out.println("set cell in Synapse to true in Synapse");
 	    // permanence increases in method regionLearnOneTimeStep() in
 	    // SpatialPooler.java
 	} else {
 	    this.cell.setActiveState(false);
+	    System.out.println("set cell in Synapse to false in Synapse");
 	    // permanence decreases in method regionLearnOneTimeStep() in
 	    // SpatialPooler.java
 	}

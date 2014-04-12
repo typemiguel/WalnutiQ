@@ -17,22 +17,30 @@ public class UpdatableConnectionTest extends junit.framework.TestCase {
 
     /**
      * Inside SimpleRegion there is 1 Column. Inside Column there is 1 Synapse.
-     * Synapse implements Observer with an update method that is called
-     * when retina's state changes.
+     * Synapse implements Observer with an update method that is called when
+     * retina's state changes.
      */
     private SimpleRegion region;
 
     private SimpleSpatialPooler spatialPooler;
 
-    // private SimpleSpatialPooler spatialPooler;
-
     public void setUp() {
 	this.retina = new SimpleRetina();
 	this.region = new SimpleRegion();
+	SensorCellToColumnRectangleConnect retinaToRegion = new SensorCellToColumnRectangleConnect();
+	retinaToRegion.connect(this.retina.getVisionCells(),
+		this.region.getColumn());
+
 	this.spatialPooler = new SimpleSpatialPooler(this.region);
     }
 
     public void testSee2DifferentImages() {
+	assertFalse(this.spatialPooler.performSpatialPoolingOnRegion());
 
+	this.retina.seeBMPImage("black");
+	assertTrue(this.spatialPooler.performSpatialPoolingOnRegion());
+
+	this.retina.seeBMPImage("white");
+	assertFalse(this.spatialPooler.performSpatialPoolingOnRegion());
     }
 }

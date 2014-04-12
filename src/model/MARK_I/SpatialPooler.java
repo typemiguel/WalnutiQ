@@ -106,6 +106,8 @@ public class SpatialPooler extends Pooler {
      * at time t.
      */
     void computeActiveColumnsOfRegion() {
+	this.activeColumnPositions.clear();
+
 	Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
@@ -234,8 +236,10 @@ public class SpatialPooler extends Pooler {
 		}
 	    }
 	}
-	this.region
-		.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+	// TODO: View detials of this problem here:
+	// https://github.com/quinnliu/WalnutiQ/issues/27
+	//this.region
+	//	.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
 
     /**
