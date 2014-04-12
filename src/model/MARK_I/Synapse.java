@@ -171,7 +171,6 @@ public class Synapse<CellType extends Cell> implements Observer {
 	    // permanence decreases in method regionLearnOneTimeStep() in
 	    // SpatialPooler.java
 	}
-
     }
 
     @Override

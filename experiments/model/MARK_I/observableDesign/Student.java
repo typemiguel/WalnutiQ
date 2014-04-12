@@ -13,5 +13,4 @@ public class Student implements Observer {
     public void update(Observable arg0, Object arg1) {
 	System.out.println("message board changed: " + arg1);
     }
-
 }

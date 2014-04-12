@@ -12,7 +12,7 @@ public class MessageBoardTest extends junit.framework.TestCase {
     				       // when it's state changes
 
     private Student student1; // implements Observer with an update method that
-    			      // is called
+    			      // is called when messageBoard's state changes
     private Student student2;
 
     public void setUp() {
