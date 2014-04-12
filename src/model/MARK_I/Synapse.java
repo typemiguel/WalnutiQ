@@ -1,5 +1,9 @@
 package model.MARK_I;
 
+import java.util.Observable;
+
+import java.util.Observer;
+
 import model.MARK_I.Cell;
 
 /**
@@ -15,13 +19,13 @@ import model.MARK_I.Cell;
  * algorithms involving Synapses more efficient and minimally reduces the
  * learning algorithms performance.
  *
- * There are 2 types of synapses in the brain. The MARK I Synapse data structure 
- * models the chemical synapse and not the electrical synapse using the 
- * following neuroscience ideas:
- * 1) synaptic plasticity(also known as Hebbian plasticity) = If neuron A repeatedly
- *    takes part in firing neuron B, then the synapses from A to B are strengthened.
- * 2) longterm potentiation/depression = Experimentally observed increase/decrease in 
- *    synaptic strength that lasts for hours or days.
+ * There are 2 types of synapses in the brain. The MARK I Synapse data structure
+ * models the chemical synapse and not the electrical synapse using the
+ * following neuroscience ideas: 1) synaptic plasticity(also known as Hebbian
+ * plasticity) = If neuron A repeatedly takes part in firing neuron B, then the
+ * synapses from A to B are strengthened. 2) longterm potentiation/depression =
+ * Experimentally observed increase/decrease in synaptic strength that lasts for
+ * hours or days.
  *
  * NOTE: When getting the activeState or previousActiveState of a Synapse make
  * sure to check that the Synapse is connected to it's Cell by calling
@@ -37,13 +41,13 @@ import model.MARK_I.Cell;
  * @param <Cell>
  *            A synapse can be connected to either a SensorCell or a Neuron.
  */
-public class Synapse<CellType extends Cell> {
+public class Synapse<CellType extends Cell> implements Observer {
     /**
      * When a Synapse's Cell is active, the Synapse will create excitatory
-     * post-synaptic potential (EPSPs). However, when a Synapse's Cell is
-     * not active it will not contribute to the spiking of the 
-     * post-synaptic Neuron which is not inhibitory like an inhibitory post 
-     * synaptic potential (IPSPs). 
+     * post-synaptic potential (EPSPs). However, when a Synapse's Cell is not
+     * active it will not contribute to the spiking of the post-synaptic Neuron
+     * which is not inhibitory like an inhibitory post synaptic potential
+     * (IPSPs).
      */
     private Cell cell;
     private double permanenceValue;
@@ -73,25 +77,25 @@ public class Synapse<CellType extends Cell> {
      * value.
      */
     public Synapse(Cell cell, int cellXPosition, int cellYPosition) {
-        if (cell == null) {
-            throw new IllegalArgumentException(
-        	    "cell in Synapse class constructor cannot be null");
-        } else if (cellXPosition < 0 || cellYPosition < 0) {
-            throw new IllegalArgumentException(
-        	    "cellXPosition and cellYPosition in Synapse class constructor must be > 0");
-        }
-        this.cell = cell;
-        this.permanenceValue = INITIAL_PERMANENCE;
-        this.cellXPosition = cellXPosition;
-        this.cellYPosition = cellYPosition;
+	if (cell == null) {
+	    throw new IllegalArgumentException(
+		    "cell in Synapse class constructor cannot be null");
+	} else if (cellXPosition < 0 || cellYPosition < 0) {
+	    throw new IllegalArgumentException(
+		    "cellXPosition and cellYPosition in Synapse class constructor must be > 0");
+	}
+	this.cell = cell;
+	this.permanenceValue = INITIAL_PERMANENCE;
+	this.cellXPosition = cellXPosition;
+	this.cellYPosition = cellYPosition;
     }
 
     /**
      * Create a new synapse object with an Cell object and given permanence
      * value.
      */
-    public Synapse(Cell cell, double initialPermanence,
-	    int cellXPosition, int cellYPosition) {
+    public Synapse(Cell cell, double initialPermanence, int cellXPosition,
+	    int cellYPosition) {
 	this(cell, cellXPosition, cellYPosition);
 
 	if (initialPermanence < 0.0 || initialPermanence > 1.0) {
@@ -153,6 +157,21 @@ public class Synapse<CellType extends Cell> {
 
     public int getCellYPosition() {
 	return this.cellYPosition;
+    }
+
+    @Override
+    public void update(Observable arg0, Object blackOrWhiteObject) {
+	String blackOrWhite = (String) blackOrWhiteObject;
+	if (blackOrWhite.equals("black")) {
+	    this.cell.setActiveState(true);
+	    // permanence increases in method regionLearnOneTimeStep() in
+	    // SpatialPooler.java
+	} else {
+	    this.cell.setActiveState(false);
+	    // permanence decreases in method regionLearnOneTimeStep() in
+	    // SpatialPooler.java
+	}
+
     }
 
     @Override

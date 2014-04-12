@@ -8,6 +8,7 @@ import model.MARK_I.Column;
 public class SensorCellToColumnRectangleConnect {
 
     public void connect(SensorCell sensorCell, Column column) {
-	column.getProximalSegment().addSynapse(new Synapse<Cell>(sensorCell, 0, 0));
+	column.getProximalSegment().addSynapse(
+		new Synapse<Cell>(sensorCell, 0, 0));
     }
 }
