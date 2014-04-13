@@ -34,6 +34,7 @@ public class FindOptimalParametersForSDR {
      *
      * @param percentMinimumOverlapScore
      * @param desiredLocalActivity
+     * @param desiredPercentageOfActiveColumns
      * @param locationOfFileWithFileNameToSaveScore
      * @return The SDR score.
      *
