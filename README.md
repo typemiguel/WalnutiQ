@@ -101,9 +101,7 @@ project into Eclipse.
 <h2>What each file/folder in this repository is for:</h2>
   - experiments  
       + model
-          - MARK_I
-            + [SDR](./experiments/model/MARK_I/SDR) = allows construction of different WalnutiQ
-              models from command line for this repo https://github.com/quinnliu/CallWalnutiQ. 
+          - MARK_I 
             + [vision](./experiments/model/MARK_I/vision) = experiments with partial 
               visual pathway models on a popular handwritten digit data
               set called MNIST
@@ -118,6 +116,8 @@ project into Eclipse.
           - [MARK_I](./src/model/MARK_I) = the core logic for the partial brain model. 
             Includes abstract data types for basic brain structures and learning 
             algorithms that simulate how the brain learns
+            + [SDR](./src/model/MARK_I/SDR) = allows construction of different WalnutiQ
+              models from command line for this repo https://github.com/quinnliu/CallWalnutiQ.
             + [connectTypes](./src/model/MARK_I/connectTypes) = classes allow the different brain structures in MARK I to 
               connect to each other in a variety of ways
           - [util](./src/model/util) = classes that enable the brain model properties to be viewed
