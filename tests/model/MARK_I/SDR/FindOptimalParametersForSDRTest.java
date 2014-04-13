@@ -24,9 +24,9 @@ public class FindOptimalParametersForSDRTest extends junit.framework.TestCase {
 	// TODO: for some reason gradle is causing a build error here
 	// view here: https://travis-ci.org/quinnliu/WalnutiQ/jobs/22705645
 //	assertEquals(
-//		8.827,
+//		8.027,
 //		FindOptimalParametersForSDR
-//			.printToFileSDRScoreFor1RetinaTo1RegionModel(50, 3,
+//			.printToFileSDRScoreFor1RetinaTo1RegionModel(50, 3, 10.0,
 //				"./experiments/model/MARK_I/SDR/currentSDRScore.txt"),
 //		.001);
     }

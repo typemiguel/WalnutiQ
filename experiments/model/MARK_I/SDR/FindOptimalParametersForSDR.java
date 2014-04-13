@@ -41,6 +41,7 @@ public class FindOptimalParametersForSDR {
      */
     public static double printToFileSDRScoreFor1RetinaTo1RegionModel(
 	    double percentMinimumOverlapScore, double desiredLocalActivity,
+	    double desiredPercentageOfActiveColumns,
 	    String locationOfFileWithFileNameToSaveScore) throws IOException {
 	Retina retina = new Retina(66, 66);
 	Region region = new Region("Region", 8, 8, 1,
@@ -59,8 +60,11 @@ public class FindOptimalParametersForSDR {
 		.getActiveColumnPositions();
 	// = (6,5)(6, 3)(6, 2)(5, 3)(3, 5)(2, 2)(1, 3)(1, 2)(2, 5)(1, 5)(4, 4)
 
+	int totalNumberOfColumnsInRegion = region.getXAxisLength()
+		* region.getYAxisLength();
 	SDRScoreCalculator sdrScoreCalculator = new SDRScoreCalculator(
-		columnActivityAfterSeeingImage2);
+		columnActivityAfterSeeingImage2,
+		desiredPercentageOfActiveColumns, totalNumberOfColumnsInRegion);
 
 	double SDRScore = sdrScoreCalculator.getSDRScore();
 

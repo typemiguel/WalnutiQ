@@ -30,7 +30,10 @@ public class SDRScoreCalculator {
      *
      * @param columnActivityAfterSeeingImage
      */
-    public SDRScoreCalculator(Set<ColumnPosition> columnActivityAfterSeeingImage) {
+    public SDRScoreCalculator(
+	    Set<ColumnPosition> columnActivityAfterSeeingImage,
+	    double desiredPercentageOfActiveColumns,
+	    int totalNumberOfColumnsInRegion) {
 	this.computeXYAverages(columnActivityAfterSeeingImage);
 
 	this.sparsityScore = 0;
@@ -43,7 +46,10 @@ public class SDRScoreCalculator {
 	this.sparsityScore = Math.sqrt(this.sparsityScore);
 
 	this.numberOfActiveColumnsScore = 0;
-	int desiredNumberOfActiveColumns = 10; // TODO: add computation later
+
+	int desiredNumberOfActiveColumns = (int) (totalNumberOfColumnsInRegion
+		* desiredPercentageOfActiveColumns / 100);
+
 	int actualNumberOfActiveColumns = columnActivityAfterSeeingImage.size();
 	double difference = Math.abs(desiredNumberOfActiveColumns
 		- actualNumberOfActiveColumns);
