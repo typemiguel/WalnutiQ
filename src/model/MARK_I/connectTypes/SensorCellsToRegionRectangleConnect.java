@@ -16,26 +16,11 @@ public class SensorCellsToRegionRectangleConnect implements
     public void connect(SensorCell[][] sensorCells, Region region,
 	    int numberOfColumnsToOverlapAlongXAxisOfSensorCells,
 	    int numberOfColumnsToOverlapAlongYAxisOfSensorCells) {
-	if (region == null) {
-	    throw new IllegalArgumentException(
-		    "region in SensorCellsToRegionRectangleConnect class"
-			    + "connect method cannot be null");
-	} else if (sensorCells == null) {
-	    throw new IllegalArgumentException(
-		    "sensorCells in SensorCellsToRegionRectangleConnect class"
-			    + "connect method cannot be null");
-	} else if (sensorCells.length <= region.getXAxisLength()
-		|| sensorCells[0].length <= region.getYAxisLength()) {
-	    throw new IllegalArgumentException(
-		    "sensorCells in connect method cannot be smaller in X or Y "
-			    + "dimentions than the region");
-	} else if (numberOfColumnsToOverlapAlongXAxisOfSensorCells < 0) {
-	    throw new IllegalArgumentException(
-		    "numberOfColumnsToOverlapAlongXAxisOfSensorCells in connect method cannot be < 0");
-	} else if (numberOfColumnsToOverlapAlongYAxisOfSensorCells < 0) {
-	    throw new IllegalArgumentException(
-		    "numberOfColumnsToOverlapAlongYAxisOfSensorCells in connect method cannot be < 0");
-	}
+
+	this.checkParameters(sensorCells, region,
+		numberOfColumnsToOverlapAlongXAxisOfSensorCells,
+		numberOfColumnsToOverlapAlongYAxisOfSensorCells);
+
 	Column[][] regionColumns = region.getColumns();
 	int regionXAxisLength = regionColumns[0].length;
 	int regionYAxisLength = regionColumns.length;
@@ -81,6 +66,31 @@ public class SensorCellsToRegionRectangleConnect implements
 		    }
 		}
 	    }
+	}
+    }
+
+    private void checkParameters(SensorCell[][] sensorCells, Region region,
+	    int numberOfColumnsToOverlapAlongXAxisOfSensorCells,
+	    int numberOfColumnsToOverlapAlongYAxisOfSensorCells) {
+	if (region == null) {
+	    throw new IllegalArgumentException(
+		    "region in SensorCellsToRegionRectangleConnect class"
+			    + "connect method cannot be null");
+	} else if (sensorCells == null) {
+	    throw new IllegalArgumentException(
+		    "sensorCells in SensorCellsToRegionRectangleConnect class"
+			    + "connect method cannot be null");
+	} else if (sensorCells.length <= region.getXAxisLength()
+		|| sensorCells[0].length <= region.getYAxisLength()) {
+	    throw new IllegalArgumentException(
+		    "sensorCells in connect method cannot be smaller in X or Y "
+			    + "dimentions than the region");
+	} else if (numberOfColumnsToOverlapAlongXAxisOfSensorCells < 0) {
+	    throw new IllegalArgumentException(
+		    "numberOfColumnsToOverlapAlongXAxisOfSensorCells in connect method cannot be < 0");
+	} else if (numberOfColumnsToOverlapAlongYAxisOfSensorCells < 0) {
+	    throw new IllegalArgumentException(
+		    "numberOfColumnsToOverlapAlongYAxisOfSensorCells in connect method cannot be < 0");
 	}
     }
 }

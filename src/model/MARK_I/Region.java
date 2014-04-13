@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Node within Neocortex tree. A Region object is an undirected graph of Neuron
  * nodes.
  *
- * Input to Region: activity of Cells within a SensorCellLayer or lower
- * Region. For example, VisionCellLayer, AudioCellLayer, etc.
+ * Input to Region: activity of Cells within a SensorCellLayer or lower Region.
+ * For example, VisionCellLayer, AudioCellLayer, etc.
  *
  * Output from Region: activity of Cells within this Region created by one or
  * more of the Pooler algorithms.
@@ -35,6 +35,30 @@ public class Region {
     public Region(String biologicalName, int numberOfColumnsAlongXAxis,
 	    int numberOfColumnsAlongYAxis, int cellsPerColumn,
 	    double percentMinimumOverlapScore, int desiredLocalActivity) {
+
+	this.checkParameters(biologicalName, numberOfColumnsAlongXAxis,
+		numberOfColumnsAlongYAxis, cellsPerColumn,
+		percentMinimumOverlapScore, desiredLocalActivity);
+
+	this.biologicalName = biologicalName;
+	this.children = new ArrayList<Region>();
+	this.columns = new Column[numberOfColumnsAlongXAxis][numberOfColumnsAlongYAxis];
+
+	for (int x = 0; x < numberOfColumnsAlongXAxis; x++) {
+	    for (int y = 0; y < numberOfColumnsAlongYAxis; y++) {
+		this.columns[x][y] = new Column(cellsPerColumn);
+	    }
+	}
+
+	this.percentMinimumOverlapScore = percentMinimumOverlapScore;
+	this.desiredLocalActivity = desiredLocalActivity;
+	this.inhibitionRadius = 1; // TODO: fix class variable
+    }
+
+    private void checkParameters(String biologicalName,
+	    int numberOfColumnsAlongXAxis, int numberOfColumnsAlongYAxis,
+	    int cellsPerColumn, double percentMinimumOverlapScore,
+	    int desiredLocalActivity) {
 	if (biologicalName == null) {
 	    throw new IllegalArgumentException(
 		    "biologicalName in Region constructor cannot be null");
@@ -56,19 +80,6 @@ public class Region {
 	    throw new IllegalArgumentException(
 		    "desiredLocalActivity in Region constructor must be between 0 and the total number of columns within a region");
 	}
-	this.biologicalName = biologicalName;
-	this.children = new ArrayList<Region>();
-	this.columns = new Column[numberOfColumnsAlongXAxis][numberOfColumnsAlongYAxis];
-
-	for (int x = 0; x < numberOfColumnsAlongXAxis; x++) {
-	    for (int y = 0; y < numberOfColumnsAlongYAxis; y++) {
-		this.columns[x][y] = new Column(cellsPerColumn);
-	    }
-	}
-
-	this.percentMinimumOverlapScore = percentMinimumOverlapScore;
-	this.desiredLocalActivity = desiredLocalActivity;
-	this.inhibitionRadius = 1; // TODO: fix class variable
     }
 
     public void addChildRegion(Region region) {
@@ -108,21 +119,21 @@ public class Region {
 	if (inhibitionRadius < 0 || inhibitionRadius > this.getXAxisLength()
 		|| inhibitionRadius > this.getYAxisLength()) {
 	    throw new IllegalArgumentException(
-		    "inhibition in Region class setInhibitionRadius method must " +
-		    "be >= 0 and < the number of columns along boths sides of the region");
+		    "inhibition in Region class setInhibitionRadius method must "
+			    + "be >= 0 and < the number of columns along boths sides of the region");
 	}
 	this.inhibitionRadius = inhibitionRadius;
     }
 
-//    void setPercentMinimumOverlapScore(double percentMinimumOverlapScore) {
-//	if (percentMinimumOverlapScore < 0
-//		|| percentMinimumOverlapScore > 1) {
-//	    throw new IllegalArgumentException(
-//		    "percentMinimumOverlapScore in Region class " +
-//		    "setPercentMinimumOverlapScore method must be >= 0 and <= 1");
-//	}
-//	this.percentMinimumOverlapScore = percentMinimumOverlapScore;
-//    }
+    // void setPercentMinimumOverlapScore(double percentMinimumOverlapScore) {
+    // if (percentMinimumOverlapScore < 0
+    // || percentMinimumOverlapScore > 1) {
+    // throw new IllegalArgumentException(
+    // "percentMinimumOverlapScore in Region class " +
+    // "setPercentMinimumOverlapScore method must be >= 0 and <= 1");
+    // }
+    // this.percentMinimumOverlapScore = percentMinimumOverlapScore;
+    // }
 
     public int getXAxisLength() {
 	return this.columns.length;
@@ -152,7 +163,8 @@ public class Region {
 	}
 	// you + 1 to each dimension because in the array the index begins at 0
 	// instead of 1
-	return new Dimension(greatestSynapseXIndex + 1, greatestSynapseYIndex + 1);
+	return new Dimension(greatestSynapseXIndex + 1,
+		greatestSynapseYIndex + 1);
     }
 
     /**

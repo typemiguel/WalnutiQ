@@ -22,10 +22,8 @@ public class SensorCellsToRegionRandomConnect implements
      * In order to explain overlapping Synapses more concisely I will be using
      * the abbreviated variable names in the below formula:
      * numberOfColumnsToOverlapAlongXAxisOfSensorCells = C_X
-     * numberOfColumnsToOverlapAlongYAxisOfSensorCells = C_Y
-     * sensorCells.length = SC_X
-     * sensorCells[0].length = SC_Y
-     * regionXAxisLength = R_X
+     * numberOfColumnsToOverlapAlongYAxisOfSensorCells = C_Y sensorCells.length
+     * = SC_X sensorCells[0].length = SC_Y regionXAxisLength = R_X
      * regionYAxisLength = R_Y
      *
      * [(C_X + SC_X) * (C_Y + SC_Y)] / (R_X * R_Y) = # of Synapses created to
@@ -35,28 +33,10 @@ public class SensorCellsToRegionRandomConnect implements
     public void connect(SensorCell[][] sensorCells, Region region,
 	    int numberOfSynapsesToOverlapAlongXAxisOfSensorCells,
 	    int numberOfSynapsesToOverlapAlongYAxisOfSensorCells) {
-	if (region == null) {
-	    throw new IllegalArgumentException(
-		    "region in SensorCellsToRegionRectangleConnect class" +
-		    "connect method cannot be null");
-	} else if (sensorCells == null) {
-	    throw new IllegalArgumentException(
-		    "sensorCells in SensorCellsToRegionRectangleConnect class" +
-		    "connect method cannot be null");
-	} else if (sensorCells.length <= region
-		.getXAxisLength()
-		|| sensorCells[0].length <= region
-			.getYAxisLength()) {
-	    throw new IllegalArgumentException(
-		    "sensorCells in connect method cannot be smaller in X or Y " +
-		    "dimentions than the region");
-	} else if (numberOfSynapsesToOverlapAlongXAxisOfSensorCells < 0) {
-	    throw new IllegalArgumentException(
-		    "numberOfSynapsesToOverlapAlongXAxisOfSensorCells in connect method cannot be < 0");
-	} else if (numberOfSynapsesToOverlapAlongYAxisOfSensorCells < 0) {
-	    throw new IllegalArgumentException(
-		    "numberOfSynapsesToOverlapAlongYAxisOfSensorCells in connect method cannot be < 0");
-	}
+
+	this.checkParameters(sensorCells, region,
+		numberOfSynapsesToOverlapAlongXAxisOfSensorCells,
+		numberOfSynapsesToOverlapAlongYAxisOfSensorCells);
 
 	Column[][] regionColumns = region.getColumns();
 	int regionXAxisLength = regionColumns.length; // 8
@@ -97,6 +77,31 @@ public class SensorCellsToRegionRandomConnect implements
 		}
 		Collections.shuffle(allSynapsePositions);
 	    }
+	}
+    }
+
+    private void checkParameters(SensorCell[][] sensorCells, Region region,
+	    int numberOfSynapsesToOverlapAlongXAxisOfSensorCells,
+	    int numberOfSynapsesToOverlapAlongYAxisOfSensorCells) {
+	if (region == null) {
+	    throw new IllegalArgumentException(
+		    "region in SensorCellsToRegionRectangleConnect class"
+			    + "connect method cannot be null");
+	} else if (sensorCells == null) {
+	    throw new IllegalArgumentException(
+		    "sensorCells in SensorCellsToRegionRectangleConnect class"
+			    + "connect method cannot be null");
+	} else if (sensorCells.length <= region.getXAxisLength()
+		|| sensorCells[0].length <= region.getYAxisLength()) {
+	    throw new IllegalArgumentException(
+		    "sensorCells in connect method cannot be smaller in X or Y "
+			    + "dimentions than the region");
+	} else if (numberOfSynapsesToOverlapAlongXAxisOfSensorCells < 0) {
+	    throw new IllegalArgumentException(
+		    "numberOfSynapsesToOverlapAlongXAxisOfSensorCells in connect method cannot be < 0");
+	} else if (numberOfSynapsesToOverlapAlongYAxisOfSensorCells < 0) {
+	    throw new IllegalArgumentException(
+		    "numberOfSynapsesToOverlapAlongYAxisOfSensorCells in connect method cannot be < 0");
 	}
     }
 }
