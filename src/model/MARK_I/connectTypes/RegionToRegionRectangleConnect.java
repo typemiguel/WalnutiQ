@@ -10,7 +10,7 @@ import model.MARK_I.Synapse;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 13, 2013
  */
-public class RegionToRegionRectangleConnect implements RegionToRegionConnect {
+public class RegionToRegionRectangleConnect implements RegionToRegionConnectInterface {
     @Override
     public void connect(Region childRegion, Region parentRegion,
 	    int numberOfColumnsToOverlapAlongXAxisOfRegion,

@@ -6,7 +6,7 @@ import java.util.Set;
 import model.MARK_I.ColumnPosition;
 import java.io.IOException;
 import model.MARK_I.SpatialPooler;
-import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.MARK_I.Region;
 import model.Retina;
@@ -46,7 +46,7 @@ public class FindOptimalParametersForSDR {
 	Region region = new Region("Region", 8, 8, 1,
 		percentMinimumOverlapScore, (int) desiredLocalActivity);
 
-	SensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
+	SensorCellsToRegionConnectInterface retinaToRegion = new SensorCellsToRegionRectangleConnect();
 	retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
 
 	SpatialPooler spatialPooler = new SpatialPooler(region);

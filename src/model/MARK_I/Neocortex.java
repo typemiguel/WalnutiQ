@@ -1,6 +1,6 @@
 package model.MARK_I;
 
-import model.MARK_I.connectTypes.RegionToRegionConnect;
+import model.MARK_I.connectTypes.RegionToRegionConnectInterface;
 
 /**
  * Neocortex is a undirected tree of Regions. Creating a Neocortex with multiple
@@ -20,10 +20,10 @@ import model.MARK_I.connectTypes.RegionToRegionConnect;
 public class Neocortex {
     private Region rootRegion;
     private Region currentRegion; // analogous to current directory
-    private RegionToRegionConnect connectType;
+    private RegionToRegionConnectInterface connectType;
 
     public Neocortex(Region rootRegion,
-	    RegionToRegionConnect neocortexRegionToNeocortexRegion) {
+	    RegionToRegionConnectInterface neocortexRegionToNeocortexRegion) {
 	if (rootRegion == null) {
 	    throw new IllegalArgumentException(
 		    "rootRegion in Neocortex constructor cannot be null");

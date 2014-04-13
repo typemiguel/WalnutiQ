@@ -6,7 +6,7 @@ import model.MARK_I.Region;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 7, 2013
  */
-public interface RegionToRegionConnect {
+public interface RegionToRegionConnectInterface {
     public abstract void connect(Region childRegion, Region parentRegion,
 	    int numberOfColumnsToOverlapAlongXAxisOfRegion,
 	    int numberOfColumnsToOverlapAlongYAxisOfRegion);

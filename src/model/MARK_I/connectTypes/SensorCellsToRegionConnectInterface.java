@@ -7,7 +7,7 @@ import model.MARK_I.SensorCell;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 7, 2013
  */
-public interface SensorCellsToRegionConnect {
+public interface SensorCellsToRegionConnectInterface {
     public abstract void connect(SensorCell[][] sensorCells, Region region,
 	    int numberOfColumnsToOverlapAlongXAxisOfSensorCells,
 	    int numberOfColumnsToOverlapAlongYAxisOfSensorCells);

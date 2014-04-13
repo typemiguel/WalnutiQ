@@ -1,6 +1,6 @@
 package model.MARK_I;
 
-import model.MARK_I.connectTypes.RegionToRegionConnect;
+import model.MARK_I.connectTypes.RegionToRegionConnectInterface;
 import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
 
 import model.MARK_I.Column;
@@ -52,7 +52,7 @@ public class RegionTest extends junit.framework.TestCase {
 
     public void test_getBottomLayerXYAxisLength() {
 	Region bottomLayer = new Region("bottomLayer", 25, 35, 1, 50, 1);
-	RegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
+	RegionToRegionConnectInterface connectType = new RegionToRegionRectangleConnect();
 	connectType.connect(bottomLayer, this.region, 0, 0);
 
 	Dimension bottomLayerDimensions = this.region

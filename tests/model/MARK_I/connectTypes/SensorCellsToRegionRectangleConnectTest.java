@@ -1,6 +1,6 @@
 package model.MARK_I.connectTypes;
 
-import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 
 import model.MARK_I.Column;
@@ -15,7 +15,7 @@ import model.MARK_I.VisionCell;
 public class SensorCellsToRegionRectangleConnectTest extends
 	junit.framework.TestCase {
 
-    private SensorCellsToRegionConnect connectType;
+    private SensorCellsToRegionConnectInterface connectType;
 
     public void setUp() {
 	this.connectType = new SensorCellsToRegionRectangleConnect();

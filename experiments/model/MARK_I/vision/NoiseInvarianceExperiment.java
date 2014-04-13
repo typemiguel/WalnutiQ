@@ -4,7 +4,7 @@ import java.util.Set;
 import java.io.IOException;
 import model.Retina;
 import model.MARK_I.ColumnPosition;
-import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.MARK_I.Region;
 import model.MARK_I.SpatialPooler;
@@ -38,7 +38,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 
 	this.region = new Region("Region", 8, 8, 1, 40, 3);
 
-	SensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
+	SensorCellsToRegionConnectInterface retinaToRegion = new SensorCellsToRegionRectangleConnect();
 	retinaToRegion.connect(this.retina.getVisionCells(), this.region, 0, 0);
 
 	this.spatialPooler = new SpatialPooler(this.region);

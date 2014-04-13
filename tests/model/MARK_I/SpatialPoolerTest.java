@@ -1,8 +1,8 @@
 package model.MARK_I;
 
-import model.MARK_I.connectTypes.RegionToRegionConnect;
+import model.MARK_I.connectTypes.RegionToRegionConnectInterface;
 import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
-import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 
 import model.MARK_I.Cell;
@@ -31,7 +31,7 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
     public void setUp() {
 	this.parentRegion = new Region("parentRegion", 8, 8, 4, 20, 3);
 	Region childRegion = new Region("childRegion", 66, 66, 4, 20, 3);
-	RegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
+	RegionToRegionConnectInterface connectType = new RegionToRegionRectangleConnect();
 	connectType.connect(childRegion, this.parentRegion, 2, 2);
 
 	this.spatialPooler = new SpatialPooler(this.parentRegion);
@@ -44,7 +44,7 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 
 	Retina retina = new Retina(66, 66);
 
-	SensorCellsToRegionConnect connectType2 = new SensorCellsToRegionRectangleConnect();
+	SensorCellsToRegionConnectInterface connectType2 = new SensorCellsToRegionRectangleConnect();
 	connectType2.connect(retina.getVisionCells(), region, 2, 2);
 
 	retina.seeBMPImage("2.bmp");

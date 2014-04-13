@@ -11,7 +11,7 @@ import model.MARK_I.Synapse;
  * @version June 13, 2013
  */
 public class SensorCellsToRegionRectangleConnect implements
-	SensorCellsToRegionConnect {
+	SensorCellsToRegionConnectInterface {
     @Override
     public void connect(SensorCell[][] sensorCells, Region region,
 	    int numberOfColumnsToOverlapAlongXAxisOfSensorCells,
