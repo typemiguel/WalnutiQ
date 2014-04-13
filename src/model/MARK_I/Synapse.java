@@ -34,7 +34,7 @@ import model.MARK_I.Cell;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
  * @version June 8, 2013
- * @param <Cell>
+ * @param <CellType>
  *            A synapse can be connected to either a SensorCell or a Neuron.
  */
 public class Synapse<CellType extends Cell> {

@@ -9,8 +9,8 @@ import java.util.HashSet;
 
 /**
  * Provides implementation for running the spatial learning algorithm on a
- * Region. This class provides methods that simulate brain activity within the
- * Neocortex for object recognition.
+ * Region. This class provides methods that simulate brain activity within
+ * Regions of the Neocortex.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version July 29, 2013

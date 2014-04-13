@@ -15,11 +15,11 @@ public abstract class Pooler {
 
     public void changeRegion(Region newRegion)
     {
-	this.learningState = false;
 	if (newRegion == null) {
 	    throw new IllegalArgumentException(
 		    "newRegion in Pooler class changeRegion method cannot be null");
 	}
+	this.learningState = false;
 	this.region = newRegion;
     }
 

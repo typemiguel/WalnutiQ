@@ -1,7 +1,6 @@
 package model.MARK_I;
 
 import model.MARK_I.Cell;
-import model.MARK_I.DistalSegment;
 import model.MARK_I.ProximalSegment;
 import model.MARK_I.Segment;
 import model.MARK_I.Synapse;
@@ -21,11 +20,9 @@ import model.MARK_I.Segment.SynapseUpdateState;
  */
 public class SegmentTest extends junit.framework.TestCase {
     private Segment proximalSegment;
-    private DistalSegment distalSegment;
 
     public void setUp() {
 	this.proximalSegment = new ProximalSegment();
-	this.distalSegment = new DistalSegment();
     }
 
     public void test_getActiveState() {
@@ -152,11 +149,5 @@ public class SegmentTest extends junit.framework.TestCase {
 	visionCell_4.setActiveState(true);
 	visionCell_4.setPreviousActiveState(false);
 	Synapse<Cell> synapse_4 = new Synapse<Cell>(visionCell_4, 0.1, 0, 2);
-
-	this.distalSegment.addSynapse(synapse_1);
-	this.distalSegment.addSynapse(synapse_2);
-	this.distalSegment.addSynapse(synapse_3);
-	this.distalSegment.addSynapse(synapse_4);
-	assertEquals(1, this.distalSegment.getNumberOfPreviousActiveSynapses());
     }
 }
