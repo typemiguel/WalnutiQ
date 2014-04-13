@@ -1,5 +1,7 @@
 package model.MARK_I.SDR;
 
+import model.MARK_I.SDR.FindOptimalParametersForSDR;
+
 import java.io.IOException;
 
 /**
@@ -23,11 +25,11 @@ public class FindOptimalParametersForSDRTest extends junit.framework.TestCase {
 	    throws IOException {
 	// TODO: for some reason gradle is causing a build error here
 	// view here: https://travis-ci.org/quinnliu/WalnutiQ/jobs/22705645
-//	assertEquals(
-//		8.027,
-//		FindOptimalParametersForSDR
-//			.printToFileSDRScoreFor1RetinaTo1RegionModel(50, 3, 10.0,
-//				"./experiments/model/MARK_I/SDR/currentSDRScore.txt"),
-//		.001);
+	assertEquals(
+		8.027,
+		FindOptimalParametersForSDR
+			.printToFileSDRScoreFor1RetinaTo1RegionModel(50, 3, 10.0,
+				"./tests/model/MARK_I/SDR/currentSDRScore.txt"),
+		.001);
     }
 }
