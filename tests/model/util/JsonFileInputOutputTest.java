@@ -2,7 +2,7 @@ package model.util;
 
 import model.MARK_I.Column;
 import java.util.Set;
-import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.MARK_I.Region;
 import model.MARK_I.SpatialPooler;
@@ -27,7 +27,7 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
 
 	Retina retina = new Retina(66, 66);
 
-	SensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
+	SensorCellsToRegionConnectInterface retinaToLGN = new SensorCellsToRegionRectangleConnect();
 	retinaToLGN.connect(retina.getVisionCells(), LGNRegion, 0, 0);
 
 	// run spatial pooling on a image

@@ -1,8 +1,8 @@
 package model.MARK_I.vision;
 
-import model.MARK_I.connectTypes.RegionToRegionConnect;
+import model.MARK_I.connectTypes.RegionToRegionConnectInterface;
 import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
-import model.MARK_I.connectTypes.SensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 
 import model.MARK_I.ColumnPosition;
@@ -50,13 +50,13 @@ public class HowMARK_I_FitsInToBrainAnatomy extends junit.framework.TestCase {
 	// connect Retina to LGN
 	Retina retina = nervousSystem.getPNS().getSNS().getRetine();
 	LGN LGN = nervousSystem.getCNS().getBrain().getThalamus().getLGN();
-	SensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
+	SensorCellsToRegionConnectInterface opticNerve = new SensorCellsToRegionRectangleConnect();
 	opticNerve.connect(retina.getVisionCells(), LGN.getRegion(), 0, 0);
 
 	// connect LGN to very small part of V1 Region of Neocortex
 	Neocortex neocortex = nervousSystem.getCNS().getBrain().getCerebrum()
 		.getCerebralCortex().getNeocortex();
-	RegionToRegionConnect regionToRegionConnect = new RegionToRegionRectangleConnect();
+	RegionToRegionConnectInterface regionToRegionConnect = new RegionToRegionRectangleConnect();
 	regionToRegionConnect.connect(LGN.getRegion(),
 		neocortex.getCurrentRegion(), 0, 0);
 

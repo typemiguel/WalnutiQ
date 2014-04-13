@@ -1,6 +1,6 @@
 package model.MARK_I.connectTypes;
 
-import model.MARK_I.connectTypes.RegionToRegionConnect;
+import model.MARK_I.connectTypes.RegionToRegionConnectInterface;
 import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
 
 import model.MARK_I.Column;
@@ -12,7 +12,7 @@ import model.MARK_I.Region;
  */
 public class RegionToRegionRectangleConnectTest extends
 	junit.framework.TestCase {
-    private RegionToRegionConnect connectType;
+    private RegionToRegionConnectInterface connectType;
 
     public void setUp() {
 	this.connectType = new RegionToRegionRectangleConnect();

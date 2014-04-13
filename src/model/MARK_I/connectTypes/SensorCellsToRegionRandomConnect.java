@@ -16,7 +16,7 @@ import java.util.List;
  * @version July 18, 2013
  */
 public class SensorCellsToRegionRandomConnect implements
-	SensorCellsToRegionConnect {
+	SensorCellsToRegionConnectInterface {
 
     /**
      * In order to explain overlapping Synapses more concisely I will be using
