@@ -89,7 +89,7 @@ project into Eclipse.
 <h2>How to Contribute</h2>
 
 1. View an example of how some of the code is used in the file
-   [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/HowMARK_I_FitsInToBrainAnatomy.java)
+   [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java)
 
 2. View an example of how the current model can be instantiated as a simplified human visual pathway
    in [HowMARK_I_FitsInToBrainAnatomy.java](./experiments/model/MARK_I/vision/HowMARK_I_FitsInToBrainAnatomy.java)
