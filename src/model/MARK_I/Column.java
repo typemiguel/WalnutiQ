@@ -27,8 +27,6 @@ public class Column {
 
     private final Segment proximalSegment;
 
-    // index position of chosen learning Neuron within Neurons array
-    private int learningNeuronPosition; // may not be necessary
     private List<ColumnPosition> neighborColumnPositions;
 
     private int overlapScore;
@@ -69,7 +67,6 @@ public class Column {
 		this.neurons[i] = new Neuron();
 	    }
 	    this.proximalSegment = new ProximalSegment();
-	    this.learningNeuronPosition = -1;
 	    this.neighborColumnPositions = new ArrayList<ColumnPosition>();
 	    this.overlapScore = 0;
 	    this.boostValue = 1.0f;
@@ -129,7 +126,6 @@ public class Column {
      *            Cell's firing rate falls below this value, it will be boosted.
      * @return The boostValue of a Column.
      */
-    // TODO: this method may only need to be in SpatialPooler
     public float boostFunction(float minimumDutyCycle) {
 	if (minimumDutyCycle <= 0) {
 	    throw new IllegalArgumentException(
@@ -167,23 +163,6 @@ public class Column {
 
     public Neuron[] getNeurons() {
 	return this.neurons;
-    }
-
-    public Neuron getLearningNeuron() {
-	if (this.learningNeuronPosition == -1) {
-	    throw new IllegalStateException(
-		    "the learningNeuronPosition still needs to be set");
-	}
-	return this.neurons[this.learningNeuronPosition];
-    }
-
-    public void setLearningNeuronPosition(int learningNeuronPosition) {
-	if (learningNeuronPosition < 0
-		|| learningNeuronPosition >= this.neurons.length) {
-	    throw new IllegalArgumentException(
-		    "learningNeuronPosition in Column class setLearningNeuron method cannot be null");
-	}
-	this.learningNeuronPosition = learningNeuronPosition;
     }
 
     public List<ColumnPosition> getNeighborColumns() {
@@ -266,8 +245,6 @@ public class Column {
 	stringBuilder.append(this.neurons.length);
 	stringBuilder.append("\nproximalSegment activeState: ");
 	stringBuilder.append(this.proximalSegment.getActiveState());
-	stringBuilder.append("\n     learning cell position: ");
-	stringBuilder.append(this.learningNeuronPosition);
 	stringBuilder.append("\n  number of neighborColumns: ");
 	stringBuilder.append(this.neighborColumnPositions.size());
 	stringBuilder.append("\n               overlapScore: ");

@@ -12,8 +12,6 @@ public class VisionCell extends SensorCell {
 	super();
     }
 
-    // TODO: other Red Green Blue detectors and different grey scale detectors
-
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();

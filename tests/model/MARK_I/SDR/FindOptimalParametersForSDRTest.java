@@ -23,8 +23,6 @@ public class FindOptimalParametersForSDRTest extends junit.framework.TestCase {
      */
     public void testGetSpatialPoolingScoreWithGivenParametersForMarkNullaModel()
 	    throws IOException {
-	// TODO: for some reason gradle is causing a build error here
-	// view here: https://travis-ci.org/quinnliu/WalnutiQ/jobs/22705645
 	assertEquals(
 		8.027,
 		FindOptimalParametersForSDR

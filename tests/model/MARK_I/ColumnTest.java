@@ -19,36 +19,29 @@ public class ColumnTest extends junit.framework.TestCase {
 	    Column column = new Column(0);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
-	    assertEquals("numberOfCells in Column class constructor cannot be less than 1",
+	    assertEquals(
+		    "numberOfCells in Column class constructor cannot be less than 1",
 		    expected.getMessage());
 	}
 
 	assertFalse(this.column.getActiveState());
 
 	Neuron[] neurons = this.column.getNeurons();
-        for (Neuron neuron : neurons) {
-            assertNotNull(neuron);
-        }
-
-        assertNotNull(this.column.getProximalSegment());
-
-        try {
-	    Neuron neuron = this.column.getLearningNeuron();
-	    fail("should've thrown an exception!");
-	} catch (IllegalStateException expected) {
-	    assertEquals("the learningNeuronPosition still needs to be set",
-		    expected.getMessage());
+	for (Neuron neuron : neurons) {
+	    assertNotNull(neuron);
 	}
 
-        assertEquals(0, this.column.getNeighborColumns().size());
+	assertNotNull(this.column.getProximalSegment());
 
-        assertEquals(0, this.column.getOverlapScore());
+	assertEquals(0, this.column.getNeighborColumns().size());
 
-        assertEquals(1.0, this.column.getBoostValue(), 0.01);
+	assertEquals(0, this.column.getOverlapScore());
 
-        assertEquals(1.0, this.column.getActiveDutyCycle(), 0.01);
+	assertEquals(1.0, this.column.getBoostValue(), 0.01);
 
-        assertEquals(1.0, this.column.getOverlapDutyCycle(), 0.01);
+	assertEquals(1.0, this.column.getActiveDutyCycle(), 0.01);
+
+	assertEquals(1.0, this.column.getOverlapDutyCycle(), 0.01);
     }
 
     public void test_updateActiveDutyCycle() {
@@ -59,12 +52,14 @@ public class ColumnTest extends junit.framework.TestCase {
 	this.column.updateActiveDutyCycle();
 	assertEquals(0.98507f, this.column.getActiveDutyCycle(), 0.00001);
 
-	// Note this column's activeDutyCycle is reduced less and less with each update
+	// Note this column's activeDutyCycle is reduced less and less with each
+	// update
 	this.column.updateActiveDutyCycle();
 	assertEquals(0.98014f, this.column.getActiveDutyCycle(), 0.00001);
 
 	// Note whenever updateActiveDutyCycle() is called, the activeDutyCycle
-	// is always decremented less and less but only incremented if the Column
+	// is always decremented less and less but only incremented if the
+	// Column
 	// was active. Furthermore, the increment applied to activeDutyCycle
 	// when the Column is active is a constant representing the maximum
 	// decrement of activeDutyCycle from initial value 1. Because of this
@@ -99,7 +94,8 @@ public class ColumnTest extends junit.framework.TestCase {
 	    this.column.boostFunction(-0.1f);
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
-	    assertEquals("minimumDutyCycle in Column class boostFunction method cannot be <= 0",
+	    assertEquals(
+		    "minimumDutyCycle in Column class boostFunction method cannot be <= 0",
 		    expected.getMessage());
 	}
 

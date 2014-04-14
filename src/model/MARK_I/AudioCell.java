@@ -12,7 +12,6 @@ public class AudioCell extends SensorCell {
     {
 	super();
     }
-    // TODO: other frequency, pitch, thresholds
 
     @Override
     public String toString() {

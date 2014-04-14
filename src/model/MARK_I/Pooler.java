@@ -10,9 +10,6 @@ public abstract class Pooler {
     protected Region region;
     private boolean learningState;
 
-    // TODO: how do you make the learning algorithms code parallel for a tree
-    // of Regions?
-
     public void changeRegion(Region newRegion)
     {
 	if (newRegion == null) {
