@@ -388,12 +388,6 @@ public class SpatialPooler extends Pooler {
 	return regionAverageReceptiveField;
     }
 
-    double averageReceptiveFieldSizeOfColumn(Column column) {
-
-	double inhibitionRadius = -1;
-	return inhibitionRadius;
-    }
-
     void addActiveColumn(Column activeColumn) {
 	if (activeColumn == null) {
 	    throw new IllegalArgumentException(

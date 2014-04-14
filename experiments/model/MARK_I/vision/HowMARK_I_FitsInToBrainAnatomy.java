@@ -42,7 +42,7 @@ public class HowMARK_I_FitsInToBrainAnatomy extends junit.framework.TestCase {
 
 	LGN unconnectedLGN = new LGN(new Region("LGN", 8, 8, 1, 50, 3));
 
-	Retina unconnectedRetina = new Retina(65, 65);
+	Retina unconnectedRetina = new Retina(66, 66);
 
 	NervousSystem nervousSystem = new NervousSystem(unconnectedNeocortex,
 		unconnectedLGN, unconnectedRetina);
@@ -65,12 +65,8 @@ public class HowMARK_I_FitsInToBrainAnatomy extends junit.framework.TestCase {
 
     public void testHowToRunSpatialPoolingOnNervousSystem() throws IOException {
 	Retina retina = partialNervousSystem.getPNS().getSNS().getRetine();
-
 	Region LGNRegion = partialNervousSystem.getCNS().getBrain()
 		.getThalamus().getLGN().getRegion();
-
-	// Region V1 = nervousSystem.getCNS().getBrain().getCerebrum()
-	// .getCerebralCortex().getNeocortex().getCurrentRegion();
 
 	retina.seeBMPImage("2.bmp");
 
@@ -82,7 +78,7 @@ public class HowMARK_I_FitsInToBrainAnatomy extends junit.framework.TestCase {
 
 	assertEquals(11, LGNNeuronActivity.size());
 
-	// save LGNRegion object in JSON format
+	// save partialNervousSystemObject object in JSON format
 	String partialNervousSystemObject = this.gson
 		.toJson(this.partialNervousSystem);
 	JsonFileInputOutput

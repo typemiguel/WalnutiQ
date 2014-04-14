@@ -16,9 +16,6 @@ public class Brain {
     // private Hypothalamus hypothalamus; = regulates basic needs, fighting,
     // fleeing, feeding, and mating
 
-    // TODO: how is this known? Do they just what which parts of the brain
-    // spike up during fMRI? Nothing below is very exact
-
     // private Hindbrain hindbrain;
     // Medulla Oblongata = breathing, muscle tone and blood pressure
     // Pons = involved in sleep and arousal

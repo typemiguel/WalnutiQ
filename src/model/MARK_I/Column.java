@@ -126,7 +126,6 @@ public class Column {
      *            Cell's firing rate falls below this value, it will be boosted.
      * @return The boostValue of a Column.
      */
-    // TODO: this method may only need to be in SpatialPooler
     public float boostFunction(float minimumDutyCycle) {
 	if (minimumDutyCycle <= 0) {
 	    throw new IllegalArgumentException(

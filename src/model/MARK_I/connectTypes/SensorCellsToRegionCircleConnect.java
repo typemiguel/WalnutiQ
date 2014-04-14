@@ -13,7 +13,6 @@ public class SensorCellsToRegionCircleConnect implements SensorCellsToRegionConn
     public void connect(SensorCell[][] sensorCells, Region region,
 	    int numberOfColumnsToOverlapAlongXAxisOfSensorCells,
 	    int numberOfColumnsToOverlapAlongYAxisOfSensorCells) {
-	// TODO Auto-generated method stub
 
     }
 }

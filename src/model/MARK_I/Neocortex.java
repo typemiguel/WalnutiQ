@@ -48,7 +48,7 @@ public class Neocortex {
 	    throw new IllegalArgumentException(
 		    "newCurrentRegion in Neocortex method changeCurrentRegion cannot be null");
 	}
-	// TODO: check if newCurrentRegion exists within neocortex
+	// check if newCurrentRegion exists within neocortex
 	this.currentRegion = newCurrentRegion;
     }
 
@@ -70,5 +70,5 @@ public class Neocortex {
 	this.connectType.connect(childRegion, this.currentRegion, 0, 0);
     }
 
-    // TODO: post-order traversal with running learning algorithm
+    // post-order traversal with running learning algorithm
 }

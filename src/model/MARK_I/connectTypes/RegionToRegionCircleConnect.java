@@ -12,7 +12,6 @@ public class RegionToRegionCircleConnect implements RegionToRegionConnectInterfa
     public void connect(Region childRegion, Region parentRegion,
 	    int numberOfColumnsToOverlapAlongXAxisOfRegion,
 	    int numberOfColumnsToOverlapAlongYAxisOfRegion) {
-	// TODO Auto-generated method stub
 
     }
 
