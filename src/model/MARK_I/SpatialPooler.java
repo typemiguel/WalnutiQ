@@ -349,26 +349,18 @@ public class SpatialPooler extends Pooler {
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 
-		Set<Synapse<Cell>> synapsesInColumnXY = columns[x][y]
-			.getProximalSegment().getSynapses();
-
 		// get the set of connected synapses
-		Set<Synapse<Cell>> connectedSynapes = new HashSet<Synapse<Cell>>();
-
-		for (Synapse<Cell> synapse : synapsesInColumnXY) {
-		    if (synapse.getConnectedCell() != null) {
-			connectedSynapes.add(synapse);
-		    }
-		}
+		Set<Synapse<Cell>> connectedSynapes = columns[x][y]
+			.getProximalSegment().getConnectedSynapses();
 
 		Dimension bottomLayerDimensions = this.region
 			.getBottomLayerXYAxisLength();
 
 		// get the column position relative to the input layer
-		int xRatio = bottomLayerDimensions.width / this.region.getXAxisLength();
-		int columnX = xRatio / 2 + x * xRatio;
-		int yRatio = bottomLayerDimensions.height / this.region.getYAxisLength();
-		int columnY = yRatio / 2 + y * yRatio;
+		double xRatio = bottomLayerDimensions.width / this.region.getXAxisLength();
+		double columnX = xRatio / 2 + x * xRatio;
+		double yRatio = bottomLayerDimensions.height / this.region.getYAxisLength();
+		double columnY = yRatio / 2 + y * yRatio;
 
 		double totalSynapseDistanceFromOriginColumn = 0.0;
 		// iterates over every connected Synapses and sums the

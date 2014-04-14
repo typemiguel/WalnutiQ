@@ -147,7 +147,7 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
     public void test_regionLearnOneTimeStep() {
 	Column[][] columns = this.parentRegion.getColumns();
 	Segment proximalSegment_00 = columns[0][0].getProximalSegment();
-	Synapse synapse_00 = proximalSegment_00.getSynapse(0, 0);
+	Synapse<Cell> synapse_00 = proximalSegment_00.getSynapse(0, 0);
 
 	// An "and" truth table of column.updatePermanences()
 	// X-Axis: Column activeState
@@ -272,26 +272,49 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
     public void test_averageReceptiveFieldSizeOfRegion() {
 	assertEquals(3.853,
 		this.spatialPooler.averageReceptiveFieldSizeOfRegion(), 0.001);
-	// outputting a reasonable value
+	// Outputting a reasonable value.
 
-	// now really check by building a very small Region with one Column
-	// with 1 connected Synapse & then add another connected Synapse
-	Region topRegion = new Region("parentRegion", 1, 1, 1, 50, 1);
-	Region childRegion = new Region("childRegion", 5, 5, 1, 50, 3);
-//	RegionToRegionConnectInterface connectType = new RegionToRegionRectangleConnect();
-//	connectType.connect(childRegion, parentRegion, 0, 0);
 
-//	Column[][] columns = parentRegion.getColumns();
-//	for (int parentColumnX = 0; parentColumnX < parentRegion
-//		.getXAxisLength(); parentColumnX++) {
-//	    for (int parentColumnY = 0; parentColumnY < parentRegion
-//		    .getYAxisLength(); parentColumnY++) {
-//		assertEquals(100, columns[parentColumnX][parentColumnY]
-//			.getProximalSegment().getSynapses().size());
-//	    }
-//	}
+	// Now really check by building a very small Region with one Column
+	// with 1 connected Synapse & test. Then add another connected Synapse
+	// & test.
+	Region parentRegion2 = new Region("parentRegion2", 1, 1, 1, 50, 1);
+	Region childRegion2 = new Region("childRegion2", 5, 5, 1, 50, 3);
+	RegionToRegionConnectInterface connectType = new RegionToRegionRectangleConnect();
+	connectType.connect(childRegion2, parentRegion2, 0, 0);
+	// parentRegion2 has 1 Column with 25 synapses.
 
-	this.spatialPooler = new SpatialPooler(parentRegion);
+	Column[][] columns = parentRegion2.getColumns();
+	Set<Synapse<Cell>> synapses = columns[0][0].getProximalSegment()
+		.getSynapses();
+	assertEquals(25, synapses.size());
+
+	// force all 25 synapses to no longer be connected
+	for (Synapse<Cell> synapse : synapses) {
+	    synapse.setPermanenceValue(0.1);
+	    assertFalse(synapse.isConnected());
+	}
+
+	// force 1 specific synapse at (0, 0) to become connected
+	Synapse<Cell> synapseAt00 = columns[0][0].getProximalSegment()
+		.getSynapse(0, 0);
+	synapseAt00.setPermanenceValue(0.3);
+	assertTrue(synapseAt00.isConnected());
+
+	this.spatialPooler = new SpatialPooler(parentRegion2);
+	assertEquals(3.53,
+		this.spatialPooler.averageReceptiveFieldSizeOfRegion(), 0.01);
+
+	// force 1 specific synapse at (4, 4) to become connected
+	Synapse<Cell> synapseAt44 = columns[0][0].getProximalSegment()
+		.getSynapse(3, 3);
+	synapseAt44.setPermanenceValue(0.3);
+	assertTrue(synapseAt44.isConnected());
+
+	// as expected since synapsAt33 is closer to where the column is at
+	// around (2.5, 2.5) the average receptive field will become smaller
+	assertEquals(2.12,
+		this.spatialPooler.averageReceptiveFieldSizeOfRegion(), 0.01);
     }
 
     public void test_updateOverlapDutyCycle() {

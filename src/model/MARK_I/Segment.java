@@ -87,7 +87,8 @@ public class Segment {
 	for (Synapse<Cell> synapse : this.synapses) {
 	    switch (updateState) {
 	    case INCREASE_ACTIVE:
-		if (synapse.isConnected() && synapse.getConnectedCell().getActiveState()) {
+		if (synapse.isConnected()
+			&& synapse.getConnectedCell().getActiveState()) {
 		    synapse.increasePermanence();
 		}
 		break;
@@ -101,7 +102,8 @@ public class Segment {
 	}
     }
 
-    // TODO: Question: A ProximalSegment should never connect 2 different types of
+    // TODO: Question: A ProximalSegment should never connect 2 different types
+    // of
     // SensorCells? For example AudioCell and VisionCell
     public void addSynapse(Synapse<Cell> synapse) {
 	if (synapse == null) {
@@ -129,7 +131,8 @@ public class Segment {
     // package visible methods for test classes in the tests folder
     boolean removeSynapse(Synapse synapseToRemove) {
 	for (Synapse synapse : this.synapses) {
-	    if (synapseToRemove.getConnectedCell().getClass().equals(synapse.getConnectedCell().getClass())
+	    if (synapseToRemove.getConnectedCell().getClass()
+		    .equals(synapse.getConnectedCell().getClass())
 		    && synapseToRemove.getPermanenceValue() == synapse
 			    .getPermanenceValue()
 		    && synapseToRemove.getCellXPosition() == synapse
@@ -145,10 +148,23 @@ public class Segment {
 
     Synapse getSynapse(int cellXPosition, int cellYPosition) {
 	for (Synapse synapse : this.synapses) {
-	    if (synapse.getCellXPosition() == cellXPosition && synapse.getCellYPosition() == cellYPosition) {
+	    if (synapse.getCellXPosition() == cellXPosition
+		    && synapse.getCellYPosition() == cellYPosition) {
 		return synapse;
 	    }
 	}
 	return null;
+    }
+
+    public Set<Synapse<Cell>> getConnectedSynapses() {
+	Set<Synapse<Cell>> connectedSynapes = new HashSet<Synapse<Cell>>();
+
+	for (Synapse<Cell> synapse : this.synapses) {
+	    if (synapse.getConnectedCell() != null) {
+		connectedSynapes.add(synapse);
+	    }
+	}
+
+	return connectedSynapes;
     }
 }
