@@ -276,6 +276,22 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 
 	// now really check by building a very small Region with one Column
 	// with 1 connected Synapse & then add another connected Synapse
+	Region topRegion = new Region("parentRegion", 1, 1, 1, 50, 1);
+	Region childRegion = new Region("childRegion", 5, 5, 1, 50, 3);
+//	RegionToRegionConnectInterface connectType = new RegionToRegionRectangleConnect();
+//	connectType.connect(childRegion, parentRegion, 0, 0);
+
+//	Column[][] columns = parentRegion.getColumns();
+//	for (int parentColumnX = 0; parentColumnX < parentRegion
+//		.getXAxisLength(); parentColumnX++) {
+//	    for (int parentColumnY = 0; parentColumnY < parentRegion
+//		    .getYAxisLength(); parentColumnY++) {
+//		assertEquals(100, columns[parentColumnX][parentColumnY]
+//			.getProximalSegment().getSynapses().size());
+//	    }
+//	}
+
+	this.spatialPooler = new SpatialPooler(parentRegion);
     }
 
     public void test_updateOverlapDutyCycle() {

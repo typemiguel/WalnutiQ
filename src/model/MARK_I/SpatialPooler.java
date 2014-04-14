@@ -106,6 +106,8 @@ public class SpatialPooler extends Pooler {
      * at time t.
      */
     void computeActiveColumnsOfRegion() {
+	// remove old active columns from last time spatial pooling was called
+	this.activeColumns.clear();
 	this.activeColumnPositions.clear();
 
 	Column[][] columns = this.region.getColumns();
