@@ -67,8 +67,8 @@ public class SpatialPooler extends Pooler {
      *
      * Now use:
      *
-     * spatialPooler.performSpatialPoolingOnRegion();
-     * Set<ColumnPosition> columnActivity = this.spatialPooler.getActiveColumnPositions();
+     * spatialPooler.performSpatialPoolingOnRegion(); Set<ColumnPosition>
+     * columnActivity = this.spatialPooler.getActiveColumnPositions();
      */
     public Set<ColumnPosition> getActiveColumnPositions() {
 	return this.activeColumnPositions;
@@ -238,8 +238,8 @@ public class SpatialPooler extends Pooler {
 	}
 	// TODO: View detials of this problem here:
 	// https://github.com/quinnliu/WalnutiQ/issues/27
-	//this.region
-	//	.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+	// this.region
+	// .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
 
     /**
@@ -335,65 +335,68 @@ public class SpatialPooler extends Pooler {
     /**
      * Returns the radius of the average connected receptive field size of all
      * the Columns. The connected receptive field size of a Column includes only
-     * the total distance of the Column's connected Synapses's cell's distance
-     * from the Column divided by the number of Synapses the Column has. In
-     * other words the total length of Synapse distances for a Column divided by
-     * the number of Synapses. For spatial pooling since the number of Synapses
-     * from proximal Segments to lower Region Neurons is constant after
-     * initialization, averageReceptiveFieldSize of a Column will remain
-     * constant, but will be different for different Columns based on how they
-     * are connected to the SensorCellLayer or lower Region.
+     * the Column's connected Synapses.
      *
      * @return The average connected receptive field size.
      */
-    float averageReceptiveFieldSizeOfRegion() {
-	double totalSynapseDistanceFromOriginColumn = 0.0;
+    double averageReceptiveFieldSizeOfRegion() {
+	double regionAverageReceptiveField = 0.0;
 
-	int numberOfConnectedSynapses = 0;
+	// for each column
 	Column[][] columns = this.region.getColumns();
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
-		Set<Synapse<Cell>> synapses = columns[x][y]
+
+		Set<Synapse<Cell>> synapsesInColumnXY = columns[x][y]
 			.getProximalSegment().getSynapses();
 
+		// get the set of connected synapses
 		Set<Synapse<Cell>> connectedSynapes = new HashSet<Synapse<Cell>>();
 
-		for (Synapse<Cell> synapse : synapses) {
+		for (Synapse<Cell> synapse : synapsesInColumnXY) {
 		    if (synapse.getConnectedCell() != null) {
 			connectedSynapes.add(synapse);
 		    }
 		}
 
+		Dimension bottomLayerDimensions = this.region
+			.getBottomLayerXYAxisLength();
+
+		// get the column position relative to the input layer
+		int xRatio = bottomLayerDimensions.width / this.region.getXAxisLength();
+		int columnX = xRatio / 2 + x * xRatio;
+		int yRatio = bottomLayerDimensions.height / this.region.getYAxisLength();
+		int columnY = yRatio / 2 + y * yRatio;
+
+		double totalSynapseDistanceFromOriginColumn = 0.0;
 		// iterates over every connected Synapses and sums the
-		// distances from it's original Column to determine the
-		// average receptive field
-		for (Synapse<?> synapse : connectedSynapes) {
-		    // NOTE: although it first appears these calculations are
-		    // incorrect since a Column at position (0, 0) is too close
-		    // to the lower Cell at (0, 0) because this is an AVERAGE
-		    // calculation it does not matter.
-		    double dx = x - synapse.getCellXPosition();
-		    double dy = y - synapse.getCellYPosition();
-		    double synapseDistance = Math.sqrt(dx * dx + dy * dy);
-		    totalSynapseDistanceFromOriginColumn += synapseDistance;
-		    numberOfConnectedSynapses++;
+		// distances from it's origin Column to determine the
+		// average receptive field for this Column
+		for (Synapse<?> connectedSynapse : connectedSynapes) {
+
+		    double dx = Math.abs(columnX
+			    - connectedSynapse.getCellXPosition());
+		    double dy = Math.abs(columnY
+			    - connectedSynapse.getCellYPosition());
+		    double connectedSynapseDistance = Math.sqrt(dx * dx + dy
+			    * dy);
+		    totalSynapseDistanceFromOriginColumn += connectedSynapseDistance;
 		}
+
+		double columnAverageReceptiveField = totalSynapseDistanceFromOriginColumn
+			/ connectedSynapes.size();
+		regionAverageReceptiveField += columnAverageReceptiveField;
 	    }
 	}
-	float averageReceptiveFieldOfLowerLayer = (float) (totalSynapseDistanceFromOriginColumn / numberOfConnectedSynapses);
 
-	float squareRegionAxisLength = (float) Math.sqrt(this.region
-		.getXAxisLength() * this.region.getYAxisLength());
+	regionAverageReceptiveField /= this.region.getNumberOfColumns();
 
-	Dimension bottomLayerDimensions = this.region
-		.getBottomLayerXYAxisLength();
-	int greatestSynapseXIndex = bottomLayerDimensions.width;
-	int greatestSynapseYIndex = bottomLayerDimensions.height;
+	return regionAverageReceptiveField;
+    }
 
-	int squareLowerRegionAxisLength = (greatestSynapseXIndex + greatestSynapseYIndex) / 2;
+    double averageReceptiveFieldSizeOfColumn(Column column) {
 
-	float inhibitionRadius = (averageReceptiveFieldOfLowerLayer / squareLowerRegionAxisLength)
-		* squareRegionAxisLength;
+	double inhibitionRadius = -1;
 	return inhibitionRadius;
     }
 

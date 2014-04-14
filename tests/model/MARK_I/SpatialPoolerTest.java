@@ -270,8 +270,12 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_averageReceptiveFieldSizeOfRegion() {
-	assertEquals(5.358,
+	assertEquals(3.853,
 		this.spatialPooler.averageReceptiveFieldSizeOfRegion(), 0.001);
+	// outputting a reasonable value
+
+	// now really check by building a very small Region with one Column
+	// with 1 connected Synapse & then add another connected Synapse
     }
 
     public void test_updateOverlapDutyCycle() {

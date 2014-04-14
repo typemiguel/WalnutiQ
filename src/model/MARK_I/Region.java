@@ -24,7 +24,7 @@ public class Region {
 
     private Column[][] columns;
 
-    private final double percentMinimumOverlapScore;
+    private double percentMinimumOverlapScore;
 
     // Example: if = 10, a column will be a winner if its overlapScore is > than
     // the overlapScore of the 10th highest column within its inhibitionRadius
@@ -125,15 +125,14 @@ public class Region {
 	this.inhibitionRadius = inhibitionRadius;
     }
 
-    // void setPercentMinimumOverlapScore(double percentMinimumOverlapScore) {
-    // if (percentMinimumOverlapScore < 0
-    // || percentMinimumOverlapScore > 1) {
-    // throw new IllegalArgumentException(
-    // "percentMinimumOverlapScore in Region class " +
-    // "setPercentMinimumOverlapScore method must be >= 0 and <= 1");
-    // }
-    // this.percentMinimumOverlapScore = percentMinimumOverlapScore;
-    // }
+    void setPercentMinimumOverlapScore(double percentMinimumOverlapScore) {
+	if (percentMinimumOverlapScore < 0 || percentMinimumOverlapScore > 1) {
+	    throw new IllegalArgumentException(
+		    "percentMinimumOverlapScore in Region class "
+			    + "setPercentMinimumOverlapScore method must be >= 0 and <= 1");
+	}
+	this.percentMinimumOverlapScore = percentMinimumOverlapScore;
+    }
 
     public int getXAxisLength() {
 	return this.columns.length;
@@ -141,6 +140,10 @@ public class Region {
 
     public int getYAxisLength() {
 	return this.columns[0].length;
+    }
+
+    public int getNumberOfColumns() {
+	return this.getXAxisLength() * this.getYAxisLength();
     }
 
     public Dimension getBottomLayerXYAxisLength() {
