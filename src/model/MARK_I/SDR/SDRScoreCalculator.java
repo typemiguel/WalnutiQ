@@ -6,13 +6,13 @@ import model.MARK_I.ColumnPosition;
 /**
  * Uses the equation found here https://github.com/quinnliu/WalnutiQ/issues/21
  * for computating a score for the SDR created by spatial pooling.
- * 
+ *
  * Input from constructor: set of active column positions produced by spatial
  * pooling.
- * 
+ *
  * Output from calling public method: a score where the larger the score
  * represents a better sparse distributed representation.
- * 
+ *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Apr 15, 2014
  */
@@ -23,7 +23,7 @@ public class SDRScoreCalculator {
 
     /**
      * Computes the SDR score for the given set of column positions.
-     * 
+     *
      * @param columnActivityAfterSeeingImage
      * @param desiredPercentageOfActiveColumns
      * @param totalNumberOfColumnsInRegion
@@ -49,7 +49,7 @@ public class SDRScoreCalculator {
     /**
      * Please look here for a visual of the followin sparsityScore formula:
      * https://github.com/quinnliu/WalnutiQ/issues/21
-     * 
+     *
      * @return the sparsity score
      */
     double computeSparsityScore() {
@@ -88,7 +88,7 @@ public class SDRScoreCalculator {
 		/ columnActivityAfterSeeingImage.size();
 
 	// the best averageDistanceToNearestActiveColumn
-	return averageDistanceToNearestActiveColumn;
+	return -averageDistanceToNearestActiveColumn;
     }
 
     double computeNumberOfActiveColumnsScore() {
@@ -104,7 +104,7 @@ public class SDRScoreCalculator {
 			       // as it should be since desired was = to actual
 	}
 
-	return 1 / difference;
+	return -(1 / difference);
     }
 
     /**

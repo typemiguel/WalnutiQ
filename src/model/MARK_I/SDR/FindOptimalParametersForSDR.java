@@ -1,5 +1,9 @@
 package model.MARK_I.SDR;
 
+import java.text.DecimalFormat;
+
+import java.text.NumberFormat;
+
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.util.Set;
@@ -69,12 +73,15 @@ public class FindOptimalParametersForSDR {
 		desiredPercentageOfActiveColumns, totalNumberOfColumnsInRegion);
 
 	double SDRScore = sdrScoreCalculator.computeSDRScore();
+	// 8.027689778774276
+
+	NumberFormat formatter = new DecimalFormat("0.################E0");
 
 	// print SDRScore to file
 	try {
 	    BufferedWriter out2 = new BufferedWriter(new FileWriter(
 		    locationOfFileWithFileNameToSaveScore));
-	    out2.write(Double.toString(SDRScore));
+	    out2.write(formatter.format(SDRScore));
 	    out2.close();
 	} catch (IOException e) {
 

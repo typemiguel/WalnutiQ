@@ -114,37 +114,50 @@ public class SDRScoreCalculatorTest extends junit.framework.TestCase {
 
     public void test_computeSparsityScore() {
 	// setup with column activity after seeing image 2
-	assertEquals(1.12, this.sdrScoreCalculator.computeSparsityScore(), 0.01);
+	assertEquals(-1.12, this.sdrScoreCalculator.computeSparsityScore(),
+		0.01);
 
 	this.sdrScoreCalculator.updateParameters(
 		this.columnActivityWithBadSDRScore,
 		this.desiredPercentageOfActiveColumns,
 		this.totalNumberOfColumnsInRegion);
 
-	assertEquals(1.0, this.sdrScoreCalculator.computeSparsityScore(), 0.01);
+	assertEquals(-1.0, this.sdrScoreCalculator.computeSparsityScore(), 0.01);
 
 	this.sdrScoreCalculator.updateParameters(
 		this.columnActivityWithMediumSDRScore,
 		this.desiredPercentageOfActiveColumns,
 		this.totalNumberOfColumnsInRegion);
 
-	assertEquals(1.20, this.sdrScoreCalculator.computeSparsityScore(), 0.01);
+	assertEquals(-1.20, this.sdrScoreCalculator.computeSparsityScore(),
+		0.01);
 
 	this.sdrScoreCalculator.updateParameters(
 		this.columnActivityWithGoodSDRScore,
 		this.desiredPercentageOfActiveColumns,
 		this.totalNumberOfColumnsInRegion);
 
-	assertEquals(3.68, this.sdrScoreCalculator.computeSparsityScore(), 0.01);
+	assertEquals(-3.68, this.sdrScoreCalculator.computeSparsityScore(),
+		0.01);
     }
 
     public void test_computeNumberOfActiveColumnsScore() {
-	assertEquals(0.2,
+	assertEquals(-0.2,
+		this.sdrScoreCalculator.computeNumberOfActiveColumnsScore(),
+		0.01);
+
+	this.sdrScoreCalculator.updateParameters(
+		this.columnActivityWithBadSDRScore, // this set has the exact
+						    // number of desired columns
+		this.desiredPercentageOfActiveColumns,
+		this.totalNumberOfColumnsInRegion);
+
+	assertEquals(-10.0,
 		this.sdrScoreCalculator.computeNumberOfActiveColumnsScore(),
 		0.01);
     }
 
     public void test_computeSDRScore() {
-	assertEquals(1.32, this.sdrScoreCalculator.computeSDRScore(), 0.01);
+	assertEquals(-1.32, this.sdrScoreCalculator.computeSDRScore(), 0.01);
     }
 }
