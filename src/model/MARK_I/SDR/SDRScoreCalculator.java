@@ -14,43 +14,80 @@ import model.MARK_I.ColumnPosition;
  * represents a better sparse distributed representation.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version Apr 10, 2014
+ * @version Apr 15, 2014
  */
 public class SDRScoreCalculator {
-    private double xAverage;
-    private double yAverage;
-
-    private double sparsityScore;
-    private double numberOfActiveColumnsScore;
-
-    private double sparseDistributedRepresentationScore;
+    private Set<ColumnPosition> columnActivityAfterSeeingImage;
+    private double desiredPercentageOfActiveColumns;
+    private int totalNumberOfColumnsInRegion;
 
     /**
      * Computes the SDR score for the given set of column positions.
      *
      * @param columnActivityAfterSeeingImage
+     * @param desiredPercentageOfActiveColumns
+     * @param totalNumberOfColumnsInRegion
      */
     public SDRScoreCalculator(
 	    Set<ColumnPosition> columnActivityAfterSeeingImage,
 	    double desiredPercentageOfActiveColumns,
 	    int totalNumberOfColumnsInRegion) {
-	this.computeXYAverages(columnActivityAfterSeeingImage);
+	this.columnActivityAfterSeeingImage = columnActivityAfterSeeingImage;
+	this.desiredPercentageOfActiveColumns = desiredPercentageOfActiveColumns;
+	this.totalNumberOfColumnsInRegion = totalNumberOfColumnsInRegion;
+    }
 
-	this.sparsityScore = 0;
-	for (ColumnPosition columnPosition : columnActivityAfterSeeingImage) {
-	    this.sparsityScore += Math.pow(columnPosition.getX()
-		    - this.xAverage, 2)
-		    + Math.pow(columnPosition.getY() - this.yAverage, 2);
+    /**
+     * Please look here for a visual of the followin sparsityScore formula:
+     * https://github.com/quinnliu/WalnutiQ/issues/21
+     *
+     * @return the sparsity score
+     */
+    double computeSparsityScore() {
+
+	double totalDistanceToNearestActiveColumnForAllActiveColumns = 0.0;
+	// iterate through all column positions
+	for (ColumnPosition currentColumnPosition : this.columnActivityAfterSeeingImage) {
+	    int x1 = currentColumnPosition.getX();
+	    int y1 = currentColumnPosition.getY();
+
+	    Set<ColumnPosition> columnActivity = this.columnActivityAfterSeeingImage;
+
+	    // find nearest active column distance(1 million is a random large
+	    // number)
+	    double distanceToNearestActiveColumn = 1000000;
+	    for (ColumnPosition otherColumnPosition : columnActivity) {
+		int x2 = otherColumnPosition.getX();
+		int y2 = otherColumnPosition.getY();
+
+		// if you find the same columnPosition as (x1, y1) skip
+		if (x1 == x2 && y1 == y2) {
+		    continue;
+		}
+
+		double distanceBetween_x1y1_x2y2 = Math.sqrt(Math.pow(x1 - x2,
+			2) + Math.pow(y1 - y2, 2));
+		if (distanceBetween_x1y1_x2y2 < distanceToNearestActiveColumn) {
+		    distanceToNearestActiveColumn = distanceBetween_x1y1_x2y2;
+		}
+	    }
+
+	    totalDistanceToNearestActiveColumnForAllActiveColumns += distanceToNearestActiveColumn;
 	}
 
-	this.sparsityScore = Math.sqrt(this.sparsityScore);
+	double averageDistanceToNearestActiveColumn = totalDistanceToNearestActiveColumnForAllActiveColumns
+		/ columnActivityAfterSeeingImage.size();
 
-	this.numberOfActiveColumnsScore = 0;
+	// the best averageDistanceToNearestActiveColumn
+	return averageDistanceToNearestActiveColumn;
+    }
 
-	int desiredNumberOfActiveColumns = (int) (totalNumberOfColumnsInRegion
-		* desiredPercentageOfActiveColumns / 100);
+    double computeNumberOfActiveColumnsScore() {
+	int desiredNumberOfActiveColumns = (int) (this.totalNumberOfColumnsInRegion
+		* this.desiredPercentageOfActiveColumns / 100);
 
-	int actualNumberOfActiveColumns = columnActivityAfterSeeingImage.size();
+	int actualNumberOfActiveColumns = this.columnActivityAfterSeeingImage
+		.size();
 	double difference = Math.abs(desiredNumberOfActiveColumns
 		- actualNumberOfActiveColumns);
 	if (difference < 0.1 && difference > -0.1) {
@@ -58,30 +95,14 @@ public class SDRScoreCalculator {
 			       // as it should be since desired was = to actual
 	}
 
-	this.numberOfActiveColumnsScore = 1 / difference;
-
-	this.sparseDistributedRepresentationScore = sparsityScore
-		+ numberOfActiveColumnsScore;
-    }
-
-    private void computeXYAverages(
-	    Set<ColumnPosition> columnActivityAfterSeeingImage) {
-	this.xAverage = 0;
-	this.yAverage = 0;
-
-	for (ColumnPosition columnPosition : columnActivityAfterSeeingImage) {
-	    // find xAverage & yAverage
-	    this.xAverage += columnPosition.getX();
-	    this.yAverage += columnPosition.getY();
-	}
-	this.xAverage = this.xAverage / columnActivityAfterSeeingImage.size();
-	this.yAverage = this.yAverage / columnActivityAfterSeeingImage.size();
+	return 1 / difference;
     }
 
     /**
      * @return SDR score computed from given set of active column positions.
      */
-    public double getSDRScore() {
-	return this.sparseDistributedRepresentationScore;
+    public double computeSDRScore() {
+	return this.computeSparsityScore()
+		+ this.computeNumberOfActiveColumnsScore();
     }
 }
