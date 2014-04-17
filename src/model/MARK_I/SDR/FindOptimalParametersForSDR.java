@@ -89,4 +89,55 @@ public class FindOptimalParametersForSDR {
 
 	return SDRScore;
     }
+
+    public static double printToFileSDRScoreFor1RetinaTo1RegionModelForAllDigits(
+	    double percentMinimumOverlapScore, double desiredLocalActivity,
+	    double desiredPercentageOfActiveColumns,
+	    String locationOfFileWithFileNameToSaveScore) throws IOException {
+
+	// TODO: change up to see all digits 0-9
+	// and produce a score
+
+
+	Retina retina = new Retina(66, 66);
+	Region region = new Region("Region", 8, 8, 1,
+		percentMinimumOverlapScore, (int) desiredLocalActivity);
+
+	SensorCellsToRegionConnectInterface retinaToRegion = new SensorCellsToRegionRectangleConnect();
+	retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
+
+	SpatialPooler spatialPooler = new SpatialPooler(region);
+	spatialPooler.setLearningState(true);
+
+	retina.seeBMPImage("2.bmp");
+
+	spatialPooler.performSpatialPoolingOnRegion(); // 11 active columns
+	Set<ColumnPosition> columnActivityAfterSeeingImage2 = spatialPooler
+		.getActiveColumnPositions();
+	// = (6,5)(6, 3)(6, 2)(5, 3)(3, 5)(2, 2)(1, 3)(1, 2)(2, 5)(1, 5)(4, 4)
+
+	// -----------------------compute SDR score----------------------------
+	int totalNumberOfColumnsInRegion = region.getXAxisLength()
+		* region.getYAxisLength();
+	SDRScoreCalculator sdrScoreCalculator = new SDRScoreCalculator(
+		columnActivityAfterSeeingImage2,
+		desiredPercentageOfActiveColumns, totalNumberOfColumnsInRegion);
+
+	double SDRScore = sdrScoreCalculator.computeSDRScore();
+	// 8.027689778774276
+
+	NumberFormat formatter = new DecimalFormat("0.################E0");
+
+	// print SDRScore to file
+	try {
+	    BufferedWriter out2 = new BufferedWriter(new FileWriter(
+		    locationOfFileWithFileNameToSaveScore));
+	    out2.write(formatter.format(SDRScore));
+	    out2.close();
+	} catch (IOException e) {
+
+	}
+
+	return SDRScore;
+    }
 }
