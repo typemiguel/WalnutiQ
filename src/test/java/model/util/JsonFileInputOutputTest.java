@@ -1,15 +1,15 @@
 package model.util;
 
+import com.google.gson.Gson;
 import model.MARK_I.Column;
-import java.util.Set;
-import model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
-import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.MARK_I.Region;
 import model.MARK_I.SpatialPooler;
+import model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
+import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.Retina;
+
 import java.io.IOException;
-import com.google.gson.Gson;
-import model.util.JsonFileInputOutput;
+import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
@@ -45,12 +45,12 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
 	String regionObject = gson2.toJson(trainedLGNRegion);
 
 	JsonFileInputOutput.saveObjectToTextFile(regionObject,
-		"./tests/model/util/test_saveRegionObject.txt");
+		"./src/test/java/model/util/test_saveRegionObject.txt");
     }
 
     public void test_openRegionObject() throws IOException {
 	String regionAsString = JsonFileInputOutput
-		.openObjectInTextFile("./tests/model/util/test_saveRegionObject.txt");
+		.openObjectInTextFile("./src/test/java/model/util/test_saveRegionObject.txt");
 
 	Gson gson2 = new Gson();
 	Region trainedLGNRegion = gson2.fromJson(regionAsString, Region.class);
