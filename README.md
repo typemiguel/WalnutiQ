@@ -1,5 +1,4 @@
-[WalnutiQ](http://walnutiq.com)
-==========
+# [WalnutiQ](http://walnutiq.com)
 
 “*In another life I would make you stay so I don't have to say
 that you were the one that got away.*”  
@@ -46,8 +45,8 @@ programming. Make sure to read Numenta's great explanation
 of their research in this [white paper](https://db.tt/FuQWQuwE) 
 to better understand the theory behind this repository.
 
-<h2>Setup in Linux/Mac/Windows with Eclipse(like Microsoft Word
-    but for writing code)</h2>
+## Setup in Linux/Mac/Windows with Eclipse(like Microsoft Word
+## but for writing code)
 1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
 
 2. Fork this repository and clone it locally. Then import it as a 
@@ -69,7 +68,7 @@ project into Eclipse.
    right click the `WalnutiQ/` folder and select "Run As" => 
    "JUnit Test". Make sure all tests pass!
   
-<h2>Setup in Linux/Mac/Windows with Gradle(Builds our Java code)</h2>
+## Setup in Linux/Mac/Windows with Gradle(Builds our Java code)
 1. Install Gradle in Linux OR Mac by typing to the command line:
    ```sh
    prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
@@ -86,7 +85,7 @@ project into Eclipse.
    Go to the folder `build/reports/tests/`. View the file `index.html` in 
    a browser and make sure all tests pass!
 
-<h2>How to Contribute</h2>
+## How to Contribute
 
 1. View an example of how some of the code is used in the file
    [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java)
@@ -98,7 +97,7 @@ project into Eclipse.
    with a question if you are confused. Otherwise, asign a issue to yourself you would like to work on or suggest
    a new issue if you kind of know what you are doing. Happy coding!
 
-<h2>What each file/folder in this repository is for:</h2>
+## What each file/folder in this repository is for:
   - experiments  
       + model
           - MARK_I 
@@ -112,32 +111,36 @@ project into Eclipse.
       + model = images used in testing the MARK I model
   - referencedLibraries = contains .jar files(of other people's code) needed to run WalnutiQ
   - src
-      + model
-          - [MARK_I](./src/model/MARK_I) = the core logic for the partial brain model. 
-            Includes abstract data types for basic brain structures and learning 
-            algorithms that simulate how the brain learns
-            + [SDR](./src/model/MARK_I/SDR) = allows construction of different WalnutiQ
-              models from command line for this repo https://github.com/quinnliu/CallWalnutiQ.
-            + [connectTypes](./src/model/MARK_I/connectTypes) = classes allow the different brain structures in MARK I to 
-              connect to each other in a variety of ways
-          - [util](./src/model/util) = classes that enable the brain model properties to be viewed
-            graphically and efficiently saved and opened
-  - tests = test classes for important classes in the ```src/``` folder
-      + model
-          - [MARK_I](./tests/model/MARK_I)
-            + [connectTypes](./tests/model/MARK_I/connectTypes)
-            + [SDR](./tests/model/MARK_I/SDR)
-          - [util](./tests/model/util)
+      + main
+        - java
+          + model
+            - [MARK_I](./src/main/java/model/MARK_I) = the core logic for the partial brain model. 
+              Includes abstract data types for basic brain structures and learning 
+              algorithms that simulate how the brain learns
+              + [SDR](./src/main/java/model/MARK_I/SDR) = allows construction of different WalnutiQ
+                models from command line for this repo https://github.com/quinnliu/CallWalnutiQ.
+              + [connectTypes](./src/main/java/model/MARK_I/connectTypes) = classes allow the different 
+                brain structures in MARK I to connect to each other in a variety of ways
+            - [util](./src/main/java/model/util) = classes that enable the brain model properties
+              to be viewed graphically and efficiently saved and opened  
+      + test = test classes for important classes in the ```src/``` folder
+        - java
+          + model
+            - [MARK_I](./tests/java/model/MARK_I)
+              + [connectTypes](./tests/java/model/MARK_I/connectTypes)
+              + [SDR](./tests/java/model/MARK_I/SDR)
+            - [util](./tests/java/model/util) 
   - .gitignore = contains names of files/folders not to add to this repository
   - .project = when writing your code using Eclipse this file will allow all of
                your files to be organized in the correct folder
   - .travis.yml = tells [our custom travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) 
                   what versions of Java to test the files here
   - BrainTheories.md = list of brain theories with support and simple explanation
-  - LICENSE.txt = MIT liscense basically saying you can do whatever you want the code here but it would be very cool of you to 
-                  do something nice with it.
+  - LICENSE.txt = MIT liscense basically saying you can do whatever you want the code here 
+                  but it would be very cool of you to do something nice with it.
   - README.md = the file you are reading right now
   - build.gradle = Groovy language code for compiling all of the code in this repository using Gradle
+  - gradlew.bat = ??? https://github.com/quinnliu/WalnutiQ/issues/49
 
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 
