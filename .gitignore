@@ -2,3 +2,7 @@
 /build
 .idea
 *.iml
+
+*.class
+.classpath
+bin/**
