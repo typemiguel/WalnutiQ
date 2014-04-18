@@ -55,17 +55,21 @@ project into Eclipse.
    To fix this right click your `src` folder then hover over "New", 
    then click "Source Folder". Then give it the "Folder name:" src. 
    You will also need to do this same process for the folders 
-   `tests`, `images`, and `experiments`. Make sure 
-   when you type the "Folder name:" you put in the folder name of 
+   `experiments` and `images`. Make sure when you type the 
+   "Folder name:" you put in the folder name of 
    the folder you previously just right clicked.
 
 4. In Eclipse, add all the libraries (.jar file) in the folder 
-   `referencedLibraries/` by right-clicking your project in 
-   the package explorer => Build Path => Add External Archives...
+   `referencedLibraries/` by right-clicking your project `WalnutiQ` 
+   in the package explorer `=>` Build Path `=>` Add External Archives...
 
-5. In Eclipse, also add JUnit 4 & jre7 to your build path. Then 
-   right click the `WalnutiQ/` folder and select "Run As" => 
-   "JUnit Test". Make sure all tests pass!
+5. In Eclipse, add JUnit 4 by right-clicking your project `WalnutiQ` 
+   in the package explorer `=>` Add Libraries... `=>` JUnit `=>`
+   Next > `=>` Finish
+
+6. In Eclipse, also add JRE System Library by right-clicking 
+   your project `WalnutiQ` in the package explorer `=>` 
+   Add Libraries... `=>` JRE System Library `=>` Next > `=>` Finish
   
 ## Setup in Linux/Mac/Windows with Gradle(Builds our Java code)
 1. Install Gradle in Linux OR Mac by typing to the command line:
