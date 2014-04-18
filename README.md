@@ -107,7 +107,7 @@ project into Eclipse.
             + [vision](./experiments/model/MARK_I/vision) = experiments with partial 
               visual pathway models on a popular handwritten digit data
               set called MNIST
-  - gradle = gradle wrapper
+  - gradle = helps everyone use the same version of Gradle for compiling code
   - images
       + digits
           - [MNIST](./images/digits/MNIST) = unique files that contain training images 
@@ -129,24 +129,18 @@ project into Eclipse.
                 brain structures in MARK I to connect to each other in a variety of ways
             - [util](./src/main/java/model/util) = classes that enable the brain model properties
               to be viewed graphically and efficiently saved and opened  
-      + test = test classes for important classes in the ```src/``` folder
-        - java
-          + model
-            - [MARK_I](./tests/java/model/MARK_I)
-              + [connectTypes](./tests/java/model/MARK_I/connectTypes)
-              + [SDR](./tests/java/model/MARK_I/SDR)
-            - [util](./tests/java/model/util) 
+      + test = test classes for important classes in the `src/` folder
   - .gitignore = contains names of files/folders not to add to this repository
   - .project = when writing your code using Eclipse this file will allow all of
                your files to be organized in the correct folder
   - .travis.yml = tells [our custom travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) 
                   what versions of Java to test the files here
   - BrainTheories.md = list of brain theories with support and simple explanation
-  - LICENSE.txt = MIT liscense basically saying you can do whatever you want the code here 
+  - LICENSE.txt = MIT liscense saying you can do whatever you want the code here 
                   but it would be very cool of you to do something nice with it.
   - README.md = the file you are reading right now
-  - build.gradle = Groovy language code for compiling all of the code in this repository using Gradle
-  - gradlew.bat = @linkerlin what is this for?
+  - build.gradle = instructions for compiling all of the code in this repository using Gradle
+  - gradlew.bat = helps everyone use the same version of Gradle for compiling code
 
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 
