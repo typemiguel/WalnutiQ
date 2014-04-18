@@ -45,8 +45,7 @@ programming. Make sure to read Numenta's great explanation
 of their research in this [white paper](https://db.tt/FuQWQuwE) 
 to better understand the theory behind this repository.
 
-## Setup in Linux/Mac/Windows with Eclipse(like Microsoft Word
-## but for writing code)
+## Setup in Linux/Mac/Windows with Eclipse(like Microsoft Word but for writing code)
 1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
 
 2. Fork this repository and clone it locally. Then import it as a 
@@ -104,11 +103,14 @@ project into Eclipse.
             + [vision](./experiments/model/MARK_I/vision) = experiments with partial 
               visual pathway models on a popular handwritten digit data
               set called MNIST
+  - gradle = @linkerlin what is this for?
   - images
       + digits
           - [MNIST](./images/digits/MNIST) = unique files that contain training images 
             and testing images
-      + model = images used in testing the MARK I model
+      + main
+        - java
+          + [model](./images/main/java/model) = images used in testing the MARK I model
   - referencedLibraries = contains .jar files(of other people's code) needed to run WalnutiQ
   - src
       + main
@@ -140,7 +142,7 @@ project into Eclipse.
                   but it would be very cool of you to do something nice with it.
   - README.md = the file you are reading right now
   - build.gradle = Groovy language code for compiling all of the code in this repository using Gradle
-  - gradlew.bat = ??? https://github.com/quinnliu/WalnutiQ/issues/49
+  - gradlew.bat = @linkerlin what is this for?
 
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 
