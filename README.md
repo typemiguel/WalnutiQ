@@ -107,7 +107,7 @@ project into Eclipse.
             + [vision](./experiments/model/MARK_I/vision) = experiments with partial 
               visual pathway models on a popular handwritten digit data
               set called MNIST
-  - gradle = @linkerlin what is this for?
+  - gradle = gradle wrapper
   - images
       + digits
           - [MNIST](./images/digits/MNIST) = unique files that contain training images 
