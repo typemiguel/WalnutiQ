@@ -26,7 +26,7 @@ public class FindOptimalParametersForSDRTest extends junit.framework.TestCase {
 		-1000000.02,
 		FindOptimalParametersForSDR
 			.printToFileSDRScoreFor1RetinaTo1RegionModel(95.2,
-				6.18, 57.9,
+				5.8, 56.1,
 				"./tests/model/MARK_I/SDR/currentSDRScore.txt"),
 		.01);
     }
