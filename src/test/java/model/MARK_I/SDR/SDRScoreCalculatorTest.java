@@ -1,16 +1,15 @@
-package model.MARK_I.SDR;
+package test.java.model.MARK_I.SDR;
 
+import main.java.model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
+import main.java.model.MARK_I.SpatialPooler;
+import main.java.model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
+import main.java.model.MARK_I.Region;
+import main.java.model.Retina;
+import main.java.model.MARK_I.SDR.SDRScoreCalculator;
+import main.java.model.MARK_I.ColumnPosition;
 import java.util.HashSet;
-
 import java.io.IOException;
-
 import java.util.Set;
-import model.Retina;
-import model.MARK_I.ColumnPosition;
-import model.MARK_I.Region;
-import model.MARK_I.SpatialPooler;
-import model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
-import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)

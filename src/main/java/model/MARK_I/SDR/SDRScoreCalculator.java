@@ -52,7 +52,7 @@ public class SDRScoreCalculator {
      *
      * @return the sparsity score
      */
-    double computeSparsityScore() {
+    public double computeSparsityScore() {
 
 	double totalDistanceToNearestActiveColumnForAllActiveColumns = 0.0;
 	// iterate through all column positions
@@ -91,7 +91,7 @@ public class SDRScoreCalculator {
 	return -averageDistanceToNearestActiveColumn;
     }
 
-    double computeNumberOfActiveColumnsScore() {
+    public double computeNumberOfActiveColumnsScore() {
 	int desiredNumberOfActiveColumns = (int) (this.totalNumberOfColumnsInRegion
 		* this.desiredPercentageOfActiveColumns / 100);
 
