@@ -1,8 +1,8 @@
+.gradle
+/build
+.idea
+*.iml
+
 *.class
 .classpath
-bin/
-.settings
-MARKI_UML.ucls
-
-.gradle
-build/
+bin/**
