@@ -1,5 +1,5 @@
 **[Eclipse Install](#setup-in-linuxmacwindows-with-eclipselike-microsoft-word-but-for-writing-code)** |
-**[Gradle Install](#setup-in-linuxmacwindows-with-gradlebuilds-our-java-code)** |
+**[Gradle Install](#setup-in-linuxmacwindows-with-gradlecompiles-our-java-code-from-command-line)** |
 **[How to Contribute](#how-to-contribute)** |
 **[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)**
 
