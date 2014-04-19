@@ -14,13 +14,13 @@ import main.java.model.MARK_I.ColumnPosition;
 
 import main.java.model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 
-import main.java.model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
+import main.java.model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
 
 import main.java.model.Retina;
 
 import main.java.model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
 
-import main.java.model.MARK_I.connectTypes.RegionToRegionConnectInterface;
+import main.java.model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
 
 import main.java.model.MARK_I.SpatialPooler;
 
@@ -43,7 +43,7 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
     public void setUp() {
 	this.parentRegion = new Region("parentRegion", 8, 8, 4, 20, 3);
 	Region childRegion = new Region("childRegion", 66, 66, 4, 20, 3);
-	RegionToRegionConnectInterface connectType = new RegionToRegionRectangleConnect();
+	AbstractRegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
 	connectType.connect(childRegion, this.parentRegion, 2, 2);
 
 	this.spatialPooler = new SpatialPooler(this.parentRegion);
@@ -56,7 +56,7 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 
 	Retina retina = new Retina(66, 66);
 
-	SensorCellsToRegionConnectInterface connectType2 = new SensorCellsToRegionRectangleConnect();
+	AbstractSensorCellsToRegionConnect connectType2 = new SensorCellsToRegionRectangleConnect();
 	connectType2.connect(retina.getVisionCells(), region, 2, 2);
 
 	retina.seeBMPImage("2.bmp");
@@ -291,7 +291,7 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	// & test.
 	Region parentRegion2 = new Region("parentRegion2", 1, 1, 1, 50, 1);
 	Region childRegion2 = new Region("childRegion2", 5, 5, 1, 50, 3);
-	RegionToRegionConnectInterface connectType = new RegionToRegionRectangleConnect();
+	AbstractRegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
 	connectType.connect(childRegion2, parentRegion2, 0, 0);
 	// parentRegion2 has 1 Column with 25 synapses.
 

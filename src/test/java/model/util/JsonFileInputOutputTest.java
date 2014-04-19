@@ -6,7 +6,7 @@ import java.util.Set;
 import main.java.model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import main.java.model.MARK_I.SpatialPooler;
 import java.io.IOException;
-import main.java.model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
+import main.java.model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
 import main.java.model.Retina;
 import main.java.model.MARK_I.Region;
 import com.google.gson.Gson;
@@ -27,7 +27,7 @@ public class JsonFileInputOutputTest extends junit.framework.TestCase {
 
 	Retina retina = new Retina(66, 66);
 
-	SensorCellsToRegionConnectInterface retinaToLGN = new SensorCellsToRegionRectangleConnect();
+	AbstractSensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
 	retinaToLGN.connect(retina.getVisionCells(), LGNRegion, 0, 0);
 
 	// run spatial pooling on a image

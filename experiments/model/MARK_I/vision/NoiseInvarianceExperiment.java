@@ -36,7 +36,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 
 	this.region = new Region("Region", 8, 8, 1, 40, 3);
 
-	SensorCellsToRegionConnectInterface retinaToRegion = new SensorCellsToRegionRectangleConnect();
+	AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
 	retinaToRegion.connect(this.retina.getVisionCells(), this.region, 0, 0);
 
 	this.spatialPooler = new SpatialPooler(this.region);

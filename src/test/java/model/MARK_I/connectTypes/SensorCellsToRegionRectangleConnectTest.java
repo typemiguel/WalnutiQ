@@ -5,7 +5,7 @@ import main.java.model.MARK_I.VisionCell;
 import main.java.model.MARK_I.SensorCell;
 import main.java.model.MARK_I.Region;
 import main.java.model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
-import main.java.model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
+import main.java.model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
@@ -14,7 +14,7 @@ import main.java.model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
 public class SensorCellsToRegionRectangleConnectTest extends
 	junit.framework.TestCase {
 
-    private SensorCellsToRegionConnectInterface connectType;
+    private AbstractSensorCellsToRegionConnect connectType;
 
     public void setUp() {
 	this.connectType = new SensorCellsToRegionRectangleConnect();

@@ -15,8 +15,8 @@ import java.util.List;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version July 18, 2013
  */
-public class SensorCellsToRegionRandomConnect implements
-	SensorCellsToRegionConnectInterface {
+public class SensorCellsToRegionRandomConnect extends
+	AbstractSensorCellsToRegionConnect {
 
     /**
      * In order to explain overlapping Synapses more concisely I will be using
@@ -34,7 +34,7 @@ public class SensorCellsToRegionRandomConnect implements
 	    int numberOfSynapsesToOverlapAlongXAxisOfSensorCells,
 	    int numberOfSynapsesToOverlapAlongYAxisOfSensorCells) {
 
-	this.checkParameters(sensorCells, region,
+	super.checkParameters(sensorCells, region,
 		numberOfSynapsesToOverlapAlongXAxisOfSensorCells,
 		numberOfSynapsesToOverlapAlongYAxisOfSensorCells);
 
@@ -75,33 +75,8 @@ public class SensorCellsToRegionRandomConnect implements
 					    randomSynapseXPosition,
 					    randomSynapseYPosition));
 		}
-		Collections.shuffle(allSynapsePositions);
+		//Collections.shuffle(allSynapsePositions);
 	    }
-	}
-    }
-
-    private void checkParameters(SensorCell[][] sensorCells, Region region,
-	    int numberOfSynapsesToOverlapAlongXAxisOfSensorCells,
-	    int numberOfSynapsesToOverlapAlongYAxisOfSensorCells) {
-	if (region == null) {
-	    throw new IllegalArgumentException(
-		    "region in SensorCellsToRegionRectangleConnect class"
-			    + "connect method cannot be null");
-	} else if (sensorCells == null) {
-	    throw new IllegalArgumentException(
-		    "sensorCells in SensorCellsToRegionRectangleConnect class"
-			    + "connect method cannot be null");
-	} else if (sensorCells.length <= region.getXAxisLength()
-		|| sensorCells[0].length <= region.getYAxisLength()) {
-	    throw new IllegalArgumentException(
-		    "sensorCells in connect method cannot be smaller in X or Y "
-			    + "dimentions than the region");
-	} else if (numberOfSynapsesToOverlapAlongXAxisOfSensorCells < 0) {
-	    throw new IllegalArgumentException(
-		    "numberOfSynapsesToOverlapAlongXAxisOfSensorCells in connect method cannot be < 0");
-	} else if (numberOfSynapsesToOverlapAlongYAxisOfSensorCells < 0) {
-	    throw new IllegalArgumentException(
-		    "numberOfSynapsesToOverlapAlongYAxisOfSensorCells in connect method cannot be < 0");
 	}
     }
 }

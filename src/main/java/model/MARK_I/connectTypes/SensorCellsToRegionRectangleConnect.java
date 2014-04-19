@@ -10,14 +10,14 @@ import main.java.model.MARK_I.SensorCell;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 13, 2013
  */
-public class SensorCellsToRegionRectangleConnect implements
-	SensorCellsToRegionConnectInterface {
+public class SensorCellsToRegionRectangleConnect extends
+	AbstractSensorCellsToRegionConnect {
     @Override
     public void connect(SensorCell[][] sensorCells, Region region,
 	    int numberOfColumnsToOverlapAlongXAxisOfSensorCells,
 	    int numberOfColumnsToOverlapAlongYAxisOfSensorCells) {
 
-	this.checkParameters(sensorCells, region,
+	super.checkParameters(sensorCells, region,
 		numberOfColumnsToOverlapAlongXAxisOfSensorCells,
 		numberOfColumnsToOverlapAlongYAxisOfSensorCells);
 
@@ -66,31 +66,6 @@ public class SensorCellsToRegionRectangleConnect implements
 		    }
 		}
 	    }
-	}
-    }
-
-    private void checkParameters(SensorCell[][] sensorCells, Region region,
-	    int numberOfColumnsToOverlapAlongXAxisOfSensorCells,
-	    int numberOfColumnsToOverlapAlongYAxisOfSensorCells) {
-	if (region == null) {
-	    throw new IllegalArgumentException(
-		    "region in SensorCellsToRegionRectangleConnect class"
-			    + "connect method cannot be null");
-	} else if (sensorCells == null) {
-	    throw new IllegalArgumentException(
-		    "sensorCells in SensorCellsToRegionRectangleConnect class"
-			    + "connect method cannot be null");
-	} else if (sensorCells.length <= region.getXAxisLength()
-		|| sensorCells[0].length <= region.getYAxisLength()) {
-	    throw new IllegalArgumentException(
-		    "sensorCells in connect method cannot be smaller in X or Y "
-			    + "dimentions than the region");
-	} else if (numberOfColumnsToOverlapAlongXAxisOfSensorCells < 0) {
-	    throw new IllegalArgumentException(
-		    "numberOfColumnsToOverlapAlongXAxisOfSensorCells in connect method cannot be < 0");
-	} else if (numberOfColumnsToOverlapAlongYAxisOfSensorCells < 0) {
-	    throw new IllegalArgumentException(
-		    "numberOfColumnsToOverlapAlongYAxisOfSensorCells in connect method cannot be < 0");
 	}
     }
 }
