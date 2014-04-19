@@ -50,11 +50,15 @@ public class SDRScoreCalculator {
      * Please look here for a visual of the followin sparsityScore formula:
      * https://github.com/quinnliu/WalnutiQ/issues/21
      *
-     * @return the sparsity score
+     * @return the sparsity score. The smaller the score the more sparsly
+     *         distributed the active columns are.
      */
     public double computeSparsityScore() {
 
 	double totalDistanceToNearestActiveColumnForAllActiveColumns = 0.0;
+	if (this.columnActivityAfterSeeingImage.size() <= 1) {
+	    return 0;
+	}
 	// iterate through all column positions
 	for (ColumnPosition currentColumnPosition : this.columnActivityAfterSeeingImage) {
 	    int x1 = currentColumnPosition.getX();
@@ -91,6 +95,11 @@ public class SDRScoreCalculator {
 	return -averageDistanceToNearestActiveColumn;
     }
 
+    /**
+     * @return the number of active columns score. The smaller the score the
+     *         closer the numberOfActiveColumns was to
+     *         desiredNumberOfActiveColumns.
+     */
     public double computeNumberOfActiveColumnsScore() {
 	int desiredNumberOfActiveColumns = (int) (this.totalNumberOfColumnsInRegion
 		* this.desiredPercentageOfActiveColumns / 100);
@@ -99,8 +108,10 @@ public class SDRScoreCalculator {
 		.size();
 	double difference = Math.abs(desiredNumberOfActiveColumns
 		- actualNumberOfActiveColumns);
-	if (difference < 0.1 && difference > -0.1) {
-	    difference += 0.1; // 1 / 0.1 = 10 which is a great score
+
+
+	if (difference < 0.1) {
+	    difference = 0.1; // 1 / 0.1 = 10 which is a great score
 			       // as it should be since desired was = to actual
 	}
 

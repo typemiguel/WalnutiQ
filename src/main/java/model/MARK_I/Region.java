@@ -126,10 +126,10 @@ public class Region {
     }
 
     void setPercentMinimumOverlapScore(double percentMinimumOverlapScore) {
-	if (percentMinimumOverlapScore < 0 || percentMinimumOverlapScore > 1) {
+	if (percentMinimumOverlapScore < 0 || percentMinimumOverlapScore > 100) {
 	    throw new IllegalArgumentException(
 		    "percentMinimumOverlapScore in Region class "
-			    + "setPercentMinimumOverlapScore method must be >= 0 and <= 1");
+			    + "setPercentMinimumOverlapScore method must be >= 0 and <= 100");
 	}
 	this.percentMinimumOverlapScore = percentMinimumOverlapScore;
     }

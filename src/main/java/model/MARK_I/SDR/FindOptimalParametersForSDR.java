@@ -6,11 +6,8 @@ import main.java.model.MARK_I.SpatialPooler;
 import main.java.model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
 import main.java.model.MARK_I.Region;
 import main.java.model.Retina;
-
 import java.text.DecimalFormat;
-
 import java.text.NumberFormat;
-
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.util.Set;
@@ -125,7 +122,6 @@ public class FindOptimalParametersForSDR {
 		desiredPercentageOfActiveColumns, totalNumberOfColumnsInRegion);
 
 	double SDRScore = sdrScoreCalculator.computeSDRScore();
-	// 8.027689778774276
 
 	NumberFormat formatter = new DecimalFormat("0.################E0");
 
