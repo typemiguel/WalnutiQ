@@ -56,6 +56,9 @@ public class SDRScoreCalculator {
     public double computeSparsityScore() {
 
 	double totalDistanceToNearestActiveColumnForAllActiveColumns = 0.0;
+	if (this.columnActivityAfterSeeingImage.size() <= 1) {
+	    return 0;
+	}
 	// iterate through all column positions
 	for (ColumnPosition currentColumnPosition : this.columnActivityAfterSeeingImage) {
 	    int x1 = currentColumnPosition.getX();
