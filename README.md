@@ -1,25 +1,29 @@
+**[Eclipse Install](#setup-in-linuxmacwindows-with-eclipselike-microsoft-word-but-for-writing-code)** |
+**[Gradle Install](#setup-in-linuxmacwindows-with-gradlebuilds-our-java-code)** |
+**[How to Contribute](#how-to-contribute)** |
+**[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)**
+
 # [WalnutiQ](http://walnutiq.com)
 
-“*In another life I would make you stay so I don't have to say
-that you were the one that got away.*”  
+“*Say what you want to say and let the words fall out. Honestly I want to see you be brave.*”  
 
-~ Katheryn Elizabeth Hudson
+~ Sara Beth Bareilles
 
 [![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
 
 Welcome! WalnutiQ is a human brain model simulation in Java. 
 The goal of this repository is to store code that can 
-simulate a human brain in real-time. A real intelligence machine 
+simulate a full sized human brain in real-time. A real intelligence machine 
 built on biological principles will be able to solve many of the 
 problems which currently plague the world and allow us to unravel
 the mystery of human conciousness. It will be a long journey but
 this has the potential to dramatically change the world for the 
 better.
 
-Currently, you will find code that allows you to build a partial 
-human brain model, train it on input data, view its activity 
-as text and visual output, and test its ability to recognize 
-objects. All of the code here supports modeling of the human 
+Here you will find code that allows you to build a partial 
+human brain model, train it on input data using theorized
+learning algorithms, and view its activity as text output.
+All of the code here supports modeling of the human 
 brain at a high level of abstraction while still allowing user
 access to individual neuron properties. For more information please 
 watch this [video playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
@@ -27,12 +31,12 @@ to become familiar with the neuroscience behind this repository.
 
 If you are interested in becoming a researcher/developer, the 
 only requirement is interest in understanding how the brain 
-really works. If you have no programming experience there are
+really works. If you are not interested in programming there are
 plenty of research tasks we need your help on [here](https://github.com/quinnliu/WalnutiQ/issues?labels=Research).
 If you are interested in gaining programming experience by
-building brain models we would be happy to google hangout with 
+building brain models I would be happy to google hangout with 
 you or meet you in person regardless of your programming
-experience! Feel free to e-mail us at quinnliu@vt.edu to get 
+experience! Feel free to e-mail me at quinnliu@vt.edu to get 
 coffee/lunch/dinner to talk about how you can contribute.
 
 Most importantly, this research is made possible by the 
@@ -49,7 +53,7 @@ to better understand the theory behind this repository.
 1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
 
 2. Fork this repository and clone it locally. Then import it as a 
-project into Eclipse.
+   project into Eclipse.
 
 3. IMPORTANT: You will notice that your folders will have "red X's". 
    To fix this right click your `src` folder then hover over "New", 
@@ -71,7 +75,7 @@ project into Eclipse.
    your project `WalnutiQ` in the package explorer `=>` 
    Add Libraries... `=>` JRE System Library `=>` Next > `=>` Finish
   
-## Setup in Linux/Mac/Windows with Gradle(Builds our Java code)
+## Setup in Linux/Mac/Windows with Gradle(compiles our Java code from command line)
 1. Install Gradle in Linux OR Mac by typing to the command line:
    ```sh
    prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
@@ -86,7 +90,7 @@ project into Eclipse.
 
 4. Type in the command line `gradle build`. This may take a minute so no worries.
    Go to the folder `build/reports/tests/`. View the file `index.html` in 
-   a browser and make sure all tests pass!
+   any browser and make sure all tests pass!
 
 ## How to Contribute
 
