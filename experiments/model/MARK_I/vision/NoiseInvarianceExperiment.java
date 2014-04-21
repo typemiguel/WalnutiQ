@@ -3,14 +3,13 @@ package model.MARK_I.vision;
 import main.java.model.*;
 import main.java.model.MARK_I.*;
 import main.java.model.MARK_I.connectTypes.*;
-
 import java.util.Set;
 import java.io.IOException;
 
 /**
  * -------------------------------Purpose---------------------------------------
- * To show the spatial pooling learning algorithm produces similar results even
- * after adding noise to the input data.
+ * To show the spatial pooling learning algorithm is good at producing the same
+ * output of neural activity even when the input is very noisy.
  *
  * ------------------------------Experiment-------------------------------------
  * Run the spatial pooling algorithm on 3 different bitmap images. The 3 images
@@ -18,9 +17,9 @@ import java.io.IOException;
  * noise, and 1 image has a lot of noise.
  *
  * ------------------------------Conclusion-------------------------------------
- * The spatial pooling algoithm does simple local computations on the image to
+ * The spatial pooling algoithm does simple local computations on it's input to
  * remove noise very efficiently up to a specific threshold that can vary
- * between locations in the input image.
+ * between locations in the input.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version April 12, 2014
@@ -31,12 +30,12 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
     private SpatialPooler spatialPooler;
 
     public void setUp() {
-	// images this retina will see in folder images/model/ are 66x66 pixels
+	// images this retina will see are all 66x66 pixels
 	this.retina = new Retina(66, 66);
 
 	this.region = new Region("Region", 8, 8, 1, 40, 3);
 
-	SensorCellsToRegionConnectInterface retinaToRegion = new SensorCellsToRegionRectangleConnect();
+	AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
 	retinaToRegion.connect(this.retina.getVisionCells(), this.region, 0, 0);
 
 	this.spatialPooler = new SpatialPooler(this.region);
@@ -45,7 +44,9 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 
     public void test_runNoiseInvarianceExperiment() throws IOException {
 
-	// --------------------------"2.bmp"-------------------------------
+	// --------------------------"2.bmp"------------------------------------
+	// you can view image "2.bmp" @
+	// https://github.com/quinnliu/WalnutiQ/blob/master/images/main/java/model/2.bmp
 	this.retina.seeBMPImage("2.bmp");
 
 	this.spatialPooler.performSpatialPoolingOnRegion();
@@ -53,11 +54,9 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 		.getActiveColumnPositions();
 	assertEquals(13, columnActivityAfterSeeingImage2.size());
 
-	for (ColumnPosition columnPosition : columnActivityAfterSeeingImage2) {
-	    System.out.println(columnPosition.toString());
-	}
-
-	// -------------------"2_with_some_noise.bmp"----------------------
+	// -------------------"2_with_some_noise.bmp"---------------------------
+	// you can view image "2_with_some_noise.bmp" @
+	// https://github.com/quinnliu/WalnutiQ/blob/master/images/main/java/model/2_with_some_noise.bmp
 	this.retina.seeBMPImage("2_with_some_noise.bmp");
 
 	this.spatialPooler.performSpatialPoolingOnRegion();
@@ -68,7 +67,9 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	assertTrue(columnActivityAfterSeeingImage2
 		.containsAll(columnActivityAfterSeeingImage2_with_some_noise));
 
-	// -------------------"2_with_alot_of_noise.bmp"------------------
+	// -------------------"2_with_alot_of_noise.bmp"------------------------
+	// you can view image "2_with_some_noise.bmp" @
+	// https://github.com/quinnliu/WalnutiQ/blob/master/images/main/java/model/2_with_some_noise.bmp
 	this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
 
 	this.spatialPooler.performSpatialPoolingOnRegion();

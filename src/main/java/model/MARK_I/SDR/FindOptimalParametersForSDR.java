@@ -3,7 +3,7 @@ package main.java.model.MARK_I.SDR;
 import main.java.model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import main.java.model.MARK_I.ColumnPosition;
 import main.java.model.MARK_I.SpatialPooler;
-import main.java.model.MARK_I.connectTypes.SensorCellsToRegionConnectInterface;
+import main.java.model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
 import main.java.model.MARK_I.Region;
 import main.java.model.Retina;
 import java.text.DecimalFormat;
@@ -50,7 +50,7 @@ public class FindOptimalParametersForSDR {
 	Region region = new Region("Region", 8, 8, 1,
 		percentMinimumOverlapScore, (int) desiredLocalActivity);
 
-	SensorCellsToRegionConnectInterface retinaToRegion = new SensorCellsToRegionRectangleConnect();
+	AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
 	retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
 
 	SpatialPooler spatialPooler = new SpatialPooler(region);
@@ -71,7 +71,6 @@ public class FindOptimalParametersForSDR {
 		desiredPercentageOfActiveColumns, totalNumberOfColumnsInRegion);
 
 	double SDRScore = sdrScoreCalculator.computeSDRScore();
-	// 8.027689778774276
 
 	NumberFormat formatter = new DecimalFormat("0.################E0");
 
@@ -101,7 +100,7 @@ public class FindOptimalParametersForSDR {
 	Region region = new Region("Region", 8, 8, 1,
 		percentMinimumOverlapScore, (int) desiredLocalActivity);
 
-	SensorCellsToRegionConnectInterface retinaToRegion = new SensorCellsToRegionRectangleConnect();
+	AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
 	retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
 
 	SpatialPooler spatialPooler = new SpatialPooler(region);

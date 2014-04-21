@@ -2,7 +2,7 @@ package test.java.model.MARK_I;
 
 import main.java.model.MARK_I.Column;
 import main.java.model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
-import main.java.model.MARK_I.connectTypes.RegionToRegionConnectInterface;
+import main.java.model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
 import main.java.model.MARK_I.Region;
 import main.java.model.MARK_I.Neocortex;
 
@@ -15,7 +15,7 @@ public class NeocortexTest extends junit.framework.TestCase {
 
     public void setUp() {
 	Region rootRegion = new Region("rootRegion", 6, 8, 4, 20, 3);
-	RegionToRegionConnectInterface connectType = new RegionToRegionRectangleConnect();
+	AbstractRegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
 	this.neocortex = new Neocortex(rootRegion, connectType);
     }
 

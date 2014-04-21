@@ -4,7 +4,6 @@ import main.java.model.*;
 import main.java.model.MARK_I.*;
 import main.java.model.MARK_I.connectTypes.*;
 import main.java.model.util.*;
-
 import com.google.gson.Gson;
 import java.util.Set;
 import java.io.IOException;
@@ -41,13 +40,13 @@ public class HowMARK_I_FitsInToBrainAnatomy extends junit.framework.TestCase {
 	// connect Retina to LGN
 	Retina retina = nervousSystem.getPNS().getSNS().getRetine();
 	LGN LGN = nervousSystem.getCNS().getBrain().getThalamus().getLGN();
-	SensorCellsToRegionConnectInterface opticNerve = new SensorCellsToRegionRectangleConnect();
+	AbstractSensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
 	opticNerve.connect(retina.getVisionCells(), LGN.getRegion(), 0, 0);
 
 	// connect LGN to very small part of V1 Region of Neocortex
 	Neocortex neocortex = nervousSystem.getCNS().getBrain().getCerebrum()
 		.getCerebralCortex().getNeocortex();
-	RegionToRegionConnectInterface regionToRegionConnect = new RegionToRegionRectangleConnect();
+	AbstractRegionToRegionConnect regionToRegionConnect = new RegionToRegionRectangleConnect();
 	regionToRegionConnect.connect(LGN.getRegion(),
 		neocortex.getCurrentRegion(), 0, 0);
 
