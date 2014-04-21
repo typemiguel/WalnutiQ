@@ -20,6 +20,6 @@ public class RegionConsoleViewerTest extends junit.framework.TestCase {
 	assertEquals(4, numberOfRows);
 	assertEquals(2, numberOfColumns);
 	assertEquals("y0\n" + "o1\n" + "l2\n" + "o3",
-		RegionConsoleViewer.printDoubleCharArray(this.doubleCharArray));
+		RegionConsoleViewer.doubleCharArrayAsString(this.doubleCharArray));
     }
 }

@@ -153,8 +153,6 @@ public class SpatialPooler extends Pooler {
 
 	this.boostSynapsesBasedOnActiveAndOverlapDutyCycle();
 
-	// TODO: View detials of this problem here:
-	// https://github.com/quinnliu/WalnutiQ/issues/27
 	this.region.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
 
