@@ -52,7 +52,7 @@ public class Synapse<CellType extends Cell> {
     /**
      * Amount permanenceValue is increased during one iteration of learning.
      */
-    public static final double PERMANENCE_INCREASE = 0.015;
+    public static final double PERMANENCE_INCREASE = 0.02;
 
     /**
      * Amount permanenceValue is decreased during one iteration of learning.

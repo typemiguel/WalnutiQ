@@ -232,16 +232,14 @@ public class SpatialPooler extends Pooler {
 		    if (columns[x][y].getOverlapDutyCycle() < minimumActiveDutyCycle
 			    && this.getLearningState()) {
 			columns[x][y]
-				.increaseProximalSegmentSynapsePermanences(10);
-			// TODO: more biologically accurate
+				.increaseProximalSegmentSynapsePermanences(1);
 		    }
 		}
 	    }
 	}
 	// TODO: View detials of this problem here:
 	// https://github.com/quinnliu/WalnutiQ/issues/27
-	// this.region
-	// .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+	// this.region.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
 
     /**
@@ -309,7 +307,8 @@ public class SpatialPooler extends Pooler {
      * @return the kth highest overlapScore value of a Column object within the
      *         neighborColumns list.
      */
-    public int kthScoreOfColumns(List<Column> neighborColumns, int desiredLocalActivity) {
+    public int kthScoreOfColumns(List<Column> neighborColumns,
+	    int desiredLocalActivity) {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
 		    "neighborColumns in SpatialPooler method kthScoreOfColumns cannot be null");
@@ -357,9 +356,11 @@ public class SpatialPooler extends Pooler {
 			.getBottomLayerXYAxisLength();
 
 		// get the column position relative to the input layer
-		double xRatio = bottomLayerDimensions.width / this.region.getXAxisLength();
+		double xRatio = bottomLayerDimensions.width
+			/ this.region.getXAxisLength();
 		double columnX = xRatio / 2 + x * xRatio;
-		double yRatio = bottomLayerDimensions.height / this.region.getYAxisLength();
+		double yRatio = bottomLayerDimensions.height
+			/ this.region.getYAxisLength();
 		double columnY = yRatio / 2 + y * yRatio;
 
 		double totalSynapseDistanceFromOriginColumn = 0.0;
