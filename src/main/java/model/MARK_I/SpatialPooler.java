@@ -56,6 +56,23 @@ public class SpatialPooler extends Pooler {
 	return this.activeColumns;
     }
 
+    public Set<Column> performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate() {
+	Column[][] columns = this.region.getColumns();
+	for (int x = 0; x < columns.length; x++) {
+	    for (int y = 0; y < columns[0].length; y++) {
+		this.computeColumnOverlapScore(columns[x][y]);
+	    }
+	}
+
+	// a sparse set of Columns become active after local inhibition
+	this.computeActiveColumnsOfRegion();
+
+	// // simulate learning by boosting specific Synapses
+	this.regionLearnOneTimeStepWithoutInhitionRadiusUpdate();
+
+	return this.activeColumns;
+    }
+
     /**
      * If only the column positions computed by spatial pooling are needed use
      * this method to return a set of just the column positions that were active
@@ -153,7 +170,14 @@ public class SpatialPooler extends Pooler {
 
 	this.boostSynapsesBasedOnActiveAndOverlapDutyCycle();
 
-	this.region.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+	this.region
+		.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+    }
+
+    public void regionLearnOneTimeStepWithoutInhitionRadiusUpdate() {
+	this.modelLongTermPotentiationAndDepression();
+
+	this.boostSynapsesBasedOnActiveAndOverlapDutyCycle();
     }
 
     public void modelLongTermPotentiationAndDepression() {
