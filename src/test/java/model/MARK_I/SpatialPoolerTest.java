@@ -134,13 +134,11 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	char[][] columnActiveStates = RegionConsoleViewer
 		.getColumnActiveStatesCharArray(this.parentRegion);
 
-	// TODO: assert equals with output stream
-	// System.out.println("\n--test_computeActiveColumnsOfRegion()--");
-	// System.out.println(this.parentRegion.toString());
-
-	// TODO: columns along row 5 are all active next to each other?
-	// How did inhibition radius reduce to 0 so quickly? Set minimum of 1?
-	// RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
+	// Question: columns along row 5 are all active next to each other?
+	// the desired local activity is applied to each column thus you can
+	// have more active columns within inhibitionRadius(2) than
+	// desiredLocalActivity(3)
+	assertEquals("iiiii", columnActiveStates);
     }
 
     public void test_regionLearnOneTimeStep() {

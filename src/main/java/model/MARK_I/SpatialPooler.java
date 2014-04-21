@@ -298,8 +298,6 @@ public class SpatialPooler extends Pooler {
 	for (int columnIndex = xInitial; columnIndex < xFinal; columnIndex++) {
 	    for (int rowIndex = yInitial; rowIndex < yFinal; rowIndex++) {
 		if (columnIndex == columnXAxis && rowIndex == columnYAxis) {
-		    // TODO: To make inhibition a circle around input Column,
-		    // change to remove corners of this rectangle inhibition
 		} else {
 		    Column newColumn = columns[columnIndex][rowIndex];
 		    if (newColumn != null) {
