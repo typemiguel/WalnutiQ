@@ -1,5 +1,7 @@
 package main.java.model.MARK_I.SDR;
 
+import mnist.tools.MnistManager;
+
 import main.java.model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import main.java.model.MARK_I.ColumnPosition;
 import main.java.model.MARK_I.SpatialPooler;
@@ -25,7 +27,7 @@ import java.io.IOException;
  * until it has found parameters that produce the best score.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version Apr 10, 2014
+ * @version Apr 21, 2014
  */
 public class FindOptimalParametersForSDR {
 
@@ -42,7 +44,7 @@ public class FindOptimalParametersForSDR {
      *
      * @throws IOException
      */
-    public static double printToFileSDRScoreFor1RetinaTo1RegionModel(
+    public static double printToFileSDRScoreFor1RetinaTo1RegionModelFor1Digit(
 	    double percentMinimumOverlapScore, double desiredLocalActivity,
 	    double desiredPercentageOfActiveColumns,
 	    String locationOfFileWithFileNameToSaveScore) throws IOException {
@@ -87,16 +89,28 @@ public class FindOptimalParametersForSDR {
 	return SDRScore;
     }
 
-    public static double printToFileSDRScoreFor1RetinaTo1RegionModelForAllDigits(
+    /**
+     * Builds a simple 1 Retina to 1 Region model with given parameters, runs
+     * the spatial pooling algorithm once, computes a score based on the output
+     * of the spatial pooling algorithm.
+     *
+     * @param percentMinimumOverlapScore
+     * @param desiredLocalActivity
+     * @param desiredPercentageOfActiveColumns
+     * @param locationOfFileWithFileNameToSaveScore
+     * @return The average SDR score.
+     * @throws IOException
+     */
+    public static double printToFileAverageSDRScoreFor1RetinaTo1RegionModelForAllDigitsInMNIST(
 	    double percentMinimumOverlapScore, double desiredLocalActivity,
 	    double desiredPercentageOfActiveColumns,
 	    String locationOfFileWithFileNameToSaveScore) throws IOException {
+	MnistManager mnistManager = new MnistManager(
+		"./images/digits/MNIST/t10k-images.idx3-ubyte",
+		"./images/digits/MNIST/t10k-labels.idx1-ubyte");
 
-	// TODO: change up to see all digits 0-9
-	// and produce a score
-
-
-	Retina retina = new Retina(66, 66);
+	// all images in MNIST dataset are 28 x 28 pixels
+	Retina retina = new Retina(28, 28);
 	Region region = new Region("Region", 8, 8, 1,
 		percentMinimumOverlapScore, (int) desiredLocalActivity);
 
@@ -106,34 +120,43 @@ public class FindOptimalParametersForSDR {
 	SpatialPooler spatialPooler = new SpatialPooler(region);
 	spatialPooler.setLearningState(true);
 
-	retina.seeBMPImage("2.bmp");
+	int numberOfImagesToSee = 1000;
+	double totalSDRScore = 0.0;
+	for (int i = 1; i < (numberOfImagesToSee + 1); i++) {
+	    mnistManager.setCurrent(i);
+	    int[][] image = mnistManager.readImage();
 
-	spatialPooler.performSpatialPoolingOnRegion(); // 11 active columns
-	Set<ColumnPosition> columnActivityAfterSeeingImage2 = spatialPooler
-		.getActiveColumnPositions();
-	// = (6,5)(6, 3)(6, 2)(5, 3)(3, 5)(2, 2)(1, 3)(1, 2)(2, 5)(1, 5)(4, 4)
+	    retina.see2DIntArray(image);
+	    spatialPooler.performSpatialPoolingOnRegion();
+	    Set<ColumnPosition> columnActivityAfterSeeingCurrentMNISTImage = spatialPooler
+		    .getActiveColumnPositions();
 
-	// -----------------------compute SDR score----------------------------
-	int totalNumberOfColumnsInRegion = region.getXAxisLength()
-		* region.getYAxisLength();
-	SDRScoreCalculator sdrScoreCalculator = new SDRScoreCalculator(
-		columnActivityAfterSeeingImage2,
-		desiredPercentageOfActiveColumns, totalNumberOfColumnsInRegion);
+	    // compute SDR score
+	    int totalNumberOfColumnsInRegion = region.getXAxisLength()
+		    * region.getYAxisLength();
+	    SDRScoreCalculator sdrScoreCalculator = new SDRScoreCalculator(
+		    columnActivityAfterSeeingCurrentMNISTImage,
+		    desiredPercentageOfActiveColumns,
+		    totalNumberOfColumnsInRegion);
 
-	double SDRScore = sdrScoreCalculator.computeSDRScore();
+	    double SDRScore = sdrScoreCalculator.computeSDRScore();
+	    totalSDRScore += SDRScore;
+	}
+
+	double averageSDRScore = totalSDRScore / numberOfImagesToSee;
 
 	NumberFormat formatter = new DecimalFormat("0.################E0");
 
-	// print SDRScore to file
+	// print averageSDRScore to file
 	try {
 	    BufferedWriter out2 = new BufferedWriter(new FileWriter(
 		    locationOfFileWithFileNameToSaveScore));
-	    out2.write(formatter.format(SDRScore));
+	    out2.write(formatter.format(averageSDRScore));
 	    out2.close();
 	} catch (IOException e) {
 
 	}
 
-	return SDRScore;
+	return averageSDRScore;
     }
 }
