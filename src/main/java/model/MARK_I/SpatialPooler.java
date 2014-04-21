@@ -56,6 +56,23 @@ public class SpatialPooler extends Pooler {
 	return this.activeColumns;
     }
 
+    public Set<Column> performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate() {
+	Column[][] columns = this.region.getColumns();
+	for (int x = 0; x < columns.length; x++) {
+	    for (int y = 0; y < columns[0].length; y++) {
+		this.computeColumnOverlapScore(columns[x][y]);
+	    }
+	}
+
+	// a sparse set of Columns become active after local inhibition
+	this.computeActiveColumnsOfRegion();
+
+	// // simulate learning by boosting specific Synapses
+	this.regionLearnOneTimeStepWithoutInhitionRadiusUpdate();
+
+	return this.activeColumns;
+    }
+
     /**
      * If only the column positions computed by spatial pooling are needed use
      * this method to return a set of just the column positions that were active
@@ -149,6 +166,21 @@ public class SpatialPooler extends Pooler {
      * updated here.
      */
     public void regionLearnOneTimeStep() {
+	this.modelLongTermPotentiationAndDepression();
+
+	this.boostSynapsesBasedOnActiveAndOverlapDutyCycle();
+
+	this.region
+		.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+    }
+
+    public void regionLearnOneTimeStepWithoutInhitionRadiusUpdate() {
+	this.modelLongTermPotentiationAndDepression();
+
+	this.boostSynapsesBasedOnActiveAndOverlapDutyCycle();
+    }
+
+    public void modelLongTermPotentiationAndDepression() {
 	Column[][] columns = this.region.getColumns();
 
 	if (super.getLearningState()) {
@@ -156,18 +188,17 @@ public class SpatialPooler extends Pooler {
 		for (int y = 0; y < columns[0].length; y++) {
 		    if (columns[x][y].getActiveState()) {
 			// increase and decrease of proximal segment synapses
-			// based
-			// on each Synapses's activeState
+			// based on each Synapses's activeState
 			Set<Synapse<Cell>> synapses = columns[x][y]
 				.getProximalSegment().getSynapses();
 			for (Synapse<Cell> synapse : synapses) {
 			    if (synapse.getConnectedCell() != null
 				    && synapse.getConnectedCell()
 					    .getActiveState()) {
-				// models long term potentiation
+				// model long term potentiation
 				synapse.increasePermanence();
 			    } else {
-				// models long term depression
+				// model long term depression
 				synapse.decreasePermanence();
 			    }
 			}
@@ -175,8 +206,11 @@ public class SpatialPooler extends Pooler {
 		}
 	    }
 	}
+    }
 
-	// TODO: the remainder of this method still needs to be tested
+    public void boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
+	Column[][] columns = this.region.getColumns();
+
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 		if (columns[x][y].getActiveState()) {
@@ -184,7 +218,8 @@ public class SpatialPooler extends Pooler {
 		    // on each Synapses's activeState
 		    // columns[x][y].performBoosting();
 
-		    // 2 methods to help a Column learn connections:
+		    // 2 methods to help a Column's proximal Segment
+		    // Synapses learn connections:
 		    // 1) If activeDutyCycle(measures winning rate) is too low.
 		    // The overall boost value of the Columns is increased.
 		    // 2) If overlapDutyCycle(measures connected Synapses with
@@ -232,16 +267,11 @@ public class SpatialPooler extends Pooler {
 		    if (columns[x][y].getOverlapDutyCycle() < minimumActiveDutyCycle
 			    && this.getLearningState()) {
 			columns[x][y]
-				.increaseProximalSegmentSynapsePermanences(10);
-			// TODO: more biologically accurate
+				.increaseProximalSegmentSynapsePermanences(1);
 		    }
 		}
 	    }
 	}
-	// TODO: View detials of this problem here:
-	// https://github.com/quinnliu/WalnutiQ/issues/27
-	// this.region
-	// .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
 
     /**
@@ -290,8 +320,6 @@ public class SpatialPooler extends Pooler {
 	for (int columnIndex = xInitial; columnIndex < xFinal; columnIndex++) {
 	    for (int rowIndex = yInitial; rowIndex < yFinal; rowIndex++) {
 		if (columnIndex == columnXAxis && rowIndex == columnYAxis) {
-		    // TODO: To make inhibition a circle around input Column,
-		    // change to remove corners of this rectangle inhibition
 		} else {
 		    Column newColumn = columns[columnIndex][rowIndex];
 		    if (newColumn != null) {
@@ -309,7 +337,8 @@ public class SpatialPooler extends Pooler {
      * @return the kth highest overlapScore value of a Column object within the
      *         neighborColumns list.
      */
-    public int kthScoreOfColumns(List<Column> neighborColumns, int desiredLocalActivity) {
+    public int kthScoreOfColumns(List<Column> neighborColumns,
+	    int desiredLocalActivity) {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
 		    "neighborColumns in SpatialPooler method kthScoreOfColumns cannot be null");
@@ -357,9 +386,11 @@ public class SpatialPooler extends Pooler {
 			.getBottomLayerXYAxisLength();
 
 		// get the column position relative to the input layer
-		double xRatio = bottomLayerDimensions.width / this.region.getXAxisLength();
+		double xRatio = bottomLayerDimensions.width
+			/ this.region.getXAxisLength();
 		double columnX = xRatio / 2 + x * xRatio;
-		double yRatio = bottomLayerDimensions.height / this.region.getYAxisLength();
+		double yRatio = bottomLayerDimensions.height
+			/ this.region.getYAxisLength();
 		double columnY = yRatio / 2 + y * yRatio;
 
 		double totalSynapseDistanceFromOriginColumn = 0.0;

@@ -49,7 +49,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	// https://github.com/quinnliu/WalnutiQ/blob/master/images/main/java/model/2.bmp
 	this.retina.seeBMPImage("2.bmp");
 
-	this.spatialPooler.performSpatialPoolingOnRegion();
+	this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
 	Set<ColumnPosition> columnActivityAfterSeeingImage2 = this.spatialPooler
 		.getActiveColumnPositions();
 	assertEquals(13, columnActivityAfterSeeingImage2.size());
@@ -59,7 +59,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	// https://github.com/quinnliu/WalnutiQ/blob/master/images/main/java/model/2_with_some_noise.bmp
 	this.retina.seeBMPImage("2_with_some_noise.bmp");
 
-	this.spatialPooler.performSpatialPoolingOnRegion();
+	this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
 	Set<ColumnPosition> columnActivityAfterSeeingImage2_with_some_noise = this.spatialPooler
 		.getActiveColumnPositions();
 	assertEquals(13, columnActivityAfterSeeingImage2_with_some_noise.size());
@@ -72,7 +72,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	// https://github.com/quinnliu/WalnutiQ/blob/master/images/main/java/model/2_with_some_noise.bmp
 	this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
 
-	this.spatialPooler.performSpatialPoolingOnRegion();
+	this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
 	Set<ColumnPosition> columnActivityAfterSeeingImage2_with_alot_of_noise = this.spatialPooler
 		.getActiveColumnPositions();
 	assertEquals(14,

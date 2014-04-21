@@ -129,13 +129,24 @@ public class RegionConsoleViewer {
      *
      * @param doubleCharArray
      *            The 2-D char array to be printed.
+     * @return The printed 2-D char array as a String.
+     *
      */
-    public static void printDoubleCharArray(char[][] doubleCharArray) {
+    public static String doubleCharArrayAsString(char[][] doubleCharArray) {
+	String doubleCharArrayAsString = "";
 	for (int x = 0; x < doubleCharArray.length; x++) {
-	    System.out.println();
+	    boolean isAtBeginning = (x == 0);
+	    boolean isAtEnd = (x == doubleCharArray.length);
+	    if (isAtBeginning || isAtEnd) {
+		// don't add anything
+	    } else {
+		doubleCharArrayAsString += "\n";
+	    }
+
 	    for (int y = 0; y < doubleCharArray[x].length; y++) {
-		System.out.print(doubleCharArray[x][y]);
+		doubleCharArrayAsString += doubleCharArray[x][y];
 	    }
 	}
+	return doubleCharArrayAsString;
     }
 }

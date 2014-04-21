@@ -5,7 +5,7 @@ import java.io.IOException;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version Apr 10, 2014
+ * @version Apr 21, 2014
  */
 public class FindOptimalParametersForSDRTest extends junit.framework.TestCase {
 
@@ -15,19 +15,22 @@ public class FindOptimalParametersForSDRTest extends junit.framework.TestCase {
 	// object)
     }
 
-    /**
-     * Place a description of your method here.
-     *
-     * @throws IOException
-     */
-    public void testGetSpatialPoolingScoreWithGivenParametersForMarkNullaModel()
+    public void test_printToFileSDRScoreFor1RetinaTo1RegionModelFor1Digit()
 	    throws IOException {
 	assertEquals(
 		-0.02,
 		FindOptimalParametersForSDR
-			.printToFileSDRScoreFor1RetinaTo1RegionModel(95.2,
-				5.8, 56.1,
-				"./tests/model/MARK_I/SDR/currentSDRScore.txt"),
+			.printToFileSDRScoreFor1RetinaTo1RegionModelFor1Digit(
+				95.2, 5.8, 56.1,
+				"./src/test/java/model/MARK_I/SDR/SDRScore.txt"),
 		.01);
+    }
+
+    public void test_printToFileAverageSDRScoreFor1RetinaTo1RegionModelForAllDigitsInMNIST()
+	    throws IOException {
+	FindOptimalParametersForSDR
+		.printToFileAverageSDRScoreFor1RetinaTo1RegionModelForAllDigitsInMNIST(
+			50, 3, 20.0,
+			"./src/test/java/model/MARK_I/SDR/averageSDRScore.txt");
     }
 }

@@ -1,31 +1,18 @@
 package test.java.model.MARK_I;
 
 import main.java.model.MARK_I.Segment;
-
 import main.java.model.util.RegionConsoleViewer;
-
 import main.java.model.MARK_I.Cell;
-
 import main.java.model.MARK_I.Synapse;
-
 import main.java.model.MARK_I.Column;
-
 import main.java.model.MARK_I.ColumnPosition;
-
 import main.java.model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
-
 import main.java.model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
-
 import main.java.model.Retina;
-
 import main.java.model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
-
 import main.java.model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
-
 import main.java.model.MARK_I.SpatialPooler;
-
 import main.java.model.MARK_I.Region;
-
 import java.io.IOException;
 import java.util.Set;
 import java.util.List;
@@ -147,16 +134,24 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	char[][] columnActiveStates = RegionConsoleViewer
 		.getColumnActiveStatesCharArray(this.parentRegion);
 
-	// TODO: assert equals with output stream
-	// System.out.println("\n--test_computeActiveColumnsOfRegion()--");
-	// System.out.println(this.parentRegion.toString());
+	// Question: how can 5 columns along row 5 all be active next to each
+	// other?
 
-	// TODO: columns along row 5 are all active next to each other?
-	// How did inhibition radius reduce to 0 so quickly? Set minimum of 1?
-	// RegionConsoleViewer.printDoubleCharArray(columnActiveStates);
+	// Answer: the desired local activity is applied to each column thus you
+	// can have more active columns within inhibitionRadius(2) than
+	// desiredLocalActivity(3)
+	assertEquals("iiiiaiii\naiiiaiii\niiiiiiii\niiiiiiii\naaaaaiii\n"
+		+ "iiiiiiii\niiiiiiii\niiiiiiii",
+		RegionConsoleViewer.doubleCharArrayAsString(columnActiveStates));
     }
 
     public void test_regionLearnOneTimeStep() {
+	assertEquals(1, this.parentRegion.getInhibitionRadius());
+	this.spatialPooler.regionLearnOneTimeStep();
+	assertEquals(3, this.parentRegion.getInhibitionRadius());
+    }
+
+    public void test_modelLongTermPotentiationAndDepression() {
 	Column[][] columns = this.parentRegion.getColumns();
 	Segment proximalSegment_00 = columns[0][0].getProximalSegment();
 	Synapse<Cell> synapse_00 = proximalSegment_00.getSynapse(0, 0);
@@ -165,37 +160,40 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	// X-Axis: Column activeState
 	// Y-Axis: Synapse/InputCell activeState
 	// -----true false
-	// true .315 .295
+	// true .32 .295
 	// false.300 .300
 	columns[0][0].setActiveState(true);
 	Cell cell_00 = (Cell) synapse_00.getConnectedCell();
 	cell_00.setActiveState(true);
 	assertEquals(0.3f, synapse_00.getPermanenceValue(), 0.001);
-	this.spatialPooler.regionLearnOneTimeStep();
-	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
+	this.spatialPooler.modelLongTermPotentiationAndDepression();
+	assertEquals(0.32f, synapse_00.getPermanenceValue(), 0.001);
 
 	// now the Synapse permanenceValue is decreased
 	columns[0][0].setActiveState(true);
 	cell_00.setActiveState(false);
+	assertEquals(0.32f, synapse_00.getPermanenceValue(), 0.001);
+	this.spatialPooler.modelLongTermPotentiationAndDepression();
 	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
-	this.spatialPooler.regionLearnOneTimeStep();
-	assertEquals(0.310f, synapse_00.getPermanenceValue(), 0.001);
 
 	// when Column activeState is false a Synapse's permanenceValue does
 	// not change whether the Synapse is active itself or not
 	columns[0][0].setActiveState(false);
 	cell_00.setActiveState(true);
-	assertEquals(0.310f, synapse_00.getPermanenceValue(), 0.001);
-	this.spatialPooler.regionLearnOneTimeStep();
-	assertEquals(0.310f, synapse_00.getPermanenceValue(), 0.001);
+	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
+	this.spatialPooler.modelLongTermPotentiationAndDepression();
+	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
 
 	columns[0][0].setActiveState(false);
 	cell_00.setActiveState(false);
-	assertEquals(0.310f, synapse_00.getPermanenceValue(), 0.001);
-	this.spatialPooler.regionLearnOneTimeStep();
-	assertEquals(0.310f, synapse_00.getPermanenceValue(), 0.001);
+	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
+	this.spatialPooler.modelLongTermPotentiationAndDepression();
+	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
+    }
 
-	// TODO: test the remainder of this SpatialPooler method
+    public void tests_boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
+	// TODO: test this method after temporal pooling is done when
+	// the effect of this method will actually be useful
     }
 
     public void test_updateNeighborColumns() {
