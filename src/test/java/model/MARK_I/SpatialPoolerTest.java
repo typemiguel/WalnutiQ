@@ -1,31 +1,18 @@
 package test.java.model.MARK_I;
 
 import main.java.model.MARK_I.Segment;
-
 import main.java.model.util.RegionConsoleViewer;
-
 import main.java.model.MARK_I.Cell;
-
 import main.java.model.MARK_I.Synapse;
-
 import main.java.model.MARK_I.Column;
-
 import main.java.model.MARK_I.ColumnPosition;
-
 import main.java.model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
-
 import main.java.model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
-
 import main.java.model.Retina;
-
 import main.java.model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
-
 import main.java.model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
-
 import main.java.model.MARK_I.SpatialPooler;
-
 import main.java.model.MARK_I.Region;
-
 import java.io.IOException;
 import java.util.Set;
 import java.util.List;
@@ -157,6 +144,12 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_regionLearnOneTimeStep() {
+	assertEquals(1, this.parentRegion.getInhibitionRadius());
+	this.spatialPooler.regionLearnOneTimeStep();
+	assertEquals(3, this.parentRegion.getInhibitionRadius());
+    }
+
+    public void test_modelLongTermPotentiationAndDepression() {
 	Column[][] columns = this.parentRegion.getColumns();
 	Segment proximalSegment_00 = columns[0][0].getProximalSegment();
 	Synapse<Cell> synapse_00 = proximalSegment_00.getSynapse(0, 0);
@@ -171,14 +164,14 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	Cell cell_00 = (Cell) synapse_00.getConnectedCell();
 	cell_00.setActiveState(true);
 	assertEquals(0.3f, synapse_00.getPermanenceValue(), 0.001);
-	this.spatialPooler.regionLearnOneTimeStep();
+	this.spatialPooler.modelLongTermPotentiationAndDepression();
 	assertEquals(0.32f, synapse_00.getPermanenceValue(), 0.001);
 
 	// now the Synapse permanenceValue is decreased
 	columns[0][0].setActiveState(true);
 	cell_00.setActiveState(false);
 	assertEquals(0.32f, synapse_00.getPermanenceValue(), 0.001);
-	this.spatialPooler.regionLearnOneTimeStep();
+	this.spatialPooler.modelLongTermPotentiationAndDepression();
 	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
 
 	// when Column activeState is false a Synapse's permanenceValue does
@@ -186,16 +179,19 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	columns[0][0].setActiveState(false);
 	cell_00.setActiveState(true);
 	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
-	this.spatialPooler.regionLearnOneTimeStep();
+	this.spatialPooler.modelLongTermPotentiationAndDepression();
 	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
 
 	columns[0][0].setActiveState(false);
 	cell_00.setActiveState(false);
 	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
-	this.spatialPooler.regionLearnOneTimeStep();
+	this.spatialPooler.modelLongTermPotentiationAndDepression();
 	assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
+    }
 
-	// TODO: test the remainder of this SpatialPooler method
+    public void tests_boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
+	// TODO: test this method after temporal pooling is done when
+	// the effect of this method will actually be useful
     }
 
     public void test_updateNeighborColumns() {

@@ -149,6 +149,16 @@ public class SpatialPooler extends Pooler {
      * updated here.
      */
     public void regionLearnOneTimeStep() {
+	this.modelLongTermPotentiationAndDepression();
+
+	this.boostSynapsesBasedOnActiveAndOverlapDutyCycle();
+
+	// TODO: View detials of this problem here:
+	// https://github.com/quinnliu/WalnutiQ/issues/27
+	this.region.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+    }
+
+    public void modelLongTermPotentiationAndDepression() {
 	Column[][] columns = this.region.getColumns();
 
 	if (super.getLearningState()) {
@@ -156,18 +166,17 @@ public class SpatialPooler extends Pooler {
 		for (int y = 0; y < columns[0].length; y++) {
 		    if (columns[x][y].getActiveState()) {
 			// increase and decrease of proximal segment synapses
-			// based
-			// on each Synapses's activeState
+			// based on each Synapses's activeState
 			Set<Synapse<Cell>> synapses = columns[x][y]
 				.getProximalSegment().getSynapses();
 			for (Synapse<Cell> synapse : synapses) {
 			    if (synapse.getConnectedCell() != null
 				    && synapse.getConnectedCell()
 					    .getActiveState()) {
-				// models long term potentiation
+				// model long term potentiation
 				synapse.increasePermanence();
 			    } else {
-				// models long term depression
+				// model long term depression
 				synapse.decreasePermanence();
 			    }
 			}
@@ -175,8 +184,11 @@ public class SpatialPooler extends Pooler {
 		}
 	    }
 	}
+    }
 
-	// TODO: the remainder of this method still needs to be tested
+    public void boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
+	Column[][] columns = this.region.getColumns();
+
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 		if (columns[x][y].getActiveState()) {
@@ -184,7 +196,8 @@ public class SpatialPooler extends Pooler {
 		    // on each Synapses's activeState
 		    // columns[x][y].performBoosting();
 
-		    // 2 methods to help a Column learn connections:
+		    // 2 methods to help a Column's proximal Segment
+		    // Synapses learn connections:
 		    // 1) If activeDutyCycle(measures winning rate) is too low.
 		    // The overall boost value of the Columns is increased.
 		    // 2) If overlapDutyCycle(measures connected Synapses with
@@ -237,9 +250,6 @@ public class SpatialPooler extends Pooler {
 		}
 	    }
 	}
-	// TODO: View detials of this problem here:
-	// https://github.com/quinnliu/WalnutiQ/issues/27
-	// this.region.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
 
     /**
