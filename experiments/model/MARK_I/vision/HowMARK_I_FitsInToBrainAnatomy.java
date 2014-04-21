@@ -4,7 +4,6 @@ import main.java.model.*;
 import main.java.model.MARK_I.*;
 import main.java.model.MARK_I.connectTypes.*;
 import main.java.model.util.*;
-
 import com.google.gson.Gson;
 import java.util.Set;
 import java.io.IOException;
