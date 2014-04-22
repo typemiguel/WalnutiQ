@@ -336,4 +336,14 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	this.spatialPooler.updateOverlapDutyCycle(0, 0);
 	assertEquals(0.4975f, columns[0][0].getOverlapDutyCycle(), 0.0001);
     }
+
+    public void test_getActiveColumnPositionsAsString() throws IOException {
+	assertEquals("()",
+		this.spatialPooler.getActiveColumnPositionsAsString());
+
+	this.test_performSpatialPoolingOnRegion();
+
+	assertEquals("((6, 5), (6, 2), (1, 2), (2, 5), (4, 4))",
+		this.spatialPooler.getActiveColumnPositionsAsString());
+    }
 }
