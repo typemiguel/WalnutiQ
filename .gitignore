@@ -2,9 +2,11 @@
 /build
 .idea
 *.iml
+*.bmp
 
 *.class
 .classpath
 bin/**
+
 test_saveRegionObject.txt
 PartialNervousSystemObject.json
