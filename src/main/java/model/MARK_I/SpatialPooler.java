@@ -465,6 +465,30 @@ public class SpatialPooler extends Pooler {
 	return this.region;
     }
 
+    /**
+     * @return Return the list of active column positions in the following
+     * format: ((0, 0), (1, 1), (2, 2), (2,0))
+     */
+    public String getActiveColumnPositionsAsString() {
+	String listOfActiveColumns = "(";
+
+	int numberOfActiveColumns = this.activeColumnPositions.size();
+	for (ColumnPosition columnPosition : this.activeColumnPositions) {
+	    listOfActiveColumns += "(" + columnPosition.getX() + ", " +
+		    columnPosition.getY() + ")";
+	    --numberOfActiveColumns;
+
+	    if (numberOfActiveColumns == 0) {
+		// this is the last active column so don't print ", "
+	    } else {
+		listOfActiveColumns += ", ";
+	    }
+	}
+
+	listOfActiveColumns += ")";
+	return listOfActiveColumns;
+    }
+
     @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
