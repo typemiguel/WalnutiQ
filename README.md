@@ -1,7 +1,7 @@
-<center>**[Eclipse Install](#setup-in-linuxmacwindows-with-eclipselike-microsoft-word-but-for-writing-code)** |
+**[Eclipse Install](#setup-in-linuxmacwindows-with-eclipselike-microsoft-word-but-for-writing-code)** |
 **[Gradle Install](#setup-in-linuxmacwindows-with-gradlecompiles-our-java-code-from-command-line)** |
 **[How to Contribute](#how-to-contribute)** |
-**[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)**</center>
+**[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)**
 
 # [WalnutiQ](http://walnutiq.com)
 
@@ -95,14 +95,18 @@ to better understand the theory behind this repository.
 ## How to Contribute
 
 1. View an example of how some of the code is used in the file
-   [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java)
+   [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
+   Please do not be afriad to ask a question if you are confused!
 
 2. View an example of how the current model can be instantiated as a simplified human visual pathway
    in [HowMARK_I_FitsInToBrainAnatomy.java](./experiments/model/MARK_I/vision/HowMARK_I_FitsInToBrainAnatomy.java)
 
 3. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) and create a new issue
    with a question if you are confused. Otherwise, asign a issue to yourself you would like to work on or suggest
-   a new issue if you kind of know what you are doing. Happy coding!
+   a new issue if you kinda know what you are doing. 
+
+4. For now we are using the git workflow model described 
+   [here](https://github.com/quinnliu/WalnutiQ/issues/62). Happy coding!
 
 ## What each file/folder in this repository is for:
   - experiments  
@@ -126,6 +130,9 @@ to better understand the theory behind this repository.
               + [connectTypes](./src/main/java/model/MARK_I/connectTypes) = classes allow the different 
                 brain structures in MARK I to connect to each other in a variety of ways
               + [SpatialPooler.java](./src/main/java/model/MARK_I/SpatialPooler.java) 
+                = models the sparse & distributed spiking activity of neurons seen in the neocortex 
+                  and models long term potentiation and depression on synapses
+
             - [util](./src/main/java/model/util) = classes that enable the brain model properties
               to be viewed graphically and efficiently saved and opened  
       + test = test classes for important classes in the `src/main/java/model` folder
