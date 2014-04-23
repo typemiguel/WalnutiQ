@@ -1,5 +1,7 @@
 package main.java.model.MARK_I;
 
+import java.util.Set;
+
 /**
  * Simulates a cortical pyramidal cell.
  *
@@ -17,6 +19,22 @@ public class Neuron extends Cell {
 
     public Neuron() {
 	super(); // Initializes isActive state
+    }
+
+    public boolean getPreviousPredictingState() {
+	return false;
+    }
+
+    public DistalSegment getBestPreviousActiveSegment() {
+	return null;
+    }
+
+    public Set<DistalSegment> getDistalSegments() {
+	return null;
+    }
+
+    public void setPredictingState(boolean predictingState) {
+
     }
 
     @Override

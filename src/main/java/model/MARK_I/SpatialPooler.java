@@ -21,12 +21,12 @@ public class SpatialPooler extends Pooler {
 
     private final float MINIMUM_COLUMN_FIRING_RATE = 0.01f;
 
-    public SpatialPooler(Region newRegion) {
-	if (newRegion == null) {
+    public SpatialPooler(Region region) {
+	if (region == null) {
 	    throw new IllegalArgumentException(
-		    "newRegion in SpatialPooler class constructor cannot be null");
+		    "region in SpatialPooler class constructor cannot be null");
 	}
-	this.region = newRegion;
+	super.region = region;
 	this.activeColumns = new HashSet<Column>();
 	this.activeColumnPositions = new HashSet<ColumnPosition>();
     }
@@ -84,11 +84,15 @@ public class SpatialPooler extends Pooler {
      *
      * Now use:
      *
-     * spatialPooler.performSpatialPoolingOnRegion(); Set<ColumnPosition>
-     * columnActivity = this.spatialPooler.getActiveColumnPositions();
+     * spatialPooler.performSpatialPoolingOnRegion();
+     * Set<ColumnPosition> columnActivity = this.spatialPooler.getActiveColumnPositions();
      */
     public Set<ColumnPosition> getActiveColumnPositions() {
 	return this.activeColumnPositions;
+    }
+
+    public Set<Column> getActiveColumns() {
+	return this.activeColumns;
     }
 
     /**
