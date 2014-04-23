@@ -2,6 +2,10 @@ package main.java.model.MARK_I.movement;
 
 import main.java.model.MARK_I.VisionCell;
 
+/**
+ *  Put all logic for updating SaccadingRetina elsewhere. In reality
+ *  a retina does not update itself.
+ */
 public class SaccadingRetina {
     private VisionCell[][] visionCells;
 
@@ -14,5 +18,9 @@ public class SaccadingRetina {
 		this.visionCells[currentRow][currentColumn] = new VisionCell();
 	    }
 	}
+    }
+
+    public VisionCell[][] getVisionCells() {
+	return this.visionCells;
     }
 }
