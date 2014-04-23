@@ -13,7 +13,9 @@ import java.util.Set;
  * SpatialPooler
  *
  * Output from TemporalPooler: boolean OR of the actual active??? and predictive
- * state for each neuron in the set of activeColumns of a Region???
+ * state for each neuron in the set of activeColumns of a Region??? how are
+ * synapses permances decremented/incremented??? which neurons & which segments
+ * are affected???
  *
  * Sequence memory: learning sequences of SDRs??? Uses the columns to represent
  * inputs uniquely in different contexts???
@@ -39,9 +41,13 @@ public class TemporalPooler extends Pooler {
 	this.phaseTwo(activeColumns);
 
 	// phase 3
-	this.phaseThree();
+	this.phaseThree(activeColumns);
     }
 
+    /**
+     * Compute the activeState for each Neuron in activeColumns. Then in each
+     * active Column a learning Neuron is chosen.
+     */
     public void phaseOne(Set<Column> activeColumns) {
 	for (Column column : activeColumns) {
 
@@ -77,19 +83,62 @@ public class TemporalPooler extends Pooler {
 		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
 		column.setLearningNeuronPosition(bestNeuronIndex);
 
-		// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true)???
-		// sUpdate.sequenceSegment = true???
-		// segmentUpdateList.add(sUpdate)???
+		// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true);
+		// sUpdate.sequenceSegment = true;
+		// segmentUpdateList.add(sUpdate);
 	    }
 	}
     }
 
+    /**
+     * Calculated the predictive state for each Neuron. A Neuron's
+     * predictiveState will be true if 1 or more distal segments becomes active.
+     */
     public void phaseTwo(Set<Column> activeColumns) {
+	for (Column column : activeColumns) {
+	    for (Neuron neuron : column.getNeurons()) {
+		for (Segment segment : neuron.getDistalSegments()) {
+		    if (segment.getActiveState()) {
+			neuron.setPredictingState(true);
 
+			// activeUpdate = getSegmentActiveSynapses(c, i, s, t, false);
+
+			// segmentUpdateList.add(activeUpdate);
+
+			// predSegment = getBestMatchingSegment(c, i, t-1);
+			Segment predictingSegment = neuron.getBestPreviousActiveSegment();
+
+			// predUpdate = getSegmentActiveSynapses(c, i, predSegment, t-1, true);
+
+			// segmentUpdateList.add(predUpdate);
+		    }
+		}
+	    }
+
+	}
     }
 
-    public void phaseThree() {
+    /**
+     * Carries out learning. Segment updates that have been queued up are
+     * actually implemented once we get feed-forward input and a Neuron is
+     * chosen as a learning Neuron. Otherwise, if the Neuron ever stops
+     * predicting for any reason, we negatively reinforce the Segments.
+     */
+    public void phaseThree(Set<Column> activeColumns) {
+	for (Column column : activeColumns) {
+	    Neuron learningNeuron = column.getLearningNeuron();
 
+	    // if (learnState(s, i, t) == 1) {
+
+	    //     adaptSegments(segmentUpdateList(c, i), true);
+	    //     segmentUpdateList(c, i).delete();
+
+	    // } else if( predictiveState(c, i, t) == 0 && predictiveState(c, i , t-1) == 1) {
+
+	    //     adaptSegments(segmentUpdateList(c, i), false);
+	    //     segmentUpdateList(c, i).delete();
+	    // }
+	}
     }
 
     public int getBestMatchingNeuronIndex(Column column) {

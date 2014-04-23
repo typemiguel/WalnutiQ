@@ -59,7 +59,6 @@ public class TemporalPoolerInferenceOnly extends Pooler {
 		    }
 		}
 	    }
-
 	}
     }
 }

@@ -265,4 +265,8 @@ public class Column {
     public void setLearningNeuronPosition(int learningNeuronPosition) {
 
     }
+
+    public Neuron getLearningNeuron() {
+	return null;
+    }
 }
