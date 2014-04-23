@@ -61,7 +61,7 @@ public class TemporalPooler extends Pooler {
 		    DistalSegment bestSegment = neurons[i]
 			    .getBestPreviousActiveSegment();
 
-		    if (bestSegment != null && bestSegment.getSequenceState()) {
+		    if (bestSegment != null && bestSegment.getSequenceStatePredictsFeedFowardInputOnNextStep()) {
 			bottomUpPredicted = true;
 			neurons[i].setActiveState(true);
 
