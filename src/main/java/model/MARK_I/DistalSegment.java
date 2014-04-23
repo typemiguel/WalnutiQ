@@ -9,4 +9,8 @@ public class DistalSegment extends Segment {
     public boolean getSequenceState() {
 	return false;
     }
+
+    public boolean getPreviousActiveStateLearnState() {
+	return false;
+    }
 }

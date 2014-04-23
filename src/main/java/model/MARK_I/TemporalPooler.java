@@ -43,7 +43,45 @@ public class TemporalPooler extends Pooler {
     }
 
     public void phaseOne(Set<Column> activeColumns) {
+	for (Column column : activeColumns) {
 
+	    boolean bottomUpPredicted = false;
+	    boolean learningCellChosen = false;
+
+	    Neuron[] neurons = column.getNeurons();
+	    for (int i = 0; i < neurons.length; i++) {
+
+		if (neurons[i].getPreviousActiveState() == true) {
+		    DistalSegment bestSegment = neurons[i]
+			    .getBestPreviousActiveSegment();
+
+		    if (bestSegment != null && bestSegment.getSequenceState()) {
+			bottomUpPredicted = true;
+			neurons[i].setActiveState(true);
+
+			if (bestSegment.getPreviousActiveStateLearnState()) {
+			    learningCellChosen = true;
+			    column.setLearningNeuronPosition(i);
+			}
+		    }
+		}
+	    }
+
+	    if (bottomUpPredicted == false) {
+		for (Neuron neuron : column.getNeurons()) {
+		    neuron.setActiveState(true);
+		}
+	    }
+
+	    if (learningCellChosen == false) {
+		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
+		column.setLearningNeuronPosition(bestNeuronIndex);
+
+		// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true)???
+		// sUpdate.sequenceSegment = true???
+		// segmentUpdateList.add(sUpdate)???
+	    }
+	}
     }
 
     public void phaseTwo(Set<Column> activeColumns) {
@@ -52,5 +90,9 @@ public class TemporalPooler extends Pooler {
 
     public void phaseThree() {
 
+    }
+
+    public int getBestMatchingNeuronIndex(Column column) {
+	return -1;
     }
 }

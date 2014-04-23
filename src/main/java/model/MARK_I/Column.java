@@ -261,4 +261,8 @@ public class Column {
 	String columnInformation = stringBuilder.toString();
 	return columnInformation;
     }
+
+    public void setLearningNeuronPosition(int learningNeuronPosition) {
+
+    }
 }
