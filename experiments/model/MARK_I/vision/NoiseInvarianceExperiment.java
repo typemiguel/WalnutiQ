@@ -3,7 +3,6 @@ package model.MARK_I.vision;
 import main.java.model.*;
 import main.java.model.MARK_I.*;
 import main.java.model.MARK_I.connectTypes.*;
-import java.util.Set;
 import java.io.IOException;
 
 /**
@@ -33,7 +32,7 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	// images this retina will see are all 66x66 pixels
 	this.retina = new Retina(66, 66);
 
-	this.region = new Region("Region", 8, 8, 1, 40, 3);
+	this.region = new Region("Region", 8, 8, 1, 77.8, 1);
 
 	AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
 	retinaToRegion.connect(this.retina.getVisionCells(), this.region, 0, 0);
@@ -42,40 +41,30 @@ public class NoiseInvarianceExperiment extends junit.framework.TestCase {
 	this.spatialPooler.setLearningState(true);
     }
 
-    public void test_runNoiseInvarianceExperiment() throws IOException {
-
+    public void test_NoiseInvarianceExperiment() throws IOException {
+	// View all three images of digit 2 @ https://db.tt/ElvG0WLM
 	// --------------------------"2.bmp"------------------------------------
-	// you can view image "2.bmp" @
-	// https://github.com/quinnliu/WalnutiQ/blob/master/images/main/java/model/2.bmp
 	this.retina.seeBMPImage("2.bmp");
 
 	this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
-	Set<ColumnPosition> columnActivityAfterSeeingImage2 = this.spatialPooler
-		.getActiveColumnPositions();
-	assertEquals(13, columnActivityAfterSeeingImage2.size());
+
+	assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
+		this.spatialPooler.getActiveColumnPositionsAsString());
 
 	// -------------------"2_with_some_noise.bmp"---------------------------
-	// you can view image "2_with_some_noise.bmp" @
-	// https://github.com/quinnliu/WalnutiQ/blob/master/images/main/java/model/2_with_some_noise.bmp
 	this.retina.seeBMPImage("2_with_some_noise.bmp");
 
 	this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
-	Set<ColumnPosition> columnActivityAfterSeeingImage2_with_some_noise = this.spatialPooler
-		.getActiveColumnPositions();
-	assertEquals(13, columnActivityAfterSeeingImage2_with_some_noise.size());
 
-	assertTrue(columnActivityAfterSeeingImage2
-		.containsAll(columnActivityAfterSeeingImage2_with_some_noise));
+	assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
+		this.spatialPooler.getActiveColumnPositionsAsString());
 
 	// -------------------"2_with_alot_of_noise.bmp"------------------------
-	// you can view image "2_with_some_noise.bmp" @
-	// https://github.com/quinnliu/WalnutiQ/blob/master/images/main/java/model/2_with_some_noise.bmp
 	this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
 
 	this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
-	Set<ColumnPosition> columnActivityAfterSeeingImage2_with_alot_of_noise = this.spatialPooler
-		.getActiveColumnPositions();
-	assertEquals(14,
-		columnActivityAfterSeeingImage2_with_alot_of_noise.size());
+
+	assertEquals("((6, 2), (1, 3), (2, 5))",
+		this.spatialPooler.getActiveColumnPositionsAsString());
     }
 }
