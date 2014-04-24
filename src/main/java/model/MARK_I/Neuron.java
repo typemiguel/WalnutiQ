@@ -21,6 +21,10 @@ public class Neuron extends Cell {
 	super(); // Initializes isActive state
     }
 
+    public boolean getPredictingState() {
+	return false;
+    }
+
     public boolean getPreviousPredictingState() {
 	return false;
     }

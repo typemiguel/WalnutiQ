@@ -127,17 +127,16 @@ public class TemporalPooler extends Pooler {
     public void phaseThree(Set<Column> activeColumns) {
 	for (Column column : activeColumns) {
 	    Neuron learningNeuron = column.getLearningNeuron();
-
-	    // if (learnState(s, i, t) == 1) {
-
-	    //     adaptSegments(segmentUpdateList(c, i), true);
-	    //     segmentUpdateList(c, i).delete();
-
-	    // } else if( predictiveState(c, i, t) == 0 && predictiveState(c, i , t-1) == 1) {
-
-	    //     adaptSegments(segmentUpdateList(c, i), false);
-	    //     segmentUpdateList(c, i).delete();
-	    // }
+	    for (Neuron neuron : column.getNeurons()) {
+		// if (learnState(s, i, t) == 1) {
+		if (neuron.equals(learningNeuron)) {
+		    // adaptSegments(segmentUpdateList(c, i), true);
+		    // segmentUpdateList(c, i).delete();
+		} else if (neuron.getPredictingState() == false && neuron.getPreviousPredictingState() == true) {
+		    // adaptSegments(segmentUpdateList(c, i), false);
+		    // segmentUpdateList(c, i).delete();
+		}
+	    }
 	}
     }
 
