@@ -1,6 +1,6 @@
-package test.java.model.util;
+package model.util;
 
-import main.java.model.util.RegionConsoleViewer;
+import model.util.RegionConsoleViewer;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)

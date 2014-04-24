@@ -1,7 +1,7 @@
-package test.java.model;
+package model;
 
-import main.java.model.MARK_I.VisionCell;
-import main.java.model.Retina;
+import model.MARK_I.VisionCell;
+
 import java.io.IOException;
 
 /**

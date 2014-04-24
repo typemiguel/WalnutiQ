@@ -1,9 +1,9 @@
-package test.java.model.MARK_I.connectTypes;
+package model.MARK_I.connectTypes;
 
-import main.java.model.MARK_I.Column;
-import main.java.model.MARK_I.Region;
-import main.java.model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
-import main.java.model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
+import model.MARK_I.Column;
+import model.MARK_I.Region;
+import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
+import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)

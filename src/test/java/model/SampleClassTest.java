@@ -1,6 +1,6 @@
-package test.java.model;
+package model;
 
-import main.java.model.SampleClass;
+import model.SampleClass;
 
 public class SampleClassTest extends junit.framework.TestCase {
     private SampleClass sampleClass;
