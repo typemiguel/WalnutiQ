@@ -1,18 +1,28 @@
 package model.MARK_I.vision;
 
-import model.*;
-import model.MARK_I.*;
-import model.MARK_I.connectTypes.*;
-import model.util.*;
 import com.google.gson.Gson;
-import java.util.Set;
+import junit.framework.TestCase;
+import model.LGN;
+import model.MARK_I.ColumnPosition;
+import model.MARK_I.Neocortex;
+import model.MARK_I.Region;
+import model.MARK_I.SpatialPooler;
+import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
+import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
+import model.NervousSystem;
+import model.Retina;
+import model.util.JsonFileInputOutput;
+
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version April 12, 2014
  */
-public class HowMARK_I_FitsInToBrainAnatomy extends junit.framework.TestCase {
+public class HowMARK_I_FitsInToBrainAnatomy extends TestCase {
     private NervousSystem partialNervousSystem;
 
     /**

@@ -28,5 +28,5 @@ dependencies {
     compile files('referencedLibraries/mnist-tools.jar')
     runtime fileTree(dir: 'referencedLibraries', include: '*.jar')
 
-    testCompile group: 'junit', name: 'junit', version: '4.+'
+    testCompile 'junit:junit:4.11'
 }     

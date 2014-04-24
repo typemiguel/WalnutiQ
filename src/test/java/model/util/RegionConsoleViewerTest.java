@@ -1,12 +1,12 @@
 package model.util;
 
-import model.util.RegionConsoleViewer;
+import junit.framework.TestCase;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version April 21, 2014
  */
-public class RegionConsoleViewerTest extends junit.framework.TestCase {
+public class RegionConsoleViewerTest extends TestCase {
     private char[][] doubleCharArray;
 
     public void setUp() {

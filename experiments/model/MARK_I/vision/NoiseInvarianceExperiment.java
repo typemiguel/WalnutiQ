@@ -1,8 +1,12 @@
 package model.MARK_I.vision;
 
-import model.*;
-import model.MARK_I.*;
-import model.MARK_I.connectTypes.*;
+import junit.framework.TestCase;
+import model.MARK_I.Region;
+import model.MARK_I.SpatialPooler;
+import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
+import model.Retina;
+
 import java.io.IOException;
 
 /**
@@ -23,7 +27,7 @@ import java.io.IOException;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version April 12, 2014
  */
-public class NoiseInvarianceExperiment extends junit.framework.TestCase {
+public class NoiseInvarianceExperiment extends TestCase {
     private Retina retina;
     private Region region;
     private SpatialPooler spatialPooler;

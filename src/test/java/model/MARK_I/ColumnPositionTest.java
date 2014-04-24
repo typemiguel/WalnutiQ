@@ -1,12 +1,12 @@
 package model.MARK_I;
 
-import model.MARK_I.ColumnPosition;
+import junit.framework.TestCase;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 18, 2013
  */
-public class ColumnPositionTest extends junit.framework.TestCase {
+public class ColumnPositionTest extends TestCase {
     private ColumnPosition columnPosition69;
     private ColumnPosition columnPosition_69;
     private ColumnPosition columnPosition96;

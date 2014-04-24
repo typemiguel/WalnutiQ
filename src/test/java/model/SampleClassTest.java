@@ -1,8 +1,8 @@
 package model;
 
-import model.SampleClass;
+import junit.framework.TestCase;
 
-public class SampleClassTest extends junit.framework.TestCase {
+public class SampleClassTest extends TestCase {
     private SampleClass sampleClass;
 
     public void setUp() {

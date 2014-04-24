@@ -1,19 +1,18 @@
 package model.MARK_I;
 
-import model.MARK_I.Column;
-import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
+import junit.framework.TestCase;
 import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
-import model.MARK_I.Region;
+import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.Dimension;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version July 29, 2013
  */
-public class RegionTest extends junit.framework.TestCase {
+public class RegionTest extends TestCase {
     private Region region;
 
     public void setUp() {

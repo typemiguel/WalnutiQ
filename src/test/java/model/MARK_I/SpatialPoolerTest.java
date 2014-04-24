@@ -1,28 +1,23 @@
 package model.MARK_I;
 
-import model.MARK_I.Segment;
-import model.util.RegionConsoleViewer;
-import model.MARK_I.Cell;
-import model.MARK_I.Synapse;
-import model.MARK_I.Column;
-import model.MARK_I.ColumnPosition;
-import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
-import model.Retina;
-import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
+import junit.framework.TestCase;
 import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
-import model.MARK_I.SpatialPooler;
-import model.MARK_I.Region;
+import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
+import model.Retina;
+import model.util.RegionConsoleViewer;
+
 import java.io.IOException;
-import java.util.Set;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version July 29, 2013
  */
-public class SpatialPoolerTest extends junit.framework.TestCase {
+public class SpatialPoolerTest extends TestCase {
 
     private Region parentRegion;
     private SpatialPooler spatialPooler;

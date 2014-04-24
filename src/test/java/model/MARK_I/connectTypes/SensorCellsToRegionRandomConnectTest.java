@@ -1,17 +1,16 @@
 package model.MARK_I.connectTypes;
 
+import junit.framework.TestCase;
 import model.MARK_I.Column;
-import model.MARK_I.VisionCell;
-import model.MARK_I.SensorCell;
 import model.MARK_I.Region;
-import model.MARK_I.connectTypes.SensorCellsToRegionRandomConnect;
+import model.MARK_I.SensorCell;
+import model.MARK_I.VisionCell;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version July 14th, 2013
  */
-public class SensorCellsToRegionRandomConnectTest extends
-	junit.framework.TestCase {
+public class SensorCellsToRegionRandomConnectTest extends TestCase {
 
     private SensorCellsToRegionRandomConnect connectType;
 

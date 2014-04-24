@@ -1,16 +1,14 @@
 package model.MARK_I;
 
-import model.MARK_I.Column;
-import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
+import junit.framework.TestCase;
 import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
-import model.MARK_I.Region;
-import model.MARK_I.Neocortex;
+import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 13, 2013
  */
-public class NeocortexTest extends junit.framework.TestCase {
+public class NeocortexTest extends TestCase {
     private Neocortex neocortex;
 
     public void setUp() {
