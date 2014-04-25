@@ -1,13 +1,12 @@
-package test.java.model.MARK_I;
+package model.MARK_I;
 
-import main.java.model.MARK_I.Neuron;
-import main.java.model.MARK_I.Column;
+import junit.framework.TestCase;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version August 3, 2013
  */
-public class ColumnTest extends junit.framework.TestCase {
+public class ColumnTest extends TestCase {
     private Column column;
 
     public void setUp() {

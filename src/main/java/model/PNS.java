@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)

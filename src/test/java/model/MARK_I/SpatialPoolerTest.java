@@ -1,28 +1,23 @@
-package test.java.model.MARK_I;
+package model.MARK_I;
 
-import main.java.model.MARK_I.Segment;
-import main.java.model.util.RegionConsoleViewer;
-import main.java.model.MARK_I.Cell;
-import main.java.model.MARK_I.Synapse;
-import main.java.model.MARK_I.Column;
-import main.java.model.MARK_I.ColumnPosition;
-import main.java.model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
-import main.java.model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
-import main.java.model.Retina;
-import main.java.model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
-import main.java.model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
-import main.java.model.MARK_I.SpatialPooler;
-import main.java.model.MARK_I.Region;
+import junit.framework.TestCase;
+import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
+import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
+import model.Retina;
+import model.util.RegionConsoleViewer;
+
 import java.io.IOException;
-import java.util.Set;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version July 29, 2013
  */
-public class SpatialPoolerTest extends junit.framework.TestCase {
+public class SpatialPoolerTest extends TestCase {
 
     private Region parentRegion;
     private SpatialPooler spatialPooler;
@@ -335,5 +330,15 @@ public class SpatialPoolerTest extends junit.framework.TestCase {
 	columns[0][0].setOverlapDutyCycle(0.5f);
 	this.spatialPooler.updateOverlapDutyCycle(0, 0);
 	assertEquals(0.4975f, columns[0][0].getOverlapDutyCycle(), 0.0001);
+    }
+
+    public void test_getActiveColumnPositionsAsString() throws IOException {
+	assertEquals("()",
+		this.spatialPooler.getActiveColumnPositionsAsString());
+
+	this.test_performSpatialPoolingOnRegion();
+
+	assertEquals("((6, 5), (6, 2), (1, 2), (2, 5), (4, 4))",
+		this.spatialPooler.getActiveColumnPositionsAsString());
     }
 }
