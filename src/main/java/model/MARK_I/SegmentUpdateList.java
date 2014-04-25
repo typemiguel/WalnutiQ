@@ -11,8 +11,12 @@ public class SegmentUpdateList {
 	this.segmentUpdateList = new ArrayList<SegmentUpdate>();
     }
 
-    public List<SegmentUpdate> getList() {
-	return this.segmentUpdateList;
+    public void add(SegmentUpdate segmentUpdate) {
+	this.segmentUpdateList.add(segmentUpdate);
+    }
+
+    public void clear() {
+	this.segmentUpdateList.clear();
     }
 
     public List<SegmentUpdate> getSegmentUpdatesForNeuron(Neuron neuron) {

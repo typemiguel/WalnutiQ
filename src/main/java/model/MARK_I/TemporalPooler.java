@@ -46,6 +46,8 @@ public class TemporalPooler extends Pooler {
 	this.phaseTwo(activeColumns);
 
 	this.phaseThree(activeColumns);
+
+	this.segmentUpdateList.clear();
     }
 
     /**
@@ -89,31 +91,39 @@ public class TemporalPooler extends Pooler {
 		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
 		column.setLearningNeuronPosition(bestNeuronIndex);
 
-		// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true);
-		SegmentUpdate segmentUpdate = this.getSynapsesWithActiveCells(
+		SegmentUpdate segmentUpdate = this.getSegmentActiveSynapses(
 			column.getCurrentPosition(), bestNeuronIndex, column
 				.getLearningNeuron()
-				.getBestPreviousActiveSegment(), true);
+				.getBestPreviousActiveSegment(), true, true);
 
 		segmentUpdate.setSequenceState(true);
-		this.segmentUpdateList.getList().add(segmentUpdate);
+		this.segmentUpdateList.add(segmentUpdate);
 	    }
 	}
     }
 
     /**
-     * Return a segmentUpdate data structure containing a list of proposed
-     * changes to segment s. Let activeSynapses be the list of active synapses
-     * where the originating cells have their activeState output = 1 at time
-     * step t. (This list is empty if s = -1 since the segment doesn't exist.)
-     * newSynapses is an optional argument that defaults to false. If
-     * newSynapses is true, then newSynapseCount - count(activeSynapses)
-     * synapses are added to activeSynapses. These synapses are randomly chosen
-     * from the set of cells that have learnState output = 1 at time step t.
+     * @return A segmentUpdate data structure containing a list of proposed
+     *         changes to segment. Let activeSynapses be the list of active
+     *         synapses where the originating cells have their activeState
+     *         output = 1 at time step t. (This list is empty if s = -1 since
+     *         the segment doesn't exist.) newSynapses is an optional argument
+     *         that defaults to false. If newSynapses is true, then
+     *         newSynapseCount - count(activeSynapses) synapses are added to
+     *         activeSynapses. These synapses are randomly chosen from the set
+     *         of cells that have learnState output = 1 at time step t.
      */
-    SegmentUpdate getSynapsesWithActiveCells(ColumnPosition columnPosition,
-	    int neuronIndex, Segment segment, boolean newSynapses) {
-	return null;
+    SegmentUpdate getSegmentActiveSynapses(ColumnPosition columnPosition,
+	    int neuronIndex, Segment segment, boolean previousTimeStep,
+	    boolean newSynapses) {
+
+	if (previousTimeStep) {
+
+	    return null;
+	} else { // current time step
+
+	    return null;
+	}
     }
 
     /**
@@ -122,24 +132,28 @@ public class TemporalPooler extends Pooler {
      */
     void phaseTwo(Set<Column> activeColumns) {
 	for (Column column : activeColumns) {
-	    for (Neuron neuron : column.getNeurons()) {
-		for (Segment segment : neuron.getDistalSegments()) {
+	    Neuron[] neurons = column.getNeurons();
+	    for (int i = 0; i < neurons.length; i++) {
+		for (Segment segment : neurons[i].getDistalSegments()) {
 		    if (segment.getActiveState()) {
-			neuron.setPredictingState(true);
+			neurons[i].setPredictingState(true);
 
-			// activeUpdate = getSegmentActiveSynapses(c, i, s, t,
-			// false);
+			SegmentUpdate activeUpdate = this
+				.getSegmentActiveSynapses(
+					column.getCurrentPosition(), i,
+					segment, false, false);
 
-			// segmentUpdateList.add(activeUpdate);
+			this.segmentUpdateList.add(activeUpdate);
 
-			// predSegment = getBestMatchingSegment(c, i, t-1);
-			Segment predictingSegment = neuron
+			Segment predictingSegment = neurons[i]
 				.getBestPreviousActiveSegment();
 
-			// predUpdate = getSegmentActiveSynapses(c, i,
-			// predSegment, t-1, true);
+			SegmentUpdate predictionUpdate = this
+				.getSegmentActiveSynapses(
+					column.getCurrentPosition(), i,
+					predictingSegment, true, true);
 
-			// segmentUpdateList.add(predUpdate);
+			this.segmentUpdateList.add(predictionUpdate);
 		    }
 		}
 	    }

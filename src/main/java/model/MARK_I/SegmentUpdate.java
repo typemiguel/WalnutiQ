@@ -1,7 +1,6 @@
 package model.MARK_I;
 
 import java.awt.Point;
-import java.util.HashSet;
 import java.util.Set;
 
 class SegmentUpdate {
