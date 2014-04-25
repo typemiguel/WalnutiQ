@@ -219,7 +219,6 @@ public class TemporalPooler extends Pooler {
 		    }
 		}
 	    }
-
 	}
     }
 
