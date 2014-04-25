@@ -49,19 +49,22 @@ programming. Make sure to read Numenta's great explanation
 of their research in this [white paper](https://db.tt/FuQWQuwE) 
 to better understand the theory behind this repository.
 
-## Setup in Linux/Mac/Windows with Eclipse(like Microsoft Word but for writing code)
-1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
+## Setup in Linux/Mac/Windows with Eclipse
+1. [Install Eclipse Standard 4.3.2](https://www.eclipse.org/downloads/) or use
+   any other version of Eclipse if you already have it installed.
 
 2. Fork this repository and clone it locally. Then import it as a 
    project into Eclipse.
 
-3. IMPORTANT: You will notice that your folders will have "red X's". 
+3. IMPORTANT: You will notice that your folders will have red X's everywhere. 
    To fix this right click your `src` folder then hover over "New", 
-   then click "Source Folder". Then give it the "Folder name:" src. 
-   You will also need to do this same process for the folders 
-   `experiments` and `images`. Make sure when you type the 
-   "Folder name:" you put in the folder name of 
-   the folder you previously just right clicked.
+   then click "Source Folder". Then give it the "Folder name:" `src/main/java`. 
+   Right click your `src` folder again and hover over "New", then click
+   "Source Folder". Then give it the "Folder name:" `src/test/java`
+   Similarily for the folder `experiments` right click the folder and go to
+   New `=>` Source Folder `=>` Folder name: `experiments`. 
+   Finally for the folder `images` right click the folder and go to
+   New `=>` Source Folder `=>` Folder name: `images`.
 
 4. In Eclipse, add all the libraries (.jar file) in the folder 
    `referencedLibraries/` by right-clicking your project `WalnutiQ` 
@@ -74,8 +77,10 @@ to better understand the theory behind this repository.
 6. In Eclipse, also add JRE System Library by right-clicking 
    your project `WalnutiQ` in the package explorer `=>` 
    Add Libraries... `=>` JRE System Library `=>` Next > `=>` Finish
+
+7. Right click your project `=>` Run As `=>` JUnit Test `=>` ALL TESTS PASS!
   
-## Setup in Linux/Mac/Windows with Gradle(compiles our Java code from command line)
+## Setup in Linux/Mac/Windows with Gradle
 1. Install Gradle in Linux OR Mac by typing to the command line:
    ```sh
    prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
@@ -88,9 +93,9 @@ to better understand the theory behind this repository.
 
 3. Fork this repo and clone it locally. Navigate into the `WalnutiQ/` folder
 
-4. Type in the command line `gradle build`. This may take a minute so no worries.
-   Go to the folder `build/reports/tests/`. View the file `index.html` in 
-   any browser and make sure all tests pass!
+4. Type in the command line `gradle build`. This may take a minute the first
+   time so no worries. Go to the folder `build/reports/tests/`. 
+   View the file `index.html` in any browser and make sure all tests pass!
 
 ## How to Contribute
 
