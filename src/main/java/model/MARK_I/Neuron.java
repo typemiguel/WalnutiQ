@@ -1,44 +1,107 @@
 package model.MARK_I;
 
-import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Simulates a cortical pyramidal cell.
  *
- * A Neuron has 3 different states?
- * 1) 3 spikes per second
- * 2) 10+ spikes per second
- * 3) 0 spikes per second
- * Support: https://db.tt/QFqA4Dta
+ * A real Neuron has 3 different states? 1) 3 spikes per second 2) 10+ spikes
+ * per second 3) 0 spikes per second Support: https://db.tt/QFqA4Dta
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
  * @version July 22, 2013
  */
 public class Neuron extends Cell {
+    private boolean isPredicting;
+    private boolean wasPredicting;
+
+    private List<DistalSegment> distalSegments;
 
     public Neuron() {
-	super(); // Initializes isActive state
+	super();
+	this.isPredicting = false;
+	this.wasPredicting = false;
+
+	this.distalSegments = new ArrayList<DistalSegment>();
     }
 
     public boolean getPredictingState() {
-	return false;
+	return this.isPredicting;
     }
 
     public boolean getPreviousPredictingState() {
-	return false;
+	return this.wasPredicting;
     }
 
+    /**
+     * For the given column c cell i, return a segment index such that
+     * segmentActive(s,t, state) is true. If multiple segments are active,
+     * sequence segments are given preference. Otherwise, segments with most
+     * activity are given preference.
+     *
+     * Return a DistalSegment that was active in the previous time step. If more
+     * than one DistalSegment was active, sequence segments are considered. If
+     * more than one sequence segment was active, the segment with the most
+     * activity is returned.
+     */
     public DistalSegment getBestPreviousActiveSegment() {
-	return null;
+	List<DistalSegment> previousActiveSegments = new ArrayList<DistalSegment>();
+	List<DistalSegment> previousActiveSequenceSegment = new ArrayList<DistalSegment>();
+
+	for (DistalSegment distalSegment : this.distalSegments) {
+	    if (distalSegment.getPreviousActiveStateLearnState()
+		    && distalSegment
+			    .getSequenceStatePredictsFeedFowardInputOnNextStep()) {
+		previousActiveSegments.add(distalSegment);
+		previousActiveSequenceSegment.add(distalSegment);
+	    } else if (distalSegment.getPreviousActiveStateLearnState()) {
+		previousActiveSegments.add(distalSegment);
+	    }
+	}
+
+	if (previousActiveSegments.size() == 0) {
+	    return this.getSegmentWithMostActivity(this.distalSegments);
+
+	} else if (previousActiveSegments.size() == 1) {
+	    return previousActiveSegments.get(0);
+
+	} else { // previousActiveSegments.size() > 1
+
+	    if (previousActiveSequenceSegment.size() == 0) {
+		return this.getSegmentWithMostActivity(this.distalSegments);
+	    } else if (previousActiveSequenceSegment.size() == 1) {
+		return previousActiveSequenceSegment.get(0);
+	    } else { // previousActiveSequenceSegments.size() > 1
+		return this
+			.getSegmentWithMostActivity(previousActiveSequenceSegment);
+	    }
+	}
     }
 
-    public Set<DistalSegment> getDistalSegments() {
-	return null;
+    DistalSegment getSegmentWithMostActivity(
+	    List<DistalSegment> whichSegmentsToCheck) {
+	DistalSegment mostActiveDistalSegment = this.distalSegments.get(0);
+
+	int maxPreviousActiveSynapses = 0;
+	for (DistalSegment distalSegment : whichSegmentsToCheck) {
+	    int previousActiveSynapses = distalSegment
+		    .getNumberOfPreviousActiveSynapses();
+	    if (previousActiveSynapses > maxPreviousActiveSynapses) {
+		maxPreviousActiveSynapses = previousActiveSynapses;
+		mostActiveDistalSegment = distalSegment;
+	    }
+	}
+	return mostActiveDistalSegment;
+    }
+
+    public List<DistalSegment> getDistalSegments() {
+	return this.distalSegments;
     }
 
     public void setPredictingState(boolean predictingState) {
-
+	this.isPredicting = predictingState;
     }
 
     @Override

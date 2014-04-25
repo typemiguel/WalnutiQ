@@ -1,9 +1,5 @@
 package model.MARK_I;
 
-import java.util.HashSet;
-
-import java.awt.Point;
-
 import java.util.Set;
 
 /**
@@ -21,13 +17,8 @@ import java.util.Set;
  * synapses permances decremented/incremented??? which neurons & which segments
  * are affected???
  *
- * Sequence memory: learning sequences of SDRs??? Uses the columns to represent
- * inputs uniquely in different contexts???
- *
- * Temporal Pooler: forms a stable representation over sequences???
- *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version April 22, 2014
+ * @version April 25, 2014
  */
 public class TemporalPooler extends Pooler {
     private SpatialPooler spatialPooler;
