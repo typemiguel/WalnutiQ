@@ -1,5 +1,5 @@
-**[Eclipse Install](#setup-in-linuxmacwindows-with-eclipselike-microsoft-word-but-for-writing-code)** |
-**[Gradle Install](#setup-in-linuxmacwindows-with-gradlecompiles-our-java-code-from-command-line)** |
+**[Eclipse Install](#setup-in-linuxmacwindows-with-eclipse)** |
+**[Gradle Install](#setup-in-linuxmacwindows-with-gradle)** |
 **[How to Contribute](#how-to-contribute)** |
 **[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)**
 
@@ -9,7 +9,7 @@
 
 ~ Sara Beth Bareilles
 
-[![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
+[![Build Status](https://travis-ci.org/WalnutiQ/WalnutiQ.png)](https://travis-ci.org/WalnutiQ/WalnutiQ)
 
 Welcome! WalnutiQ is a human brain model simulation in Java. 
 The goal of this repository is to store code that can 
