@@ -27,12 +27,28 @@ public class Neuron extends Cell {
 	this.distalSegments = new ArrayList<DistalSegment>();
     }
 
+    public void nextTimeStep() {
+	this.wasActive = super.isActive;
+	super.isActive = false;
+
+	this.wasPredicting = this.isPredicting;
+	this.isPredicting = false;
+    }
+
     public boolean getPredictingState() {
 	return this.isPredicting;
     }
 
+    public void setPredictingState(boolean predictingState) {
+	this.isPredicting = predictingState;
+    }
+
     public boolean getPreviousPredictingState() {
 	return this.wasPredicting;
+    }
+
+    public void setPreviousPredictingState(boolean previousPredictingState) {
+	this.wasPredicting = previousPredictingState;
     }
 
     /**
@@ -113,10 +129,6 @@ public class Neuron extends Cell {
 
     public List<DistalSegment> getDistalSegments() {
 	return this.distalSegments;
-    }
-
-    public void setPredictingState(boolean predictingState) {
-	this.isPredicting = predictingState;
     }
 
     @Override

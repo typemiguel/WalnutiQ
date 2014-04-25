@@ -52,7 +52,25 @@ public class TemporalPooler extends Pooler {
 
 	this.phaseThree(activeColumns);
 
+	this.nextTimeStep();
+
 	this.segmentUpdateList.clear();
+    }
+
+    void nextTimeStep() {
+	Column[][] columns = super.region.getColumns();
+	for (int x = 0; x < super.region.getXAxisLength(); x++) {
+	    for (int y = 0; y < super.region.getYAxisLength(); y++) {
+		for (Neuron neuron : columns[x][y].getNeurons()) {
+		    neuron.nextTimeStep();
+
+		    for (DistalSegment distalSegment : neuron
+			    .getDistalSegments()) {
+			distalSegment.nextTimeStep();
+		    }
+		}
+	    }
+	}
     }
 
     /**

@@ -12,6 +12,14 @@ public class DistalSegment extends Segment {
 	this.wasActive = false;
     }
 
+    public void nextTimeStep() {
+	this.wasActive = super.isActive;
+	super.isActive = false;
+
+	this.wasActive = this.isActive;
+	this.isActive = false;
+    }
+
     public boolean getSequenceStatePredictsFeedFowardInputOnNextStep() {
 	return this.predictsFeedForwardInputOnNextTimeStep;
     }
