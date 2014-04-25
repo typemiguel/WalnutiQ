@@ -1,11 +1,7 @@
-package test.java.model.MARK_I;
+package model.MARK_I;
 
-import main.java.model.MARK_I.Segment.SynapseUpdateState;
-import main.java.model.MARK_I.Cell;
-import main.java.model.MARK_I.Synapse;
-import main.java.model.MARK_I.VisionCell;
-import main.java.model.MARK_I.ProximalSegment;
-import main.java.model.MARK_I.Segment;
+import junit.framework.TestCase;
+import model.MARK_I.Segment.SynapseUpdateState;
 
 
 
@@ -20,7 +16,7 @@ import main.java.model.MARK_I.Segment;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version July 22, 2013
  */
-public class SegmentTest extends junit.framework.TestCase {
+public class SegmentTest extends TestCase {
     private Segment proximalSegment;
 
     public void setUp() {

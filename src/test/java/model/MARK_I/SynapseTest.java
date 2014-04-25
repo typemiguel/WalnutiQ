@@ -1,15 +1,13 @@
-package test.java.model.MARK_I;
+package model.MARK_I;
 
-import main.java.model.MARK_I.Cell;
-import main.java.model.MARK_I.Synapse;
-import main.java.model.MARK_I.VisionCell;
+import junit.framework.TestCase;
 
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 8, 2013
  */
-public class SynapseTest extends junit.framework.TestCase {
+public class SynapseTest extends TestCase {
     private VisionCell visionCell_1;
     private VisionCell visionCell_NULL;
 

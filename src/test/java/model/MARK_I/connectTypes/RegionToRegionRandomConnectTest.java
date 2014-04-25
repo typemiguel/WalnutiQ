@@ -1,15 +1,14 @@
-package test.java.model.MARK_I.connectTypes;
+package model.MARK_I.connectTypes;
 
-import main.java.model.MARK_I.connectTypes.RegionToRegionRandomConnect;
-import main.java.model.MARK_I.Column;
-import main.java.model.MARK_I.Region;
-import main.java.model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
+import junit.framework.TestCase;
+import model.MARK_I.Column;
+import model.MARK_I.Region;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version April 19th, 2014
  */
-public class RegionToRegionRandomConnectTest extends junit.framework.TestCase {
+public class RegionToRegionRandomConnectTest extends TestCase {
     private AbstractRegionToRegionConnect connectType;
     private Region parentRegion;
     private Region childRegion;

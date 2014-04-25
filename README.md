@@ -1,7 +1,7 @@
-<center>**[Eclipse Install](#setup-in-linuxmacwindows-with-eclipselike-microsoft-word-but-for-writing-code)** |
-**[Gradle Install](#setup-in-linuxmacwindows-with-gradlecompiles-our-java-code-from-command-line)** |
+**[Eclipse Install](#setup-in-linuxmacwindows-with-eclipse)** |
+**[Gradle Install](#setup-in-linuxmacwindows-with-gradle)** |
 **[How to Contribute](#how-to-contribute)** |
-**[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)**</center>
+**[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)**
 
 # [WalnutiQ](http://walnutiq.com)
 
@@ -9,7 +9,7 @@
 
 ~ Sara Beth Bareilles
 
-[![Build Status](https://travis-ci.org/quinnliu/WalnutiQ.png)](https://travis-ci.org/quinnliu/WalnutiQ)
+[![Build Status](https://travis-ci.org/WalnutiQ/WalnutiQ.png)](https://travis-ci.org/WalnutiQ/WalnutiQ)
 
 Welcome! WalnutiQ is a human brain model simulation in Java. 
 The goal of this repository is to store code that can 
@@ -49,19 +49,22 @@ programming. Make sure to read Numenta's great explanation
 of their research in this [white paper](https://db.tt/FuQWQuwE) 
 to better understand the theory behind this repository.
 
-## Setup in Linux/Mac/Windows with Eclipse(like Microsoft Word but for writing code)
-1. [Install Eclipse](http://wiki.eclipse.org/Eclipse/Installation)
+## Setup in Linux/Mac/Windows with Eclipse
+1. [Install Eclipse Standard 4.3.2](https://www.eclipse.org/downloads/) or use
+   any other version of Eclipse if you already have it installed.
 
 2. Fork this repository and clone it locally. Then import it as a 
    project into Eclipse.
 
-3. IMPORTANT: You will notice that your folders will have "red X's". 
+3. IMPORTANT: You will notice that your folders will have red X's everywhere. 
    To fix this right click your `src` folder then hover over "New", 
-   then click "Source Folder". Then give it the "Folder name:" src. 
-   You will also need to do this same process for the folders 
-   `experiments` and `images`. Make sure when you type the 
-   "Folder name:" you put in the folder name of 
-   the folder you previously just right clicked.
+   then click "Source Folder". Then give it the "Folder name:" `src/main/java`. 
+   Right click your `src` folder again and hover over "New", then click
+   "Source Folder". Then give it the "Folder name:" `src/test/java`
+   Similarily for the folder `experiments` right click the folder and go to
+   New `=>` Source Folder `=>` Folder name: `experiments`. 
+   Finally for the folder `images` right click the folder and go to
+   New `=>` Source Folder `=>` Folder name: `images`.
 
 4. In Eclipse, add all the libraries (.jar file) in the folder 
    `referencedLibraries/` by right-clicking your project `WalnutiQ` 
@@ -74,8 +77,10 @@ to better understand the theory behind this repository.
 6. In Eclipse, also add JRE System Library by right-clicking 
    your project `WalnutiQ` in the package explorer `=>` 
    Add Libraries... `=>` JRE System Library `=>` Next > `=>` Finish
+
+7. Right click your project `=>` Run As `=>` JUnit Test `=>` ALL TESTS PASS!
   
-## Setup in Linux/Mac/Windows with Gradle(compiles our Java code from command line)
+## Setup in Linux/Mac/Windows with Gradle
 1. Install Gradle in Linux OR Mac by typing to the command line:
    ```sh
    prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
@@ -88,21 +93,25 @@ to better understand the theory behind this repository.
 
 3. Fork this repo and clone it locally. Navigate into the `WalnutiQ/` folder
 
-4. Type in the command line `gradle build`. This may take a minute so no worries.
-   Go to the folder `build/reports/tests/`. View the file `index.html` in 
-   any browser and make sure all tests pass!
+4. Type in the command line `gradle build`. This may take a minute the first
+   time so no worries. Go to the folder `build/reports/tests/`. 
+   View the file `index.html` in any browser and make sure all tests pass!
 
 ## How to Contribute
 
 1. View an example of how some of the code is used in the file
-   [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java)
+   [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
+   Please do not be afriad to ask a question if you are confused!
 
 2. View an example of how the current model can be instantiated as a simplified human visual pathway
    in [HowMARK_I_FitsInToBrainAnatomy.java](./experiments/model/MARK_I/vision/HowMARK_I_FitsInToBrainAnatomy.java)
 
 3. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) and create a new issue
    with a question if you are confused. Otherwise, asign a issue to yourself you would like to work on or suggest
-   a new issue if you kind of know what you are doing. Happy coding!
+   a new issue if you kinda know what you are doing. 
+
+4. For now we are using the git workflow model described 
+   [here](https://github.com/quinnliu/WalnutiQ/issues/62). Happy coding!
 
 ## What each file/folder in this repository is for:
   - experiments  
@@ -126,6 +135,9 @@ to better understand the theory behind this repository.
               + [connectTypes](./src/main/java/model/MARK_I/connectTypes) = classes allow the different 
                 brain structures in MARK I to connect to each other in a variety of ways
               + [SpatialPooler.java](./src/main/java/model/MARK_I/SpatialPooler.java) 
+                = models the sparse & distributed spiking activity of neurons seen in the neocortex 
+                  and models long term potentiation and depression on synapses
+
             - [util](./src/main/java/model/util) = classes that enable the brain model properties
               to be viewed graphically and efficiently saved and opened  
       + test = test classes for important classes in the `src/main/java/model` folder

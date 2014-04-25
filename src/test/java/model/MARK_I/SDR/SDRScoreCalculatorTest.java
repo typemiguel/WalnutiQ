@@ -1,21 +1,22 @@
-package test.java.model.MARK_I.SDR;
+package model.MARK_I.SDR;
 
-import main.java.model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
-import main.java.model.MARK_I.SpatialPooler;
-import main.java.model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
-import main.java.model.MARK_I.Region;
-import main.java.model.Retina;
-import main.java.model.MARK_I.SDR.SDRScoreCalculator;
-import main.java.model.MARK_I.ColumnPosition;
-import java.util.HashSet;
+import junit.framework.TestCase;
+import model.MARK_I.ColumnPosition;
+import model.MARK_I.Region;
+import model.MARK_I.SpatialPooler;
+import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
+import model.Retina;
+
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Apr 16, 2014
  */
-public class SDRScoreCalculatorTest extends junit.framework.TestCase {
+public class SDRScoreCalculatorTest extends TestCase {
     private Set<ColumnPosition> columnActivityAfterSeeingImage2;
     private Set<ColumnPosition> columnActivityWithBadSDRScore;
     private Set<ColumnPosition> columnActivityWithMediumSDRScore;
