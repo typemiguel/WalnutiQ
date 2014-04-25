@@ -1,4 +1,4 @@
-package main.java.model.MARK_I;
+package model.MARK_I;
 
 public class DistalSegment extends Segment {
     /** same as sequenceSegment */

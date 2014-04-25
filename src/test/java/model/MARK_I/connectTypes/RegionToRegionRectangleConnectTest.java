@@ -1,16 +1,14 @@
-package test.java.model.MARK_I.connectTypes;
+package model.MARK_I.connectTypes;
 
-import main.java.model.MARK_I.Column;
-import main.java.model.MARK_I.Region;
-import main.java.model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
-import main.java.model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
+import junit.framework.TestCase;
+import model.MARK_I.Column;
+import model.MARK_I.Region;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 13, 2013
  */
-public class RegionToRegionRectangleConnectTest extends
-	junit.framework.TestCase {
+public class RegionToRegionRectangleConnectTest extends TestCase {
     private AbstractRegionToRegionConnect connectType;
     private Region parentRegion;
     private Region childRegion;

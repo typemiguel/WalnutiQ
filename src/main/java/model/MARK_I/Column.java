@@ -1,6 +1,6 @@
-package main.java.model.MARK_I;
+package model.MARK_I;
 
-import main.java.model.MARK_I.Segment.SynapseUpdateState;
+import model.MARK_I.Segment.SynapseUpdateState;
 
 import java.util.List;
 import java.util.ArrayList;

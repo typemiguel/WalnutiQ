@@ -1,14 +1,15 @@
-package test.java.model;
+package model;
 
-import main.java.model.MARK_I.VisionCell;
-import main.java.model.Retina;
+import junit.framework.TestCase;
+import model.MARK_I.VisionCell;
+
 import java.io.IOException;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Feb 9, 2014
  */
-public class RetinaTest extends junit.framework.TestCase {
+public class RetinaTest extends TestCase {
     private Retina retina;
 
     public void setUp() {

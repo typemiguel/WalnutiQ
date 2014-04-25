@@ -1,13 +1,14 @@
-package test.java.model.MARK_I.SDR;
+package model.MARK_I.SDR;
 
-import main.java.model.MARK_I.SDR.FindOptimalParametersForSDR;
+import junit.framework.TestCase;
+
 import java.io.IOException;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Apr 21, 2014
  */
-public class FindOptimalParametersForSDRTest extends junit.framework.TestCase {
+public class FindOptimalParametersForSDRTest extends TestCase {
 
     public void setUp() {
 	// not necessary since all methods in class FindOptimalParametersForSDR
