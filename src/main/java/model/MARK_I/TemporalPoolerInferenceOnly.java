@@ -23,7 +23,7 @@ public class TemporalPoolerInferenceOnly extends Pooler {
 	this.computePredictiveStateOfAllNeurons(activeColumns);
     }
 
-    public void computeActiveStateOfAllNeuronsInActiveColumn(
+    void computeActiveStateOfAllNeuronsInActiveColumn(
 	    Set<Column> activeColumns) {
 	for (Column column : activeColumns) {
 
@@ -50,7 +50,7 @@ public class TemporalPoolerInferenceOnly extends Pooler {
 	}
     }
 
-    public void computePredictiveStateOfAllNeurons(Set<Column> activeColumns) {
+    void computePredictiveStateOfAllNeurons(Set<Column> activeColumns) {
 	for (Column column : activeColumns) {
 	    for (Neuron neuron : column.getNeurons()) {
 		for (Segment segment : neuron.getDistalSegments()) {
