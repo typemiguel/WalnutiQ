@@ -17,12 +17,18 @@ public class SegmentUpdateList {
     }
 
     private class SegmentUpdate {
+	private int segmentIndex;
 	private Set<Synapse<Cell>> synapsesWithActiveCells;
 	private Set<Synapse<Cell>> synapsesWithDeactiveCells;
 
+	/** same as sequenceSegment */
+	private boolean predictsFeedForwardInputOnNextTimeStep;
+
 	public SegmentUpdate() {
+	    this.segmentIndex = -1;
 	    this.synapsesWithActiveCells = new HashSet<Synapse<Cell>>();
 	    this.synapsesWithDeactiveCells = new HashSet<Synapse<Cell>>();
+	    this.predictsFeedForwardInputOnNextTimeStep = false;
 	}
     }
 }

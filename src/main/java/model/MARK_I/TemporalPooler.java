@@ -61,7 +61,9 @@ public class TemporalPooler extends Pooler {
 		    DistalSegment bestSegment = neurons[i]
 			    .getBestPreviousActiveSegment();
 
-		    if (bestSegment != null && bestSegment.getSequenceStatePredictsFeedFowardInputOnNextStep()) {
+		    if (bestSegment != null
+			    && bestSegment
+				    .getSequenceStatePredictsFeedFowardInputOnNextStep()) {
 			bottomUpPredicted = true;
 			neurons[i].setActiveState(true);
 
@@ -101,14 +103,17 @@ public class TemporalPooler extends Pooler {
 		    if (segment.getActiveState()) {
 			neuron.setPredictingState(true);
 
-			// activeUpdate = getSegmentActiveSynapses(c, i, s, t, false);
+			// activeUpdate = getSegmentActiveSynapses(c, i, s, t,
+			// false);
 
 			// segmentUpdateList.add(activeUpdate);
 
 			// predSegment = getBestMatchingSegment(c, i, t-1);
-			Segment predictingSegment = neuron.getBestPreviousActiveSegment();
+			Segment predictingSegment = neuron
+				.getBestPreviousActiveSegment();
 
-			// predUpdate = getSegmentActiveSynapses(c, i, predSegment, t-1, true);
+			// predUpdate = getSegmentActiveSynapses(c, i,
+			// predSegment, t-1, true);
 
 			// segmentUpdateList.add(predUpdate);
 		    }
@@ -128,16 +133,21 @@ public class TemporalPooler extends Pooler {
 	for (Column column : activeColumns) {
 	    Neuron learningNeuron = column.getLearningNeuron();
 	    for (Neuron neuron : column.getNeurons()) {
-		// if (learnState(s, i, t) == 1) {
 		if (neuron.equals(learningNeuron)) {
 		    // adaptSegments(segmentUpdateList(c, i), true);
-		    // segmentUpdateList(c, i).delete();
-		} else if (neuron.getPredictingState() == false && neuron.getPreviousPredictingState() == true) {
+		    // segmentUpdateList(c, i).delete(); ???
+		} else if (neuron.getPredictingState() == false
+			&& neuron.getPreviousPredictingState() == true) {
 		    // adaptSegments(segmentUpdateList(c, i), false);
 		    // segmentUpdateList(c, i).delete();
 		}
 	    }
 	}
+    }
+
+    public void adaptSegments(SegmentUpdateList segmentUpdateList,
+	    boolean rename) {
+
     }
 
     public int getBestMatchingNeuronIndex(Column column) {
