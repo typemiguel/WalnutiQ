@@ -101,7 +101,7 @@ public class SpatialPooler extends Pooler {
      * Column's overlapScore is below minOverlap, that Column's overlapScore is
      * set to 0.
      */
-    public void computeColumnOverlapScore(Column column) {
+    void computeColumnOverlapScore(Column column) {
 	if (column == null) {
 	    throw new IllegalArgumentException(
 		    "the Column in SpatialPooler method computeColumnOverlapScore cannot be null");
@@ -126,7 +126,7 @@ public class SpatialPooler extends Pooler {
      * activeColumns(t)-the list of Columns that win due to the bottom-up input
      * at time t.
      */
-    public void computeActiveColumnsOfRegion() {
+    void computeActiveColumnsOfRegion() {
 	// remove old active columns from last time spatial pooling was called
 	this.activeColumns.clear();
 	this.activeColumnPositions.clear();
@@ -169,7 +169,7 @@ public class SpatialPooler extends Pooler {
      * as Hebb's Rule. The inhibitionRadius for the Region is also computed and
      * updated here.
      */
-    public void regionLearnOneTimeStep() {
+    void regionLearnOneTimeStep() {
 	this.modelLongTermPotentiationAndDepression();
 
 	this.boostSynapsesBasedOnActiveAndOverlapDutyCycle();
@@ -178,13 +178,13 @@ public class SpatialPooler extends Pooler {
 		.setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
 
-    public void regionLearnOneTimeStepWithoutInhitionRadiusUpdate() {
+    void regionLearnOneTimeStepWithoutInhitionRadiusUpdate() {
 	this.modelLongTermPotentiationAndDepression();
 
 	this.boostSynapsesBasedOnActiveAndOverlapDutyCycle();
     }
 
-    public void modelLongTermPotentiationAndDepression() {
+    void modelLongTermPotentiationAndDepression() {
 	Column[][] columns = this.region.getColumns();
 
 	if (super.getLearningState()) {
@@ -212,7 +212,7 @@ public class SpatialPooler extends Pooler {
 	}
     }
 
-    public void boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
+    void boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
 	Column[][] columns = this.region.getColumns();
 
 	for (int x = 0; x < columns.length; x++) {
@@ -287,7 +287,7 @@ public class SpatialPooler extends Pooler {
      * @param columnYAxis
      *            position of Column within Region along y-axis
      */
-    public void updateNeighborColumns(int columnXAxis, int columnYAxis) {
+    void updateNeighborColumns(int columnXAxis, int columnYAxis) {
 	if (columnXAxis < 0 || columnXAxis > this.region.getXAxisLength()
 		|| columnYAxis < 0
 		|| columnYAxis > this.region.getYAxisLength()) {
@@ -341,7 +341,7 @@ public class SpatialPooler extends Pooler {
      * @return the kth highest overlapScore value of a Column object within the
      *         neighborColumns list.
      */
-    public int kthScoreOfColumns(List<Column> neighborColumns,
+    int kthScoreOfColumns(List<Column> neighborColumns,
 	    int desiredLocalActivity) {
 	if (neighborColumns == null) {
 	    throw new IllegalArgumentException(
@@ -374,7 +374,7 @@ public class SpatialPooler extends Pooler {
      *
      * @return The average connected receptive field size.
      */
-    public double averageReceptiveFieldSizeOfRegion() {
+    double averageReceptiveFieldSizeOfRegion() {
 	double regionAverageReceptiveField = 0.0;
 
 	// for each column
@@ -436,7 +436,7 @@ public class SpatialPooler extends Pooler {
      * than minimumDutyOverlap. Exponential Moving Average(EMA): St = a * Yt +
      * (1 - a) * St - 1.
      */
-    public void updateOverlapDutyCycle(int columnXAxis, int columnYAxis) {
+    void updateOverlapDutyCycle(int columnXAxis, int columnYAxis) {
 	if (columnXAxis < 0 || columnXAxis > this.region.getXAxisLength()
 		|| columnYAxis < 0
 		|| columnYAxis > this.region.getYAxisLength()) {
