@@ -1,4 +1,4 @@
-package main.java.model.MARK_I.movement;
+package model.MARK_I.movement;
 
 import java.awt.Point;
 

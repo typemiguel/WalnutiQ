@@ -1,6 +1,6 @@
-package main.java.model.MARK_I.movement;
+package model.MARK_I.movement;
 
-import main.java.model.MARK_I.VisionCell;
+import model.MARK_I.VisionCell;
 
 /**
  *  Put all logic for updating SaccadingRetina elsewhere. In reality
