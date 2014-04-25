@@ -1,4 +1,4 @@
-package main.java.model.MARK_I;
+package model.MARK_I;
 
 import java.util.ArrayList;
 import java.util.List;
