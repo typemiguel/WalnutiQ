@@ -1,5 +1,11 @@
 package model.MARK_I;
 
+import java.util.ArrayList;
+
+import java.util.List;
+
+import java.util.HashSet;
+
 import java.util.Set;
 
 /**
@@ -24,10 +30,18 @@ public class TemporalPooler extends Pooler {
     private SpatialPooler spatialPooler;
     private SegmentUpdateList segmentUpdateList;
 
-    public TemporalPooler(SpatialPooler spatialPooler) {
+    private final int newSynapseCount;
+
+    private List<Neuron> listOfCurrentLearningNeurons;
+
+    public TemporalPooler(SpatialPooler spatialPooler, int newSynapseCount) {
 	this.spatialPooler = spatialPooler;
 	super.region = spatialPooler.getRegion();
 	this.segmentUpdateList = new SegmentUpdateList();
+
+	this.newSynapseCount = newSynapseCount;
+
+	this.listOfCurrentLearningNeurons = new ArrayList<Neuron>();
     }
 
     public void performTemporalPoolingOnRegion() {
@@ -67,6 +81,7 @@ public class TemporalPooler extends Pooler {
 			if (bestSegment.getPreviousActiveStateLearnState()) {
 			    learningCellChosen = true;
 			    column.setLearningNeuronPosition(i);
+			    this.listOfCurrentLearningNeurons.add(neurons[i]);
 			}
 		    }
 		}
@@ -82,12 +97,11 @@ public class TemporalPooler extends Pooler {
 		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
 		column.setLearningNeuronPosition(bestNeuronIndex);
 
-		int learningNeuronPosition = column.getLearningNeuronPosition();
-
-		SegmentUpdate segmentUpdate = this.getSegmentActiveSynapses(
-			column.getCurrentPosition(), bestNeuronIndex,
-			neurons[learningNeuronPosition]
-				.getBestPreviousActiveSegment(), true, true);
+		SegmentUpdate segmentUpdate = this
+			.getSegmentActiveSynapses(column.getCurrentPosition(),
+				bestNeuronIndex, neurons[bestNeuronIndex]
+					.getBestPreviousActiveSegment(), true,
+				true);
 
 		segmentUpdate.setSequenceState(true);
 		this.segmentUpdateList.add(segmentUpdate);
@@ -109,14 +123,69 @@ public class TemporalPooler extends Pooler {
     SegmentUpdate getSegmentActiveSynapses(ColumnPosition columnPosition,
 	    int neuronIndex, Segment segment, boolean previousTimeStep,
 	    boolean newSynapses) {
+	Set<Synapse<Cell>> activeSynapses = new HashSet<Synapse<Cell>>();
+	Set<Synapse<Cell>> deactiveSynapses = new HashSet<Synapse<Cell>>();
 
-	if (previousTimeStep) {
+	for (Synapse<Cell> synapse : segment.getSynapses()) {
 
-	    return null;
-	} else { // current time step
-
-	    return null;
+	    if (previousTimeStep) {
+		if (synapse.getCell().getPreviousActiveState()) {
+		    activeSynapses.add(synapse);
+		} else {
+		    deactiveSynapses.add(synapse);
+		}
+	    } else {
+		if (synapse.getCell().getActiveState()) {
+		    activeSynapses.add(synapse);
+		} else {
+		    deactiveSynapses.add(synapse);
+		}
+	    }
 	}
+
+	if (newSynapses) {
+	    activeSynapses = this
+		    .addRandomlyChosenSynapsesFromCurrentLearningNeurons(activeSynapses);
+	}
+
+	return new SegmentUpdate(activeSynapses, deactiveSynapses,
+		columnPosition, neuronIndex);
+    }
+
+    Set<Synapse<Cell>> addRandomlyChosenSynapsesFromCurrentLearningNeurons(
+	    Set<Synapse<Cell>> activeSynapses) {
+	int numberOfSynapsesToAddToActiveSynapses = this.newSynapseCount
+		- activeSynapses.size();
+
+	List<Synapse<Cell>> synapses = new ArrayList<Synapse<Cell>>();
+	for (Neuron neuron : this.listOfCurrentLearningNeurons) {
+
+	    for (DistalSegment distalSegment : neuron.getDistalSegments()) {
+		if (synapses.size() > numberOfSynapsesToAddToActiveSynapses) {
+		    break;
+		} else {
+		    synapses.addAll(distalSegment.getSynapses());
+		}
+	    }
+	    // it's possible synapses.size() is still <
+	    // numberOfSynapsesToAddToActiveSynapses
+	    if (synapses.size() > numberOfSynapsesToAddToActiveSynapses) {
+		break;
+	    }
+
+	}
+
+	// it's possible synapses.size() is still <
+	// numberOfSynapsesToAddToActiveSynapses must doesn't really matter
+	if (numberOfSynapsesToAddToActiveSynapses > synapses.size()) {
+	    // synapses.size() should always be > 0
+	    numberOfSynapsesToAddToActiveSynapses = synapses.size();
+	}
+	for (int i = 0; i < numberOfSynapsesToAddToActiveSynapses; i++) {
+	    activeSynapses.add(synapses.get(i));
+	}
+
+	return activeSynapses;
     }
 
     /**
@@ -166,13 +235,15 @@ public class TemporalPooler extends Pooler {
 	    Neuron[] neurons = column.getNeurons();
 	    for (int i = 0; i < neurons.length; i++) {
 		if (i == column.getLearningNeuronPosition()) {
-		    this.adaptSegments(this.segmentUpdateList.getSegmentUpdate(c, i), true);
+		    this.adaptSegments(
+			    this.segmentUpdateList.getSegmentUpdate(c, i), true);
 
 		    this.segmentUpdateList.deleteSegmentUpdate(c, i);
 		} else if (neurons[i].getPredictingState() == false
 			&& neurons[i].getPreviousPredictingState() == true) {
 
-		    this.adaptSegments(this.segmentUpdateList.getSegmentUpdate(c, i),
+		    this.adaptSegments(
+			    this.segmentUpdateList.getSegmentUpdate(c, i),
 			    false);
 
 		    this.segmentUpdateList.deleteSegmentUpdate(c, i);
@@ -214,7 +285,25 @@ public class TemporalPooler extends Pooler {
 	// TODO: add Synapses in SegmentUpdate that do not yet exist???
     }
 
+    /**
+     * @return the index of the Neuron with the Segment with the greatest number
+     *         of active Synapses.
+     */
     int getBestMatchingNeuronIndex(Column column) {
-	return -1;
+	int greatestNumberOfActiveSynapses = 0;
+	int bestMatchingNeuronIndex = 0;
+
+	Neuron[] neurons = column.getNeurons();
+	for (int i = 0; i < neurons.length; i++) {
+	    Segment bestSegment = neurons[i].getBestActiveSegment();
+	    int numberOfActiveSynapses = bestSegment
+		    .getNumberOfActiveSynapses();
+	    if (numberOfActiveSynapses > greatestNumberOfActiveSynapses) {
+		greatestNumberOfActiveSynapses = numberOfActiveSynapses;
+		bestMatchingNeuronIndex = i;
+	    }
+	}
+
+	return bestMatchingNeuronIndex;
     }
 }

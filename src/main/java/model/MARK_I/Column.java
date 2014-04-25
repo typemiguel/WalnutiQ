@@ -57,6 +57,7 @@ public class Column {
     public final static float EXPONENTIAL_MOVING_AVERAGE_AlPHA = 0.005f;
 
     private ColumnPosition currentPosition;
+    private int learningNeuronPosition;
 
     public Column(int numberOfCells, ColumnPosition currentPosition) {
 	if (numberOfCells < 1) {
@@ -271,10 +272,10 @@ public class Column {
     }
 
     public void setLearningNeuronPosition(int learningNeuronPosition) {
-
+	this.learningNeuronPosition = learningNeuronPosition;
     }
 
     public int getLearningNeuronPosition() {
-	return -1;
+	return this.learningNeuronPosition;
     }
 }

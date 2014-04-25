@@ -96,6 +96,21 @@ public class Neuron extends Cell {
 	return mostActiveDistalSegment;
     }
 
+    public DistalSegment getBestActiveSegment() {
+	DistalSegment mostActiveDistalSegment = this.distalSegments.get(0);
+
+	int maxActiveSynapses = 0;
+	for (DistalSegment distalSegment : this.distalSegments) {
+	    int previousActiveSynapses = distalSegment
+		    .getNumberOfActiveSynapses();
+	    if (previousActiveSynapses > maxActiveSynapses) {
+		maxActiveSynapses = previousActiveSynapses;
+		mostActiveDistalSegment = distalSegment;
+	    }
+	}
+	return mostActiveDistalSegment;
+    }
+
     public List<DistalSegment> getDistalSegments() {
 	return this.distalSegments;
     }
