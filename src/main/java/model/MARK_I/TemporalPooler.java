@@ -89,16 +89,13 @@ public class TemporalPooler extends Pooler {
 		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
 		column.setLearningNeuronPosition(bestNeuronIndex);
 
-		Point columnPosition = new Point(1, 1);
 		// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true);
 		SegmentUpdate segmentUpdate = this.getSynapsesWithActiveCells(
-			columnPosition, bestNeuronIndex, column
+			column.getCurrentPosition(), bestNeuronIndex, column
 				.getLearningNeuron()
 				.getBestPreviousActiveSegment(), true);
 
-		// sUpdate.sequenceSegment = true
 		segmentUpdate.setSequenceState(true);
-		// segmentUpdateList.add(sUpdate);
 		this.segmentUpdateList.getList().add(segmentUpdate);
 	    }
 	}
@@ -114,7 +111,7 @@ public class TemporalPooler extends Pooler {
      * synapses are added to activeSynapses. These synapses are randomly chosen
      * from the set of cells that have learnState output = 1 at time step t.
      */
-    SegmentUpdate getSynapsesWithActiveCells(Point columnPosition,
+    SegmentUpdate getSynapsesWithActiveCells(ColumnPosition columnPosition,
 	    int neuronIndex, Segment segment, boolean newSynapses) {
 	return null;
     }

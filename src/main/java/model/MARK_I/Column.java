@@ -56,7 +56,9 @@ public class Column {
      */
     public final static float EXPONENTIAL_MOVING_AVERAGE_AlPHA = 0.005f;
 
-    public Column(int numberOfCells) {
+    private ColumnPosition currentPosition;
+
+    public Column(int numberOfCells, ColumnPosition currentPosition) {
 	if (numberOfCells < 1) {
 	    throw new IllegalArgumentException(
 		    "numberOfCells in Column class constructor cannot be less than 1");
@@ -74,7 +76,13 @@ public class Column {
 					 // 0
 	    this.overlapDutyCycle = 1.0f; // Must be greater than 0, or will
 					  // stay 0
+
+	    this.currentPosition = currentPosition;
 	}
+    }
+
+    public ColumnPosition getCurrentPosition() {
+	return this.currentPosition;
     }
 
     /**

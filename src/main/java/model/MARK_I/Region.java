@@ -46,7 +46,7 @@ public class Region {
 
 	for (int x = 0; x < numberOfColumnsAlongXAxis; x++) {
 	    for (int y = 0; y < numberOfColumnsAlongYAxis; y++) {
-		this.columns[x][y] = new Column(cellsPerColumn);
+		this.columns[x][y] = new Column(cellsPerColumn, new ColumnPosition(x, y));
 	    }
 	}
 

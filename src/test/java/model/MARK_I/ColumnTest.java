@@ -10,12 +10,12 @@ public class ColumnTest extends TestCase {
     private Column column;
 
     public void setUp() {
-	this.column = new Column(4);
+	this.column = new Column(4, new ColumnPosition(0, 0));
     }
 
     public void test_Column() {
 	try {
-	    Column column = new Column(0);
+	    Column column = new Column(0, new ColumnPosition(0, 0));
 	    fail("should've thrown an exception!");
 	} catch (IllegalArgumentException expected) {
 	    assertEquals(
