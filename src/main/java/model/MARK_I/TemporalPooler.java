@@ -91,9 +91,11 @@ public class TemporalPooler extends Pooler {
 		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
 		column.setLearningNeuronPosition(bestNeuronIndex);
 
+		int learningNeuronPosition = column.getLearningNeuronPosition();
+
 		SegmentUpdate segmentUpdate = this.getSegmentActiveSynapses(
-			column.getCurrentPosition(), bestNeuronIndex, column
-				.getLearningNeuron()
+			column.getCurrentPosition(), bestNeuronIndex,
+			neurons[learningNeuronPosition]
 				.getBestPreviousActiveSegment(), true, true);
 
 		segmentUpdate.setSequenceState(true);
@@ -169,15 +171,20 @@ public class TemporalPooler extends Pooler {
      */
     void phaseThree(Set<Column> activeColumns) {
 	for (Column column : activeColumns) {
-	    Neuron learningNeuron = column.getLearningNeuron();
-	    for (Neuron neuron : column.getNeurons()) {
-		if (neuron.equals(learningNeuron)) {
-		    // adaptSegments(segmentUpdateList(c, i), true);
-		    // segmentUpdateList(c, i).delete(); ???
-		} else if (neuron.getPredictingState() == false
-			&& neuron.getPreviousPredictingState() == true) {
-		    // adaptSegments(segmentUpdateList(c, i), false);
-		    // segmentUpdateList(c, i).delete();
+	    ColumnPosition c = column.getCurrentPosition();
+	    Neuron[] neurons = column.getNeurons();
+	    for (int i = 0; i < neurons.length; i++) {
+		if (i == column.getLearningNeuronPosition()) {
+		    this.adaptSegments(this.segmentUpdateList.getSegmentUpdate(c, i), true);
+
+		    this.segmentUpdateList.deleteSegmentUpdate(c, i);
+		} else if (neurons[i].getPredictingState() == false
+			&& neurons[i].getPreviousPredictingState() == true) {
+
+		    this.adaptSegments(this.segmentUpdateList.getSegmentUpdate(c, i),
+			    false);
+
+		    this.segmentUpdateList.deleteSegmentUpdate(c, i);
 		}
 	    }
 	}

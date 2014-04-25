@@ -274,7 +274,7 @@ public class Column {
 
     }
 
-    public Neuron getLearningNeuron() {
-	return null;
+    public int getLearningNeuronPosition() {
+	return -1;
     }
 }

@@ -1,6 +1,5 @@
 package model.MARK_I;
 
-import java.awt.Point;
 import java.util.Set;
 
 class SegmentUpdate {
@@ -9,21 +8,21 @@ class SegmentUpdate {
     private Set<Synapse<Cell>> synapsesWithDeactiveCells;
 
     private int neuronIndex;
-    private Point neuronColumnPosition;
+    private ColumnPosition neuronColumnPosition;
 
     /** same as sequenceSegment */
     private boolean predictsFeedForwardInputOnNextTimeStep;
 
     public SegmentUpdate(Set<Synapse<Cell>> synapsesWithActiveCells,
-	    Set<Synapse<Cell>> synapsesWithDeactiveCells, int neuronIndex,
-	    Point neuronColumnPosition) {
+	    Set<Synapse<Cell>> synapsesWithDeactiveCells,
+	    ColumnPosition neuronColumnPosition, int neuronIndex) {
 	this.segmentIndex = -1;
 	this.synapsesWithActiveCells = synapsesWithActiveCells;
 	this.synapsesWithDeactiveCells = synapsesWithDeactiveCells;
 	this.predictsFeedForwardInputOnNextTimeStep = false;
 
-	this.neuronIndex = neuronIndex;
 	this.neuronColumnPosition = neuronColumnPosition;
+	this.neuronIndex = neuronIndex;
     }
 
     public Set<Synapse<Cell>> getSynapsesWithActiveCells() {
