@@ -1,5 +1,7 @@
 package model.MARK_I;
 
+import java.util.HashSet;
+
 import java.util.Set;
 
 class SegmentUpdate {
@@ -7,11 +9,13 @@ class SegmentUpdate {
     private Set<Synapse<Cell>> synapsesWithActiveCells;
     private Set<Synapse<Cell>> synapsesWithDeactiveCells;
 
-    private int neuronIndex;
-    private ColumnPosition neuronColumnPosition;
-
     /** same as sequenceSegment */
     private boolean predictsFeedForwardInputOnNextTimeStep;
+
+    private ColumnPosition neuronColumnPosition;
+    private int neuronIndex;
+
+    private Set<Synapse<Cell>> synapsesNonexistentInModel;
 
     public SegmentUpdate(Set<Synapse<Cell>> synapsesWithActiveCells,
 	    Set<Synapse<Cell>> synapsesWithDeactiveCells,
@@ -23,6 +27,16 @@ class SegmentUpdate {
 
 	this.neuronColumnPosition = neuronColumnPosition;
 	this.neuronIndex = neuronIndex;
+
+	this.synapsesNonexistentInModel = new HashSet<Synapse<Cell>>();
+    }
+
+    public ColumnPosition getNeuronColumnPosition() {
+	return this.neuronColumnPosition;
+    }
+
+    public int getNeuronIndex() {
+	return this.neuronIndex;
     }
 
     public Set<Synapse<Cell>> getSynapsesWithActiveCells() {
