@@ -1,4 +1,12 @@
-package model.MARK_I;
+package model.MARK_II;
+
+import model.MARK_II.Cell;
+import model.MARK_II.Column;
+import model.MARK_II.ColumnPosition;
+import model.MARK_II.Region;
+import model.MARK_II.Segment;
+import model.MARK_II.SpatialPooler;
+import model.MARK_II.Synapse;
 
 import junit.framework.TestCase;
 import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;

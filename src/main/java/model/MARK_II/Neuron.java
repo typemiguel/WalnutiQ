@@ -1,4 +1,4 @@
-package model.MARK_I;
+package model.MARK_II;
 
 /**
  * Simulates a cortical pyramidal cell.

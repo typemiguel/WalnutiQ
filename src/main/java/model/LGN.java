@@ -1,6 +1,6 @@
 package model;
 
-import model.MARK_I.Region;
+import model.MARK_II.Region;
 
 /**
  * Input into LGN: activity of Cells within Retina.

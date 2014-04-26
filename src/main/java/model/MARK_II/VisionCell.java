@@ -1,4 +1,4 @@
-package model.MARK_I;
+package model.MARK_II;
 
 /**
  * A data structure that represents a single VisionCell within the Retina.
