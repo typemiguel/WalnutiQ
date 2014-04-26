@@ -1,6 +1,6 @@
-package model.MARK_I.movement;
+package model.MARK_II.movement;
 
-import model.MARK_I.VisionCell;
+import model.MARK_II.VisionCell;
 
 /**
  *  Put all logic for updating SaccadingRetina elsewhere. In reality

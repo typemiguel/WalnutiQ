@@ -1,4 +1,4 @@
-package model.MARK_I.movement;
+package model.MARK_II.movement;
 
 public class EyeMuscles {
     private SaccadingRetina retina;
