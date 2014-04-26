@@ -67,12 +67,12 @@ public class Neuron extends Cell {
 	List<DistalSegment> previousActiveSequenceSegment = new ArrayList<DistalSegment>();
 
 	for (DistalSegment distalSegment : this.distalSegments) {
-	    if (distalSegment.getPreviousActiveStateLearnState()
+	    if (distalSegment.getPreviousActiveState()
 		    && distalSegment
 			    .getSequenceStatePredictsFeedFowardInputOnNextStep()) {
 		previousActiveSegments.add(distalSegment);
 		previousActiveSequenceSegment.add(distalSegment);
-	    } else if (distalSegment.getPreviousActiveStateLearnState()) {
+	    } else if (distalSegment.getPreviousActiveState()) {
 		previousActiveSegments.add(distalSegment);
 	    }
 	}

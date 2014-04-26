@@ -17,22 +17,27 @@ public class DistalSegment extends Segment {
     }
 
     public void nextTimeStep() {
-	this.wasActive = super.isActive;
-	super.isActive = false;
+	this.predictsFeedForwardInputOnNextTimeStep = false;
 
-	this.wasActive = this.isActive;
-	this.isActive = false;
+	this.wasActive = super.isActive;
+	//super.isActive = false; Although it may be obvious to put
+	// this line here it is incorrect becuase Segment recalculates
+	// it's activeState based on current state of it's Synapses
     }
 
     public boolean getSequenceStatePredictsFeedFowardInputOnNextStep() {
 	return this.predictsFeedForwardInputOnNextTimeStep;
     }
 
+    public void setSequenceState(boolean predictsFeedForwardInputOnNextTimeStep) {
+	this.predictsFeedForwardInputOnNextTimeStep = predictsFeedForwardInputOnNextTimeStep;
+    }
+
     public void setPreviousActiveState(boolean wasActive) {
 	this.wasActive = wasActive;
     }
 
-    public boolean getPreviousActiveStateLearnState() {
+    public boolean getPreviousActiveState() {
 	return this.wasActive;
     }
 

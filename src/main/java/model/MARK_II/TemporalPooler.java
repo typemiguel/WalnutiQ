@@ -96,7 +96,7 @@ public class TemporalPooler extends Pooler {
 			bottomUpPredicted = true;
 			neurons[i].setActiveState(true);
 
-			if (bestSegment.getPreviousActiveStateLearnState()) {
+			if (bestSegment.getPreviousActiveState()) {
 			    learningCellChosen = true;
 			    column.setLearningNeuronPosition(i);
 			    this.listOfCurrentLearningNeurons.add(neurons[i]);
@@ -115,13 +115,15 @@ public class TemporalPooler extends Pooler {
 		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
 		column.setLearningNeuronPosition(bestNeuronIndex);
 
-		SegmentUpdate segmentUpdate = this
-			.getSegmentActiveSynapses(column.getCurrentPosition(),
-				bestNeuronIndex, neurons[bestNeuronIndex]
-					.getBestPreviousActiveSegment(), true,
-				true);
+		DistalSegment segment = neurons[bestNeuronIndex]
+			.getBestPreviousActiveSegment();
+		SegmentUpdate segmentUpdate = this.getSegmentActiveSynapses(
+			column.getCurrentPosition(), bestNeuronIndex, segment,
+			true, true);
 
 		segmentUpdate.setSequenceState(true);
+		segment.setSequenceState(true);
+
 		this.segmentUpdateList.add(segmentUpdate);
 	    }
 	}
