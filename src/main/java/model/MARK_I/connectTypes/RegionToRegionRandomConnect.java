@@ -1,15 +1,16 @@
 package model.MARK_I.connectTypes;
 
+import model.MARK_II.Cell;
+import model.MARK_II.Column;
+import model.MARK_II.Neuron;
+import model.MARK_II.Region;
+import model.MARK_II.Synapse;
+
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import model.MARK_I.Cell;
-import model.MARK_I.Neuron;
-import model.MARK_I.Synapse;
-import model.MARK_I.Column;
-import model.MARK_I.Region;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
