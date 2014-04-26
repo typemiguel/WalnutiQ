@@ -3,6 +3,10 @@ package model.MARK_I;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version April 25, 2014
+ */
 public class SegmentUpdateList {
     List<SegmentUpdate> segmentUpdateList;
 

@@ -1,5 +1,9 @@
 package model.MARK_I;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version April 25, 2014
+ */
 public class DistalSegment extends Segment {
     /** same as sequenceSegment */
     private boolean predictsFeedForwardInputOnNextTimeStep;

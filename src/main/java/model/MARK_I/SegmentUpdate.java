@@ -1,9 +1,12 @@
 package model.MARK_I;
 
 import java.util.HashSet;
-
 import java.util.Set;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version April 25, 2014
+ */
 class SegmentUpdate {
     private int segmentIndex;
     private Set<Synapse<Cell>> synapsesWithActiveCells;
