@@ -1,8 +1,9 @@
 package model.MARK_I.vision;
 
+import model.MARK_II.Region;
+import model.MARK_II.SpatialPooler;
+
 import junit.framework.TestCase;
-import model.MARK_I.Region;
-import model.MARK_I.SpatialPooler;
 import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.Retina;

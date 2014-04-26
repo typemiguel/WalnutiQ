@@ -1,12 +1,13 @@
 package model.MARK_I.SDR;
 
+import model.MARK_II.ColumnPosition;
+import model.MARK_II.Region;
+import model.MARK_II.SpatialPooler;
+
 import mnist.tools.MnistManager;
 
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.MARK_I.ColumnPosition;
-import model.MARK_I.SpatialPooler;
 import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
-import model.MARK_I.Region;
 import model.Retina;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

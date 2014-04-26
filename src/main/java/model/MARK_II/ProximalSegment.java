@@ -1,4 +1,4 @@
-package model.MARK_I;
+package model.MARK_II;
 
 /**
  * Input to ProximalSegment: activity of active Synapses connected to this Segment.
