@@ -78,7 +78,7 @@ public class Neuron extends Cell {
 	}
 
 	if (previousActiveSegments.size() == 0) {
-	    return this.getSegmentWithMostActivity(this.distalSegments);
+	    return this.getPreviousSegmentWithMostActivity(this.distalSegments);
 
 	} else if (previousActiveSegments.size() == 1) {
 	    return previousActiveSegments.get(0);
@@ -86,18 +86,21 @@ public class Neuron extends Cell {
 	} else { // previousActiveSegments.size() > 1
 
 	    if (previousActiveSequenceSegment.size() == 0) {
-		return this.getSegmentWithMostActivity(this.distalSegments);
+		return this.getPreviousSegmentWithMostActivity(this.distalSegments);
 	    } else if (previousActiveSequenceSegment.size() == 1) {
 		return previousActiveSequenceSegment.get(0);
 	    } else { // previousActiveSequenceSegments.size() > 1
 		return this
-			.getSegmentWithMostActivity(previousActiveSequenceSegment);
+			.getPreviousSegmentWithMostActivity(previousActiveSequenceSegment);
 	    }
 	}
     }
 
-    DistalSegment getSegmentWithMostActivity(
+    DistalSegment getPreviousSegmentWithMostActivity(
 	    List<DistalSegment> whichSegmentsToCheck) {
+	if (whichSegmentsToCheck.size() == 0) {
+	    return null;
+	}
 	DistalSegment mostActiveDistalSegment = this.distalSegments.get(0);
 
 	int maxPreviousActiveSynapses = 0;
@@ -109,6 +112,9 @@ public class Neuron extends Cell {
 		mostActiveDistalSegment = distalSegment;
 	    }
 	}
+	if (maxPreviousActiveSynapses == 0) {
+	    return null; // there were no previously active distal segments
+	}
 	return mostActiveDistalSegment;
     }
 
@@ -117,10 +123,10 @@ public class Neuron extends Cell {
 
 	int maxActiveSynapses = 0;
 	for (DistalSegment distalSegment : this.distalSegments) {
-	    int previousActiveSynapses = distalSegment
+	    int activeSynapses = distalSegment
 		    .getNumberOfActiveSynapses();
-	    if (previousActiveSynapses > maxActiveSynapses) {
-		maxActiveSynapses = previousActiveSynapses;
+	    if (activeSynapses > maxActiveSynapses) {
+		maxActiveSynapses = activeSynapses;
 		mostActiveDistalSegment = distalSegment;
 	    }
 	}
@@ -129,6 +135,14 @@ public class Neuron extends Cell {
 
     public List<DistalSegment> getDistalSegments() {
 	return this.distalSegments;
+    }
+
+    public void addDistalSegment(DistalSegment distalSegment) {
+	if (distalSegment == null) {
+	    throw new IllegalArgumentException(
+		    "distalSegment in neuron class method addDistalSegment cannot be null");
+	}
+	this.distalSegments.add(distalSegment);
     }
 
     @Override
