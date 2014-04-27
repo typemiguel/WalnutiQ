@@ -8,7 +8,6 @@ import java.util.Set;
  * @version April 25, 2014
  */
 class SegmentUpdate {
-    private int segmentIndex;
     private Set<Synapse<Cell>> synapsesWithActiveCells;
     private Set<Synapse<Cell>> synapsesWithDeactiveCells;
 
@@ -23,7 +22,6 @@ class SegmentUpdate {
     public SegmentUpdate(Set<Synapse<Cell>> synapsesWithActiveCells,
 	    Set<Synapse<Cell>> synapsesWithDeactiveCells,
 	    ColumnPosition neuronColumnPosition, int neuronIndex) {
-	this.segmentIndex = -1;
 	this.synapsesWithActiveCells = synapsesWithActiveCells;
 	this.synapsesWithDeactiveCells = synapsesWithDeactiveCells;
 	this.predictsFeedForwardInputOnNextTimeStep = false;

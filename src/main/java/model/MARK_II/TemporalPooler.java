@@ -130,6 +130,8 @@ public class TemporalPooler extends Pooler {
     }
 
     /**
+     * @param newSynapses
+     *            Actually adding new Synapses to given segment object
      * @return A segmentUpdate data structure containing a list of proposed
      *         changes to segment. Let activeSynapses be the list of active
      *         synapses where the originating cells have their activeState
@@ -165,7 +167,8 @@ public class TemporalPooler extends Pooler {
 
 	if (newSynapses) {
 	    activeSynapses = this
-		    .addRandomlyChosenSynapsesFromCurrentLearningNeurons(activeSynapses);
+		    .addRandomlyChosenSynapsesFromCurrentLearningNeurons(
+			    activeSynapses, segment);
 	}
 
 	return new SegmentUpdate(activeSynapses, deactiveSynapses,
@@ -173,39 +176,51 @@ public class TemporalPooler extends Pooler {
     }
 
     Set<Synapse<Cell>> addRandomlyChosenSynapsesFromCurrentLearningNeurons(
-	    Set<Synapse<Cell>> activeSynapses) {
-	int numberOfSynapsesToAddToActiveSynapses = this.newSynapseCount
+	    Set<Synapse<Cell>> activeSynapses, Segment segment) {
+	int numberOfSynapsesToAdd = this.newSynapseCount
 		- activeSynapses.size();
 
-	List<Synapse<Cell>> synapses = new ArrayList<Synapse<Cell>>();
-	for (Neuron neuron : this.listOfCurrentLearningNeurons) {
+	List<Synapse<Cell>> potentialSynapsesToAdd = this
+		.generatePotentialSynapses(numberOfSynapsesToAdd);
 
-	    for (DistalSegment distalSegment : neuron.getDistalSegments()) {
-		if (synapses.size() > numberOfSynapsesToAddToActiveSynapses) {
-		    break;
-		} else {
-		    synapses.addAll(distalSegment.getSynapses());
-		}
-	    }
-	    // it's possible synapses.size() is still <
-	    // numberOfSynapsesToAddToActiveSynapses
-	    if (synapses.size() > numberOfSynapsesToAddToActiveSynapses) {
-		break;
-	    }
+	for (int i = 0; i < numberOfSynapsesToAdd; i++) {
+	    activeSynapses.add(potentialSynapsesToAdd.get(i));
 
-	}
-
-	// it's possible synapses.size() is still <
-	// numberOfSynapsesToAddToActiveSynapses must doesn't really matter
-	if (numberOfSynapsesToAddToActiveSynapses > synapses.size()) {
-	    // synapses.size() should always be > 0
-	    numberOfSynapsesToAddToActiveSynapses = synapses.size();
-	}
-	for (int i = 0; i < numberOfSynapsesToAddToActiveSynapses; i++) {
-	    activeSynapses.add(synapses.get(i));
+	    // ACTUALLY adds synapse to segment
+	    segment.addSynapse(potentialSynapsesToAdd.get(i));
 	}
 
 	return activeSynapses;
+    }
+
+    List<Synapse<Cell>> generatePotentialSynapses(
+	    int numberOfSynapsesToAdd) {
+	List<Synapse<Cell>> potentialSynapsesToAdd = new ArrayList<Synapse<Cell>>();
+	for (Neuron neuron : this.listOfCurrentLearningNeurons) {
+
+	    for (DistalSegment distalSegment : neuron.getDistalSegments()) {
+		if (potentialSynapsesToAdd.size() >= numberOfSynapsesToAdd) {
+		    break;
+		} else {
+		    potentialSynapsesToAdd.addAll(distalSegment.getSynapses());
+		}
+	    }
+	    // it is possible potentialSynapsesToAdd.size() is still <
+	    // numberOfSynapsesToAdd
+	    if (potentialSynapsesToAdd.size() >= numberOfSynapsesToAdd) {
+		break;
+	    }
+	}
+
+	// it is possible potentialSynapsesToAdd.size() is still <
+	// numberOfSynapsesToAdd but it doesn't really matter
+	if (numberOfSynapsesToAdd > potentialSynapsesToAdd
+		.size()) {
+	    // potentialSynapsesToAdd.size() should always be > 0
+	    numberOfSynapsesToAdd = potentialSynapsesToAdd
+		    .size();
+	}
+	return potentialSynapsesToAdd;
     }
 
     /**
