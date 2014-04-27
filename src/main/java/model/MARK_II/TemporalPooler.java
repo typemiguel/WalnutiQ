@@ -1,7 +1,5 @@
 package model.MARK_II;
 
-import java.awt.Point;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
@@ -17,13 +15,14 @@ import java.util.Set;
  * Input into TemporalPooler: activeColumns of a Region at time t computed by
  * SpatialPooler
  *
- * Output from TemporalPooler: boolean OR of the actual active??? and predictive
- * state for each neuron in the set of activeColumns of a Region??? how are
- * synapses permances decremented/incremented??? which neurons & which segments
- * are affected???
+ * Output from TemporalPooler: boolean OR of the current active and predictive
+ * state for each neuron in the set of activeColumns of a Region.
+ *
+ * how are synapses permances decremented/incremented??? which neurons & which
+ * segments are affected???
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version April 25, 2014
+ * @version April 27, 2014
  */
 public class TemporalPooler extends Pooler {
     private SpatialPooler spatialPooler;
@@ -185,7 +184,7 @@ public class TemporalPooler extends Pooler {
 	for (int i = 0; i < numberOfSynapsesToAdd; i++) {
 	    activeSynapses.add(potentialSynapsesToAdd.get(i));
 
-	    // ACTUALLY adds synapses to segment
+	    // Actually adds synapses to segment
 	    segment.addSynapse(potentialSynapsesToAdd.get(i));
 	}
 
@@ -193,7 +192,7 @@ public class TemporalPooler extends Pooler {
     }
 
     /**
-     * THIS METHOD must never return an emtpy list
+     * This method must never return an emtpy list.
      */
     List<Synapse<Cell>> generatePotentialSynapses(int numberOfSynapsesToAdd,
 	    ColumnPosition columnPosition) {
@@ -348,7 +347,6 @@ public class TemporalPooler extends Pooler {
 
 	Neuron[] neurons = column.getNeurons();
 	for (int i = 0; i < neurons.length; i++) {
-	    // TODO: problem that bestSegment has no synapses
 	    Segment bestSegment = neurons[i].getBestActiveSegment();
 	    int numberOfActiveSynapses = bestSegment
 		    .getNumberOfActiveSynapses();
@@ -412,5 +410,53 @@ public class TemporalPooler extends Pooler {
 	stringBuilder.append("\n================================");
 	String temporalPoolerInformation = stringBuilder.toString();
 	return temporalPoolerInformation;
+    }
+
+    public void performTemporalPoolingInferenceOnlyOnRegion() {
+	Set<Column> activeColumns = this.spatialPooler.getActiveColumns();
+	// phase 1
+	this.computeActiveStateOfAllNeuronsInActiveColumn(activeColumns);
+
+	// phase 2
+	this.computePredictiveStateOfAllNeurons(activeColumns);
+    }
+
+    void computeActiveStateOfAllNeuronsInActiveColumn(
+	    Set<Column> activeColumns) {
+	for (Column column : activeColumns) {
+
+	    boolean bottomUpPredicted = false;
+
+	    for (Neuron neuron : column.getNeurons()) {
+
+		if (neuron.getPreviousActiveState() == true) {
+		    DistalSegment bestSegment = neuron
+			    .getBestPreviousActiveSegment();
+
+		    if (bestSegment != null && bestSegment.getSequenceStatePredictsFeedFowardInputOnNextStep()) {
+			bottomUpPredicted = true;
+			neuron.setActiveState(true);
+		    }
+		}
+	    }
+
+	    if (bottomUpPredicted == false) {
+		for (Neuron neuron : column.getNeurons()) {
+		    neuron.setActiveState(true);
+		}
+	    }
+	}
+    }
+
+    void computePredictiveStateOfAllNeurons(Set<Column> activeColumns) {
+	for (Column column : activeColumns) {
+	    for (Neuron neuron : column.getNeurons()) {
+		for (Segment segment : neuron.getDistalSegments()) {
+		    if (segment.getActiveState()) {
+			neuron.setPredictingState(true);
+		    }
+		}
+	    }
+	}
     }
 }
