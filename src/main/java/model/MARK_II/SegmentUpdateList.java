@@ -18,8 +18,8 @@ public class SegmentUpdateList {
 	this.segmentUpdateList.add(segmentUpdate);
     }
 
-    public void clear() {
-	this.segmentUpdateList.clear();
+    public int size() {
+	return this.segmentUpdateList.size();
     }
 
     public SegmentUpdate getSegmentUpdate(ColumnPosition columnPosition,

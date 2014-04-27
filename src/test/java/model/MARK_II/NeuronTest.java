@@ -57,11 +57,13 @@ public class NeuronTest extends junit.framework.TestCase {
     public void test_getBestPreviousActiveSegment() {
 	// previousActiveSegments size = 0 & sequenceSegments size = 0
 	assertNotNull(this.neuron.getBestPreviousActiveSegment());
+	assertEquals(1, this.neuron.getDistalSegments().size());
 
 	// previousActiveSegments size = 0 & sequenceSegments size = 0
 	this.neuron.addDistalSegment(this.distalSegmentWith1ActiveSynapse);
 	this.neuron.addDistalSegment(this.distalSegmentWith2ActiveSynapses);
 	assertNotNull(this.neuron.getBestPreviousActiveSegment());
+	assertEquals(4, this.neuron.getDistalSegments().size());
 
 	// previousActiveSegments size = 1 & sequenceSegments size = 0
 	this.neuron.addDistalSegment(this.previousActiveDistalSegment);
