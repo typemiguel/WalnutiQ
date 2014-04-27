@@ -192,7 +192,7 @@ public class TemporalPooler extends Pooler {
 	for (int i = 0; i < numberOfSynapsesToAdd; i++) {
 	    activeSynapses.add(potentialSynapsesToAdd.get(i));
 
-	    // Actually adds synapses to segment
+	    // actually adds synapses to segment
 	    segment.addSynapse(potentialSynapsesToAdd.get(i));
 	}
 
@@ -372,7 +372,7 @@ public class TemporalPooler extends Pooler {
 		    .getNumberOfActiveSynapses();
 	    if (numberOfActiveSynapses > greatestNumberOfActiveSynapses) {
 		greatestNumberOfActiveSynapses = numberOfActiveSynapses;
-		bestMatchingNeuronIndex = i;
+		bestMatchingNeuronIndex = randomIndex;
 	    }
 	}
 

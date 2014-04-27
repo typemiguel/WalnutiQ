@@ -29,9 +29,13 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 
 	this.retina.seeBMPImage("2.bmp");
 	this.spatialPooler
-		.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
+		.performSpatialPoolingOnRegion();
 	assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
 		this.spatialPooler.getActiveColumnPositionsAsString());
+
+	this.temporalPooler = new TemporalPooler(this.spatialPooler, 25);
+	this.temporalPooler.setLearningState(true);
+	//this.temporalPooler.performTemporalPoolingOnRegion();
     }
 
     public void test_performTemporalPoolingOnRegion() {
