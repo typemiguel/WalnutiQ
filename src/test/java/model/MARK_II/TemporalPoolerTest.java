@@ -1,13 +1,37 @@
 package model.MARK_II;
 
+import java.io.IOException;
+import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
+import model.Retina;
+
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version April 26, 2014
+ * @version April 27, 2014
  */
 public class TemporalPoolerTest extends junit.framework.TestCase {
+    private Retina retina;
+    private Region region;
+    private SpatialPooler spatialPooler;
+    private TemporalPooler temporalPooler;
 
-    public void setUp() {
+    public void setUp() throws IOException {
+	// images this retina will see are all 66x66 pixels
+	this.retina = new Retina(66, 66);
 
+	this.region = new Region("Region", 8, 8, 1, 77.8, 1);
+
+	AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
+	retinaToRegion.connect(this.retina.getVisionCells(), this.region, 0, 0);
+
+	this.spatialPooler = new SpatialPooler(this.region);
+	this.spatialPooler.setLearningState(true);
+
+	this.retina.seeBMPImage("2.bmp");
+	this.spatialPooler
+		.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
+	assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
+		this.spatialPooler.getActiveColumnPositionsAsString());
     }
 
     public void test_performTemporalPoolingOnRegion() {

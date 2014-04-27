@@ -1,5 +1,8 @@
 package model.MARK_II;
 
+import java.awt.Point;
+import java.util.Collections;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
@@ -44,13 +47,18 @@ public class TemporalPooler extends Pooler {
 
     public void performTemporalPoolingOnRegion() {
 	Set<Column> activeColumns = this.spatialPooler.getActiveColumns();
-	this.phaseOne(activeColumns);
+	if (super.getLearningState()) {
+	    this.phaseOne(activeColumns);
+	    this.phaseTwo(activeColumns);
+	    this.phaseThree(activeColumns);
 
-	this.phaseTwo(activeColumns);
+	    this.nextTimeStep();
+	} else {
+	    this.computeActiveStateOfAllNeuronsInActiveColumn(activeColumns);
+	    this.computePredictiveStateOfAllNeurons(activeColumns);
 
-	this.phaseThree(activeColumns);
-
-	this.nextTimeStep();
+	    this.nextTimeStep();
+	}
     }
 
     void nextTimeStep() {
@@ -346,8 +354,20 @@ public class TemporalPooler extends Pooler {
 	int bestMatchingNeuronIndex = 0;
 
 	Neuron[] neurons = column.getNeurons();
+
+	// make order of checking neurons random
+	List<Integer> allNeuronPositions = new ArrayList<Integer>(
+		neurons.length);
 	for (int i = 0; i < neurons.length; i++) {
-	    Segment bestSegment = neurons[i].getBestActiveSegment();
+	    allNeuronPositions.add(new Integer(i));
+	}
+	Collections.shuffle(allNeuronPositions);
+
+	for (int i = 0; i < neurons.length; i++) {
+	    int randomIndex = allNeuronPositions.get(i);
+	    // by making the order random neurons[0] is NOT the
+	    // only neuron that will get new distal segments
+	    Segment bestSegment = neurons[randomIndex].getBestActiveSegment();
 	    int numberOfActiveSynapses = bestSegment
 		    .getNumberOfActiveSynapses();
 	    if (numberOfActiveSynapses > greatestNumberOfActiveSynapses) {
@@ -412,17 +432,7 @@ public class TemporalPooler extends Pooler {
 	return temporalPoolerInformation;
     }
 
-    public void performTemporalPoolingInferenceOnlyOnRegion() {
-	Set<Column> activeColumns = this.spatialPooler.getActiveColumns();
-	// phase 1
-	this.computeActiveStateOfAllNeuronsInActiveColumn(activeColumns);
-
-	// phase 2
-	this.computePredictiveStateOfAllNeurons(activeColumns);
-    }
-
-    void computeActiveStateOfAllNeuronsInActiveColumn(
-	    Set<Column> activeColumns) {
+    void computeActiveStateOfAllNeuronsInActiveColumn(Set<Column> activeColumns) {
 	for (Column column : activeColumns) {
 
 	    boolean bottomUpPredicted = false;
@@ -433,7 +443,10 @@ public class TemporalPooler extends Pooler {
 		    DistalSegment bestSegment = neuron
 			    .getBestPreviousActiveSegment();
 
-		    if (bestSegment != null && bestSegment.getSequenceStatePredictsFeedFowardInputOnNextStep()) {
+		    // TODO: when is segment ever set to be sequence segment
+		    if (bestSegment != null
+			    && bestSegment
+				    .getSequenceStatePredictsFeedFowardInputOnNextStep()) {
 			bottomUpPredicted = true;
 			neuron.setActiveState(true);
 		    }

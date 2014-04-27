@@ -141,6 +141,7 @@ public class Neuron extends Cell {
 		mostActiveDistalSegment = distalSegment;
 	    }
 	}
+
 	return mostActiveDistalSegment;
     }
 
