@@ -53,8 +53,6 @@ public class TemporalPooler extends Pooler {
 	this.phaseThree(activeColumns);
 
 	this.nextTimeStep();
-
-	this.segmentUpdateList.clear();
     }
 
     void nextTimeStep() {
@@ -115,6 +113,7 @@ public class TemporalPooler extends Pooler {
 		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
 		column.setLearningNeuronPosition(bestNeuronIndex);
 
+		// TODO: neurons[i] doesn't have any segments to return
 		DistalSegment segment = neurons[bestNeuronIndex]
 			.getBestPreviousActiveSegment();
 		SegmentUpdate segmentUpdate = this.getSegmentActiveSynapses(
@@ -186,7 +185,7 @@ public class TemporalPooler extends Pooler {
 	for (int i = 0; i < numberOfSynapsesToAdd; i++) {
 	    activeSynapses.add(potentialSynapsesToAdd.get(i));
 
-	    // ACTUALLY adds synapse to segment
+	    // ACTUALLY adds synapses to segment
 	    segment.addSynapse(potentialSynapsesToAdd.get(i));
 	}
 
@@ -242,6 +241,7 @@ public class TemporalPooler extends Pooler {
 
 			this.segmentUpdateList.add(activeUpdate);
 
+			// TODO: neurons[i] doesn't have any segments to return
 			Segment predictingSegment = neurons[i]
 				.getBestPreviousActiveSegment();
 

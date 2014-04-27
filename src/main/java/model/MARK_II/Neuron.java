@@ -86,7 +86,8 @@ public class Neuron extends Cell {
 	} else { // previousActiveSegments.size() > 1
 
 	    if (previousActiveSequenceSegment.size() == 0) {
-		return this.getPreviousSegmentWithMostActivity(this.distalSegments);
+		return this
+			.getPreviousSegmentWithMostActivity(this.distalSegments);
 	    } else if (previousActiveSequenceSegment.size() == 1) {
 		return previousActiveSequenceSegment.get(0);
 	    } else { // previousActiveSequenceSegments.size() > 1
@@ -99,7 +100,9 @@ public class Neuron extends Cell {
     DistalSegment getPreviousSegmentWithMostActivity(
 	    List<DistalSegment> whichSegmentsToCheck) {
 	if (whichSegmentsToCheck.size() == 0) {
-	    return null;
+	    DistalSegment newDistalSegment = new DistalSegment();
+	    this.addDistalSegment(newDistalSegment);
+	    return newDistalSegment;
 	}
 	DistalSegment mostActiveDistalSegment = this.distalSegments.get(0);
 
@@ -113,18 +116,26 @@ public class Neuron extends Cell {
 	    }
 	}
 	if (maxPreviousActiveSynapses == 0) {
-	    return null; // there were no previously active distal segments
+	    // there were no previously active distal segments
+	    DistalSegment newDistalSegment = new DistalSegment();
+	    this.addDistalSegment(newDistalSegment);
+	    return newDistalSegment;
 	}
 	return mostActiveDistalSegment;
     }
 
     public DistalSegment getBestActiveSegment() {
+	if (this.distalSegments.size() == 0) {
+	    DistalSegment newDistalSegment = new DistalSegment();
+	    this.addDistalSegment(newDistalSegment);
+	    return newDistalSegment;
+	}
+
 	DistalSegment mostActiveDistalSegment = this.distalSegments.get(0);
 
 	int maxActiveSynapses = 0;
 	for (DistalSegment distalSegment : this.distalSegments) {
-	    int activeSynapses = distalSegment
-		    .getNumberOfActiveSynapses();
+	    int activeSynapses = distalSegment.getNumberOfActiveSynapses();
 	    if (activeSynapses > maxActiveSynapses) {
 		maxActiveSynapses = activeSynapses;
 		mostActiveDistalSegment = distalSegment;
