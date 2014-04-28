@@ -25,7 +25,7 @@ public class FindOptimalParametersForSDRTest extends TestCase {
 		FindOptimalParametersForSDR
 			.printToFileSDRScoreFor1RetinaTo1RegionModelFor1Digit(
 				95.2, 5.8, 56.1,
-				"./src/test/java/model/MARK_I/SDR/SDRScore.txt"),
+				"./src/test/java/model/MARK_I/parameters/SDRScore.txt"),
 		.01);
     }
 
@@ -34,6 +34,6 @@ public class FindOptimalParametersForSDRTest extends TestCase {
 	FindOptimalParametersForSDR
 		.printToFileAverageSDRScoreFor1RetinaTo1RegionModelForAllDigitsInMNIST(
 			50, 3, 20.0,
-			"./src/test/java/model/MARK_I/SDR/averageSDRScore.txt");
+			"./src/test/java/model/MARK_I/parameters/averageSDRScore.txt");
     }
 }

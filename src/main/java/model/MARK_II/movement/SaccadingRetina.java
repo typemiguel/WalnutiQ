@@ -4,8 +4,8 @@ import java.awt.Point;
 import model.Retina;
 
 /**
- * Put all logic for updating SaccadingRetina elsewhere. In reality a retina
- * does not update itself.
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version Apr 28, 2014
  */
 public class SaccadingRetina extends Retina {
     private Point position;
