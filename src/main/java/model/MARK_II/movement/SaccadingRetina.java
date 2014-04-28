@@ -36,4 +36,23 @@ public class SaccadingRetina extends Retina {
 	    int distanceBetweenImageAndRetina) {
 	this.distanceBetweenImageAndRetina = distanceBetweenImageAndRetina;
     }
+
+    public int[][] getDoubleIntArrayRepresentationOfVisionCells() {
+	int numberOfRows = super.visionCells.length;
+	int numberOfColumns = super.visionCells[0].length;
+	int[][] retina = new int[numberOfRows][numberOfColumns];
+
+	for (int x = 0; x < numberOfColumns; x++) {
+	    for (int y = 0; y < numberOfRows; y++) {
+		if (super.visionCells[x][y].getActiveState()) {
+		    retina[x][y] = 1;
+		} else {
+		    retina[x][y] = 0;
+		}
+	    }
+	}
+
+	return retina;
+    }
+
 }

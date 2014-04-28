@@ -1,5 +1,7 @@
 package model.MARK_II.movement;
 
+import java.io.IOException;
+
 import java.awt.Point;
 
 /**
@@ -15,9 +17,11 @@ public class ImageViewer {
     private int[][] image;
     private SaccadingRetina retina;
 
-    public ImageViewer(int[][] image, SaccadingRetina retina) {
-	this.image = image;
+    public ImageViewer(String BMPFileName, SaccadingRetina retina) throws IOException {
 	this.retina = retina;
+	this.retina.seeBMPImage(BMPFileName);
+	this.image = this.retina.getDoubleIntArrayRepresentationOfVisionCells();
+
     }
 
     public void updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() {
@@ -48,16 +52,16 @@ public class ImageViewer {
 
 	for (int x = initialX; x < finalX; x++) {
 	    for (int y = initialY; y < finalY; y++) {
-		if (x < 0 || y < 0 || x > this.image.length
-			|| y > this.image[0].length) {
+		if (x < 0 || y < 0 || x >= this.image.length
+			|| y >= this.image[0].length) {
 		    // this may happen when d is very large and retinaX or
 		    // retinaY are small
-		} else if (i < 0 || j < 0 || i > widthOfSeen
-			|| j > lengthOfSeen) {
+		} else if (i < 0 || j < 0 || i >= widthOfSeen
+			|| j >= lengthOfSeen) {
 		    // this may happen when d is very large and retinaX or
 		    // retinaY are small
 		} else {
-		    //imageToReturn[i][j] = this.image[x][y];
+		    imageToReturn[i][j] = 1;//this.image[x][y];
 		}
 		j++;
 	    }

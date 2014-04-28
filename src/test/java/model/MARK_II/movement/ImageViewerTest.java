@@ -1,7 +1,6 @@
 package model.MARK_II.movement;
 
 import model.util.RegionConsoleViewer;
-
 import java.io.IOException;
 import java.awt.Point;
 
@@ -15,7 +14,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
     private ImageViewer imageViewer;
     private SaccadingRetina retina;
 
-    public void setUp() {
+    public void setUp() throws IOException {
 	this.big1 = new int[8][10];
 	for (int x = 0; x < this.big1.length; x++) {
 	    for (int y = 0; y < this.big1[0].length; y++) {
@@ -36,15 +35,15 @@ public class ImageViewerTest extends junit.framework.TestCase {
 
 	this.big1[0][6] = 1;
 
-	this.retina = new SaccadingRetina(66, 66, new Point(2, 2), 3);
-	this.imageViewer = new ImageViewer(this.big1, this.retina);
+	this.retina = new SaccadingRetina(66, 66, new Point(33, 33), 33);
+	this.imageViewer = new ImageViewer("2.bmp", this.retina);
     }
 
     public void test_getSeenAreaFromMainImage() throws IOException {
-	this.retina.seeBMPImage("2.bmp");
-
 	int[][] seenArea = this.imageViewer.getSeenAreaFromMainImage();
-	//RegionConsoleViewer.printDoubleIntArray(seenArea);
+	assertEquals(66, seenArea.length);
+	assertEquals(66, seenArea[0].length);
+	RegionConsoleViewer.printDoubleIntArray(seenArea);
     }
 
     //    big1       small1
@@ -70,6 +69,5 @@ public class ImageViewerTest extends junit.framework.TestCase {
 		0.25);
 	assertEquals(32, manipulatedImage2.length);
 	assertEquals(40, manipulatedImage2[0].length);
-	RegionConsoleViewer.printDoubleIntArray(manipulatedImage2);
     }
 }

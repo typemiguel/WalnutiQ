@@ -16,7 +16,7 @@ import java.io.IOException;
  * @version Feb 3, 2014
  */
 public class Retina {
-    private VisionCell[][] visionCells;
+    protected VisionCell[][] visionCells;
 
     public Retina(int numberOfVisionCellsAlongYAxis,
 	    int numberOfVisionCellsAlongXAxis) {
