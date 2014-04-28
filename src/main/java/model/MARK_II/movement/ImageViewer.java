@@ -1,5 +1,7 @@
 package model.MARK_II.movement;
 
+import java.awt.Point;
+
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Apr 28, 2014
@@ -11,7 +13,6 @@ public class ImageViewer {
      * plane.
      */
     private int[][] image;
-
     private SaccadingRetina retina;
 
     public ImageViewer(int[][] image, SaccadingRetina retina) {
@@ -23,13 +24,29 @@ public class ImageViewer {
      * Depending on where the retina is and how close it is to the image a
      * different image needs to be returned.
      */
-    public int[][] seenPartOfImage(ViewPosition viewPosition) {
-	// TODO: manipulate this.image based on
-	// informationAboutRetinaLocationAndOrientation
+    public void updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() {
+	double x = this.retina.getPosition().getX();
+	double y = this.retina.getPosition().getY();
+	double d = this.retina.getDistanceBetweenImageAndRetina();
+	Point topLeftOfSeen = new Point((int) (x - d), (int) (y + d));
+	int widthOfSeen = (int) d;
+	int lengthOfSeen = (int) d;
 
-	int[][] manipulatedImage = this.image;
+	int[][] seenAreaFromMainImage = this.getSeenAreaFromMainImage(
+		topLeftOfSeen, widthOfSeen, lengthOfSeen);
 
-	return manipulatedImage;
+	int[][] fittedToRetina = this.fitToRetina();
+
+	this.retina.see2DIntArray(fittedToRetina);
+    }
+
+    int[][] getSeenAreaFromMainImage(Point topLeftOfSeen, int widthOfSeen,
+	    int lengthOfSeen) {
+	return null;
+    }
+
+    int[][] fitToRetina() {
+	return null;
     }
 
     /**

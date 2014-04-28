@@ -1,26 +1,39 @@
 package model.MARK_II.movement;
 
+import java.awt.Point;
 import model.Retina;
 
 /**
- *  Put all logic for updating SaccadingRetina elsewhere. In reality
- *  a retina does not update itself.
+ * Put all logic for updating SaccadingRetina elsewhere. In reality a retina
+ * does not update itself.
  */
 public class SaccadingRetina extends Retina {
-    private ViewPosition viewPosition;
+    private Point position;
+    private int distanceBetweenImageAndRetina;
 
     public SaccadingRetina(int numberOfVisionCellsAlongYAxis,
-	    int numberOfVisionCellsAlongXAxis, ViewPosition viewPosition) {
+	    int numberOfVisionCellsAlongXAxis, Point retinaPosition,
+	    int distanceBetweenImageAndRetina) {
 	super(numberOfVisionCellsAlongYAxis, numberOfVisionCellsAlongXAxis);
 
-	this.viewPosition = viewPosition;
+	this.position = retinaPosition;
+	this.distanceBetweenImageAndRetina = distanceBetweenImageAndRetina;
     }
 
-    public ViewPosition getViewPosition() {
-        return viewPosition;
+    public Point getPosition() {
+	return position;
     }
 
-    public void setViewPosition(ViewPosition viewPosition) {
-        this.viewPosition = viewPosition;
+    public void setRetinaPosition(Point retinaPosition) {
+	this.position = retinaPosition;
+    }
+
+    public int getDistanceBetweenImageAndRetina() {
+	return distanceBetweenImageAndRetina;
+    }
+
+    public void setDistanceBetweenImageAndRetina(
+	    int distanceBetweenImageAndRetina) {
+	this.distanceBetweenImageAndRetina = distanceBetweenImageAndRetina;
     }
 }

@@ -29,7 +29,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
 	this.big1[0][6] = 1;
 
 	this.imageViewer = new ImageViewer(this.big1, new SaccadingRetina(66,
-		66, new ViewPosition(new Point(0, 0), 2)));
+		66, new Point(0, 0), 2));
     }
 
 //       big1          small1
