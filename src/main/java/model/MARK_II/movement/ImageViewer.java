@@ -1,7 +1,5 @@
 package model.MARK_II.movement;
 
-import java.awt.Point;
-
 public class ImageViewer {
     /**
      * Assumme image is (0, 0) on bottom left (image.width, image.height) on top

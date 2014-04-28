@@ -10,4 +10,20 @@ public class ViewPosition {
 	this.retinaPosition = retinaPosition;
 	this.distanceBetweenImageAndRetina = distanceBetweenImageAndRetina;
     }
+
+    public Point getRetinaPosition() {
+        return retinaPosition;
+    }
+
+    public void setRetinaPosition(Point retinaPosition) {
+        this.retinaPosition = retinaPosition;
+    }
+
+    public int getDistanceBetweenImageAndRetina() {
+        return distanceBetweenImageAndRetina;
+    }
+
+    public void setDistanceBetweenImageAndRetina(int distanceBetweenImageAndRetina) {
+        this.distanceBetweenImageAndRetina = distanceBetweenImageAndRetina;
+    }
 }
