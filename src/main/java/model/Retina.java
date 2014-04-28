@@ -73,7 +73,11 @@ public class Retina {
 
 	for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
 	    for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
-		if (image[currentColumn][currentRow] != 0) {
+		if (currentColumn > image.length || currentRow > image[0].length) {
+		    this.visionCells[currentRow][currentColumn]
+			    .setActiveState(false);
+		}
+		else if (image[currentColumn][currentRow] != 0) {
 		    this.visionCells[currentRow][currentColumn]
 			    .setActiveState(true);
 		} else {

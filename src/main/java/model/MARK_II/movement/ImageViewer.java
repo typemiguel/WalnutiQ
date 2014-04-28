@@ -20,33 +20,52 @@ public class ImageViewer {
 	this.retina = retina;
     }
 
-    /**
-     * Depending on where the retina is and how close it is to the image a
-     * different image needs to be returned.
-     */
     public void updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() {
-	double x = this.retina.getPosition().getX();
-	double y = this.retina.getPosition().getY();
-	double d = this.retina.getDistanceBetweenImageAndRetina();
-	Point topLeftOfSeen = new Point((int) (x - d), (int) (y + d));
-	int widthOfSeen = (int) d;
-	int lengthOfSeen = (int) d;
+	int[][] seenAreaFromMainImage = this.getSeenAreaFromMainImage();
 
-	int[][] seenAreaFromMainImage = this.getSeenAreaFromMainImage(
-		topLeftOfSeen, widthOfSeen, lengthOfSeen);
-
-	int[][] fittedToRetina = this.fitToRetina();
+	int[][] fittedToRetina = this.fitToRetina(seenAreaFromMainImage);
 
 	this.retina.see2DIntArray(fittedToRetina);
     }
 
-    int[][] getSeenAreaFromMainImage(Point topLeftOfSeen, int widthOfSeen,
-	    int lengthOfSeen) {
-	return null;
+    int[][] getSeenAreaFromMainImage() {
+	double retinaX = this.retina.getPosition().getX();
+	double retinaY = this.retina.getPosition().getY();
+	double d = this.retina.getDistanceBetweenImageAndRetina();
+	Point bottomLeftOfSeen = new Point((int) (retinaX - d),
+		(int) (retinaY - d));
+	int widthOfSeen = (int) d;
+	int lengthOfSeen = (int) d;
+
+	int[][] imageToReturn = new int[widthOfSeen][lengthOfSeen];
+	int i = 0;
+	int j = 0;
+	for (int x = bottomLeftOfSeen.x; x < widthOfSeen; x++) {
+	    for (int y = bottomLeftOfSeen.y; y < lengthOfSeen; y++) {
+		if (x > this.image.length || y > this.image[0].length) {
+		    imageToReturn[i][j] = 0; // out of bounds
+		} else {
+		    imageToReturn[i][j] = this.image[x][y];
+		}
+		j++;
+	    }
+	    i++;
+	}
+	return imageToReturn;
     }
 
-    int[][] fitToRetina() {
-	return null;
+    /**
+     * For now assume int[][] seenAreaFromMainImage is a square and retina is a
+     * square as well to keep things simple.
+     */
+    int[][] fitToRetina(int[][] seenAreaFromMainImage) {
+	// if retina is 4 times bigger than seenAreaFromMainImage then
+	// reductionScale = 2
+	int reductionScale = this.retina.getVisionCells().length
+		/ seenAreaFromMainImage.length;
+	int[][] fittedImage = this.manipulatedImage(seenAreaFromMainImage,
+		reductionScale);
+	return fittedImage;
     }
 
     /**
