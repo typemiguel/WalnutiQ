@@ -1,26 +1,26 @@
 package model.MARK_II.movement;
 
-import model.MARK_II.VisionCell;
+import model.Retina;
 
 /**
  *  Put all logic for updating SaccadingRetina elsewhere. In reality
  *  a retina does not update itself.
  */
-public class SaccadingRetina {
-    private VisionCell[][] visionCells;
+public class SaccadingRetina extends Retina {
+    private ViewPosition viewPosition;
 
     public SaccadingRetina(int numberOfVisionCellsAlongYAxis,
-	    int numberOfVisionCellsAlongXAxis) {
-	this.visionCells = new VisionCell[numberOfVisionCellsAlongYAxis][numberOfVisionCellsAlongXAxis];
+	    int numberOfVisionCellsAlongXAxis, ViewPosition viewPosition) {
+	super(numberOfVisionCellsAlongYAxis, numberOfVisionCellsAlongXAxis);
 
-	for (int currentRow = 0; currentRow < numberOfVisionCellsAlongYAxis; currentRow++) {
-	    for (int currentColumn = 0; currentColumn < numberOfVisionCellsAlongXAxis; currentColumn++) {
-		this.visionCells[currentRow][currentColumn] = new VisionCell();
-	    }
-	}
+	this.viewPosition = viewPosition;
     }
 
-    public VisionCell[][] getVisionCells() {
-	return this.visionCells;
+    public ViewPosition getViewPosition() {
+        return viewPosition;
+    }
+
+    public void setViewPosition(ViewPosition viewPosition) {
+        this.viewPosition = viewPosition;
     }
 }

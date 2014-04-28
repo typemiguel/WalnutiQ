@@ -1,12 +1,11 @@
 package model.MARK_II.movement;
 
 public class EyeMuscles {
-    private SaccadingRetina retina;
 
     // input = ??? neuron activity at top region of hierarhcy???
     // output = saccade Retina based on input
-    public EyeMuscles(SaccadingRetina retina) {
-	this.retina = retina;
+    public EyeMuscles() {
+
     }
 
     /**
