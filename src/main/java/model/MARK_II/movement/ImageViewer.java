@@ -34,18 +34,30 @@ public class ImageViewer {
 	double d = this.retina.getDistanceBetweenImageAndRetina();
 	Point bottomLeftOfSeen = new Point((int) (retinaX - d),
 		(int) (retinaY - d));
-	int widthOfSeen = (int) d;
-	int lengthOfSeen = (int) d;
+	int widthOfSeen = (int) d * 2;
+	int lengthOfSeen = (int) d * 2;
 
 	int[][] imageToReturn = new int[widthOfSeen][lengthOfSeen];
 	int i = 0;
 	int j = 0;
-	for (int x = bottomLeftOfSeen.x; x < widthOfSeen; x++) {
-	    for (int y = bottomLeftOfSeen.y; y < lengthOfSeen; y++) {
-		if (x > this.image.length || y > this.image[0].length) {
-		    imageToReturn[i][j] = 0; // out of bounds
+
+	int initialX = bottomLeftOfSeen.x;
+	int finalX = initialX + widthOfSeen;
+	int initialY = bottomLeftOfSeen.y;
+	int finalY = initialY + lengthOfSeen;
+
+	for (int x = initialX; x < finalX; x++) {
+	    for (int y = initialY; y < finalY; y++) {
+		if (x < 0 || y < 0 || x > this.image.length
+			|| y > this.image[0].length) {
+		    // this may happen when d is very large and retinaX or
+		    // retinaY are small
+		} else if (i < 0 || j < 0 || i > widthOfSeen
+			|| j > lengthOfSeen) {
+		    // this may happen when d is very large and retinaX or
+		    // retinaY are small
 		} else {
-		    imageToReturn[i][j] = this.image[x][y];
+		    //imageToReturn[i][j] = this.image[x][y];
 		}
 		j++;
 	    }
@@ -75,18 +87,18 @@ public class ImageViewer {
      *            returned
      * @return manipulated image based on reductionScale
      */
-    int[][] manipulatedImage(int[][] image, int reductionScale) {
+    int[][] manipulatedImage(int[][] image, double reductionScale) {
 
-	int[][] manipulatedImage = new int[image.length / reductionScale][image[0].length
-		/ reductionScale];
+	int[][] manipulatedImage = new int[(int)(image.length / reductionScale)][(int)(image[0].length
+		/ reductionScale)];
 
 	for (int i = 0; i < manipulatedImage.length; i++) {
 	    for (int j = 0; j < manipulatedImage[0].length; j++) {
 		int numberOf1sInLocalImageArea = 0;
 		for (int x = 0; x < reductionScale; x++) {
 		    for (int y = 0; y < reductionScale; y++) {
-			numberOf1sInLocalImageArea += image[i * reductionScale
-				+ x][j * reductionScale + y];
+			numberOf1sInLocalImageArea += image[(int)(i * reductionScale
+				+ x)][(int)(j * reductionScale + y)];
 		    }
 		}
 		manipulatedImage[i][j] = numberOf1sInLocalImageArea > (reductionScale
