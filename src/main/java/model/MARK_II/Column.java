@@ -174,7 +174,16 @@ public class Column {
 	return this.neurons;
     }
 
-    void setNeuron(Neuron neuron, int neuronIndex) {
+    public Neuron getNeuron(int neuronIndex) {
+	if (neuronIndex < 0 || neuronIndex >= this.neurons.length) {
+	    throw new IllegalArgumentException(
+		    "neuronIndex in Column class method "
+			    + "getNeuron is invalid");
+	}
+	return this.neurons[neuronIndex];
+    }
+
+    public void setNeuron(Neuron neuron, int neuronIndex) {
 	this.neurons[neuronIndex] = neuron;
     }
 

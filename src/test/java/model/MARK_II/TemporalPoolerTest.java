@@ -62,7 +62,6 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 
 	Column[][] columns = this.spatialPooler.getRegion().getColumns();
 	int numberOfActiveNeurons = 0;
-	// all neurons in Region should have their active state on
 	for (int x = 0; x < columns.length; x++) {
 	    for (int y = 0; y < columns[0].length; y++) {
 		for (Neuron neuron : columns[x][y].getNeurons()) {
@@ -73,7 +72,7 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 	    }
 	}
 
-	// 4 active columns where each column has 3 neurons
+	// 4 active columns where each column has 3 neurons. 4 * 3 = 12
 	assertEquals(12, numberOfActiveNeurons);
 
 	// 4 learning neurons were chosen and given a new distal segment
@@ -90,19 +89,46 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     public void test_phaseOneCase2() {
 	// Case 2: bottomUpPredicted = true learningCellChosen = false
 	this.setUpCurrentLearningNeuronListForTemporalPooler();
+
+	Neuron neuron = new Neuron();
+	neuron.setPreviousActiveState(true);
+
+	DistalSegment distalSegment = new DistalSegment();
+	distalSegment.setPreviousActiveState(true);
+	distalSegment.setSequenceState(true);
+	neuron.addDistalSegment(distalSegment);
+
+	Column column = this.spatialPooler.getRegion().getColumn(1, 3);
+	column.setNeuron(neuron, 0);
+
 	this.temporalPooler.phaseOne(this.spatialPooler.getActiveColumns());
+
+	Column[][] columns = this.spatialPooler.getRegion().getColumns();
+	int numberOfActiveNeurons = 0;
+	for (int x = 0; x < columns.length; x++) {
+	    for (int y = 0; y < columns[0].length; y++) {
+		for (Neuron currentNeuron : columns[x][y].getNeurons()) {
+		    if (currentNeuron.getActiveState()) {
+			numberOfActiveNeurons++;
+		    }
+		}
+	    }
+	}
+
+	// 3 active columns without a previously active Neuron. 3 * 3 = 9
+	// 1 more for predicting neuron with sequence segment. 9 + 1 = 10
+	assertEquals(10, numberOfActiveNeurons);
+	assertEquals(4, this.temporalPooler.getCurrentLearningNeurons().size());
     }
 
     public void test_phaseOneCase3() {
 	// Case 3: bottomUpPredicted = false learningCellChosen = true
-	this.setUpCurrentLearningNeuronListForTemporalPooler();
-	this.temporalPooler.phaseOne(this.spatialPooler.getActiveColumns());
+	// This is not possible
     }
 
     public void test_phaseOneCase4() {
 	// Case 4: bottomUpPredicted = true learningCellChosen = true
-	this.setUpCurrentLearningNeuronListForTemporalPooler();
-	this.temporalPooler.phaseOne(this.spatialPooler.getActiveColumns());
+	// This is covered by case 2
     }
 
     public void test_getSegmentActiveSynapses() {
