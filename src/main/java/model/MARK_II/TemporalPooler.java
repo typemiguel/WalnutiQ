@@ -200,14 +200,8 @@ public class TemporalPooler extends Pooler {
 			columnPosition);
 
 	for (int i = 0; i < numberOfSynapsesToAdd; i++) {
-	    // TODO: problem is that the same synapse
-	    // is being added over and over
-	    Synapse<Cell> synapse = potentialSynapsesToAdd.get(i);
-	    System.out.println(synapse.toString());
-	    activeSynapses.add(synapse);
-
-	    // actually adds synapses to segment
-	    segment.addSynapse(synapse);
+	    activeSynapses.add(potentialSynapsesToAdd.get(i));
+	    segment.addSynapse(potentialSynapsesToAdd.get(i));
 	}
 
 	return activeSynapses;

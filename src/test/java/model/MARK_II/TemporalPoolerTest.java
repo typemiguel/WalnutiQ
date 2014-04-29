@@ -24,6 +24,8 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     private DistalSegment distalSegmentWith3ActiveSynapses;
     private DistalSegment distalSegmentWith4ActiveSynapses;
 
+    private DistalSegment distalSegmentWith1PreviousActiveSynapse;
+
     public void setUp() throws IOException {
 
 	// images this retina will see are all 66x66 pixels
@@ -59,9 +61,53 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 
     public void test_getSegmentActiveSynapses() {
 	// Case 1: previousTimeStep = true & newSynapses = true
+	this.setUpCurrentLearningNeuronListForTemporalPooler();
+
+	SegmentUpdate segmentUpdate = this.temporalPooler
+		.getSegmentActiveSynapses(new ColumnPosition(0, 0), 0,
+			this.distalSegmentWith1PreviousActiveSynapse, true,
+			true);
+
+	assertEquals(4, segmentUpdate.getSynapsesWithActiveCells().size());
+	assertEquals(0, segmentUpdate.getSynpasesWithDeactiveCells().size());
 
 	// Case 2: previousTimeStep = false & newSynapses = false
+	this.setUpCurrentLearningNeuronListForTemporalPooler();
 
+	SegmentUpdate segmentUpdate2 = this.temporalPooler
+		.getSegmentActiveSynapses(new ColumnPosition(0, 0), 0,
+			this.distalSegmentWith1PreviousActiveSynapse, false,
+			false);
+
+	assertEquals(0, segmentUpdate2.getSynapsesWithActiveCells().size());
+	assertEquals(4, segmentUpdate2.getSynpasesWithDeactiveCells().size());
+
+	// ---------------------------------------------------------------------
+	DistalSegment twoActiveAndOnePreviouslyActiveSynapses = new DistalSegment();
+
+	VisionCell activeVisionCell_1 = new VisionCell();
+	activeVisionCell_1.setActiveState(true);
+
+	VisionCell activeVisionCell_2 = new VisionCell();
+	activeVisionCell_2.setActiveState(true);
+
+	twoActiveAndOnePreviouslyActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_1, 0.2, 0, 10));
+	twoActiveAndOnePreviouslyActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_2, 0.2, 0, 11));
+
+	VisionCell activeVisionCell_3 = new VisionCell();
+	activeVisionCell_3.setPreviousActiveState(true);
+	twoActiveAndOnePreviouslyActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_3, 0.2, 0, 12));
+	// ---------------------------------------------------------------------
+
+	SegmentUpdate segmentUpdate3 = this.temporalPooler
+		.getSegmentActiveSynapses(new ColumnPosition(0, 0), 0,
+			twoActiveAndOnePreviouslyActiveSynapses, false, false);
+
+	assertEquals(2, segmentUpdate3.getSynapsesWithActiveCells().size());
+	assertEquals(1, segmentUpdate3.getSynpasesWithDeactiveCells().size());
     }
 
     public void test_addRandomlyChosenSynapsesFromCurrentLearningNeurons() {
@@ -79,6 +125,20 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 		    expected.getMessage());
 	}
 
+	DistalSegment distalSegment1 = this
+		.setUpCurrentLearningNeuronListForTemporalPooler();
+
+	Set<Synapse<Cell>> synapses = this.temporalPooler
+		.addRandomlyChosenSynapsesFromCurrentLearningNeurons(
+			new HashSet<Synapse<Cell>>(), distalSegment1,
+			new ColumnPosition(0, 0));
+	// even though newSynapseCount is 25 if there are only 3 unique
+	// learning neurons, then only 3 synapses will be added
+	assertEquals(3, synapses.size());
+	assertEquals(3, distalSegment1.getSynapses().size());
+    }
+
+    DistalSegment setUpCurrentLearningNeuronListForTemporalPooler() {
 	Neuron neuron1 = new Neuron();
 	Neuron neuron2 = new Neuron();
 	Neuron neuron3 = new Neuron();
@@ -91,15 +151,7 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 	this.temporalPooler.getCurrentLearningNeurons().add(neuron1);
 	this.temporalPooler.getCurrentLearningNeurons().add(neuron2);
 	this.temporalPooler.getCurrentLearningNeurons().add(neuron3);
-
-	Set<Synapse<Cell>> synapses = this.temporalPooler
-		.addRandomlyChosenSynapsesFromCurrentLearningNeurons(
-			new HashSet<Synapse<Cell>>(), distalSegment1,
-			new ColumnPosition(0, 0));
-	// even though newSynapseCount is 25 if there are only 3 unique
-	// learning neurons, then only 3 synapses will be added
-	assertEquals(3, synapses.size());
-	assertEquals(3, distalSegment1.getSynapses().size());
+	return distalSegment1;
     }
 
     public void test_generatePotentialSynapses() {
@@ -193,24 +245,30 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 		activeVisionCell_1, 0.2, 0, 0));
 
 	this.distalSegmentWith2ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_1, 0.2, 0, 0));
+		activeVisionCell_1, 0.2, 0, 1));
 	this.distalSegmentWith2ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_2, 0.2, 0, 1));
+		activeVisionCell_2, 0.2, 0, 2));
 
 	this.distalSegmentWith3ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_1, 0.2, 0, 0));
+		activeVisionCell_1, 0.2, 0, 3));
 	this.distalSegmentWith3ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_2, 0.2, 0, 1));
+		activeVisionCell_2, 0.2, 0, 4));
 	this.distalSegmentWith3ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_3, 0.2, 0, 2));
+		activeVisionCell_3, 0.2, 0, 5));
 
 	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_1, 0.2, 0, 0));
+		activeVisionCell_1, 0.2, 0, 6));
 	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_2, 0.2, 0, 1));
+		activeVisionCell_2, 0.2, 0, 7));
 	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_3, 0.2, 0, 2));
+		activeVisionCell_3, 0.2, 0, 8));
 	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_4, 0.2, 0, 3));
+		activeVisionCell_4, 0.2, 0, 9));
+
+	this.distalSegmentWith1PreviousActiveSynapse = new DistalSegment();
+	VisionCell activeVisionCell_5 = new VisionCell();
+	activeVisionCell_5.setPreviousActiveState(true);
+	this.distalSegmentWith1PreviousActiveSynapse
+		.addSynapse(new Synapse<Cell>(activeVisionCell_5, 0.2, 0, 0));
     }
 }
