@@ -1,5 +1,7 @@
 package model.MARK_II;
 
+import java.util.List;
+
 import java.util.ArrayList;
 
 import java.io.IOException;
@@ -89,6 +91,18 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 			    + "createNewSynapsesConnectedToCurrentLearningNeurons method cannot be size 0",
 		    expected.getMessage());
 	}
+
+	Neuron neuron = new Neuron();
+	neuron.addDistalSegment(this.distalSegmentWith1ActiveSynapse);
+	this.temporalPooler.getCurrentLearningNeurons().add(neuron);
+
+	List<Synapse<Cell>> newSynapses = this.temporalPooler
+		.createNewSynapsesConnectedToCurrentLearningNeurons(
+			new ArrayList<Synapse<Cell>>(), 1, new ColumnPosition(
+				3, 3));
+	assertEquals(1, newSynapses.size());
+	Synapse<Cell> sameSynapse = new Synapse<Cell>(neuron, 3, 3);
+	assertEquals(sameSynapse, newSynapses.get(0));
     }
 
     public void test_phaseTwo() {

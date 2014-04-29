@@ -158,6 +158,27 @@ public class Neuron extends Cell {
     }
 
     @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (!super.equals(obj))
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Neuron other = (Neuron) obj;
+	if (distalSegments == null) {
+	    if (other.distalSegments != null)
+		return false;
+	} else if (!distalSegments.equals(other.distalSegments))
+	    return false;
+	if (isPredicting != other.isPredicting)
+	    return false;
+	if (wasPredicting != other.wasPredicting)
+	    return false;
+	return true;
+    }
+
+    @Override
     public String toString() {
 	StringBuilder stringBuilder = new StringBuilder();
 	stringBuilder.append("\n===========================");
