@@ -21,6 +21,7 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     private DistalSegment distalSegmentWith4ActiveSynapses;
 
     public void setUp() throws IOException {
+
 	// images this retina will see are all 66x66 pixels
 	this.retina = new Retina(66, 66);
 
@@ -40,6 +41,8 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 	this.temporalPooler = new TemporalPooler(this.spatialPooler, 25);
 	this.temporalPooler.setLearningState(true);
 	// this.temporalPooler.performTemporalPoolingOnRegion();
+
+	this.setUpDistalSegments();
     }
 
     public void test_performTemporalPoolingOnRegion() {
@@ -51,6 +54,9 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_getSegmentActiveSynapses() {
+	// Case 1: previousTimeStep = true & newSynapses = true
+
+	// Case 2: previousTimeStep = false & newSynapses = false
 
     }
 
@@ -59,6 +65,16 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_generatePotentialSynapses() {
+	Neuron neuron = new Neuron();
+	neuron.addDistalSegment(this.distalSegmentWith3ActiveSynapses);
+	neuron.addDistalSegment(this.distalSegmentWith4ActiveSynapses);
+	this.temporalPooler.getCurrentLearningNeurons().add(neuron);
+
+	this.temporalPooler.generatePotentialSynapses(2, new ColumnPosition(0,
+		0));
+    }
+
+    public void test_createNewSynapsesConnectedToCurrentLearningNeurons() {
 
     }
 
@@ -75,8 +91,6 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_getBestMatchingNeuronIndex() {
-	this.setUpDistalSegments();
-
 	Column column = new Column(4, new ColumnPosition(0, 0));
 	Neuron neuron0 = new Neuron();
 	Neuron neuron1 = new Neuron();

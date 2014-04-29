@@ -32,6 +32,7 @@ public class TemporalPooler extends Pooler {
     private final int newSynapseCount;
 
     private List<Neuron> currentLearningNeurons;
+    private int numberOfNewSynapsesInCurrentTimeStep;
 
     public TemporalPooler(SpatialPooler spatialPooler, int newSynapseCount) {
 	this.spatialPooler = spatialPooler;
@@ -41,6 +42,7 @@ public class TemporalPooler extends Pooler {
 	this.newSynapseCount = newSynapseCount;
 
 	this.currentLearningNeurons = new ArrayList<Neuron>();
+	this.numberOfNewSynapsesInCurrentTimeStep = 0;
     }
 
     public void performTemporalPoolingOnRegion() {
@@ -73,6 +75,9 @@ public class TemporalPooler extends Pooler {
 		}
 	    }
 	}
+
+	this.currentLearningNeurons.clear();
+	this.numberOfNewSynapsesInCurrentTimeStep = 0;
     }
 
     /**
@@ -231,12 +236,18 @@ public class TemporalPooler extends Pooler {
 	return potentialSynapsesToAdd;
     }
 
+    List<Neuron> getCurrentLearningNeurons() {
+	return this.currentLearningNeurons;
+    }
+
     List<Synapse<Cell>> createNewSynapsesConnectedToCurrentLearningNeurons(
 	    List<Synapse<Cell>> potentialSynapsesToAdd,
 	    int numberOfSynapsesToAdd, ColumnPosition columnPosition) {
 
 	int remainingNumberOfSynapsesToAdd = numberOfSynapsesToAdd
 		- potentialSynapsesToAdd.size();
+
+	this.numberOfNewSynapsesInCurrentTimeStep += remainingNumberOfSynapsesToAdd;
 
 	for (int i = 0; i < remainingNumberOfSynapsesToAdd; i++) {
 	    Synapse<Cell> newSynapse = new Synapse<Cell>(
@@ -428,6 +439,8 @@ public class TemporalPooler extends Pooler {
 	stringBuilder.append(this.newSynapseCount);
 	stringBuilder.append("\n        currentLearningNeurons size: ");
 	stringBuilder.append(this.currentLearningNeurons.size());
+	stringBuilder.append("\n    #OfNewSynapsesInCurrentTimeStep: ");
+	stringBuilder.append(this.numberOfNewSynapsesInCurrentTimeStep);
 	stringBuilder.append("\n================================");
 	String temporalPoolerInformation = stringBuilder.toString();
 	return temporalPoolerInformation;
