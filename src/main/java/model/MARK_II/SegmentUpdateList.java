@@ -47,4 +47,8 @@ public class SegmentUpdateList {
 	}
 	return false;
     }
+
+    List<SegmentUpdate> getList() {
+	return this.segmentUpdateList;
+    }
 }

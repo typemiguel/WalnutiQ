@@ -409,6 +409,10 @@ public class TemporalPooler extends Pooler {
 	return bestMatchingNeuronIndex;
     }
 
+    SegmentUpdateList getSegmentUpdateList() {
+	return this.segmentUpdateList;
+    }
+
     int getNewSynapseCount() {
 	return this.newSynapseCount;
     }
