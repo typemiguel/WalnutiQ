@@ -185,6 +185,13 @@ public class TemporalPooler extends Pooler {
     Set<Synapse<Cell>> addRandomlyChosenSynapsesFromCurrentLearningNeurons(
 	    Set<Synapse<Cell>> activeSynapses, Segment segment,
 	    ColumnPosition columnPosition) {
+	if (this.currentLearningNeurons.size() == 0) {
+	    throw new IllegalStateException(
+		    "currentLearningNeurons in TemporalPooler class "
+			    + "addRandomlyChosenSynapsesFromCurrentLearningNeurons"
+			    + " method cannot be size 0");
+	}
+
 	int numberOfSynapsesToAdd = this.newSynapseCount
 		- activeSynapses.size();
 
@@ -193,10 +200,14 @@ public class TemporalPooler extends Pooler {
 			columnPosition);
 
 	for (int i = 0; i < numberOfSynapsesToAdd; i++) {
-	    activeSynapses.add(potentialSynapsesToAdd.get(i));
+	    // TODO: problem is that the same synapse
+	    // is being added over and over
+	    Synapse<Cell> synapse = potentialSynapsesToAdd.get(i);
+	    System.out.println(synapse.toString());
+	    activeSynapses.add(synapse);
 
 	    // actually adds synapses to segment
-	    segment.addSynapse(potentialSynapsesToAdd.get(i));
+	    segment.addSynapse(synapse);
 	}
 
 	return activeSynapses;
@@ -209,7 +220,7 @@ public class TemporalPooler extends Pooler {
 	    ColumnPosition columnPosition) {
 	List<Synapse<Cell>> potentialSynapsesToAdd = new ArrayList<Synapse<Cell>>();
 	for (Neuron neuron : this.currentLearningNeurons) {
-
+	    // it is okay if initally no learning neurons have any distal segments
 	    for (DistalSegment distalSegment : neuron.getDistalSegments()) {
 		if (potentialSynapsesToAdd.size() >= numberOfSynapsesToAdd) {
 		    break;
@@ -247,7 +258,8 @@ public class TemporalPooler extends Pooler {
 	int remainingNumberOfSynapsesToAdd = numberOfSynapsesToAdd
 		- potentialSynapsesToAdd.size();
 
-	if (this.currentLearningNeurons.size() == 0) {
+	int numberOfLearningNeurons = this.currentLearningNeurons.size();
+	if (numberOfLearningNeurons == 0) {
 	    throw new IllegalStateException(
 		    "currentLearningNeurons in TemporalPooler class "
 			    + "createNewSynapsesConnectedToCurrentLearningNeurons"
@@ -255,12 +267,18 @@ public class TemporalPooler extends Pooler {
 	}
 
 	this.numberOfNewSynapsesInCurrentTimeStep += remainingNumberOfSynapsesToAdd;
-
+	int learningNeuronIndex = 0;
 	for (int i = 0; i < remainingNumberOfSynapsesToAdd; i++) {
 	    Synapse<Cell> newSynapse = new Synapse<Cell>(
-		    this.currentLearningNeurons.get(i), columnPosition.getX(),
+		    this.currentLearningNeurons.get(learningNeuronIndex), columnPosition.getX(),
 		    columnPosition.getY());
 	    potentialSynapsesToAdd.add(newSynapse);
+
+	    if ((learningNeuronIndex + 1) < numberOfLearningNeurons) {
+		learningNeuronIndex++;
+	    } else { // wrap around and so as many different learning neurons are used
+		learningNeuronIndex = 0;
+	    }
 	}
 	return potentialSynapsesToAdd;
     }
@@ -381,7 +399,6 @@ public class TemporalPooler extends Pooler {
 
 	for (int i = 0; i < neurons.length; i++) {
 	    int randomIndex = allNeuronPositions.get(i);
-	    System.out.println(randomIndex);
 	    // by making the order random neurons[0] is NOT the
 	    // only neuron that will get new distal segments
 	    Segment bestSegment = neurons[randomIndex].getBestActiveSegment();
@@ -396,6 +413,10 @@ public class TemporalPooler extends Pooler {
 	}
 
 	return bestMatchingNeuronIndex;
+    }
+
+    int getNewSynapseCount() {
+	return this.newSynapseCount;
     }
 
     @Override

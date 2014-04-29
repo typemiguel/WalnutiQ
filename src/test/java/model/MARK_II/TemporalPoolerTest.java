@@ -1,9 +1,9 @@
 package model.MARK_II;
 
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
-
 import java.util.ArrayList;
-
 import java.io.IOException;
 import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
@@ -65,7 +65,41 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_addRandomlyChosenSynapsesFromCurrentLearningNeurons() {
+	try {
+	    Set<Synapse<Cell>> synapses = this.temporalPooler
+		    .addRandomlyChosenSynapsesFromCurrentLearningNeurons(
+			    new HashSet<Synapse<Cell>>(), new DistalSegment(),
+			    new ColumnPosition(0, 0));
+	    fail("should've thrown an exception!");
+	} catch (IllegalStateException expected) {
+	    assertEquals(
+		    "currentLearningNeurons in TemporalPooler class "
+			    + "addRandomlyChosenSynapsesFromCurrentLearningNeurons method cannot be size 0",
 
+		    expected.getMessage());
+	}
+
+	Neuron neuron1 = new Neuron();
+	Neuron neuron2 = new Neuron();
+	Neuron neuron3 = new Neuron();
+	DistalSegment distalSegment1 = new DistalSegment();
+	neuron1.addDistalSegment(distalSegment1);
+	DistalSegment distalSegment2 = new DistalSegment();
+	neuron2.addDistalSegment(distalSegment2);
+	DistalSegment distalSegment3 = new DistalSegment();
+	neuron3.addDistalSegment(distalSegment3);
+	this.temporalPooler.getCurrentLearningNeurons().add(neuron1);
+	this.temporalPooler.getCurrentLearningNeurons().add(neuron2);
+	this.temporalPooler.getCurrentLearningNeurons().add(neuron3);
+
+	Set<Synapse<Cell>> synapses = this.temporalPooler
+		.addRandomlyChosenSynapsesFromCurrentLearningNeurons(
+			new HashSet<Synapse<Cell>>(), distalSegment1,
+			new ColumnPosition(0, 0));
+	// even though newSynapseCount is 25 if there are only 3 unique
+	// learning neurons, then only 3 synapses will be added
+	assertEquals(3, synapses.size());
+	assertEquals(3, distalSegment1.getSynapses().size());
     }
 
     public void test_generatePotentialSynapses() {
@@ -74,8 +108,9 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 	neuron.addDistalSegment(this.distalSegmentWith4ActiveSynapses);
 	this.temporalPooler.getCurrentLearningNeurons().add(neuron);
 
-	this.temporalPooler.generatePotentialSynapses(2, new ColumnPosition(0,
-		0));
+	List<Synapse<Cell>> synapses2 = this.temporalPooler
+		.generatePotentialSynapses(2, new ColumnPosition(0, 0));
+	assertEquals(3, synapses2.size());
     }
 
     public void test_createNewSynapsesConnectedToCurrentLearningNeurons() {
