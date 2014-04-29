@@ -1,8 +1,6 @@
 package model.MARK_II;
 
-import java.awt.Point;
 import java.util.Collections;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
@@ -365,12 +363,15 @@ public class TemporalPooler extends Pooler {
 
 	for (int i = 0; i < neurons.length; i++) {
 	    int randomIndex = allNeuronPositions.get(i);
+	    System.out.println(randomIndex);
 	    // by making the order random neurons[0] is NOT the
 	    // only neuron that will get new distal segments
 	    Segment bestSegment = neurons[randomIndex].getBestActiveSegment();
 	    int numberOfActiveSynapses = bestSegment
 		    .getNumberOfActiveSynapses();
-	    if (numberOfActiveSynapses > greatestNumberOfActiveSynapses) {
+	    // VERY IMPORTANT >= makes the returned neuron random and not
+	    // always neurons[0]
+	    if (numberOfActiveSynapses >= greatestNumberOfActiveSynapses) {
 		greatestNumberOfActiveSynapses = numberOfActiveSynapses;
 		bestMatchingNeuronIndex = randomIndex;
 	    }
