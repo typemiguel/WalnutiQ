@@ -75,13 +75,23 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_getBestMatchingNeuronIndex() {
-	Column column1 = new Column(4, new ColumnPosition(0, 0));
-	Neuron[] neurons = column1.getNeurons();
-
-	assertEquals(1, this.temporalPooler.getBestMatchingNeuronIndex(column1));
-
 	this.setUpDistalSegments();
 
+	Column column = new Column(4, new ColumnPosition(0, 0));
+	Neuron neuron0 = new Neuron();
+	Neuron neuron1 = new Neuron();
+	Neuron neuron2 = new Neuron();
+	Neuron neuron3 = new Neuron();
+	neuron0.addDistalSegment(distalSegmentWith1ActiveSynapse);
+	neuron1.addDistalSegment(distalSegmentWith2ActiveSynapses);
+	neuron2.addDistalSegment(distalSegmentWith4ActiveSynapses);
+	neuron3.addDistalSegment(distalSegmentWith3ActiveSynapses);
+	column.setNeuron(neuron0, 0);
+	column.setNeuron(neuron1, 1);
+	column.setNeuron(neuron2, 2);
+	column.setNeuron(neuron3, 3);
+
+	assertEquals(2, this.temporalPooler.getBestMatchingNeuronIndex(column));
     }
 
     void setUpDistalSegments() {
@@ -114,17 +124,17 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 	this.distalSegmentWith3ActiveSynapses.addSynapse(new Synapse<Cell>(
 		activeVisionCell_1, 0.2, 0, 0));
 	this.distalSegmentWith3ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_2, 0.2, 0, 0));
+		activeVisionCell_2, 0.2, 0, 1));
 	this.distalSegmentWith3ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_3, 0.2, 0, 1));
+		activeVisionCell_3, 0.2, 0, 2));
 
 	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
 		activeVisionCell_1, 0.2, 0, 0));
 	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_2, 0.2, 0, 0));
+		activeVisionCell_2, 0.2, 0, 1));
 	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_3, 0.2, 0, 1));
+		activeVisionCell_3, 0.2, 0, 2));
 	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_4, 0.2, 0, 0));
+		activeVisionCell_4, 0.2, 0, 3));
     }
 }

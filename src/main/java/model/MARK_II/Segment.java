@@ -119,9 +119,8 @@ public class Segment {
 
     public int getNumberOfActiveSynapses() {
 	int numberOfActiveSynapses = 0;
-	for (Synapse synapse : synapses) {
-	    Cell cell = (Cell) synapse.getConnectedCell();
-	    if (cell != null && cell.getActiveState()) {
+	for (Synapse synapse : this.synapses) {
+	    if (synapse.isConnected() && synapse.getConnectedCell().getActiveState()) {
 		numberOfActiveSynapses++;
 	    }
 	}

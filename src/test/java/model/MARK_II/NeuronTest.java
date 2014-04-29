@@ -9,6 +9,8 @@ public class NeuronTest extends junit.framework.TestCase {
 
     private DistalSegment distalSegmentWith1ActiveSynapse;
     private DistalSegment distalSegmentWith2ActiveSynapses;
+    private DistalSegment distalSegmentWith3ActiveSynapses;
+    private DistalSegment distalSegmentWith4ActiveSynapses;
 
     private DistalSegment currentlyActiveDistalSegment;
     private DistalSegment previousActiveDistalSegment;
@@ -16,22 +18,7 @@ public class NeuronTest extends junit.framework.TestCase {
     public void setUp() {
 	this.neuron = new Neuron();
 
-	this.distalSegmentWith1ActiveSynapse = new DistalSegment();
-	this.distalSegmentWith2ActiveSynapses = new DistalSegment();
-
-	// 2 currently active Synapse
-	VisionCell activeVisionCell_1 = new VisionCell();
-	activeVisionCell_1.setActiveState(true);
-
-	VisionCell activeVisionCell_2 = new VisionCell();
-	activeVisionCell_2.setActiveState(true);
-
-	this.distalSegmentWith1ActiveSynapse.addSynapse(new Synapse<Cell>(
-		activeVisionCell_1, 0.2, 0, 0));
-	this.distalSegmentWith2ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_1, 0.2, 0, 0));
-	this.distalSegmentWith2ActiveSynapses.addSynapse(new Synapse<Cell>(
-		activeVisionCell_2, 0.2, 0, 1));
+	this.setUpDistalSegments();
 
 	this.currentlyActiveDistalSegment = new DistalSegment();
 	this.previousActiveDistalSegment = new DistalSegment();
@@ -104,8 +91,67 @@ public class NeuronTest extends junit.framework.TestCase {
     public void test_getBestActiveSegment() {
 	this.neuron.addDistalSegment(this.distalSegmentWith1ActiveSynapse);
 	this.neuron.addDistalSegment(this.distalSegmentWith2ActiveSynapses);
+	this.neuron.addDistalSegment(this.distalSegmentWith3ActiveSynapses);
+	this.neuron.addDistalSegment(this.distalSegmentWith4ActiveSynapses);
 
-	assertEquals(this.distalSegmentWith2ActiveSynapses,
+	assertEquals(1,
+		this.distalSegmentWith1ActiveSynapse
+			.getNumberOfActiveSynapses());
+	assertEquals(2,
+		this.distalSegmentWith2ActiveSynapses
+			.getNumberOfActiveSynapses());
+	assertEquals(3,
+		this.distalSegmentWith3ActiveSynapses
+			.getNumberOfActiveSynapses());
+	assertEquals(4,
+		this.distalSegmentWith4ActiveSynapses
+			.getNumberOfActiveSynapses());
+
+	assertEquals(this.distalSegmentWith4ActiveSynapses,
 		this.neuron.getBestActiveSegment());
+    }
+
+    void setUpDistalSegments() {
+	this.distalSegmentWith1ActiveSynapse = new DistalSegment();
+	this.distalSegmentWith2ActiveSynapses = new DistalSegment();
+	this.distalSegmentWith3ActiveSynapses = new DistalSegment();
+	this.distalSegmentWith4ActiveSynapses = new DistalSegment();
+
+	// 4 currently active Synapse
+	VisionCell activeVisionCell_1 = new VisionCell();
+	activeVisionCell_1.setActiveState(true);
+
+	VisionCell activeVisionCell_2 = new VisionCell();
+	activeVisionCell_2.setActiveState(true);
+
+	VisionCell activeVisionCell_3 = new VisionCell();
+	activeVisionCell_3.setActiveState(true);
+
+	VisionCell activeVisionCell_4 = new VisionCell();
+	activeVisionCell_4.setActiveState(true);
+
+	this.distalSegmentWith1ActiveSynapse.addSynapse(new Synapse<Cell>(
+		activeVisionCell_1, 0.2, 0, 0));
+
+	this.distalSegmentWith2ActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_1, 0.2, 0, 0));
+	this.distalSegmentWith2ActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_2, 0.2, 0, 1));
+
+	this.distalSegmentWith3ActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_1, 0.2, 0, 0));
+	this.distalSegmentWith3ActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_2, 0.2, 0, 1));
+	this.distalSegmentWith3ActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_3, 0.2, 0, 2));
+
+	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_1, 0.2, 0, 0));
+	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_2, 0.2, 0, 1));
+	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_3, 0.2, 0, 2));
+	this.distalSegmentWith4ActiveSynapses.addSynapse(new Synapse<Cell>(
+		activeVisionCell_4, 0.2, 0, 3));
     }
 }

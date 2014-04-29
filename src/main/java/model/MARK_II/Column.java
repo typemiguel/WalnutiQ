@@ -174,6 +174,10 @@ public class Column {
 	return this.neurons;
     }
 
+    void setNeuron(Neuron neuron, int neuronIndex) {
+	this.neurons[neuronIndex] = neuron;
+    }
+
     public List<ColumnPosition> getNeighborColumns() {
 	return this.neighborColumnPositions;
     }
