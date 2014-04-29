@@ -1,5 +1,7 @@
 package model.MARK_II;
 
+import java.util.ArrayList;
+
 import java.io.IOException;
 import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
@@ -75,7 +77,18 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_createNewSynapsesConnectedToCurrentLearningNeurons() {
-
+	try {
+	    this.temporalPooler
+		    .createNewSynapsesConnectedToCurrentLearningNeurons(
+			    new ArrayList<Synapse<Cell>>(), 1,
+			    new ColumnPosition(0, 0));
+	    fail("should've thrown an exception!");
+	} catch (IllegalStateException expected) {
+	    assertEquals(
+		    "currentLearningNeurons in TemporalPooler class "
+			    + "createNewSynapsesConnectedToCurrentLearningNeurons method cannot be size 0",
+		    expected.getMessage());
+	}
     }
 
     public void test_phaseTwo() {

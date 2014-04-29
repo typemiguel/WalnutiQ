@@ -247,6 +247,13 @@ public class TemporalPooler extends Pooler {
 	int remainingNumberOfSynapsesToAdd = numberOfSynapsesToAdd
 		- potentialSynapsesToAdd.size();
 
+	if (this.currentLearningNeurons.size() == 0) {
+	    throw new IllegalStateException(
+		    "currentLearningNeurons in TemporalPooler class "
+			    + "createNewSynapsesConnectedToCurrentLearningNeurons"
+			    + " method cannot be size 0");
+	}
+
 	this.numberOfNewSynapsesInCurrentTimeStep += remainingNumberOfSynapsesToAdd;
 
 	for (int i = 0; i < remainingNumberOfSynapsesToAdd; i++) {
