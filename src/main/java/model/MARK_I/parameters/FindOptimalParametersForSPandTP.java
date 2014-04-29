@@ -1,8 +1,9 @@
 package model.MARK_I.parameters;
 
+import model.ImageViewer;
+
+import model.SaccadingRetina;
 import java.awt.Point;
-import model.MARK_II.movement.SaccadingRetina;
-import model.MARK_II.movement.ImageViewer;
 
 public class FindOptimalParametersForSPandTP {
 
