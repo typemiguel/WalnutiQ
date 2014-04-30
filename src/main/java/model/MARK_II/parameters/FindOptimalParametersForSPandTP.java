@@ -1,15 +1,12 @@
 package model.MARK_II.parameters;
 
 import model.MARK_II.TemporalPooler;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Set;
 import model.Retina;
-import model.MARK_II.ColumnPosition;
 import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
@@ -27,6 +24,7 @@ public class FindOptimalParametersForSPandTP {
     public static double printToFileSPandTPScoreFor1RetinaTo1RegionModelFor1Digit(
 	    double percentMinimumOverlapScore, double desiredLocalActivity,
 	    double desiredPercentageOfActiveColumns, double newSynapseCount,
+	    double numberOfIterations,
 	    String locationOfFileWithFileNameToSaveScore) throws IOException {
 
 	Retina retina = new Retina(66, 66);
@@ -45,7 +43,7 @@ public class FindOptimalParametersForSPandTP {
 	retina.seeBMPImage("2.bmp");
 
 	int totalNumberOfSequenceSegments = 0;
-	for (int i = 0; i < 1000; i++) {
+	for (int i = 0; i < numberOfIterations; i++) {
 	    spatialPooler.performSpatialPoolingOnRegion();
 	    temporalPooler.performTemporalPoolingOnRegion();
 	    totalNumberOfSequenceSegments += temporalPooler
@@ -55,7 +53,8 @@ public class FindOptimalParametersForSPandTP {
 
 	// --------------------compute SPandTP score----------------------------
 
-	double SPandTPScore = -totalNumberOfSequenceSegments;
+	double SPandTPScore = -totalNumberOfSequenceSegments
+		/ numberOfIterations;
 
 	NumberFormat formatter = new DecimalFormat("0.################E0");
 
