@@ -30,6 +30,29 @@ public class FindOptimalParametersForSPandTP {
 	// temporalPooler.performSpatialPooling();
 	// ... again
 
+	// show image 0
+	// call spatial & temporal pooling
+
+	// show image 1
+	// call spatial & temporal pooling
+
+	// show image 2
+	// call spatial & temporal pooling
+
+	// show image 3
+	// call spatial & temporal pooling
+
+	// show image 4
+	// call spatial & temporal pooling
+
+	// show image 5
+	// call spatial & temporal pooling
+
+	// good SPandTPScore when showing same 0-6 images over and over again
+	// 1) the more sequence segments there are
+	// 2) the more predicting neurons there are
+	// 3) the less newSynapses there are
+
 	return SPandTPscore;
     }
 }
