@@ -53,11 +53,11 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 
     public void test_performTemporalPoolingOnRegion() {
 	this.temporalPooler.performTemporalPoolingOnRegion();
-	assertEquals(0, this.temporalPooler.getSegmentUpdateList().size());
+	assertEquals(16, this.temporalPooler.getSegmentUpdateList().size());
 	this.temporalPooler.performTemporalPoolingOnRegion();
-	assertEquals(0, this.temporalPooler.getSegmentUpdateList().size());
+	assertEquals(48, this.temporalPooler.getSegmentUpdateList().size());
 	this.temporalPooler.performTemporalPoolingOnRegion();
-	assertEquals(0, this.temporalPooler.getSegmentUpdateList().size());
+	assertEquals(96, this.temporalPooler.getSegmentUpdateList().size());
     }
 
     public void test_phaseOneCase1() {

@@ -17,11 +17,11 @@ public class FindOptimalParametersForSPandTPTest extends
     public void test_printToFileSDRScoreFor1RetinaTo1RegionModelFor1Digit()
 	    throws IOException {
 	assertEquals(
-		0,
+		-4.004,
 		FindOptimalParametersForSPandTP
 			.printToFileSPandTPScoreFor1RetinaTo1RegionModelFor1Digit(
 				77.8, 1, 10, 25, 1000,
 				"./src/test/java/model/MARK_II/parameters/SPandTPScore.txt"),
-		.01);
+		.00001);
     }
 }

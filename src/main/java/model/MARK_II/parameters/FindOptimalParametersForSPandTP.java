@@ -28,7 +28,7 @@ public class FindOptimalParametersForSPandTP {
 	    String locationOfFileWithFileNameToSaveScore) throws IOException {
 
 	Retina retina = new Retina(66, 66);
-	Region region = new Region("Region", 8, 8, 1,
+	Region region = new Region("Region", 8, 8, 4,
 		percentMinimumOverlapScore, (int) desiredLocalActivity);
 
 	AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
@@ -43,17 +43,22 @@ public class FindOptimalParametersForSPandTP {
 	retina.seeBMPImage("2.bmp");
 
 	int totalNumberOfSequenceSegments = 0;
-	for (int i = 0; i < numberOfIterations; i++) {
+	int totalNumberOfLearningNeurons = 0;
+	for (int i = 0; i < (int) numberOfIterations; i++) {
 	    spatialPooler.performSpatialPoolingOnRegion();
 	    temporalPooler.performTemporalPoolingOnRegion();
+
+	    temporalPooler.updateModelLearningMetrics();
 	    totalNumberOfSequenceSegments += temporalPooler
-		    .getNumberOfSequenceSegmentsInCurrentTimeStep();
-	    temporalPooler.resetNumberOfSequenceSegmentsInCurrentTimeStep();
+		    .getTotalNumberOfSequenceSegmentsInCurrentTimeStep();
+	    totalNumberOfLearningNeurons += temporalPooler
+		    .getNumberOfCurrentLearningNeurons();
+	    temporalPooler.nextTimeStep();
 	}
 
 	// --------------------compute SPandTP score----------------------------
 
-	double SPandTPScore = -totalNumberOfSequenceSegments
+	double SPandTPScore = -(totalNumberOfSequenceSegments + totalNumberOfLearningNeurons)
 		/ numberOfIterations;
 
 	NumberFormat formatter = new DecimalFormat("0.################E0");
