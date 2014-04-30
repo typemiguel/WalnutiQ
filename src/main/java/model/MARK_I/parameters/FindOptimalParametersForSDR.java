@@ -1,4 +1,4 @@
-package model.MARK_I.SDR;
+package model.MARK_I.parameters;
 
 import model.MARK_II.ColumnPosition;
 import model.MARK_II.Region;
