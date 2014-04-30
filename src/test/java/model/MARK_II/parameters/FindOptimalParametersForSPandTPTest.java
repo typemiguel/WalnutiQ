@@ -17,7 +17,7 @@ public class FindOptimalParametersForSPandTPTest extends
     public void test_printToFileSDRScoreFor1RetinaTo1RegionModelFor1Digit()
 	    throws IOException {
 	assertEquals(
-		-1,
+		0,
 		FindOptimalParametersForSPandTP
 			.printToFileSPandTPScoreFor1RetinaTo1RegionModelFor1Digit(
 				77.8, 1, 10, 25,
