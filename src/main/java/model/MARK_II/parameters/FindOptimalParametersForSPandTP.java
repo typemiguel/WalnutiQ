@@ -44,18 +44,18 @@ public class FindOptimalParametersForSPandTP {
 
 	retina.seeBMPImage("2.bmp");
 
-	spatialPooler.performSpatialPoolingOnRegion();
-	temporalPooler.performTemporalPoolingOnRegion();
-	// System.out.println(spatialPooler.getActiveColumnPositionsAsString());
-	// CONSOLE = ((6, 2), (1, 3), (1, 5), (4, 4))
+	int totalNumberOfSequenceSegments = 0;
+	for (int i = 0; i < 1000; i++) {
+	    spatialPooler.performSpatialPoolingOnRegion();
+	    temporalPooler.performTemporalPoolingOnRegion();
+	    totalNumberOfSequenceSegments += temporalPooler
+		    .getNumberOfSequenceSegmentsInCurrentTimeStep();
+	    temporalPooler.resetNumberOfSequenceSegmentsInCurrentTimeStep();
+	}
 
 	// --------------------compute SPandTP score----------------------------
 
-
-
-
-
-	double SPandTPScore = -1;
+	double SPandTPScore = -totalNumberOfSequenceSegments;
 
 	NumberFormat formatter = new DecimalFormat("0.################E0");
 
@@ -116,7 +116,8 @@ public class FindOptimalParametersForSPandTP {
 	// good SPandTPScore when showing same 0-6 images over and over again
 	// 1) the more sequence segments there are
 	// 2) the more predicting neurons there are
-	// 3) the less newSynapses there are
+	// 3) the less newSynapses there are NOT a good metric as it is a
+	// input parameter
 
 	return SPandTPscore;
     }

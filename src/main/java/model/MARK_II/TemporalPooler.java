@@ -32,7 +32,8 @@ public class TemporalPooler extends Pooler {
     private final int newSynapseCount;
 
     private List<Neuron> currentLearningNeurons;
-    private int numberOfNewSynapsesInCurrentTimeStep;
+
+    private int numberOfSequenceSegmentsInCurrentTimeStep;
 
     public TemporalPooler(SpatialPooler spatialPooler, int newSynapseCount) {
 	this.spatialPooler = spatialPooler;
@@ -42,7 +43,8 @@ public class TemporalPooler extends Pooler {
 	this.newSynapseCount = newSynapseCount;
 
 	this.currentLearningNeurons = new ArrayList<Neuron>();
-	this.numberOfNewSynapsesInCurrentTimeStep = 0;
+
+	this.numberOfSequenceSegmentsInCurrentTimeStep = 0;
     }
 
     public void performTemporalPoolingOnRegion() {
@@ -77,7 +79,6 @@ public class TemporalPooler extends Pooler {
 	}
 
 	this.currentLearningNeurons.clear();
-	this.numberOfNewSynapsesInCurrentTimeStep = 0;
 
 	// TODO: segmentUpdateList is added too much more than deleted from
 	// do we just clear it after each temporal pooling iteration???
@@ -106,6 +107,7 @@ public class TemporalPooler extends Pooler {
 				    .getSequenceStatePredictsFeedFowardInputOnNextStep()) {
 			bottomUpPredicted = true;
 			neurons[i].setActiveState(true);
+			this.numberOfSequenceSegmentsInCurrentTimeStep++;
 
 			if (bestSegment.getPreviousActiveState()) {
 			    learningCellChosen = true;
@@ -267,7 +269,6 @@ public class TemporalPooler extends Pooler {
 			    + " method cannot be size 0");
 	}
 
-	this.numberOfNewSynapsesInCurrentTimeStep += remainingNumberOfSynapsesToAdd;
 	int learningNeuronIndex = 0;
 	for (int i = 0; i < remainingNumberOfSynapsesToAdd; i++) {
 	    Synapse<Cell> newSynapse = new Synapse<Cell>(
@@ -479,8 +480,6 @@ public class TemporalPooler extends Pooler {
 	stringBuilder.append(this.newSynapseCount);
 	stringBuilder.append("\n        currentLearningNeurons size: ");
 	stringBuilder.append(this.currentLearningNeurons.size());
-	stringBuilder.append("\n    #OfNewSynapsesInCurrentTimeStep: ");
-	stringBuilder.append(this.numberOfNewSynapsesInCurrentTimeStep);
 	stringBuilder.append("\n================================");
 	String temporalPoolerInformation = stringBuilder.toString();
 	return temporalPoolerInformation;
@@ -503,6 +502,7 @@ public class TemporalPooler extends Pooler {
 				    .getSequenceStatePredictsFeedFowardInputOnNextStep()) {
 			bottomUpPredicted = true;
 			neuron.setActiveState(true);
+			this.numberOfSequenceSegmentsInCurrentTimeStep++;
 		    }
 		}
 	    }
@@ -525,5 +525,13 @@ public class TemporalPooler extends Pooler {
 		}
 	    }
 	}
+    }
+
+    public int getNumberOfSequenceSegmentsInCurrentTimeStep() {
+	return this.numberOfSequenceSegmentsInCurrentTimeStep;
+    }
+
+    public void resetNumberOfSequenceSegmentsInCurrentTimeStep() {
+	this.numberOfSequenceSegmentsInCurrentTimeStep = 0;
     }
 }
