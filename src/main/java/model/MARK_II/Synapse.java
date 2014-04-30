@@ -52,19 +52,19 @@ public class Synapse<CellType extends Cell> {
     /**
      * Amount permanenceValue is increased during one iteration of learning.
      */
-    public static final double PERMANENCE_INCREASE = 0.02;
+    public static double PERMANENCE_INCREASE = 0.02;
 
     /**
      * Amount permanenceValue is decreased during one iteration of learning.
      */
-    public static final double PERMANENCE_DECREASE = 0.005;
+    public static double PERMANENCE_DECREASE = 0.005;
 
     /**
      * Minimal permanenceValue needed for a Synapse to be connected.
      */
-    public static final double MINIMAL_CONNECTED_PERMANCE = 0.2;
+    public static double MINIMAL_CONNECTED_PERMANCE = 0.2;
 
-    public static final double INITIAL_PERMANENCE = 0.3;
+    public static double INITIAL_PERMANENCE = 0.3;
 
     /**
      * Create a new Synapse object with an Cell object and INITIAL_PERMANENCE

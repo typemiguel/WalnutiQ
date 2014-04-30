@@ -19,7 +19,7 @@ public class SpatialPooler extends Pooler {
     private Set<Column> activeColumns;
     private Set<ColumnPosition> activeColumnPositions;
 
-    private final float MINIMUM_COLUMN_FIRING_RATE = 0.01f;
+    public static float MINIMUM_COLUMN_FIRING_RATE = 0.01f;
 
     public SpatialPooler(Region region) {
 	if (region == null) {

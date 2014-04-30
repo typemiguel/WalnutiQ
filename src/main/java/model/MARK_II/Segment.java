@@ -19,7 +19,7 @@ public class Segment {
      * Minimal percent of active Synapses out of total Synapses needed for a
      * Segment to become active.
      */
-    public static final double PERCENT_ACTIVE_SYNAPSES_THRESHOLD = 0.2;
+    public static double PERCENT_ACTIVE_SYNAPSES_THRESHOLD = 0.2;
 
     /**
      * Provides three enums to be used as parameters in the method
