@@ -20,7 +20,8 @@ public class FindOptimalParametersForSPandTPTest extends
 		-4.004,
 		FindOptimalParametersForSPandTP
 			.printToFileSPandTPScoreFor1RetinaTo1RegionModelFor1Digit(
-				77.8, 1, 10, 25, 1000,
+				77.8, 1, 10, 25, 1000, 0.02, 0.005, 0.2, 0.3,
+				0.2, 0.005, 0.01,
 				"./src/test/java/model/MARK_II/parameters/SPandTPScore.txt"),
 		.00001);
     }

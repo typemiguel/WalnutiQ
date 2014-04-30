@@ -21,11 +21,52 @@ import java.awt.Point;
  */
 public class FindOptimalParametersForSPandTP {
 
+    /**
+     * Ranges for each variable
+     *
+     * @param percentMinimumOverlapScore
+     *            0 - 100
+     * @param desiredLocalActivity
+     *            0 - (region width / 4)
+     * @param desiredPercentageOfActiveColumns
+     *            0 - 100
+     * @param newSynapseCount
+     *            1 - 1000
+     * @param numberOfIterations
+     *            1000 - infinity :)
+     * @param PERMANENCE_INCREASE
+     *            0.001 - 0.999
+     * @param PERMANENCE_DECREASE
+     *            0.001 - 0.999
+     * @param MINIMAL_CONNECTED_PERMANENCE
+     *            0.1 - 0.9
+     * @param INITIAL_PERMANENCE
+     *            > MINIMAL_CONNECTED_PERMANENCE 0.11 - 0.91
+     * @param PERCENT_ACTIVE_SYNAPSES_THRESHOLD
+     *            0.1 - 0.9
+     * @param EXPONENTIAL_MOVING_AVERAGE_AlPHA
+     *            0.001 - 0.9
+     * @param MINIMUM_COLUMN_FIRING_RATE
+     *            0.01 - 0.9
+     * @param locationOfFileWithFileNameToSaveScore
+     * @return SPandTPScore
+     * @throws IOException
+     */
     public static double printToFileSPandTPScoreFor1RetinaTo1RegionModelFor1Digit(
 	    double percentMinimumOverlapScore, double desiredLocalActivity,
 	    double desiredPercentageOfActiveColumns, double newSynapseCount,
-	    double numberOfIterations,
+	    double numberOfIterations, double PERMANENCE_INCREASE,
+	    double PERMANENCE_DECREASE, double MINIMAL_CONNECTED_PERMANENCE,
+	    double INITIAL_PERMANENCE,
+	    double PERCENT_ACTIVE_SYNAPSES_THRESHOLD,
+	    double EXPONENTIAL_MOVING_AVERAGE_AlPHA,
+	    double MINIMUM_COLUMN_FIRING_RATE,
 	    String locationOfFileWithFileNameToSaveScore) throws IOException {
+
+	ResetModelParameters.reset(PERMANENCE_INCREASE, PERMANENCE_DECREASE,
+		MINIMAL_CONNECTED_PERMANENCE, INITIAL_PERMANENCE,
+		PERCENT_ACTIVE_SYNAPSES_THRESHOLD,
+		EXPONENTIAL_MOVING_AVERAGE_AlPHA, MINIMUM_COLUMN_FIRING_RATE);
 
 	Retina retina = new Retina(66, 66);
 	Region region = new Region("Region", 8, 8, 4,

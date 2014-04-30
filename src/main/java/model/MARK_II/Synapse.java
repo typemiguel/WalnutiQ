@@ -62,7 +62,7 @@ public class Synapse<CellType extends Cell> {
     /**
      * Minimal permanenceValue needed for a Synapse to be connected.
      */
-    public static double MINIMAL_CONNECTED_PERMANCE = 0.2;
+    public static double MINIMAL_CONNECTED_PERMANENCE = 0.2;
 
     public static double INITIAL_PERMANENCE = 0.3;
 
@@ -120,7 +120,7 @@ public class Synapse<CellType extends Cell> {
      *         connected.
      */
     public boolean isConnected() {
-	return (this.permanenceValue >= MINIMAL_CONNECTED_PERMANCE);
+	return (this.permanenceValue >= MINIMAL_CONNECTED_PERMANENCE);
     }
 
     /**
