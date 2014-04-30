@@ -289,6 +289,13 @@ public class TemporalPooler extends Pooler {
 	for (Column column : activeColumns) {
 	    Neuron[] neurons = column.getNeurons();
 	    for (int i = 0; i < neurons.length; i++) {
+		// we must compute the best segment here because
+		// if we compute it where it is commented out on line 307-8
+		// then we would be iterating over the neuron's list
+		// of segments again
+		Segment predictingSegment = neurons[i]
+			.getBestPreviousActiveSegment();
+
 		for (Segment segment : neurons[i].getDistalSegments()) {
 		    if (segment.getActiveState()) {
 			neurons[i].setPredictingState(true);
@@ -299,9 +306,8 @@ public class TemporalPooler extends Pooler {
 					segment, false, false);
 
 			this.segmentUpdateList.add(activeUpdate);
-
-			Segment predictingSegment = neurons[i]
-				.getBestPreviousActiveSegment();
+			// Segment predictingSegment = neurons[i]
+			// .getBestPreviousActiveSegment();
 
 			SegmentUpdate predictionUpdate = this
 				.getSegmentActiveSynapses(
