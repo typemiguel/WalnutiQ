@@ -22,6 +22,10 @@ public class SegmentUpdateList {
 	return this.segmentUpdateList.size();
     }
 
+    public void clear() {
+	this.segmentUpdateList.clear();
+    }
+
     public SegmentUpdate getSegmentUpdate(ColumnPosition columnPosition,
 	    int neuronIndex) {
 	for (SegmentUpdate segmentUpdate : this.segmentUpdateList) {

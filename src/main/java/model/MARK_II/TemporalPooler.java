@@ -78,6 +78,10 @@ public class TemporalPooler extends Pooler {
 
 	this.currentLearningNeurons.clear();
 	this.numberOfNewSynapsesInCurrentTimeStep = 0;
+
+	// TODO: segmentUpdateList is added too much more than deleted from
+	// do we just clear it after each temporal pooling iteration???
+	this.segmentUpdateList.clear();
     }
 
     /**
