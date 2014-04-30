@@ -126,16 +126,19 @@ to better understand the theory behind this repository.
       + main
         - java
           + model
-            - [MARK_I](./src/main/java/model/MARK_I) = the core logic for the partial brain model. 
+            - [MARK_II](./src/main/java/model/MARK_II) = the core logic for the partial brain model. 
               Includes abstract data types for basic brain structures and learning 
               algorithms that simulate how the brain learns.
-              + [SDR](./src/main/java/model/MARK_I/SDR) = allows construction of different WalnutiQ
-                models from command line for this repo https://github.com/quinnliu/CallWalnutiQ.
-              + [connectTypes](./src/main/java/model/MARK_I/connectTypes) = classes allow the different 
+              + [connectTypes](./src/main/java/model/MARK_II/connectTypes) = classes allow the different 
                 brain structures in MARK I to connect to each other in a variety of ways
-              + [SpatialPooler.java](./src/main/java/model/MARK_I/SpatialPooler.java) 
+              + [parameters](./src/main/java/model/MARK_II/parameters) = allows construction of different WalnutiQ
+                models from command line for this repo https://github.com/quinnliu/CallWalnutiQ
+              + [SpatialPooler.java](./src/main/java/model/MARK_II/SpatialPooler.java) 
                 = models the sparse & distributed spiking activity of neurons seen in the neocortex 
-                  and models long term potentiation and depression on synapses
+                  and models long term potentiation and depression on synapses of proximal dendrites
+              + [TemporalPooler.java](./src/main/java/model/MARK_II/TemporalPooler.java) 
+                = models neocortex's ability to predict future input using long term potentiation 
+                and depression on synapses of distal dendrites
 
             - [util](./src/main/java/model/util) = classes that enable the brain model properties
               to be viewed graphically and efficiently saved and opened  
