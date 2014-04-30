@@ -120,7 +120,6 @@ to better understand the theory behind this repository.
             + [vision](./experiments/model/MARK_I/vision) = experiments with partial 
               visual pathway models on a popular handwritten digit data
               set called MNIST
-  - gradle = helps everyone use the same version of Gradle for compiling code
   - images = images used in testing the MARK I model
   - referencedLibraries = contains .jar files(of other people's code) needed to run WalnutiQ
   - src
@@ -151,7 +150,6 @@ to better understand the theory behind this repository.
                   but it would be very cool of you to do something nice with it.
   - README.md = the file you are reading right now
   - build.gradle = instructions for compiling all of the code in this repository using Gradle
-  - gradlew.bat = helps everyone use the same version of Gradle for compiling code
 
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 
