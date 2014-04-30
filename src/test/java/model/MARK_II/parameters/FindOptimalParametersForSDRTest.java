@@ -1,6 +1,6 @@
-package model.MARK_I.parameters;
+package model.MARK_II.parameters;
 
-import model.MARK_I.parameters.FindOptimalParametersForSDR;
+import model.MARK_II.parameters.FindOptimalParametersForSDR;
 
 import junit.framework.TestCase;
 

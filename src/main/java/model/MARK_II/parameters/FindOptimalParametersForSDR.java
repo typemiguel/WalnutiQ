@@ -1,4 +1,7 @@
-package model.MARK_I.parameters;
+package model.MARK_II.parameters;
+
+import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
 
 import model.MARK_II.ColumnPosition;
 import model.MARK_II.Region;
@@ -6,8 +9,6 @@ import model.MARK_II.SpatialPooler;
 
 import mnist.tools.MnistManager;
 
-import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.Retina;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

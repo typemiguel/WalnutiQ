@@ -1,4 +1,6 @@
-package model.MARK_I.connectTypes;
+package model.MARK_II.connectTypes;
+
+import model.MARK_II.connectTypes.SensorCellsToRegionRandomConnect;
 
 import model.MARK_II.Column;
 import model.MARK_II.Region;

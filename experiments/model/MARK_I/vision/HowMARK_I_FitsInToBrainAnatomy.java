@@ -1,5 +1,10 @@
 package model.MARK_I.vision;
 
+import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
+import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_II.connectTypes.RegionToRegionRectangleConnect;
+import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
+
 import model.MARK_II.ColumnPosition;
 import model.MARK_II.Neocortex;
 import model.MARK_II.Region;
@@ -8,10 +13,6 @@ import model.MARK_II.SpatialPooler;
 import com.google.gson.Gson;
 import junit.framework.TestCase;
 import model.LGN;
-import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
-import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
-import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
-import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.NervousSystem;
 import model.Retina;
 import model.util.JsonFileInputOutput;

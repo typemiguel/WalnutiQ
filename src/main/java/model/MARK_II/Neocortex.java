@@ -1,6 +1,6 @@
 package model.MARK_II;
 
-import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
+import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
 
 /**
  * Neocortex is a undirected tree of Regions. Creating a Neocortex with multiple

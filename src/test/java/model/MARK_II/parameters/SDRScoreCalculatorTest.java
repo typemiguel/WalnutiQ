@@ -1,14 +1,15 @@
-package model.MARK_I.parameters;
+package model.MARK_II.parameters;
 
-import model.MARK_I.parameters.SDRScoreCalculator;
+import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
+
+import model.MARK_II.parameters.SDRScoreCalculator;
 
 import model.MARK_II.ColumnPosition;
 import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 
 import junit.framework.TestCase;
-import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
-import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.Retina;
 
 import java.io.IOException;

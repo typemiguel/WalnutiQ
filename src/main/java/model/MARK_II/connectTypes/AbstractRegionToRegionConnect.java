@@ -1,4 +1,4 @@
-package model.MARK_I.connectTypes;
+package model.MARK_II.connectTypes;
 
 import model.MARK_II.Region;
 

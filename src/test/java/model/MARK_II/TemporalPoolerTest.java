@@ -1,14 +1,13 @@
 package model.MARK_II;
 
-import model.MARK_II.*;
+import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
 
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.IOException;
-import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
-import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.Retina;
 
 /**

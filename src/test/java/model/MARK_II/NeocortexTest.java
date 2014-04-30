@@ -1,12 +1,13 @@
 package model.MARK_II;
 
+import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
+import model.MARK_II.connectTypes.RegionToRegionRectangleConnect;
+
 import model.MARK_II.Column;
 import model.MARK_II.Neocortex;
 import model.MARK_II.Region;
 
 import junit.framework.TestCase;
-import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
-import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)

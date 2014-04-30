@@ -1,5 +1,10 @@
 package model.MARK_II;
 
+import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
+import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_II.connectTypes.RegionToRegionRectangleConnect;
+import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
+
 import model.MARK_II.Cell;
 import model.MARK_II.Column;
 import model.MARK_II.ColumnPosition;
@@ -9,10 +14,6 @@ import model.MARK_II.SpatialPooler;
 import model.MARK_II.Synapse;
 
 import junit.framework.TestCase;
-import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;
-import model.MARK_I.connectTypes.AbstractSensorCellsToRegionConnect;
-import model.MARK_I.connectTypes.RegionToRegionRectangleConnect;
-import model.MARK_I.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.Retina;
 import model.util.RegionConsoleViewer;
 
