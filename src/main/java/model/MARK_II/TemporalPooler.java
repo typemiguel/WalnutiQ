@@ -121,6 +121,8 @@ public class TemporalPooler extends Pooler {
 	    if (learningCellChosen == false) {
 		int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
 		column.setLearningNeuronPosition(bestNeuronIndex);
+		this.currentLearningNeurons.add(column
+			.getNeuron(bestNeuronIndex));
 
 		DistalSegment segment = neurons[bestNeuronIndex]
 			.getBestPreviousActiveSegment();
@@ -214,7 +216,8 @@ public class TemporalPooler extends Pooler {
 	    ColumnPosition columnPosition) {
 	List<Synapse<Cell>> potentialSynapsesToAdd = new ArrayList<Synapse<Cell>>();
 	for (Neuron neuron : this.currentLearningNeurons) {
-	    // it is okay if initally no learning neurons have any distal segments
+	    // it is okay if initally no learning neurons have any distal
+	    // segments
 	    for (DistalSegment distalSegment : neuron.getDistalSegments()) {
 		if (potentialSynapsesToAdd.size() >= numberOfSynapsesToAdd) {
 		    break;
@@ -264,13 +267,14 @@ public class TemporalPooler extends Pooler {
 	int learningNeuronIndex = 0;
 	for (int i = 0; i < remainingNumberOfSynapsesToAdd; i++) {
 	    Synapse<Cell> newSynapse = new Synapse<Cell>(
-		    this.currentLearningNeurons.get(learningNeuronIndex), columnPosition.getX(),
-		    columnPosition.getY());
+		    this.currentLearningNeurons.get(learningNeuronIndex),
+		    columnPosition.getX(), columnPosition.getY());
 	    potentialSynapsesToAdd.add(newSynapse);
 
 	    if ((learningNeuronIndex + 1) < numberOfLearningNeurons) {
 		learningNeuronIndex++;
-	    } else { // wrap around and so as many different learning neurons are used
+	    } else { // wrap around and so as many different learning neurons
+		     // are used
 		learningNeuronIndex = 0;
 	    }
 	}
