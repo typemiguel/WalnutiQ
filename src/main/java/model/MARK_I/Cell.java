@@ -1,4 +1,4 @@
-package model.MARK_II;
+package model.MARK_I;
 
 /**
  * Provides the minimal behaviors for a Cell.

@@ -1,6 +1,6 @@
-package model.MARK_II;
+package model.MARK_I;
 
-import model.MARK_II.ColumnPosition;
+import model.MARK_I.ColumnPosition;
 
 import junit.framework.TestCase;
 

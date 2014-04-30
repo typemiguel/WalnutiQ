@@ -1,6 +1,6 @@
 package model.MARK_I.connectTypes;
 
-import model.MARK_II.Region;
+import model.MARK_I.Region;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)

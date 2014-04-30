@@ -1,6 +1,6 @@
 package model;
 
-import model.MARK_II.VisionCell;
+import model.MARK_I.VisionCell;
 
 import junit.framework.TestCase;
 

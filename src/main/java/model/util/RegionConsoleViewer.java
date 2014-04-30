@@ -1,9 +1,9 @@
 package model.util;
 
-import model.MARK_II.Cell;
-import model.MARK_II.Column;
-import model.MARK_II.Region;
-import model.MARK_II.Synapse;
+import model.MARK_I.Cell;
+import model.MARK_I.Column;
+import model.MARK_I.Region;
+import model.MARK_I.Synapse;
 
 import java.util.Set;
 import java.awt.Dimension;

@@ -1,4 +1,4 @@
-package model.MARK_II;
+package model.MARK_I;
 
 /**
  * Simulates (basal) dendrites on a Neuron that extend to other Neuron's dendrites

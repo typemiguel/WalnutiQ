@@ -1,6 +1,6 @@
 package model;
 
-import model.MARK_II.Neocortex;
+import model.MARK_I.Neocortex;
 
 /**
  * Adult human brains contain about 10^11 neurons with 10^3 synapses each for a
