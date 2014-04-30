@@ -1,9 +1,9 @@
 package model.MARK_I.vision;
 
-import model.MARK_I.ColumnPosition;
-import model.MARK_I.Neocortex;
-import model.MARK_I.Region;
-import model.MARK_I.SpatialPooler;
+import model.MARK_II.ColumnPosition;
+import model.MARK_II.Neocortex;
+import model.MARK_II.Region;
+import model.MARK_II.SpatialPooler;
 
 import com.google.gson.Gson;
 import junit.framework.TestCase;

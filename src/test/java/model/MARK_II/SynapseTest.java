@@ -1,8 +1,9 @@
-package model.MARK_I;
+package model.MARK_II;
 
-import model.MARK_I.Cell;
-import model.MARK_I.Synapse;
-import model.MARK_I.VisionCell;
+import model.MARK_II.Cell;
+import model.MARK_II.Neuron;
+import model.MARK_II.Synapse;
+import model.MARK_II.VisionCell;
 
 import junit.framework.TestCase;
 

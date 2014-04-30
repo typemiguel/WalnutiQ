@@ -1,5 +1,11 @@
 package model.MARK_II;
 
+import model.MARK_II.Cell;
+import model.MARK_II.ColumnPosition;
+import model.MARK_II.SegmentUpdate;
+import model.MARK_II.SegmentUpdateList;
+import model.MARK_II.Synapse;
+
 import java.util.HashSet;
 import java.util.Set;
 

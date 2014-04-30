@@ -1,8 +1,8 @@
-package model.MARK_I;
+package model.MARK_II;
 
-import model.MARK_I.Column;
-import model.MARK_I.Neocortex;
-import model.MARK_I.Region;
+import model.MARK_II.Column;
+import model.MARK_II.Neocortex;
+import model.MARK_II.Region;
 
 import junit.framework.TestCase;
 import model.MARK_I.connectTypes.AbstractRegionToRegionConnect;

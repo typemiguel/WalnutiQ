@@ -1,5 +1,11 @@
 package model.MARK_II;
 
+import model.MARK_II.Cell;
+import model.MARK_II.DistalSegment;
+import model.MARK_II.Neuron;
+import model.MARK_II.Synapse;
+import model.MARK_II.VisionCell;
+
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version April 26, 2014

@@ -1,7 +1,8 @@
-package model.MARK_I;
+package model.MARK_II;
 
-import model.MARK_I.Column;
-import model.MARK_I.Neuron;
+import model.MARK_II.Column;
+import model.MARK_II.ColumnPosition;
+import model.MARK_II.Neuron;
 
 import junit.framework.TestCase;
 
