@@ -1,13 +1,78 @@
 package model.MARK_II.parameters;
 
-import model.ImageViewer;
+import model.MARK_II.TemporalPooler;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Set;
+import model.Retina;
+import model.MARK_II.ColumnPosition;
+import model.MARK_II.Region;
+import model.MARK_II.SpatialPooler;
+import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
+import model.ImageViewer;
 import model.SaccadingRetina;
 import java.awt.Point;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version Apr 30, 2014
+ */
 public class FindOptimalParametersForSPandTP {
 
-    public static double printToFileSDRScoreFor1RetinaTo1RegionModelFor1Digit() {
+    public static double printToFileSPandTPScoreFor1RetinaTo1RegionModelFor1Digit(
+	    double percentMinimumOverlapScore, double desiredLocalActivity,
+	    double desiredPercentageOfActiveColumns, double newSynapseCount,
+	    String locationOfFileWithFileNameToSaveScore) throws IOException {
+
+	Retina retina = new Retina(66, 66);
+	Region region = new Region("Region", 8, 8, 1,
+		percentMinimumOverlapScore, (int) desiredLocalActivity);
+
+	AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
+	retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
+
+	SpatialPooler spatialPooler = new SpatialPooler(region);
+	spatialPooler.setLearningState(true);
+	TemporalPooler temporalPooler = new TemporalPooler(spatialPooler,
+		(int) newSynapseCount);
+	temporalPooler.setLearningState(true);
+
+	retina.seeBMPImage("2.bmp");
+
+	spatialPooler.performSpatialPoolingOnRegion();
+	temporalPooler.performTemporalPoolingOnRegion();
+	// System.out.println(spatialPooler.getActiveColumnPositionsAsString());
+	// CONSOLE = ((6, 2), (1, 3), (1, 5), (4, 4))
+
+	// --------------------compute SPandTP score----------------------------
+
+
+
+
+
+	double SPandTPScore = -1;
+
+	NumberFormat formatter = new DecimalFormat("0.################E0");
+
+	// print SPandTPScore to file
+	try {
+	    BufferedWriter out2 = new BufferedWriter(new FileWriter(
+		    locationOfFileWithFileNameToSaveScore));
+	    out2.write(formatter.format(SPandTPScore));
+	    out2.close();
+	} catch (IOException e) {
+
+	}
+
+	return SPandTPScore;
+    }
+
+    public static double printToFileSPandTPScoreFor1RetinaTo9RegionModelFor5Digits() {
 	double SPandTPscore = 0.0;
 
 	// construct model
