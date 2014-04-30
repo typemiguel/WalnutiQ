@@ -265,7 +265,8 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_phaseTwo() {
-
+	this.temporalPooler.phaseTwo(this.spatialPooler.getActiveColumns());
+	assertEquals(0, this.temporalPooler.getSegmentUpdateList().size());
     }
 
     public void test_phaseThree() {
@@ -273,7 +274,45 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
     }
 
     public void test_adaptSegments() {
+	Set<Synapse<Cell>> synapsesWithActiveCells = new HashSet<Synapse<Cell>>();
+	synapsesWithActiveCells.add(new Synapse<Cell>(new VisionCell(), 0, 0));
+	Set<Synapse<Cell>> synapsesWithDeactiveCells = new HashSet<Synapse<Cell>>();
+	synapsesWithDeactiveCells
+		.add(new Synapse<Cell>(new VisionCell(), 0, 0));
 
+	SegmentUpdate segmentUpdate = new SegmentUpdate(
+		synapsesWithActiveCells, synapsesWithDeactiveCells,
+		new ColumnPosition(1, 1), 1);
+
+	this.temporalPooler.adaptSegments(segmentUpdate, true);
+	Set<Synapse<Cell>> increasedSynapses = segmentUpdate
+		.getSynapsesWithActiveCells();
+	for (Synapse synapse : increasedSynapses) {
+	    assertEquals(Synapse.INITIAL_PERMANENCE
+		    + Synapse.PERMANENCE_INCREASE, synapse.getPermanenceValue());
+	}
+
+	Set<Synapse<Cell>> decreasedSynapses = segmentUpdate
+		.getSynpasesWithDeactiveCells();
+	for (Synapse synapse : decreasedSynapses) {
+	    assertEquals(Synapse.INITIAL_PERMANENCE
+		    - Synapse.PERMANENCE_DECREASE, synapse.getPermanenceValue());
+	}
+
+	this.temporalPooler.adaptSegments(segmentUpdate, false);
+	increasedSynapses = segmentUpdate.getSynapsesWithActiveCells();
+	for (Synapse synapse : increasedSynapses) {
+	    assertEquals(
+		    Synapse.INITIAL_PERMANENCE + Synapse.PERMANENCE_INCREASE
+			    - Synapse.PERMANENCE_DECREASE,
+		    synapse.getPermanenceValue());
+	}
+
+	decreasedSynapses = segmentUpdate.getSynpasesWithDeactiveCells();
+	for (Synapse synapse : decreasedSynapses) {
+	    assertEquals(Synapse.INITIAL_PERMANENCE
+		    - Synapse.PERMANENCE_DECREASE, synapse.getPermanenceValue());
+	}
     }
 
     public void test_getBestMatchingNeuronIndex() {
