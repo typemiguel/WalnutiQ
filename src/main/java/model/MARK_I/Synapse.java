@@ -200,8 +200,38 @@ public class Synapse<CellType extends Cell> {
 	    return false;
 	if (cellYPosition != other.cellYPosition)
 	    return false;
+	if (Double.doubleToLongBits(permanenceValue) != Double
+		.doubleToLongBits(other.permanenceValue))
+	    return false;
+	if (!this.cell.equals(other.cell)) {
+	    return false;
+	}
 	return true;
     }
+
+//    @Override
+//    public boolean equals(Object obj) {
+//	if (this == obj)
+//	    return true;
+//	if (obj == null)
+//	    return false;
+//	if (getClass() != obj.getClass())
+//	    return false;
+//	Synapse other = (Synapse) obj;
+//	if (cell == null) {
+//	    if (other.cell != null)
+//		return false;
+//	} else if (!cell.equals(other.cell))
+//	    return false;
+//	if (cellXPosition != other.cellXPosition)
+//	    return false;
+//	if (cellYPosition != other.cellYPosition)
+//	    return false;
+//	if (Double.doubleToLongBits(permanenceValue) != Double
+//		.doubleToLongBits(other.permanenceValue))
+//	    return false;
+//	return true;
+//    }
 
     public double getPermanenceValue() {
 	return this.permanenceValue;

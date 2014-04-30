@@ -9,8 +9,6 @@ import model.MARK_I.Segment.SynapseUpdateState;
 
 import junit.framework.TestCase;
 
-
-
 /**
  * SpatialPooler ProximalSegments
  * 1) Segments should add new Synapses only during instantiation

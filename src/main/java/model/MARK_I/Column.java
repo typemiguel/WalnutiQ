@@ -56,7 +56,10 @@ public class Column {
      */
     public final static float EXPONENTIAL_MOVING_AVERAGE_AlPHA = 0.005f;
 
-    public Column(int numberOfCells) {
+    private ColumnPosition currentPosition;
+    private int learningNeuronPosition;
+
+    public Column(int numberOfCells, ColumnPosition currentPosition) {
 	if (numberOfCells < 1) {
 	    throw new IllegalArgumentException(
 		    "numberOfCells in Column class constructor cannot be less than 1");
@@ -74,7 +77,13 @@ public class Column {
 					 // 0
 	    this.overlapDutyCycle = 1.0f; // Must be greater than 0, or will
 					  // stay 0
+
+	    this.currentPosition = currentPosition;
 	}
+    }
+
+    public ColumnPosition getCurrentPosition() {
+	return this.currentPosition;
     }
 
     /**
@@ -163,6 +172,19 @@ public class Column {
 
     public Neuron[] getNeurons() {
 	return this.neurons;
+    }
+
+    public Neuron getNeuron(int neuronIndex) {
+	if (neuronIndex < 0 || neuronIndex >= this.neurons.length) {
+	    throw new IllegalArgumentException(
+		    "neuronIndex in Column class method "
+			    + "getNeuron is invalid");
+	}
+	return this.neurons[neuronIndex];
+    }
+
+    public void setNeuron(Neuron neuron, int neuronIndex) {
+	this.neurons[neuronIndex] = neuron;
     }
 
     public List<ColumnPosition> getNeighborColumns() {
@@ -260,5 +282,13 @@ public class Column {
 	stringBuilder.append("\n=====================================");
 	String columnInformation = stringBuilder.toString();
 	return columnInformation;
+    }
+
+    public void setLearningNeuronPosition(int learningNeuronPosition) {
+	this.learningNeuronPosition = learningNeuronPosition;
+    }
+
+    public int getLearningNeuronPosition() {
+	return this.learningNeuronPosition;
     }
 }

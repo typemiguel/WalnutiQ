@@ -13,6 +13,8 @@ import java.util.HashSet;
 public class Segment {
     protected Set<Synapse<Cell>> synapses;
 
+    protected boolean isActive;
+
     /**
      * Minimal percent of active Synapses out of total Synapses needed for a
      * Segment to become active.
@@ -46,6 +48,7 @@ public class Segment {
 
     public Segment() {
 	this.synapses = new HashSet<Synapse<Cell>>();
+	this.isActive = false;
     }
 
     /**
@@ -65,8 +68,10 @@ public class Segment {
 	int minimalNumberOfActiveSynapses = (int) (this.synapses.size() * PERCENT_ACTIVE_SYNAPSES_THRESHOLD);
 
 	if (numberOfActiveSynapses > minimalNumberOfActiveSynapses) {
+	    this.isActive = true;
 	    return true;
 	} else {
+	    this.isActive = false;
 	    return false;
 	}
     }
@@ -114,9 +119,8 @@ public class Segment {
 
     public int getNumberOfActiveSynapses() {
 	int numberOfActiveSynapses = 0;
-	for (Synapse synapse : synapses) {
-	    Cell cell = (Cell) synapse.getConnectedCell();
-	    if (cell != null && cell.getActiveState()) {
+	for (Synapse synapse : this.synapses) {
+	    if (synapse.isConnected() && synapse.getConnectedCell().getActiveState()) {
 		numberOfActiveSynapses++;
 	    }
 	}

@@ -46,7 +46,8 @@ public class Region {
 
 	for (int x = 0; x < numberOfColumnsAlongXAxis; x++) {
 	    for (int y = 0; y < numberOfColumnsAlongYAxis; y++) {
-		this.columns[x][y] = new Column(cellsPerColumn);
+		this.columns[x][y] = new Column(cellsPerColumn,
+			new ColumnPosition(x, y));
 	    }
 	}
 
@@ -95,9 +96,17 @@ public class Region {
 	this.children.add(region);
     }
 
-    // --------------Getters and Setters---------------
     public Column[][] getColumns() {
 	return this.columns;
+    }
+
+    public Column getColumn(int x, int y) {
+	if (x < 0 || y < 0 || x >= this.columns.length
+		|| y >= this.columns[0].length) {
+	    throw new IllegalArgumentException("x & y in Region class method "
+		    + "getColumn(int x, int y) are invalid");
+	}
+	return this.columns[x][y];
     }
 
     public String getBiologicalName() {

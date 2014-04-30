@@ -6,7 +6,6 @@ import model.MARK_I.VisionCell;
 
 import junit.framework.TestCase;
 
-
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 8, 2013
@@ -93,5 +92,17 @@ public class SynapseTest extends TestCase {
 	this.synapse_1.setPermanenceValue(0.001);
 	this.synapse_1.decreasePermanence();
 	assertEquals(0.0, this.synapse_1.getPermanenceValue(), 0.0001);
+    }
+
+    public void test_equals() {
+	assertFalse(this.synapse_1.equals(this.synapse_2));
+
+	this.synapse_2.setPermanenceValue(Synapse.INITIAL_PERMANENCE);
+	assertTrue(this.synapse_1.equals(this.synapse_2));
+
+	Synapse<Cell> synapse_3 = new Synapse<Cell>(new Neuron(), 1, 1);
+	Synapse<Neuron> synapse_4 = new Synapse<Neuron>(new Neuron(), 1, 1);
+	assertFalse(this.synapse_1.equals(synapse_3));
+	assertFalse(this.synapse_1.equals(synapse_4));
     }
 }

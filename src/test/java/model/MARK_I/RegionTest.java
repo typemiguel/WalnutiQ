@@ -73,9 +73,9 @@ public class RegionTest extends TestCase {
 		    expected.getMessage());
 	}
 
-	Column column1 = new Column(2);
-	Column column2 = new Column(2);
-	Column column3 = new Column(2);
+	Column column1 = new Column(2, new ColumnPosition(0, 0));
+	Column column2 = new Column(2, new ColumnPosition(0, 0));
+	Column column3 = new Column(2, new ColumnPosition(0, 0));
 
 	column1.setActiveDutyCycle(0.1f);
 	column2.setActiveDutyCycle(0.2f);
