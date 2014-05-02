@@ -54,7 +54,7 @@ public class Column {
      * exponentially less as the boostValue approached 0 and minimumOverlapScore
      * respectively.
      */
-    public final static float EXPONENTIAL_MOVING_AVERAGE_AlPHA = 0.005f;
+    public static float EXPONENTIAL_MOVING_AVERAGE_AlPHA = 0.005f;
 
     private ColumnPosition currentPosition;
     private int learningNeuronPosition;

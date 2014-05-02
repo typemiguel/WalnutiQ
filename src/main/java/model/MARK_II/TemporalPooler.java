@@ -32,7 +32,11 @@ public class TemporalPooler extends Pooler {
     private final int newSynapseCount;
 
     private List<Neuron> currentLearningNeurons;
-    private int numberOfNewSynapsesInCurrentTimeStep;
+
+    private int totalNumberOfDistalSegmentsInCurrentTimeStep;
+    private int totalNumberOfPreviousActiveDistalSegmentsInCurrentTimeStep;
+    private int totalNumberOfActiveDistalSegmentsInCurrentTimeStep;
+    private int totalNumberOfSequenceSegmentsInCurrentTimeStep;
 
     public TemporalPooler(SpatialPooler spatialPooler, int newSynapseCount) {
 	this.spatialPooler = spatialPooler;
@@ -42,7 +46,11 @@ public class TemporalPooler extends Pooler {
 	this.newSynapseCount = newSynapseCount;
 
 	this.currentLearningNeurons = new ArrayList<Neuron>();
-	this.numberOfNewSynapsesInCurrentTimeStep = 0;
+
+	this.totalNumberOfDistalSegmentsInCurrentTimeStep = 0;
+	this.totalNumberOfPreviousActiveDistalSegmentsInCurrentTimeStep = 0;
+	this.totalNumberOfActiveDistalSegmentsInCurrentTimeStep = 0;
+	this.totalNumberOfSequenceSegmentsInCurrentTimeStep = 0;
     }
 
     public void performTemporalPoolingOnRegion() {
@@ -51,17 +59,13 @@ public class TemporalPooler extends Pooler {
 	    this.phaseOne(activeColumns);
 	    this.phaseTwo(activeColumns);
 	    this.phaseThree(activeColumns);
-
-	    this.nextTimeStep();
 	} else {
 	    this.computeActiveStateOfAllNeuronsInActiveColumn(activeColumns);
 	    this.computePredictiveStateOfAllNeurons(activeColumns);
-
-	    this.nextTimeStep();
 	}
     }
 
-    void nextTimeStep() {
+    public void nextTimeStep() {
 	Column[][] columns = super.region.getColumns();
 	for (int x = 0; x < super.region.getXAxisLength(); x++) {
 	    for (int y = 0; y < super.region.getYAxisLength(); y++) {
@@ -77,11 +81,15 @@ public class TemporalPooler extends Pooler {
 	}
 
 	this.currentLearningNeurons.clear();
-	this.numberOfNewSynapsesInCurrentTimeStep = 0;
 
 	// TODO: segmentUpdateList is added too much more than deleted from
 	// do we just clear it after each temporal pooling iteration???
 	this.segmentUpdateList.clear();
+
+	this.totalNumberOfDistalSegmentsInCurrentTimeStep = 0;
+	this.totalNumberOfPreviousActiveDistalSegmentsInCurrentTimeStep = 0;
+	this.totalNumberOfActiveDistalSegmentsInCurrentTimeStep = 0;
+	this.totalNumberOfSequenceSegmentsInCurrentTimeStep = 0;
     }
 
     /**
@@ -267,7 +275,6 @@ public class TemporalPooler extends Pooler {
 			    + " method cannot be size 0");
 	}
 
-	this.numberOfNewSynapsesInCurrentTimeStep += remainingNumberOfSynapsesToAdd;
 	int learningNeuronIndex = 0;
 	for (int i = 0; i < remainingNumberOfSynapsesToAdd; i++) {
 	    Synapse<Cell> newSynapse = new Synapse<Cell>(
@@ -431,34 +438,50 @@ public class TemporalPooler extends Pooler {
 	return this.newSynapseCount;
     }
 
-    @Override
-    public String toString() {
-	int totalNumberOfDistalSegments = 0;
-	int totalNumberOfPreviousActiveDistalSegments = 0;
-	int totalNumberOfActiveDistalSegments = 0;
-	int totalNumberOfSequenceSegments = 0;
-
+    public void updateModelLearningMetrics() {
 	Column[][] columns = super.region.getColumns();
 	for (int x = 0; x < super.region.getXAxisLength(); x++) {
 	    for (int y = 0; y < super.region.getYAxisLength(); y++) {
 		for (Neuron neuron : columns[x][y].getNeurons()) {
 		    for (DistalSegment distalSegment : neuron
 			    .getDistalSegments()) {
-			totalNumberOfDistalSegments++;
+			totalNumberOfDistalSegmentsInCurrentTimeStep++;
 			if (distalSegment.getActiveState()) {
-			    totalNumberOfActiveDistalSegments++;
+			    totalNumberOfActiveDistalSegmentsInCurrentTimeStep++;
 			}
 			if (distalSegment.getPreviousActiveState()) {
-			    totalNumberOfPreviousActiveDistalSegments++;
+			    totalNumberOfPreviousActiveDistalSegmentsInCurrentTimeStep++;
 			}
 			if (distalSegment
 				.getSequenceStatePredictsFeedFowardInputOnNextStep()) {
-			    totalNumberOfSequenceSegments++;
+			    totalNumberOfSequenceSegmentsInCurrentTimeStep++;
 			}
 		    }
 		}
 	    }
 	}
+
+    }
+
+    public int getTotalNumberOfDistalSegmentsInCurrentTimeStep() {
+	return this.totalNumberOfDistalSegmentsInCurrentTimeStep;
+    }
+
+    public int getTotalNumberOfActiveDistalSegmentsInCurrentTimeStep() {
+	return this.totalNumberOfActiveDistalSegmentsInCurrentTimeStep;
+    }
+
+    public int getTotalNumberOfPreviousActiveDistalSegmentsInCurrentTimeStep() {
+	return this.totalNumberOfPreviousActiveDistalSegmentsInCurrentTimeStep;
+    }
+
+    public int getTotalNumberOfSequenceSegmentsInCurrentTimeStep() {
+	return this.totalNumberOfSequenceSegmentsInCurrentTimeStep;
+    }
+
+    @Override
+    public String toString() {
+	this.updateModelLearningMetrics();
 
 	StringBuilder stringBuilder = new StringBuilder();
 	stringBuilder.append("\n==========================================");
@@ -468,19 +491,17 @@ public class TemporalPooler extends Pooler {
 	stringBuilder.append("\n             segmentUpdateList size: ");
 	stringBuilder.append(this.segmentUpdateList.size());
 	stringBuilder.append("\n      # of distalSegments in Region: ");
-	stringBuilder.append(totalNumberOfDistalSegments);
+	stringBuilder.append(totalNumberOfDistalSegmentsInCurrentTimeStep);
 	stringBuilder.append("\n         # of active distalSegments: ");
-	stringBuilder.append(totalNumberOfActiveDistalSegments);
+	stringBuilder.append(totalNumberOfActiveDistalSegmentsInCurrentTimeStep);
 	stringBuilder.append("\n# of previous active distalSegments: ");
-	stringBuilder.append(totalNumberOfPreviousActiveDistalSegments);
+	stringBuilder.append(totalNumberOfPreviousActiveDistalSegmentsInCurrentTimeStep);
 	stringBuilder.append("\n       # of sequence distalSegments: ");
-	stringBuilder.append(totalNumberOfSequenceSegments);
+	stringBuilder.append(totalNumberOfSequenceSegmentsInCurrentTimeStep);
 	stringBuilder.append("\n                    newSynapseCount: ");
 	stringBuilder.append(this.newSynapseCount);
 	stringBuilder.append("\n        currentLearningNeurons size: ");
 	stringBuilder.append(this.currentLearningNeurons.size());
-	stringBuilder.append("\n    #OfNewSynapsesInCurrentTimeStep: ");
-	stringBuilder.append(this.numberOfNewSynapsesInCurrentTimeStep);
 	stringBuilder.append("\n================================");
 	String temporalPoolerInformation = stringBuilder.toString();
 	return temporalPoolerInformation;
@@ -525,5 +546,9 @@ public class TemporalPooler extends Pooler {
 		}
 	    }
 	}
+    }
+
+    public int getNumberOfCurrentLearningNeurons() {
+	return this.currentLearningNeurons.size();
     }
 }
