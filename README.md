@@ -98,7 +98,6 @@ to better understand the theory behind this repository.
    View the file `index.html` in any browser and make sure all tests pass!
 
 ## How to Contribute
-
 1. View an example of how some of the code is used in the file
    [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
    Please do not be afriad to ask a question if you are confused!
@@ -120,36 +119,39 @@ to better understand the theory behind this repository.
             + [vision](./experiments/model/MARK_I/vision) = experiments with partial 
               visual pathway models on a popular handwritten digit data
               set called MNIST
-  - images = images used in testing the MARK I model
+  - images = images used in training & testing the partial brain model
   - referencedLibraries = contains .jar files(of other people's code) needed to run WalnutiQ
   - src
       + main
         - java
           + model
-            - [MARK_I](./src/main/java/model/MARK_I) = the core logic for the partial brain model. 
+            - [MARK_II](./src/main/java/model/MARK_II) = the core logic for the partial brain model. 
               Includes abstract data types for basic brain structures and learning 
               algorithms that simulate how the brain learns.
-              + [SDR](./src/main/java/model/MARK_I/SDR) = allows construction of different WalnutiQ
-                models from command line for this repo https://github.com/quinnliu/CallWalnutiQ.
-              + [connectTypes](./src/main/java/model/MARK_I/connectTypes) = classes allow the different 
+              + [connectTypes](./src/main/java/model/MARK_II/connectTypes) = classes allow the different 
                 brain structures in MARK I to connect to each other in a variety of ways
-              + [SpatialPooler.java](./src/main/java/model/MARK_I/SpatialPooler.java) 
+              + [parameters](./src/main/java/model/MARK_II/parameters) = allows construction of different WalnutiQ
+                models from command line for this repo https://github.com/quinnliu/CallWalnutiQ
+              + [SpatialPooler.java](./src/main/java/model/MARK_II/SpatialPooler.java) 
                 = models the sparse & distributed spiking activity of neurons seen in the neocortex 
-                  and models long term potentiation and depression on synapses
+                  and models long term potentiation and depression on synapses of proximal dendrites
+              + [TemporalPooler.java](./src/main/java/model/MARK_II/TemporalPooler.java) 
+                = models neocortex's ability to predict future input using long term potentiation 
+                and depression on synapses of distal dendrites
 
             - [util](./src/main/java/model/util) = classes that enable the brain model properties
               to be viewed graphically and efficiently saved and opened  
       + test = test classes for important classes in the `src/main/java/model` folder
-  - .gitignore = contains names of files/folders not to add to this repository
+  - .gitignore = contains names of files/folders not to add to this repository but keep in your local WalnutiQ folder
   - .project = when writing your code using Eclipse this file will allow all of
                your files to be organized in the correct folder
   - .travis.yml = tells [our custom travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) 
                   what versions of Java to test the files here
-  - BrainTheories.md = list of brain theories with support and simple explanation
+  - BrainTheories.md = list of important brain theories with support and simple explanation
   - LICENSE.txt = MIT liscense saying you can do whatever you want the code here 
                   but it would be very cool of you to do something nice with it.
   - README.md = the file you are reading right now
-  - build.gradle = instructions for compiling all of the code in this repository using Gradle
+  - build.gradle = compiles all of the code in this repository using Gradle
 
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 

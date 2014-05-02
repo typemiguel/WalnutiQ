@@ -1,7 +1,8 @@
 package model;
 
+import model.MARK_II.VisionCell;
+
 import junit.framework.TestCase;
-import model.MARK_I.VisionCell;
 
 import java.io.IOException;
 
