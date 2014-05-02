@@ -119,7 +119,7 @@ to better understand the theory behind this repository.
             + [vision](./experiments/model/MARK_I/vision) = experiments with partial 
               visual pathway models on a popular handwritten digit data
               set called MNIST
-  - images = images used in training & testing the partial brain model
+  - images = images used in testing the MARK I model
   - referencedLibraries = contains .jar files(of other people's code) needed to run WalnutiQ
   - src
       + main
