@@ -2,6 +2,7 @@ package model.MARK_II;
 
 import model.MARK_II.Segment.SynapseUpdateState;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -157,7 +158,7 @@ public class Column {
      */
     public void nextTimeStep() {
 	this.overlapScore = 0;
-	this.neighborColumnPositions.clear();
+	this.clearNeighborColumns();
 	this.boostValue = 1.0f;
     }
 
@@ -188,7 +189,13 @@ public class Column {
     }
 
     public List<ColumnPosition> getNeighborColumns() {
-	return this.neighborColumnPositions;
+	return Collections.unmodifiableList(this.neighborColumnPositions);
+    }
+    public void clearNeighborColumns() {
+        this.neighborColumnPositions.clear();
+    }
+    public void addNeighborColumns(ColumnPosition columnPosition) {
+        this.neighborColumnPositions.add(columnPosition);
     }
 
     public void setNeighborColumns(List<ColumnPosition> neighborColumns) {
