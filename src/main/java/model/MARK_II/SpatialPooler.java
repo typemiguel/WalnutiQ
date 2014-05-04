@@ -364,7 +364,10 @@ public class SpatialPooler extends Pooler {
 	// is the score at position k(counting from the top) of all
 	// overlapScores when arranged from smallest to greatest.
 	int k = Math.max(0, overlapScores.size() - desiredLocalActivity);
-	return (Integer) overlapScores.toArray()[k];
+    if(overlapScores.size() > k)
+	    return (Integer) overlapScores.toArray()[k];
+    else
+        return 0;
     }
 
     /**
