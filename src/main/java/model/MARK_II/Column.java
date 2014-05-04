@@ -192,10 +192,10 @@ public class Column {
 	return Collections.unmodifiableList(this.neighborColumnPositions);
     }
     public void clearNeighborColumns() {
-        this.neighborColumnPositions.clear();
+    this.neighborColumnPositions.clear();
     }
     public void addNeighborColumns(ColumnPosition columnPosition) {
-        this.neighborColumnPositions.add(columnPosition);
+    this.neighborColumnPositions.add(columnPosition);
     }
 
     public void setNeighborColumns(List<ColumnPosition> neighborColumns) {
