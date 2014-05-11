@@ -1,6 +1,7 @@
 package model.MARK_II;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -53,6 +54,6 @@ public class SegmentUpdateList {
     }
 
     List<SegmentUpdate> getList() {
-	return this.segmentUpdateList;
+	return Collections.unmodifiableList(this.segmentUpdateList);
     }
 }
