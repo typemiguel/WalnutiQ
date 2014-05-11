@@ -5,9 +5,8 @@
 
 # [WalnutiQ](http://walnutiq.com)
 
-“*Say what you want to say and let the words fall out. Honestly I want to see you be brave.*”  
-
-~ Sara Beth Bareilles
+"*Time is all you have. And you may find one day that you have less than you think.*"  
+~ Randy Pausch
 
 [![Build Status](https://travis-ci.org/WalnutiQ/WalnutiQ.png)](https://travis-ci.org/WalnutiQ/WalnutiQ)
 
@@ -128,8 +127,8 @@ to better understand the theory behind this repository.
             - [MARK_II](./src/main/java/model/MARK_II) = the core logic for the partial brain model. 
               Includes abstract data types for basic brain structures and learning 
               algorithms that simulate how the brain learns.
-              + [connectTypes](./src/main/java/model/MARK_II/connectTypes) = classes allow the different 
-                brain structures in MARK I to connect to each other in a variety of ways
+              + [connectTypes](./src/main/java/model/MARK_II/connectTypes) = allow the different 
+                brain structures to connect to each other in a variety of ways
               + [parameters](./src/main/java/model/MARK_II/parameters) = allows construction of different WalnutiQ
                 models from command line for this repo https://github.com/quinnliu/CallWalnutiQ
               + [SpatialPooler.java](./src/main/java/model/MARK_II/SpatialPooler.java) 
