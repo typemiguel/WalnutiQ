@@ -101,14 +101,11 @@ to better understand the theory behind this repository.
    [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
    Please do not be afriad to ask a question if you are confused!
 
-2. View an example of how the current model can be instantiated as a simplified human visual pathway
-   in [HowMARK_I_FitsInToBrainAnatomy.java](./experiments/model/MARK_I/vision/HowMARK_I_FitsInToBrainAnatomy.java)
-
-3. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) and create a new issue
+2. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) and create a new issue
    with a question if you are confused. Otherwise, asign a issue to yourself you would like to work on or suggest
    a new issue if you kinda know what you are doing. 
 
-4. For now we are using the git workflow model described 
+3. For now we are using the git workflow model described 
    [here](https://github.com/quinnliu/WalnutiQ/issues/62). Happy coding!
 
 ## What each file/folder in this repository is for:
