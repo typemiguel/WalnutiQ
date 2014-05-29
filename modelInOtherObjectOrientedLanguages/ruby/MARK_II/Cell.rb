@@ -1,9 +1,21 @@
 class Cell
-  @isActive # an instance variable
-  @wasActive
+  protected @isActive
+  protected @wasActive
 
-  def my_method
-  	@foo = 2 # an instance variable
+  # self makes it a class Cell method
+  def public self.getActiveState?
+  	return @isActive
   end
-  
+
+  def public self.setActiveState=(value)
+  	@isActive = value
+  end
+
+  def public self.getPreviousActiveState?
+  	return @wasActive
+  end
+
+  def public self.setPreviousActiveState=(value)
+  	@wasActive = value
+  end
 end

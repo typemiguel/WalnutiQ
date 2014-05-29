@@ -119,6 +119,8 @@ to better understand the theory behind this repository.
               visual pathway models on a popular handwritten digit data
               set called MNIST
   - images = images used in training & testing the partial brain model
+  - modelInOtherObjectOrientedLanguages = I realize not everyone is the biggest fan
+      of Java so let's rewrite it in as many other object oriented languages as possible!
   - referencedLibraries = contains .jar files(of other people's code) needed to run WalnutiQ
   - src
       + main
