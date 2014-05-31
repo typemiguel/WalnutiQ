@@ -9,11 +9,11 @@ import model.Retina;
  */
 public class SaccadingRetina extends Retina {
     private Point position;
-    private int distanceBetweenImageAndRetina;
+    private double distanceBetweenImageAndRetina;
 
     public SaccadingRetina(int numberOfVisionCellsAlongYAxis,
 	    int numberOfVisionCellsAlongXAxis, Point retinaPosition,
-	    int distanceBetweenImageAndRetina) {
+	    double distanceBetweenImageAndRetina) {
 	super(numberOfVisionCellsAlongYAxis, numberOfVisionCellsAlongXAxis);
 
 	this.position = retinaPosition;
@@ -28,7 +28,7 @@ public class SaccadingRetina extends Retina {
 	this.position = retinaPosition;
     }
 
-    public int getDistanceBetweenImageAndRetina() {
+    public double getDistanceBetweenImageAndRetina() {
 	return distanceBetweenImageAndRetina;
     }
 

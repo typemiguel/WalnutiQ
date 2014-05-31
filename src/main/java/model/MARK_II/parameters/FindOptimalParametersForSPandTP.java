@@ -134,7 +134,7 @@ public class FindOptimalParametersForSPandTP {
 	retina.setDistanceBetweenImageAndRetina(1);
 	retina.setRetinaPosition(new Point(2, 2));
 
-	imageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition();
+	// imageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition();
 
 	// spatialPooler.performSpatialPooling();
 	// temporalPooler.performSpatialPooling();

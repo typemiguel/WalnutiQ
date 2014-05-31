@@ -1,30 +1,46 @@
 package model;
 
+import model.util.BoundingBox;
+
 import java.io.IOException;
 
 import java.awt.Point;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version Apr 28, 2014
+ * @version May 31, 2014
  */
 public class ImageViewer {
+    private SaccadingRetina retina;
+
     /**
      * Assumme image is (0, 0) on bottom left (image.width, image.height) on top
      * right. In other words the Image is in the 1st quadrant of the Cartesian
      * plane.
      */
     private int[][] image;
-    private SaccadingRetina retina;
+    private BoundingBox boxRetinaIsStuckIn;
 
-    public ImageViewer(String BMPFileName, SaccadingRetina retina) throws IOException {
+    public ImageViewer(String BMPFileName, SaccadingRetina retina)
+	    throws IOException {
 	this.retina = retina;
 	this.retina.seeBMPImage(BMPFileName);
 	this.image = this.retina.getDoubleIntArrayRepresentationOfVisionCells();
 
+	double longerImageDimension = Math.max(image.length, image[0].length);
+	double distanceZAwayFromImageToSeeEntireImage = longerImageDimension / 2;
+	this.boxRetinaIsStuckIn = new BoundingBox(image.length,
+		image[0].length, distanceZAwayFromImageToSeeEntireImage);
     }
 
-    public void updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() {
+    public void updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(
+	    Point retinaPosition, double distanceBetweenImageAndRetina) {
+	// first make sure Retina is in a valid location...
+
+	// change to valid location if not
+
+	// then set new Retina position
+
 	int[][] seenAreaFromMainImage = this.getSeenAreaFromMainImage();
 
 	int[][] fittedToRetina = this.fitToRetina(seenAreaFromMainImage);
@@ -61,7 +77,7 @@ public class ImageViewer {
 		    // this may happen when d is very large and retinaX or
 		    // retinaY are small
 		} else {
-		    imageToReturn[i][j] = 1;//this.image[x][y];
+		    imageToReturn[i][j] = 1;// this.image[x][y];
 		}
 		j++;
 	    }
@@ -93,16 +109,16 @@ public class ImageViewer {
      */
     int[][] manipulatedImage(int[][] image, double reductionScale) {
 
-	int[][] manipulatedImage = new int[(int)(image.length / reductionScale)][(int)(image[0].length
-		/ reductionScale)];
+	int[][] manipulatedImage = new int[(int) (image.length / reductionScale)][(int) (image[0].length / reductionScale)];
 
 	for (int i = 0; i < manipulatedImage.length; i++) {
 	    for (int j = 0; j < manipulatedImage[0].length; j++) {
 		int numberOf1sInLocalImageArea = 0;
 		for (int x = 0; x < reductionScale; x++) {
 		    for (int y = 0; y < reductionScale; y++) {
-			numberOf1sInLocalImageArea += image[(int)(i * reductionScale
-				+ x)][(int)(j * reductionScale + y)];
+			numberOf1sInLocalImageArea += image[(int) (i
+				* reductionScale + x)][(int) (j
+				* reductionScale + y)];
 		    }
 		}
 		manipulatedImage[i][j] = numberOf1sInLocalImageArea > (reductionScale
