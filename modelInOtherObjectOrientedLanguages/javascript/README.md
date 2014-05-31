@@ -19,3 +19,11 @@ v0.10.22 # it's okay if your number if bigger than mine :)
 
 ## What each file/folder in this repository is for:
 
+- MARK_II = The core logic for the partial brain model. 
+            Includes abstract data types for basic brain 
+            structures and learning algorithms that simulate how the brain learns.
+- .gitignore = contains names of files/folders not to add to this
+               repository but keep in your local folder
+- README.md = the file you are reading right now
+- package.json = define which npm modules are needed for the code 
+                 in this repository to run
