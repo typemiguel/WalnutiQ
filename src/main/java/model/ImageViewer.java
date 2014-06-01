@@ -63,15 +63,15 @@ public class ImageViewer {
 	double boxZ = boundingBox.getDepth();
 
 	if (retinaX < 0) {
-	    retina.setPosition(new Point2D.Double(0.0, retinaY));
+	    retina.setPosition(new Point2D.Double(0.0, retina.getPosition().getY()));
 	} else if (retinaX > boxX) {
-	    retina.setPosition(new Point2D.Double(boxX, retinaY));
+	    retina.setPosition(new Point2D.Double(boxX, retina.getPosition().getY()));
 	}
 
 	if (retinaY < 0) {
-	    retina.setPosition(new Point2D.Double(retinaX, 0.0));
+	    retina.setPosition(new Point2D.Double(retina.getPosition().getX(), 0.0));
 	} else if (retinaY > boxY) {
-	    retina.setPosition(new Point2D.Double(retinaX, boxY));
+	    retina.setPosition(new Point2D.Double(retina.getPosition().getX(), boxY));
 	}
 
 	if (retinaZ < 0) {

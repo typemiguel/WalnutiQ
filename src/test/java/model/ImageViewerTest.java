@@ -1,7 +1,8 @@
 package model;
 
-import java.awt.geom.Point2D;
+import model.util.BoundingBox;
 
+import java.awt.geom.Point2D;
 import model.util.RegionConsoleViewer;
 import java.io.IOException;
 import java.awt.Point;
@@ -43,8 +44,22 @@ public class ImageViewerTest extends junit.framework.TestCase {
 
     public void test_moveRetinaInsideOfBoundingBox() {
 	SaccadingRetina retina2 = new SaccadingRetina(66, 66,
-		new Point2D.Double(1.5, 2.5), 2.1);
-	assertEquals(1.5, retina2.getPosition().getX());
+		new Point2D.Double(1.1, -0.1), 3.1);
+	assertEquals(1.1, retina2.getPosition().getX());
+	assertEquals(-0.1, retina2.getPosition().getY());
+	assertEquals(3.1, retina2.getDistanceBetweenImageAndRetina());
+
+	BoundingBox boxRetinaIsStuckIn = new BoundingBox(1, 2, 3);
+
+	this.imageViewer.moveRetinaInsideOfBoundingBox(retina2,
+		boxRetinaIsStuckIn);
+
+//	retina2.setPosition(new Point2D.Double(1.0, 0.0));
+//	retina2.setDistanceBetweenImageAndRetina(3.0);
+
+	assertEquals(1.0, retina2.getPosition().getX());
+	assertEquals(0.0, retina2.getPosition().getY());
+	assertEquals(3.0, retina2.getDistanceBetweenImageAndRetina());
 
     }
 
@@ -64,7 +79,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
     // 0000000000
     // 0000000000
     // 0000000000
-    public void test_manipulatedImage() {
+    public void test_convertImage() {
 	int[][] image2 = this.imageViewer.convertImage(this.image1, 2);
 	assertEquals(4, image2.length);
 	assertEquals(5, image2[0].length);
