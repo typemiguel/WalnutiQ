@@ -1,5 +1,6 @@
 package model.MARK_II.parameters;
 
+import java.awt.geom.Point2D;
 import model.MARK_II.TemporalPooler;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -132,7 +133,9 @@ public class FindOptimalParametersForSPandTP {
 	// region representing parietal lobe
 
 	retina.setDistanceBetweenImageAndRetina(1);
-	retina.setRetinaPosition(new Point(2, 2));
+	Point2D retinaLocation = new Point();
+	retinaLocation.setLocation(2.0, 2.0);
+	retina.setPosition(retinaLocation);
 
 	// imageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition();
 

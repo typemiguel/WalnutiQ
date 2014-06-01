@@ -15,10 +15,23 @@ public class BoundingBox {
 	double x = positionXY.getX();
 	double y = positionXY.getY();
 	double z = positionZ;
-	if (x < 0 || y < 0 || z < 0 || x > width || y > height || z > depth) {
+	if (x < 0 || y < 0 || z < 0 || x > this.width || y > this.height
+		|| z > this.depth) {
 	    return false;
 	} else {
 	    return true;
 	}
+    }
+
+    public double getWidth() {
+	return this.width;
+    }
+
+    public double getHeight() {
+	return this.height;
+    }
+
+    public double getDepth() {
+	return this.depth;
     }
 }

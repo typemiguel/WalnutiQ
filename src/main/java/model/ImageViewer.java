@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.geom.Point2D;
+
 import model.util.BoundingBox;
 
 import java.io.IOException;
@@ -35,17 +37,48 @@ public class ImageViewer {
 
     public void updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(
 	    Point retinaPosition, double distanceBetweenImageAndRetina) {
-	// first make sure Retina is in a valid location...
-
-	// change to valid location if not
-
-	// then set new Retina position
+	if (this.boxRetinaIsStuckIn.contains(retinaPosition,
+		distanceBetweenImageAndRetina)) {
+	    // retina is at a valid location so do nothing
+	} else {
+	    this.moveRetinaInsideOfBoundingBox(this.retina,
+		    this.boxRetinaIsStuckIn);
+	}
 
 	int[][] seenAreaFromMainImage = this.getSeenAreaFromMainImage();
 
 	int[][] fittedToRetina = this.fitToRetina(seenAreaFromMainImage);
 
 	this.retina.see2DIntArray(fittedToRetina);
+    }
+
+    void moveRetinaInsideOfBoundingBox(SaccadingRetina retina,
+	    BoundingBox boundingBox) {
+	double retinaX = retina.getPosition().getX();
+	double retinaY = retina.getPosition().getY();
+	double retinaZ = retina.getDistanceBetweenImageAndRetina();
+
+	double boxX = boundingBox.getWidth();
+	double boxY = boundingBox.getHeight();
+	double boxZ = boundingBox.getDepth();
+
+	if (retinaX < 0) {
+	    retina.setPosition(new Point2D.Double(0.0, retinaY));
+	} else if (retinaX > boxX) {
+	    retina.setPosition(new Point2D.Double(boxX, retinaY));
+	}
+
+	if (retinaY < 0) {
+	    retina.setPosition(new Point2D.Double(retinaX, 0.0));
+	} else if (retinaY > boxY) {
+	    retina.setPosition(new Point2D.Double(retinaX, boxY));
+	}
+
+	if (retinaZ < 0) {
+	    retina.setDistanceBetweenImageAndRetina(0);
+	} else if (retinaZ > boxZ) {
+	    retina.setDistanceBetweenImageAndRetina(boxZ);
+	}
     }
 
     int[][] getSeenAreaFromMainImage() {
@@ -95,7 +128,7 @@ public class ImageViewer {
 	// reductionScale = 2
 	int reductionScale = this.retina.getVisionCells().length
 		/ seenAreaFromMainImage.length;
-	int[][] fittedImage = this.manipulatedImage(seenAreaFromMainImage,
+	int[][] fittedImage = this.convertImage(seenAreaFromMainImage,
 		reductionScale);
 	return fittedImage;
     }
@@ -107,7 +140,7 @@ public class ImageViewer {
      *            returned
      * @return manipulated image based on reductionScale
      */
-    int[][] manipulatedImage(int[][] image, double reductionScale) {
+    int[][] convertImage(int[][] image, double reductionScale) {
 
 	int[][] manipulatedImage = new int[(int) (image.length / reductionScale)][(int) (image[0].length / reductionScale)];
 
