@@ -53,7 +53,8 @@ to better understand the theory behind this repository.
    any other version of Eclipse if you already have it installed.
 
 2. Fork this repository and clone it locally. Then import it as a 
-   project into Eclipse.
+   project into Eclipse by right clicking the package explorer on the left hand
+   side `=>` Import...
 
 3. IMPORTANT: You will notice that your folders will have red X's everywhere. 
    To fix this right click your `src` folder then hover over "New", 
@@ -66,18 +67,18 @@ to better understand the theory behind this repository.
    New `=>` Source Folder `=>` Folder name: `images`.
 
 4. In Eclipse, add all the libraries (.jar file) in the folder 
-   `referencedLibraries/` by right-clicking your project `WalnutiQ` 
+   `referencedLibraries/` by right-clicking your folder `WalnutiQ` 
    in the package explorer `=>` Build Path `=>` Add External Archives...
 
-5. In Eclipse, add JUnit 4 by right-clicking your project `WalnutiQ` 
-   in the package explorer `=>` Add Libraries... `=>` JUnit `=>`
+5. In Eclipse, add JUnit 4 by right-clicking your folder `WalnutiQ` 
+   in the package explorer `=>` Build Path `=>` Add Libraries... `=>` JUnit `=>`
    Next > `=>` Finish
 
 6. In Eclipse, also add JRE System Library by right-clicking 
-   your project `WalnutiQ` in the package explorer `=>` 
+   your folder `WalnutiQ` in the package explorer `=>` Build Path `=>` 
    Add Libraries... `=>` JRE System Library `=>` Next > `=>` Finish
 
-7. Right click your project `=>` Run As `=>` JUnit Test `=>` ALL TESTS PASS!
+7. Right click your folder `WalnutiQ` `=>` Run As `=>` JUnit Test `=>` ALL TESTS PASS!
   
 ## Setup in Linux/Mac/Windows with Gradle
 1. Install Gradle in Linux OR Mac by typing to the command line:
