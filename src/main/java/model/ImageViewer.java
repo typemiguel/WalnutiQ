@@ -16,7 +16,7 @@ public class ImageViewer {
     private SaccadingRetina retina;
 
     /**
-     * Assumme image is (0, 0) on bottom left (image.width, image.height) on top
+     * Assume image is (0, 0) on bottom left (image.width, image.height) on top
      * right. In other words the Image is in the 1st quadrant of the Cartesian
      * plane.
      */

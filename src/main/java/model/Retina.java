@@ -18,44 +18,44 @@ import java.io.IOException;
 public class Retina {
     protected VisionCell[][] visionCells;
 
-    public Retina(int numberOfVisionCellsAlongYAxis,
-	    int numberOfVisionCellsAlongXAxis) {
-	this.visionCells = new VisionCell[numberOfVisionCellsAlongYAxis][numberOfVisionCellsAlongXAxis];
-
-	for (int currentRow = 0; currentRow < numberOfVisionCellsAlongYAxis; currentRow++) {
-	    for (int currentColumn = 0; currentColumn < numberOfVisionCellsAlongXAxis; currentColumn++) {
-		this.visionCells[currentRow][currentColumn] = new VisionCell();
-	    }
-	}
+    public Retina(int numberOfVisionCellsAlongYAxis, int numberOfVisionCellsAlongXAxis) {
+		this.visionCells = new VisionCell[numberOfVisionCellsAlongYAxis][numberOfVisionCellsAlongXAxis];
+	
+		for (int currentRow = 0; currentRow < numberOfVisionCellsAlongYAxis; currentRow++) {
+		    for (int currentColumn = 0; currentColumn < numberOfVisionCellsAlongXAxis; currentColumn++) {
+		    		this.visionCells[currentRow][currentColumn] = new VisionCell();
+		    }
+		}
     }
 
     public VisionCell[][] getVisionCells() {
-	return this.visionCells;
+    	return this.visionCells;
     }
 
     /**
-     * Update the state of the Retine with the given .bmp file name.
+     * Update the state of the Retina with the given .bmp file name.
      *
      * @param BMPFileName
      * @throws IOException
      */
     public void seeBMPImage(String BMPFileName) throws IOException {
 	BufferedImage image = ImageIO.read(getClass().getResource(BMPFileName));
-
+	
 	int numberOfRows = this.visionCells.length;
 	int numberOfColumns = this.visionCells[0].length;
 
 	for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
 	    for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
-		int RGBcolor = image.getRGB(currentColumn, currentRow);
+		
+	    	int RGBcolor = image.getRGB(currentColumn, currentRow);
 
-		if (RGBcolor == Color.BLACK.getRGB()) {
-		    this.visionCells[currentRow][currentColumn]
-			    .setActiveState(true);
-		} else {
-		    this.visionCells[currentRow][currentColumn]
-			    .setActiveState(false);
-		}
+			if (RGBcolor == Color.BLACK.getRGB()) {
+			    this.visionCells[currentRow][currentColumn]
+				    .setActiveState(true);
+			} else {
+			    this.visionCells[currentRow][currentColumn]
+				    .setActiveState(false);
+			}
 	    }
 	}
     }

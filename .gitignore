@@ -13,3 +13,4 @@ bin/**
 
 test_saveRegionObject.txt
 PartialNervousSystemObject.json
+/bin
