@@ -14,15 +14,15 @@ public class VisionCell extends SensorCell {
 
     @Override
     public String toString() {
-	StringBuilder stringBuilder = new StringBuilder();
-	stringBuilder.append("\n===================");
-	stringBuilder.append("\n--VisionCell Info--");
-	stringBuilder.append("\n isActive: ");
-	stringBuilder.append(super.getActiveState());
-	stringBuilder.append("\nwasActive: ");
-	stringBuilder.append(super.getPreviousActiveState());
-	stringBuilder.append("\n===================");
-	String visionCellInformation = stringBuilder.toString();
-	return visionCellInformation;
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("\n===================");
+		stringBuilder.append("\n--VisionCell Info--");
+		stringBuilder.append("\n isActive: ");
+		stringBuilder.append(super.getActiveState());
+		stringBuilder.append("\nwasActive: ");
+		stringBuilder.append(super.getPreviousActiveState());
+		stringBuilder.append("\n===================");
+		String visionCellInformation = stringBuilder.toString();
+		return visionCellInformation;
     }
 }

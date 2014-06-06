@@ -28,7 +28,7 @@ public class BoundingBox {
     }
 
     public double getHeight() {
-	return this.height;
+    	return this.height;
     }
 
     public double getDepth() {

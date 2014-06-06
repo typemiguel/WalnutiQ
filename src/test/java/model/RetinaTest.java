@@ -15,7 +15,7 @@ public class RetinaTest extends TestCase {
 
     public void setUp() {
 	this.retina = new Retina(5, 15);
-    }
+}
 
     public void test_seeBMPImage() throws IOException {
 	/**
