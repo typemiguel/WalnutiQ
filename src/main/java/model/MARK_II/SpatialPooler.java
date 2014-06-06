@@ -250,7 +250,7 @@ public class SpatialPooler extends Pooler {
 
 		    // neighborColumns are no longer necessary for calculations
 		    // in this time step
-		    columns[x][y].getNeighborColumns().clear();
+		    columns[x][y].clearNeighborColumns();
 
 		    // minDutyCycle represents the minimum desired firing rate
 		    // for a Column(number of times it becomes active over some
@@ -318,7 +318,7 @@ public class SpatialPooler extends Pooler {
 
 	if (columns[columnXAxis][columnYAxis].getNeighborColumns().size() != 0) {
 	    // remove neighbors of Column computed with old inhibitionRadius
-	    columns[columnXAxis][columnYAxis].getNeighborColumns().clear();
+	    columns[columnXAxis][columnYAxis].clearNeighborColumns();
 	}
 
 	for (int columnIndex = xInitial; columnIndex < xFinal; columnIndex++) {
@@ -327,8 +327,7 @@ public class SpatialPooler extends Pooler {
 		} else {
 		    Column newColumn = columns[columnIndex][rowIndex];
 		    if (newColumn != null) {
-			columns[columnXAxis][columnYAxis].getNeighborColumns()
-				.add(new ColumnPosition(columnIndex, rowIndex));
+			columns[columnXAxis][columnYAxis].addNeighborColumns(new ColumnPosition(columnIndex, rowIndex));
 		    }
 		}
 	    }
@@ -364,7 +363,10 @@ public class SpatialPooler extends Pooler {
 	// is the score at position k(counting from the top) of all
 	// overlapScores when arranged from smallest to greatest.
 	int k = Math.max(0, overlapScores.size() - desiredLocalActivity);
-	return (Integer) overlapScores.toArray()[k];
+    if(overlapScores.size() > k)
+	    return (Integer) overlapScores.toArray()[k];
+    else
+        return 0;
     }
 
     /**

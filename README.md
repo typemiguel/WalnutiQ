@@ -5,9 +5,8 @@
 
 # [WalnutiQ](http://walnutiq.com)
 
-“*Say what you want to say and let the words fall out. Honestly I want to see you be brave.*”  
-
-~ Sara Beth Bareilles
+"*Time is all you have. And you may find one day that you have less than you think.*"  
+~ Randy Pausch
 
 [![Build Status](https://travis-ci.org/WalnutiQ/WalnutiQ.png)](https://travis-ci.org/WalnutiQ/WalnutiQ)
 
@@ -53,8 +52,11 @@ to better understand the theory behind this repository.
 1. [Install Eclipse Standard 4.3.2](https://www.eclipse.org/downloads/) or use
    any other version of Eclipse if you already have it installed.
 
-2. Fork this repository and clone it locally. Then import it as a 
-   project into Eclipse.
+2. Fork this repository and clone it locally. Then import it as a Git
+   project into Eclipse. Right-click your package explorer `=>` Import...
+   `=>` Git `=>` Projects from Git `=>` Next > `=>` Existing local repository
+   `=>` Next > `=>` Add... `=>` Browse to the WalnutiQ folder you cloned locally
+   and finish.
 
 3. IMPORTANT: You will notice that your folders will have red X's everywhere. 
    To fix this right click your `src` folder then hover over "New", 
@@ -67,18 +69,18 @@ to better understand the theory behind this repository.
    New `=>` Source Folder `=>` Folder name: `images`.
 
 4. In Eclipse, add all the libraries (.jar file) in the folder 
-   `referencedLibraries/` by right-clicking your project `WalnutiQ` 
+   `referencedLibraries/` by right-clicking your folder `WalnutiQ` 
    in the package explorer `=>` Build Path `=>` Add External Archives...
 
-5. In Eclipse, add JUnit 4 by right-clicking your project `WalnutiQ` 
-   in the package explorer `=>` Add Libraries... `=>` JUnit `=>`
+5. In Eclipse, add JUnit 4 by right-clicking your folder `WalnutiQ` 
+   in the package explorer `=>` Build Path `=>` Add Libraries... `=>` JUnit `=>`
    Next > `=>` Finish
 
 6. In Eclipse, also add JRE System Library by right-clicking 
-   your project `WalnutiQ` in the package explorer `=>` 
+   your folder `WalnutiQ` in the package explorer `=>` Build Path `=>` 
    Add Libraries... `=>` JRE System Library `=>` Next > `=>` Finish
 
-7. Right click your project `=>` Run As `=>` JUnit Test `=>` ALL TESTS PASS!
+7. Right click your folder `WalnutiQ` `=>` Run As `=>` JUnit Test `=>` ALL TESTS PASS!
   
 ## Setup in Linux/Mac/Windows with Gradle
 1. Install Gradle in Linux OR Mac by typing to the command line:
@@ -102,14 +104,11 @@ to better understand the theory behind this repository.
    [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
    Please do not be afriad to ask a question if you are confused!
 
-2. View an example of how the current model can be instantiated as a simplified human visual pathway
-   in [HowMARK_I_FitsInToBrainAnatomy.java](./experiments/model/MARK_I/vision/HowMARK_I_FitsInToBrainAnatomy.java)
-
-3. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) and create a new issue
+2. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) and create a new issue
    with a question if you are confused. Otherwise, asign a issue to yourself you would like to work on or suggest
    a new issue if you kinda know what you are doing. 
 
-4. For now we are using the git workflow model described 
+3. For now we are using the git workflow model described 
    [here](https://github.com/quinnliu/WalnutiQ/issues/62). Happy coding!
 
 ## What each file/folder in this repository is for:
@@ -120,6 +119,8 @@ to better understand the theory behind this repository.
               visual pathway models on a popular handwritten digit data
               set called MNIST
   - images = images used in training & testing the partial brain model
+  - modelInOtherObjectOrientedLanguages = I realize not everyone is the biggest fan
+      of Java so let's rewrite it in as many other object oriented languages as possible!
   - referencedLibraries = contains .jar files(of other people's code) needed to run WalnutiQ
   - src
       + main
@@ -128,8 +129,8 @@ to better understand the theory behind this repository.
             - [MARK_II](./src/main/java/model/MARK_II) = the core logic for the partial brain model. 
               Includes abstract data types for basic brain structures and learning 
               algorithms that simulate how the brain learns.
-              + [connectTypes](./src/main/java/model/MARK_II/connectTypes) = classes allow the different 
-                brain structures in MARK I to connect to each other in a variety of ways
+              + [connectTypes](./src/main/java/model/MARK_II/connectTypes) = allow the different 
+                brain structures to connect to each other in a variety of ways
               + [parameters](./src/main/java/model/MARK_II/parameters) = allows construction of different WalnutiQ
                 models from command line for this repo https://github.com/quinnliu/CallWalnutiQ
               + [SpatialPooler.java](./src/main/java/model/MARK_II/SpatialPooler.java) 

@@ -6,8 +6,14 @@ import java.util.ArrayList;
 /**
  * Simulates a cortical pyramidal cell.
  *
- * A real Neuron has 3 different states? 1) 3 spikes per second 2) 10+ spikes
+ * A real Neuron has many different states 1) 3 spikes per second 2) 10+ spikes
  * per second 3) 0 spikes per second Support: https://db.tt/QFqA4Dta
+ *
+ * However this Neuron model only models 2 different states:
+ * 1) active Neuron = any kind of spiking activity for a real Neuron
+ * (implemented in Cell.java class)
+ *
+ * 2) predictive Neuron = depolarized real Neuron
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)

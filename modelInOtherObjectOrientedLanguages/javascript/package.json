@@ -1,0 +1,19 @@
+{
+  "name": "MARK_II",
+  "version": "2.0.0",
+  "description": "object oriented model of the human brain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WalnutiQ/WalnutiQ"
+  },
+  "author": "Quinn Liu <quinnliu@vt.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WalnutiQ/WalnutiQ/issues"
+  },
+  "homepage": "https://github.com/WalnutiQ/WalnutiQ"
+}

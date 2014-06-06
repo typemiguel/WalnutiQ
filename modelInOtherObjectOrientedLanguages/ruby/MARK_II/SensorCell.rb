@@ -1,0 +1,3 @@
+class SensorCell < Cell
+
+end

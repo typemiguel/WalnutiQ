@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.Point;
+import java.awt.geom.Point2D;
 import model.Retina;
 
 /**
@@ -8,33 +8,33 @@ import model.Retina;
  * @version Apr 28, 2014
  */
 public class SaccadingRetina extends Retina {
-    private Point position;
-    private int distanceBetweenImageAndRetina;
+    private Point2D position;
+    private double distanceBetweenImageAndRetina;
 
     public SaccadingRetina(int numberOfVisionCellsAlongYAxis,
-	    int numberOfVisionCellsAlongXAxis, Point retinaPosition,
-	    int distanceBetweenImageAndRetina) {
+	    int numberOfVisionCellsAlongXAxis, Point2D retinaPosition,
+	    double distanceBetweenImageAndRetina) {
 	super(numberOfVisionCellsAlongYAxis, numberOfVisionCellsAlongXAxis);
 
 	this.position = retinaPosition;
 	this.distanceBetweenImageAndRetina = distanceBetweenImageAndRetina;
     }
 
-    public Point getPosition() {
+    public Point2D getPosition() {
 	return position;
     }
 
-    public void setRetinaPosition(Point retinaPosition) {
+    public void setPosition(Point2D retinaPosition) {
 	this.position = retinaPosition;
     }
 
-    public int getDistanceBetweenImageAndRetina() {
+    public double getDistanceBetweenImageAndRetina() {
 	return distanceBetweenImageAndRetina;
     }
 
     public void setDistanceBetweenImageAndRetina(
-	    int distanceBetweenImageAndRetina) {
-	this.distanceBetweenImageAndRetina = distanceBetweenImageAndRetina;
+	    double boxZ) {
+	this.distanceBetweenImageAndRetina = boxZ;
     }
 
     public int[][] getDoubleIntArrayRepresentationOfVisionCells() {
