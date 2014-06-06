@@ -52,8 +52,11 @@ to better understand the theory behind this repository.
 1. [Install Eclipse Standard 4.3.2](https://www.eclipse.org/downloads/) or use
    any other version of Eclipse if you already have it installed.
 
-2. Fork this repository and clone it locally. Then import it as a 
-   project into Eclipse.
+2. Fork this repository and clone it locally. Then import it as a Git
+   project into Eclipse. Right-click your package explorer `=>` Import...
+   `=>` Git `=>` Projects from Git `=>` Next > `=>` Existing local repository
+   `=>` Next > `=>` Add... `=>` Browse to the WalnutiQ folder you cloned locally
+   and finish.
 
 3. IMPORTANT: You will notice that your folders will have red X's everywhere. 
    To fix this right click your `src` folder then hover over "New", 
