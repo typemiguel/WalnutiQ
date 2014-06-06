@@ -100,6 +100,7 @@ public class ImageViewer {
 	int finalY = initialY + lengthOfSeen;
 
 	for (int x = initialX; x < finalX; x++) {
+		j = 0;
 	    for (int y = initialY; y < finalY; y++) {
 		if (x < 0 || y < 0 || x >= this.image.length
 			|| y >= this.image[0].length) {
@@ -110,7 +111,7 @@ public class ImageViewer {
 		    // this may happen when d is very large and retinaX or
 		    // retinaY are small
 		} else {
-		    imageToReturn[i][j] = 1;// this.image[x][y];
+		    imageToReturn[i][j] = this.image[x][y];
 		}
 		j++;
 	    }
