@@ -52,7 +52,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
 
 		int[][] seenArea2 = this.retina
 				.getDoubleIntArrayRepresentationOfVisionCells();
-		RegionConsoleViewer.printDoubleIntArray(seenArea2); // TODO: not
+		//RegionConsoleViewer.printDoubleIntArray(seenArea2); // TODO: not
 															// correctly
 															// displaying middle
 															// portion of seen
