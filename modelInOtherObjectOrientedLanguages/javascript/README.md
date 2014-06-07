@@ -18,25 +18,25 @@ v0.10.22 # it's okay if your number if bigger than mine :)
 ## How to Contribute
 
 ### The order to implement classes is
-[x] Cell
-[ ] SensorCell
-[ ] VisionCell
-[ ] AudioCell
-[ ] Synapse
-[ ] Segment
-[ ] ProximalSegment
-[ ] DistalSegment
-[ ] Neuron
-[ ] ColumnPosition
-[ ] Column
-[ ] Region
-[ ] Pooler
-[ ] SpatialPooler
-[ ] connectTypes/ # this is a folder
-[ ] SegmentUpdate
-[ ] SegmentUpdateList
-[ ] TemporalPooler
-[ ] Neocortex
+- [x] Cell
+- [ ] SensorCell
+- [ ] VisionCell
+- [ ] AudioCell
+- [ ] Synapse
+- [ ] Segment
+- [ ] ProximalSegment
+- [ ] DistalSegment
+- [ ] Neuron
+- [ ] ColumnPosition
+- [ ] Column
+- [ ] Region
+- [ ] Pooler
+- [ ] SpatialPooler
+- [ ] connectTypes/ # this is a folder
+- [ ] SegmentUpdate
+- [ ] SegmentUpdateList
+- [ ] TemporalPooler
+- [ ] Neocortex
 
 ## What each file/folder in this repository is for:
 
