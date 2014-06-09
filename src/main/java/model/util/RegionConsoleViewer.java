@@ -119,7 +119,7 @@ public class RegionConsoleViewer {
 	for (int x = 0; x < doubleIntArray.length; x++) {
 	    System.out.println();
 	    for (int y = 0; y < doubleIntArray[x].length; y++) {
-		System.out.printf("%4d", doubleIntArray[x][y]);
+		System.out.printf("%2d", doubleIntArray[x][y]);
 	    }
 	}
     }
