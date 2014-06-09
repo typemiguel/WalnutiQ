@@ -41,22 +41,11 @@ public class ImageViewerTest extends junit.framework.TestCase {
 		this.retina = new SaccadingRetina(66, 66, new Point(33, 33), 33);
 		this.imageViewer = new ImageViewer("2.bmp", this.retina);
 	}
-
+	
 	public void test_updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() {
-		int[][] seenArea = this.retina
-				.getDoubleIntArrayRepresentationOfVisionCells();
-		// RegionConsoleViewer.printDoubleIntArray(seenArea);
-
-		this.imageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(
-				new Point(33, 33), 16.0);
-
-		int[][] seenArea2 = this.retina
-				.getDoubleIntArrayRepresentationOfVisionCells();
-		//RegionConsoleViewer.printDoubleIntArray(seenArea2); // TODO: not
-															// correctly
-															// displaying middle
-															// portion of seen
-															// image
+		this.imageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(new Point(33, 33), 16);
+		
+		
 	}
 
 	public void test_moveRetinaInsideOfBoundingBox() {
@@ -84,7 +73,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
 		int[][] seenArea = this.imageViewer.getSeenAreaFromMainImage();
 		assertEquals(66, seenArea.length);
 		assertEquals(66, seenArea[0].length);
-		// add assertions about 1 & 0
+		RegionConsoleViewer.printDoubleIntArray(seenArea);
 	}
 
 	// image1 image2
