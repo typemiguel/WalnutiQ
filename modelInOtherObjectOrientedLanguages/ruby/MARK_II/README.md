@@ -5,7 +5,7 @@ WalnutiQ as an object oriented Ruby program.
 
 ### The order to implement classes is
 - [x] Cell
-- [ ] SensorCell
+- [x] SensorCell
 - [ ] VisionCell
 - [ ] AudioCell
 - [ ] Synapse
