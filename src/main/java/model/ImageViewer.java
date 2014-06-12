@@ -1,11 +1,8 @@
 package model;
 
 import java.awt.geom.Point2D;
-
 import model.util.BoundingBox;
-
 import java.io.IOException;
-
 import java.awt.Point;
 
 /**
@@ -16,7 +13,7 @@ public class ImageViewer {
 	private SaccadingRetina retina;
 
 	/**
-	 * Assumme image is (0, 0) on bottom left (image.width, image.height) on top
+	 * Assume image is (0, 0) on bottom left (image.width, image.height) on top
 	 * right. In other words the Image is in the 1st quadrant of the Cartesian
 	 * plane.
 	 */
@@ -104,6 +101,7 @@ public class ImageViewer {
 		int finalY = initialY + lengthOfSeen;
 
 		for (int x = initialX; x < finalX; x++) {
+			j = 0;
 			for (int y = initialY; y < finalY; y++) {
 				if (x < 0 || y < 0 || x >= this.image.length
 						|| y >= this.image[0].length) {
@@ -114,7 +112,7 @@ public class ImageViewer {
 					// this may happen when d is very large and retinaX or
 					// retinaY are small
 				} else {
-					imageToReturn[i][j] = 1;// this.image[x][y];
+					imageToReturn[i][j] = this.image[x][y];
 				}
 				j++;
 			}
@@ -141,9 +139,7 @@ public class ImageViewer {
 	 * @param image
 	 * @param reductionScale
 	 *            If = 2 an image 1/4th the size of the original image will be
-	 *            returned. Note because we limit the movement in the z-axis to
-	 *            be half of the longest distance in the case of a square retina
-	 *            we will never need to enlarge the image.
+	 *            returned
 	 * @return manipulated image based on reductionScale
 	 */
 	int[][] convertImage(int[][] image, double reductionScale) {
