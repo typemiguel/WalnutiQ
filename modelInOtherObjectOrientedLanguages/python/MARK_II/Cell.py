@@ -12,4 +12,5 @@ class Cell(object):
 			# generating 1 or more spikes
 		self.wasActive = False
 
+	def
 	
