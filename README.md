@@ -1,4 +1,5 @@
 **[Eclipse Install](#setup-in-linuxmacwindows-with-eclipse)** or
+**[IntelliJ Install](#setup-in-linuxmacwindows-with-intellij)** or
 **[Gradle Install](#setup-in-linuxmacwindows-with-gradle)** |
 **[How to Contribute](#how-to-contribute)** |
 **[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)**
@@ -53,7 +54,8 @@ to better understand the theory behind this repository.
 1. [Install Eclipse Standard 4.3.2](https://www.eclipse.org/downloads/) or use
    any other version of Eclipse if you already have it installed.
 
-2. Fork this repository and clone it locally. Then import it as a Git
+2. Go to the top right of this page and hit the `Fork` button. Then clone your 
+   forked WalnutiQ repository locally. Then import it as a Git
    project into Eclipse. Right-click your package explorer `=>` Import...
    `=>` Git `=>` Projects from Git `=>` Next > `=>` Existing local repository
    `=>` Next > `=>` Add... `=>` Browse to the WalnutiQ folder you cloned locally
@@ -82,9 +84,19 @@ to better understand the theory behind this repository.
    Add Libraries... `=>` JRE System Library `=>` Next > `=>` Finish
 
 7. Right click your folder `WalnutiQ` `=>` Run As `=>` JUnit Test `=>` ALL TESTS PASS!
+
+## Setup in Linux/Mac/Windows with IntelliJ
+1. [Install IntelliJ IDEA 13.1 FREE Community Edition](http://www.jetbrains.com/idea/download/)
+   or use any other version of IntelliJ if you already have it installed.
+
+2. Go to the top right of this page and hit the `Fork` button. Then clone 
+   your forked WalnutiQ repository locally.  
   
 ## Setup in Linux/Mac/Windows with Gradle
-1. In Linux or Mac type:
+1. Go to the top right of this page and hit the `Fork` button. Then clone 
+   your forked WalnutiQ repository locally. Navigate into the `WalnutiQ/` folder.
+
+2. To run all of the code in the Linux or Mac terminal type:
    ```sh
    prompt> ./gradlew build
    # :compileJava UP-TO-DATE
@@ -94,7 +106,7 @@ to better understand the theory behind this repository.
    BUILD SUCCESSFUL
    ```
 
-2. In Windows type:
+3. To run all of the code in the Windows terminal type:
    ```sh
    prompt> gradle.bat
    # :compileJava UP-TO-DATE
@@ -104,21 +116,21 @@ to better understand the theory behind this repository.
    BUILD SUCCESSFUL
    ```
 
-3. If you see `BUILD SUCCESSFUL` all of the tests have passed! You can also
-   see if your tests passed visually if you go to the folder `build/reports/tests/`
-   and view the file `index.html` in a browser!
+4. If you see `BUILD SUCCESSFUL` all of the tests have passed! 
 
 ## How to Contribute
 1. View an example of how some of the code is used in the file
    [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
    Please do not be afriad to ask a question if you are confused!
 
-2. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) and create a new issue
-   with a question if you are confused. Otherwise, asign a issue to yourself you would like to work on or suggest
+2. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) 
+   and create a new issue with a question if you are confused. Otherwise, 
+   assign a issue to yourself you would like to work on or suggest
    a new issue if you kinda know what you are doing. 
 
-3. For now we are using the git workflow model described 
-   [here](https://github.com/quinnliu/WalnutiQ/issues/62). Happy coding!
+3. For now we are using the Git workflow model described 
+   [here](https://github.com/quinnliu/WalnutiQ/issues/62) to contribute to this
+   repository effectively. Happy coding!
 
 ## What each file/folder in this repository is for:
   - experiments  
