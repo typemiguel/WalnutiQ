@@ -99,19 +99,17 @@ to better understand the theory behind this repository.
 2. To run all of the code in the Linux or Mac terminal type:
    ```sh
    prompt> ./gradlew build
-   # :compileJava UP-TO-DATE
-   # ...
-   # :build UP-TO-DATE
+   :compileJava UP-TO-DATE
+   # some other stuff...
+   :build UP-TO-DATE
 
    BUILD SUCCESSFUL
    ```
 
 3. To run all of the code in the Windows terminal type:
    ```sh
-   prompt> gradle.bat
-   # :compileJava UP-TO-DATE
-   # ...
-   # :build UP-TO-DATE
+   prompt> gradlew.bat
+   # some other stuff...
 
    BUILD SUCCESSFUL
    ```
@@ -175,8 +173,8 @@ to better understand the theory behind this repository.
                   but it would be very cool of you to do something nice with it.
   - README.md = the file you are reading right now
   - build.gradle = compiles all of the code in this repository using Gradle
-  - gradlew = Gradle startup script for running WalnutiQ code in Linux & Mac
-  - gradlew.bat = Gradle startup script for running WalnutiQ code in Windows
+  - gradlew = allows you to use Gradle to run all of the code in this repository in Linux & Mac
+  - gradlew.bat = allows you to use Gradle to run all of the code in this repository in Windows
   - settings.gradle = specify which projects to include in our Gradle build
 
 ===============================================================
