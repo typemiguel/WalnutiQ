@@ -1,4 +1,5 @@
-**[Eclipse Install](#setup-in-linuxmacwindows-with-eclipse)** |
+**[Eclipse Install](#setup-in-linuxmacwindows-with-eclipse)** or
+**[IntelliJ Install](#setup-in-linuxmacwindows-with-intellij)** or
 **[Gradle Install](#setup-in-linuxmacwindows-with-gradle)** |
 **[How to Contribute](#how-to-contribute)** |
 **[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)**
@@ -6,6 +7,7 @@
 # [WalnutiQ](http://walnutiq.com)
 
 "*Time is all you have. And you may find one day that you have less than you think.*"  
+  
 ~ Randy Pausch
 
 [![Build Status](https://travis-ci.org/WalnutiQ/WalnutiQ.png)](https://travis-ci.org/WalnutiQ/WalnutiQ)
@@ -52,8 +54,12 @@ to better understand the theory behind this repository.
 1. [Install Eclipse Standard 4.3.2](https://www.eclipse.org/downloads/) or use
    any other version of Eclipse if you already have it installed.
 
-2. Fork this repository and clone it locally. Then import it as a 
-   project into Eclipse.
+2. Go to the top right of this page and hit the `Fork` button. Then clone your 
+   forked WalnutiQ repository locally. Then import it as a Git
+   project into Eclipse. Right-click your package explorer `=>` Import...
+   `=>` Git `=>` Projects from Git `=>` Next > `=>` Existing local repository
+   `=>` Next > `=>` Add... `=>` Browse to the WalnutiQ folder you cloned locally
+   and finish.
 
 3. IMPORTANT: You will notice that your folders will have red X's everywhere. 
    To fix this right click your `src` folder then hover over "New", 
@@ -66,47 +72,70 @@ to better understand the theory behind this repository.
    New `=>` Source Folder `=>` Folder name: `images`.
 
 4. In Eclipse, add all the libraries (.jar file) in the folder 
-   `referencedLibraries/` by right-clicking your project `WalnutiQ` 
+   `referencedLibraries/` by right-clicking your folder `WalnutiQ` 
    in the package explorer `=>` Build Path `=>` Add External Archives...
 
-5. In Eclipse, add JUnit 4 by right-clicking your project `WalnutiQ` 
-   in the package explorer `=>` Add Libraries... `=>` JUnit `=>`
+5. In Eclipse, add JUnit 4 by right-clicking your folder `WalnutiQ` 
+   in the package explorer `=>` Build Path `=>` Add Libraries... `=>` JUnit `=>`
    Next > `=>` Finish
 
 6. In Eclipse, also add JRE System Library by right-clicking 
-   your project `WalnutiQ` in the package explorer `=>` 
+   your folder `WalnutiQ` in the package explorer `=>` Build Path `=>` 
    Add Libraries... `=>` JRE System Library `=>` Next > `=>` Finish
 
-7. Right click your project `=>` Run As `=>` JUnit Test `=>` ALL TESTS PASS!
+7. Right click your folder `WalnutiQ` `=>` Run As `=>` JUnit Test `=>` ALL TESTS PASS!
+
+## Setup in Linux/Mac/Windows with IntelliJ
+1. [Install IntelliJ IDEA 13.1 FREE Community Edition](http://www.jetbrains.com/idea/download/)
+   or use any other version of IntelliJ if you already have it installed.
+
+2. Go to the top right of this page and hit the `Fork` button. Then clone 
+   your forked WalnutiQ repository locally.  
+
+3. Open up IntelliJ and click "Import Project" `=>` Select "Gradle" `=>` Next `=>` 
+   Select "Use default gradle wrapper (recommended)" `=>` Finish
+
+4. In IntelliJ right-click the `WalnutiQ/` folder and select "Run 'All Tests'". You
+   can also run your tests through the terminal with the command `./gradlew build`
+   when inside the `WalnutiQ/` folder.
   
 ## Setup in Linux/Mac/Windows with Gradle
-1. Install Gradle in Linux OR Mac by typing to the command line:
+1. Go to the top right of this page and hit the `Fork` button. Then clone 
+   your forked WalnutiQ repository locally. Navigate into the `WalnutiQ/` folder.
+
+2. To run all of the code in the Linux or Mac terminal type:
    ```sh
-   prompt> wget http://services.gradle.org/distributions/gradle-1.10-bin.zip
-   prompt> sudo unzip -q gradle-1.10-bin.zip -d /usr/local/
-   prompt> echo "export GRADLE_HOME=/usr/local/gradle-1.10" >> .profile
-   prompt> echo "export PATH=$PATH:$GRADLE_HOME/bin" >> .profile
+   prompt> ./gradlew build
+   :compileJava UP-TO-DATE
+   # some other stuff...
+   :build UP-TO-DATE
+
+   BUILD SUCCESSFUL
    ```
-   
-2. Or install Gradle with these [instructions for Windows](https://db.tt/DMF3ww2D)
 
-3. Fork this repo and clone it locally. Navigate into the `WalnutiQ/` folder
+3. To run all of the code in the Windows terminal type:
+   ```sh
+   prompt> gradlew.bat
+   # some other stuff...
 
-4. Type in the command line `gradle build`. This may take a minute the first
-   time so no worries. Go to the folder `build/reports/tests/`. 
-   View the file `index.html` in any browser and make sure all tests pass!
+   BUILD SUCCESSFUL
+   ```
+
+4. If you see `BUILD SUCCESSFUL` all of the tests have passed! 
 
 ## How to Contribute
 1. View an example of how some of the code is used in the file
    [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
    Please do not be afriad to ask a question if you are confused!
 
-2. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) and create a new issue
-   with a question if you are confused. Otherwise, asign a issue to yourself you would like to work on or suggest
+2. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) 
+   and create a new issue with a question if you are confused. Otherwise, 
+   assign a issue to yourself you would like to work on or suggest
    a new issue if you kinda know what you are doing. 
 
-3. For now we are using the git workflow model described 
-   [here](https://github.com/quinnliu/WalnutiQ/issues/62). Happy coding!
+3. For now we are using the Git workflow model described 
+   [here](https://github.com/quinnliu/WalnutiQ/issues/62) to contribute to this
+   repository effectively. Happy coding!
 
 ## What each file/folder in this repository is for:
   - experiments  
@@ -115,6 +144,7 @@ to better understand the theory behind this repository.
             + [vision](./experiments/model/MARK_I/vision) = experiments with partial 
               visual pathway models on a popular handwritten digit data
               set called MNIST
+  - gradle = the actual Gradle code for building our Java code
   - images = images used in training & testing the partial brain model
   - modelInOtherObjectOrientedLanguages = I realize not everyone is the biggest fan
       of Java so let's rewrite it in as many other object oriented languages as possible!
@@ -135,7 +165,7 @@ to better understand the theory behind this repository.
                   and models long term potentiation and depression on synapses of proximal dendrites
               + [TemporalPooler.java](./src/main/java/model/MARK_II/TemporalPooler.java) 
                 = models neocortex's ability to predict future input using long term potentiation 
-                and depression on synapses of distal dendrites
+                  and depression on synapses of distal dendrites
 
             - [util](./src/main/java/model/util) = classes that enable the brain model properties
               to be viewed graphically and efficiently saved and opened  
@@ -150,6 +180,9 @@ to better understand the theory behind this repository.
                   but it would be very cool of you to do something nice with it.
   - README.md = the file you are reading right now
   - build.gradle = compiles all of the code in this repository using Gradle
+  - gradlew = allows you to use Gradle to run all of the code in this repository in Linux & Mac
+  - gradlew.bat = allows you to use Gradle to run all of the code in this repository in Windows
+  - settings.gradle = specify which projects to include in our Gradle build
 
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 
