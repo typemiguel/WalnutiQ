@@ -91,6 +91,13 @@ to better understand the theory behind this repository.
 
 2. Go to the top right of this page and hit the `Fork` button. Then clone 
    your forked WalnutiQ repository locally.  
+
+3. Open up IntelliJ and click "Import Project" `=>` Select "Gradle" `=>` Next `=>` 
+   Select "Use default gradle wrapper (recommended)" `=>` Finish
+
+4. In IntelliJ right-click the `WalnutiQ/` folder and select "Run 'All Tests'". You
+   can also run your tests through the terminal with the command `./gradlew build`
+   when inside the `WalnutiQ/` folder.
   
 ## Setup in Linux/Mac/Windows with Gradle
 1. Go to the top right of this page and hit the `Fork` button. Then clone 
