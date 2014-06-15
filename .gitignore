@@ -1,18 +1,19 @@
+# This file contains names of files/folders not to add to the remote
+# Git repository but to keep in your WalnutiQ folder on your local computer
+
+# Gradle 
 .gradle
-gradle/
-gradlew.*
-gradlew
 /build
+
+# IntelliJ 
 .idea
 *.iml
-*.bmp
+*.iws
+classes/
 
+# Java
 *.class
+
+# Eclipse
 .classpath
 bin/**
-
-test_saveRegionObject.txt
-PartialNervousSystemObject.json
-/bin
-
-classes

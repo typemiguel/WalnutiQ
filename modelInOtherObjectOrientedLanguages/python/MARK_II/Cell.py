@@ -8,8 +8,9 @@ Provides the minimal behaviors for a Cell.
 class Cell(object):
 
 	def __init__(self, isActive=None, wasActive=None):
-		self.isActive = False # biologically equivalent to 
+		self.isActive = False # biologically equivalent to
 			# generating 1 or more spikes
 		self.wasActive = False
 
-	
+	def getActiveState(self):
+		
