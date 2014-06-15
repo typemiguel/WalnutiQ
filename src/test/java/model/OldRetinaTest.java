@@ -9,11 +9,11 @@ import java.io.IOException;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Feb 9, 2014
  */
-public class RetinaTest extends TestCase {
-    private Retina retina;
+public class OldRetinaTest extends TestCase {
+    private OldRetina oldRetina;
 
     public void setUp() {
-        this.retina = new Retina(5, 15);
+        this.oldRetina = new OldRetina(5, 15);
     }
 
     public void test_seeBMPImage() throws IOException {
@@ -25,9 +25,9 @@ public class RetinaTest extends TestCase {
          * 000000000000000
          * 000000000000000
          */
-        this.retina.seeBMPImage("Array2DTest.bmp");
+        this.oldRetina.seeBMPImage("Array2DTest.bmp");
 
-        VisionCell[][] visionCells = this.retina.getVisionCells();
+        VisionCell[][] visionCells = this.oldRetina.getVisionCells();
         int numberOfRows = visionCells.length;
         int numberOfColumns = visionCells[0].length;
         assertEquals(5, numberOfRows);
@@ -35,8 +35,8 @@ public class RetinaTest extends TestCase {
         assertTrue(visionCells[1][3].getActiveState());
         assertFalse(visionCells[0][3].getActiveState());
 
-        this.retina.seeBMPImage("Array2DTest2.bmp");
-        VisionCell[][] visionCells2 = this.retina.getVisionCells();
+        this.oldRetina.seeBMPImage("Array2DTest2.bmp");
+        VisionCell[][] visionCells2 = this.oldRetina.getVisionCells();
         /**
          * Array2DTest2.bmp =
          * 000100000000000 NOTE: visionCells2[0][3] = 1 where before it = 0

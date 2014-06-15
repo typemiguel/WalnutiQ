@@ -6,7 +6,7 @@ import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.Retina;
+import model.OldRetina;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -44,16 +44,16 @@ public class SDRScoreCalculatorTest extends TestCase {
     }
 
     private void setUpColumnActivityAfterSeeingImage2() throws IOException {
-        Retina retina = new Retina(66, 66);
+        OldRetina oldRetina = new OldRetina(66, 66);
         Region region = new Region("Region", 8, 8, 1, 50, 3);
 
         AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
-        retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
+        retinaToRegion.connect(oldRetina.getVisionCells(), region, 0, 0);
 
         SpatialPooler spatialPooler = new SpatialPooler(region);
         spatialPooler.setLearningState(true);
 
-        retina.seeBMPImage("2.bmp");
+        oldRetina.seeBMPImage("2.bmp");
 
         spatialPooler.performSpatialPoolingOnRegion(); // 11 active columns
         this.columnActivityAfterSeeingImage2 = spatialPooler

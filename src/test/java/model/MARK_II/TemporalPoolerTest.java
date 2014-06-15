@@ -2,7 +2,7 @@ package model.MARK_II;
 
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.Retina;
+import model.OldRetina;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.Set;
  * @version April 27, 2014
  */
 public class TemporalPoolerTest extends junit.framework.TestCase {
-    private Retina retina;
+    private OldRetina oldRetina;
     private Region region;
     private SpatialPooler spatialPooler;
     private TemporalPooler temporalPooler;
@@ -29,18 +29,18 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 
     public void setUp() throws IOException {
 
-        // images this retina will see are all 66x66 pixels
-        this.retina = new Retina(66, 66);
+        // images this oldRetina will see are all 66x66 pixels
+        this.oldRetina = new OldRetina(66, 66);
 
         this.region = new Region("Region", 8, 8, 3, 77.8, 1);
 
         AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
-        retinaToRegion.connect(this.retina.getVisionCells(), this.region, 0, 0);
+        retinaToRegion.connect(this.oldRetina.getVisionCells(), this.region, 0, 0);
 
         this.spatialPooler = new SpatialPooler(this.region);
         this.spatialPooler.setLearningState(true);
 
-        this.retina.seeBMPImage("2.bmp");
+        this.oldRetina.seeBMPImage("2.bmp");
         this.spatialPooler.performSpatialPoolingOnRegion();
         assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
                 this.spatialPooler.getActiveColumnPositionsAsString());

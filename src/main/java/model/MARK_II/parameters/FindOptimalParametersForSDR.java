@@ -6,7 +6,7 @@ import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.Retina;
+import model.OldRetina;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -32,7 +32,7 @@ import java.util.Set;
 public class FindOptimalParametersForSDR {
 
     /**
-     * Builds a simple 1 Retina to 1 Region model with given parameters, runs
+     * Builds a simple 1 OldRetina to 1 Region model with given parameters, runs
      * the spatial pooling algorithm once, computes a score based on the output
      * of the spatial pooling algorithm.
      *
@@ -47,17 +47,17 @@ public class FindOptimalParametersForSDR {
             double percentMinimumOverlapScore, double desiredLocalActivity,
             double desiredPercentageOfActiveColumns,
             String locationOfFileWithFileNameToSaveScore) throws IOException {
-        Retina retina = new Retina(66, 66);
+        OldRetina oldRetina = new OldRetina(66, 66);
         Region region = new Region("Region", 8, 8, 1,
                 percentMinimumOverlapScore, (int) desiredLocalActivity);
 
         AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
-        retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
+        retinaToRegion.connect(oldRetina.getVisionCells(), region, 0, 0);
 
         SpatialPooler spatialPooler = new SpatialPooler(region);
         spatialPooler.setLearningState(true);
 
-        retina.seeBMPImage("2.bmp");
+        oldRetina.seeBMPImage("2.bmp");
 
         spatialPooler.performSpatialPoolingOnRegion(); // 11 active columns
         Set<ColumnPosition> columnActivityAfterSeeingImage2 = spatialPooler
@@ -89,7 +89,7 @@ public class FindOptimalParametersForSDR {
     }
 
     /**
-     * Builds a simple 1 Retina to 1 Region model with given parameters, runs
+     * Builds a simple 1 OldRetina to 1 Region model with given parameters, runs
      * the spatial pooling algorithm once, computes a score based on the output
      * of the spatial pooling algorithm.
      *
@@ -109,12 +109,12 @@ public class FindOptimalParametersForSDR {
                 "./images/digits/MNIST/t10k-labels.idx1-ubyte");
 
         // all images in MNIST dataset are 28 x 28 pixels
-        Retina retina = new Retina(28, 28);
+        OldRetina oldRetina = new OldRetina(28, 28);
         Region region = new Region("Region", 8, 8, 1,
                 percentMinimumOverlapScore, (int) desiredLocalActivity);
 
         AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
-        retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
+        retinaToRegion.connect(oldRetina.getVisionCells(), region, 0, 0);
 
         SpatialPooler spatialPooler = new SpatialPooler(region);
         spatialPooler.setLearningState(true);
@@ -125,7 +125,7 @@ public class FindOptimalParametersForSDR {
             mnistManager.setCurrent(i);
             int[][] image = mnistManager.readImage();
 
-            retina.see2DIntArray(image);
+            oldRetina.see2DIntArray(image);
             spatialPooler.performSpatialPoolingOnRegion();
             Set<ColumnPosition> columnActivityAfterSeeingCurrentMNISTImage = spatialPooler
                     .getActiveColumnPositions();

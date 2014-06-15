@@ -11,11 +11,11 @@ import java.io.IOException;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Apr 28, 2014
  */
-public class ImageViewerTest extends junit.framework.TestCase {
+public class OldImageViewerTest extends junit.framework.TestCase {
     private int[][] image1;
 
-    private ImageViewer imageViewer;
-    private SaccadingRetina retina;
+    private OldImageViewer oldImageViewer;
+    private OldSaccadingRetina retina;
 
     public void setUp() throws IOException {
         this.image1 = new int[8][10];
@@ -38,8 +38,8 @@ public class ImageViewerTest extends junit.framework.TestCase {
 
         this.image1[0][6] = 1;
 
-        this.retina = new SaccadingRetina(66, 66, new Point(33, 33), 33);
-        this.imageViewer = new ImageViewer("2.bmp", this.retina);
+        this.retina = new OldSaccadingRetina(66, 66, new Point(33, 33), 33);
+        this.oldImageViewer = new OldImageViewer("2.bmp", this.retina);
     }
 
     public void test_updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() throws IOException {
@@ -49,7 +49,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
 
         System.out.println("\n================================================================");
 
-        this.imageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(
+        this.oldImageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(
                 new Point(33, 33), 20);
 
         int[][] seeanArea2 = this.retina
@@ -59,7 +59,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
     }
 
     public void test_moveRetinaInsideOfBoundingBox() {
-        SaccadingRetina retina2 = new SaccadingRetina(66, 66,
+        OldSaccadingRetina retina2 = new OldSaccadingRetina(66, 66,
                 new Point2D.Double(1.1, -0.1), 3.1);
         assertEquals(1.1, retina2.getPosition().getX());
         assertEquals(-0.1, retina2.getPosition().getY());
@@ -67,7 +67,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
 
         BoundingBox boxRetinaIsStuckIn = new BoundingBox(1, 2, 3);
 
-        this.imageViewer.moveRetinaInsideOfBoundingBox(retina2,
+        this.oldImageViewer.moveRetinaInsideOfBoundingBox(retina2,
                 boxRetinaIsStuckIn);
 
         // retina2.setPosition(new Point2D.Double(1.0, 0.0));
@@ -80,7 +80,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
     }
 
     public void test_getSeenAreaFromMainImage() throws IOException {
-        int[][] seenArea = this.imageViewer.getSeenAreaFromMainImage();
+        int[][] seenArea = this.oldImageViewer.getSeenAreaFromMainImage();
         assertEquals(66, seenArea.length);
         assertEquals(66, seenArea[0].length);
         // RegionConsoleViewer.printDoubleIntArray(seenArea);
@@ -96,7 +96,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
     // 0000000000
     // 0000000000
     public void test_convertImage() {
-        int[][] image2 = this.imageViewer.convertImage(this.image1, 2);
+        int[][] image2 = this.oldImageViewer.convertImage(this.image1, 2);
         assertEquals(4, image2.length);
         assertEquals(5, image2[0].length);
         assertEquals(1, image2[0][0]);
@@ -104,7 +104,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
         assertEquals(0, image2[0][2]);
         assertEquals(0, image2[1][0]);
 
-        int[][] image3 = this.imageViewer.convertImage(this.image1, 0.25);
+        int[][] image3 = this.oldImageViewer.convertImage(this.image1, 0.25);
         assertEquals(32, image3.length);
         assertEquals(40, image3[0].length);
         // assert "1" are in the correct places

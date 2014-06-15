@@ -12,7 +12,7 @@ import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.RegionToRegionRectangleConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.NervousSystem;
-import model.Retina;
+import model.OldRetina;
 import model.util.JsonFileInputOutput;
 
 import java.io.IOException;
@@ -42,16 +42,16 @@ public class HowMARK_I_FitsInToBrainAnatomy extends TestCase {
 
         LGN unconnectedLGN = new LGN(new Region("LGN", 8, 8, 1, 50, 3));
 
-        Retina unconnectedRetina = new Retina(66, 66);
+        OldRetina unconnectedOldRetina = new OldRetina(66, 66);
 
         NervousSystem nervousSystem = new NervousSystem(unconnectedNeocortex,
-                unconnectedLGN, unconnectedRetina);
+                unconnectedLGN, unconnectedOldRetina);
 
-        // connect Retina to LGN
-        Retina retina = nervousSystem.getPNS().getSNS().getRetine();
+        // connect OldRetina to LGN
+        OldRetina oldRetina = nervousSystem.getPNS().getSNS().getRetine();
         LGN LGN = nervousSystem.getCNS().getBrain().getThalamus().getLGN();
         AbstractSensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
-        opticNerve.connect(retina.getVisionCells(), LGN.getRegion(), 0, 0);
+        opticNerve.connect(oldRetina.getVisionCells(), LGN.getRegion(), 0, 0);
 
         // connect LGN to very small part of V1 Region of Neocortex
         Neocortex neocortex = nervousSystem.getCNS().getBrain().getCerebrum()
@@ -64,11 +64,11 @@ public class HowMARK_I_FitsInToBrainAnatomy extends TestCase {
     }
 
     public void testHowToRunSpatialPoolingOnNervousSystem() throws IOException {
-        Retina retina = partialNervousSystem.getPNS().getSNS().getRetine();
+        OldRetina oldRetina = partialNervousSystem.getPNS().getSNS().getRetine();
         Region LGNRegion = partialNervousSystem.getCNS().getBrain()
                 .getThalamus().getLGN().getRegion();
 
-        retina.seeBMPImage("2.bmp");
+        oldRetina.seeBMPImage("2.bmp");
 
         SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
         spatialPooler.setLearningState(true);

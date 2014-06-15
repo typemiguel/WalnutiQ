@@ -10,8 +10,8 @@ import java.io.IOException;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version May 31, 2014
  */
-public class ImageViewer {
-    private SaccadingRetina retina;
+public class OldImageViewer {
+    private OldSaccadingRetina retina;
 
     /**
      * Assume image is (0, 0) on bottom left (image.width, image.height) on top
@@ -21,7 +21,7 @@ public class ImageViewer {
     private int[][] image;
     private BoundingBox boxRetinaIsStuckIn;
 
-    public ImageViewer(String BMPFileName, SaccadingRetina retina)
+    public OldImageViewer(String BMPFileName, OldSaccadingRetina retina)
             throws IOException {
         this.retina = retina;
         this.retina.seeBMPImage(BMPFileName);
@@ -52,7 +52,7 @@ public class ImageViewer {
         this.retina.see2DIntArray(fittedToRetina);
     }
 
-    void moveRetinaInsideOfBoundingBox(SaccadingRetina retina,
+    void moveRetinaInsideOfBoundingBox(OldSaccadingRetina retina,
                                        BoundingBox boundingBox) {
         double retinaX = retina.getPosition().getX();
         double retinaY = retina.getPosition().getY();

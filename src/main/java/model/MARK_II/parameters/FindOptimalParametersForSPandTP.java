@@ -1,13 +1,13 @@
 package model.MARK_II.parameters;
 
-import model.ImageViewer;
+import model.OldImageViewer;
 import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 import model.MARK_II.TemporalPooler;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.Retina;
-import model.SaccadingRetina;
+import model.OldRetina;
+import model.OldSaccadingRetina;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -58,12 +58,12 @@ public class FindOptimalParametersForSPandTP {
                 PERCENT_ACTIVE_SYNAPSES_THRESHOLD,
                 EXPONENTIAL_MOVING_AVERAGE_AlPHA, MINIMUM_COLUMN_FIRING_RATE);
 
-        Retina retina = new Retina(66, 66);
+        OldRetina oldRetina = new OldRetina(66, 66);
         Region region = new Region("Region", 8, 8, 4,
                 percentMinimumOverlapScore, (int) desiredLocalActivity);
 
         AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
-        retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
+        retinaToRegion.connect(oldRetina.getVisionCells(), region, 0, 0);
 
         SpatialPooler spatialPooler = new SpatialPooler(region);
         spatialPooler.setLearningState(true);
@@ -71,7 +71,7 @@ public class FindOptimalParametersForSPandTP {
                 (int) newSynapseCount);
         temporalPooler.setLearningState(true);
 
-        retina.seeBMPImage("2.bmp");
+        oldRetina.seeBMPImage("2.bmp");
 
         int totalNumberOfSequenceSegments = 0;
         int totalNumberOfLearningNeurons = 0;
@@ -111,8 +111,8 @@ public class FindOptimalParametersForSPandTP {
         double SPandTPscore = 0.0;
 
         // construct model
-        SaccadingRetina retina = null;
-        ImageViewer imageViewer = null;
+        OldSaccadingRetina retina = null;
+        OldImageViewer oldImageViewer = null;
         // TODO:
 
         // spatialPooler.performSpatialPooling();
@@ -126,7 +126,7 @@ public class FindOptimalParametersForSPandTP {
         retinaLocation.setLocation(2.0, 2.0);
         retina.setPosition(retinaLocation);
 
-        // imageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition();
+        // oldImageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition();
 
         // spatialPooler.performSpatialPooling();
         // temporalPooler.performSpatialPooling();

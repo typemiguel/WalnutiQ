@@ -8,17 +8,17 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * Input to Retina: images of different possible formats.
+ * Input to OldRetina: images of different possible formats.
  * <p/>
- * Output of Retina: activity of Cells within VisionCells.
+ * Output of OldRetina: activity of Cells within VisionCells.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Feb 3, 2014
  */
-public class Retina {
+public class OldRetina {
     protected VisionCell[][] visionCells;
 
-    public Retina(int numberOfVisionCellsAlongYAxis, int numberOfVisionCellsAlongXAxis) {
+    public OldRetina(int numberOfVisionCellsAlongYAxis, int numberOfVisionCellsAlongXAxis) {
         this.visionCells = new VisionCell[numberOfVisionCellsAlongYAxis][numberOfVisionCellsAlongXAxis];
 
         for (int currentRow = 0; currentRow < numberOfVisionCellsAlongYAxis; currentRow++) {
@@ -33,7 +33,7 @@ public class Retina {
     }
 
     /**
-     * Update the state of the Retina with the given .bmp file name.
+     * Update the state of the OldRetina with the given .bmp file name.
      *
      * @param BMPFileName
      * @throws IOException

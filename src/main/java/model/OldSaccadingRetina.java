@@ -6,13 +6,13 @@ import java.awt.geom.Point2D;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Apr 28, 2014
  */
-public class SaccadingRetina extends Retina {
+public class OldSaccadingRetina extends OldRetina {
     private Point2D position;
     private double distanceBetweenImageAndRetina;
 
-    public SaccadingRetina(int numberOfVisionCellsAlongYAxis,
-                           int numberOfVisionCellsAlongXAxis, Point2D retinaPosition,
-                           double distanceBetweenImageAndRetina) {
+    public OldSaccadingRetina(int numberOfVisionCellsAlongYAxis,
+                              int numberOfVisionCellsAlongXAxis, Point2D retinaPosition,
+                              double distanceBetweenImageAndRetina) {
         super(numberOfVisionCellsAlongYAxis, numberOfVisionCellsAlongXAxis);
 
         this.position = retinaPosition;
