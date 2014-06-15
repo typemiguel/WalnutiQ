@@ -13,4 +13,3 @@ class Cell(object):
 		self.wasActive = False
 
 	def getActiveState(self):
-		

@@ -9,6 +9,7 @@
 .idea
 *.iml
 *.iws
+classes/
 
 # Java
 *.class

@@ -37,6 +37,8 @@ public class ImageViewer {
 		if (this.boxRetinaIsStuckIn.contains(retinaPosition,
 				distanceBetweenImageAndRetina)) {
 			// retina is at a valid location so do nothing
+            this.retina.setPosition(retinaPosition);
+            this.retina.setDistanceBetweenImageAndRetina(distanceBetweenImageAndRetina);
 		} else {
 			this.moveRetinaInsideOfBoundingBox(this.retina,
 					this.boxRetinaIsStuckIn);
@@ -128,6 +130,8 @@ public class ImageViewer {
 	int[][] fitToRetina(int[][] seenAreaFromMainImage) {
 		// if retina is 4 times bigger than seenAreaFromMainImage then
 		// reductionScale = 2
+
+
 		int reductionScale = this.retina.getVisionCells().length
 				/ seenAreaFromMainImage.length;
 		int[][] fittedImage = this.convertImage(seenAreaFromMainImage,

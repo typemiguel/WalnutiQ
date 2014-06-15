@@ -41,7 +41,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
 		this.imageViewer = new ImageViewer("2.bmp", this.retina);
 	}
 
-	public void test_updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() {
+	public void test_updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() throws IOException {
 		int[][] seenArea1 = this.retina
 				.getDoubleIntArrayRepresentationOfVisionCells();
 		RegionConsoleViewer.printDoubleIntArray(seenArea1);
@@ -49,7 +49,7 @@ public class ImageViewerTest extends junit.framework.TestCase {
 		System.out.println("\n================================================================");
 
 		this.imageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(
-				new Point(33, 33), 16);
+				new Point(33, 33), 20);
 
 		int[][] seeanArea2 = this.retina
 				.getDoubleIntArrayRepresentationOfVisionCells();

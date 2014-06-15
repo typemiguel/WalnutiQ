@@ -23,6 +23,7 @@ public class RegionTest extends TestCase {
     public void setUp() {
 	this.region = new Region("region", 5, 7, 4, 20, 3);
     }
+    
 
     public void test_Region() {
 	try {
