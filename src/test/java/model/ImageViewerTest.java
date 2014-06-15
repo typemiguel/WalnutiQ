@@ -1,7 +1,6 @@
 package model;
 
 import model.util.BoundingBox;
-
 import java.awt.geom.Point2D;
 import model.util.RegionConsoleViewer;
 import java.io.IOException;
@@ -41,11 +40,21 @@ public class ImageViewerTest extends junit.framework.TestCase {
 		this.retina = new SaccadingRetina(66, 66, new Point(33, 33), 33);
 		this.imageViewer = new ImageViewer("2.bmp", this.retina);
 	}
-	
-	public void test_updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() {
-		this.imageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(new Point(33, 33), 16);
+
+	public void test_updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() throws IOException {
+		int[][] seenArea1 = this.retina
+				.getDoubleIntArrayRepresentationOfVisionCells();
+		RegionConsoleViewer.printDoubleIntArray(seenArea1);
 		
-		
+		System.out.println("\n================================================================");
+
+		this.imageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(
+				new Point(33, 33), 20);
+
+		int[][] seeanArea2 = this.retina
+				.getDoubleIntArrayRepresentationOfVisionCells();
+		RegionConsoleViewer.printDoubleIntArray(seeanArea2); // TODO: printed image should be zoomed in
+		// and upright 
 	}
 
 	public void test_moveRetinaInsideOfBoundingBox() {
@@ -73,15 +82,15 @@ public class ImageViewerTest extends junit.framework.TestCase {
 		int[][] seenArea = this.imageViewer.getSeenAreaFromMainImage();
 		assertEquals(66, seenArea.length);
 		assertEquals(66, seenArea[0].length);
-		RegionConsoleViewer.printDoubleIntArray(seenArea);
+		// RegionConsoleViewer.printDoubleIntArray(seenArea);
 	}
 
-	// image1 image2
+	// image1         image2
 	// 1111101000
-	// 1110100000 11000
-	// 0000000000 00000
-	// 0000000000 => 00000
-	// 0000000000 00000
+	// 1110100000     11000
+	// 0000000000     00000
+	// 0000000000 =>  00000
+	// 0000000000     00000
 	// 0000000000
 	// 0000000000
 	// 0000000000
