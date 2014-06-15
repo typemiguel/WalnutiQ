@@ -10,6 +10,6 @@ package model.MARK_II;
  */
 public abstract class SensorCell extends Cell {
     public SensorCell() {
-	super();
+        super();
     }
 }

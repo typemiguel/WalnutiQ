@@ -16,12 +16,12 @@ public class CerebralCortex {
     // private Archicortex archicortex;
 
     public CerebralCortex(Neocortex neocortex) {
-	this.neocortex = neocortex;
-	// this.paleocortex = null;
-	// this.archicortex = null;
+        this.neocortex = neocortex;
+        // this.paleocortex = null;
+        // this.archicortex = null;
     }
 
     public Neocortex getNeocortex() {
-	return this.neocortex;
+        return this.neocortex;
     }
 }

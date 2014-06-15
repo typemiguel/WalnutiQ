@@ -11,10 +11,10 @@ public class Thalamus {
     private LGN LGN;
 
     public Thalamus(LGN LGN) {
-	this.LGN = LGN;
+        this.LGN = LGN;
     }
 
     public LGN getLGN() {
-	return this.LGN;
+        return this.LGN;
     }
 }

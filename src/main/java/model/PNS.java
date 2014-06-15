@@ -14,11 +14,11 @@ public class PNS {
     // private AutonomicNervousSystem ANS;
 
     public PNS(Retina retine) {
-	this.SNS = new SNS(retine);
-	// this.ANS = null;
+        this.SNS = new SNS(retine);
+        // this.ANS = null;
     }
 
     public SNS getSNS() {
-	return this.SNS;
+        return this.SNS;
     }
 }

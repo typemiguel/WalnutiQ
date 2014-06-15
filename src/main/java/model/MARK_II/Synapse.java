@@ -12,7 +12,7 @@ package model.MARK_II;
  * permanenceValue implementation strategy was done to make the learning
  * algorithms involving Synapses more efficient and minimally reduces the
  * learning algorithms performance.
- *
+ * <p/>
  * There are 2 types of synapses in the brain. The MARK I Synapse data structure
  * models the chemical synapse and not the electrical synapse using the
  * following neuroscience ideas: 1) synaptic plasticity(also known as Hebbian
@@ -20,20 +20,19 @@ package model.MARK_II;
  * synapses from A to B are strengthened. 2) longterm potentiation/depression =
  * Experimentally observed increase/decrease in synaptic strength that lasts for
  * hours or days.
- *
+ * <p/>
  * NOTE: When getting the activeState or previousActiveState of a Synapse make
  * sure to check that the Synapse is connected to it's Cell by calling
  * synapse.getConnectedState()
- *
+ * <p/>
  * Input of Synapse: activity state of Cell.
- *
+ * <p/>
  * Output of Synapse: whether this Synapse is connected or not to the Cell.
  *
+ * @param <CellType> A synapse can be connected to either a SensorCell or a Neuron.
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
  * @version June 8, 2013
- * @param <CellType>
- *            A synapse can be connected to either a SensorCell or a Neuron.
  */
 public class Synapse<CellType extends Cell> {
     /**
@@ -71,17 +70,17 @@ public class Synapse<CellType extends Cell> {
      * value.
      */
     public Synapse(Cell cell, int cellXPosition, int cellYPosition) {
-	if (cell == null) {
-	    throw new IllegalArgumentException(
-		    "cell in Synapse class constructor cannot be null");
-	} else if (cellXPosition < 0 || cellYPosition < 0) {
-	    throw new IllegalArgumentException(
-		    "cellXPosition and cellYPosition in Synapse class constructor must be > 0");
-	}
-	this.cell = cell;
-	this.permanenceValue = INITIAL_PERMANENCE;
-	this.cellXPosition = cellXPosition;
-	this.cellYPosition = cellYPosition;
+        if (cell == null) {
+            throw new IllegalArgumentException(
+                    "cell in Synapse class constructor cannot be null");
+        } else if (cellXPosition < 0 || cellYPosition < 0) {
+            throw new IllegalArgumentException(
+                    "cellXPosition and cellYPosition in Synapse class constructor must be > 0");
+        }
+        this.cell = cell;
+        this.permanenceValue = INITIAL_PERMANENCE;
+        this.cellXPosition = cellXPosition;
+        this.cellYPosition = cellYPosition;
     }
 
     /**
@@ -89,124 +88,124 @@ public class Synapse<CellType extends Cell> {
      * value.
      */
     public Synapse(Cell cell, double initialPermanence, int cellXPosition,
-	    int cellYPosition) {
-	this(cell, cellXPosition, cellYPosition);
+                   int cellYPosition) {
+        this(cell, cellXPosition, cellYPosition);
 
-	if (initialPermanence < 0.0 || initialPermanence > 1.0) {
-	    throw new IllegalArgumentException(
-		    "initialPermanence in Synapse class constructor must be between 0 and 1");
-	}
-	this.permanenceValue = initialPermanence;
+        if (initialPermanence < 0.0 || initialPermanence > 1.0) {
+            throw new IllegalArgumentException(
+                    "initialPermanence in Synapse class constructor must be between 0 and 1");
+        }
+        this.permanenceValue = initialPermanence;
     }
 
     /**
      * @return This Synapse's Cell if it is connected. Otherwise return null.
      */
     public Cell getConnectedCell() {
-	if (this.isConnected()) {
-	    return this.cell;
-	} else {
-	    return null;
-	}
+        if (this.isConnected()) {
+            return this.cell;
+        } else {
+            return null;
+        }
     }
 
     public Cell getCell() {
-	return this.cell;
+        return this.cell;
     }
 
     /**
      * @return true if this Synapses' permanenceValue is greater than the
-     *         MINIMAL_CONNECTED_PERMANCE represented the Synapse and Cell are
-     *         connected.
+     * MINIMAL_CONNECTED_PERMANCE represented the Synapse and Cell are
+     * connected.
      */
     public boolean isConnected() {
-	return (this.permanenceValue >= MINIMAL_CONNECTED_PERMANENCE);
+        return (this.permanenceValue >= MINIMAL_CONNECTED_PERMANENCE);
     }
 
     /**
      * Increase the permanenceValue of a Synapse object by PERMANENCE_INCREASE
      * while forcing permanenceValue to always be < 1.0.
-     *
+     * <p/>
      * Simulates longterm potentiation in a real Synapse.
      */
     public void increasePermanence() {
-	this.permanenceValue = Math.min(1.0, this.permanenceValue
-		+ PERMANENCE_INCREASE);
+        this.permanenceValue = Math.min(1.0, this.permanenceValue
+                + PERMANENCE_INCREASE);
     }
 
     /**
      * Decrease the permanenceValue of a Synapse object by PERMANENCE_DECREASE
      * while forcing permanenceValue to always be > 0.0.
-     *
+     * <p/>
      * Simulates longterm depression in a real Synapse.
      */
     public void decreasePermanence() {
-	this.permanenceValue = Math.max(0.0, this.permanenceValue
-		- PERMANENCE_DECREASE);
+        this.permanenceValue = Math.max(0.0, this.permanenceValue
+                - PERMANENCE_DECREASE);
     }
 
     public int getCellXPosition() {
-	return this.cellXPosition;
+        return this.cellXPosition;
     }
 
     public int getCellYPosition() {
-	return this.cellYPosition;
+        return this.cellYPosition;
     }
 
     @Override
     public String toString() {
-	StringBuilder stringBuilder = new StringBuilder();
-	Cell cell = this.getConnectedCell();
-	stringBuilder.append("\n===========================");
-	stringBuilder.append("\n----Synapse Information----");
-	stringBuilder.append("\n Connected to a: ");
-	stringBuilder.append(this.cell.toString());
-	stringBuilder.append("\n     Located at: ");
-	stringBuilder.append("(" + this.cellXPosition + ", ");
-	stringBuilder.append(this.cellYPosition + ")");
-	stringBuilder.append("\npermanenceValue: ");
-	stringBuilder.append(this.permanenceValue);
-	stringBuilder.append("\n    isConnected: ");
-	if (this.getConnectedCell() == null) {
-	    stringBuilder.append("false");
-	} else {
-	    stringBuilder.append("true");
-	}
-	;
-	stringBuilder.append("\n===========================");
-	String synapseInformation = stringBuilder.toString();
-	return synapseInformation;
+        StringBuilder stringBuilder = new StringBuilder();
+        Cell cell = this.getConnectedCell();
+        stringBuilder.append("\n===========================");
+        stringBuilder.append("\n----Synapse Information----");
+        stringBuilder.append("\n Connected to a: ");
+        stringBuilder.append(this.cell.toString());
+        stringBuilder.append("\n     Located at: ");
+        stringBuilder.append("(" + this.cellXPosition + ", ");
+        stringBuilder.append(this.cellYPosition + ")");
+        stringBuilder.append("\npermanenceValue: ");
+        stringBuilder.append(this.permanenceValue);
+        stringBuilder.append("\n    isConnected: ");
+        if (this.getConnectedCell() == null) {
+            stringBuilder.append("false");
+        } else {
+            stringBuilder.append("true");
+        }
+        ;
+        stringBuilder.append("\n===========================");
+        String synapseInformation = stringBuilder.toString();
+        return synapseInformation;
     }
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + cellXPosition;
-	result = prime * result + cellYPosition;
-	return result;
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + cellXPosition;
+        result = prime * result + cellYPosition;
+        return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (obj == null)
-	    return false;
-	if (getClass() != obj.getClass())
-	    return false;
-	Synapse other = (Synapse) obj;
-	if (cellXPosition != other.cellXPosition)
-	    return false;
-	if (cellYPosition != other.cellYPosition)
-	    return false;
-	if (Double.doubleToLongBits(permanenceValue) != Double
-		.doubleToLongBits(other.permanenceValue))
-	    return false;
-	if (!this.cell.equals(other.cell)) {
-	    return false;
-	}
-	return true;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Synapse other = (Synapse) obj;
+        if (cellXPosition != other.cellXPosition)
+            return false;
+        if (cellYPosition != other.cellYPosition)
+            return false;
+        if (Double.doubleToLongBits(permanenceValue) != Double
+                .doubleToLongBits(other.permanenceValue))
+            return false;
+        if (!this.cell.equals(other.cell)) {
+            return false;
+        }
+        return true;
     }
 
 //    @Override
@@ -234,10 +233,10 @@ public class Synapse<CellType extends Cell> {
 //    }
 
     public double getPermanenceValue() {
-	return this.permanenceValue;
+        return this.permanenceValue;
     }
 
     public void setPermanenceValue(double permanenceValue) {
-	this.permanenceValue = permanenceValue;
+        this.permanenceValue = permanenceValue;
     }
 }
