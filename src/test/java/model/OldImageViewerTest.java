@@ -45,16 +45,16 @@ public class OldImageViewerTest extends junit.framework.TestCase {
     public void test_updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() throws IOException {
         int[][] seenArea1 = this.retina
                 .getDoubleIntArrayRepresentationOfVisionCells();
-        RegionConsoleViewer.printDoubleIntArray(seenArea1);
+        //RegionConsoleViewer.printDoubleIntArray(seenArea1);
 
-        System.out.println("\n================================================================");
+        //System.out.println("\n================================================================");
 
         this.oldImageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(
                 new Point(33, 33), 20);
 
         int[][] seeanArea2 = this.retina
                 .getDoubleIntArrayRepresentationOfVisionCells();
-        RegionConsoleViewer.printDoubleIntArray(seeanArea2); // TODO: printed image should be zoomed in
+        //RegionConsoleViewer.printDoubleIntArray(seeanArea2); // TODO: printed image should be zoomed in
         // and upright
     }
 
