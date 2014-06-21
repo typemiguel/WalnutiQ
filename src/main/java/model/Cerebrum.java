@@ -13,13 +13,13 @@ public class Cerebrum {
     // private Amygdala amygdala;
 
     public Cerebrum(Neocortex neocortex) {
-	this.cerebralCortex = new CerebralCortex(neocortex);
-	// this.basalGanglia = null;
-	// this.hippocampus = null;
-	// this.amygdala = null;
+        this.cerebralCortex = new CerebralCortex(neocortex);
+        // this.basalGanglia = null;
+        // this.hippocampus = null;
+        // this.amygdala = null;
     }
 
     public CerebralCortex getCerebralCortex() {
-	return this.cerebralCortex;
+        return this.cerebralCortex;
     }
 }

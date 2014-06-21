@@ -1,11 +1,5 @@
 package model.MARK_II;
 
-import model.MARK_II.Cell;
-import model.MARK_II.ColumnPosition;
-import model.MARK_II.SegmentUpdate;
-import model.MARK_II.SegmentUpdateList;
-import model.MARK_II.Synapse;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,34 +17,34 @@ public class SegmentUpdateListTest extends junit.framework.TestCase {
     private SegmentUpdate segmentUpdate2;
 
     public void setUp() {
-	this.segmentUpdateList = new SegmentUpdateList();
+        this.segmentUpdateList = new SegmentUpdateList();
 
-	this.synapsesWithActiveCells = new HashSet<Synapse<Cell>>();
-	this.synapsesWithDeactiveCells = new HashSet<Synapse<Cell>>();
-	this.segmentUpdate1 = new SegmentUpdate(synapsesWithActiveCells,
-		synapsesWithDeactiveCells, new ColumnPosition(1, 1), 1);
+        this.synapsesWithActiveCells = new HashSet<Synapse<Cell>>();
+        this.synapsesWithDeactiveCells = new HashSet<Synapse<Cell>>();
+        this.segmentUpdate1 = new SegmentUpdate(synapsesWithActiveCells,
+                synapsesWithDeactiveCells, new ColumnPosition(1, 1), 1);
 
-	this.segmentUpdate2 = new SegmentUpdate(synapsesWithActiveCells,
-		synapsesWithDeactiveCells, new ColumnPosition(2, 2), 2);
+        this.segmentUpdate2 = new SegmentUpdate(synapsesWithActiveCells,
+                synapsesWithDeactiveCells, new ColumnPosition(2, 2), 2);
 
-	this.segmentUpdateList.add(this.segmentUpdate1);
-	this.segmentUpdateList.add(this.segmentUpdate2);
+        this.segmentUpdateList.add(this.segmentUpdate1);
+        this.segmentUpdateList.add(this.segmentUpdate2);
     }
 
     public void test_getSegmentUpdate() {
-	assertEquals(this.segmentUpdate1,
-		this.segmentUpdateList.getSegmentUpdate(
-			new ColumnPosition(1, 1), 1));
+        assertEquals(this.segmentUpdate1,
+                this.segmentUpdateList.getSegmentUpdate(
+                        new ColumnPosition(1, 1), 1));
 
-	assertNull(this.segmentUpdateList.getSegmentUpdate(new ColumnPosition(
-		2, 1), 2));
+        assertNull(this.segmentUpdateList.getSegmentUpdate(new ColumnPosition(
+                2, 1), 2));
     }
 
     public void test_deleteSegmentUpdate() {
-	assertTrue(this.segmentUpdateList.deleteSegmentUpdate(
-		new ColumnPosition(1, 1), 1));
+        assertTrue(this.segmentUpdateList.deleteSegmentUpdate(
+                new ColumnPosition(1, 1), 1));
 
-	assertFalse(this.segmentUpdateList.deleteSegmentUpdate(
-		new ColumnPosition(1, 2), 1));
+        assertFalse(this.segmentUpdateList.deleteSegmentUpdate(
+                new ColumnPosition(1, 2), 1));
     }
 }

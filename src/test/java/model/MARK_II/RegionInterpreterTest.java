@@ -17,7 +17,7 @@ public class RegionInterpreterTest extends TestCase {
     public void testGetNextRetinaPosition() {
     	RegionInterpreter interpreter = new RegionInterpreter(this.region);
     	
-    	System.out.println(interpreter.getNextRetinaPosition());
+    	//System.out.println(interpreter.getNextRetinaPosition());
     	
     }
 }

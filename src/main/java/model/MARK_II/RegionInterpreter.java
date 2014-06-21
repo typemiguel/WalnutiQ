@@ -52,13 +52,13 @@ public class RegionInterpreter {
 		}
 
 		Float xPercentage = rawXValues / (float) xValuesCount;
-		System.out.println(xPercentage);
+		//System.out.println(xPercentage);
 
 		Float yPercentage = rawYValues / (float) yValuesCount;
-		System.out.println(yPercentage);
+		//System.out.println(yPercentage);
 
 		Float zPercentage = rawZValues / (float) zValuesCount;
-		System.out.println(zPercentage);
+		//System.out.println(zPercentage);
 		
 		return new Float[]{xPercentage, yPercentage, zPercentage};
 	}
