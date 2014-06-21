@@ -1,7 +1,5 @@
 package model.MARK_II;
 
-import model.MARK_II.ColumnPosition;
-
 import junit.framework.TestCase;
 
 /**
@@ -14,13 +12,13 @@ public class ColumnPositionTest extends TestCase {
     private ColumnPosition columnPosition96;
 
     public void setUp() {
-	this.columnPosition69 = new ColumnPosition(6, 9);
-	this.columnPosition_69 = new ColumnPosition(6, 9);
-	this.columnPosition96 = new ColumnPosition(9, 6);
+        this.columnPosition69 = new ColumnPosition(6, 9);
+        this.columnPosition_69 = new ColumnPosition(6, 9);
+        this.columnPosition96 = new ColumnPosition(9, 6);
     }
 
     public void test_equals() {
-	assertTrue(this.columnPosition69.equals(this.columnPosition_69));
-	assertFalse(this.columnPosition69.equals(this.columnPosition96));
+        assertTrue(this.columnPosition69.equals(this.columnPosition_69));
+        assertFalse(this.columnPosition69.equals(this.columnPosition96));
     }
 }

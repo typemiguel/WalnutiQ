@@ -18,13 +18,12 @@ public class CNS {
      * information (from muscles and skin) back to the brain.
      */
     // private SpinalCord spinalCord;
-
     public CNS(Neocortex neocortex, LGN LGN) {
-	this.brain = new Brain(neocortex, LGN);
-	// this.spinalCord = null;
+        this.brain = new Brain(neocortex, LGN);
+        // this.spinalCord = null;
     }
 
     public Brain getBrain() {
-	return this.brain;
+        return this.brain;
     }
 }

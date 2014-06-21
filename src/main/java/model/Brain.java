@@ -28,19 +28,19 @@ public class Brain {
     // reflexes, breathing, pain perception, sleep, arousal
 
     public Brain(Neocortex neocortex, LGN LGN) {
-	this.cerebrum = new Cerebrum(neocortex);
-	this.thalamus = new Thalamus(LGN);
-	// this.hypothalamus = null;
-	// this.hindbrain = null;
-	// this.midbrain = null;
-	// this.reticularFormation = null;
+        this.cerebrum = new Cerebrum(neocortex);
+        this.thalamus = new Thalamus(LGN);
+        // this.hypothalamus = null;
+        // this.hindbrain = null;
+        // this.midbrain = null;
+        // this.reticularFormation = null;
     }
 
     public Cerebrum getCerebrum() {
-	return this.cerebrum;
+        return this.cerebrum;
     }
 
     public Thalamus getThalamus() {
-	return this.thalamus;
+        return this.thalamus;
     }
 }

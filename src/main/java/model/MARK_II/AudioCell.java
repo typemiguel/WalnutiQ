@@ -8,20 +8,19 @@ package model.MARK_II;
  */
 public class AudioCell extends SensorCell {
 
-    public AudioCell()
-    {
-	super();
+    public AudioCell() {
+        super();
     }
 
     @Override
     public String toString() {
-	StringBuilder stringBuilder = new StringBuilder();
-	stringBuilder.append("\n==================");
-	stringBuilder.append("\n--AudioCell Info--");
-	stringBuilder.append("\nisActive: ");
-	stringBuilder.append(getActiveState());
-	stringBuilder.append("\n==================");
-	String sensorCellInformation = stringBuilder.toString();
-	return sensorCellInformation;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n==================");
+        stringBuilder.append("\n--AudioCell Info--");
+        stringBuilder.append("\nisActive: ");
+        stringBuilder.append(getActiveState());
+        stringBuilder.append("\n==================");
+        String sensorCellInformation = stringBuilder.toString();
+        return sensorCellInformation;
     }
 }

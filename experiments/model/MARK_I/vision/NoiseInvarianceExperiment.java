@@ -1,13 +1,11 @@
 package model.MARK_I.vision;
 
-import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
-import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-
+import junit.framework.TestCase;
 import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
-
-import junit.framework.TestCase;
-import model.Retina;
+import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
+import model.OldRetina;
 
 import java.io.IOException;
 
@@ -15,12 +13,12 @@ import java.io.IOException;
  * -------------------------------Purpose---------------------------------------
  * To show the spatial pooling learning algorithm is good at producing the same
  * output of neural activity even when the input is very noisy.
- *
+ * <p/>
  * ------------------------------Experiment-------------------------------------
  * Run the spatial pooling algorithm on 3 different bitmap images. The 3 images
  * are both of the same thing but 1 of the images has no noise, 1 image has some
  * noise, and 1 image has a lot of noise.
- *
+ * <p/>
  * ------------------------------Conclusion-------------------------------------
  * The spatial pooling algoithm does simple local computations on it's input to
  * remove noise very efficiently up to a specific threshold that can vary
@@ -30,47 +28,47 @@ import java.io.IOException;
  * @version April 12, 2014
  */
 public class NoiseInvarianceExperiment extends TestCase {
-    private Retina retina;
+    private OldRetina oldRetina;
     private Region region;
     private SpatialPooler spatialPooler;
 
     public void setUp() {
-	// images this retina will see are all 66x66 pixels
-	this.retina = new Retina(66, 66);
+        // images this oldRetina will see are all 66x66 pixels
+        this.oldRetina = new OldRetina(66, 66);
 
-	this.region = new Region("Region", 8, 8, 1, 77.8, 1);
+        this.region = new Region("Region", 8, 8, 1, 77.8, 1);
 
-	AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
-	retinaToRegion.connect(this.retina.getVisionCells(), this.region, 0, 0);
+        AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
+        retinaToRegion.connect(this.oldRetina.getVisionCells(), this.region, 0, 0);
 
-	this.spatialPooler = new SpatialPooler(this.region);
-	this.spatialPooler.setLearningState(true);
+        this.spatialPooler = new SpatialPooler(this.region);
+        this.spatialPooler.setLearningState(true);
     }
 
     public void test_NoiseInvarianceExperiment() throws IOException {
-	// View all three images of digit 2 @ https://db.tt/ElvG0WLM
-	// --------------------------"2.bmp"------------------------------------
-	this.retina.seeBMPImage("2.bmp");
+        // View all three images of digit 2 @ https://db.tt/ElvG0WLM
+        // --------------------------"2.bmp"------------------------------------
+        this.oldRetina.seeBMPImage("2.bmp");
 
-	this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
+        this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
 
-	assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
-		this.spatialPooler.getActiveColumnPositionsAsString());
+        assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
+                this.spatialPooler.getActiveColumnPositionsAsString());
 
-	// -------------------"2_with_some_noise.bmp"---------------------------
-	this.retina.seeBMPImage("2_with_some_noise.bmp");
+        // -------------------"2_with_some_noise.bmp"---------------------------
+        this.oldRetina.seeBMPImage("2_with_some_noise.bmp");
 
-	this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
+        this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
 
-	assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
-		this.spatialPooler.getActiveColumnPositionsAsString());
+        assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
+                this.spatialPooler.getActiveColumnPositionsAsString());
 
-	// -------------------"2_with_alot_of_noise.bmp"------------------------
-	this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
+        // -------------------"2_with_alot_of_noise.bmp"------------------------
+        this.oldRetina.seeBMPImage("2_with_alot_of_noise.bmp");
 
-	this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
+        this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
 
-	assertEquals("((6, 2), (1, 3), (2, 5))",
-		this.spatialPooler.getActiveColumnPositionsAsString());
+        assertEquals("((6, 2), (1, 3), (2, 5))",
+                this.spatialPooler.getActiveColumnPositionsAsString());
     }
 }

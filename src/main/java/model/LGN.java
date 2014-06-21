@@ -3,8 +3,8 @@ package model;
 import model.MARK_II.Region;
 
 /**
- * Input into LGN: activity of Cells within Retina.
- *
+ * Input into LGN: activity of Cells within OldRetina.
+ * <p/>
  * Output of LGN: activity of Neurons from this Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
@@ -14,11 +14,11 @@ public class LGN {
     private Region region;
 
     public LGN(Region region) {
-	// how should desiredLocalActivity be calculated
-	this.region = region;
+        // how should desiredLocalActivity be calculated
+        this.region = region;
     }
 
     public Region getRegion() {
-	return this.region;
+        return this.region;
     }
 }
