@@ -1,4 +1,6 @@
-package model;
+package model.unimplementedBiology;
+
+import model.unimplementedBiology.LGN;
 
 /**
  * "Relay station" for all sensory information(except smell) which
@@ -8,7 +10,7 @@ package model;
  * @version June 5, 2013
  */
 public class Thalamus {
-    private LGN LGN;
+    private model.unimplementedBiology.LGN LGN;
 
     public Thalamus(LGN LGN) {
         this.LGN = LGN;

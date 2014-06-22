@@ -1,4 +1,6 @@
-package model;
+package model.unimplementedBiology;
+
+import model.OldRetina;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)

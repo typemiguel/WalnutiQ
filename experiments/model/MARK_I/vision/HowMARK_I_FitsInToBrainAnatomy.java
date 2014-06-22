@@ -2,7 +2,7 @@ package model.MARK_I.vision;
 
 import com.google.gson.Gson;
 import junit.framework.TestCase;
-import model.LGN;
+import model.unimplementedBiology.LGN;
 import model.MARK_II.ColumnPosition;
 import model.MARK_II.Neocortex;
 import model.MARK_II.Region;
@@ -11,7 +11,7 @@ import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.RegionToRegionRectangleConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.NervousSystem;
+import model.unimplementedBiology.NervousSystem;
 import model.OldRetina;
 import model.util.JsonFileInputOutput;
 
