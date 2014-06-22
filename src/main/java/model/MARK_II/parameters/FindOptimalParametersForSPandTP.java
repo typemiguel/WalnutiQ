@@ -79,8 +79,8 @@ public class FindOptimalParametersForSPandTP {
             spatialPooler.performSpatialPoolingOnRegion();
             temporalPooler.performTemporalPoolingOnRegion();
 
-            temporalPooler.updateModelLearningMetrics();
-            totalNumberOfSequenceSegments += temporalPooler
+            temporalPooler.getTemporalPoolerStatistics().updateModelLearningMetrics(temporalPooler.getRegion());
+            totalNumberOfSequenceSegments += temporalPooler.getTemporalPoolerStatistics()
                     .getTotalNumberOfSequenceSegmentsInCurrentTimeStep();
             totalNumberOfLearningNeurons += temporalPooler
                     .getNumberOfCurrentLearningNeurons();
