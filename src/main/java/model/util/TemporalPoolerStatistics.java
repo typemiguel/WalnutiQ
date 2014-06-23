@@ -12,9 +12,19 @@ import model.MARK_II.Pooler;
  * @version June 22, 2014
  */
 public class TemporalPoolerStatistics {
+    /**
+     * This number will be always increasing dramatically.
+     */
     private int totalNumberOfDistalSegmentsInCurrentTimeStep;
+
     private int totalNumberOfPreviousActiveDistalSegmentsInCurrentTimeStep;
     private int totalNumberOfActiveDistalSegmentsInCurrentTimeStep;
+
+    /**
+     * As this number gets larger and larger in each time step it means
+     * that the model is predicting future input more and more
+     * successfully.
+     */
     private int totalNumberOfSequenceSegmentsInCurrentTimeStep;
 
     public TemporalPoolerStatistics() {

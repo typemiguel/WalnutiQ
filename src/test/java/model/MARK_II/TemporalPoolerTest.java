@@ -51,15 +51,36 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
         this.setUpDistalSegments();
     }
 
-    public void test_performTemporalPoolingOnRegion() {
+    public void test1_performTemporalPoolingOnRegion() {
+        // TODO: segmentUpdateList size should be at 0 after temporal pooling???
+
         this.temporalPooler.performTemporalPoolingOnRegion();
         assertEquals(16, this.temporalPooler.getSegmentUpdateList().size());
+        //System.out.println(this.temporalPooler.toString());
+        this.temporalPooler.nextTimeStep();
+
+        this.temporalPooler.performTemporalPoolingOnRegion();
+        assertEquals(32, this.temporalPooler.getSegmentUpdateList().size());
+        //System.out.println(this.temporalPooler.toString());
+        this.temporalPooler.nextTimeStep();
 
         this.temporalPooler.performTemporalPoolingOnRegion();
         assertEquals(48, this.temporalPooler.getSegmentUpdateList().size());
+        //System.out.println(this.temporalPooler.toString());
+        this.temporalPooler.nextTimeStep();
 
-        this.temporalPooler.performTemporalPoolingOnRegion();
-        assertEquals(96, this.temporalPooler.getSegmentUpdateList().size());
+        // segmentUpdateList.size = 0
+
+        // in Phase 1
+        //   segmentUpdateList.size += (segmentUpdate for each learning Neuron = # of active columns from SP)
+
+        // in Phase 2
+        //   segmentUpdateList.size += active segments(created by spatial pooling)
+        //                          += any synapses that could have predicted this segments activation?
+
+        // in Phase 3
+        //   segmentUpdateList.size -= adapt segments on learning neurons
+        //   segmentUpdateList.size -= adapt segments previously predictive & NOT currently predictive
     }
 
     public void test_phaseOneCase1() {

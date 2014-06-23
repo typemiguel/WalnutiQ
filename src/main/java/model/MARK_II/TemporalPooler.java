@@ -76,7 +76,7 @@ public class TemporalPooler extends Pooler {
 
         // TODO: segmentUpdateList is added too much more than deleted from
         // do we just clear it after each temporal pooling iteration???
-        this.segmentUpdateList.clear();
+        // this.segmentUpdateList.clear();
 
         this.temporalPoolerStatistics.resetForNextTimeStep();
     }
@@ -289,13 +289,15 @@ public class TemporalPooler extends Pooler {
             Neuron[] neurons = column.getNeurons();
             for (int i = 0; i < neurons.length; i++) {
                 // we must compute the best segment here because
-                // if we compute it where it is commented out on line 307-8
+                // if we compute it where it is commented out below
                 // then we would be iterating over the neuron's list
                 // of segments again
                 Segment predictingSegment = neurons[i]
                         .getBestPreviousActiveSegment();
 
                 for (Segment segment : neurons[i].getDistalSegments()) {
+                    // NOTE: segment may become active during the spatial pooling
+                    // between temporal pooling iterations
                     if (segment.getActiveState()) {
                         neurons[i].setPredictingState(true);
 
