@@ -1,6 +1,6 @@
 package model.MARK_II;
 
-import model.util.TemporalPoolerStatistics;
+import model.util.LearningAlgorithmStatistics;
 
 import java.util.*;
 
@@ -10,15 +10,12 @@ import java.util.*;
  * different part of the image causing a complete change in input. Despite this
  * changing input your perception is stable. Somewhere in higher regions there
  * must be neurons that remain active.
- * <p/>
+ *
  * Input into TemporalPooler: activeColumns of a Region at time t computed by
  * SpatialPooler
- * <p/>
+ *
  * Output from TemporalPooler: boolean OR of the current active and predictive
  * state for each neuron in the set of activeColumns of a Region.
- * <p/>
- * how are synapses permances decremented/incremented??? which neurons & which
- * segments are affected???
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version April 27, 2014
@@ -31,7 +28,7 @@ public class TemporalPooler extends Pooler {
 
     private List<Neuron> currentLearningNeurons;
 
-    private TemporalPoolerStatistics temporalPoolerStatistics;
+    private LearningAlgorithmStatistics learningAlgorithmStatistics;
 
     public TemporalPooler(SpatialPooler spatialPooler, int newSynapseCount) {
         this.spatialPooler = spatialPooler;
@@ -42,7 +39,7 @@ public class TemporalPooler extends Pooler {
 
         this.currentLearningNeurons = new ArrayList<Neuron>();
 
-        this.temporalPoolerStatistics = new TemporalPoolerStatistics();
+        this.learningAlgorithmStatistics = new LearningAlgorithmStatistics();
     }
 
     public void performTemporalPoolingOnRegion() {
@@ -78,7 +75,7 @@ public class TemporalPooler extends Pooler {
         // do we just clear it after each temporal pooling iteration???
         // this.segmentUpdateList.clear();
 
-        this.temporalPoolerStatistics.resetForNextTimeStep();
+        this.learningAlgorithmStatistics.resetForNextTimeStep();
     }
 
     /**
@@ -428,8 +425,8 @@ public class TemporalPooler extends Pooler {
         return this.newSynapseCount;
     }
 
-    public TemporalPoolerStatistics getTemporalPoolerStatistics() {
-        return this.temporalPoolerStatistics;
+    public LearningAlgorithmStatistics getLearningAlgorithmStatistics() {
+        return this.learningAlgorithmStatistics;
     }
 
     @Override
@@ -442,8 +439,8 @@ public class TemporalPooler extends Pooler {
         stringBuilder.append("\n     segmentUpdateList size: ");
         stringBuilder.append(this.segmentUpdateList.size());
         stringBuilder.append("\n temporal pooler statistics: ");
-        this.temporalPoolerStatistics.updateModelLearningMetrics(super.region);
-        stringBuilder.append(this.temporalPoolerStatistics.toString());
+        this.learningAlgorithmStatistics.updateModelLearningMetrics(super.region);
+        stringBuilder.append(this.learningAlgorithmStatistics.toString());
         stringBuilder.append("\n            newSynapseCount: ");
         stringBuilder.append(this.newSynapseCount);
         stringBuilder.append("\ncurrentLearningNeurons size: ");

@@ -51,24 +51,7 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
         this.setUpDistalSegments();
     }
 
-    public void test1_performTemporalPoolingOnRegion() {
-        // TODO: segmentUpdateList size should be at 0 after temporal pooling???
-
-        this.temporalPooler.performTemporalPoolingOnRegion();
-        assertEquals(16, this.temporalPooler.getSegmentUpdateList().size());
-        //System.out.println(this.temporalPooler.toString());
-        this.temporalPooler.nextTimeStep();
-
-        this.temporalPooler.performTemporalPoolingOnRegion();
-        assertEquals(32, this.temporalPooler.getSegmentUpdateList().size());
-        //System.out.println(this.temporalPooler.toString());
-        this.temporalPooler.nextTimeStep();
-
-        this.temporalPooler.performTemporalPoolingOnRegion();
-        assertEquals(48, this.temporalPooler.getSegmentUpdateList().size());
-        //System.out.println(this.temporalPooler.toString());
-        this.temporalPooler.nextTimeStep();
-
+    public void test_performTemporalPoolingOnRegion() {
         // segmentUpdateList.size = 0
 
         // in Phase 1
@@ -81,6 +64,26 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
         // in Phase 3
         //   segmentUpdateList.size -= adapt segments on learning neurons
         //   segmentUpdateList.size -= adapt segments previously predictive & NOT currently predictive
+        // TODO: why is the segmentUpdateList size varying so much??
+
+        this.temporalPooler.performTemporalPoolingOnRegion();
+        assertEquals(16, this.temporalPooler.getSegmentUpdateList().size());
+        //System.out.println(this.temporalPooler.toString());
+        this.temporalPooler.nextTimeStep();
+
+        this.spatialPooler.performSpatialPoolingOnRegion();
+        this.temporalPooler.performTemporalPoolingOnRegion();
+        int segmentUpdateListSize2 = this.temporalPooler.getSegmentUpdateList().size();
+        assertTrue(22 <= segmentUpdateListSize2 && segmentUpdateListSize2 <= 24);
+        //System.out.println(this.temporalPooler.toString());
+        this.temporalPooler.nextTimeStep();
+
+        this.spatialPooler.performSpatialPoolingOnRegion();
+        this.temporalPooler.performTemporalPoolingOnRegion();
+        int segmentUpdateListSize3 = this.temporalPooler.getSegmentUpdateList().size();
+        assertTrue(28 <= segmentUpdateListSize3 && segmentUpdateListSize3 <= 32);
+        //System.out.println(this.temporalPooler.toString());
+        this.temporalPooler.nextTimeStep();
     }
 
     public void test_phaseOneCase1() {

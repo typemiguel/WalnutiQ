@@ -5,13 +5,11 @@ import model.MARK_II.DistalSegment;
 import model.MARK_II.Neuron;
 import model.MARK_II.Region;
 
-import model.MARK_II.Pooler;
-
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version June 22, 2014
  */
-public class TemporalPoolerStatistics {
+public class LearningAlgorithmStatistics {
     /**
      * This number will be always increasing dramatically.
      */
@@ -27,7 +25,7 @@ public class TemporalPoolerStatistics {
      */
     private int totalNumberOfSequenceSegmentsInCurrentTimeStep;
 
-    public TemporalPoolerStatistics() {
+    public LearningAlgorithmStatistics() {
         this.totalNumberOfDistalSegmentsInCurrentTimeStep = 0;
         this.totalNumberOfPreviousActiveDistalSegmentsInCurrentTimeStep = 0;
         this.totalNumberOfActiveDistalSegmentsInCurrentTimeStep = 0;
@@ -88,7 +86,7 @@ public class TemporalPoolerStatistics {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n=============================================");
-        stringBuilder.append("\n-------TemporalPoolerStatistics Info---------");
+        stringBuilder.append("\n------LearningAlgorithmStatistics Info-------");
         stringBuilder.append("\n      # of distalSegments in Region: ");
         stringBuilder.append(this.totalNumberOfDistalSegmentsInCurrentTimeStep);
         stringBuilder.append("\n         # of active distalSegments: ");
