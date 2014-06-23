@@ -28,11 +28,16 @@ Brain Theories Numbered By Importance
 
 3. Spatial pooling, sequence memory, & temporal pooling are deduced properties that are occurring
    in the human neocortex layers 3 & 4 in a similar form.
-   - Spatial Pooling = creates a sparse distributed representation activity of columns to efficiently represent 
-                       a larger input layer
-   - Sequence Memory = create even more sparse encoding by forcing specific neurons(within the set of active columns
-                       produced by spatial pooling) that best predicted the input to become "learning neurons"
-   - Temporal Pooling = 
+   - Spatial Pooling = Creates a sparse distributed representation activity of columns to efficiently represent 
+                       a larger input layer. Causes columns of neurons to become selectively tuned for specific input
+                       by strengthening & weakening the connections between cells/neurons.
+   - Sequence Memory = Create even more sparse encoding by forcing specific neurons(within the set of active columns
+                       produced by spatial pooling) that best predicted the input to become "learning neurons". 
+                       This allows sensory input to be encoded within context. For example "squash" can mean the
+                       sport, the vegetable, and to step with force on something. How does your brain not get confused?
+                       Sequence memory provides an elegant solution to the brain's ability to do this.
+   - Temporal Pooling = The act of strengthening & weakening the connections between cells/neurons to allow
+                        neurons to become more predictive of it's input.
    - Support: described in this [paper](https://dl.dropboxusercontent.com/u/106853306/Brain/HTM_CorticalLearningAlgorithms.pdf)
    
 4. Information flow in the brain
