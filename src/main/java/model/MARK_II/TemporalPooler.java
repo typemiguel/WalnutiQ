@@ -1,6 +1,6 @@
 package model.MARK_II;
 
-import model.util.LearningAlgorithmStatistics;
+import model.util.LearningAlgorithmsStatistics;
 
 import java.util.*;
 
@@ -28,7 +28,7 @@ public class TemporalPooler extends Pooler {
 
     private List<Neuron> currentLearningNeurons;
 
-    private LearningAlgorithmStatistics learningAlgorithmStatistics;
+    private LearningAlgorithmsStatistics learningAlgorithmsStatistics;
 
     public TemporalPooler(SpatialPooler spatialPooler, int newSynapseCount) {
         this.spatialPooler = spatialPooler;
@@ -39,7 +39,7 @@ public class TemporalPooler extends Pooler {
 
         this.currentLearningNeurons = new ArrayList<Neuron>();
 
-        this.learningAlgorithmStatistics = new LearningAlgorithmStatistics();
+        this.learningAlgorithmsStatistics = new LearningAlgorithmsStatistics();
     }
 
     public void performTemporalPoolingOnRegion() {
@@ -75,7 +75,7 @@ public class TemporalPooler extends Pooler {
         // do we just clear it after each temporal pooling iteration???
         // this.segmentUpdateList.clear();
 
-        this.learningAlgorithmStatistics.resetForNextTimeStep();
+        this.learningAlgorithmsStatistics.resetForNextTimeStep();
     }
 
     /**
@@ -425,8 +425,8 @@ public class TemporalPooler extends Pooler {
         return this.newSynapseCount;
     }
 
-    public LearningAlgorithmStatistics getLearningAlgorithmStatistics() {
-        return this.learningAlgorithmStatistics;
+    public LearningAlgorithmsStatistics getLearningAlgorithmStatistics() {
+        return this.learningAlgorithmsStatistics;
     }
 
     @Override
@@ -439,8 +439,8 @@ public class TemporalPooler extends Pooler {
         stringBuilder.append("\n     segmentUpdateList size: ");
         stringBuilder.append(this.segmentUpdateList.size());
         stringBuilder.append("\n temporal pooler statistics: ");
-        this.learningAlgorithmStatistics.updateModelLearningMetrics(super.region);
-        stringBuilder.append(this.learningAlgorithmStatistics.toString());
+        this.learningAlgorithmsStatistics.updateModelLearningMetrics(super.region);
+        stringBuilder.append(this.learningAlgorithmsStatistics.toString());
         stringBuilder.append("\n            newSynapseCount: ");
         stringBuilder.append(this.newSynapseCount);
         stringBuilder.append("\ncurrentLearningNeurons size: ");

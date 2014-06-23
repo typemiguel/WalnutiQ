@@ -6,10 +6,9 @@ import model.MARK_II.Neuron;
 import model.MARK_II.Region;
 
 /**
- * @author Quinn Liu (quinnliu@vt.edu)
- * @version June 22, 2014
+ * Created by qliu on 6/22/14.
  */
-public class LearningAlgorithmStatistics {
+public class LearningAlgorithmsStatistics {
     /**
      * This number will be always increasing dramatically.
      */
@@ -25,7 +24,7 @@ public class LearningAlgorithmStatistics {
      */
     private int totalNumberOfSequenceSegmentsInCurrentTimeStep;
 
-    public LearningAlgorithmStatistics() {
+    public LearningAlgorithmsStatistics() {
         this.totalNumberOfDistalSegmentsInCurrentTimeStep = 0;
         this.totalNumberOfPreviousActiveDistalSegmentsInCurrentTimeStep = 0;
         this.totalNumberOfActiveDistalSegmentsInCurrentTimeStep = 0;
