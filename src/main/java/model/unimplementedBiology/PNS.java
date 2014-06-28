@@ -1,6 +1,6 @@
 package model.unimplementedBiology;
 
-import model.OldRetina;
+import model.Retina;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
@@ -15,7 +15,7 @@ public class PNS {
      */
     // private AutonomicNervousSystem ANS;
 
-    public PNS(OldRetina retine) {
+    public PNS(Retina retine) {
         this.SNS = new SNS(retine);
         // this.ANS = null;
     }

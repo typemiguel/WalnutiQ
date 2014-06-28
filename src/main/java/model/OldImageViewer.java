@@ -11,7 +11,7 @@ import java.io.IOException;
  * @version May 31, 2014
  */
 public class OldImageViewer {
-    private OldSaccadingRetina retina;
+    private SaccadingRetina retina;
 
     /**
      * Assume image is (0, 0) on bottom left (image.width, image.height) on top
@@ -21,7 +21,7 @@ public class OldImageViewer {
     private int[][] image;
     private BoundingBox boxRetinaIsStuckIn;
 
-    public OldImageViewer(String BMPFileName, OldSaccadingRetina retina)
+    public OldImageViewer(String BMPFileName, SaccadingRetina retina)
             throws IOException {
         this.retina = retina;
         this.retina.seeBMPImage(BMPFileName);
@@ -52,7 +52,7 @@ public class OldImageViewer {
         this.retina.see2DIntArray(fittedToRetina);
     }
 
-    void moveRetinaInsideOfBoundingBox(OldSaccadingRetina retina,
+    void moveRetinaInsideOfBoundingBox(SaccadingRetina retina,
                                        BoundingBox boundingBox) {
         double retinaX = retina.getPosition().getX();
         double retinaY = retina.getPosition().getY();

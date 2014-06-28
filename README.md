@@ -194,7 +194,6 @@ to better understand the theory behind this repository.
   - build.gradle = compiles all of the code in this repository using Gradle
   - gradlew = allows you to use Gradle to run all of the code in this repository in Linux & Mac
   - gradlew.bat = allows you to use Gradle to run all of the code in this repository in Windows
-  - settings.gradle = specify which projects to include in our Gradle build
 
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 

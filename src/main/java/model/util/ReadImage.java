@@ -17,15 +17,15 @@ public class ReadImage {
 
         int[][] imageToReturn = new int[numberOfRows][numberOfColumns];
 
-        for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
-            for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
+        for (int column = 0; column < numberOfColumns; column++) {
+            for (int row = 0; row < numberOfRows; row++) {
 
-                int RGBcolor = image.getRGB(currentColumn, currentRow);
+                int RGBcolor = image.getRGB(column, row);
 
                 if (RGBcolor == Color.BLACK.getRGB()) {
-                    imageToReturn[currentRow][currentColumn] = 1;
+                    imageToReturn[row][column] = 1;
                 } else {
-                    imageToReturn[currentRow][currentColumn] = 0;
+                    imageToReturn[row][column] = 0;
                 }
             }
         }

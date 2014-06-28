@@ -1,7 +1,6 @@
 package model;
 
 import model.util.BoundingBox;
-import model.util.RegionConsoleViewer;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -15,7 +14,7 @@ public class OldImageViewerTest extends junit.framework.TestCase {
     private int[][] image1;
 
     private OldImageViewer oldImageViewer;
-    private OldSaccadingRetina retina;
+    private SaccadingRetina retina;
 
     public void setUp() throws IOException {
         this.image1 = new int[8][10];
@@ -38,7 +37,7 @@ public class OldImageViewerTest extends junit.framework.TestCase {
 
         this.image1[0][6] = 1;
 
-        this.retina = new OldSaccadingRetina(66, 66, new Point(33, 33), 33);
+        this.retina = new SaccadingRetina(66, 66, new Point(33, 33), 33);
         this.oldImageViewer = new OldImageViewer("2.bmp", this.retina);
     }
 
@@ -59,7 +58,7 @@ public class OldImageViewerTest extends junit.framework.TestCase {
     }
 
     public void test_moveRetinaInsideOfBoundingBox() {
-        OldSaccadingRetina retina2 = new OldSaccadingRetina(66, 66,
+        SaccadingRetina retina2 = new SaccadingRetina(66, 66,
                 new Point2D.Double(1.1, -0.1), 3.1);
         assertEquals(1.1, retina2.getPosition().getX());
         assertEquals(-0.1, retina2.getPosition().getY());

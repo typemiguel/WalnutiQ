@@ -6,8 +6,8 @@ import model.MARK_II.SpatialPooler;
 import model.MARK_II.TemporalPooler;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.OldRetina;
-import model.OldSaccadingRetina;
+import model.Retina;
+import model.SaccadingRetina;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -58,12 +58,12 @@ public class FindOptimalParametersForSPandTP {
                 PERCENT_ACTIVE_SYNAPSES_THRESHOLD,
                 EXPONENTIAL_MOVING_AVERAGE_AlPHA, MINIMUM_COLUMN_FIRING_RATE);
 
-        OldRetina oldRetina = new OldRetina(66, 66);
+        Retina retina = new Retina(66, 66);
         Region region = new Region("Region", 8, 8, 4,
                 percentMinimumOverlapScore, (int) desiredLocalActivity);
 
         AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
-        retinaToRegion.connect(oldRetina.getVisionCells(), region, 0, 0);
+        retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
 
         SpatialPooler spatialPooler = new SpatialPooler(region);
         spatialPooler.setLearningState(true);
@@ -71,7 +71,7 @@ public class FindOptimalParametersForSPandTP {
                 (int) newSynapseCount);
         temporalPooler.setLearningState(true);
 
-        oldRetina.seeBMPImage("2.bmp");
+        retina.seeBMPImage("2.bmp");
 
         int totalNumberOfSequenceSegments = 0;
         int totalNumberOfLearningNeurons = 0;
@@ -111,7 +111,7 @@ public class FindOptimalParametersForSPandTP {
         double SPandTPscore = 0.0;
 
         // construct model
-        OldSaccadingRetina retina = null;
+        SaccadingRetina retina = null;
         OldImageViewer oldImageViewer = null;
         // TODO:
 
