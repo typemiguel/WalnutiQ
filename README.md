@@ -127,6 +127,13 @@ to better understand the theory behind this repository.
 
    BUILD SUCCESSFUL # If you see `BUILD SUCCESSFUL` all of the tests have passed! 
    ```
+   
+5. In the future after editing some code make sure to clean your old compiled code before rerunning the tests by typing:
+   ```sh
+   prompt> ./gradlew clean # removes your old compiled code
+   prompt> ./gradlew build
+   # hopefully all the tests still pass... :)
+   ```
 
 ## How to Contribute
 1. View an example of how some of the code is used in the file

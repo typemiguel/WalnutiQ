@@ -1,4 +1,4 @@
-package model;
+package model.unimplementedBiology;
 
 import model.MARK_II.Neocortex;
 
