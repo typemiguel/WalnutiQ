@@ -264,7 +264,7 @@ public class TemporalPooler extends Pooler {
         for (int i = 0; i < remainingNumberOfSynapsesToAdd; i++) {
             Synapse<Cell> newSynapse = new Synapse<Cell>(
                     this.currentLearningNeurons.get(learningNeuronIndex),
-                    columnPosition.getX(), columnPosition.getY());
+                    columnPosition.getRow(), columnPosition.getColumn());
             potentialSynapsesToAdd.add(newSynapse);
 
             if ((learningNeuronIndex + 1) < numberOfLearningNeurons) {

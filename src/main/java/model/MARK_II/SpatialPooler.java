@@ -140,8 +140,8 @@ public class SpatialPooler extends Pooler {
                 List<Column> neighborColumns = new ArrayList<Column>();
                 for (ColumnPosition columnPosition : neighborColumnPositions) {
                     neighborColumns
-                            .add(columns[columnPosition.getX()][columnPosition
-                                    .getY()]);
+                            .add(columns[columnPosition.getRow()][columnPosition
+                                    .getColumn()]);
                 }
 
                 int minimumLocalOverlapScore = this.kthScoreOfColumns(
@@ -235,8 +235,8 @@ public class SpatialPooler extends Pooler {
                     for (ColumnPosition columnPosition : neighborColumnPositions) {
                         // add the Column object to neighborColumns
                         neighborColumns
-                                .add(columns[columnPosition.getX()][columnPosition
-                                        .getY()]);
+                                .add(columns[columnPosition.getRow()][columnPosition
+                                        .getColumn()]);
                     }
 
                     float maximumActiveDutyCycle = this.region
@@ -475,8 +475,8 @@ public class SpatialPooler extends Pooler {
 
         int numberOfActiveColumns = this.activeColumnPositions.size();
         for (ColumnPosition columnPosition : this.activeColumnPositions) {
-            listOfActiveColumns += "(" + columnPosition.getX() + ", " +
-                    columnPosition.getY() + ")";
+            listOfActiveColumns += "(" + columnPosition.getRow() + ", " +
+                    columnPosition.getColumn() + ")";
             --numberOfActiveColumns;
 
             if (numberOfActiveColumns == 0) {

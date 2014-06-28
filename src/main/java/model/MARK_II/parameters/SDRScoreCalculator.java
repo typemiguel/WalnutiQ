@@ -62,8 +62,8 @@ public class SDRScoreCalculator {
         }
         // iterate through all column positions
         for (ColumnPosition currentColumnPosition : this.columnActivityAfterSeeingImage) {
-            int x1 = currentColumnPosition.getX();
-            int y1 = currentColumnPosition.getY();
+            int row1 = currentColumnPosition.getRow();
+            int column1 = currentColumnPosition.getColumn();
 
             Set<ColumnPosition> columnActivity = this.columnActivityAfterSeeingImage;
 
@@ -71,16 +71,16 @@ public class SDRScoreCalculator {
             // number)
             double distanceToNearestActiveColumn = 1000000;
             for (ColumnPosition otherColumnPosition : columnActivity) {
-                int x2 = otherColumnPosition.getX();
-                int y2 = otherColumnPosition.getY();
+                int row2 = otherColumnPosition.getRow();
+                int column2 = otherColumnPosition.getColumn();
 
                 // if you find the same columnPosition as (x1, y1) skip
-                if (x1 == x2 && y1 == y2) {
+                if (row1 == row2 && column1 == column2) {
                     continue;
                 }
 
-                double distanceBetween_x1y1_x2y2 = Math.sqrt(Math.pow(x1 - x2,
-                        2) + Math.pow(y1 - y2, 2));
+                double distanceBetween_x1y1_x2y2 = Math.sqrt(Math.pow(row1 - row2,
+                        2) + Math.pow(column1 - column2, 2));
                 if (distanceBetween_x1y1_x2y2 < distanceToNearestActiveColumn) {
                     distanceToNearestActiveColumn = distanceBetween_x1y1_x2y2;
                 }

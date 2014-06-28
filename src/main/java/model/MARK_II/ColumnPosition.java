@@ -7,27 +7,27 @@ package model.MARK_II;
  * @version June 18, 2013
  */
 public class ColumnPosition {
-    private int x; // x position within Region
-    private int y; // y position within Region
+    private int row; // row position within Region
+    private int column; // column position within Region
 
-    public ColumnPosition(int x, int y) {
-        if (x < 0) {
+    public ColumnPosition(int row, int column) {
+        if (row < 0) {
             throw new IllegalArgumentException(
-                    "x in ColumnPosition class constructor cannot be < 0");
-        } else if (y < 0) {
+                    "row in ColumnPosition class constructor cannot be < 0");
+        } else if (column < 0) {
             throw new IllegalArgumentException(
-                    "y in ColumnPosition class constructor cannot be < 0");
+                    "column in ColumnPosition class constructor cannot be < 0");
         }
-        this.x = x;
-        this.y = y;
+        this.row = row;
+        this.column = column;
     }
 
-    public int getX() {
-        return this.x;
+    public int getRow() {
+        return this.row;
     }
 
-    public int getY() {
-        return this.y;
+    public int getColumn() {
+        return this.column;
     }
 
     @Override
@@ -35,8 +35,8 @@ public class ColumnPosition {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\n=======================");
         stringBuilder.append("\n--ColumnPosition Info--");
-        stringBuilder.append("\n(x, y): ");
-        stringBuilder.append("(" + this.x + ", " + this.y + ")");
+        stringBuilder.append("\n(row, column): ");
+        stringBuilder.append("(" + this.row + ", " + this.column + ")");
         stringBuilder.append("\n=======================");
         String visionCellInformation = stringBuilder.toString();
         return visionCellInformation;
@@ -46,17 +46,17 @@ public class ColumnPosition {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + this.x;
-        result = prime * result + this.y;
+        result = prime * result + this.row;
+        result = prime * result + this.column;
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
         ColumnPosition otherColumnPosition = (ColumnPosition) obj;
-        if (this.x != otherColumnPosition.x)
+        if (this.row != otherColumnPosition.row)
             return false;
-        if (this.y != otherColumnPosition.y)
+        if (this.column != otherColumnPosition.column)
             return false;
         return true;
     }
