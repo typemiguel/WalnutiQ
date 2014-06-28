@@ -35,15 +35,15 @@ public class OldImageViewer {
 
     public void updateRetinaWithSeenPartOfImageBasedOnCurrentPosition(
             Point retinaPosition, double distanceBetweenImageAndRetina) {
-        if (this.boxRetinaIsStuckIn.contains(retinaPosition,
-                distanceBetweenImageAndRetina)) {
-            // retina is at a valid location so do nothing
-            this.retina.setPosition(retinaPosition);
-            this.retina.setDistanceBetweenImageAndRetina(distanceBetweenImageAndRetina);
-        } else {
-            this.moveRetinaInsideOfBoundingBox(this.retina,
-                    this.boxRetinaIsStuckIn);
-        }
+//        if (this.boxRetinaIsStuckIn.contains(retinaPosition,
+//                distanceBetweenImageAndRetina)) {
+//            // retina is at a valid location so do nothing
+//            this.retina.setPosition(retinaPosition);
+//            this.retina.setDistanceBetweenImageAndRetina(distanceBetweenImageAndRetina);
+//        } else {
+//            this.moveRetinaInsideOfBoundingBox(this.retina,
+//                    this.boxRetinaIsStuckIn);
+//        }
 
         int[][] seenAreaFromMainImage = this.getSeenAreaFromMainImage();
 

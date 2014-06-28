@@ -32,4 +32,58 @@ public class ImageViewer {
 
         this.retinaPositionWithinBox = new Point3D(width/2, height/2, depth);
     }
+
+    /**
+     * @param newRetinaPosition If the new position is not within the box the retina is stuck in
+     *                          it is moved to be inside it.
+     */
+    public void saccadeRetinaToNewPosition(Point3D newRetinaPosition) {
+        // TODO:
+        this.moveRetinaToNewPositionInsideOfBoundingBox(newRetinaPosition);
+
+
+        // updateRetinaWithSeenPartOfImageBasedOnCurrentPosition();
+    }
+
+    void moveRetinaToNewPositionInsideOfBoundingBox(Point3D newRetinaPosition) {
+        double x = newRetinaPosition.getX();
+        double y = newRetinaPosition.getY();
+        double z = newRetinaPosition.getZ();
+
+        double boxX = this.boxRetinaIsStuckIn.getWidth();
+        double boxY = this.boxRetinaIsStuckIn.getHeight();
+        double boxZ = this.boxRetinaIsStuckIn.getDepth();
+
+        if (x < 0) {
+            this.retinaPositionWithinBox.setX(0);
+        } else if (x > boxX) {
+            this.retinaPositionWithinBox.setX(boxX);
+        } else {
+            this.retinaPositionWithinBox.setX(x);
+        }
+
+        if (y < 0) {
+            this.retinaPositionWithinBox.setY(0);
+        } else if (y > boxY) {
+            this.retinaPositionWithinBox.setY(boxY);
+        } else {
+            this.retinaPositionWithinBox.setY(y);
+        }
+
+        if (z < 0) {
+            this.retinaPositionWithinBox.setZ(0);
+        } else if (z > boxZ) {
+            this.retinaPositionWithinBox.setZ(boxZ);
+        } else {
+            this.retinaPositionWithinBox.setZ(z);
+        }
+    }
+
+    /**
+     * @return Always return what the Retina is looking at based on it's
+     * current position.
+     */
+    public int[][] whatIsTheRetinaCurrentlyLookingAt() {
+        return null; // TODO:
+    }
 }
