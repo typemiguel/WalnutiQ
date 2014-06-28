@@ -41,12 +41,12 @@ public class OldSaccadingRetina extends OldRetina {
         int numberOfColumns = super.visionCells[0].length;
         int[][] retina = new int[numberOfRows][numberOfColumns];
 
-        for (int x = 0; x < numberOfColumns; x++) {
-            for (int y = 0; y < numberOfRows; y++) {
-                if (super.visionCells[x][y].getActiveState()) {
-                    retina[x][y] = 1;
+        for (int row = 0; row < numberOfColumns; row++) {
+            for (int column = 0; column < numberOfRows; column++) {
+                if (super.visionCells[row][column].getActiveState()) {
+                    retina[row][column] = 1;
                 } else {
-                    retina[x][y] = 0;
+                    retina[row][column] = 0;
                 }
             }
         }

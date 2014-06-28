@@ -38,9 +38,9 @@ public class SpatialPooler extends Pooler {
      */
     public Set<Column> performSpatialPoolingOnRegion() {
         Column[][] columns = this.region.getColumns();
-        for (int x = 0; x < columns.length; x++) {
-            for (int y = 0; y < columns[0].length; y++) {
-                this.computeColumnOverlapScore(columns[x][y]);
+        for (int row = 0; row < columns.length; row++) {
+            for (int column = 0; column < columns[0].length; column++) {
+                this.computeColumnOverlapScore(columns[row][column]);
             }
         }
 

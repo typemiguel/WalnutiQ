@@ -23,7 +23,7 @@ public class ReadImageTest extends TestCase {
     }
 
     public void test_readBMPImage() throws IOException {
-        RegionConsoleViewer.printDoubleIntArray(this.readImage.readBMPImage("../Array2DTest.bmp"));
+        //RegionConsoleViewer.printDoubleIntArray(this.readImage.readBMPImage("../Array2DTest.bmp"));
         /**
          * Array2DTest.bmp =
          * 000000000000000
