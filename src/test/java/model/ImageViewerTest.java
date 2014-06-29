@@ -1,7 +1,8 @@
 package model;
 
 import junit.framework.TestCase;
-import model.util.ReadImage;
+import model.util.Point3D;
+import model.util.RegionConsoleViewer;
 
 import javax.imageio.ImageIO;
 import java.awt.Image;
@@ -15,16 +16,13 @@ import java.io.IOException;
 public class ImageViewerTest extends TestCase {
 
     private ImageViewer imageViewer;
-    private ReadImage readImage;
 
     public void setUp() throws IOException {
-        this.readImage = new ReadImage();
-        Retina retina = new Retina(5, 15);
-        //this.imageViewer = new ImageViewer("Array2DTest.bmp", retina);
+        Retina retina = new Retina(66, 66);
+        this.imageViewer = new ImageViewer("2.bmp", retina);
     }
 
-    public void test_resizeSeenAreaToFitRetina() throws IOException {
-        //TODO:
-        assertEquals(1, 2 - 1);
+    public void test_saccadeRetinaToNewPosition() throws IOException {
+        RegionConsoleViewer.printDoubleIntArray(this.imageViewer.saccadeRetinaToNewPosition(new Point3D(33, 33, 33)));
     }
 }

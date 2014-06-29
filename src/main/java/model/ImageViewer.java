@@ -2,7 +2,6 @@ package model;
 
 import model.MARK_II.VisionCell;
 import model.util.BoundingBox;
-import model.util.ReadImage;
 import model.util.Point3D;
 
 import javax.imageio.ImageIO;
@@ -33,8 +32,8 @@ public class ImageViewer {
             throws IOException {
         this.BMPImage = ImageIO.read(getClass().getResource(BMPFileName));
 
-        ReadImage readImage = new ReadImage();
-        this.int2DImage = readImage.readBMPImage(BMPFileName);
+        //ReadImage readImage = new ReadImage();
+        this.int2DImage = this.readBMPImage(BMPFileName);
         this.retina = retina;
 
         int numberOfRowPixels = this.int2DImage.length;
@@ -50,18 +49,14 @@ public class ImageViewer {
         this.retinaPositionWithinBox = new Point3D(width/2, height/2, depth);
     }
 
-    public Retina getRetina() {
-        return this.retina;
-    }
-
     /**
      * @param newRetinaPosition If the new position is not within the box the retina is stuck in
      *                          it is moved to be inside it.
      */
-    public void saccadeRetinaToNewPosition(Point3D newRetinaPosition) throws IOException {
+    public int[][] saccadeRetinaToNewPosition(Point3D newRetinaPosition) throws IOException {
         this.moveRetinaToNewPositionInsideOfBoundingBox(newRetinaPosition);
 
-        this.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition();
+        return this.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition();
     }
 
     void moveRetinaToNewPositionInsideOfBoundingBox(Point3D newRetinaPosition) {
@@ -98,12 +93,13 @@ public class ImageViewer {
         }
     }
 
-    void updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() throws IOException {
+    int[][] updateRetinaWithSeenPartOfImageBasedOnCurrentPosition() throws IOException {
         int[][] seenAreaFromEntireImage = this.seenAreaOfEntireImage();
 
         int[][] seenAreaFittedToRetinaSize = this.resizeSeenAreaToFitRetina(seenAreaFromEntireImage);
 
         this.retina.see2DIntArray(seenAreaFittedToRetinaSize);
+        return seenAreaFittedToRetinaSize;
     }
 
     int[][] seenAreaOfEntireImage() {
@@ -122,17 +118,23 @@ public class ImageViewer {
 
         int rowStart = (int) topLeftOfSeenY;
         int rowEnd = rowStart + numberOfRowsSeen;
+        System.out.println("rowStart = " + rowStart);
+        System.out.println("rowEnd = " + rowEnd);
 
         int columnStart = (int) topLeftOfSeenX;
         int columnEnd = columnStart + numberOfColumnsSeen;
+        System.out.println("columnStart = " + columnStart);
+        System.out.println("columnEnd = " + columnEnd);
+
         for (int row = rowStart; row < rowEnd; row++) {
             retinaColumn = 0; // starting on new row
             for (int column = columnStart; column < columnEnd; column++) {
-                if (row < 0 || row > this.int2DImage.length) {
+                if (row < 0 || row >= this.int2DImage.length) {
                     // row index is out of bounds
-                } else if (column < 0 || column > this.int2DImage[0].length) {
+                } else if (column < 0 || column >= this.int2DImage[0].length) {
                     // column index is out of bounds
                 } else {
+                    System.out.println("(retinaRow, retinaColumn) = (" + retinaRow + ", " + retinaColumn + ")");
                     seenImageToReturn[retinaRow][retinaColumn] = this.int2DImage[row][column];
                 }
                 retinaColumn++;
@@ -199,6 +201,29 @@ public class ImageViewer {
             for (int row = 0; row < numberOfRows; row++) {
 
                 int RGBcolor = BMPImage.getRGB(column, row); // Image coordinates are mapped differently
+
+                if (RGBcolor == Color.BLACK.getRGB()) {
+                    imageToReturn[row][column] = 1;
+                } else {
+                    imageToReturn[row][column] = 0;
+                }
+            }
+        }
+
+        return imageToReturn;
+    }
+
+    int[][] readBMPImage(String BMPImageFileName) throws IOException {
+        BufferedImage image = ImageIO.read(getClass().getResource(BMPImageFileName));
+        int numberOfRows = image.getHeight();
+        int numberOfColumns = image.getWidth();
+
+        int[][] imageToReturn = new int[numberOfRows][numberOfColumns];
+
+        for (int column = 0; column < numberOfColumns; column++) {
+            for (int row = 0; row < numberOfRows; row++) {
+
+                int RGBcolor = image.getRGB(column, row);
 
                 if (RGBcolor == Color.BLACK.getRGB()) {
                     imageToReturn[row][column] = 1;
