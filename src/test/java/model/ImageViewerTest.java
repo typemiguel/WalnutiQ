@@ -3,6 +3,10 @@ package model;
 import junit.framework.TestCase;
 import model.util.ReadImage;
 
+import javax.imageio.ImageIO;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -10,26 +14,17 @@ import java.io.IOException;
  */
 public class ImageViewerTest extends TestCase {
 
-    //private ImageViewer imageViewer;
+    private ImageViewer imageViewer;
     private ReadImage readImage;
 
     public void setUp() throws IOException {
         this.readImage = new ReadImage();
-        int[][] image = this.readImage.readBMPImage("../Array2DTest.bmp");
         Retina retina = new Retina(5, 15);
-        // this.imageViewer = new ImageViewer(image, retina); // retina, image
+        //this.imageViewer = new ImageViewer("Array2DTest.bmp", retina);
     }
 
-    public void test_viewImageWhileRetinaInsideBoundingBox() {
-//        assertEquals(viewOfImageFromMiddleOfBoudningBox, retina.getSeen())
-//
-//
-//        this.imageViewer.updatePositionOfRetina(new position);
-//
-//        int[][] seenAreaByRetina = this.imageViewer.getSeenAreaByRetina();
-    }
-
-    public void test_stupid() {
-        assertEquals(1, 3 - 2);
+    public void test_resizeSeenAreaToFitRetina() throws IOException {
+        //TODO:
+        assertEquals(1, 2 - 1);
     }
 }

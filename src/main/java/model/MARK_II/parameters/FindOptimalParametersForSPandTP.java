@@ -1,13 +1,11 @@
 package model.MARK_II.parameters;
 
-import model.OldImageViewer;
 import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 import model.MARK_II.TemporalPooler;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.Retina;
-import model.SaccadingRetina;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -111,8 +109,8 @@ public class FindOptimalParametersForSPandTP {
         double SPandTPscore = 0.0;
 
         // construct model
-        SaccadingRetina retina = null;
-        OldImageViewer oldImageViewer = null;
+        //SaccadingRetina retina = null;
+        //OldImageViewer oldImageViewer = null;
         // TODO:
 
         // spatialPooler.performSpatialPooling();
@@ -121,10 +119,10 @@ public class FindOptimalParametersForSPandTP {
         // exact shift in current retina position and zoom level from
         // region representing parietal lobe
 
-        retina.setDistanceBetweenImageAndRetina(1);
+        //retina.setDistanceBetweenImageAndRetina(1);
         Point2D retinaLocation = new Point();
         retinaLocation.setLocation(2.0, 2.0);
-        retina.setPosition(retinaLocation);
+        //retina.setPosition(retinaLocation);
 
         // oldImageViewer.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition();
 

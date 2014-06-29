@@ -44,16 +44,16 @@ public class Retina {
         int numberOfRows = this.visionCells.length;
         int numberOfColumns = this.visionCells[0].length;
 
-        for (int row = 0; row < numberOfColumns; row++) {
-            for (int column = 0; column < numberOfRows; column++) {
+        for (int row = 0; row < numberOfRows; row++) {
+            for (int column = 0; column < numberOfColumns; column++) {
 
-                int RGBcolor = image.getRGB(row, column);
+                int RGBcolor = image.getRGB(column, row);
 
                 if (RGBcolor == Color.BLACK.getRGB()) {
-                    this.visionCells[column][row]
+                    this.visionCells[row][column]
                             .setActiveState(true);
                 } else {
-                    this.visionCells[column][row]
+                    this.visionCells[row][column]
                             .setActiveState(false);
                 }
             }
