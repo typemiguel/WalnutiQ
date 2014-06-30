@@ -108,7 +108,7 @@ public class ImageViewer {
         double retinaZ = this.retinaPositionWithinBox.getZ();
 
         double topLeftOfSeenX = retinaX - retinaZ;
-        double topLeftOfSeenY = retinaY + retinaZ;
+        double topLeftOfSeenY = retinaY - retinaZ;
         int numberOfColumnsSeen = (int) retinaZ * 2;
         int numberOfRowsSeen = (int) retinaZ * 2;
 
@@ -118,13 +118,9 @@ public class ImageViewer {
 
         int rowStart = (int) topLeftOfSeenY;
         int rowEnd = rowStart + numberOfRowsSeen;
-        System.out.println("rowStart = " + rowStart);
-        System.out.println("rowEnd = " + rowEnd);
 
         int columnStart = (int) topLeftOfSeenX;
         int columnEnd = columnStart + numberOfColumnsSeen;
-        System.out.println("columnStart = " + columnStart);
-        System.out.println("columnEnd = " + columnEnd);
 
         for (int row = rowStart; row < rowEnd; row++) {
             retinaColumn = 0; // starting on new row
@@ -134,7 +130,6 @@ public class ImageViewer {
                 } else if (column < 0 || column >= this.int2DImage[0].length) {
                     // column index is out of bounds
                 } else {
-                    System.out.println("(retinaRow, retinaColumn) = (" + retinaRow + ", " + retinaColumn + ")");
                     seenImageToReturn[retinaRow][retinaColumn] = this.int2DImage[row][column];
                 }
                 retinaColumn++;
