@@ -11,7 +11,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * Created by Quinn Liu(quinnliu@vt.edu) on 6/28/14.
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version June 30, 2014
  */
 public class ImageViewer {
     private Image BMPImage;

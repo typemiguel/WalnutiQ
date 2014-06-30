@@ -2,6 +2,10 @@ package model.util;
 
 import java.awt.*;
 
+/**
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version June 30, 2014
+ */
 public class BoundingBox {
     private double width, height, depth;
 
