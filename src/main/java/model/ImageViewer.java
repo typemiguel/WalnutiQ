@@ -84,8 +84,8 @@ public class ImageViewer {
             this.retinaPositionWithinBox.setY(retinaY);
         }
 
-        if (retinaZ < 0) {
-            this.retinaPositionWithinBox.setZ(0);
+        if (retinaZ < 1) { // later in the code we access int numberOfColumns = int2DArray[0].length;
+            this.retinaPositionWithinBox.setZ(1);
         } else if (retinaZ > boxZ) {
             this.retinaPositionWithinBox.setZ(boxZ);
         } else {
@@ -154,7 +154,7 @@ public class ImageViewer {
     BufferedImage convertInt2DArrayToBufferedImage(int[][] int2DArray) {
         int numberOfRows = int2DArray.length;
         int numberOfColumns = int2DArray[0].length;
-        BufferedImage convertedImage = new BufferedImage(numberOfColumns, numberOfRows, BufferedImage.TYPE_BYTE_BINARY);
+        BufferedImage convertedImage = new BufferedImage(numberOfColumns, numberOfRows, BufferedImage.TYPE_INT_ARGB);
 
         for (int row = 0; row < numberOfRows; row++) {
             for (int column = 0; column < numberOfColumns; column++) {
@@ -171,10 +171,10 @@ public class ImageViewer {
         return convertedImage;
     }
 
-    BufferedImage resize(BufferedImage imageToResize, int newWidth, int newHeight) {
+    BufferedImage resize(BufferedImage imageToResize, double newWidth, double newHeight) {
         BufferedImage resizedImage = null;
         if (imageToResize != null) {
-            resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_BYTE_BINARY);
+            resizedImage = new BufferedImage((int) newWidth, (int) newHeight, BufferedImage.TYPE_BYTE_BINARY);
             Graphics2D g = resizedImage.createGraphics();
             // scaleWidth 0.5 means resizedImage width is half is wide as imageToResize
             // scaleHeight 2.0 means resizedImage height is twice as high as imageToResize
