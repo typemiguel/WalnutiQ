@@ -10,64 +10,64 @@ public class RegionToRegionRectangleConnect extends
         AbstractRegionToRegionConnect {
     @Override
     public void connect(Region childRegion, Region parentRegion,
-                        int numberOfColumnsToOverlapAlongXAxisOfRegion,
-                        int numberOfColumnsToOverlapAlongYAxisOfRegion) {
+                        int numberOfColumnsToOverlapAlongNumberOfRows,
+                        int numberOfColumnsToOverlapAlongNumberOfColumns) {
 
         super.checkParameters(childRegion, parentRegion,
-                numberOfColumnsToOverlapAlongXAxisOfRegion,
-                numberOfColumnsToOverlapAlongYAxisOfRegion);
+                numberOfColumnsToOverlapAlongNumberOfRows,
+                numberOfColumnsToOverlapAlongNumberOfColumns);
 
         Column[][] parentRegionColumns = parentRegion.getColumns();
-        int parentRegionXAxisLength = parentRegionColumns.length; // = 8
-        int parentRegionYAxisLength = parentRegionColumns[0].length; // = 8
+        int parentRegionNumberOfRows = parentRegionColumns.length; // = 8
+        int parentRegionNumberOfColumns = parentRegionColumns[0].length; // = 8
 
         Column[][] childRegionColumns = childRegion.getColumns();
-        int childRegionXAxisLength = childRegionColumns.length; // = 66
-        int childRegionYAxisLength = childRegionColumns[0].length; // = 66
+        int childRegionNumberOfRows = childRegionColumns.length; // = 66
+        int childRegionNumberOfColumns = childRegionColumns[0].length; // = 66
 
-        int connectingRectangleXAxisLength = Math
-                .round((childRegionXAxisLength
-                        + numberOfColumnsToOverlapAlongXAxisOfRegion
-                        * parentRegionXAxisLength - numberOfColumnsToOverlapAlongXAxisOfRegion)
-                        / parentRegionXAxisLength); // = 10
-        int connectingRectangleYAxisLength = Math
-                .round((childRegionYAxisLength
-                        + numberOfColumnsToOverlapAlongYAxisOfRegion
-                        * parentRegionYAxisLength - numberOfColumnsToOverlapAlongYAxisOfRegion)
-                        / parentRegionYAxisLength); // = 10
+        int connectingRectangleNumberOfRows = Math
+                .round((childRegionNumberOfRows
+                        + numberOfColumnsToOverlapAlongNumberOfRows
+                        * parentRegionNumberOfRows - numberOfColumnsToOverlapAlongNumberOfRows)
+                        / parentRegionNumberOfRows); // = 10
+        int connectingRectangleNumberOfColumns = Math
+                .round((childRegionNumberOfColumns
+                        + numberOfColumnsToOverlapAlongNumberOfColumns
+                        * parentRegionNumberOfColumns - numberOfColumnsToOverlapAlongNumberOfColumns)
+                        / parentRegionNumberOfColumns); // = 10
 
-        int shiftAmountXAxis = connectingRectangleXAxisLength
-                - numberOfColumnsToOverlapAlongXAxisOfRegion; // = 10 - 2
-        int shiftAmountYAxis = connectingRectangleYAxisLength
-                - numberOfColumnsToOverlapAlongYAxisOfRegion; // = 10 - 2
+        int shiftAmountInRows = connectingRectangleNumberOfRows
+                - numberOfColumnsToOverlapAlongNumberOfRows; // = 10 - 2
+        int shiftAmountInColumns = connectingRectangleNumberOfColumns
+                - numberOfColumnsToOverlapAlongNumberOfColumns; // = 10 - 2
 
-        for (int parentColumnX = 0; parentColumnX < parentRegionXAxisLength; parentColumnX++) {
-            for (int parentColumnY = 0; parentColumnY < parentRegionYAxisLength; parentColumnY++) {
+        for (int parentColumnRowPosition = 0; parentColumnRowPosition < parentRegionNumberOfRows; parentColumnRowPosition++) {
+            for (int parentColumnColumnPosition = 0; parentColumnColumnPosition < parentRegionNumberOfColumns; parentColumnColumnPosition++) {
 
-                // xStart = 0, 8, 16, 24, 32, 40, 48, 56
-                // yStart = 0, 8, 16, 24, 32, 40, 48, 56
-                int xStart = parentColumnX * shiftAmountXAxis;
-                int yStart = parentColumnY * shiftAmountYAxis;
+                // rowStart = 0, 8, 16, 24, 32, 40, 48, 56
+                // columnStart = 0, 8, 16, 24, 32, 40, 48, 56
+                int rowStart = parentColumnRowPosition * shiftAmountInRows;
+                int columnStart = parentColumnColumnPosition * shiftAmountInColumns;
 
-                // xEnd = 10, 18, 26, 34, 42, 50, 58, 66
-                // yEnd = 10, 18, 26, 34, 42, 50, 58, 66
-                int xEnd = xStart + connectingRectangleXAxisLength;
-                int yEnd = yStart + connectingRectangleYAxisLength;
+                // rowEnd = 10, 18, 26, 34, 42, 50, 58, 66
+                // columnEnd = 10, 18, 26, 34, 42, 50, 58, 66
+                int rowEnd = rowStart + connectingRectangleNumberOfRows;
+                int columnEnd = columnStart + connectingRectangleNumberOfColumns;
 
-                Column parentColumn = parentRegionColumns[parentColumnX][parentColumnY];
+                Column parentColumn = parentRegionColumns[parentColumnRowPosition][parentColumnColumnPosition];
 
-                for (int childColumnX = xStart; childColumnX < xEnd; childColumnX++) {
-                    for (int childColumnY = yStart; childColumnY < yEnd; childColumnY++) {
+                for (int childColumnRowPosition = rowStart; childColumnRowPosition < rowEnd; childColumnRowPosition++) {
+                    for (int childColumnColumnPosition = columnStart; childColumnColumnPosition < columnEnd; childColumnColumnPosition++) {
 
-                        for (Neuron childColumnXYNeuron : childRegionColumns[childColumnX][childColumnY]
+                        for (Neuron childColumnNeuron : childRegionColumns[childColumnRowPosition][childColumnColumnPosition]
                                 .getNeurons()) {
                             // # of synapses connected/add =
                             // connectingRectangleXAxisLength *
                             // connectingRectangleYAxisLength *
                             // column.getNeurons.length
                             parentColumn.getProximalSegment().addSynapse(
-                                    new Synapse<Cell>(childColumnXYNeuron,
-                                            childColumnX, childColumnY));
+                                    new Synapse<Cell>(childColumnNeuron,
+                                            childColumnRowPosition, childColumnColumnPosition));
                         }
                     }
                 }

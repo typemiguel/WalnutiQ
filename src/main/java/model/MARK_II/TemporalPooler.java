@@ -56,9 +56,9 @@ public class TemporalPooler extends Pooler {
 
     public void nextTimeStep() {
         Column[][] columns = super.region.getColumns();
-        for (int x = 0; x < super.region.getXAxisLength(); x++) {
-            for (int y = 0; y < super.region.getYAxisLength(); y++) {
-                for (Neuron neuron : columns[x][y].getNeurons()) {
+        for (int row = 0; row < super.region.getXAxisLength(); row++) {
+            for (int column = 0; column < super.region.getYAxisLength(); column++) {
+                for (Neuron neuron : columns[row][column].getNeurons()) {
                     neuron.nextTimeStep();
 
                     for (DistalSegment distalSegment : neuron
@@ -264,7 +264,7 @@ public class TemporalPooler extends Pooler {
         for (int i = 0; i < remainingNumberOfSynapsesToAdd; i++) {
             Synapse<Cell> newSynapse = new Synapse<Cell>(
                     this.currentLearningNeurons.get(learningNeuronIndex),
-                    columnPosition.getX(), columnPosition.getY());
+                    columnPosition.getRow(), columnPosition.getColumn());
             potentialSynapsesToAdd.add(newSynapse);
 
             if ((learningNeuronIndex + 1) < numberOfLearningNeurons) {

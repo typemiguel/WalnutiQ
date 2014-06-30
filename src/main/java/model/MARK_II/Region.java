@@ -34,22 +34,22 @@ public class Region {
 
     private int inhibitionRadius;
 
-    public Region(String biologicalName, int numberOfColumnsAlongXAxis,
-                  int numberOfColumnsAlongYAxis, int cellsPerColumn,
+    public Region(String biologicalName, int numberOfColumnsAlongRowsDimension,
+                  int numberOfColumnsAlongColumnsDimension, int cellsPerColumn,
                   double percentMinimumOverlapScore, int desiredLocalActivity) {
 
-        this.checkParameters(biologicalName, numberOfColumnsAlongXAxis,
-                numberOfColumnsAlongYAxis, cellsPerColumn,
+        this.checkParameters(biologicalName, numberOfColumnsAlongRowsDimension,
+                numberOfColumnsAlongColumnsDimension, cellsPerColumn,
                 percentMinimumOverlapScore, desiredLocalActivity);
 
         this.biologicalName = biologicalName;
         this.children = new ArrayList<Region>();
-        this.columns = new Column[numberOfColumnsAlongXAxis][numberOfColumnsAlongYAxis];
+        this.columns = new Column[numberOfColumnsAlongRowsDimension][numberOfColumnsAlongColumnsDimension];
 
-        for (int x = 0; x < numberOfColumnsAlongXAxis; x++) {
-            for (int y = 0; y < numberOfColumnsAlongYAxis; y++) {
-                this.columns[x][y] = new Column(cellsPerColumn,
-                        new ColumnPosition(x, y));
+        for (int row = 0; row < numberOfColumnsAlongRowsDimension; row++) {
+            for (int column = 0; column < numberOfColumnsAlongColumnsDimension; column++) {
+                this.columns[row][column] = new Column(cellsPerColumn,
+                        new ColumnPosition(row, column));
             }
         }
 
@@ -115,13 +115,13 @@ public class Region {
         return this.columns;
     }
 
-    public Column getColumn(int x, int y) {
-        if (x < 0 || y < 0 || x >= this.columns.length
-                || y >= this.columns[0].length) {
-            throw new IllegalArgumentException("x & y in Region class method "
-                    + "getColumn(int x, int y) are invalid");
+    public Column getColumn(int row, int column) {
+        if (row < 0 || column < 0 || row >= this.columns.length
+                || column >= this.columns[0].length) {
+            throw new IllegalArgumentException("row & column in Region class method "
+                    + "getColumn(int row, int column) are invalid");
         }
-        return this.columns[x][y];
+        return this.columns[row][column];
     }
 
     public String getBiologicalName() {
@@ -233,11 +233,11 @@ public class Region {
             stringBuilder.append(region.biologicalName + ", ");
         }
         // do not show BinaryCellConnections
-        stringBuilder.append("\n # of Columns along X-axis: ");
+        stringBuilder.append("\n   # of Columns along Rows: ");
         stringBuilder.append(this.columns.length);
-        stringBuilder.append("\n # of Columns along Y-axis: ");
+        stringBuilder.append("\n# of Columns along Columns: ");
         stringBuilder.append(this.columns[0].length);
-        stringBuilder.append("\n 	       # of layers: ");
+        stringBuilder.append("\n 	           # of layers: ");
         stringBuilder.append(this.columns[0][0].getNeurons().length);
         stringBuilder.append("\npercentMinimumOverlapScore: ");
         stringBuilder.append(this.percentMinimumOverlapScore);

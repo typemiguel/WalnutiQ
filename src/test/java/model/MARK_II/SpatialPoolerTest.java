@@ -5,7 +5,7 @@ import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.RegionToRegionRectangleConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.OldRetina;
+import model.Retina;
 import model.util.RegionConsoleViewer;
 
 import java.io.IOException;
@@ -36,12 +36,12 @@ public class SpatialPoolerTest extends TestCase {
         Region region = new Region("region", 8, 8, 4, 50, 1);
         this.spatialPooler.changeRegion(region);
 
-        OldRetina oldRetina = new OldRetina(66, 66);
+        Retina retina = new Retina(66, 66);
 
         AbstractSensorCellsToRegionConnect connectType2 = new SensorCellsToRegionRectangleConnect();
-        connectType2.connect(oldRetina.getVisionCells(), region, 2, 2);
+        connectType2.connect(retina.getVisionCells(), region, 2, 2);
 
-        oldRetina.seeBMPImage("2.bmp");
+        retina.seeBMPImage("2.bmp");
         this.spatialPooler.performSpatialPoolingOnRegion();
         Set<ColumnPosition> columnActivityAfterSeeingImage2 = this.spatialPooler
                 .getActiveColumnPositions();

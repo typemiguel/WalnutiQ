@@ -6,7 +6,7 @@ import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.OldRetina;
+import model.Retina;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -47,17 +47,17 @@ public class FindOptimalParametersForSDR {
             double percentMinimumOverlapScore, double desiredLocalActivity,
             double desiredPercentageOfActiveColumns,
             String locationOfFileWithFileNameToSaveScore) throws IOException {
-        OldRetina oldRetina = new OldRetina(66, 66);
+        Retina retina = new Retina(66, 66);
         Region region = new Region("Region", 8, 8, 1,
                 percentMinimumOverlapScore, (int) desiredLocalActivity);
 
         AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
-        retinaToRegion.connect(oldRetina.getVisionCells(), region, 0, 0);
+        retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
 
         SpatialPooler spatialPooler = new SpatialPooler(region);
         spatialPooler.setLearningState(true);
 
-        oldRetina.seeBMPImage("2.bmp");
+        retina.seeBMPImage("2.bmp");
 
         spatialPooler.performSpatialPoolingOnRegion(); // 11 active columns
         Set<ColumnPosition> columnActivityAfterSeeingImage2 = spatialPooler
@@ -109,12 +109,12 @@ public class FindOptimalParametersForSDR {
                 "./images/digits/MNIST/t10k-labels.idx1-ubyte");
 
         // all images in MNIST dataset are 28 x 28 pixels
-        OldRetina oldRetina = new OldRetina(28, 28);
+        Retina retina = new Retina(28, 28);
         Region region = new Region("Region", 8, 8, 1,
                 percentMinimumOverlapScore, (int) desiredLocalActivity);
 
         AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
-        retinaToRegion.connect(oldRetina.getVisionCells(), region, 0, 0);
+        retinaToRegion.connect(retina.getVisionCells(), region, 0, 0);
 
         SpatialPooler spatialPooler = new SpatialPooler(region);
         spatialPooler.setLearningState(true);
@@ -125,7 +125,7 @@ public class FindOptimalParametersForSDR {
             mnistManager.setCurrent(i);
             int[][] image = mnistManager.readImage();
 
-            oldRetina.see2DIntArray(image);
+            retina.see2DIntArray(image);
             spatialPooler.performSpatialPoolingOnRegion();
             Set<ColumnPosition> columnActivityAfterSeeingCurrentMNISTImage = spatialPooler
                     .getActiveColumnPositions();

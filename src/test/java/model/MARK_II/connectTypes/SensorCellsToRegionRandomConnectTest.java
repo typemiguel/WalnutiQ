@@ -21,18 +21,18 @@ public class SensorCellsToRegionRandomConnectTest extends TestCase {
     public void test_connect() {
         Region leafRegion = new Region("leafRegion", 8, 8, 4, 20, 3);
         SensorCell[][] sensorCells = new VisionCell[66][66];
-        for (int x = 0; x < sensorCells.length; x++) {
-            for (int y = 0; y < sensorCells[0].length; y++) {
-                sensorCells[x][y] = new VisionCell();
+        for (int row = 0; row < sensorCells.length; row++) {
+            for (int column = 0; column < sensorCells[0].length; column++) {
+                sensorCells[row][column] = new VisionCell();
             }
         }
 
         this.connectType.connect(sensorCells, leafRegion, 2, 2);
         Column[][] columns = leafRegion.getColumns();
-        for (int parentColumnX = 0; parentColumnX < leafRegion.getXAxisLength(); parentColumnX++) {
-            for (int parentColumnY = 0; parentColumnY < leafRegion
-                    .getYAxisLength(); parentColumnY++) {
-                assertEquals(72, columns[parentColumnX][parentColumnY]
+        for (int parentColumnRowPosition = 0; parentColumnRowPosition < leafRegion.getXAxisLength(); parentColumnRowPosition++) {
+            for (int parentColumnColumnPosition = 0; parentColumnColumnPosition < leafRegion
+                    .getYAxisLength(); parentColumnColumnPosition++) {
+                assertEquals(72, columns[parentColumnRowPosition][parentColumnColumnPosition]
                         .getProximalSegment().getSynapses().size());
             }
         }
