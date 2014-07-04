@@ -68,22 +68,27 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 
         this.temporalPooler.performTemporalPoolingOnRegion();
         assertEquals(16, this.temporalPooler.getSegmentUpdateList().size());
+        //assertEquals(16, this.temporalPooler.getSegmentUpdateList().size());
         //System.out.println(this.temporalPooler.toString());
         this.temporalPooler.nextTimeStep();
+        assertEquals(0, this.temporalPooler.getSegmentUpdateList().size());
 
         this.spatialPooler.performSpatialPoolingOnRegion();
         this.temporalPooler.performTemporalPoolingOnRegion();
-        int segmentUpdateListSize2 = this.temporalPooler.getSegmentUpdateList().size();
-        assertTrue(22 <= segmentUpdateListSize2 && segmentUpdateListSize2 <= 24);
+        //int segmentUpdateListSize2 = this.temporalPooler.getSegmentUpdateList().size();
+        assertEquals(8, this.temporalPooler.getSegmentUpdateList().size());
+        //assertTrue(22 <= segmentUpdateListSize2 && segmentUpdateListSize2 <= 24);
         //System.out.println(this.temporalPooler.toString());
         this.temporalPooler.nextTimeStep();
+        assertEquals(0, this.temporalPooler.getSegmentUpdateList().size());
 
         this.spatialPooler.performSpatialPoolingOnRegion();
         this.temporalPooler.performTemporalPoolingOnRegion();
         int segmentUpdateListSize3 = this.temporalPooler.getSegmentUpdateList().size();
-        assertTrue(28 <= segmentUpdateListSize3 && segmentUpdateListSize3 <= 32);
+        assertTrue(6 <= segmentUpdateListSize3 && segmentUpdateListSize3 <= 8);
         //System.out.println(this.temporalPooler.toString());
         this.temporalPooler.nextTimeStep();
+        assertEquals(0, this.temporalPooler.getSegmentUpdateList().size());
     }
 
     public void test_phaseOneCase1() {

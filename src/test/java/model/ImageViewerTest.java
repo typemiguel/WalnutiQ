@@ -161,13 +161,13 @@ public class ImageViewerTest extends TestCase {
         };
     }
 
-    public void test_saccadeRetinaToNewPosition() throws IOException {
-        int[][] seenAreaFittedToRetinaSize = this.imageViewer.saccadeRetinaToNewPosition(new Point3D(33, 33, 33));
+    public void test_saccadeRetinaToNewPositionAndGetWhatItSees() throws IOException {
+        int[][] seenAreaFittedToRetinaSize = this.imageViewer.saccadeRetinaToNewPositionAndGetWhatItSees(new Point3D(33, 33, 33));
         assertTrue(Arrays.deepEquals(this.twoDotBMP, seenAreaFittedToRetinaSize));
         assertEquals(66, seenAreaFittedToRetinaSize.length);
         assertEquals(66, seenAreaFittedToRetinaSize[0].length);
 
-        int[][] shiftToTheLeftAndZoomIn = this.imageViewer.saccadeRetinaToNewPosition(new Point3D(16, 33, 25));
+        int[][] shiftToTheLeftAndZoomIn = this.imageViewer.saccadeRetinaToNewPositionAndGetWhatItSees(new Point3D(16, 33, 25));
         assertEquals(66, shiftToTheLeftAndZoomIn.length);
         assertEquals(66, shiftToTheLeftAndZoomIn[0].length);
         assertTrue(Arrays.deepEquals(this.twoShiftedToTheLeftZoomedIn, shiftToTheLeftAndZoomIn));

@@ -53,11 +53,16 @@ public class ImageViewer {
     /**
      * @param newRetinaPosition If the new position is not within the box the retina is stuck in
      *                          it is moved to be inside it.
+     * @return What the retina sees.
      */
-    public int[][] saccadeRetinaToNewPosition(Point3D newRetinaPosition) throws IOException {
+    public int[][] saccadeRetinaToNewPositionAndGetWhatItSees(Point3D newRetinaPosition) throws IOException {
         this.moveRetinaToNewPositionInsideOfBoundingBox(newRetinaPosition);
 
         return this.updateRetinaWithSeenPartOfImageBasedOnCurrentPosition();
+    }
+
+    public BoundingBox getBoxRetinaIsStuckIn() {
+        return this.boxRetinaIsStuckIn;
     }
 
     void moveRetinaToNewPositionInsideOfBoundingBox(Point3D newRetinaPosition) {

@@ -73,7 +73,7 @@ public class TemporalPooler extends Pooler {
 
         // TODO: segmentUpdateList is added too much more than deleted from
         // do we just clear it after each temporal pooling iteration???
-        // this.segmentUpdateList.clear();
+        this.segmentUpdateList.clear();
 
         this.learningAlgorithmsStatistics.resetForNextTimeStep();
     }

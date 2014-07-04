@@ -13,10 +13,10 @@ public class NeocortexTest extends TestCase {
     private Neocortex neocortex;
 
     public void setUp() {
-        // parameters 20 & 3 are randomly chosen in this example
-        Region rootRegion = new Region("rootRegion", 10, 10, 4, 20, 3);
-        AbstractRegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
-
+//        // parameters 20 & 3 are randomly chosen in this example
+//        Region rootRegion = new Region("rootRegion", 10, 10, 4, 20, 3);
+//        AbstractRegionToRegionConnect connectType = new RegionToRegionRectangleConnect();
+//
 //        this.neocortex = new Neocortex(rootRegion);
     }
 
@@ -32,6 +32,6 @@ public class NeocortexTest extends TestCase {
 //        // use internal .getParentRegion() .getLeftChildRegion() .getRightChildRegion()
 //
 //        this.neocortex.runSpatialAndTemporalPoolingLearningAlgorithm(); // runs 1 iteration of both spatial & temporal
-//        // use post-order traversal
+//        // & nextTimeStep() use post-order traversal of tree
     }
 }
