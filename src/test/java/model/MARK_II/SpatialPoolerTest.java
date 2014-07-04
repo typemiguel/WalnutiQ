@@ -186,11 +186,6 @@ public class SpatialPoolerTest extends TestCase {
         assertEquals(0.315f, synapse_00.getPermanenceValue(), 0.001);
     }
 
-    public void tests_boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
-        // TODO: test this method after temporal pooling is done when
-        // the effect of this method will actually be useful
-    }
-
     public void test_updateNeighborColumns() {
         // test on Column at position (0, 0) of Region
         this.parentRegion.setInhibitionRadius(0);

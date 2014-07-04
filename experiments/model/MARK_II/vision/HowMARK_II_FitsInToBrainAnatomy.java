@@ -68,7 +68,7 @@ public class HowMARK_II_FitsInToBrainAnatomy {
 //
 //        Retina retina = new Retina(544, 544);
 //
-//        // TODO: what if you connect retina to Neocortex before passing it through NervousSystem
+//        // what if you connect retina to Neocortex before passing it through NervousSystem
 //        AbstractSensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
 //        opticNerve.connect(retina.getQuadrantOneVisionCells(), D, 0, 0);
 //        opticNerve.connect(retina.getQuadrantTwoVisionCells(), E, 0, 0);
@@ -76,7 +76,7 @@ public class HowMARK_II_FitsInToBrainAnatomy {
 //        opticNerve.connect(retina.getQuadrantFourVisionCells(), G, 0, 0);
 //
 //        NervousSystem nervousSystem = new NervousSystem(neocortex, null, retina); // no LGN for now
-//        // TODO: LGN with circle surround sound input
+//        // LGN with circle surround sound input
 //
 //        return nervousSystem;
 //    }

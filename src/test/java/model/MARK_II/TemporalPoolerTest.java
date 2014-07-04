@@ -64,31 +64,27 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
         // in Phase 3
         //   segmentUpdateList.size -= adapt segments on learning neurons
         //   segmentUpdateList.size -= adapt segments previously predictive & NOT currently predictive
-        // TODO: why is the segmentUpdateList size varying so much??
 
         this.temporalPooler.performTemporalPoolingOnRegion();
         assertEquals(16, this.temporalPooler.getSegmentUpdateList().size());
-        //assertEquals(16, this.temporalPooler.getSegmentUpdateList().size());
         //System.out.println(this.temporalPooler.toString());
         this.temporalPooler.nextTimeStep();
-        assertEquals(0, this.temporalPooler.getSegmentUpdateList().size());
 
         this.spatialPooler.performSpatialPoolingOnRegion();
         this.temporalPooler.performTemporalPoolingOnRegion();
-        //int segmentUpdateListSize2 = this.temporalPooler.getSegmentUpdateList().size();
-        assertEquals(8, this.temporalPooler.getSegmentUpdateList().size());
+        int segmentUpdateListSize2 = this.temporalPooler.getSegmentUpdateList().size();
         //assertTrue(22 <= segmentUpdateListSize2 && segmentUpdateListSize2 <= 24);
+        assertEquals(8, this.temporalPooler.getSegmentUpdateList().size());
         //System.out.println(this.temporalPooler.toString());
         this.temporalPooler.nextTimeStep();
-        assertEquals(0, this.temporalPooler.getSegmentUpdateList().size());
 
         this.spatialPooler.performSpatialPoolingOnRegion();
         this.temporalPooler.performTemporalPoolingOnRegion();
         int segmentUpdateListSize3 = this.temporalPooler.getSegmentUpdateList().size();
-        assertTrue(6 <= segmentUpdateListSize3 && segmentUpdateListSize3 <= 8);
+        //assertTrue(6 <= segmentUpdateListSize3 && segmentUpdateListSize3 <= 8);
         //System.out.println(this.temporalPooler.toString());
+        assertEquals(8, this.temporalPooler.getSegmentUpdateList().size());
         this.temporalPooler.nextTimeStep();
-        assertEquals(0, this.temporalPooler.getSegmentUpdateList().size());
     }
 
     public void test_phaseOneCase1() {
