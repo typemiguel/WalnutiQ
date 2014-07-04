@@ -7,6 +7,7 @@ import model.MARK_II.Neocortex;
 import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 import model.MARK_II.connectTypes.*;
+import model.ParietalLobeRegion;
 import model.Retina;
 import model.unimplementedBiology.LGN;
 import model.unimplementedBiology.NervousSystem;
@@ -49,7 +50,7 @@ public class HowMARK_II_FitsInToBrainAnatomy {
 //        Neocortex neocortex = new Neocortex(new Region("A", 10, 10, 4, 20, 3));
 //
 //        neocortex.addToCurrentRegion(new Region("B", 25, 25, 4, 20, 3), new RegionToRegionRectangleConnect(), 0, 0);
-//        neocortex.addToCurrentRegion(new Region("C", 50, 50, 4, 20, 3), new RegionToRegionRandomConnect(), 2, 3);
+//        neocortex.addToCurrentRegion(new ParietalLobeRegion(("C", 50, 50, 4, 20, 3), new RegionToRegionRandomConnect(), 2, 3);
 //
 //        Region D = new Region("D", 144, 144, 4, 20, 3);
 //        Region E = new Region("E", 144, 144, 4, 20, 3);
@@ -90,7 +91,7 @@ public class HowMARK_II_FitsInToBrainAnatomy {
 //        for (int i = 0; i < numberOfTimesToRunLearningAlgorithm; i++) {
 //
 //            neocortex.runSingleLearningAlgorithmOneTimeStep();
-//            Point3D nextRetinaPosition = neocortex.getCurrentRegion("C") // C = parietal lobe region
+//            Point3D nextRetinaPosition = neocortex.getCurrentRegion("C") // C = ParietalLobeRegion class
 //                    .getMotorOutput(imageViewer.getBoxRetinaIsStuckIn());
 //            imageViewer.saccadeRetinaToNewPositionAndGetWhatItSees(nextRetinaPosition);
 //        }

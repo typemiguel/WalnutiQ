@@ -1,6 +1,8 @@
 package model;
 
 import model.MARK_II.Region;
+import model.util.BoundingBox;
+import model.util.Point3D;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
@@ -14,4 +16,9 @@ public class ParietalLobeRegion extends Region {
         super(biologicalName, numberOfColumnsAlongRowsDimension, numberOfColumnsAlongColumnsDimension, cellsPerColumn,
                 percentMinimumOverlapScore, desiredLocalActivity);
     }
+
+    public Point3D getMotorOutput(BoundingBox boundingBox) {
+        return new Point3D(1, 2, 3); // TODO: implement for Retina in ImageViewer
+    }
+
 }
