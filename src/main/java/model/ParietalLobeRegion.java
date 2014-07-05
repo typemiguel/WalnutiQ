@@ -18,6 +18,13 @@ public class ParietalLobeRegion extends Region {
     }
 
     public Point3D getMotorOutput(BoundingBox boundingBox) {
+
+        for (int row = 0; row < super.columns.length; row++) {
+            for (int column = 0; column < super.columns[0].length; column++) {
+
+            }
+        }
+
         return new Point3D(1, 2, 3); // TODO: implement for Retina in ImageViewer
     }
 
