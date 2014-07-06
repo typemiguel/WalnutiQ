@@ -1,21 +1,9 @@
 package model.MARK_II.vision;
 
 import com.google.gson.Gson;
-import model.ImageViewer;
-import model.MARK_II.ColumnPosition;
-import model.MARK_II.Neocortex;
-import model.MARK_II.Region;
-import model.MARK_II.SpatialPooler;
-import model.MARK_II.connectTypes.*;
-import model.ParietalLobeRegion;
-import model.Retina;
-import model.unimplementedBiology.LGN;
 import model.unimplementedBiology.NervousSystem;
-import model.util.JsonFileInputOutput;
-import model.util.Point3D;
 
 import java.io.IOException;
-import java.util.Set;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
