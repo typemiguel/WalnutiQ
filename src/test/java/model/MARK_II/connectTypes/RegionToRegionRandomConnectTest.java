@@ -23,11 +23,11 @@ public class RegionToRegionRandomConnectTest extends TestCase {
         this.connectType.connect(this.childRegion, this.parentRegion, 2, 2);
 
         Column[][] columns = this.parentRegion.getColumns();
-        for (int parentColumnX = 0; parentColumnX < this.parentRegion
-                .getXAxisLength(); parentColumnX++) {
-            for (int parentColumnY = 0; parentColumnY < this.parentRegion
-                    .getYAxisLength(); parentColumnY++) {
-                assertEquals(72, columns[parentColumnX][parentColumnY]
+        for (int parentColumnRowPosition = 0; parentColumnRowPosition < this.parentRegion
+                .getXAxisLength(); parentColumnRowPosition++) {
+            for (int parentColumnColumnPosition = 0; parentColumnColumnPosition < this.parentRegion
+                    .getYAxisLength(); parentColumnColumnPosition++) {
+                assertEquals(72, columns[parentColumnRowPosition][parentColumnColumnPosition]
                         .getProximalSegment().getSynapses().size());
             }
         }

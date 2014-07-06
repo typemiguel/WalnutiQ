@@ -1,4 +1,6 @@
-package model;
+package model.unimplementedBiology;
+
+import model.Retina;
 
 /**
  * Nerves connecting to voluntary skeletal muscles and sensory receptors using
@@ -15,13 +17,13 @@ package model;
  * @version June 5, 2013
  */
 public class SNS {
-    private OldRetina retine;
+    private Retina retine;
 
-    public SNS(OldRetina retine) {
+    public SNS(Retina retine) {
         this.retine = retine;
     }
 
-    public OldRetina getRetine() {
+    public Retina getRetine() {
         return this.retine;
     }
 }

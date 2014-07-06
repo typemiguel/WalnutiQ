@@ -26,14 +26,14 @@ public class RegionConsoleViewer {
         char[][] columnActiveStates = new char[region.getXAxisLength()][region
                 .getYAxisLength()];
         Column[][] columns = region.getColumns();
-        for (int x = 0; x < columnActiveStates.length; x++) {
-            for (int y = 0; y < columnActiveStates[x].length; y++) {
-                if (columns[x][y].getActiveState()) {
+        for (int row = 0; row < columnActiveStates.length; row++) {
+            for (int column = 0; column < columnActiveStates[row].length; column++) {
+                if (columns[row][column].getActiveState()) {
                     // 'a' represents an active Column at a specific time step
-                    columnActiveStates[x][y] = 'a';
+                    columnActiveStates[row][column] = 'a';
                 } else {
                     // 'i' represents an inactive Column at a specific time step
-                    columnActiveStates[x][y] = 'i';
+                    columnActiveStates[row][column] = 'i';
                 }
             }
         }
@@ -51,9 +51,9 @@ public class RegionConsoleViewer {
         int[][] columnOverlapScores = new int[region.getXAxisLength()][region
                 .getYAxisLength()];
         Column[][] columns = region.getColumns();
-        for (int x = 0; x < columnOverlapScores.length; x++) {
-            for (int y = 0; y < columnOverlapScores[x].length; y++) {
-                columnOverlapScores[x][y] = columns[x][y].getOverlapScore();
+        for (int row = 0; row < columnOverlapScores.length; row++) {
+            for (int column = 0; column < columnOverlapScores[row].length; column++) {
+                columnOverlapScores[row][column] = columns[row][column].getOverlapScore();
             }
         }
         return columnOverlapScores;
@@ -72,9 +72,9 @@ public class RegionConsoleViewer {
         int[][] synapsePermanences = new int[bottomLayerDimensions.width][bottomLayerDimensions.height];
 
         Column[][] columns = region.getColumns();
-        for (int x = 0; x < columns.length; x++) {
-            for (int y = 0; y < columns[x].length; y++) {
-                Set<Synapse<Cell>> synapses = columns[x][y]
+        for (int row = 0; row < columns.length; row++) {
+            for (int column = 0; column < columns[row].length; column++) {
+                Set<Synapse<Cell>> synapses = columns[row][column]
                         .getProximalSegment().getSynapses();
 
                 for (Synapse<Cell> synapse : synapses) {
@@ -100,10 +100,10 @@ public class RegionConsoleViewer {
      * @param doubleByteArray The 2-D byte array to be printed.
      */
     public static void printDoubleByteArray(byte[][] doubleByteArray) {
-        for (int x = 0; x < doubleByteArray.length; x++) {
+        for (int row = 0; row < doubleByteArray.length; row++) {
             System.out.println();
-            for (int y = 0; y < doubleByteArray[x].length; y++) {
-                System.out.print(doubleByteArray[x][y]);
+            for (int column = 0; column < doubleByteArray[row].length; column++) {
+                System.out.print(doubleByteArray[row][column]);
             }
         }
     }
@@ -114,10 +114,10 @@ public class RegionConsoleViewer {
      * @param doubleIntArray The 2-D int array to be printed.
      */
     public static void printDoubleIntArray(int[][] doubleIntArray) {
-        for (int x = 0; x < doubleIntArray.length; x++) {
+        for (int row = 0; row < doubleIntArray.length; row++) {
             System.out.println();
-            for (int y = 0; y < doubleIntArray[x].length; y++) {
-                System.out.printf("%1d", doubleIntArray[x][y]);
+            for (int column = 0; column < doubleIntArray[row].length; column++) {
+                System.out.printf("%1d", doubleIntArray[row][column]);
             }
         }
     }
@@ -130,17 +130,17 @@ public class RegionConsoleViewer {
      */
     public static String doubleCharArrayAsString(char[][] doubleCharArray) {
         String doubleCharArrayAsString = "";
-        for (int x = 0; x < doubleCharArray.length; x++) {
-            boolean isAtBeginning = (x == 0);
-            boolean isAtEnd = (x == doubleCharArray.length);
+        for (int row = 0; row < doubleCharArray.length; row++) {
+            boolean isAtBeginning = (row == 0);
+            boolean isAtEnd = (row == doubleCharArray.length);
             if (isAtBeginning || isAtEnd) {
                 // don't add anything
             } else {
                 doubleCharArrayAsString += "\n";
             }
 
-            for (int y = 0; y < doubleCharArray[x].length; y++) {
-                doubleCharArrayAsString += doubleCharArray[x][y];
+            for (int column = 0; column < doubleCharArray[row].length; column++) {
+                doubleCharArrayAsString += doubleCharArray[row][column];
             }
         }
         return doubleCharArrayAsString;

@@ -35,29 +35,29 @@ public class SensorCellsToRegionRandomConnect extends
                 numberOfSynapsesToOverlapAlongYAxisOfSensorCells);
 
         Column[][] regionColumns = region.getColumns();
-        int regionXAxisLength = regionColumns.length; // 8
-        int regionYAxisLength = regionColumns[0].length; // 8
+        int regionRowLength = regionColumns.length; // 8
+        int regionColumnLength = regionColumns[0].length; // 8
 
-        int sensorCellsXAxisLength = sensorCells.length; // 66
-        int sensorCellsYAxisLength = sensorCells[0].length; // 66
+        int sensorCellsRowLength = sensorCells.length; // 66
+        int sensorCellsColumnLength = sensorCells[0].length; // 66
 
         List<Point> allSynapsePositions = new ArrayList<Point>(
-                sensorCellsXAxisLength * sensorCellsYAxisLength);
+                sensorCellsRowLength * sensorCellsColumnLength);
         // generate all possible Synapse positions
-        for (int x = 0; x < sensorCellsXAxisLength; x++) {
-            for (int y = 0; y < sensorCellsYAxisLength; y++) {
-                allSynapsePositions.add(new Point(x, y));
+        for (int row = 0; row < sensorCellsRowLength; row++) {
+            for (int column = 0; column < sensorCellsColumnLength; column++) {
+                allSynapsePositions.add(new Point(row, column));
             }
         }
         Collections.shuffle(allSynapsePositions);
 
         // ((2+66) * (2+66))/(8*8) = 68*68/64 = 72.25 > 66
-        int numberOfSynapsesToAddToColumn = ((numberOfSynapsesToOverlapAlongXAxisOfSensorCells + sensorCellsXAxisLength) * (numberOfSynapsesToOverlapAlongYAxisOfSensorCells + sensorCellsYAxisLength))
-                / (regionXAxisLength * regionYAxisLength);
+        int numberOfSynapsesToAddToColumn = ((numberOfSynapsesToOverlapAlongXAxisOfSensorCells + sensorCellsRowLength) * (numberOfSynapsesToOverlapAlongYAxisOfSensorCells + sensorCellsColumnLength))
+                / (regionRowLength * regionColumnLength);
 
-        for (int columnX = 0; columnX < regionXAxisLength; columnX++) {
-            for (int columnY = 0; columnY < regionYAxisLength; columnY++) {
-                Column column = regionColumns[columnX][columnY];
+        for (int columnRowPosition = 0; columnRowPosition < regionRowLength; columnRowPosition++) {
+            for (int columnColumnPosition = 0; columnColumnPosition < regionColumnLength; columnColumnPosition++) {
+                Column column = regionColumns[columnRowPosition][columnColumnPosition];
 
                 // add first numberOfSynapsesToAddToColumn to this Column
                 for (int i = 0; i < numberOfSynapsesToAddToColumn; i++) {

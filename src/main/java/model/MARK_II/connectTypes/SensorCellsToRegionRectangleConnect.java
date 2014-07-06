@@ -39,26 +39,26 @@ public class SensorCellsToRegionRectangleConnect extends
                 - numberOfColumnsToOverlapAlongXAxisOfSensorCells;
         int shiftAmountYAxis = connectingRectangleYAxisLength
                 - numberOfColumnsToOverlapAlongYAxisOfSensorCells;
-        for (int columnX = 0; columnX < regionXAxisLength; columnX++) {
-            for (int columnY = 0; columnY < regionYAxisLength; columnY++) {
+        for (int columnRowPosition = 0; columnRowPosition < regionXAxisLength; columnRowPosition++) {
+            for (int columnColumnPosition = 0; columnColumnPosition < regionYAxisLength; columnColumnPosition++) {
 
-                int xStart = columnX * shiftAmountXAxis;
-                int yStart = columnY * shiftAmountYAxis;
+                int rowStart = columnRowPosition * shiftAmountXAxis;
+                int columnStart = columnColumnPosition * shiftAmountYAxis;
 
-                int xEnd = xStart + connectingRectangleXAxisLength;
-                int yEnd = yStart + connectingRectangleYAxisLength;
+                int rowEnd = rowStart + connectingRectangleXAxisLength;
+                int columnEnd = columnStart + connectingRectangleYAxisLength;
 
-                Column column = regionColumns[columnX][columnY];
+                Column column = regionColumns[columnRowPosition][columnColumnPosition];
 
-                for (int sensorCellX = xStart; sensorCellX < xEnd; sensorCellX++) {
-                    for (int sensorCellY = yStart; sensorCellY < yEnd; sensorCellY++) {
+                for (int sensorCellRowPosition = rowStart; sensorCellRowPosition < rowEnd; sensorCellRowPosition++) {
+                    for (int sensorCellColumnPosition = columnStart; sensorCellColumnPosition < columnEnd; sensorCellColumnPosition++) {
                         // # of Synapses connected/add to this proximal Segment
                         // = connectingRectangleXAxisLength *
                         // connectingRectangleYAxisLength
                         column.getProximalSegment().addSynapse(
                                 new Synapse<Cell>(
-                                        sensorCells[sensorCellX][sensorCellY],
-                                        sensorCellX, sensorCellY));
+                                        sensorCells[sensorCellRowPosition][sensorCellColumnPosition],
+                                        sensorCellRowPosition, sensorCellColumnPosition));
                     }
                 }
             }

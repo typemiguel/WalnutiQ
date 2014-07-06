@@ -2,7 +2,7 @@ package model.MARK_I.vision;
 
 import com.google.gson.Gson;
 import junit.framework.TestCase;
-import model.LGN;
+import model.unimplementedBiology.LGN;
 import model.MARK_II.ColumnPosition;
 import model.MARK_II.Neocortex;
 import model.MARK_II.Region;
@@ -11,8 +11,8 @@ import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.RegionToRegionRectangleConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.NervousSystem;
-import model.OldRetina;
+import model.unimplementedBiology.NervousSystem;
+import model.Retina;
 import model.util.JsonFileInputOutput;
 
 import java.io.IOException;
@@ -42,16 +42,16 @@ public class HowMARK_I_FitsInToBrainAnatomy extends TestCase {
 
         LGN unconnectedLGN = new LGN(new Region("LGN", 8, 8, 1, 50, 3));
 
-        OldRetina unconnectedOldRetina = new OldRetina(66, 66);
+        Retina unconnectedRetina = new Retina(66, 66);
 
         NervousSystem nervousSystem = new NervousSystem(unconnectedNeocortex,
-                unconnectedLGN, unconnectedOldRetina);
+                unconnectedLGN, unconnectedRetina);
 
         // connect OldRetina to LGN
-        OldRetina oldRetina = nervousSystem.getPNS().getSNS().getRetine();
+        Retina retina = nervousSystem.getPNS().getSNS().getRetine();
         LGN LGN = nervousSystem.getCNS().getBrain().getThalamus().getLGN();
         AbstractSensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
-        opticNerve.connect(oldRetina.getVisionCells(), LGN.getRegion(), 0, 0);
+        opticNerve.connect(retina.getVisionCells(), LGN.getRegion(), 0, 0);
 
         // connect LGN to very small part of V1 Region of Neocortex
         Neocortex neocortex = nervousSystem.getCNS().getBrain().getCerebrum()
@@ -64,11 +64,11 @@ public class HowMARK_I_FitsInToBrainAnatomy extends TestCase {
     }
 
     public void testHowToRunSpatialPoolingOnNervousSystem() throws IOException {
-        OldRetina oldRetina = partialNervousSystem.getPNS().getSNS().getRetine();
+        Retina retina = partialNervousSystem.getPNS().getSNS().getRetine();
         Region LGNRegion = partialNervousSystem.getCNS().getBrain()
                 .getThalamus().getLGN().getRegion();
 
-        oldRetina.seeBMPImage("2.bmp");
+        retina.seeBMPImage("2.bmp");
 
         SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
         spatialPooler.setLearningState(true);

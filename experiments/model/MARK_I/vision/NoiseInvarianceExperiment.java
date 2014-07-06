@@ -5,7 +5,7 @@ import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.OldRetina;
+import model.Retina;
 
 import java.io.IOException;
 
@@ -28,18 +28,18 @@ import java.io.IOException;
  * @version April 12, 2014
  */
 public class NoiseInvarianceExperiment extends TestCase {
-    private OldRetina oldRetina;
+    private Retina retina;
     private Region region;
     private SpatialPooler spatialPooler;
 
     public void setUp() {
         // images this oldRetina will see are all 66x66 pixels
-        this.oldRetina = new OldRetina(66, 66);
+        this.retina = new Retina(66, 66);
 
         this.region = new Region("Region", 8, 8, 1, 77.8, 1);
 
         AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
-        retinaToRegion.connect(this.oldRetina.getVisionCells(), this.region, 0, 0);
+        retinaToRegion.connect(this.retina.getVisionCells(), this.region, 0, 0);
 
         this.spatialPooler = new SpatialPooler(this.region);
         this.spatialPooler.setLearningState(true);
@@ -48,7 +48,7 @@ public class NoiseInvarianceExperiment extends TestCase {
     public void test_NoiseInvarianceExperiment() throws IOException {
         // View all three images of digit 2 @ https://db.tt/ElvG0WLM
         // --------------------------"2.bmp"------------------------------------
-        this.oldRetina.seeBMPImage("2.bmp");
+        this.retina.seeBMPImage("2.bmp");
 
         this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
 
@@ -56,7 +56,7 @@ public class NoiseInvarianceExperiment extends TestCase {
                 this.spatialPooler.getActiveColumnPositionsAsString());
 
         // -------------------"2_with_some_noise.bmp"---------------------------
-        this.oldRetina.seeBMPImage("2_with_some_noise.bmp");
+        this.retina.seeBMPImage("2_with_some_noise.bmp");
 
         this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
 
@@ -64,7 +64,7 @@ public class NoiseInvarianceExperiment extends TestCase {
                 this.spatialPooler.getActiveColumnPositionsAsString());
 
         // -------------------"2_with_alot_of_noise.bmp"------------------------
-        this.oldRetina.seeBMPImage("2_with_alot_of_noise.bmp");
+        this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
 
         this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
 

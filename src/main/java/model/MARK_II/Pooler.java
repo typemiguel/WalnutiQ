@@ -26,4 +26,8 @@ public abstract class Pooler {
     public void setLearningState(boolean learningState) {
         this.learningState = learningState;
     }
+
+    public Region getRegion() {
+        return this.region;
+    }
 }

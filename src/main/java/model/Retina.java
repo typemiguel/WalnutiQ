@@ -15,15 +15,15 @@ import java.io.IOException;
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Feb 3, 2014
  */
-public class OldRetina {
+public class Retina {
     protected VisionCell[][] visionCells;
 
-    public OldRetina(int numberOfVisionCellsAlongYAxis, int numberOfVisionCellsAlongXAxis) {
+    public Retina(int numberOfVisionCellsAlongYAxis, int numberOfVisionCellsAlongXAxis) {
         this.visionCells = new VisionCell[numberOfVisionCellsAlongYAxis][numberOfVisionCellsAlongXAxis];
 
-        for (int currentRow = 0; currentRow < numberOfVisionCellsAlongYAxis; currentRow++) {
-            for (int currentColumn = 0; currentColumn < numberOfVisionCellsAlongXAxis; currentColumn++) {
-                this.visionCells[currentRow][currentColumn] = new VisionCell();
+        for (int row = 0; row < numberOfVisionCellsAlongYAxis; row++) {
+            for (int column = 0; column < numberOfVisionCellsAlongXAxis; column++) {
+                this.visionCells[row][column] = new VisionCell();
             }
         }
     }
@@ -44,16 +44,16 @@ public class OldRetina {
         int numberOfRows = this.visionCells.length;
         int numberOfColumns = this.visionCells[0].length;
 
-        for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
-            for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
+        for (int row = 0; row < numberOfRows; row++) {
+            for (int column = 0; column < numberOfColumns; column++) {
 
-                int RGBcolor = image.getRGB(currentColumn, currentRow);
+                int RGBcolor = image.getRGB(column, row);
 
                 if (RGBcolor == Color.BLACK.getRGB()) {
-                    this.visionCells[currentRow][currentColumn]
+                    this.visionCells[row][column]
                             .setActiveState(true);
                 } else {
-                    this.visionCells[currentRow][currentColumn]
+                    this.visionCells[row][column]
                             .setActiveState(false);
                 }
             }
@@ -69,16 +69,16 @@ public class OldRetina {
     public void see2DIntArray(int[][] image) {
         int numberOfRows = this.visionCells.length;
         int numberOfColumns = this.visionCells[0].length;
-        for (int currentRow = 0; currentRow < numberOfRows; currentRow++) {
-            for (int currentColumn = 0; currentColumn < numberOfColumns; currentColumn++) {
-                if (currentRow >= image.length || currentColumn >= image[0].length) {
-                    this.visionCells[currentRow][currentColumn]
+        for (int row = 0; row < numberOfRows; row++) {
+            for (int column = 0; column < numberOfColumns; column++) {
+                if (row >= image.length || column >= image[0].length) {
+                    this.visionCells[row][column]
                             .setActiveState(false);
-                } else if (image[currentRow][currentColumn] != 0) {
-                    this.visionCells[currentRow][currentColumn]
+                } else if (image[row][column] != 0) {
+                    this.visionCells[row][column]
                             .setActiveState(true);
                 } else {
-                    this.visionCells[currentRow][currentColumn]
+                    this.visionCells[row][column]
                             .setActiveState(false);
                 }
             }

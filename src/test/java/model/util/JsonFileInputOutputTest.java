@@ -7,7 +7,7 @@ import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
-import model.OldRetina;
+import model.Retina;
 
 import java.io.IOException;
 import java.util.Set;
@@ -26,16 +26,16 @@ public class JsonFileInputOutputTest extends TestCase {
     public void test_saveRegionObject() throws IOException {
         Region LGNRegion = new Region("LGN", 8, 8, 1, 50, 3);
 
-        OldRetina oldRetina = new OldRetina(66, 66);
+        Retina retina = new Retina(66, 66);
 
         AbstractSensorCellsToRegionConnect retinaToLGN = new SensorCellsToRegionRectangleConnect();
-        retinaToLGN.connect(oldRetina.getVisionCells(), LGNRegion, 0, 0);
+        retinaToLGN.connect(retina.getVisionCells(), LGNRegion, 0, 0);
 
         // run spatial pooling on a image
         SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
         spatialPooler.setLearningState(true);
 
-        oldRetina.seeBMPImage("2.bmp");
+        retina.seeBMPImage("2.bmp");
         Set<Column> LGNNeuronActivity = spatialPooler
                 .performSpatialPoolingOnRegion();
 

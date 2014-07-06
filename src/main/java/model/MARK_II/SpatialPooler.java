@@ -38,9 +38,9 @@ public class SpatialPooler extends Pooler {
      */
     public Set<Column> performSpatialPoolingOnRegion() {
         Column[][] columns = this.region.getColumns();
-        for (int x = 0; x < columns.length; x++) {
-            for (int y = 0; y < columns[0].length; y++) {
-                this.computeColumnOverlapScore(columns[x][y]);
+        for (int row = 0; row < columns.length; row++) {
+            for (int column = 0; column < columns[0].length; column++) {
+                this.computeColumnOverlapScore(columns[row][column]);
             }
         }
 
@@ -140,8 +140,8 @@ public class SpatialPooler extends Pooler {
                 List<Column> neighborColumns = new ArrayList<Column>();
                 for (ColumnPosition columnPosition : neighborColumnPositions) {
                     neighborColumns
-                            .add(columns[columnPosition.getX()][columnPosition
-                                    .getY()]);
+                            .add(columns[columnPosition.getRow()][columnPosition
+                                    .getColumn()]);
                 }
 
                 int minimumLocalOverlapScore = this.kthScoreOfColumns(
@@ -235,8 +235,8 @@ public class SpatialPooler extends Pooler {
                     for (ColumnPosition columnPosition : neighborColumnPositions) {
                         // add the Column object to neighborColumns
                         neighborColumns
-                                .add(columns[columnPosition.getX()][columnPosition
-                                        .getY()]);
+                                .add(columns[columnPosition.getRow()][columnPosition
+                                        .getColumn()]);
                     }
 
                     float maximumActiveDutyCycle = this.region
@@ -475,8 +475,8 @@ public class SpatialPooler extends Pooler {
 
         int numberOfActiveColumns = this.activeColumnPositions.size();
         for (ColumnPosition columnPosition : this.activeColumnPositions) {
-            listOfActiveColumns += "(" + columnPosition.getX() + ", " +
-                    columnPosition.getY() + ")";
+            listOfActiveColumns += "(" + columnPosition.getRow() + ", " +
+                    columnPosition.getColumn() + ")";
             --numberOfActiveColumns;
 
             if (numberOfActiveColumns == 0) {

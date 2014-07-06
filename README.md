@@ -95,33 +95,45 @@ to better understand the theory behind this repository.
 3. Open up IntelliJ and click "Import Project" `=>` Select "Gradle" `=>` Next `=>` 
    Select "Use default gradle wrapper (recommended)" `=>` Finish
 
-4. In IntelliJ right-click the `WalnutiQ/` folder and select "Run 'All Tests'". You
-   can also run your tests through the terminal with the command `./gradlew build`
-   when inside the `WalnutiQ/` folder.
+4. In IntelliJ right-click the `WalnutiQ/` folder and select "Run 'All Tests'". 
   
 ## Setup in Linux/Mac/Windows with Gradle
-1. Go to the top right of this page and hit the `Fork` button. Then clone 
+1. Make sure you have java version 1.7. To check open up a new terminal and type:
+   ```sh
+   prompt> java -version
+   java version "1.7.0_60" # it's only important to see the "1.7" part
+   ```  
+   If you don't have java 1.7 install it by going [
+   here](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html). After installing 
+   java 1.7 open up a new terminal to check if java 1.7 is installed by retyping `java -version` in the terminal.
+   
+2. Go to the top right of this page and hit the `Fork` button. Then clone 
    your forked WalnutiQ repository locally. Navigate into the `WalnutiQ/` folder.
 
-2. To run all of the code in the Linux or Mac terminal type:
+3. To run all of the code in the Linux or Mac terminal type:
    ```sh
    prompt> ./gradlew build
    :compileJava UP-TO-DATE
    # some other stuff...
    :build UP-TO-DATE
 
-   BUILD SUCCESSFUL
+   BUILD SUCCESSFUL # If you see `BUILD SUCCESSFUL` all of the tests have passed! 
    ```
 
-3. To run all of the code in the Windows terminal type:
+4. To run all of the code in the Windows terminal type:
    ```sh
    prompt> gradlew.bat
    # some other stuff...
 
-   BUILD SUCCESSFUL
+   BUILD SUCCESSFUL # If you see `BUILD SUCCESSFUL` all of the tests have passed! 
    ```
-
-4. If you see `BUILD SUCCESSFUL` all of the tests have passed! 
+   
+5. In the future after editing some code make sure to clean your old compiled code before rerunning the tests by typing:
+   ```sh
+   prompt> ./gradlew clean # removes your old compiled code
+   prompt> ./gradlew build
+   # hopefully all the tests still pass... :)
+   ```
 
 ## How to Contribute
 1. View an example of how some of the code is used in the file
@@ -182,7 +194,6 @@ to better understand the theory behind this repository.
   - build.gradle = compiles all of the code in this repository using Gradle
   - gradlew = allows you to use Gradle to run all of the code in this repository in Linux & Mac
   - gradlew.bat = allows you to use Gradle to run all of the code in this repository in Windows
-  - settings.gradle = specify which projects to include in our Gradle build
 
 ===============================================================
 Please contact me at quinnliu@vt.edu if you have any questions! 

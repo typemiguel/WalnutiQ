@@ -1,6 +1,7 @@
-package model;
+package model.unimplementedBiology;
 
 import model.MARK_II.Neocortex;
+import model.Retina;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
@@ -8,11 +9,11 @@ import model.MARK_II.Neocortex;
  */
 public class NervousSystem {
     private CNS CNS;
-    private PNS PNS;
+    private model.unimplementedBiology.PNS PNS;
 
-    public NervousSystem(Neocortex neocortex, LGN LGN, OldRetina oldRetina) {
+    public NervousSystem(Neocortex neocortex, LGN LGN, Retina retina) {
         this.CNS = new CNS(neocortex, LGN);
-        this.PNS = new PNS(oldRetina);
+        this.PNS = new PNS(retina);
     }
 
     public CNS getCNS() {
