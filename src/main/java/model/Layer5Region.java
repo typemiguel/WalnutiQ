@@ -55,13 +55,33 @@ public class Layer5Region extends Region {
             }
         }
 
-        averageRegionX = averageRegionX / numberOfActiveAndPredictiveNeuronsForXY;
-        averageRegionY = averageRegionY / numberOfActiveAndPredictiveNeuronsForXY;
-        averageRegionZ = averageRegionZ / numberOfActiveAndPredictiveNeuronsForZ;
+        double newBoundingBoxXPosition = 0.0;
+        double newBoundingBoxYPosition = 0.0;
+        double newBoundingBoxZPosition = 0.0;
 
-        double newBoundingBoxXPosition = averageRegionX * averageRegionXMultipliedByThisNumberEqualsNewBoundingBoxXPosition;
-        double newBoundingBoxYPosition = averageRegionY * averageRegionYMultipliedByThisNumberEqualsNewBoundingBoxYPosition;
-        double newBoundingBoxZPosition = averageRegionZ * averageRegionZMultipliedByThisNumberEqualsNewBoundingBoxZPosition;
+        if (averageRegionX != 0.0) {
+            averageRegionX = averageRegionX / numberOfActiveAndPredictiveNeuronsForXY;
+            newBoundingBoxXPosition = averageRegionX * averageRegionXMultipliedByThisNumberEqualsNewBoundingBoxXPosition;
+        } else {
+            // do not manipulate variable newBoundingBoxXPosition
+            // this may be why people always look up when they are thinking hard since there is very
+            // little neuronal activity in the region of the neocortex that activates the eye muscles causing
+            // the eyes to move to the same default location...
+        }
+
+        if (averageRegionY != 0.0) {
+            averageRegionY = averageRegionY / numberOfActiveAndPredictiveNeuronsForXY;
+            newBoundingBoxYPosition = averageRegionY * averageRegionYMultipliedByThisNumberEqualsNewBoundingBoxYPosition;
+        } else {
+            // do not manipulate variable newBoundingBoxYPosition
+        }
+
+        if (averageRegionZ != 0.0) {
+            averageRegionZ = averageRegionZ / numberOfActiveAndPredictiveNeuronsForZ;
+            newBoundingBoxZPosition = averageRegionZ * averageRegionZMultipliedByThisNumberEqualsNewBoundingBoxZPosition;
+        } else {
+            // do not manipulate variable newBoundingBoxZPosition
+        }
 
         return new Point3D(newBoundingBoxXPosition, newBoundingBoxYPosition, newBoundingBoxZPosition);
     }
