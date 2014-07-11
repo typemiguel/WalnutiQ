@@ -71,9 +71,7 @@ public class TemporalPooler extends Pooler {
 
         this.currentLearningNeurons.clear();
 
-        // TODO: segmentUpdateList is added too much more than deleted from
-        // do we just clear it after each temporal pooling iteration???
-        // this.segmentUpdateList.clear();
+        this.segmentUpdateList.clear();
 
         this.learningAlgorithmsStatistics.resetForNextTimeStep();
     }
@@ -377,8 +375,6 @@ public class TemporalPooler extends Pooler {
                 synapse.decreasePermanence();
             }
         }
-
-        // TODO: add Synapses in SegmentUpdate that do not yet exist???
     }
 
     /**
@@ -461,7 +457,8 @@ public class TemporalPooler extends Pooler {
                     DistalSegment bestSegment = neuron
                             .getBestPreviousActiveSegment();
 
-                    // TODO: when is segment ever set to be sequence segment
+                    // Question: when is segment ever set to be sequence segment?
+                    // Answer:
                     if (bestSegment != null
                             && bestSegment
                             .getSequenceStatePredictsFeedFowardInputOnNextStep()) {

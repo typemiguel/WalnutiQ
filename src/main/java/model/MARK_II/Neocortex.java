@@ -7,10 +7,10 @@ import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
  * Regions is similar to creating a file system. You can change where you are
  * within the Neocortex tree with the changeCurrentRegion(Region) and then add a
  * child Region to the currentRegion with addRegion(Region).
- * <p/>
+ *
  * Input to Neocortex: activity of Cells within VisionCellLayer, AudioCellLayer,
  * etc.
- * <p/>
+ *
  * Output from Neocortex: activity of Cells/Columns within root Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)

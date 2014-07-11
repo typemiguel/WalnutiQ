@@ -48,7 +48,7 @@ public class HowMARK_I_FitsInToBrainAnatomy extends TestCase {
                 unconnectedLGN, unconnectedRetina);
 
         // connect OldRetina to LGN
-        Retina retina = nervousSystem.getPNS().getSNS().getRetine();
+        Retina retina = nervousSystem.getPNS().getSNS().getRetina();
         LGN LGN = nervousSystem.getCNS().getBrain().getThalamus().getLGN();
         AbstractSensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
         opticNerve.connect(retina.getVisionCells(), LGN.getRegion(), 0, 0);
@@ -64,7 +64,7 @@ public class HowMARK_I_FitsInToBrainAnatomy extends TestCase {
     }
 
     public void testHowToRunSpatialPoolingOnNervousSystem() throws IOException {
-        Retina retina = partialNervousSystem.getPNS().getSNS().getRetine();
+        Retina retina = partialNervousSystem.getPNS().getSNS().getRetina();
         Region LGNRegion = partialNervousSystem.getCNS().getBrain()
                 .getThalamus().getLGN().getRegion();
 
@@ -83,6 +83,6 @@ public class HowMARK_I_FitsInToBrainAnatomy extends TestCase {
                 .toJson(this.partialNervousSystem);
         JsonFileInputOutput
                 .saveObjectToTextFile(partialNervousSystemObject,
-                        "./experiments/model/MARK_I/vision/PartialNervousSystemObject.json");
+                        "./experiments/model/MARK_I/vision/PartialNervousSystem_MARK_I.json");
     }
 }

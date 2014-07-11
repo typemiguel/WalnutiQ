@@ -38,7 +38,10 @@ Brain Theories Numbered By Importance
                        Sequence memory provides an elegant solution to the brain's ability to do this.
    - Temporal Pooling = The act of strengthening & weakening the connections between cells/neurons to allow
                         neurons to become more predictive of it's input.
-   - Support: described in this [paper](https://dl.dropboxusercontent.com/u/106853306/Brain/HTM_CorticalLearningAlgorithms.pdf)
+   - Support: 
+     + described in this [paper](https://dl.dropboxusercontent.com/u/106853306/Brain/HTM_CorticalLearningAlgorithms.pdf)
+     + http://www.ncbi.nlm.nih.gov/pubmed/20881116
+       - Summary: neurons higher in the hierarchy are more stable & selective to input
    
 4. Information flow in the brain
    - Path 1) synapseOnAxonOfNeuronA -> dendriteOfNeuronB -> cellBodyOfNeuronB -> axonOfNeuronB -> synapseOfNeuronC
