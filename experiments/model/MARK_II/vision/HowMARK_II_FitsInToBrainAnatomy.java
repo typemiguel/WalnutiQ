@@ -1,7 +1,18 @@
 package model.MARK_II.vision;
 
 import com.google.gson.Gson;
+import model.ImageViewer;
+import model.Layer5Region;
+import model.MARK_II.Neocortex;
+import model.MARK_II.Region;
+import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
+import model.MARK_II.connectTypes.RegionToRegionRandomConnect;
+import model.MARK_II.connectTypes.RegionToRegionRectangleConnect;
+import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
+import model.Retina;
 import model.unimplementedBiology.NervousSystem;
+import model.util.JsonFileInputOutput;
+import model.util.Point3D;
 
 import java.io.IOException;
 
@@ -26,7 +37,7 @@ public class HowMARK_II_FitsInToBrainAnatomy {
     /**
      * A, B, C, D, E, F, & G are Region names.
      * C = parietal lobe region
-     *
+     * // TODO: rename A,B,C... to correct layer of neocortex
      * A = root region
      *          A
      *      B       C
@@ -38,7 +49,7 @@ public class HowMARK_II_FitsInToBrainAnatomy {
 //        Neocortex neocortex = new Neocortex(new Region("A", 10, 10, 4, 20, 3));
 //
 //        neocortex.addToCurrentRegion(new Region("B", 25, 25, 4, 20, 3), new RegionToRegionRectangleConnect(), 0, 0);
-//        neocortex.addToCurrentRegion(new ParietalLobeRegion(("C", 50, 50, 4, 20, 3), new RegionToRegionRandomConnect(), 2, 3);
+//        neocortex.addToCurrentRegion(new Layer5Region(("C", 50, 50, 4, 20, 3), new RegionToRegionRandomConnect(), 2, 3);
 //
 //        Region D = new Region("D", 144, 144, 4, 20, 3);
 //        Region E = new Region("E", 144, 144, 4, 20, 3);
@@ -68,7 +79,7 @@ public class HowMARK_II_FitsInToBrainAnatomy {
 //
 //        return nervousSystem;
 //    }
-
+//
 //    public void test_HowToRunSingleLearningAlgorithmOnNervousSystem() throws IOException {
 //        Neocortex neocortex = this.partialNervousSystem.getCNS().getBrain().getCerebrum().getCerebralCortex().getNeocortex();
 //
