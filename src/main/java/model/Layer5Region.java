@@ -27,7 +27,7 @@ public class Layer5Region extends Region {
 
         double averageRegionXMultipliedByThisNumberEqualsNewBoundingBoxXPosition = boundingBox.getWidth() / regionWidth;
         double averageRegionYMultipliedByThisNumberEqualsNewBoundingBoxYPosition = boundingBox.getHeight() / regionHeight;
-        double averageRegionZMultipliedByThisNumberEqualsNewBoundingBoxZPosition = boundingBox.getHeight() / regionHeight;
+        double averageRegionZMultipliedByThisNumberEqualsNewBoundingBoxZPosition = boundingBox.getDepth() / regionHeight;
 
         double averageRegionX = 0;
         double averageRegionY = 0;
