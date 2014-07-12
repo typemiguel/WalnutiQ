@@ -56,8 +56,8 @@ public class TemporalPooler extends Pooler {
 
     public void nextTimeStep() {
         Column[][] columns = super.region.getColumns();
-        for (int row = 0; row < super.region.getXAxisLength(); row++) {
-            for (int column = 0; column < super.region.getYAxisLength(); column++) {
+        for (int row = 0; row < super.region.getNumberOfRowsAlongRegionYAxis(); row++) {
+            for (int column = 0; column < super.region.getNumberOfColumnsAlongRegionXAxis(); column++) {
                 for (Neuron neuron : columns[row][column].getNeurons()) {
                     neuron.nextTimeStep();
 

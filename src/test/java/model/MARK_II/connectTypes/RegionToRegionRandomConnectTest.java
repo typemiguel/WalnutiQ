@@ -24,9 +24,9 @@ public class RegionToRegionRandomConnectTest extends TestCase {
 
         Column[][] columns = this.parentRegion.getColumns();
         for (int parentColumnRowPosition = 0; parentColumnRowPosition < this.parentRegion
-                .getXAxisLength(); parentColumnRowPosition++) {
+                .getNumberOfRowsAlongRegionYAxis(); parentColumnRowPosition++) {
             for (int parentColumnColumnPosition = 0; parentColumnColumnPosition < this.parentRegion
-                    .getYAxisLength(); parentColumnColumnPosition++) {
+                    .getNumberOfColumnsAlongRegionXAxis(); parentColumnColumnPosition++) {
                 assertEquals(72, columns[parentColumnRowPosition][parentColumnColumnPosition]
                         .getProximalSegment().getSynapses().size());
             }

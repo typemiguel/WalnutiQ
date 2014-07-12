@@ -23,11 +23,11 @@ public class RegionToRegionRectangleConnectTest extends TestCase {
         this.connectType.connect(this.childRegion, this.parentRegion, 0, 0);
 
         Column[][] columns = this.parentRegion.getColumns();
-        for (int parentColumnX = 0; parentColumnX < this.parentRegion
-                .getXAxisLength(); parentColumnX++) {
-            for (int parentColumnY = 0; parentColumnY < this.parentRegion
-                    .getYAxisLength(); parentColumnY++) {
-                assertEquals(64, columns[parentColumnX][parentColumnY]
+        for (int parentRegionRow = 0; parentRegionRow < this.parentRegion
+                .getNumberOfRowsAlongRegionYAxis(); parentRegionRow++) {
+            for (int parentRegionColumn = 0; parentRegionColumn < this.parentRegion
+                    .getNumberOfColumnsAlongRegionXAxis(); parentRegionColumn++) {
+                assertEquals(64, columns[parentRegionRow][parentRegionColumn]
                         .getProximalSegment().getSynapses().size());
             }
         }
@@ -38,9 +38,9 @@ public class RegionToRegionRectangleConnectTest extends TestCase {
 
         Column[][] columns = this.parentRegion.getColumns();
         for (int parentColumnX = 0; parentColumnX < this.parentRegion
-                .getXAxisLength(); parentColumnX++) {
+                .getNumberOfRowsAlongRegionYAxis(); parentColumnX++) {
             for (int parentColumnY = 0; parentColumnY < this.parentRegion
-                    .getYAxisLength(); parentColumnY++) {
+                    .getNumberOfColumnsAlongRegionXAxis(); parentColumnY++) {
                 assertEquals(100, columns[parentColumnX][parentColumnY]
                         .getProximalSegment().getSynapses().size());
             }
@@ -52,9 +52,9 @@ public class RegionToRegionRectangleConnectTest extends TestCase {
 
         Column[][] columns = this.parentRegion.getColumns();
         for (int parentColumnX = 0; parentColumnX < this.parentRegion
-                .getXAxisLength(); parentColumnX++) {
+                .getNumberOfRowsAlongRegionYAxis(); parentColumnX++) {
             for (int parentColumnY = 0; parentColumnY < this.parentRegion
-                    .getYAxisLength(); parentColumnY++) {
+                    .getNumberOfColumnsAlongRegionXAxis(); parentColumnY++) {
                 assertEquals(225, columns[parentColumnX][parentColumnY]
                         .getProximalSegment().getSynapses().size());
             }
