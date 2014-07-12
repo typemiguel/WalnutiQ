@@ -1,21 +1,22 @@
 package model.MARK_II;
 
 import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
+import model.util.Rectangle;
 
 /**
  * Neocortex is a undirected tree of Regions. Creating a Neocortex with multiple
  * Regions is similar to creating a file system. You can change where you are
  * within the Neocortex tree with the changeCurrentRegion(Region) and then add a
  * child Region to the currentRegion with addRegion(Region).
- *
+ * <p/>
  * Input to Neocortex: activity of Cells within VisionCellLayer, AudioCellLayer,
  * etc.
- *
+ * <p/>
  * Output from Neocortex: activity of Cells/Columns within root Region.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version June 8, 2013
+ * @version July 12, 2014
  */
 public class Neocortex {
     private Region rootRegion;
@@ -85,7 +86,10 @@ public class Neocortex {
     /**
      * @param childRegion The Region to be added to the currentRegion.
      */
-    public boolean addToCurrentRegion(Region childRegion) {
+    public boolean addToCurrentRegion(Rectangle rectanglePartOfParentRegionToConnectTo, Region childRegion,
+                                      AbstractRegionToRegionConnect neocortexRegionToNeocortexRegion,
+                                      int numberOfColumnsToOverlapAlongNumberOfRows,
+                                      int numberOfColumnsToOverlapAlongNumberOfColumns) {
         if (childRegion == null) {
             throw new IllegalArgumentException(
                     "childRegion in Neocortex method addToCurrentRegion cannot be null");

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 /**
- * Created by Quinn Liu(quinnliu@vt.edu) on 6/15/14.
+ * Created by Quinn Liu(quinnliu@vt.edu).
  */
 public class ImageViewerTest extends TestCase {
 
@@ -174,4 +174,12 @@ public class ImageViewerTest extends TestCase {
 
         //RegionConsoleViewer.printDoubleIntArray(shiftToTheLeftAndZoomIn);
     }
+
+//    public void test_demo() throws IOException {
+//        Retina retina = new Retina(66, 66);
+//        ImageViewer imageViewer = new ImageViewer("2.bmp", retina);
+//
+//        int[][] whatTheRetinaIsLookingAt = imageViewer.saccadeRetinaToNewPositionAndGetWhatItSees(new Point3D(33, 33, 27));
+//        RegionConsoleViewer.printDoubleIntArray(whatTheRetinaIsLookingAt);
+//    }
 }

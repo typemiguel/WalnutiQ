@@ -3,6 +3,7 @@ package model.util;
 import java.awt.geom.Point2D;
 
 /**
+ * TODO: unit test this class
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version July 12, 2014
  */
@@ -16,27 +17,27 @@ public class Rectangle {
         int BRx = (int) bottomRightCorner.getX();
         int BRy = (int) bottomRightCorner.getY();
 
-        this.isNewTopLeftCornerValid(topLeftCorner);
-        this.isNewBottomRightCornerValid(bottomRightCorner);
+        this.setNewTopLeftCornerIfValid(topLeftCorner);
+        this.setNewBottomRightCornerIfValid(bottomRightCorner);
     }
 
     public Point2D getTopLeftCorner() {
-        return topLeftCorner;
+        return this.topLeftCorner;
     }
 
     public void setTopLeftCorner(Point2D topLeftCorner) {
-        this.topLeftCorner = topLeftCorner;
+        this.setNewTopLeftCornerIfValid(topLeftCorner);
     }
 
     public Point2D getBottomRightCorner() {
-        return bottomRightCorner;
+        return this.bottomRightCorner;
     }
 
     public void setBottomRightCorner(Point2D bottomRightCorner) {
-        this.bottomRightCorner = bottomRightCorner;
+        this.setNewBottomRightCornerIfValid(bottomRightCorner);
     }
 
-    void isNewTopLeftCornerValid(Point2D newTopLeftCorner) {
+    void setNewTopLeftCornerIfValid(Point2D newTopLeftCorner) {
         int TLx = (int) newTopLeftCorner.getX();
         int TLy = (int) newTopLeftCorner.getY();
         int BRx = (int) this.bottomRightCorner.getX();
@@ -51,7 +52,7 @@ public class Rectangle {
         this.topLeftCorner = newTopLeftCorner;
     }
 
-    void isNewBottomRightCornerValid(Point2D newBottomRightCorner) {
+    void setNewBottomRightCornerIfValid(Point2D newBottomRightCorner) {
         int TLx = (int) this.topLeftCorner.getX();
         int TLy = (int) this.topLeftCorner.getY();
         int BRx = (int) newBottomRightCorner.getX();

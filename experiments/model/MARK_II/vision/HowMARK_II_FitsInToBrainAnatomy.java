@@ -13,7 +13,10 @@ import model.Retina;
 import model.unimplementedBiology.NervousSystem;
 import model.util.JsonFileInputOutput;
 import model.util.Point3D;
+import model.util.Rectangle;
 
+import java.awt.*;
+import java.awt.geom.Point2D;
 import java.io.IOException;
 
 /**
@@ -60,62 +63,63 @@ public class HowMARK_II_FitsInToBrainAnatomy {
      *    |                    |
      *    ImageRetinaIsLookingAt
      */
-//    private NervousSystem constructConnectedNervousSystem() {
-//
-//        final int LAYER_4_CELLS_PER_COLUMN = 4;
-//        final int LAYER_3_CELLS_PER_COLUMN = 1;
-//        double percentMinimumOverlap = 20;
-//        int desiredLocalActivity = 3;
-//
-//        Neocortex neocortex = new Neocortex(new Region("root", 60, 60, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity));
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("A", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region(("B", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
-//
-//        neocortex.changeCurrentRegionTo("A");
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("C", 125, 125, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
-//
-//        neocortex.changeCurrentRegionTo("B");
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("D", 125, 125, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
-//
-//        neocortex.changeCurrentRegionTo("C");
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("E", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("F", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
-//
-//        neocortex.changeCurrentRegionTo("D");
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("G", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("H", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
-//
-//        Region I = new Region("I", 250, 250, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity);
-//        Layer5Region M = new Layer5Region("M", 250, 250, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity);
-//        neocortex.changeCurrentRegionTo("E");
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, I, new RegionToRegionRectangleConnect(), 0, 0);
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, M, new RegionToRegionRectangleConnect(), 0, 0);
-//
-//        Region J = new Region("J", 250, 250, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity);
-//        neocortex.changeCurrentRegionTo("F");
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, J, new RegionToRegionRectangleConnect(), 0, 0);
-//
-//        Region K = new Region("K", 250, 250, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity);
-//        neocortex.changeCurrentRegionTo("G");
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, K, new RegionToRegionRectangleConnect(), 0, 0);
-//
-//        Region L = new Region("L", 250, 250, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity);
-//        neocortex.changeCurrentRegionTo("H");
-//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, L, new RegionToRegionRectangleConnect(), 0, 0);
-//
-//        // NOTE: I, J, K, & L are connected to different parts of the same Retina
-//        Retina retina = new Retina(1000, 1000);
-//
+    private NervousSystem constructConnectedNervousSystem() {
+
+        final int LAYER_4_CELLS_PER_COLUMN = 4;
+        final int LAYER_3_CELLS_PER_COLUMN = 1;
+        double percentMinimumOverlap = 20;
+        int desiredLocalActivity = 3;
+
+        Neocortex neocortex = new Neocortex(new Region("root", 60, 60, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity));
+        neocortex.addToCurrentRegion(new Rectangle(new Point(0, 0), new Point(29, 60)), new Region("A", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
+        neocortex.addToCurrentRegion(new Rectangle(new Point(30, 0), new Point(60, 60)), new Region("B", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
+
+        neocortex.changeCurrentRegionTo("A");
+        neocortex.addToCurrentRegion(new Rectangle(new Point(0, 0), new Point(125, 125)), new Region("C", 125, 125, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
+
+        neocortex.changeCurrentRegionTo("B");
+        neocortex.addToCurrentRegion(new Rectangle(new Point(0, 0), new Point(125, 125)), new Region("D", 125, 125, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
+
+        neocortex.changeCurrentRegionTo("C");
+        neocortex.addToCurrentRegion(new Rectangle(new Point(0, 0), new Point(62, 125)), new Region("E", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
+        neocortex.addToCurrentRegion(new Rectangle(new Point(63, 0), new Point(125, 125)), new Region("F", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
+
+        neocortex.changeCurrentRegionTo("D");
+        neocortex.addToCurrentRegion(new Rectangle(new Point(0, 0), new Point(62, 125)), new Region("G", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
+        neocortex.addToCurrentRegion(new Rectangle(new Point(63, 0), new Point(125, 125)), new Region("H", 125, 125, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity), new RegionToRegionRandomConnect(), 0, 0);
+
+        Region I = new Region("I", 250, 250, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity);
+        Layer5Region M = new Layer5Region("M", 250, 250, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity);
+        neocortex.changeCurrentRegionTo("E");
+        neocortex.addToCurrentRegion(new Rectangle(new Point(0, 0), new Point(125, 125)), I, new RegionToRegionRectangleConnect(), 0, 0);
+        neocortex.addToCurrentRegion(new Rectangle(new Point(0, 0), new Point(125, 125)), M, new RegionToRegionRectangleConnect(), 0, 0);
+
+        Region J = new Region("J", 250, 250, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity);
+        neocortex.changeCurrentRegionTo("F");
+        neocortex.addToCurrentRegion(new Rectangle(new Point(0, 0), new Point(125, 125)), J, new RegionToRegionRectangleConnect(), 0, 0);
+
+        Region K = new Region("K", 250, 250, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity);
+        neocortex.changeCurrentRegionTo("G");
+        neocortex.addToCurrentRegion(new Rectangle(new Point(0, 0), new Point(125, 125)), K, new RegionToRegionRectangleConnect(), 0, 0);
+
+        Region L = new Region("L", 250, 250, LAYER_3_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity);
+        neocortex.changeCurrentRegionTo("H");
+        neocortex.addToCurrentRegion(new Rectangle(new Point(0, 0), new Point(125, 125)), L, new RegionToRegionRectangleConnect(), 0, 0);
+
+        // NOTE: I, J, K, & L are connected to different parts of the same Retina
+        Retina retina = new Retina(1000, 1000);
+
 //        AbstractSensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
 //        opticNerve.connect(retina.getVisionCells(0, 0, 500, 500), I, 0, 0); // .getVisionCells(topLeftPoint, bottomRightPoint)
 //        opticNerve.connect(retina.getVisionCells(0, 500, 500, 1000), J, 0, 0);
 //        opticNerve.connect(retina.getVisionCells(500, 0, 1000, 500), K, 0, 0);
 //        opticNerve.connect(retina.getVisionCells(500, 500, 1000, 1000), L, 0, 0);
-//
-//        NervousSystem nervousSystem = new NervousSystem(neocortex, null, retina); // no LGN with circle surround input for now
-//
-//        return nervousSystem;
-//    }
+        // TODO: finish interfaces
+
+        NervousSystem nervousSystem = new NervousSystem(neocortex, null, retina); // no LGN with circle surround input for now
+
+        return nervousSystem;
+    }
 
     public void test_HowToRunSingleLearningAlgorithmOnNervousSystem() throws IOException {
         Neocortex neocortex = this.partialNervousSystem.getCNS().getBrain().getCerebrum().getCerebralCortex().getNeocortex();
