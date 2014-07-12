@@ -18,7 +18,7 @@ import java.io.IOException;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version July 3, 2014
+ * @version July 12, 2014
  */
 public class HowMARK_II_FitsInToBrainAnatomy {
     private NervousSystem partialNervousSystem;
@@ -35,51 +35,84 @@ public class HowMARK_II_FitsInToBrainAnatomy {
     }
 
     /**
-     * A, B, C, D, E, F, & G are Region names.
-     * C = parietal lobe region
-     * // TODO: rename A,B,C... to correct layer of neocortex
-     * A = root region
-     *          A
-     *      B       C
-     *     D E     F G
-     *        Retina
-     * ImageRetinaIsLookingAt
+     * A, B, C, ... Z are Region names
+     * M = parietal lobe region meaning it's neuron activity directly causes the Retina to move to it's new
+     * position within the box Retina is stuck in.
+     *
+     *             root (runs just temporal pooling algorithm)
+     *            /    \
+     *          A        B (runs spatial & temporal pooling learning)
+     *          |        |
+     *          C        D (higher Layer 3 runs spatial pooling sparsifying & learning algorithm)
+     *         / \      / \
+     * +<---- E   F    G   H (Layer 4 runs spatial pooling & temporal pooling predictive algorithm)
+     * |      |   |    |   |
+     * |      I   J    K   L (Layer 3 runs spatial pooling sparsifying & learning algorithm)
+     * M      |   |    |   |
+     * |       \  |    |  /
+     * |  +-----\-|----|-/-----+
+     * |  |      \|    |/      |
+     * +--------> Retina       | <= box Retina is stuck in
+     *    |                    |
+     *    ImageRetinaIsLookingAt
+     *
+     * Detailed image of above diagram here: https://github.com/WalnutiQ/WalnutiQ/issues/107
      */
 //    private NervousSystem constructConnectedNervousSystem() {
-//        Neocortex neocortex = new Neocortex(new Region("A", 10, 10, 4, 20, 3));
 //
-//        neocortex.addToCurrentRegion(new Region("B", 25, 25, 4, 20, 3), new RegionToRegionRectangleConnect(), 0, 0);
-//        neocortex.addToCurrentRegion(new Layer5Region(("C", 50, 50, 4, 20, 3), new RegionToRegionRandomConnect(), 2, 3);
+//        final int LAYER_4_CELLS_PER_COLUMN = 4;
+//        final int LAYER_3_CELLS_PER_COLUMN = 1;
+//        double percentMinimumOverlap = 20;
+//        int desiredLocalActivity = 3;
 //
-//        Region D = new Region("D", 144, 144, 4, 20, 3);
-//        Region E = new Region("E", 144, 144, 4, 20, 3);
-//        neocortex.changeCurrentRegion("B");
-//        neocortex.addToCurrentRegion(D, new RegionToRegionRectangleConnect(), 1, 1);
-//        neocortex.addToCurrentRegion(E, new RegionToRegionRectangleConnect(), 2, 2);
+//        Neocortex neocortex = new Neocortex(new Region("root", 10, 10, LAYER_4_CELLS_PER_COLUMN, percentMinimumOverlap, desiredLocalActivity));
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("A", 25, 25, 4, 20, 3), new RegionToRegionRandomConnect(), 0, 0);
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Layer5Region(("B", 50, 50, 4, 20, 3), new RegionToRegionRandomConnect(), 0, 0);
 //
-//        Region F = new Region("F", 400, 400, 4, 20, 3);
-//        Region G = new Region("G", 400, 400, 4, 20, 3);
-//        neocortex.changeCurrentRegion("C");
-//        neocortex.addToCurrentRegion(F, new RegionToRegionRectangleConnect(), 1, 1);
-//        neocortex.addToCurrentRegion(G, new RegionToRegionRectangleConnect(), 2, 2);
+//        neocortex.changeCurrentRegionTo("A");
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("C", 25, 25, 4, 20, 3), new RegionToRegionRandomConnect(), 0, 0);
 //
-//        // NOTE: D, E, F, & G are connected to different parts of the same input SensorCell layer
+//        neocortex.changeCurrentRegionTo("B");
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("D", 25, 25, 4, 20, 3), new RegionToRegionRandomConnect(), 0, 0);
 //
+//        neocortex.changeCurrentRegionTo("C");
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("E", 25, 25, 4, 20, 3), new RegionToRegionRandomConnect(), 0, 0);
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("F", 25, 25, 4, 20, 3), new RegionToRegionRandomConnect(), 0, 0);
+//
+//        neocortex.changeCurrentRegionTo("D");
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("G", 25, 25, 4, 20, 3), new RegionToRegionRandomConnect(), 0, 0);
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, new Region("H", 25, 25, 4, 20, 3), new RegionToRegionRandomConnect(), 0, 0);
+//
+//        Region I = new Region("I", 144, 144, 4, 20, 3);
+//        neocortex.changeCurrentRegionTo("E");
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, I, new RegionToRegionRectangleConnect(), 0, 0);
+//
+//        Region J = new Region("J", 144, 144, 4, 20, 3);
+//        neocortex.changeCurrentRegionTo("F");
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, J, new RegionToRegionRectangleConnect(), 0, 0);
+//
+//        Region K = new Region("K", 144, 144, 4, 20, 3);
+//        neocortex.changeCurrentRegionTo("G");
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, K, new RegionToRegionRectangleConnect(), 0, 0);
+//
+//        Region L = new Region("L", 144, 144, 4, 20, 3);
+//        neocortex.changeCurrentRegionTo("H");
+//        neocortex.addToCurrentRegion(squareOfParentRegionToConnectTo, L, new RegionToRegionRectangleConnect(), 0, 0);
+//
+//        // NOTE: I, J, K, & L are connected to different parts of the same Retina
 //        Retina retina = new Retina(544, 544);
 //
-//        // what if you connect retina to Neocortex before passing it through NervousSystem
 //        AbstractSensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
-//        opticNerve.connect(retina.getQuadrantOneVisionCells(), D, 0, 0);
-//        opticNerve.connect(retina.getQuadrantTwoVisionCells(), E, 0, 0);
-//        opticNerve.connect(retina.getQuadrantThreeVisionCells(), F, 0, 0);
-//        opticNerve.connect(retina.getQuadrantFourVisionCells(), G, 0, 0);
+//        opticNerve.connect(retina.getVisionCells(0, 0, 544/2, 544/2), I, 0, 0); // .getVisionCells(topLeftPoint, bottomRightPoint)
+//        opticNerve.connect(retina.getVisionCells(0, 544/2, 544/2, 544), J, 0, 0);
+//        opticNerve.connect(retina.getVisionCells(544/2, 0, 544, 544/2), K, 0, 0);
+//        opticNerve.connect(retina.getVisionCells(544/2, 544/2, 544, 544), L, 0, 0);
 //
-//        NervousSystem nervousSystem = new NervousSystem(neocortex, null, retina); // no LGN for now
-//        // LGN with circle surround sound input
+//        NervousSystem nervousSystem = new NervousSystem(neocortex, null, retina); // no LGN with circle surround input for now
 //
 //        return nervousSystem;
 //    }
-//
+
 //    public void test_HowToRunSingleLearningAlgorithmOnNervousSystem() throws IOException {
 //        Neocortex neocortex = this.partialNervousSystem.getCNS().getBrain().getCerebrum().getCerebralCortex().getNeocortex();
 //

@@ -34,7 +34,7 @@ public class Region {
 
     private int inhibitionRadius;
 
-    public Region(String biologicalName, int numberOfColumnsAlongRowsDimension,
+    public  Region(String biologicalName, int numberOfColumnsAlongRowsDimension,
                   int numberOfColumnsAlongColumnsDimension, int cellsPerColumn,
                   double percentMinimumOverlapScore, int desiredLocalActivity) {
 

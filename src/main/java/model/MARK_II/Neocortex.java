@@ -42,7 +42,7 @@ public class Neocortex {
      *
      * @param newCurrentRegion The Region you would like to add child region(s) to.
      */
-    public void changeCurrentRegion(Region newCurrentRegion) {
+    public void changeCurrentRegionTo(Region newCurrentRegion) {
         if (newCurrentRegion == null) {
             throw new IllegalArgumentException(
                     "newCurrentRegion in Neocortex method changeCurrentRegion cannot be null");
