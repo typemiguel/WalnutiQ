@@ -1,6 +1,6 @@
-**[Eclipse Install](#setup-in-linuxmacwindows-with-eclipse)** or
-**[IntelliJ Install](#setup-in-linuxmacwindows-with-intellij)** or
-**[Gradle Install](#setup-in-linuxmacwindows-with-gradle)** |
+**Install code with [Eclipse](#setup-in-linuxmacwindows-with-eclipse)**,
+**[IntelliJ](#setup-in-linuxmacwindows-with-intellij)**, or
+**[Gradle](#setup-in-linuxmacwindows-with-gradle)** |
 **[How to contribute](#how-to-contribute)** |
 **[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)** |
 **[Important brain theories](#important-brain-theories-to-really-understand)**
@@ -191,19 +191,17 @@ programming. For more information please:
 
 1. Theory: 1 learning/predicting algorithm in the neocortex of the brain
    - Experiments that support this theory:
-     + A 1992 experiment summary: If you cut the wires from the ear to the auditory cortex and rewire the optic nerve to the
-                                  auditory cortex, then the auditory cortex learns to see.
-       - published paper describing details of experiment viewable [here](http://diyhpl.us/~bryan/papers2/paperbot/Visual%20projections%20routed%20to%20the%20auditory%20pathway%20in%20ferrets:%20receptive%20fields%20of%20visual%20neurons%20in%20primary%20auditory%20cortex.pdf) 
-       
+     + A 1992 experiment summary: If you cut the wires from the ear to the auditory cortex and rewire the optic nerve to the 
+       auditory cortex, then the auditory cortex learns to see.
+       - published paper describing details of experiment viewable 
+       [here](http://diyhpl.us/~bryan/papers2/paperbot/Visual%20projections%20routed%20to%20the%20auditory%20pathway%20in%20ferrets:%20receptive%20fields%20of%20visual%20neurons%20in%20primary%20auditory%20cortex.pdf) 
      + A 1989 experiment summary: If you make the wires from the optic nerve connect to the somatosensory cortex then the 
-                                  somatosensory cortex learns to see.
+       somatosensory cortex learns to see.
        - published paper describing details of experiment viewable [here](http://www.pnas.org/content/86/1/357.full.pdf)
-
    - Experiments that do NOT support this theory: 
-   
    - Conclusion: If different parts of the neocortex (contains auditory cortex, somatosensory, and others..)
-                 can be given new input and learn to process this new input, then we can guess there is a single 
-                 learning/predicting algorithm in all parts of the neocortex.
+     can be given new input and learn to process this new input, then we can guess there is a single 
+     learning/predicting algorithm in all parts of the neocortex.
 
 2. Theory: Orientation selectivity is learned & muscle movement is crucial for this process
    - Experiments that support this theory:
@@ -213,13 +211,11 @@ programming. For more information please:
        At five months the kittens were tested for line recognition. Those kittens raised in horizontal environments
        could not detect vertical aligned objects, and vice-versa.
        - published paper describing details of experiment viewable [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1307838/pdf/jphysiol00822-0028.pdf)
-       
    - Experiments that do NOT support this theory:
-   
    - Conclusion: Reality creates a representation in your brain as neuron activity which creates muscle movement(within the eyes,
-   				 arms, other muscles) causing the next image to appear on your retina to be predictable by the temporal pooling
-   				 algorithm in your neocortex. As you continue to see, columns in your neocortex become tuned to specific directions
-   				 and phases. 
+     arms, other muscles) causing the next image to appear on your retina to be predictable by the temporal pooling
+     algorithm in your neocortex. As you continue to see, columns in your neocortex become tuned to specific directions
+     and phases. 
 
 3. Theory: Spatial pooling, sequence memory, & temporal pooling are deduced algorithms that are occurring
    in the human neocortex layers 3 & 4 in a similar form giving the brain the ability to predict future input.
@@ -228,27 +224,25 @@ programming. For more information please:
        - paper that describes details of theory behind experiment viewable [here](https://dl.dropboxusercontent.com/u/106853306/Brain/HTM_CorticalLearningAlgorithms.pdf)
      + A 2011 experiment summary: Neurons higher in the hierarchy are more stable & selective to input
        - published paper describing details of experiment viewable [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2975390/)
-       
    - Experiments that do NOT support this theory:
-   
    - Conclusion: 
      + Spatial Pooling = Creates a sparse distributed representation activity of columns to efficiently represent 
-                         a larger input layer. Causes columns of neurons to become selectively tuned for specific input
-                         by strengthening & weakening the connections between cells/neurons.
+       a larger input layer. Causes columns of neurons to become selectively tuned for specific input
+       by strengthening & weakening the connections between cells/neurons.
      + Sequence Memory = Create even more sparse encoding by forcing specific neurons(within the set of active columns
-                         produced by spatial pooling) that best predicted the input to become "learning neurons". 
-                         This allows sensory input to be encoded within context. For example "squash" can mean the
-                         sport, the vegetable, and to step with force on something. How does your brain not get confused?
-                         Sequence memory provides an elegant solution to the brain's ability to do this.
+       produced by spatial pooling) that best predicted the input to become "learning neurons". 
+       This allows sensory input to be encoded within context. For example "squash" can mean the
+       sport, the vegetable, and to step with force on something. How does your brain not get confused?
+       Sequence memory provides an elegant solution to the brain's ability to do this.
      + Temporal Pooling = The act of strengthening & weakening the connections between cells/neurons to allow
-                          neurons to become more predictive of it's input.
+       neurons to become more predictive of it's input.
    
 4. Theory: Information flow in the brain
    - Path 1) synapseOnAxonOfNeuronA -> dendriteOfNeuronB -> cellBodyOfNeuronB -> axonOfNeuronB -> synapseOfNeuronC
    - Path 2) Read somewhere that dendrites can also be output devices to synapses(cellBody -> dendrite -> synapse)
    - Support:
    
-5. Theory: Some(a lot?) of what we call intelligence is developed during the first 2 years of life
+5. Theory: A lot of what we call intelligence is developed during the first 2 years of life
    - Reasoning: About 10^14 synapses in the brain by 2 years of age. About 10^8 seconds in 2 years. That means about 
                 10^6 synapses are formed per second in a fetus and infant.
    - Support:
