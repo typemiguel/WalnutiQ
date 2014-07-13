@@ -21,20 +21,16 @@ import model.util.Rectangle;
 public class Neocortex {
     private Region rootRegion;
     private Region currentRegion; // analogous to current directory
-    private AbstractRegionToRegionConnect connectType; // TODO: deprecate this variable
+    private AbstractRegionToRegionConnect connectType;
 
-    public Neocortex(Region rootRegion) {
+    public Neocortex(Region rootRegion, AbstractRegionToRegionConnect neocortexRegionToNeocortexRegion) {
         if (rootRegion == null) {
             throw new IllegalArgumentException(
                     "rootRegion in Neocortex constructor cannot be null");
         }
         this.rootRegion = rootRegion;
         this.currentRegion = this.rootRegion;
-    }
 
-    public Neocortex(Region rootRegion,
-                     AbstractRegionToRegionConnect neocortexRegionToNeocortexRegion) {
-        this(rootRegion);
         if (neocortexRegionToNeocortexRegion == null) {
             throw new IllegalArgumentException(
                     "connectType in Neocortex constructor cannot be null");
@@ -87,7 +83,6 @@ public class Neocortex {
      * @param childRegion The Region to be added to the currentRegion.
      */
     public boolean addToCurrentRegion(Rectangle rectanglePartOfParentRegionToConnectTo, Region childRegion,
-                                      AbstractRegionToRegionConnect neocortexRegionToNeocortexRegion,
                                       int numberOfColumnsToOverlapAlongNumberOfRows,
                                       int numberOfColumnsToOverlapAlongNumberOfColumns) {
         if (childRegion == null) {
