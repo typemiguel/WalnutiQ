@@ -1,9 +1,9 @@
-**Install code with [Eclipse](#setup-in-linuxmacwindows-with-eclipse)**,
-**[IntelliJ](#setup-in-linuxmacwindows-with-intellij)**, or
-**[Gradle](#setup-in-linuxmacwindows-with-gradle)** |
-**[How to contribute](#how-to-contribute)** |
-**[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)** |
-**[Important brain theories](#important-brain-theories-to-really-understand)**
+**Install with [Eclipse](#install-in-linuxmacwindows-with-eclipse),**
+**[IntelliJ](#install-in-linuxmacwindows-with-intellij), or**
+**[Gradle](#install-in-linuxmacwindows-with-gradle) |**
+**[How to contribute](#how-to-contribute) |**
+**[What are all the files here for?](#what-are-all-the-files-here-for) |**
+**[Important brain theories](#important-brain-theories)**
 
 # [WalnutiQ](http://walnutiq.com)
 
@@ -45,7 +45,7 @@ programming. For more information please:
 - Read Numenta's great explanation of their research in this [white paper](https://db.tt/FuQWQuwE) 
   to better understand the theory behind this repository.
 
-## Setup in Linux/Mac/Windows with Eclipse
+## Install in Linux/Mac/Windows with Eclipse
 1. [Install Eclipse Standard 4.3.2](https://www.eclipse.org/downloads/) or use
    any other version of Eclipse if you already have it installed.
 
@@ -80,7 +80,7 @@ programming. For more information please:
 
 7. Right click your folder `WalnutiQ` `=>` Run As `=>` JUnit Test `=>` ALL TESTS PASS!
 
-## Setup in Linux/Mac/Windows with IntelliJ
+## Install in Linux/Mac/Windows with IntelliJ
 1. [Install IntelliJ IDEA 13.1 FREE Community Edition](http://www.jetbrains.com/idea/download/)
    or use any other version of IntelliJ if you already have it installed.
 
@@ -92,7 +92,7 @@ programming. For more information please:
 
 4. In IntelliJ right-click the `WalnutiQ/` folder and select "Run 'All Tests'". 
   
-## Setup in Linux/Mac/Windows with Gradle
+## Install in Linux/Mac/Windows with Gradle
 1. Make sure you have java version 1.7. To check open up a new terminal and type:
    ```sh
    prompt> java -version
@@ -111,7 +111,6 @@ programming. For more information please:
    :compileJava UP-TO-DATE
    # some other stuff...
    :build UP-TO-DATE
-
    BUILD SUCCESSFUL # If you see `BUILD SUCCESSFUL` all of the tests have passed! 
    ```
 
@@ -119,7 +118,6 @@ programming. For more information please:
    ```sh
    prompt> gradlew.bat
    # some other stuff...
-
    BUILD SUCCESSFUL # If you see `BUILD SUCCESSFUL` all of the tests have passed! 
    ```
    
@@ -144,7 +142,7 @@ programming. For more information please:
    [here](https://github.com/quinnliu/WalnutiQ/issues/62) to contribute to this
    repository effectively. Happy coding!
 
-## What each file/folder in this repository is for:
+## What are all the files here for
   - experiments  
       + model
           - MARK_I 
@@ -171,7 +169,6 @@ programming. For more information please:
               + [TemporalPooler.java](./src/main/java/model/MARK_II/TemporalPooler.java) 
                 = models neocortex's ability to predict future input using long term potentiation 
                   and depression on synapses of distal dendrites
-
             - [util](./src/main/java/model/util) = classes that enable the brain model properties
               to be viewed graphically and efficiently saved and opened  
       + test = test classes for important classes in the `src/main/java/model` folder
@@ -187,7 +184,7 @@ programming. For more information please:
   - gradlew = allows you to use Gradle to run all of the code in this repository in Linux & Mac
   - gradlew.bat = allows you to use Gradle to run all of the code in this repository in Windows
 
-# Important brain theories to really understand
+# Important brain theories 
 
 1. Theory: 1 learning/predicting algorithm in the neocortex of the brain
    - Experiments that support this theory:
