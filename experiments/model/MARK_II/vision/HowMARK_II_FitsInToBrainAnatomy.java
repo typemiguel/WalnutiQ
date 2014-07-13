@@ -64,7 +64,6 @@ public class HowMARK_II_FitsInToBrainAnatomy {
      *    ImageRetinaIsLookingAt
      */
     private NervousSystem constructConnectedNervousSystem() {
-
         final int LAYER_4_CELLS_PER_COLUMN = 4;
         final int LAYER_3_CELLS_PER_COLUMN = 1;
         double percentMinimumOverlap = 20;
@@ -109,12 +108,11 @@ public class HowMARK_II_FitsInToBrainAnatomy {
         // NOTE: I, J, K, & L are connected to different parts of the same Retina
         Retina retina = new Retina(1000, 1000);
 
-//        AbstractSensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
-//        opticNerve.connect(retina.getVisionCells(0, 0, 500, 500), I, 0, 0); // .getVisionCells(topLeftPoint, bottomRightPoint)
-//        opticNerve.connect(retina.getVisionCells(0, 500, 500, 1000), J, 0, 0);
-//        opticNerve.connect(retina.getVisionCells(500, 0, 1000, 500), K, 0, 0);
-//        opticNerve.connect(retina.getVisionCells(500, 500, 1000, 1000), L, 0, 0);
-        // TODO: finish interfaces
+        AbstractSensorCellsToRegionConnect opticNerve = new SensorCellsToRegionRectangleConnect();
+        opticNerve.connect(retina.getVisionCells(0, 0, 500, 500), I, 0, 0); // .getVisionCells(topLeftPoint, bottomRightPoint)
+        opticNerve.connect(retina.getVisionCells(0, 500, 500, 1000), J, 0, 0);
+        opticNerve.connect(retina.getVisionCells(500, 0, 1000, 500), K, 0, 0);
+        opticNerve.connect(retina.getVisionCells(500, 500, 1000, 1000), L, 0, 0);
 
         NervousSystem nervousSystem = new NervousSystem(neocortex, null, retina); // no LGN with circle surround input for now
 

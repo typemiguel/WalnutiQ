@@ -1,14 +1,16 @@
 **[Eclipse Install](#setup-in-linuxmacwindows-with-eclipse)** or
 **[IntelliJ Install](#setup-in-linuxmacwindows-with-intellij)** or
 **[Gradle Install](#setup-in-linuxmacwindows-with-gradle)** |
-**[How to Contribute](#how-to-contribute)** |
-**[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)**
+**[How to contribute](#how-to-contribute)** |
+**[What are all the files here for?](#what-each-filefolder-in-this-repository-is-for)** |
+**[Important brain theories](#important-brain-theories-to-really-understand)**
 
 # [WalnutiQ](http://walnutiq.com)
 
-"*Time is all you have. And you may find one day that you have less than you think.*"  
+"*Most doors in the world are closed, so if you find one that you want to get into, you damn well better have an 
+  interesting knock.*" 
   
-~ Randy Pausch
+~ Sam Harper
 
 [![Build Status](https://travis-ci.org/WalnutiQ/WalnutiQ.png)](https://travis-ci.org/WalnutiQ/WalnutiQ)
 
@@ -23,32 +25,25 @@ better.
 
 Here you will find code that allows you to build a partial 
 human brain model, train it on input data using theorized
-learning algorithms, and view its activity as text output.
+learning algorithms, and view its activity.
 All of the code here supports modeling of the human 
 brain at a high level of abstraction while still allowing user
-access to individual neuron properties. For more information please 
-watch this [video playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) 
-to become familiar with the neuroscience behind this repository.
+access to individual neuron properties. 
 
 If you are interested in becoming a researcher/developer, the 
 only requirement is interest in understanding how the brain 
-really works. If you are not interested in programming there are
-plenty of research tasks we need your help on [here](https://github.com/quinnliu/WalnutiQ/issues?labels=Research).
-If you are interested in gaining programming experience by
-building brain models I would be happy to google hangout with 
-you or meet you in person regardless of your programming
-experience! Feel free to e-mail me at quinnliu@vt.edu to get 
-coffee/lunch/dinner to talk about how you can contribute.
+really works. Please e-mail me at quinnliu@vt.edu talk about how you can get involved!
 
-Most importantly, this research is made possible by the 
-neuroscientists and engineers at [Numenta](http://numenta.org/). 
-Numenta has designed a exciting new technology that accurately models 
-layers 3 & 4 of the human neocortex. They have generously released 
-the pseudocode for their learning algorithms, and this repository is an 
-extended implementation of their algorithms using object-oriented 
-programming. Make sure to read Numenta's great explanation 
-of their research in this [white paper](https://db.tt/FuQWQuwE) 
-to better understand the theory behind this repository.
+Most importantly, this research is made possible by everyone at [Numenta](http://numenta.org/). 
+Numenta has theorized and tested algorithms that model layers 3 & 4 of the human neocortex. 
+They have generously released the pseudocode for their learning algorithms, 
+and this repository is an extended implementation of their algorithms using object-oriented 
+programming. For more information please:
+
+- Watch this [video playlist](http://www.youtube.com/playlist?list=PLPXsMt57rLtgddN0NQEmXP-FbF6wt2O-f) to become 
+  familiar with the neuroscience behind this repository.
+- Read Numenta's great explanation of their research in this [white paper](https://db.tt/FuQWQuwE) 
+  to better understand the theory behind this repository.
 
 ## Setup in Linux/Mac/Windows with Eclipse
 1. [Install Eclipse Standard 4.3.2](https://www.eclipse.org/downloads/) or use
@@ -135,7 +130,7 @@ to better understand the theory behind this repository.
    # hopefully all the tests still pass... :)
    ```
 
-## How to Contribute
+## How to contribute
 1. View an example of how some of the code is used in the file
    [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
    Please do not be afriad to ask a question if you are confused!
@@ -158,8 +153,6 @@ to better understand the theory behind this repository.
               set called MNIST
   - gradle = the actual Gradle code for building our Java code
   - images = images used in training & testing the partial brain model
-  - modelInOtherObjectOrientedLanguages = I realize not everyone is the biggest fan
-      of Java so let's rewrite it in as many other object oriented languages as possible!
   - referencedLibraries = contains .jar files(of other people's code) needed to run WalnutiQ
   - src
       + main
@@ -187,7 +180,6 @@ to better understand the theory behind this repository.
                your files to be organized in the correct folder
   - .travis.yml = tells [our custom travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) 
                   what versions of Java to test the files here
-  - BrainTheories.md = list of important brain theories with support and simple explanation
   - LICENSE.txt = MIT liscense saying you can do whatever you want the code here 
                   but it would be very cool of you to do something nice with it.
   - README.md = the file you are reading right now
@@ -195,5 +187,57 @@ to better understand the theory behind this repository.
   - gradlew = allows you to use Gradle to run all of the code in this repository in Linux & Mac
   - gradlew.bat = allows you to use Gradle to run all of the code in this repository in Windows
 
-===============================================================
-Please contact me at quinnliu@vt.edu if you have any questions! 
+# Important brain theories to really understand
+1. - Theory: 1 learning/predicting algorithm in the neocortex of the brain
+   - Support:
+     + Experiment Summary: If you cut the wires from the ear to the auditory cortex and rewire the optic nerve to the
+                           auditory cortex, then the auditory cortex learns to see.
+       - published paper describing details of experiment in 1992 viewable [here](http://diyhpl.us/~bryan/papers2/paperbot/Visual%20projections%20routed%20to%20the%20auditory%20pathway%20in%20ferrets:%20receptive%20fields%20of%20visual%20neurons%20in%20primary%20auditory%20cortex.pdf) 
+       
+     + google "Metin & Frost, 1989" to find paper
+       - Summary: If you make the wires from the optic nerve connect to the somatosensory cortex then the 
+                  somatosensory cortex learns to see.
+   - Conclusion: If different parts of the neocortex (contains auditory cortex, somatosensory, and others..)
+                 can be given new input and learn to process this new input, then we can guess there is a single 
+                 learning/predicting algorithm in all parts of the neocortex.
+
+2. Orientation selectivity is learned & muscle movement is crucial for this process
+   - Reasoning: Reality creates a representation in your brain as neuron activity which creates muscle movement(within the eyes,
+   				arms, other muscles) causing the next image to appear on your retina to be predictable by the temporal pooling
+   				algorithm in your neocortex. As you continue to see, columns in your neocortex become tuned to specific directions
+   				and phases. 
+   - Support: 
+     + published paper by Blakemore, C. & Cooper, G.F. in 1970 viewable [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1307838/pdf/jphysiol00822-0028.pdf)
+       - Summary: 
+         + Methods: Kittens where raised in either a horizontally or vertically stripped environment for five hours per 
+                    day for five months. The environments forced the kitten's to only look forward at vertical stripes or horizontal
+                    stripes. The remaining 19 hours each day the kittens were raised in darkness.
+         + Results: At five months the kittens were tested for line recognition. Those kittens raised in horizontal environments
+                    could not detect vertical aligned objects, and vice-versa.
+
+3. Spatial pooling, sequence memory, & temporal pooling are deduced properties that are occurring
+   in the human neocortex layers 3 & 4 in a similar form.
+   - Spatial Pooling = Creates a sparse distributed representation activity of columns to efficiently represent 
+                       a larger input layer. Causes columns of neurons to become selectively tuned for specific input
+                       by strengthening & weakening the connections between cells/neurons.
+   - Sequence Memory = Create even more sparse encoding by forcing specific neurons(within the set of active columns
+                       produced by spatial pooling) that best predicted the input to become "learning neurons". 
+                       This allows sensory input to be encoded within context. For example "squash" can mean the
+                       sport, the vegetable, and to step with force on something. How does your brain not get confused?
+                       Sequence memory provides an elegant solution to the brain's ability to do this.
+   - Temporal Pooling = The act of strengthening & weakening the connections between cells/neurons to allow
+                        neurons to become more predictive of it's input.
+   - Support: 
+     + described in this [paper](https://dl.dropboxusercontent.com/u/106853306/Brain/HTM_CorticalLearningAlgorithms.pdf)
+     + http://www.ncbi.nlm.nih.gov/pubmed/20881116
+       - Summary: neurons higher in the hierarchy are more stable & selective to input
+   
+4. Information flow in the brain
+   - Path 1) synapseOnAxonOfNeuronA -> dendriteOfNeuronB -> cellBodyOfNeuronB -> axonOfNeuronB -> synapseOfNeuronC
+   - Path 2) Read somewhere that dendrites can also be output devices to synapses(cellBody -> dendrite -> synapse). 
+   - Support: TODO: find support
+   
+5. The majority of what we call intelligence is developed during the first 2 years of life
+   - Reasoning: About 10^14 synapses in the brain by 2 years of age. About 10^8 seconds in 2 years. That means about 
+                10^6 synapses are formed per second in a fetus and infant.
+   - Support: TODO: find support
