@@ -111,7 +111,6 @@ public class FindOptimalParametersForSPandTP {
         // construct model
         //SaccadingRetina retina = null;
         //OldImageViewer oldImageViewer = null;
-        // TODO:
 
         // spatialPooler.performSpatialPooling();
         // temporalPooler.performSpatialPooling();

@@ -1,7 +1,8 @@
 package model.util;
 
 /**
- * Created by Quinn Liu(quinnliu@vt.edu) on 6/28/14.
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version June 29, 2014
  */
 public class Point3D {
     private double x;

@@ -28,10 +28,10 @@ public abstract class AbstractRegionToRegionConnect {
         } else if (childRegion == null) {
             throw new IllegalArgumentException(
                     "childRegion in connect method cannot be null");
-        } else if (childRegion.getXAxisLength() <= parentRegion
-                .getXAxisLength()
-                || childRegion.getYAxisLength() <= parentRegion
-                .getYAxisLength()) {
+        } else if (childRegion.getNumberOfRowsAlongRegionYAxis() <= parentRegion
+                .getNumberOfRowsAlongRegionYAxis()
+                || childRegion.getNumberOfColumnsAlongRegionXAxis() <= parentRegion
+                .getNumberOfColumnsAlongRegionXAxis()) {
             throw new IllegalArgumentException(
                     "childRegion in connect method cannot be smaller in X or Y "
                             + "dimentions than the parentRegion");

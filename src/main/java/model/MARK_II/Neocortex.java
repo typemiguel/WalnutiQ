@@ -1,6 +1,7 @@
 package model.MARK_II;
 
 import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
+import model.util.Rectangle;
 
 /**
  * Neocortex is a undirected tree of Regions. Creating a Neocortex with multiple
@@ -15,30 +16,48 @@ import model.MARK_II.connectTypes.AbstractRegionToRegionConnect;
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @author Michael Cogswell (cogswell@vt.edu)
- * @version June 8, 2013
+ * @version July 12, 2014
  */
 public class Neocortex {
     private Region rootRegion;
     private Region currentRegion; // analogous to current directory
     private AbstractRegionToRegionConnect connectType;
 
-    public Neocortex(Region rootRegion,
-                     AbstractRegionToRegionConnect neocortexRegionToNeocortexRegion) {
+    public Neocortex(Region rootRegion, AbstractRegionToRegionConnect neocortexRegionToNeocortexRegion) {
         if (rootRegion == null) {
             throw new IllegalArgumentException(
                     "rootRegion in Neocortex constructor cannot be null");
-        } else if (neocortexRegionToNeocortexRegion == null) {
-            throw new IllegalArgumentException(
-                    "connectType in Neocortex constructor cannot be null");
         }
         this.rootRegion = rootRegion;
         this.currentRegion = this.rootRegion;
+
+        if (neocortexRegionToNeocortexRegion == null) {
+            throw new IllegalArgumentException(
+                    "connectType in Neocortex constructor cannot be null");
+        }
         this.connectType = neocortexRegionToNeocortexRegion;
     }
 
     /**
+     * Traverses the regions within this neocortex to find the region the desired biological name
+     * and changes the currentRegion to point to this region.
+     *
+     * @param newCurrentRegionBiologicalName
+     */
+    public boolean changeCurrentRegionTo(String newCurrentRegionBiologicalName) {
+        if (newCurrentRegionBiologicalName == null) {
+            throw new IllegalArgumentException(
+                    "newCurrentRegionBiologicalName in Neocortex method changeCurrentRegionTo() cannot be null");
+        }
+        // check if newCurrentRegion exists within neocortex
+
+        // TODO: actually implement
+        return false;
+    }
+
+    /**
      * Sets the parameter newCurrentRegion as the currentRegion within
-     * neocortex.
+     * neocortex. // TODO: deprecate this method
      *
      * @param newCurrentRegion The Region you would like to add child region(s) to.
      */
@@ -51,6 +70,11 @@ public class Neocortex {
         this.currentRegion = newCurrentRegion;
     }
 
+    public Region getRegion(String regionBiologicalName) {
+        // TODO: search the neocortex for the region name
+        return null;
+    }
+
     public Region getCurrentRegion() {
         return this.currentRegion;
     }
@@ -58,15 +82,21 @@ public class Neocortex {
     /**
      * @param childRegion The Region to be added to the currentRegion.
      */
-    public void addToCurrentRegion(Region childRegion) {
+    public boolean addToCurrentRegion(Rectangle rectanglePartOfParentRegionToConnectTo, Region childRegion,
+                                      int numberOfColumnsToOverlapAlongNumberOfRows,
+                                      int numberOfColumnsToOverlapAlongNumberOfColumns) {
         if (childRegion == null) {
             throw new IllegalArgumentException(
                     "childRegion in Neocortex method addToCurrentRegion cannot be null");
         }
         this.currentRegion.addChildRegion(childRegion);
         // connect currentRegion to childRegion
-        this.connectType.connect(childRegion, this.currentRegion, 0, 0);
+        //this.connectType.connect(childRegion, this.currentRegion, 0, 0);
+        return false;
     }
 
-    // post-order traversal with running learning algorithm
+    public boolean runSingleLearningAlgorithmOneTimeStep() {
+        // TODO: post-order traversal with running learning algorithm
+        return false;
+    }
 }

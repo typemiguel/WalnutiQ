@@ -23,8 +23,8 @@ public class RegionConsoleViewer {
      * @return A 2-D char array of Columns' overlapScores.
      */
     public static char[][] getColumnActiveStatesCharArray(Region region) {
-        char[][] columnActiveStates = new char[region.getXAxisLength()][region
-                .getYAxisLength()];
+        char[][] columnActiveStates = new char[region.getNumberOfRowsAlongRegionYAxis()][region
+                .getNumberOfColumnsAlongRegionXAxis()];
         Column[][] columns = region.getColumns();
         for (int row = 0; row < columnActiveStates.length; row++) {
             for (int column = 0; column < columnActiveStates[row].length; column++) {
@@ -48,8 +48,8 @@ public class RegionConsoleViewer {
      * @return A 2-D integer array of Columns' overlapScores.
      */
     public static int[][] getColumnOverlapScoresIntArray(Region region) {
-        int[][] columnOverlapScores = new int[region.getXAxisLength()][region
-                .getYAxisLength()];
+        int[][] columnOverlapScores = new int[region.getNumberOfRowsAlongRegionYAxis()][region
+                .getNumberOfColumnsAlongRegionXAxis()];
         Column[][] columns = region.getColumns();
         for (int row = 0; row < columnOverlapScores.length; row++) {
             for (int column = 0; column < columnOverlapScores[row].length; column++) {

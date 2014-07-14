@@ -1,7 +1,8 @@
 package model.util;
 
 /**
- * Created by qliu on 6/29/14.
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version June 29, 2014
  */
 public class ConvertToValidCode {
     /**

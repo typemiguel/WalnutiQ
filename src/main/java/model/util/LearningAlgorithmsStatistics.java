@@ -6,7 +6,8 @@ import model.MARK_II.Neuron;
 import model.MARK_II.Region;
 
 /**
- * Created by qliu on 6/22/14.
+ * @author Quinn Liu (quinnliu@vt.edu)
+ * @version June 22, 2014
  */
 public class LearningAlgorithmsStatistics {
     /**
@@ -40,9 +41,9 @@ public class LearningAlgorithmsStatistics {
 
     public void updateModelLearningMetrics(Region region) {
         Column[][] columns = region.getColumns();
-        for (int x = 0; x < region.getXAxisLength(); x++) {
-            for (int y = 0; y < region.getYAxisLength(); y++) {
-                for (Neuron neuron : columns[x][y].getNeurons()) {
+        for (int row = 0; row < region.getNumberOfRowsAlongRegionYAxis(); row++) {
+            for (int column = 0; column < region.getNumberOfColumnsAlongRegionXAxis(); column++) {
+                for (Neuron neuron : columns[row][column].getNeurons()) {
                     for (DistalSegment distalSegment : neuron
                             .getDistalSegments()) {
                         this.totalNumberOfDistalSegmentsInCurrentTimeStep++;

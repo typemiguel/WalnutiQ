@@ -1,6 +1,8 @@
 package model;
 
 import model.MARK_II.VisionCell;
+import model.util.*;
+import model.util.Rectangle;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -8,9 +10,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * Input to OldRetina: images of different possible formats.
- * <p/>
- * Output of OldRetina: activity of Cells within VisionCells.
+ * Input to Retina: images of different possible formats.
+ *
+ * Output of Retina: activity of Cells within VisionCells.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
  * @version Feb 3, 2014
@@ -30,6 +32,11 @@ public class Retina {
 
     public VisionCell[][] getVisionCells() {
         return this.visionCells;
+    }
+
+    public VisionCell[][] getVisionCells(Rectangle rectangle) {
+        // TODO: actually implement
+        return null;
     }
 
     /**

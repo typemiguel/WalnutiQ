@@ -65,8 +65,8 @@ public class FindOptimalParametersForSDR {
         // = (6,5)(6, 3)(6, 2)(5, 3)(3, 5)(2, 2)(1, 3)(1, 2)(2, 5)(1, 5)(4, 4)
 
         // -----------------------compute SDR score----------------------------
-        int totalNumberOfColumnsInRegion = region.getXAxisLength()
-                * region.getYAxisLength();
+        int totalNumberOfColumnsInRegion = region.getNumberOfRowsAlongRegionYAxis()
+                * region.getNumberOfColumnsAlongRegionXAxis();
         SDRScoreCalculator sdrScoreCalculator = new SDRScoreCalculator(
                 columnActivityAfterSeeingImage2,
                 desiredPercentageOfActiveColumns, totalNumberOfColumnsInRegion);
@@ -131,8 +131,8 @@ public class FindOptimalParametersForSDR {
                     .getActiveColumnPositions();
 
             // compute SDR score
-            int totalNumberOfColumnsInRegion = region.getXAxisLength()
-                    * region.getYAxisLength();
+            int totalNumberOfColumnsInRegion = region.getNumberOfRowsAlongRegionYAxis()
+                    * region.getNumberOfColumnsAlongRegionXAxis();
             SDRScoreCalculator sdrScoreCalculator = new SDRScoreCalculator(
                     columnActivityAfterSeeingCurrentMNISTImage,
                     desiredPercentageOfActiveColumns,

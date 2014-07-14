@@ -24,7 +24,7 @@ public class Region {
     private String biologicalName;
     private List<Region> children;
 
-    private Column[][] columns;
+    protected Column[][] columns;
 
     private double percentMinimumOverlapScore;
 
@@ -34,7 +34,7 @@ public class Region {
 
     private int inhibitionRadius;
 
-    public Region(String biologicalName, int numberOfColumnsAlongRowsDimension,
+    public  Region(String biologicalName, int numberOfColumnsAlongRowsDimension,
                   int numberOfColumnsAlongColumnsDimension, int cellsPerColumn,
                   double percentMinimumOverlapScore, int desiredLocalActivity) {
 
@@ -145,8 +145,8 @@ public class Region {
     }
 
     public void setInhibitionRadius(int inhibitionRadius) {
-        if (inhibitionRadius < 0 || inhibitionRadius > this.getXAxisLength()
-                || inhibitionRadius > this.getYAxisLength()) {
+        if (inhibitionRadius < 0 || inhibitionRadius > this.getNumberOfRowsAlongRegionYAxis()
+                || inhibitionRadius > this.getNumberOfColumnsAlongRegionXAxis()) {
             throw new IllegalArgumentException(
                     "inhibition in Region class setInhibitionRadius method must "
                             + "be >= 0 and < the number of columns along boths sides of the region");
@@ -163,16 +163,16 @@ public class Region {
         this.percentMinimumOverlapScore = percentMinimumOverlapScore;
     }
 
-    public int getXAxisLength() {
+    public int getNumberOfRowsAlongRegionYAxis() {
         return this.columns.length;
     }
 
-    public int getYAxisLength() {
+    public int getNumberOfColumnsAlongRegionXAxis() {
         return this.columns[0].length;
     }
 
     public int getNumberOfColumns() {
-        return this.getXAxisLength() * this.getYAxisLength();
+        return this.getNumberOfRowsAlongRegionYAxis() * this.getNumberOfColumnsAlongRegionXAxis();
     }
 
     public Dimension getBottomLayerXYAxisLength() {

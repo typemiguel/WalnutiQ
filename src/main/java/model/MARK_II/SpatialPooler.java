@@ -279,13 +279,13 @@ public class SpatialPooler extends Pooler {
      * Adds all Columns within inhitionRadius of the parameter Column to the
      * neighborColumns field within the parameter Column.
      *
-     * @param columnXAxis position of Column within Region along x-axis
-     * @param columnYAxis position of Column within Region along y-axis
+     * @param columnRowPosition position of Column within Region along y-axis
+     * @param columnColumnPosition position of Column within Region along x-axis
      */
-    void updateNeighborColumns(int columnXAxis, int columnYAxis) {
-        if (columnXAxis < 0 || columnXAxis > this.region.getXAxisLength()
-                || columnYAxis < 0
-                || columnYAxis > this.region.getYAxisLength()) {
+    void updateNeighborColumns(int columnRowPosition, int columnColumnPosition) {
+        if (columnRowPosition < 0 || columnRowPosition > this.region.getNumberOfRowsAlongRegionYAxis()
+                || columnColumnPosition < 0
+                || columnColumnPosition > this.region.getNumberOfColumnsAlongRegionXAxis()) {
             throw new IllegalArgumentException(
                     "the Column being updated by the updateNeighborColumns method"
                             + "in SpatialPooler class does not exist within the Region");
@@ -294,35 +294,35 @@ public class SpatialPooler extends Pooler {
         assert (localInhibitionRadius >= 0);
 
         // forced inhibition of adjacent Columns
-        int xInitial = Math.max(0, columnXAxis - localInhibitionRadius);
-        int yInitial = Math.max(0, columnYAxis - localInhibitionRadius);
+        int xInitial = Math.max(0, columnRowPosition - localInhibitionRadius);
+        int yInitial = Math.max(0, columnColumnPosition - localInhibitionRadius);
 
         // System.out.println("xInitial, yInitial: " + xInitial + ", " +
         // yInitial);
-        int xFinal = Math.min(this.region.getXAxisLength(), columnXAxis
+        int xFinal = Math.min(this.region.getNumberOfRowsAlongRegionYAxis(), columnRowPosition
                 + localInhibitionRadius);
-        int yFinal = Math.min(this.region.getYAxisLength(), columnYAxis
+        int yFinal = Math.min(this.region.getNumberOfColumnsAlongRegionXAxis(), columnColumnPosition
                 + localInhibitionRadius);
 
         // to allow double for loop to reach end portion of this.allColumns
-        xFinal = Math.min(this.region.getXAxisLength(), xFinal + 1);
-        yFinal = Math.min(this.region.getYAxisLength(), yFinal + 1);
+        xFinal = Math.min(this.region.getNumberOfRowsAlongRegionYAxis(), xFinal + 1);
+        yFinal = Math.min(this.region.getNumberOfColumnsAlongRegionXAxis(), yFinal + 1);
         // System.out.println("xFinal, yFinal: " + xFinal + ", " + yFinal);
 
         Column[][] columns = this.region.getColumns();
 
-        if (columns[columnXAxis][columnYAxis].getNeighborColumns().size() != 0) {
+        if (columns[columnRowPosition][columnColumnPosition].getNeighborColumns().size() != 0) {
             // remove neighbors of Column computed with old inhibitionRadius
-            columns[columnXAxis][columnYAxis].clearNeighborColumns();
+            columns[columnRowPosition][columnColumnPosition].clearNeighborColumns();
         }
 
         for (int columnIndex = xInitial; columnIndex < xFinal; columnIndex++) {
             for (int rowIndex = yInitial; rowIndex < yFinal; rowIndex++) {
-                if (columnIndex == columnXAxis && rowIndex == columnYAxis) {
+                if (columnIndex == columnRowPosition && rowIndex == columnColumnPosition) {
                 } else {
                     Column newColumn = columns[columnIndex][rowIndex];
                     if (newColumn != null) {
-                        columns[columnXAxis][columnYAxis].addNeighborColumns(new ColumnPosition(columnIndex, rowIndex));
+                        columns[columnRowPosition][columnColumnPosition].addNeighborColumns(new ColumnPosition(columnIndex, rowIndex));
                     }
                 }
             }
@@ -387,12 +387,12 @@ public class SpatialPooler extends Pooler {
                         .getBottomLayerXYAxisLength();
 
                 // get the column position relative to the input layer
-                double xRatio = bottomLayerDimensions.width
-                        / this.region.getXAxisLength();
-                double columnX = xRatio / 2 + x * xRatio;
-                double yRatio = bottomLayerDimensions.height
-                        / this.region.getYAxisLength();
-                double columnY = yRatio / 2 + y * yRatio;
+                double rowRatio = bottomLayerDimensions.width
+                        / this.region.getNumberOfRowsAlongRegionYAxis();
+                double columnX = rowRatio / 2 + x * rowRatio;
+                double columnRatio = bottomLayerDimensions.height
+                        / this.region.getNumberOfColumnsAlongRegionXAxis();
+                double columnY = columnRatio / 2 + y * columnRatio;
 
                 double totalSynapseDistanceFromOriginColumn = 0.0;
                 // iterates over every connected Synapses and sums the
@@ -433,10 +433,10 @@ public class SpatialPooler extends Pooler {
      * than minimumDutyOverlap. Exponential Moving Average(EMA): St = a * Yt +
      * (1 - a) * St - 1.
      */
-    void updateOverlapDutyCycle(int columnXAxis, int columnYAxis) {
-        if (columnXAxis < 0 || columnXAxis > this.region.getXAxisLength()
-                || columnYAxis < 0
-                || columnYAxis > this.region.getYAxisLength()) {
+    void updateOverlapDutyCycle(int columnRowPosition, int columnColumnPosition) {
+        if (columnRowPosition < 0 || columnRowPosition > this.region.getNumberOfRowsAlongRegionYAxis()
+                || columnColumnPosition < 0
+                || columnColumnPosition > this.region.getNumberOfColumnsAlongRegionXAxis()) {
             throw new IllegalArgumentException(
                     "the Column being updated by the updateOverlapDutyCycle method"
                             + "in SpatialPooler does not exist within the Region");
@@ -452,13 +452,13 @@ public class SpatialPooler extends Pooler {
         // bound of 1.
         Column[][] columns = this.region.getColumns();
         float newOverlapDutyCycle = (1.0f - Column.EXPONENTIAL_MOVING_AVERAGE_AlPHA)
-                * columns[columnXAxis][columnYAxis].getOverlapDutyCycle();
+                * columns[columnRowPosition][columnColumnPosition].getOverlapDutyCycle();
 
-        if (columns[columnXAxis][columnYAxis].getOverlapScore() > this.region
+        if (columns[columnRowPosition][columnColumnPosition].getOverlapScore() > this.region
                 .getMinimumOverlapScore()) {
             newOverlapDutyCycle += Column.EXPONENTIAL_MOVING_AVERAGE_AlPHA;
         }
-        columns[columnXAxis][columnYAxis]
+        columns[columnRowPosition][columnColumnPosition]
                 .setOverlapDutyCycle(newOverlapDutyCycle);
     }
 

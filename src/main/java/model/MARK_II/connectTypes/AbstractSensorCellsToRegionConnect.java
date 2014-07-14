@@ -23,8 +23,8 @@ public abstract class AbstractSensorCellsToRegionConnect {
             throw new IllegalArgumentException(
                     "sensorCells in SensorCellsToRegionRectangleConnect class"
                             + "connect method cannot be null");
-        } else if (sensorCells.length <= region.getXAxisLength()
-                || sensorCells[0].length <= region.getYAxisLength()) {
+        } else if (sensorCells.length <= region.getNumberOfRowsAlongRegionYAxis()
+                || sensorCells[0].length <= region.getNumberOfColumnsAlongRegionXAxis()) {
             throw new IllegalArgumentException(
                     "sensorCells in connect method cannot be smaller in X or Y "
                             + "dimentions than the region");
