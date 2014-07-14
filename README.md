@@ -3,14 +3,12 @@ Install with **[Eclipse](#install-in-linuxmacwindows-with-eclipse),**
 **[Gradle](#install-in-linuxmacwindows-with-gradle) |**
 **[How to contribute](#how-to-contribute) |**
 **[What are all the files here for?](#what-are-all-the-files-here-for) |**
-**[Important brain theories](#important-brain-theories)**
+**[Important brain theories in use](#important-brain-theories-in-use)**
 
 # [WalnutiQ](http://walnutiq.com)
 
 "*Most doors in the world are closed, so if you find one that you want to get into, you damn well better have an 
-  interesting knock.*" 
-  
-~ Sam Harper
+  interesting knock.*"  ~ Sam Harper
 
 [![Build Status](https://travis-ci.org/WalnutiQ/WalnutiQ.png)](https://travis-ci.org/WalnutiQ/WalnutiQ)
 
@@ -184,14 +182,13 @@ programming. For more information please:
   - gradlew = allows you to use Gradle to run all of the code in this repository in Linux & Mac
   - gradlew.bat = allows you to use Gradle to run all of the code in this repository in Windows
 
-# Important brain theories 
+# Important brain theories in use 
 
 1. Theory: 1 learning/predicting algorithm in the neocortex of the brain
    - Experiments that support this theory:
      + A 1992 experiment summary: If you cut the wires from the ear to the auditory cortex and rewire the optic nerve to the 
        auditory cortex, then the auditory cortex learns to see.
-       - published paper describing details of experiment viewable 
-       [here](http://diyhpl.us/~bryan/papers2/paperbot/Visual%20projections%20routed%20to%20the%20auditory%20pathway%20in%20ferrets:%20receptive%20fields%20of%20visual%20neurons%20in%20primary%20auditory%20cortex.pdf) 
+       - published paper describing details of experiment viewable [here](http://diyhpl.us/~bryan/papers2/paperbot/Visual%20projections%20routed%20to%20the%20auditory%20pathway%20in%20ferrets:%20receptive%20fields%20of%20visual%20neurons%20in%20primary%20auditory%20cortex.pdf) 
      + A 1989 experiment summary: If you make the wires from the optic nerve connect to the somatosensory cortex then the 
        somatosensory cortex learns to see.
        - published paper describing details of experiment viewable [here](http://www.pnas.org/content/86/1/357.full.pdf)

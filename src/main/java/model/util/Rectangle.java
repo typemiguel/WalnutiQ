@@ -3,7 +3,6 @@ package model.util;
 import java.awt.geom.Point2D;
 
 /**
- * TODO: unit test this class
  * IMPORTANT TO UNDERSTAND: the most top left corner of the plane this rectangle can be on is (0, 0)
  *
  * @author Quinn Liu (quinnliu@vt.edu)

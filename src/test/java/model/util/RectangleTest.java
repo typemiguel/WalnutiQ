@@ -21,4 +21,5 @@ public class RectangleTest extends TestCase {
     public void test_getHeight() {
         assertEquals(2.0, this.rectangle.getHeight());
     }
+    // TODO: finish unit testing
 }
