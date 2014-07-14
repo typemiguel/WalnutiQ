@@ -1,5 +1,5 @@
-**Install with [Eclipse](#install-in-linuxmacwindows-with-eclipse),**
-**[IntelliJ](#install-in-linuxmacwindows-with-intellij), or**
+Install with **[Eclipse](#install-in-linuxmacwindows-with-eclipse),**
+**[IntelliJ](#install-in-linuxmacwindows-with-intellij),** or
 **[Gradle](#install-in-linuxmacwindows-with-gradle) |**
 **[How to contribute](#how-to-contribute) |**
 **[What are all the files here for?](#what-are-all-the-files-here-for) |**

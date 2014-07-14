@@ -1,6 +1,8 @@
 package model;
 
 import model.MARK_II.VisionCell;
+import model.util.*;
+import model.util.Rectangle;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -32,7 +34,7 @@ public class Retina {
         return this.visionCells;
     }
 
-    public VisionCell[][] getVisionCells(int rowStart, int columnStart, int rowEnd, int columnEnd) {
+    public VisionCell[][] getVisionCells(Rectangle rectangle) {
         // TODO: actually implement
         return null;
     }
