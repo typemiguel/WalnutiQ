@@ -8,7 +8,7 @@ Install with **[Eclipse](#install-in-linuxmacwindows-with-eclipse),**
 # [WalnutiQ](http://walnutiq.com)
 
 "*Most doors in the world are closed, so if you find one that you want to get into, you damn well better have an 
-  interesting knock.*"  ~ Sam Harper
+  interesting knock.*"    ~ Sam Harper
 
 [![Build Status](https://travis-ci.org/WalnutiQ/WalnutiQ.png)](https://travis-ci.org/WalnutiQ/WalnutiQ)
 
@@ -30,7 +30,7 @@ access to individual neuron properties.
 
 If you are interested in becoming a researcher/developer, the 
 only requirement is interest in understanding how the brain 
-really works. Please e-mail me at quinnliu@vt.edu talk about how you can get involved!
+really works. Please e-mail me at quinnliu@vt.edu to talk about how you can get involved!
 
 Most importantly, this research is made possible by everyone at [Numenta](http://numenta.org/). 
 Numenta has theorized and tested algorithms that model layers 3 & 4 of the human neocortex. 
@@ -161,12 +161,12 @@ programming. For more information please:
                 brain structures to connect to each other in a variety of ways
               + [parameters](./src/main/java/model/MARK_II/parameters) = allows construction of different WalnutiQ
                 models from command line for this repo https://github.com/quinnliu/CallWalnutiQ
-              + [SpatialPooler.java](./src/main/java/model/MARK_II/SpatialPooler.java) 
+              + **[SpatialPooler.java](./src/main/java/model/MARK_II/SpatialPooler.java) 
                 = models the sparse & distributed spiking activity of neurons seen in the neocortex 
-                  and models long term potentiation and depression on synapses of proximal dendrites
-              + [TemporalPooler.java](./src/main/java/model/MARK_II/TemporalPooler.java) 
+                  and models long term potentiation and depression on synapses of proximal dendrites**
+              + **[TemporalPooler.java](./src/main/java/model/MARK_II/TemporalPooler.java) 
                 = models neocortex's ability to predict future input using long term potentiation 
-                  and depression on synapses of distal dendrites
+                  and depression on synapses of distal dendrites**
             - [util](./src/main/java/model/util) = classes that enable the brain model properties
               to be viewed graphically and efficiently saved and opened  
       + test = test classes for important classes in the `src/main/java/model` folder
@@ -184,41 +184,42 @@ programming. For more information please:
 
 # Important brain theories in use 
 
-1. Theory: 1 learning/predicting algorithm in the neocortex of the brain
+1. **Theory: 1 learning/predicting algorithm in the neocortex of the brain**
    - Experiments that support this theory:
      + A 1992 experiment summary: If you cut the wires from the ear to the auditory cortex and rewire the optic nerve to the 
-       auditory cortex, then the auditory cortex learns to see.
-       - published paper describing details of experiment viewable [here](http://diyhpl.us/~bryan/papers2/paperbot/Visual%20projections%20routed%20to%20the%20auditory%20pathway%20in%20ferrets:%20receptive%20fields%20of%20visual%20neurons%20in%20primary%20auditory%20cortex.pdf) 
+       auditory cortex, then the auditory cortex learns to see. Published paper describing details of experiment 
+       viewable [here](http://diyhpl.us/~bryan/papers2/paperbot/Visual%20projections%20routed%20to%20the%20auditory%20pathway%20in%20ferrets:%20receptive%20fields%20of%20visual%20neurons%20in%20primary%20auditory%20cortex.pdf) 
      + A 1989 experiment summary: If you make the wires from the optic nerve connect to the somatosensory cortex then the 
-       somatosensory cortex learns to see.
-       - published paper describing details of experiment viewable [here](http://www.pnas.org/content/86/1/357.full.pdf)
+       somatosensory cortex learns to see. Published paper describing details of experiment viewable 
+       [here](http://www.pnas.org/content/86/1/357.full.pdf)
    - Experiments that do NOT support this theory: 
    - Conclusion: If different parts of the neocortex (contains auditory cortex, somatosensory, and others..)
      can be given new input and learn to process this new input, then we can guess there is a single 
      learning/predicting algorithm in all parts of the neocortex.
 
-2. Theory: Orientation selectivity is learned & muscle movement is crucial for this process
+2. **Theory: Orientation selectivity is learned & muscle movement is crucial for this process**
    - Experiments that support this theory:
      + A 1970 experiment summary: Kittens where raised in either a horizontally or vertically stripped environment for 
        five hours per day for five months. The environments forced the kitten's to only look forward at vertical 
        stripes or horizontal stripes. The remaining 19 hours each day the kittens were raised in darkness.
        At five months the kittens were tested for line recognition. Those kittens raised in horizontal environments
-       could not detect vertical aligned objects, and vice-versa.
-       - published paper describing details of experiment viewable [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1307838/pdf/jphysiol00822-0028.pdf)
-   - Experiments that do NOT support this theory:
+       could not detect vertical aligned objects, and vice-versa. Published paper describing details of experiment 
+       viewable [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1307838/pdf/jphysiol00822-0028.pdf)
+   - Experiments that do NOT support this theory: 
    - Conclusion: Reality creates a representation in your brain as neuron activity which creates muscle movement(within the eyes,
      arms, other muscles) causing the next image to appear on your retina to be predictable by the temporal pooling
      algorithm in your neocortex. As you continue to see, columns in your neocortex become tuned to specific directions
      and phases. 
 
-3. Theory: Spatial pooling, sequence memory, & temporal pooling are deduced algorithms that are occurring
+3. **Theory: Spatial pooling, sequence memory, & temporal pooling are deduced algorithms that are occurring**
    in the human neocortex layers 3 & 4 in a similar form giving the brain the ability to predict future input.
    - Experiments that support this theory:
-     + Noise invariance experiment of vision input viewable in [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java)
-       - paper that describes details of theory behind experiment viewable [here](https://dl.dropboxusercontent.com/u/106853306/Brain/HTM_CorticalLearningAlgorithms.pdf)
-     + A 2011 experiment summary: Neurons higher in the hierarchy are more stable & selective to input
-       - published paper describing details of experiment viewable [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2975390/)
-   - Experiments that do NOT support this theory:
+     + Noise invariance experiment of vision input viewable in 
+       [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java). Paper that 
+       describes details of theory behind experiment viewable [here](https://dl.dropboxusercontent.com/u/106853306/Brain/HTM_CorticalLearningAlgorithms.pdf)
+     + A 2011 experiment summary: Neurons higher in the hierarchy are more stable & selective to input. Published paper 
+       describing details of experiment viewable [here](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2975390/)
+   - Experiments that do NOT support this theory: 
    - Conclusion: 
      + Spatial Pooling = Creates a sparse distributed representation activity of columns to efficiently represent 
        a larger input layer. Causes columns of neurons to become selectively tuned for specific input
@@ -231,12 +232,14 @@ programming. For more information please:
      + Temporal Pooling = The act of strengthening & weakening the connections between cells/neurons to allow
        neurons to become more predictive of it's input.
    
-4. Theory: Information flow in the brain
-   - Path 1) synapseOnAxonOfNeuronA -> dendriteOfNeuronB -> cellBodyOfNeuronB -> axonOfNeuronB -> synapseOfNeuronC
-   - Path 2) Read somewhere that dendrites can also be output devices to synapses(cellBody -> dendrite -> synapse)
-   - Support:
+4. **Theory: Information flow in the brain**
+   - Path 1) synapseOnAxonOfNeuronA `=>` dendriteOfNeuronB `=>` cellBodyOfNeuronB `=>` axonOfNeuronB `=>` synapseOfNeuronC
+   - Path 2) Read somewhere that dendrites can also be output devices to synapses(cellBody `=>` dendrite `=>` synapse)
+   - Experiments that support this theory:
+   - Experiments that do NOT support this theory: 
    
-5. Theory: A lot of what we call intelligence is developed during the first 2 years of life
-   - Reasoning: About 10^14 synapses in the brain by 2 years of age. About 10^8 seconds in 2 years. That means about 
-                10^6 synapses are formed per second in a fetus and infant.
-   - Support:
+5. **Theory: A lot of what we call intelligence is developed during the first 2 years of life**
+   - Reasoning: About 10^14 synapses in the brain by 2 years of age. About 10^8 seconds in 2 years. That means on average
+                10^6 synapses were formed per second while you were becoming 2 years old.
+   - Experiments that support this theory:
+   - Experiments that do NOT support this theory: 
