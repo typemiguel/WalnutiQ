@@ -127,9 +127,40 @@ programming. For more information please:
    ```
 
 ## How to contribute
-1. View an example of how some of the code is used in the file
-   [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
-   Please do not be afriad to ask a question if you are confused!
+1. Here is some example code of how part of the theorized learning algorithm works:
+   ```java
+   public void test_NoiseInvarianceExperiment() {
+        
+        // View all three images of digit 2 @ https://db.tt/ElvG0WLM
+        // --------------------------"2.bmp"------------------------------------
+        this.retina.seeBMPImage("2.bmp");
+
+        this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
+
+        assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
+                this.spatialPooler.getActiveColumnPositionsAsString());
+
+        // -------------------"2_with_some_noise.bmp"---------------------------
+        this.retina.seeBMPImage("2_with_some_noise.bmp");
+
+        this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
+
+        assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
+                this.spatialPooler.getActiveColumnPositionsAsString());
+
+        // -------------------"2_with_alot_of_noise.bmp"------------------------
+        this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
+
+        this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
+
+        assertEquals("((6, 2), (1, 3), (2, 5))",
+                this.spatialPooler.getActiveColumnPositionsAsString());
+   }
+   ```
+
+   You can view all the entire file by clicking [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
+   Please do not be afraid to ask a question if you are confused! This stuff took me several months to fully understand
+   but it is really beautiful after you understand it.
 
 2. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) 
    and create a new issue with a question if you are confused. Otherwise, 
