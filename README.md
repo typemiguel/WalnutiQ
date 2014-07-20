@@ -127,7 +127,7 @@ programming. For more information please:
    ```
 
 ## How to contribute
-1. Here is some example code of how part of the theorized learning algorithm works:
+1. Here is some example code of how part of the theorized prediction algorithm works:
    ```java
    public void test_NoiseInvarianceExperiment() {
         
@@ -137,7 +137,7 @@ programming. For more information please:
 
         this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
 
-        assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
+        assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))", 
                 this.spatialPooler.getActiveColumnPositionsAsString());
 
         // ---------------------------"2_with_some_noise.bmp"---------------------------
@@ -158,7 +158,7 @@ programming. For more information please:
    }
    ```
 
-   You can view all the entire file by clicking [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
+   You can view the entire file in [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
    Please do not be afraid to ask a question if you are confused! This stuff took me several months to fully understand
    but it is really beautiful after you understand it.
 
