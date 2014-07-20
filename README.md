@@ -127,7 +127,14 @@ programming. For more information please:
    ```
 
 ## How to contribute
-1. Here is some example code of how part of the theorized prediction algorithm works:
+1. Don't know what a pull request is or how to use Git & Github.com? No worries! I created a easy to follow 1.5 hour 
+   playlist on how to use Git & Github 
+   [here](https://www.youtube.com/watch?v=44E8o-xuxWo&list=PLPXsMt57rLtgpwFBqZq4QKxrD9Hhc_8L4). But if already know
+   how to use Git & Github.com move on to step 2.
+
+2. Here is some example code of how part of the theorized prediction algorithm works. You do NOT need to understand
+   the following code to make meaningful contributions to this repository but I just thought the following code was 
+   a beautiful summary of how columns of neurons in your brain might be working: 
    ```java
    public void test_NoiseInvarianceExperiment() {
         
@@ -162,15 +169,15 @@ programming. For more information please:
    Please do not be afraid to ask a question if you are confused! This stuff took me several months to fully understand
    but it is really beautiful after you understand it.
 
-2. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) 
+3. View our [issue tracker](https://github.com/quinnliu/WalnutiQ/issues?state=open) 
    and create a new issue with a question if you are confused. Otherwise, 
    assign a issue to yourself you would like to work on or suggest
    a new issue if you kinda know what you are doing. 
 
-3. For now we are using the Git workflow model described 
+4. For now we are using the Git workflow model described 
    [here](https://github.com/quinnliu/WalnutiQ/issues/62) to contribute to this
    repository effectively. Happy coding!
-
+   
 ## What are all the files here for
   - experiments  
       + model
