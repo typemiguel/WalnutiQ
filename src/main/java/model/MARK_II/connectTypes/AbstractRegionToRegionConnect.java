@@ -34,7 +34,7 @@ public abstract class AbstractRegionToRegionConnect {
                 .getNumberOfColumnsAlongRegionXAxis()) {
             throw new IllegalArgumentException(
                     "childRegion in connect method cannot be smaller in X or Y "
-                            + "dimentions than the parentRegion");
+                            + "dimensions than the parentRegion");
         } else if (numberOfColumnsToOverlapAlongXAxisOfRegion < 0) {
             throw new IllegalArgumentException(
                     "numberOfColumnsToOverlapAlongXAxisOfRegion in connect method cannot be < 0");

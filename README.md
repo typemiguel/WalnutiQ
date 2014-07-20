@@ -132,7 +132,7 @@ programming. For more information please:
    public void test_NoiseInvarianceExperiment() {
         
         // View all three images of digit 2 @ https://db.tt/ElvG0WLM
-        // --------------------------"2.bmp"------------------------------------
+        // ----------------------------------"2.bmp"------------------------------------
         this.retina.seeBMPImage("2.bmp");
 
         this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
@@ -140,7 +140,7 @@ programming. For more information please:
         assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
                 this.spatialPooler.getActiveColumnPositionsAsString());
 
-        // -------------------"2_with_some_noise.bmp"---------------------------
+        // ---------------------------"2_with_some_noise.bmp"---------------------------
         this.retina.seeBMPImage("2_with_some_noise.bmp");
 
         this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
@@ -148,7 +148,7 @@ programming. For more information please:
         assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
                 this.spatialPooler.getActiveColumnPositionsAsString());
 
-        // -------------------"2_with_alot_of_noise.bmp"------------------------
+        // --------------------------"2_with_alot_of_noise.bmp"-------------------------
         this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
 
         this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
