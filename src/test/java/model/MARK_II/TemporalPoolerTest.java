@@ -93,9 +93,9 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 
         Column[][] columns = this.spatialPooler.getRegion().getColumns();
         int numberOfActiveNeurons = 0;
-        for (int x = 0; x < columns.length; x++) {
-            for (int y = 0; y < columns[0].length; y++) {
-                for (Neuron neuron : columns[x][y].getNeurons()) {
+        for (int rowPosition = 0; rowPosition < columns.length; rowPosition++) {
+            for (int columnPosition = 0; columnPosition < columns[0].length; columnPosition++) {
+                for (Neuron neuron : columns[rowPosition][columnPosition].getNeurons()) {
                     if (neuron.getActiveState()) {
                         numberOfActiveNeurons++;
                     }

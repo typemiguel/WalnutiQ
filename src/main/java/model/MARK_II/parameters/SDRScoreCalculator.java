@@ -74,15 +74,15 @@ public class SDRScoreCalculator {
                 int row2 = otherColumnPosition.getRow();
                 int column2 = otherColumnPosition.getColumn();
 
-                // if you find the same columnPosition as (x1, y1) skip
+                // if you find the same columnPosition as (row1, column1) skip
                 if (row1 == row2 && column1 == column2) {
                     continue;
                 }
 
-                double distanceBetween_x1y1_x2y2 = Math.sqrt(Math.pow(row1 - row2,
+                double distanceBetween_row1column1_row2column2 = Math.sqrt(Math.pow(row1 - row2,
                         2) + Math.pow(column1 - column2, 2));
-                if (distanceBetween_x1y1_x2y2 < distanceToNearestActiveColumn) {
-                    distanceToNearestActiveColumn = distanceBetween_x1y1_x2y2;
+                if (distanceBetween_row1column1_row2column2 < distanceToNearestActiveColumn) {
+                    distanceToNearestActiveColumn = distanceBetween_row1column1_row2column2;
                 }
             }
 
