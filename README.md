@@ -213,8 +213,7 @@ programming. For more information please:
                your files to be organized in the correct folder
   - .travis.yml = tells [our custom travis testing site](https://travis-ci.org/quinnliu/WalnutiQ) 
                   what versions of Java to test the files here
-  - LICENSE.txt = MIT liscense saying you can do whatever you want the code here 
-                  but it would be very cool of you to do something nice with it.
+  - LICENSE.txt = GNU General Public License version 3
   - README.md = the file you are reading right now
   - build.gradle = compiles all of the code in this repository using Gradle
   - gradlew = allows you to use Gradle to run all of the code in this repository in Linux & Mac
