@@ -127,17 +127,15 @@ programming. For more information please:
    ```
 
 ## How to contribute
-1. Don't know what a pull request is or how to use Git & Github.com? No worries! I created a easy to follow 1.5 hour 
+1. You need to be able to use Git & Github.com. If you don't know how I created a easy to follow 1.5 hour 
    playlist on how to use Git & Github 
-   [here](https://www.youtube.com/watch?v=44E8o-xuxWo&list=PLPXsMt57rLtgpwFBqZq4QKxrD9Hhc_8L4). But if already know
-   how to use Git & Github.com move on to step 2.
+   [here](https://www.youtube.com/watch?v=44E8o-xuxWo&list=PLPXsMt57rLtgpwFBqZq4QKxrD9Hhc_8L4). 
 
 2. Here is some example code of how part of the theorized prediction algorithm works. You do NOT need to understand
-   the following code to make meaningful contributions to this repository but I just thought the following code was 
-   a beautiful summary of how columns of neurons in your brain might be working: 
+   the following code to make meaningful contributions to this repository but it is a beautiful summary of how columns 
+   of neurons in your brain are probably working to encode what you see: 
+   
    ```java
-   public void test_NoiseInvarianceExperiment() {
-        
         // View all three images of digit 2 @ https://db.tt/ElvG0WLM
         // ----------------------------------"2.bmp"------------------------------------
         this.retina.seeBMPImage("2.bmp");
@@ -162,7 +160,6 @@ programming. For more information please:
 
         assertEquals("((6, 2), (1, 3), (2, 5))",
                 this.spatialPooler.getActiveColumnPositionsAsString());
-   }
    ```
 
    You can view the entire file in [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
