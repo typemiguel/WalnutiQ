@@ -68,6 +68,8 @@ public class Rectangle {
         } else if (TLx >= BRx || TLy >= BRy) {
             throw new IllegalArgumentException("In class Rectangle isNewTopLeftCornerValid method the input point" +
                     " is not to the top left of the current bottom right point");
+        } else {
+            this.topLeftCorner.setLocation(newTopLeftCorner);
         }
     }
 
@@ -84,6 +86,8 @@ public class Rectangle {
         if (TLx >= BRx || TLy >= BRy) {
             throw new IllegalArgumentException("In class Rectangle isNewBottomRightCornerValid method the input point" +
                     " is not to the bottom right of the current top left point");
+        } else {
+            this.bottomRightCorner.setLocation(newBottomRightCorner);
         }
     }
 
