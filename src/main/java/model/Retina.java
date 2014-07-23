@@ -35,8 +35,17 @@ public class Retina {
     }
 
     public VisionCell[][] getVisionCells(Rectangle rectangle) {
-        // TODO: actually implement
-        return null;
+        if (rectangle.getWidth() > this.visionCells[0].length || rectangle.getHeight() > this.visionCells.length) {
+            throw new IllegalArgumentException("In class Retina method getVisionCells the input parameter Rectangle" +
+                    "is larger than the VisionCell[][] 2D array");
+        }
+        VisionCell[][] partialVisionCells = new VisionCell[(int)rectangle.getHeight()][(int)rectangle.getWidth()];
+        for (int row = 0; row < rectangle.getHeight(); row++) {
+            for (int column = 0; column < rectangle.getWidth(); column++) {
+                partialVisionCells[row][column] = this.visionCells[row][column];
+            }
+        }
+        return partialVisionCells;
     }
 
     /**
