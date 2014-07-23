@@ -22,7 +22,8 @@ public class RetinaTest extends TestCase {
         // TODO: not working
         this.retina.seeBMPImage("Array2DTest.bmp");
 
-//        VisionCell[][] partialVisionCells = this.retina.getVisionCells(new Rectangle(new Point2D.Double(0, 0), new Point2D.Double(2, 7)));
+        Rectangle partialRetinaWanted = new Rectangle(new Point2D.Double(0, 0), new Point2D.Double(2, 7));
+ //       VisionCell[][] partialVisionCells = this.retina.getVisionCells(partialRetinaWanted);
 //        int numberOfRows = partialVisionCells.length;
 //        int numberOfColumns = partialVisionCells[0].length;
 //        assertEquals(2, numberOfRows);
