@@ -1,6 +1,7 @@
 package model.util;
 
 import junit.framework.TestCase;
+
 import java.awt.geom.Point2D;
 
 /**
@@ -21,5 +22,13 @@ public class RectangleTest extends TestCase {
     public void test_getHeight() {
         assertEquals(2.0, this.rectangle.getHeight());
     }
+
+    public void test_setTopLeftCorner() {
+        this.rectangle.setTopLeftCorner(new Point2D.Double(1.4, 1.9));
+        assertEquals(1.4, this.rectangle.getTopLeftCorner().getX());
+        assertEquals(1.9, this.rectangle.getTopLeftCorner().getY());
+    }
+
+
     // TODO: finish unit testing
 }
