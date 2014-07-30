@@ -21,7 +21,6 @@ public class RetinaTest extends TestCase {
     public void test_getVisionCells() throws IOException {
         this.retina.seeBMPImage("Array2DTest.bmp");
 
-        // NOTE: rectangle = new Rectangle(new Point2D.Double(x1_or_column1, y1_or_row1), new Point2D.Double(x2_or_column2, y2_or_row2));
         Rectangle partialRetinaWanted = new Rectangle(new Point2D.Double(0, 0), new Point2D.Double(7, 2));
         VisionCell[][] partialVisionCells = this.retina.getVisionCells(partialRetinaWanted);
         int numberOfRows = partialVisionCells.length;
