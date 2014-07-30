@@ -35,7 +35,9 @@ public class Retina {
     }
 
     public VisionCell[][] getVisionCells(Rectangle rectangle) {
-        if (rectangle.getWidth() > this.visionCells[0].length || rectangle.getHeight() > this.visionCells.length) {
+        int rectangleWidth = (int) rectangle.getWidth();
+        int rectangleHeight = (int) rectangle.getHeight();
+        if (rectangleWidth > this.visionCells[0].length || rectangleHeight > this.visionCells.length) {
             throw new IllegalArgumentException("In class Retina method getVisionCells the input parameter Rectangle" +
                     "is larger than the VisionCell[][] 2D array");
         }
