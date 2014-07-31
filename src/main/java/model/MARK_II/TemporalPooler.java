@@ -42,7 +42,7 @@ public class TemporalPooler extends Pooler {
         this.learningAlgorithmsStatistics = new LearningAlgorithmsStatistics();
     }
 
-    public void performTemporalPoolingOnRegion() {
+    public void performPooling() {
         Set<Column> activeColumns = this.spatialPooler.getActiveColumns();
         if (super.getLearningState()) {
             this.phaseOne(activeColumns);
