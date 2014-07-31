@@ -65,7 +65,7 @@ public class TemporalPoolingSaccadingRetinaExperiment extends TestCase {
 //
 //        SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
 //        spatialPooler.setLearningState(true);
-//        spatialPooler.performSpatialPoolingOnRegion();
+//        spatialPooler.performPooling();
 //        Set<ColumnPosition> LGNNeuronActivity = spatialPooler
 //                .getActiveColumnPositions();
 //

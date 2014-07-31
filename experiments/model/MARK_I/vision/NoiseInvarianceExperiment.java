@@ -52,32 +52,32 @@ public class NoiseInvarianceExperiment extends TestCase {
         this.retina.seeBMPImage("2.bmp");
 
         System.out.println("1 = " + this.spatialPooler.getRegion().toString());
-        this.spatialPooler.performSpatialPoolingOnRegion();
+        this.spatialPooler.performPooling();
 
         //assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
-        //        this.spatialPooler.getActiveColumnPositionsAsString());
-        System.out.println(this.spatialPooler.getActiveColumnPositionsAsString());
+        //        this.spatialPooler.getActiveColumnPositionsAsFormattedString());
+        System.out.println(this.spatialPooler.getActiveColumnPositionsAsFormattedString());
 
 
         // -------------------"2_with_some_noise.bmp"---------------------------
         this.retina.seeBMPImage("2.bmp");
 
         System.out.println("\n\n\n2 = " + this.spatialPooler.getRegion().toString());
-        this.spatialPooler.performSpatialPoolingOnRegion();
+        this.spatialPooler.performPooling();
 
         //assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
-        //        this.spatialPooler.getActiveColumnPositionsAsString());
-        System.out.println(this.spatialPooler.getActiveColumnPositionsAsString());
+        //        this.spatialPooler.getActiveColumnPositionsAsFormattedString());
+        System.out.println(this.spatialPooler.getActiveColumnPositionsAsFormattedString());
 
 
         // -------------------"2_with_alot_of_noise.bmp"------------------------
         this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
 
         System.out.println("\n\n\n3 = " + this.spatialPooler.getRegion().toString());
-        this.spatialPooler.performSpatialPoolingOnRegion();
+        this.spatialPooler.performPooling();
 
         //assertEquals("((6, 2), (1, 3), (2, 5))",
-        //        this.spatialPooler.getActiveColumnPositionsAsString());
-        System.out.println(this.spatialPooler.getActiveColumnPositionsAsString());
+        //        this.spatialPooler.getActiveColumnPositionsAsFormattedString());
+        System.out.println(this.spatialPooler.getActiveColumnPositionsAsFormattedString());
     }
 }

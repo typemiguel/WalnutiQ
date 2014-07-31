@@ -57,7 +57,7 @@ public class Region {
         this.desiredLocalActivity = desiredLocalActivity;
         // NOTE: inhibitionRadius isn't set until regionLearnOneTimeStep()
         // but is needed in computeColumnOverlapScore() of
-        // performSpatialPoolingOnRegion(). Therefore the first time
+        // performPooling(). Therefore the first time
         // inhibitionRadiusis used in computeColumnOverlapScore() it won't
         // really have a computed value.
         this.inhibitionRadius = 1;
