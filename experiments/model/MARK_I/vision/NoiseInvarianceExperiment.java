@@ -67,7 +67,7 @@ public class NoiseInvarianceExperiment extends TestCase {
 
 
         // -------------------"2_with_alot_of_noise.bmp"------------------------
-        this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
+        this.retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
 
         this.spatialPooler.performPooling();
 
