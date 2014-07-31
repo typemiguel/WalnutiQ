@@ -36,7 +36,7 @@ public class SpatialPooler extends Pooler {
      *
      * @return A sparse set of active Columns within this Region.
      */
-    public Set<Column> performSpatialPoolingOnRegion() {
+    public Set<Column> performPooling() {
         Column[][] columns = this.region.getColumns();
         for (int row = 0; row < columns.length; row++) {
             for (int column = 0; column < columns[0].length; column++) {
@@ -53,35 +53,18 @@ public class SpatialPooler extends Pooler {
         return this.activeColumns;
     }
 
-    public Set<Column> performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate() {
-        Column[][] columns = this.region.getColumns();
-        for (int row = 0; row < columns.length; row++) {
-            for (int column = 0; column < columns[0].length; column++) {
-                this.computeColumnOverlapScore(columns[row][column]);
-            }
-        }
-
-        // a sparse set of Columns become active after local inhibition
-        this.computeActiveColumnsOfRegion();
-
-        // // simulate learning by boosting specific Synapses
-        this.regionLearnOneTimeStepWithoutInhitionRadiusUpdate();
-
-        return this.activeColumns;
-    }
-
     /**
      * If only the column positions computed by spatial pooling are needed use
      * this method to return a set of just the column positions that were active
      * in the most recent iteration of spatial pooling. For example instead of
      * using:
-     * <p/>
+     *
      * Set<Column> columnActivity =
-     * spatialPooler.performSpatialPoolingOnRegion();
-     * <p/>
+     * spatialPooler.performPooling();
+     *
      * Now use:
-     * <p/>
-     * spatialPooler.performSpatialPoolingOnRegion();
+     *
+     * spatialPooler.performPooling();
      * Set<ColumnPosition> columnActivity = this.spatialPooler.getActiveColumnPositions();
      */
     public Set<ColumnPosition> getActiveColumnPositions() {
@@ -173,12 +156,6 @@ public class SpatialPooler extends Pooler {
 
         this.region
                 .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
-    }
-
-    void regionLearnOneTimeStepWithoutInhitionRadiusUpdate() {
-        this.modelLongTermPotentiationAndDepression();
-
-        this.boostSynapsesBasedOnActiveAndOverlapDutyCycle();
     }
 
     void modelLongTermPotentiationAndDepression() {
@@ -358,10 +335,11 @@ public class SpatialPooler extends Pooler {
         // is the score at position k(counting from the top) of all
         // overlapScores when arranged from smallest to greatest.
         int k = Math.max(0, overlapScores.size() - desiredLocalActivity);
-        if (overlapScores.size() > k)
+        if (overlapScores.size() > k) {
             return (Integer) overlapScores.toArray()[k];
-        else
+        } else {
             return 0;
+        }
     }
 
     /**
@@ -470,7 +448,7 @@ public class SpatialPooler extends Pooler {
      * @return Return the list of active column positions in the following
      * format: ((0, 0), (1, 1), (2, 2), (2,0))
      */
-    public String getActiveColumnPositionsAsString() {
+    public String getActiveColumnPositionsAsFormattedString() {
         String listOfActiveColumns = "(";
 
         int numberOfActiveColumns = this.activeColumnPositions.size();

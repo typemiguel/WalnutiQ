@@ -42,7 +42,7 @@ public class SpatialPoolerTest extends TestCase {
         connectType2.connect(retina.getVisionCells(), region, 2, 2);
 
         retina.seeBMPImage("2.bmp");
-        this.spatialPooler.performSpatialPoolingOnRegion();
+        this.spatialPooler.performPooling();
         Set<ColumnPosition> columnActivityAfterSeeingImage2 = this.spatialPooler
                 .getActiveColumnPositions();
 
@@ -329,11 +329,11 @@ public class SpatialPoolerTest extends TestCase {
 
     public void test_getActiveColumnPositionsAsString() throws IOException {
         assertEquals("()",
-                this.spatialPooler.getActiveColumnPositionsAsString());
+                this.spatialPooler.getActiveColumnPositionsAsFormattedString());
 
         this.test_performSpatialPoolingOnRegion();
 
         assertEquals("((6, 5), (6, 2), (1, 2), (2, 5), (4, 4))",
-                this.spatialPooler.getActiveColumnPositionsAsString());
+                this.spatialPooler.getActiveColumnPositionsAsFormattedString());
     }
 }

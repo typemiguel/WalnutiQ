@@ -37,7 +37,7 @@ public class JsonFileInputOutputTest extends TestCase {
 
         retina.seeBMPImage("2.bmp");
         Set<Column> LGNNeuronActivity = spatialPooler
-                .performSpatialPoolingOnRegion();
+                .performPooling();
 
         assertEquals(11, LGNNeuronActivity.size());
 

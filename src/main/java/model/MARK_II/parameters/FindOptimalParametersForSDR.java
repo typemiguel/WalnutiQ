@@ -59,7 +59,7 @@ public class FindOptimalParametersForSDR {
 
         retina.seeBMPImage("2.bmp");
 
-        spatialPooler.performSpatialPoolingOnRegion(); // 11 active columns
+        spatialPooler.performPooling(); // 11 active columns
         Set<ColumnPosition> columnActivityAfterSeeingImage2 = spatialPooler
                 .getActiveColumnPositions();
         // = (6,5)(6, 3)(6, 2)(5, 3)(3, 5)(2, 2)(1, 3)(1, 2)(2, 5)(1, 5)(4, 4)
@@ -126,7 +126,7 @@ public class FindOptimalParametersForSDR {
             int[][] image = mnistManager.readImage();
 
             retina.see2DIntArray(image);
-            spatialPooler.performSpatialPoolingOnRegion();
+            spatialPooler.performPooling();
             Set<ColumnPosition> columnActivityAfterSeeingCurrentMNISTImage = spatialPooler
                     .getActiveColumnPositions();
 
