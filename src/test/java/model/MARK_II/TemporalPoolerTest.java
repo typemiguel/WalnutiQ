@@ -67,20 +67,15 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 
         this.temporalPooler.performPooling();
         assertEquals(16, this.temporalPooler.getSegmentUpdateList().size());
-        //System.out.println(this.temporalPooler.toString());
         this.temporalPooler.nextTimeStep();
 
         this.spatialPooler.performPooling();
         this.temporalPooler.performPooling();
-        int segmentUpdateListSize2 = this.temporalPooler.getSegmentUpdateList().size();
-        //assertTrue(6 <= segmentUpdateListSize2 && segmentUpdateListSize2 <= 8);
         assertEquals(8, this.temporalPooler.getSegmentUpdateList().size()); // NOTE: why does this sometimes return 6?
-        //System.out.println(this.temporalPooler.toString());
         this.temporalPooler.nextTimeStep();
 
         this.spatialPooler.performPooling();
         this.temporalPooler.performPooling();
-        //System.out.println(this.temporalPooler.toString());
         assertEquals(8, this.temporalPooler.getSegmentUpdateList().size());
         this.temporalPooler.nextTimeStep();
     }

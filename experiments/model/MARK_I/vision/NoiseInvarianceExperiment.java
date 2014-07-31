@@ -36,7 +36,7 @@ public class NoiseInvarianceExperiment extends TestCase {
         // images this oldRetina will see are all 66x66 pixels
         this.retina = new Retina(66, 66);
 
-        this.region = new Region("Region", 8, 8, 1, 77.8, 1);
+        this.region = new Region("Region name", 8, 8, 1, 77.8, 1);
         this.region.setInhibitionRadius(3);
 
         AbstractSensorCellsToRegionConnect retinaToRegion = new SensorCellsToRegionRectangleConnect();
@@ -51,33 +51,27 @@ public class NoiseInvarianceExperiment extends TestCase {
         // --------------------------"2.bmp"------------------------------------
         this.retina.seeBMPImage("2.bmp");
 
-        System.out.println("1 = " + this.spatialPooler.getRegion().toString());
         this.spatialPooler.performPooling();
 
-        //assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
-        //        this.spatialPooler.getActiveColumnPositionsAsFormattedString());
-        System.out.println(this.spatialPooler.getActiveColumnPositionsAsFormattedString());
+        assertEquals("((6, 2), (1, 5))",
+                this.spatialPooler.getActiveColumnPositionsAsFormattedString());
 
 
         // -------------------"2_with_some_noise.bmp"---------------------------
-        this.retina.seeBMPImage("2.bmp");
+        this.retina.seeBMPImage("2_with_some_noise.bmp");
 
-        System.out.println("\n\n\n2 = " + this.spatialPooler.getRegion().toString());
         this.spatialPooler.performPooling();
 
-        //assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
-        //        this.spatialPooler.getActiveColumnPositionsAsFormattedString());
-        System.out.println(this.spatialPooler.getActiveColumnPositionsAsFormattedString());
+        assertEquals("((6, 2), (1, 5))",
+                this.spatialPooler.getActiveColumnPositionsAsFormattedString());
 
 
         // -------------------"2_with_alot_of_noise.bmp"------------------------
         this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
 
-        System.out.println("\n\n\n3 = " + this.spatialPooler.getRegion().toString());
         this.spatialPooler.performPooling();
 
-        //assertEquals("((6, 2), (1, 3), (2, 5))",
-        //        this.spatialPooler.getActiveColumnPositionsAsFormattedString());
-        System.out.println(this.spatialPooler.getActiveColumnPositionsAsFormattedString());
+        assertEquals("((6, 2), (2, 5))",
+                this.spatialPooler.getActiveColumnPositionsAsFormattedString());
     }
 }
