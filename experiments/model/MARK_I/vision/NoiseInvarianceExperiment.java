@@ -1,13 +1,16 @@
 package model.MARK_I.vision;
 
 import junit.framework.TestCase;
+import model.MARK_II.ColumnPosition;
 import model.MARK_II.Region;
 import model.MARK_II.SpatialPooler;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.Retina;
+import model.util.Formatter;
 
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * -------------------------------Purpose---------------------------------------
@@ -25,7 +28,7 @@ import java.io.IOException;
  * between locations in the input.
  *
  * @author Quinn Liu (quinnliu@vt.edu)
- * @version April 12, 2014
+ * @version August 1, 2014
  */
 public class NoiseInvarianceExperiment extends TestCase {
     private Retina retina;
@@ -48,30 +51,17 @@ public class NoiseInvarianceExperiment extends TestCase {
 
     public void test_NoiseInvarianceExperiment() throws IOException {
         // View all three images of digit 2 @ https://db.tt/ElvG0WLM
-        // --------------------------"2.bmp"------------------------------------
         this.retina.seeBMPImage("2.bmp");
-
         this.spatialPooler.performPooling();
+        assertEquals("((6, 2), (1, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
 
-        assertEquals("((6, 2), (1, 5))",
-                this.spatialPooler.getActiveColumnPositionsAsFormattedString());
-
-
-        // -------------------"2_with_some_noise.bmp"---------------------------
         this.retina.seeBMPImage("2_with_some_noise.bmp");
-
         this.spatialPooler.performPooling();
+        assertEquals("((6, 2), (1, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
 
-        assertEquals("((6, 2), (1, 5))",
-                this.spatialPooler.getActiveColumnPositionsAsFormattedString());
-
-
-        // -------------------"2_with_alot_of_noise.bmp"------------------------
         this.retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
-
         this.spatialPooler.performPooling();
-
-        assertEquals("((6, 2), (2, 5))",
-                this.spatialPooler.getActiveColumnPositionsAsFormattedString());
+        // when there is a lot of noise notice how the active columns are no longer the same?
+        assertEquals("((6, 2), (2, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
     }
 }
