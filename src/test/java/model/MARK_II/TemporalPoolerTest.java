@@ -3,6 +3,7 @@ package model.MARK_II;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.Retina;
+import model.util.Formatter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
         this.retina.seeBMPImage("2.bmp");
         this.spatialPooler.performPooling();
         assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
-                this.spatialPooler.getActiveColumnPositionsAsFormattedString());
+                Formatter.format(this.spatialPooler.getActiveColumnPositions()));
 
         this.temporalPooler = new TemporalPooler(this.spatialPooler, 25);
         this.temporalPooler.setLearningState(true);
