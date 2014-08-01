@@ -136,7 +136,7 @@ programming. For more information please:
    of neurons in your brain are probably working to encode what you see. The following are the three images the
    retina will be looking at:
    
-   ![alt text](https://db.tt/ElvG0WLM) // TODO: make this image bigger & clearer
+   ![alt text](https://db.tt/8ZAdcAbM)
    
    ```java
    this.retina.seeBMPImage("2.bmp");
