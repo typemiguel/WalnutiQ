@@ -139,18 +139,18 @@ programming. For more information please:
    ![alt text](https://db.tt/8ZAdcAbM)
    
    ```java
-   this.retina.seeBMPImage("2.bmp");
-   this.spatialPooler.performPooling();
-   assertEquals("((6, 2), (1, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
+   retina.seeBMPImage("2.bmp");
+   spatialPooler.performPooling();
+   assertEquals("((6, 2), (1, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
  
-   this.retina.seeBMPImage("2_with_some_noise.bmp");
+   retina.seeBMPImage("2_with_some_noise.bmp");
    this.spatialPooler.performPooling();
-   assertEquals("((6, 2), (1, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
+   assertEquals("((6, 2), (1, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
  
-   this.retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
-   this.spatialPooler.performPooling();
+   retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
+   spatialPooler.performPooling();
    // when there is a lot of noise notice how the active columns are no longer the same?
-   assertEquals("((6, 2), (2, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
+   assertEquals("((6, 2), (2, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
    ```
 
    You can view the entire file in [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
