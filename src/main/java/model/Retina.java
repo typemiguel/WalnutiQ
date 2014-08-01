@@ -34,8 +34,21 @@ public class Retina {
         return this.visionCells;
     }
 
+    /**
+     * NOTE: When creating the input rectangle object remember that the point
+     * parameters are (x, y) coordinates and not (row, column). For example:
+     *
+     * Rectangle rectangle = new Rectangle(new Point2D.Double(x1_or_column1, y1_or_row1), new Point2D.Double(x2_or_column2, y2_or_row2));
+     *
+     * @param rectangle The rectangle shape of VisionCells you want to
+     *                  retrieve from the retina.
+     * @return Partial 2D array of VisionCells in retina based on input rectangle
+     *         dimensions.
+     */
     public VisionCell[][] getVisionCells(Rectangle rectangle) {
-        if (rectangle.getWidth() > this.visionCells[0].length || rectangle.getHeight() > this.visionCells.length) {
+        int rectangleWidth = (int) rectangle.getWidth();
+        int rectangleHeight = (int) rectangle.getHeight();
+        if (rectangleWidth > this.visionCells[0].length || rectangleHeight > this.visionCells.length) {
             throw new IllegalArgumentException("In class Retina method getVisionCells the input parameter Rectangle" +
                     "is larger than the VisionCell[][] 2D array");
         }

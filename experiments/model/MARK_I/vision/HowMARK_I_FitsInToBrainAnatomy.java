@@ -72,7 +72,7 @@ public class HowMARK_I_FitsInToBrainAnatomy extends TestCase {
 
         SpatialPooler spatialPooler = new SpatialPooler(LGNRegion);
         spatialPooler.setLearningState(true);
-        spatialPooler.performSpatialPoolingOnRegion();
+        spatialPooler.performPooling();
         Set<ColumnPosition> LGNNeuronActivity = spatialPooler
                 .getActiveColumnPositions();
 

@@ -3,6 +3,7 @@ package model.MARK_II;
 import model.MARK_II.connectTypes.AbstractSensorCellsToRegionConnect;
 import model.MARK_II.connectTypes.SensorCellsToRegionRectangleConnect;
 import model.Retina;
+import model.util.Formatter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,9 +42,9 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
         this.spatialPooler.setLearningState(true);
 
         this.retina.seeBMPImage("2.bmp");
-        this.spatialPooler.performSpatialPoolingOnRegion();
+        this.spatialPooler.performPooling();
         assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
-                this.spatialPooler.getActiveColumnPositionsAsString());
+                Formatter.format(this.spatialPooler.getActiveColumnPositions()));
 
         this.temporalPooler = new TemporalPooler(this.spatialPooler, 25);
         this.temporalPooler.setLearningState(true);
@@ -65,24 +66,17 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
         //   segmentUpdateList.size -= adapt segments on learning neurons
         //   segmentUpdateList.size -= adapt segments previously predictive & NOT currently predictive
 
-        this.temporalPooler.performTemporalPoolingOnRegion();
+        this.temporalPooler.performPooling();
         assertEquals(16, this.temporalPooler.getSegmentUpdateList().size());
-        //System.out.println(this.temporalPooler.toString());
         this.temporalPooler.nextTimeStep();
 
-        this.spatialPooler.performSpatialPoolingOnRegion();
-        this.temporalPooler.performTemporalPoolingOnRegion();
-        int segmentUpdateListSize2 = this.temporalPooler.getSegmentUpdateList().size();
-        //assertTrue(22 <= segmentUpdateListSize2 && segmentUpdateListSize2 <= 24);
-        assertEquals(8, this.temporalPooler.getSegmentUpdateList().size());
-        //System.out.println(this.temporalPooler.toString());
+        this.spatialPooler.performPooling();
+        this.temporalPooler.performPooling();
+        assertEquals(8, this.temporalPooler.getSegmentUpdateList().size()); // NOTE: why does this sometimes return 6?
         this.temporalPooler.nextTimeStep();
 
-        this.spatialPooler.performSpatialPoolingOnRegion();
-        this.temporalPooler.performTemporalPoolingOnRegion();
-        int segmentUpdateListSize3 = this.temporalPooler.getSegmentUpdateList().size();
-        //assertTrue(6 <= segmentUpdateListSize3 && segmentUpdateListSize3 <= 8);
-        //System.out.println(this.temporalPooler.toString());
+        this.spatialPooler.performPooling();
+        this.temporalPooler.performPooling();
         assertEquals(8, this.temporalPooler.getSegmentUpdateList().size());
         this.temporalPooler.nextTimeStep();
     }

@@ -19,17 +19,20 @@ public class RetinaTest extends TestCase {
     }
 
     public void test_getVisionCells() throws IOException {
-        // TODO: not working
         this.retina.seeBMPImage("Array2DTest.bmp");
 
-        Rectangle partialRetinaWanted = new Rectangle(new Point2D.Double(0, 0), new Point2D.Double(2, 7));
- //       VisionCell[][] partialVisionCells = this.retina.getVisionCells(partialRetinaWanted);
-//        int numberOfRows = partialVisionCells.length;
-//        int numberOfColumns = partialVisionCells[0].length;
-//        assertEquals(2, numberOfRows);
-//        assertEquals(7, numberOfColumns);
-//        assertTrue(partialVisionCells[1][3].getActiveState());
-//        assertFalse(partialVisionCells[0][3].getActiveState());
+        Rectangle partialRetinaWanted = new Rectangle(new Point2D.Double(0, 0), new Point2D.Double(7, 2));
+        VisionCell[][] partialVisionCells = this.retina.getVisionCells(partialRetinaWanted);
+        int numberOfRows = partialVisionCells.length;
+        int numberOfColumns = partialVisionCells[0].length;
+        assertEquals(2, numberOfRows);
+        assertEquals(7, numberOfColumns);
+        assertTrue(partialVisionCells[1][3].getActiveState());
+        assertFalse(partialVisionCells[0][3].getActiveState());
+
+        this.retina.seeBMPImage("Array2DTest2.bmp");
+        assertFalse(partialVisionCells[1][3].getActiveState());
+        assertTrue(partialVisionCells[0][3].getActiveState());
     }
 
     public void test_seeBMPImage() throws IOException {

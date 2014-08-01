@@ -133,33 +133,24 @@ programming. For more information please:
 
 2. Here is some example code of how part of the theorized prediction algorithm works. You do NOT need to understand
    the following code to make meaningful contributions to this repository but it is a beautiful summary of how columns 
-   of neurons in your brain are probably working to encode what you see: 
+   of neurons in your brain are probably working to encode what you see. The following are the three images the
+   retina will be looking at:
+   
+   ![alt text](https://db.tt/8ZAdcAbM)
    
    ```java
-        // View all three images of digit 2 @ https://db.tt/ElvG0WLM
-        // ----------------------------------"2.bmp"------------------------------------
-        this.retina.seeBMPImage("2.bmp");
-
-        this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
-
-        assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))", 
-                this.spatialPooler.getActiveColumnPositionsAsString());
-
-        // ---------------------------"2_with_some_noise.bmp"---------------------------
-        this.retina.seeBMPImage("2_with_some_noise.bmp");
-
-        this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
-
-        assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
-                this.spatialPooler.getActiveColumnPositionsAsString());
-
-        // --------------------------"2_with_alot_of_noise.bmp"-------------------------
-        this.retina.seeBMPImage("2_with_alot_of_noise.bmp");
-
-        this.spatialPooler.performSpatialPoolingOnRegionWithoutInhibitionRadiusUpdate();
-
-        assertEquals("((6, 2), (1, 3), (2, 5))",
-                this.spatialPooler.getActiveColumnPositionsAsString());
+   retina.seeBMPImage("2.bmp");
+   spatialPooler.performPooling();
+   assertEquals("((6, 2), (1, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
+ 
+   retina.seeBMPImage("2_with_some_noise.bmp");
+   this.spatialPooler.performPooling();
+   assertEquals("((6, 2), (1, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
+ 
+   retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
+   spatialPooler.performPooling();
+   // when there is a lot of noise notice how the active columns are no longer the same?
+   assertEquals("((6, 2), (2, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
    ```
 
    You can view the entire file in [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
