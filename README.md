@@ -144,7 +144,7 @@ programming. For more information please:
    assertEquals("((6, 2), (1, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
  
    retina.seeBMPImage("2_with_some_noise.bmp");
-   this.spatialPooler.performPooling();
+   spatialPooler.performPooling();
    assertEquals("((6, 2), (1, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
  
    retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
