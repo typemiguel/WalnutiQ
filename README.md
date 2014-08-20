@@ -3,7 +3,10 @@ Install with **[Eclipse](#install-in-linuxmacwindows-with-eclipse),**
 **[Gradle](#install-in-linuxmacwindows-with-gradle) |**
 **[How to contribute](#how-to-contribute) |**
 **[What are all the files here for?](#what-are-all-the-files-here-for) |**
-**[Important brain theories in use](#important-brain-theories-in-use)**
+**[Important brain theories in use](#important-brain-theories-in-use) |**
+**[Object oriented spatial pooling algorithm](#object-oriented-spatial-pooling-algorithm) |**
+**[Object oriented temporal pooling algorithm](#object-oriented-temporal-pooling-algorithm) **
+
 
 # [WalnutiQ](http://walnutiq.com)
 
@@ -151,7 +154,8 @@ programming. For more information please:
  
    retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
    spatialPooler.performPooling();
-   // when there is a lot of noise notice how the active columns are no longer the same?
+   // when there is a lot of noise notice how the active columns are 
+   // no longer the same?
    assertEquals("((6, 2), (2, 5))", 
        Formatter.format(spatialPooler.getActiveColumnPositions()));
    ```
@@ -393,7 +397,8 @@ void computeActiveColumnsOfRegion() {
             this.updateNeighborColumns(x, y);
 
             // necessary for calculating kthScoreOfColumns
-            List<ColumnPosition> neighborColumnPositions = new ArrayList<ColumnPosition>();
+            List<ColumnPosition> neighborColumnPositions = 
+                new ArrayList<ColumnPosition>();
             neighborColumnPositions = columns[x][y].getNeighborColumns();
             List<Column> neighborColumns = new ArrayList<Column>();
             for (ColumnPosition columnPosition : neighborColumnPositions) {
@@ -436,7 +441,7 @@ void regionLearnOneTimeStep() {
 
     /// inhibitionRadius = averageReceptiveFieldSize()
     this.region
-            .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion()); // implements line 38
+            .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
 }
 ```
 
@@ -563,5 +568,64 @@ the above code and additional code and clarifying comments.
 
 The following section will not make sense until you have first read and tried to understand the temporal pooling
 algorithm explained in detail in this [white paper](https://db.tt/FuQWQuwE).
+
+The following is the temporal pooling algorithm(combined inference and learning) pseudocode in the 
+white paper pages 39-46:
+
+<b>Phase 1</b>
+```
+for c in activeColumns(t) // line 18
+ 
+    buPredicted = false 
+    lcChosen = false
+    for i = 0 to cellsPerColumn - 1 
+        if predictiveState(c, i, t-1) == true then 
+            s = getActiveSegment(c, i, t-1, activeState) 
+            if s.sequenceSegment == true then 
+                buPredicted = true 
+                activeState(c, i, t) = 1 
+                if segmentActive(s, t-1, learnState) then 
+                    lcChosen = true 
+                    learnState(c, i, t) = 1 
+
+ 
+    if buPredicted == false then 
+        for i = 0 to cellsPerColumn - 1 
+            activeState(c, i, t) = 1 
+    
+    if lcChosen == false then 
+        i,s = getBestMatchingCell(c, t-1) 
+        learnState(c, i, t) = 1 
+        sUpdate = getSegmentActiveSynapses (c, i, s, t-1, true) 
+        sUpdate.sequenceSegment = true 
+        segmentUpdateList.add(sUpdate) // line 41
+```
+
+<b>Phase 2</b>
+```
+for c, i in cells // line 42
+    for s in segments(c, i) 
+        if segmentActive(s, t, activeState) then 
+            predictiveState(c, i, t) = 1 
+ 
+            activeUpdate = getSegmentActiveSynapses (c, i, s, t, false) 
+            segmentUpdateList.add(activeUpdate) 
+ 
+            predSegment = getBestMatchingSegment(c, i, t-1) 
+            predUpdate = getSegmentActiveSynapses( 
+                              c, i, predSegment, t-1, true) 
+            segmentUpdateList.add(predUpdate) // line 53
+```
+
+<b>Phase 3</b>
+```
+for c, i in cells // line 54
+    if learnState(s, i, t) == 1 then 
+        adaptSegments (segmentUpdateList(c, i), true) 
+        segmentUpdateList(c, i).delete() 
+    else if predictiveState(c, i, t) == 0 and predictiveState(c, i, t-1)==1 then 
+        adaptSegments (segmentUpdateList(c,i), false) 
+        segmentUpdateList(c, i).delete()  // line 60
+```
 
 
