@@ -37,7 +37,7 @@ public class SpatialPooler extends Pooler {
      * @return A sparse set of active Columns within this Region.
      */
     public Set<Column> performPooling() {
-        // for c in columns
+        /// for c in columns
         Column[][] columns = this.region.getColumns();
         for (int row = 0; row < columns.length; row++) {
             for (int column = 0; column < columns[0].length; column++) {
@@ -88,22 +88,22 @@ public class SpatialPooler extends Pooler {
                     "the Column in SpatialPooler method computeColumnOverlapScore cannot be null");
         }
 
-        // overlap(c) = 0
+        /// overlap(c) = 0
         int newOverlapScore = column.getProximalSegment()
-                .getNumberOfActiveSynapses(); // for s in connectedSynapses(c)
-                                              //     overlap(c) = overlap(c) + input(t, s.sourceInput)
+                .getNumberOfActiveSynapses(); /// for s in connectedSynapses(c)
+                                              ///     overlap(c) = overlap(c) + input(t, s.sourceInput)
 
         // compute minimumOverlapScore assuming all proximalSegments are
         // connected to the same number of synapses
         Column[][] columns = this.region.getColumns();
         int regionMinimumOverlapScore = this.region.getMinimumOverlapScore();
 
-        // if overlap(c) < minOverlap then
+        /// if overlap(c) < minOverlap then
         if (newOverlapScore < regionMinimumOverlapScore) {
-            // overlap(c) = 0
+            /// overlap(c) = 0
             newOverlapScore = 0;
         } else {
-            // overlap(c) = overlap(c) * boost(c)
+            /// overlap(c) = overlap(c) * boost(c)
             newOverlapScore = (int) (newOverlapScore * column.getBoostValue());
         }
         column.setOverlapScore(newOverlapScore);
@@ -120,7 +120,7 @@ public class SpatialPooler extends Pooler {
         this.activeColumnPositions.clear();
 
         Column[][] columns = this.region.getColumns();
-        // for c in columns
+        /// for c in columns
         for (int x = 0; x < columns.length; x++) {
             for (int y = 0; y < columns[0].length; y++) {
                 columns[x][y].setActiveState(false);
@@ -136,7 +136,7 @@ public class SpatialPooler extends Pooler {
                                     .getColumn()]);
                 }
 
-                // minLocalActivity = kthScore(neighbors(c), desiredLocalActivity)
+                /// minLocalActivity = kthScore(neighbors(c), desiredLocalActivity)
                 int minimumLocalOverlapScore = this.kthScoreOfColumns(
                         neighborColumns, this.region.getDesiredLocalActivity());
 
@@ -144,10 +144,10 @@ public class SpatialPooler extends Pooler {
                 // columns can become active since it is applied to each
                 // Column object's neighborColumns
 
-                // if overlap(c) > 0 and overlap(c) >= minLocalActivity then
+                /// if overlap(c) > 0 and overlap(c) >= minLocalActivity then
                 if (columns[x][y].getOverlapScore() > 0
                         && columns[x][y].getOverlapScore() >= minimumLocalOverlapScore) {
-                    // activeColumns(t).append(c)
+                    /// activeColumns(t).append(c)
                     columns[x][y].setActiveState(true);
 
                     this.addActiveColumn(columns[x][y]);
@@ -167,7 +167,7 @@ public class SpatialPooler extends Pooler {
 
         this.boostSynapsesBasedOnActiveAndOverlapDutyCycle();
 
-        // inhibitionRadius = averageReceptiveFieldSize()
+        /// inhibitionRadius = averageReceptiveFieldSize()
         this.region
                 .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
     }
@@ -176,7 +176,7 @@ public class SpatialPooler extends Pooler {
         Column[][] columns = this.region.getColumns();
 
         if (super.getLearningState()) {
-            // for c in activeColumns(t)
+            /// for c in activeColumns(t)
             for (int x = 0; x < columns.length; x++) {
                 for (int y = 0; y < columns[0].length; y++) {
                     if (columns[x][y].getActiveState()) {
@@ -185,22 +185,22 @@ public class SpatialPooler extends Pooler {
                         Set<Synapse<Cell>> synapses = columns[x][y]
                                 .getProximalSegment().getSynapses();
 
-                        // for s in potentialSynapses(c)
+                        /// for s in potentialSynapses(c)
                         for (Synapse<Cell> synapse : synapses) {
-                            // if active(s) then
+                            /// if active(s) then
                             if (synapse.getConnectedCell() != null
                                     && synapse.getConnectedCell()
                                     .getActiveState()) {
                                 // model long term potentiation
 
-                                // s.permanence += permanenceInc
-                                // s.permanence = min(1.0, s.permanence)
+                                /// s.permanence += permanenceInc
+                                /// s.permanence = min(1.0, s.permanence)
                                 synapse.increasePermanence();
                             } else {
                                 // model long term depression
 
-                                // s.permanence -= permanenceDec
-                                // s.permanence = max(0.0, s.permanence)
+                                /// s.permanence -= permanenceDec
+                                /// s.permanence = max(0.0, s.permanence)
                                 synapse.decreasePermanence();
                             }
                         }
@@ -213,7 +213,7 @@ public class SpatialPooler extends Pooler {
     void boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
         Column[][] columns = this.region.getColumns();
 
-        // for c in columns
+        /// for c in columns
         for (int x = 0; x < columns.length; x++) {
             for (int y = 0; y < columns[0].length; y++) {
                 if (columns[x][y].getActiveState()) {
@@ -226,6 +226,7 @@ public class SpatialPooler extends Pooler {
                     //
                     // 1) If activeDutyCycle(measures winning rate) is too low.
                     // The overall boost value of the Columns is increased.
+                    //
                     // 2) If overlapDutyCycle(measures connected Synapses with
                     // inputs) is too low, the permanence values of the
                     // Column's Synapses are boosted.
@@ -257,26 +258,26 @@ public class SpatialPooler extends Pooler {
                     // number of iterations).
                     // If a Column's firing rate falls below this value, it will
                     // be boosted.
-                    // minDutyCycle(c) = 0.01 * maxDutyCycle(neighbors(c))
+                    /// minDutyCycle(c) = 0.01 * maxDutyCycle(neighbors(c))
                     float minimumActiveDutyCycle = this.MINIMUM_COLUMN_FIRING_RATE
                             * maximumActiveDutyCycle;
 
                     // 1) boost if activeDutyCycle is too low
-                    // activeDutyCycle(c) = updateActiveDutyCycle(c)
+                    /// activeDutyCycle(c) = updateActiveDutyCycle(c)
                     columns[x][y].updateActiveDutyCycle();
 
-                    // boost(c) = boostFunction(activeDutyCycle(c), minDutyCycle(c))
+                    /// boost(c) = boostFunction(activeDutyCycle(c), minDutyCycle(c))
                     columns[x][y].setBoostValue(columns[x][y]
                             .boostFunction(minimumActiveDutyCycle));
 
                     // 2) boost if overlapDutyCycle is too low
-                    // overlapDutyCycle(c) = updateOverlapDutyCycle(c)
+                    /// overlapDutyCycle(c) = updateOverlapDutyCycle(c)
                     this.updateOverlapDutyCycle(x, y);
 
-                    // if overlapDutyCycle(c) < minDutyCycle(c) then
+                    /// if overlapDutyCycle(c) < minDutyCycle(c) then
                     if (columns[x][y].getOverlapDutyCycle() < minimumActiveDutyCycle
                             && this.getLearningState()) {
-                        // increasePermanences(c, 0.1*connectedPerm)
+                        /// increasePermanences(c, 0.1*connectedPerm)
                         columns[x][y]
                                 .increaseProximalSegmentSynapsePermanences(1);
                     }

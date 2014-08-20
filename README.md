@@ -328,15 +328,17 @@ inhibitionRadius = averageReceptiveFieldSize() // line 38
 The following is the spatial pooling algorithm pseudocode in the white paper pages 34-38
 implemented using object oriented design. Notice how the pseudocode from above is
 placed immediately above the object oriented Java code that is equivalent to the
-pseudocode.
+pseudocode and always begins with `///` to differentiate from regular comments:
 
 ```java
 public Set<Column> performPooling() {
-    // for c in columns <============== this pseudocode is from line 1 above
+    /// for c in columns <========================================= this pseudocode is from line 1 above
     Column[][] columns = this.region.getColumns();
     for (int row = 0; row < columns.length; row++) {
         for (int column = 0; column < columns[0].length; column++) {
-            this.computeColumnOverlapScore(columns[row][column]);
+            this.computeColumnOverlapScore(columns[row][column]); // <== let's take a look inside this
+                                                                  // method for the remaining Phase 1
+                                                                  // pseudocode
         }
     }
 
@@ -350,8 +352,38 @@ public Set<Column> performPooling() {
 }
 ```
 
-The actual SpatialPooler.java class that contains the above code and additional code
-to allow the algorithm to work is [here](./src/main/java/model/MARK_II/SpatialPooler.java)
+<b>Remaining Phase 1 pseudocode implemented using object oriented design</b>
+```java
+void computeColumnOverlapScore(Column column) {
+    if (column == null) {
+        throw new IllegalArgumentException(
+                "the Column in SpatialPooler method computeColumnOverlapScore cannot be null");
+    }
+
+    /// overlap(c) = 0
+    int newOverlapScore = column.getProximalSegment()
+            .getNumberOfActiveSynapses(); /// for s in connectedSynapses(c)
+                                          ///     overlap(c) = overlap(c) + input(t, s.sourceInput)
+
+    // compute minimumOverlapScore assuming all proximalSegments are
+    // connected to the same number of synapses
+    Column[][] columns = this.region.getColumns();
+    int regionMinimumOverlapScore = this.region.getMinimumOverlapScore();
+
+    /// if overlap(c) < minOverlap then
+    if (newOverlapScore < regionMinimumOverlapScore) {
+        /// overlap(c) = 0
+        newOverlapScore = 0;
+    } else {
+        /// overlap(c) = overlap(c) * boost(c)
+        newOverlapScore = (int) (newOverlapScore * column.getBoostValue());
+    }
+    column.setOverlapScore(newOverlapScore);
+}
+```
+
+The actual [SpatialPooler.java](./src/main/java/model/MARK_II/SpatialPooler.java) class contains 
+the above code and additional code and clarifying comments.
 
 # Object oriented temporal pooling algorithm
 
