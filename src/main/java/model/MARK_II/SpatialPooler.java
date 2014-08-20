@@ -90,8 +90,9 @@ public class SpatialPooler extends Pooler {
 
         /// overlap(c) = 0
         int newOverlapScore = column.getProximalSegment()
-                .getNumberOfActiveSynapses(); /// for s in connectedSynapses(c)
-                                              ///     overlap(c) = overlap(c) + input(t, s.sourceInput)
+            /// for s in connectedSynapses(c)
+            ///     overlap(c) = overlap(c) + input(t, s.sourceInput)
+            .getNumberOfActiveSynapses();
 
         // compute minimumOverlapScore assuming all proximalSegments are
         // connected to the same number of synapses

@@ -141,16 +141,19 @@ programming. For more information please:
    ```java
    retina.seeBMPImage("2.bmp");
    spatialPooler.performPooling();
-   assertEquals("((6, 2), (1, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
+   assertEquals("((6, 2), (1, 5))", 
+       Formatter.format(spatialPooler.getActiveColumnPositions()));
  
    retina.seeBMPImage("2_with_some_noise.bmp");
    spatialPooler.performPooling();
-   assertEquals("((6, 2), (1, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
+   assertEquals("((6, 2), (1, 5))", 
+       Formatter.format(spatialPooler.getActiveColumnPositions()));
  
    retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
    spatialPooler.performPooling();
    // when there is a lot of noise notice how the active columns are no longer the same?
-   assertEquals("((6, 2), (2, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
+   assertEquals("((6, 2), (2, 5))", 
+       Formatter.format(spatialPooler.getActiveColumnPositions()));
    ```
 
    You can view the entire file in [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
@@ -334,13 +337,13 @@ pseudocode and always begins with `///` to differentiate from regular comments:
 
 ```java
 public Set<Column> performPooling() {
-    /// for c in columns <========================================= this pseudocode is from line 1 above
+    /// for c in columns <== this pseudocode is from line 1 above
     Column[][] columns = this.region.getColumns();
     for (int row = 0; row < columns.length; row++) {
         for (int column = 0; column < columns[0].length; column++) {
-            this.computeColumnOverlapScore(columns[row][column]); // <== let's take a look inside this
-                                                                  // method for the remaining Phase 1
-                                                                  // pseudocode
+            this.computeColumnOverlapScore(columns[row][column]); 
+            // ^ let's take a look inside this method for the 
+            // remaining Phase 1 pseudocode
         }
     }
 
@@ -356,15 +359,11 @@ public Set<Column> performPooling() {
 
 ```java
 void computeColumnOverlapScore(Column column) {
-    if (column == null) {
-        throw new IllegalArgumentException(
-                "the Column in SpatialPooler method computeColumnOverlapScore cannot be null");
-    }
-
     /// overlap(c) = 0
     int newOverlapScore = column.getProximalSegment()
-            .getNumberOfActiveSynapses(); /// for s in connectedSynapses(c)
-                                          ///     overlap(c) = overlap(c) + input(t, s.sourceInput)
+        /// for s in connectedSynapses(c)
+        ///     overlap(c) = overlap(c) + input(t, s.sourceInput)
+        .getNumberOfActiveSynapses();
 
     // compute minimumOverlapScore assuming all proximalSegments are
     // connected to the same number of synapses
