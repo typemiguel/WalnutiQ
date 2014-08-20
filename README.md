@@ -268,3 +268,36 @@ programming. For more information please:
                 10^6 synapses were formed per second while you were becoming 2 years old.
    - Experiments that support this theory:
    - Experiments that do NOT support this theory: 
+
+# Object oriented spatial pooling algorithm
+
+The following section will not make sense until you have first read and tried to understand the spatial pooling
+algorithm explained in detail in this [white paper](https://db.tt/FuQWQuwE).
+
+The following is the spatial pooling algorithm pseudocode in the white paper pages 34-38
+implemented using object oriented design:
+
+<b>Phase 1: Overlap</b>
+```
+for c in columns // line 1
+    overlap(c) = 0
+    for s in connectedSynapses(c)
+        overlap(c) = overlap(c) + input(t, s.sourceInput)
+
+    if overlap(c) < minOverlap then
+        overlap(c) = 0
+    else
+        overlap(c) = overlap(c) * boost(c) // line 10
+```
+
+<b>Phase 2: Inhibition</b>
+```
+
+```
+
+# Object oriented temporal pooling algorithm
+
+The following section will not make sense until you have first read and tried to understand the temporal pooling
+algorithm explained in detail in this [white paper](https://db.tt/FuQWQuwE).
+
+
