@@ -48,7 +48,7 @@ public class SpatialPooler extends Pooler {
         // a sparse set of Columns become active after local inhibition
         this.computeActiveColumnsOfRegion();
 
-        // // simulate learning by boosting specific Synapses
+        // simulate learning by boosting specific Synapses
         this.regionLearnOneTimeStep();
 
         return this.activeColumns;

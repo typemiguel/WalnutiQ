@@ -274,12 +274,12 @@ programming. For more information please:
 The following section will not make sense until you have first read and tried to understand the spatial pooling
 algorithm explained in detail in this [white paper](https://db.tt/FuQWQuwE).
 
-The following is the spatial pooling algorithm pseudocode in the white paper pages 34-38
-implemented using object oriented design:
+The following is the spatial pooling algorithm pseudocode in the white paper pages 34-38:
 
 <b>Phase 1: Overlap</b>
 ```
 for c in columns // line 1
+
     overlap(c) = 0
     for s in connectedSynapses(c)
         overlap(c) = overlap(c) + input(t, s.sourceInput)
@@ -292,8 +292,66 @@ for c in columns // line 1
 
 <b>Phase 2: Inhibition</b>
 ```
+for c in columns // line 11
 
+    minLocalActivity = kthScore(neighbors(c), desiredLocalActivity)
+
+    if overlap(c) > 0 and overlap(c) >= minLocalActivity then
+        activeColumns(t).append(c) // line 16
 ```
+
+<b>Phase 3: Learning</b>
+```
+for c in activeColumns(t) // line 18
+
+    for s in potentialSynapses(c)
+        if active(s) then
+            s.permanence += permanenceInc
+            s.permanence = min(1.0, s.permanence)
+        else
+            s.permanence -= permanenceDec
+            s.permanece = max(0.0, s.permanence)
+
+for c in columns // line 28
+
+    minDutyCycle(c) = 0.01 * maxDutyCycle(neighbors(c))
+    activeDutyCycle(c) = updateActiveDutyCycle(c)
+    boost(c) = boostFunction(activeDutyCycle(c), minDutyCycle(c))
+
+    overlapDutyCycle(c) = updateOverlapDutyCycle(c)
+    if overlapDutyCycle(c) < minDutyCycle(c) then
+        increasePermanences(c, 0.1 * connectedPerm)
+
+inhibitionRadius = averageReceptiveFieldSize() // line 38
+```
+
+The following is the spatial pooling algorithm pseudocode in the white paper pages 34-38
+implemented using object oriented design. Notice how the pseudocode from above is
+placed immediately above the object oriented Java code that is equivalent to the
+pseudocode.
+
+```java
+public Set<Column> performPooling() {
+    // for c in columns <============== this pseudocode is from line 1 above
+    Column[][] columns = this.region.getColumns();
+    for (int row = 0; row < columns.length; row++) {
+        for (int column = 0; column < columns[0].length; column++) {
+            this.computeColumnOverlapScore(columns[row][column]);
+        }
+    }
+
+    // a sparse set of Columns become active after local inhibition
+    this.computeActiveColumnsOfRegion();
+
+    // simulate learning by boosting specific Synapses
+    this.regionLearnOneTimeStep();
+
+    return this.activeColumns;
+}
+```
+
+The actual SpatialPooler.java class that contains the above code and additional code
+to allow the algorithm to work is [here](./src/main/java/model/MARK_II/SpatialPooler.java)
 
 # Object oriented temporal pooling algorithm
 
