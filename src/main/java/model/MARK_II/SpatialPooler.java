@@ -192,13 +192,11 @@ public class SpatialPooler extends Pooler {
                                     && synapse.getConnectedCell()
                                     .getActiveState()) {
                                 // model long term potentiation
-
                                 /// s.permanence += permanenceInc
                                 /// s.permanence = min(1.0, s.permanence)
                                 synapse.increasePermanence();
                             } else {
                                 // model long term depression
-
                                 /// s.permanence -= permanenceDec
                                 /// s.permanence = max(0.0, s.permanence)
                                 synapse.decreasePermanence();

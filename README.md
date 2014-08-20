@@ -310,7 +310,7 @@ for c in activeColumns(t) // line 18
             s.permanence = min(1.0, s.permanence)
         else
             s.permanence -= permanenceDec
-            s.permanece = max(0.0, s.permanence)
+            s.permanece = max(0.0, s.permanence) // line 26
 
 for c in columns // line 28
 
@@ -320,7 +320,7 @@ for c in columns // line 28
 
     overlapDutyCycle(c) = updateOverlapDutyCycle(c)
     if overlapDutyCycle(c) < minDutyCycle(c) then
-        increasePermanences(c, 0.1 * connectedPerm)
+        increasePermanences(c, 0.1 * connectedPerm) // line 36
 
 inhibitionRadius = averageReceptiveFieldSize() // line 38
 ```
@@ -329,6 +329,8 @@ The following is the spatial pooling algorithm pseudocode in the white paper pag
 implemented using object oriented design. Notice how the pseudocode from above is
 placed immediately above the object oriented Java code that is equivalent to the
 pseudocode and always begins with `///` to differentiate from regular comments:
+
+<b>Phase 1: Overlap pseudocode implemented using object oriented design</b>
 
 ```java
 public Set<Column> performPooling() {
@@ -352,7 +354,6 @@ public Set<Column> performPooling() {
 }
 ```
 
-<b>Remaining Phase 1 pseudocode implemented using object oriented design</b>
 ```java
 void computeColumnOverlapScore(Column column) {
     if (column == null) {
@@ -379,6 +380,180 @@ void computeColumnOverlapScore(Column column) {
         newOverlapScore = (int) (newOverlapScore * column.getBoostValue());
     }
     column.setOverlapScore(newOverlapScore);
+}
+```
+
+<b>Phase 2: Inhibition pseudocode implemented using object oriented design</b>
+```java
+void computeActiveColumnsOfRegion() {
+    Column[][] columns = this.region.getColumns();
+    /// for c in columns
+    for (int x = 0; x < columns.length; x++) {
+        for (int y = 0; y < columns[0].length; y++) {
+            columns[x][y].setActiveState(false);
+            this.updateNeighborColumns(x, y);
+
+            // necessary for calculating kthScoreOfColumns
+            List<ColumnPosition> neighborColumnPositions = new ArrayList<ColumnPosition>();
+            neighborColumnPositions = columns[x][y].getNeighborColumns();
+            List<Column> neighborColumns = new ArrayList<Column>();
+            for (ColumnPosition columnPosition : neighborColumnPositions) {
+                neighborColumns
+                        .add(columns[columnPosition.getRow()][columnPosition
+                                .getColumn()]);
+            }
+
+            /// minLocalActivity = kthScore(neighbors(c), desiredLocalActivity)
+            int minimumLocalOverlapScore = this.kthScoreOfColumns(
+                    neighborColumns, this.region.getDesiredLocalActivity());
+
+            // more than (this.region.desiredLocalActivity) number of
+            // columns can become active since it is applied to each
+            // Column object's neighborColumns
+
+            /// if overlap(c) > 0 and overlap(c) >= minLocalActivity then
+            if (columns[x][y].getOverlapScore() > 0
+                    && columns[x][y].getOverlapScore() >= minimumLocalOverlapScore) {
+                /// activeColumns(t).append(c)
+                columns[x][y].setActiveState(true);
+
+                this.addActiveColumn(columns[x][y]);
+                this.activeColumnPositions.add(new ColumnPosition(x, y));
+            }
+        }
+    }
+}
+```
+
+<b>Phase 3: Learning pseudocode implemented using object oriented design</b>
+The pseudocode in Phase 3 is split into 3 separate methods that describe what that
+part of the algorithm is doing biologically.
+
+```java
+void regionLearnOneTimeStep() {
+    this.modelLongTermPotentiationAndDepression(); // implements lines 18-26
+
+    this.boostSynapsesBasedOnActiveAndOverlapDutyCycle(); // implements lines 28-36
+
+    /// inhibitionRadius = averageReceptiveFieldSize()
+    this.region
+            .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion()); // implements line 38
+}
+```
+
+```java
+void modelLongTermPotentiationAndDepression() {
+    Column[][] columns = this.region.getColumns();
+
+    if (super.getLearningState()) {
+        /// for c in activeColumns(t)
+        for (int x = 0; x < columns.length; x++) {
+            for (int y = 0; y < columns[0].length; y++) {
+                if (columns[x][y].getActiveState()) {
+                    // increase and decrease of proximal segment synapses
+                    // based on each Synapses's activeState
+                    Set<Synapse<Cell>> synapses = columns[x][y]
+                            .getProximalSegment().getSynapses();
+
+                    /// for s in potentialSynapses(c)
+                    for (Synapse<Cell> synapse : synapses) {
+                        /// if active(s) then
+                        if (synapse.getConnectedCell() != null
+                                && synapse.getConnectedCell()
+                                .getActiveState()) {
+                            // model long term potentiation
+                            /// s.permanence += permanenceInc
+                            /// s.permanence = min(1.0, s.permanence)
+                            synapse.increasePermanence();
+                        } else {
+                            // model long term depression
+                            /// s.permanence -= permanenceDec
+                            /// s.permanence = max(0.0, s.permanence)
+                            synapse.decreasePermanence();
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+```java
+void boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
+    Column[][] columns = this.region.getColumns();
+
+    /// for c in columns
+    for (int x = 0; x < columns.length; x++) {
+        for (int y = 0; y < columns[0].length; y++) {
+            if (columns[x][y].getActiveState()) {
+                // increase and decrease of proximal Segment Synapses based
+                // on each Synapses's activeState
+                // columns[x][y].performBoosting();
+
+                // 2 methods to help a Column's proximal Segment
+                // Synapses learn connections:
+                //
+                // 1) If activeDutyCycle(measures winning rate) is too low.
+                // The overall boost value of the Columns is increased.
+                //
+                // 2) If overlapDutyCycle(measures connected Synapses with
+                // inputs) is too low, the permanence values of the
+                // Column's Synapses are boosted.
+
+                // neighborColumns are already up to date.
+                List<ColumnPosition> neighborColumnPositions = columns[x][y]
+                        .getNeighborColumns();
+
+                List<Column> neighborColumns = new ArrayList<Column>();
+                for (ColumnPosition columnPosition : neighborColumnPositions) {
+                    // add the Column object to neighborColumns
+                    neighborColumns
+                            .add(columns[columnPosition.getRow()][columnPosition
+                                    .getColumn()]);
+                }
+
+                float maximumActiveDutyCycle = this.region
+                        .maximumActiveDutyCycle(neighborColumns);
+                if (maximumActiveDutyCycle == 0) {
+                    maximumActiveDutyCycle = 0.1f;
+                }
+
+                // neighborColumns are no longer necessary for calculations
+                // in this time step
+                columns[x][y].clearNeighborColumns();
+
+                // minDutyCycle represents the minimum desired firing rate
+                // for a Column(number of times it becomes active over some
+                // number of iterations).
+                // If a Column's firing rate falls below this value, it will
+                // be boosted.
+                /// minDutyCycle(c) = 0.01 * maxDutyCycle(neighbors(c))
+                float minimumActiveDutyCycle = this.MINIMUM_COLUMN_FIRING_RATE
+                        * maximumActiveDutyCycle;
+
+                // 1) boost if activeDutyCycle is too low
+                /// activeDutyCycle(c) = updateActiveDutyCycle(c)
+                columns[x][y].updateActiveDutyCycle();
+
+                /// boost(c) = boostFunction(activeDutyCycle(c), minDutyCycle(c))
+                columns[x][y].setBoostValue(columns[x][y]
+                        .boostFunction(minimumActiveDutyCycle));
+
+                // 2) boost if overlapDutyCycle is too low
+                /// overlapDutyCycle(c) = updateOverlapDutyCycle(c)
+                this.updateOverlapDutyCycle(x, y);
+
+                /// if overlapDutyCycle(c) < minDutyCycle(c) then
+                if (columns[x][y].getOverlapDutyCycle() < minimumActiveDutyCycle
+                        && this.getLearningState()) {
+                    /// increasePermanences(c, 0.1*connectedPerm)
+                    columns[x][y]
+                            .increaseProximalSegmentSynapsePermanences(1);
+                }
+            }
+        }
+    }
 }
 ```
 
