@@ -4,8 +4,8 @@ Install with **[Eclipse](#install-in-linuxmacwindows-with-eclipse),**
 **[How to contribute](#how-to-contribute) |**
 **[What are all the files here for?](#what-are-all-the-files-here-for) |**
 **[Important brain theories in use](#important-brain-theories-in-use) |**
-**[Object oriented spatial pooling algorithm](#object-oriented-spatial-pooling-algorithm) |**
-**[Object oriented temporal pooling algorithm](#object-oriented-temporal-pooling-algorithm) **
+**[spatial pooling](#object-oriented-spatial-pooling-algorithm) |**
+**[temporal pooling](#object-oriented-temporal-pooling-algorithm)**
 
 
 # [WalnutiQ](http://walnutiq.com)
