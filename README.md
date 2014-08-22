@@ -9,9 +9,12 @@ Install with **[Eclipse](#install-in-linuxmacwindows-with-eclipse),**
 
 
 # [WalnutiQ](http://walnutiq.com)
-
-"*Most doors in the world are closed, so if you find one that you want to get into, you damn well better have an 
-  interesting knock.*"    ~ Sam Harper
+"*I'm writing a play about the nature of truth, and how difficult it is to convey the truth when everybody is speaking
+  a different language. For example, the word 'terrorist' and the word 'freedom fighter' are used to refer to the exact
+  same people at the exact same time. With everyone speaking differently, truth is almost impossible to agree upon. 
+  Yet believing in the existence of truth is the only thing that keeps us from devolving into tribal warfare. 
+  Because without the existence of truth, the person who is most powerful becomes the person who is right."  
+  ~ human of New York
 
 [![Build Status](https://travis-ci.org/WalnutiQ/WalnutiQ.png)](https://travis-ci.org/WalnutiQ/WalnutiQ)
 

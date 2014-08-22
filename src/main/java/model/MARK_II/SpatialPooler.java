@@ -122,14 +122,14 @@ public class SpatialPooler extends Pooler {
 
         Column[][] columns = this.region.getColumns();
         /// for c in columns
-        for (int x = 0; x < columns.length; x++) {
-            for (int y = 0; y < columns[0].length; y++) {
-                columns[x][y].setActiveState(false);
-                this.updateNeighborColumns(x, y);
+        for (int row = 0; row < columns.length; row++) {
+            for (int column = 0; column < columns[0].length; column++) {
+                columns[row][column].setActiveState(false);
+                this.updateNeighborColumns(row, column);
 
                 // necessary for calculating kthScoreOfColumns
                 List<ColumnPosition> neighborColumnPositions = new ArrayList<ColumnPosition>();
-                neighborColumnPositions = columns[x][y].getNeighborColumns();
+                neighborColumnPositions = columns[row][column].getNeighborColumns();
                 List<Column> neighborColumns = new ArrayList<Column>();
                 for (ColumnPosition columnPosition : neighborColumnPositions) {
                     neighborColumns
@@ -146,13 +146,13 @@ public class SpatialPooler extends Pooler {
                 // Column object's neighborColumns
 
                 /// if overlap(c) > 0 and overlap(c) >= minLocalActivity then
-                if (columns[x][y].getOverlapScore() > 0
-                        && columns[x][y].getOverlapScore() >= minimumLocalOverlapScore) {
+                if (columns[row][column].getOverlapScore() > 0
+                        && columns[row][column].getOverlapScore() >= minimumLocalOverlapScore) {
                     /// activeColumns(t).append(c)
-                    columns[x][y].setActiveState(true);
+                    columns[row][column].setActiveState(true);
 
-                    this.addActiveColumn(columns[x][y]);
-                    this.activeColumnPositions.add(new ColumnPosition(x, y));
+                    this.addActiveColumn(columns[row][column]);
+                    this.activeColumnPositions.add(new ColumnPosition(row, column));
                 }
             }
         }
@@ -213,9 +213,9 @@ public class SpatialPooler extends Pooler {
         Column[][] columns = this.region.getColumns();
 
         /// for c in columns
-        for (int x = 0; x < columns.length; x++) {
-            for (int y = 0; y < columns[0].length; y++) {
-                if (columns[x][y].getActiveState()) {
+        for (int row = 0; row < columns.length; row++) {
+            for (int column = 0; column < columns[0].length; column++) {
+                if (columns[row][column].getActiveState()) {
                     // increase and decrease of proximal Segment Synapses based
                     // on each Synapses's activeState
                     // columns[x][y].performBoosting();
@@ -231,7 +231,7 @@ public class SpatialPooler extends Pooler {
                     // Column's Synapses are boosted.
 
                     // neighborColumns are already up to date.
-                    List<ColumnPosition> neighborColumnPositions = columns[x][y]
+                    List<ColumnPosition> neighborColumnPositions = columns[row][column]
                             .getNeighborColumns();
 
                     List<Column> neighborColumns = new ArrayList<Column>();
@@ -250,7 +250,7 @@ public class SpatialPooler extends Pooler {
 
                     // neighborColumns are no longer necessary for calculations
                     // in this time step
-                    columns[x][y].clearNeighborColumns();
+                    columns[row][column].clearNeighborColumns();
 
                     // minDutyCycle represents the minimum desired firing rate
                     // for a Column(number of times it becomes active over some
@@ -263,21 +263,21 @@ public class SpatialPooler extends Pooler {
 
                     // 1) boost if activeDutyCycle is too low
                     /// activeDutyCycle(c) = updateActiveDutyCycle(c)
-                    columns[x][y].updateActiveDutyCycle();
+                    columns[row][column].updateActiveDutyCycle();
 
                     /// boost(c) = boostFunction(activeDutyCycle(c), minDutyCycle(c))
-                    columns[x][y].setBoostValue(columns[x][y]
+                    columns[row][column].setBoostValue(columns[row][column]
                             .boostFunction(minimumActiveDutyCycle));
 
                     // 2) boost if overlapDutyCycle is too low
                     /// overlapDutyCycle(c) = updateOverlapDutyCycle(c)
-                    this.updateOverlapDutyCycle(x, y);
+                    this.updateOverlapDutyCycle(row, column);
 
                     /// if overlapDutyCycle(c) < minDutyCycle(c) then
-                    if (columns[x][y].getOverlapDutyCycle() < minimumActiveDutyCycle
+                    if (columns[row][column].getOverlapDutyCycle() < minimumActiveDutyCycle
                             && this.getLearningState()) {
                         /// increasePermanences(c, 0.1*connectedPerm)
-                        columns[x][y]
+                        columns[row][column]
                                 .increaseProximalSegmentSynapsePermanences(1);
                     }
                 }
