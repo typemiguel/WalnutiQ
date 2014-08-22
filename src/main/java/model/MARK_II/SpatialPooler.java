@@ -218,7 +218,7 @@ public class SpatialPooler extends Pooler {
                 if (columns[row][column].getActiveState()) {
                     // increase and decrease of proximal Segment Synapses based
                     // on each Synapses's activeState
-                    // columns[x][y].performBoosting();
+                    // columns[row][column].performBoosting();
 
                     // 2 methods to help a Column's proximal Segment
                     // Synapses learn connections:

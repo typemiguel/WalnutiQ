@@ -489,78 +489,78 @@ void modelLongTermPotentiationAndDepression() {
 ```java
 void boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
     Column[][] columns = this.region.getColumns();
-
-    /// for c in columns
-    for (int x = 0; x < columns.length; x++) {
-        for (int y = 0; y < columns[0].length; y++) {
-            if (columns[x][y].getActiveState()) {
-                // increase and decrease of proximal Segment Synapses based
-                // on each Synapses's activeState
-                // columns[x][y].performBoosting();
-
-                // 2 methods to help a Column's proximal Segment
-                // Synapses learn connections:
-                //
-                // 1) If activeDutyCycle(measures winning rate) is too low.
-                // The overall boost value of the Columns is increased.
-                //
-                // 2) If overlapDutyCycle(measures connected Synapses with
-                // inputs) is too low, the permanence values of the
-                // Column's Synapses are boosted.
-
-                // neighborColumns are already up to date.
-                List<ColumnPosition> neighborColumnPositions = columns[x][y]
-                        .getNeighborColumns();
-
-                List<Column> neighborColumns = new ArrayList<Column>();
-                for (ColumnPosition columnPosition : neighborColumnPositions) {
-                    // add the Column object to neighborColumns
-                    neighborColumns
-                            .add(columns[columnPosition.getRow()][columnPosition
-                                    .getColumn()]);
-                }
-
-                float maximumActiveDutyCycle = this.region
-                        .maximumActiveDutyCycle(neighborColumns);
-                if (maximumActiveDutyCycle == 0) {
-                    maximumActiveDutyCycle = 0.1f;
-                }
-
-                // neighborColumns are no longer necessary for calculations
-                // in this time step
-                columns[x][y].clearNeighborColumns();
-
-                // minDutyCycle represents the minimum desired firing rate
-                // for a Column(number of times it becomes active over some
-                // number of iterations).
-                // If a Column's firing rate falls below this value, it will
-                // be boosted.
-                /// minDutyCycle(c) = 0.01 * maxDutyCycle(neighbors(c))
-                float minimumActiveDutyCycle = this.MINIMUM_COLUMN_FIRING_RATE
-                        * maximumActiveDutyCycle;
-
-                // 1) boost if activeDutyCycle is too low
-                /// activeDutyCycle(c) = updateActiveDutyCycle(c)
-                columns[x][y].updateActiveDutyCycle();
-
-                /// boost(c) = boostFunction(activeDutyCycle(c), minDutyCycle(c))
-                columns[x][y].setBoostValue(columns[x][y]
-                        .boostFunction(minimumActiveDutyCycle));
-
-                // 2) boost if overlapDutyCycle is too low
-                /// overlapDutyCycle(c) = updateOverlapDutyCycle(c)
-                this.updateOverlapDutyCycle(x, y);
-
-                /// if overlapDutyCycle(c) < minDutyCycle(c) then
-                if (columns[x][y].getOverlapDutyCycle() < minimumActiveDutyCycle
-                        && this.getLearningState()) {
-                    /// increasePermanences(c, 0.1*connectedPerm)
-                    columns[x][y]
-                            .increaseProximalSegmentSynapsePermanences(1);
-                }
-            }
-        }
-    }
+    
+     /// for c in columns
+     for (int row = 0; row < columns.length; row++) {
+         for (int column = 0; column < columns[0].length; column++) {
+             if (columns[row][column].getActiveState()) {
+                 // increase and decrease of proximal Segment Synapses based
+                 // on each Synapses's activeState
+                 // columns[row][column].performBoosting();
+    
+                 // 2 methods to help a Column's proximal Segment
+                 // Synapses learn connections:
+                 //
+                 // 1) If activeDutyCycle(measures winning rate) is too low.
+                 // The overall boost value of the Columns is increased.
+                 //
+                 // 2) If overlapDutyCycle(measures connected Synapses with
+                 // inputs) is too low, the permanence values of the
+                 // Column's Synapses are boosted.
+    
+                 // neighborColumns are already up to date.
+                 List<ColumnPosition> neighborColumnPositions = columns[row][column]
+                         .getNeighborColumns();
+    
+                 List<Column> neighborColumns = new ArrayList<Column>();
+                 for (ColumnPosition columnPosition : neighborColumnPositions) {
+                     // add the Column object to neighborColumns
+                     neighborColumns
+                             .add(columns[columnPosition.getRow()][columnPosition
+                                     .getColumn()]);
+                 }
+    
+                 float maximumActiveDutyCycle = this.region
+                         .maximumActiveDutyCycle(neighborColumns);
+                 if (maximumActiveDutyCycle == 0) {
+                     maximumActiveDutyCycle = 0.1f;
+                 }
+    
+                 // neighborColumns are no longer necessary for calculations
+                 // in this time step
+                 columns[row][column].clearNeighborColumns();
+    
+                 // minDutyCycle represents the minimum desired firing rate
+                 // for a Column(number of times it becomes active over some
+                 // number of iterations).
+                 // If a Column's firing rate falls below this value, it will
+                 // be boosted.
+                 /// minDutyCycle(c) = 0.01 * maxDutyCycle(neighbors(c))
+                 float minimumActiveDutyCycle = this.MINIMUM_COLUMN_FIRING_RATE
+                         * maximumActiveDutyCycle;
+    
+                 // 1) boost if activeDutyCycle is too low
+                 /// activeDutyCycle(c) = updateActiveDutyCycle(c)
+                 columns[row][column].updateActiveDutyCycle();
+    
+                 /// boost(c) = boostFunction(activeDutyCycle(c), minDutyCycle(c))
+                 columns[row][column].setBoostValue(columns[row][column]
+                         .boostFunction(minimumActiveDutyCycle));
+    
+                 // 2) boost if overlapDutyCycle is too low
+                 /// overlapDutyCycle(c) = updateOverlapDutyCycle(c)
+                 this.updateOverlapDutyCycle(row, column);
+    
+                 /// if overlapDutyCycle(c) < minDutyCycle(c) then
+                 if (columns[row][column].getOverlapDutyCycle() < minimumActiveDutyCycle
+                         && this.getLearningState()) {
+                     /// increasePermanences(c, 0.1*connectedPerm)
+                     columns[row][column]
+                             .increaseProximalSegmentSynapsePermanences(1);
+                 }
+             }
+         }
+     }
 }
 ```
 
