@@ -335,12 +335,13 @@ for c in columns // line 28
 inhibitionRadius = averageReceptiveFieldSize() // line 38
 ```
 
-The following is the spatial pooling algorithm pseudocode in the white paper pages 34-38
+The following is the spatial pooling algorithm pseudocode in the white paper
 implemented using object oriented design. Notice how the pseudocode from above is
 placed immediately above the object oriented Java code that is equivalent to the
-pseudocode and always begins with `///` to differentiate from regular comments:
+pseudocode and always begins with `///` to differentiate from regular comments.
 
-<b>Phase 1: Overlap pseudocode implemented using object oriented design</b>
+The spatial pooling algorithm is run once my creating a `SpatialPooler` class 
+object and calling the `performPooling()` method on that object.
 
 ```java
 public Set<Column> performPooling() {
@@ -364,6 +365,7 @@ public Set<Column> performPooling() {
 }
 ```
 
+<b>Phase 1: Overlap pseudocode implemented using object oriented design</b>
 ```java
 void computeColumnOverlapScore(Column column) {
     /// overlap(c) = 0
@@ -630,5 +632,33 @@ for c, i in cells // line 54
         adaptSegments (segmentUpdateList(c,i), false) 
         segmentUpdateList(c, i).delete()  // line 60
 ```
+
+The following is the temporal pooling algorithm pseudocode in the white paper
+implemented using object oriented design. Notice how the pseudocode from above is
+placed immediately above the object oriented Java code that is equivalent to the
+pseudocode and always begins with `///` to differentiate from regular comments.
+
+The temporal pooling algorithm is run once my creating a `TemporalPooler` class 
+object and calling the `performPooling()` method on that object.
+
+```java
+public void performPooling() {
+    Set<Column> activeColumns = this.spatialPooler.getActiveColumns();
+    if (super.getLearningState()) {
+        this.phaseOne(activeColumns);
+        this.phaseTwo(activeColumns);
+        this.phaseThree(activeColumns);
+    } else {
+        this.computeActiveStateOfAllNeuronsInActiveColumn(activeColumns);
+        this.computePredictiveStateOfAllNeurons(activeColumns);
+    }
+}
+```
+
+<b>Phase 1: pseudocode implemented using object oriented design</b>
+
+<b>Phase 2: pseudocode implemented using object oriented design</b>
+
+<b>Phase 3: pseudocode implemented using object oriented design</b>
 
 
