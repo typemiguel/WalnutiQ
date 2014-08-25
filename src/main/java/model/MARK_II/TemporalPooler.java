@@ -81,54 +81,71 @@ public class TemporalPooler extends Pooler {
      * active Column a learning Neuron is chosen.
      */
     void phaseOne(Set<Column> activeColumns) {
+        /// for c in activeColumns(t)
         for (Column column : activeColumns) {
-
+            /// buPredicted = false
             boolean bottomUpPredicted = false;
+            /// lcChosen = false
             boolean learningCellChosen = false;
 
             Neuron[] neurons = column.getNeurons();
+            /// for i = 0 to cellsPerColumn - 1
             for (int i = 0; i < neurons.length; i++) {
-
+                /// predictiveState(c, i, t-1) == true then
                 if (neurons[i].getPreviousActiveState() == true) {
+                    /// s = getActiveSegment(c, i, t-1, activeState)
                     DistalSegment bestSegment = neurons[i]
                             .getBestPreviousActiveSegment();
 
+                    /// if s.sequenceSegment == true then
                     if (bestSegment != null
                             && bestSegment
                             .getSequenceStatePredictsFeedFowardInputOnNextStep()) {
+                        /// buPredicted = true
                         bottomUpPredicted = true;
+                        /// activeState(c, i, t) = 1
                         neurons[i].setActiveState(true);
 
+                        /// if segmentActive(s, t-1, learnState) then
                         if (bestSegment.getPreviousActiveState()) {
+                            /// lcChosen = true
                             learningCellChosen = true;
+                            /// learnState(c, i, t) = 1
                             column.setLearningNeuronPosition(i);
                             this.currentLearningNeurons.add(neurons[i]);
                         }
                     }
                 }
             }
-
+            /// if buPredicted == false then
             if (bottomUpPredicted == false) {
+                /// for i = 0 to cellsPerColumn - 1
                 for (Neuron neuron : column.getNeurons()) {
+                    /// activeState(c, i, t) = 1
                     neuron.setActiveState(true);
                 }
             }
 
+            /// if lcChosen == false then
             if (learningCellChosen == false) {
+                /// l,s = getBestMatchingCell(c, t-1)
                 int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
+                /// learnState(c, i, t) = 1
                 column.setLearningNeuronPosition(bestNeuronIndex);
                 this.currentLearningNeurons.add(column
                         .getNeuron(bestNeuronIndex));
 
                 DistalSegment segment = neurons[bestNeuronIndex]
                         .getBestPreviousActiveSegment();
+                /// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true)
                 SegmentUpdate segmentUpdate = this.getSegmentActiveSynapses(
                         column.getCurrentPosition(), bestNeuronIndex, segment,
                         true, true);
-
+                /// sUpdate.sequenceSegment = true
                 segmentUpdate.setSequenceState(true);
                 segment.setSequenceState(true);
 
+                /// segmentUpdateList.add(sUpdate)
                 this.segmentUpdateList.add(segmentUpdate);
             }
         }
@@ -280,6 +297,7 @@ public class TemporalPooler extends Pooler {
      * predictiveState will be true if 1 or more distal segments becomes active.
      */
     void phaseTwo(Set<Column> activeColumns) {
+        /// for c, i in cells
         for (Column column : activeColumns) {
             Neuron[] neurons = column.getNeurons();
             for (int i = 0; i < neurons.length; i++) {
@@ -290,26 +308,32 @@ public class TemporalPooler extends Pooler {
                 Segment predictingSegment = neurons[i]
                         .getBestPreviousActiveSegment();
 
+                /// for s in segments(c, i)
                 for (Segment segment : neurons[i].getDistalSegments()) {
                     // NOTE: segment may become active during the spatial pooling
                     // between temporal pooling iterations
+                    /// if segmentActive(s, t, activeState) then
                     if (segment.getActiveState()) {
+                        /// predictiveState(c, i, t) = 1
                         neurons[i].setPredictingState(true);
 
+                        /// activeUpdate = getSegmentActiveSynapses(c, i, s, t, false)
                         SegmentUpdate activeUpdate = this
                                 .getSegmentActiveSynapses(
                                         column.getCurrentPosition(), i,
                                         segment, false, false);
-
+                        /// segmentUpdateList.add(activeUpdate)
                         this.segmentUpdateList.add(activeUpdate);
                         // Segment predictingSegment = neurons[i]
                         // .getBestPreviousActiveSegment();
 
+                        /// predSegment = getBestMatchingSegment(c, i, t-1)
+                        /// predUpdate = getSegmentActiveSynapses(c, i, predSegment, t-1, true)
                         SegmentUpdate predictionUpdate = this
                                 .getSegmentActiveSynapses(
                                         column.getCurrentPosition(), i,
                                         predictingSegment, true, true);
-
+                        /// segmentUpdateList.add(predUpdate)
                         this.segmentUpdateList.add(predictionUpdate);
                     }
                 }
@@ -324,22 +348,26 @@ public class TemporalPooler extends Pooler {
      * predicting for any reason, we negatively reinforce the Segments.
      */
     void phaseThree(Set<Column> activeColumns) {
+        /// for c, i in cells
         for (Column column : activeColumns) {
             ColumnPosition c = column.getCurrentPosition();
             Neuron[] neurons = column.getNeurons();
             for (int i = 0; i < neurons.length; i++) {
+                /// if learnState(s, i, t) == 1 then
                 if (i == column.getLearningNeuronPosition()) {
+                    /// adaptSegments(segmentUpdateList(c, i), true)
                     this.adaptSegments(
                             this.segmentUpdateList.getSegmentUpdate(c, i), true);
-
+                    /// segmentUpdateList(c, i).delete()
                     this.segmentUpdateList.deleteSegmentUpdate(c, i);
+                /// else if predictiveState(c, i, t) == 0 and predictiveState(c, i, t-1)==1 then
                 } else if (neurons[i].getPredictingState() == false
                         && neurons[i].getPreviousPredictingState() == true) {
-
+                    /// adaptSegments(segmentUpdateList(c, i), false)
                     this.adaptSegments(
                             this.segmentUpdateList.getSegmentUpdate(c, i),
                             false);
-
+                    /// segmentUpdateList(c, i).delete()
                     this.segmentUpdateList.deleteSegmentUpdate(c, i);
                 }
             }
