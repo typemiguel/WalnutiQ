@@ -3,12 +3,13 @@ Install with **[Eclipse](#install-in-linuxmacwindows-with-eclipse),**
 **[Gradle](#install-in-linuxmacwindows-with-gradle) |**
 **[How to contribute](#how-to-contribute) |**
 **[What are all the files here for?](#what-are-all-the-files-here-for) |**
-**[Important brain theories in use](#important-brain-theories-in-use)**
+**[Important brain theories in use](#important-brain-theories-in-use) |**
+**[spatial pooling](#object-oriented-spatial-pooling-algorithm) |**
+**[temporal pooling](#object-oriented-temporal-pooling-algorithm)**
+
 
 # [WalnutiQ](http://walnutiq.com)
-
-"*Most doors in the world are closed, so if you find one that you want to get into, you damn well better have an 
-  interesting knock.*"    ~ Sam Harper
+"*When we hit our lowest point, we are open to the greatest change.*"  ~ Avatar Anng
 
 [![Build Status](https://travis-ci.org/WalnutiQ/WalnutiQ.png)](https://travis-ci.org/WalnutiQ/WalnutiQ)
 
@@ -141,16 +142,20 @@ programming. For more information please:
    ```java
    retina.seeBMPImage("2.bmp");
    spatialPooler.performPooling();
-   assertEquals("((6, 2), (1, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
+   assertEquals("((6, 2), (1, 5))", 
+       Formatter.format(spatialPooler.getActiveColumnPositions()));
  
    retina.seeBMPImage("2_with_some_noise.bmp");
-   this.spatialPooler.performPooling();
-   assertEquals("((6, 2), (1, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
+   spatialPooler.performPooling();
+   assertEquals("((6, 2), (1, 5))", 
+       Formatter.format(spatialPooler.getActiveColumnPositions()));
  
    retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
    spatialPooler.performPooling();
-   // when there is a lot of noise notice how the active columns are no longer the same?
-   assertEquals("((6, 2), (2, 5))", Formatter.format(spatialPooler.getActiveColumnPositions()));
+   // when there is a lot of noise notice how the active columns are 
+   // no longer the same?
+   assertEquals("((6, 2), (2, 5))", 
+       Formatter.format(spatialPooler.getActiveColumnPositions()));
    ```
 
    You can view the entire file in [NoiseInvarianceExperiment.java](./experiments/model/MARK_I/vision/NoiseInvarianceExperiment.java).
@@ -268,3 +273,537 @@ programming. For more information please:
                 10^6 synapses were formed per second while you were becoming 2 years old.
    - Experiments that support this theory:
    - Experiments that do NOT support this theory: 
+
+# Object oriented spatial pooling algorithm
+
+The following section will not make sense until you have first read and tried to understand the spatial pooling
+algorithm explained in detail in this [white paper](https://db.tt/FuQWQuwE).
+
+The following is the spatial pooling algorithm pseudocode in the white paper pages 34-38:
+
+<b>Phase 1: Overlap</b>
+```
+for c in columns // line 1
+
+    overlap(c) = 0
+    for s in connectedSynapses(c)
+        overlap(c) = overlap(c) + input(t, s.sourceInput)
+
+    if overlap(c) < minOverlap then
+        overlap(c) = 0
+    else
+        overlap(c) = overlap(c) * boost(c) // line 10
+```
+
+<b>Phase 2: Inhibition</b>
+```
+for c in columns // line 11
+
+    minLocalActivity = kthScore(neighbors(c), desiredLocalActivity)
+
+    if overlap(c) > 0 and overlap(c) >= minLocalActivity then
+        activeColumns(t).append(c) // line 16
+```
+
+<b>Phase 3: Learning</b>
+```
+for c in activeColumns(t) // line 18
+
+    for s in potentialSynapses(c)
+        if active(s) then
+            s.permanence += permanenceInc
+            s.permanence = min(1.0, s.permanence)
+        else
+            s.permanence -= permanenceDec
+            s.permanece = max(0.0, s.permanence) // line 26
+
+for c in columns // line 28
+
+    minDutyCycle(c) = 0.01 * maxDutyCycle(neighbors(c))
+    activeDutyCycle(c) = updateActiveDutyCycle(c)
+    boost(c) = boostFunction(activeDutyCycle(c), minDutyCycle(c))
+
+    overlapDutyCycle(c) = updateOverlapDutyCycle(c)
+    if overlapDutyCycle(c) < minDutyCycle(c) then
+        increasePermanences(c, 0.1 * connectedPerm) // line 36
+
+inhibitionRadius = averageReceptiveFieldSize() // line 38
+```
+
+The following is the spatial pooling algorithm pseudocode in the white paper
+implemented using object oriented design. Notice how the pseudocode from above is
+placed immediately above the object oriented Java code that is equivalent to the
+pseudocode and always begins with `///` to differentiate from regular comments.
+
+The spatial pooling algorithm is run once my creating a `SpatialPooler` class 
+object and calling the `performPooling()` method on that object.
+
+```java
+public Set<Column> performPooling() {
+    /// for c in columns <== this pseudocode is from line 1 above
+    Column[][] columns = this.region.getColumns();
+    for (int row = 0; row < columns.length; row++) {
+        for (int column = 0; column < columns[0].length; column++) {
+            this.computeColumnOverlapScore(columns[row][column]); 
+            // ^ let's take a look inside this method for the 
+            // remaining Phase 1 pseudocode
+        }
+    }
+
+    // a sparse set of Columns become active after local inhibition
+    this.computeActiveColumnsOfRegion();
+
+    // simulate learning by boosting specific Synapses
+    this.regionLearnOneTimeStep();
+
+    return this.activeColumns;
+}
+```
+
+<b>Phase 1: Overlap pseudocode implemented using object oriented design</b>
+```java
+void computeColumnOverlapScore(Column column) {
+    /// overlap(c) = 0
+    int newOverlapScore = column.getProximalSegment()
+        /// for s in connectedSynapses(c)
+        ///     overlap(c) = overlap(c) + input(t, s.sourceInput)
+        .getNumberOfActiveSynapses();
+
+    // compute minimumOverlapScore assuming all proximalSegments are
+    // connected to the same number of synapses
+    Column[][] columns = this.region.getColumns();
+    int regionMinimumOverlapScore = this.region.getMinimumOverlapScore();
+
+    /// if overlap(c) < minOverlap then
+    if (newOverlapScore < regionMinimumOverlapScore) {
+        /// overlap(c) = 0
+        newOverlapScore = 0;
+    } else {
+        /// overlap(c) = overlap(c) * boost(c)
+        newOverlapScore = (int) (newOverlapScore * column.getBoostValue());
+    }
+    column.setOverlapScore(newOverlapScore);
+}
+```
+
+<b>Phase 2: Inhibition pseudocode implemented using object oriented design</b>
+```java
+void computeActiveColumnsOfRegion() {
+    Column[][] columns = this.region.getColumns();
+    /// for c in columns
+    for (int x = 0; x < columns.length; x++) {
+        for (int y = 0; y < columns[0].length; y++) {
+            columns[x][y].setActiveState(false);
+            this.updateNeighborColumns(x, y);
+
+            // necessary for calculating kthScoreOfColumns
+            List<ColumnPosition> neighborColumnPositions = 
+                new ArrayList<ColumnPosition>();
+            neighborColumnPositions = columns[x][y].getNeighborColumns();
+            List<Column> neighborColumns = new ArrayList<Column>();
+            for (ColumnPosition columnPosition : neighborColumnPositions) {
+                neighborColumns
+                        .add(columns[columnPosition.getRow()][columnPosition
+                                .getColumn()]);
+            }
+
+            /// minLocalActivity = kthScore(neighbors(c), desiredLocalActivity)
+            int minimumLocalOverlapScore = this.kthScoreOfColumns(
+                    neighborColumns, this.region.getDesiredLocalActivity());
+
+            // more than (this.region.desiredLocalActivity) number of
+            // columns can become active since it is applied to each
+            // Column object's neighborColumns
+
+            /// if overlap(c) > 0 and overlap(c) >= minLocalActivity then
+            if (columns[x][y].getOverlapScore() > 0
+                    && columns[x][y].getOverlapScore() >= minimumLocalOverlapScore) {
+                /// activeColumns(t).append(c)
+                columns[x][y].setActiveState(true);
+
+                this.addActiveColumn(columns[x][y]);
+                this.activeColumnPositions.add(new ColumnPosition(x, y));
+            }
+        }
+    }
+}
+```
+
+<b>Phase 3: Learning pseudocode implemented using object oriented design</b>  
+The pseudocode in Phase 3 is split into 3 separate methods that describe what that
+part of the algorithm is doing biologically.
+
+```java
+void regionLearnOneTimeStep() {
+    this.modelLongTermPotentiationAndDepression(); // implements lines 18-26
+
+    this.boostSynapsesBasedOnActiveAndOverlapDutyCycle(); // implements lines 28-36
+
+    /// inhibitionRadius = averageReceptiveFieldSize()
+    this.region
+            .setInhibitionRadius((int) averageReceptiveFieldSizeOfRegion());
+}
+```
+
+```java
+void modelLongTermPotentiationAndDepression() {
+    Column[][] columns = this.region.getColumns();
+
+    if (super.getLearningState()) {
+        /// for c in activeColumns(t)
+        for (int x = 0; x < columns.length; x++) {
+            for (int y = 0; y < columns[0].length; y++) {
+                if (columns[x][y].getActiveState()) {
+                    // increase and decrease of proximal segment synapses
+                    // based on each Synapses's activeState
+                    Set<Synapse<Cell>> synapses = columns[x][y]
+                            .getProximalSegment().getSynapses();
+
+                    /// for s in potentialSynapses(c)
+                    for (Synapse<Cell> synapse : synapses) {
+                        /// if active(s) then
+                        if (synapse.getConnectedCell() != null
+                                && synapse.getConnectedCell()
+                                .getActiveState()) {
+                            // model long term potentiation
+                            /// s.permanence += permanenceInc
+                            /// s.permanence = min(1.0, s.permanence)
+                            synapse.increasePermanence();
+                        } else {
+                            // model long term depression
+                            /// s.permanence -= permanenceDec
+                            /// s.permanence = max(0.0, s.permanence)
+                            synapse.decreasePermanence();
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+```java
+void boostSynapsesBasedOnActiveAndOverlapDutyCycle() {
+    Column[][] columns = this.region.getColumns();
+    
+     /// for c in columns
+     for (int row = 0; row < columns.length; row++) {
+         for (int column = 0; column < columns[0].length; column++) {
+             if (columns[row][column].getActiveState()) {
+                 // increase and decrease of proximal Segment Synapses based
+                 // on each Synapses's activeState
+                 // columns[row][column].performBoosting();
+    
+                 // 2 methods to help a Column's proximal Segment
+                 // Synapses learn connections:
+                 //
+                 // 1) If activeDutyCycle(measures winning rate) is too low.
+                 // The overall boost value of the Columns is increased.
+                 //
+                 // 2) If overlapDutyCycle(measures connected Synapses with
+                 // inputs) is too low, the permanence values of the
+                 // Column's Synapses are boosted.
+    
+                 // neighborColumns are already up to date.
+                 List<ColumnPosition> neighborColumnPositions = columns[row][column]
+                         .getNeighborColumns();
+    
+                 List<Column> neighborColumns = new ArrayList<Column>();
+                 for (ColumnPosition columnPosition : neighborColumnPositions) {
+                     // add the Column object to neighborColumns
+                     neighborColumns
+                             .add(columns[columnPosition.getRow()][columnPosition
+                                     .getColumn()]);
+                 }
+    
+                 float maximumActiveDutyCycle = this.region
+                         .maximumActiveDutyCycle(neighborColumns);
+                 if (maximumActiveDutyCycle == 0) {
+                     maximumActiveDutyCycle = 0.1f;
+                 }
+    
+                 // neighborColumns are no longer necessary for calculations
+                 // in this time step
+                 columns[row][column].clearNeighborColumns();
+    
+                 // minDutyCycle represents the minimum desired firing rate
+                 // for a Column(number of times it becomes active over some
+                 // number of iterations).
+                 // If a Column's firing rate falls below this value, it will
+                 // be boosted.
+                 /// minDutyCycle(c) = 0.01 * maxDutyCycle(neighbors(c))
+                 float minimumActiveDutyCycle = this.MINIMUM_COLUMN_FIRING_RATE
+                         * maximumActiveDutyCycle;
+    
+                 // 1) boost if activeDutyCycle is too low
+                 /// activeDutyCycle(c) = updateActiveDutyCycle(c)
+                 columns[row][column].updateActiveDutyCycle();
+    
+                 /// boost(c) = boostFunction(activeDutyCycle(c), minDutyCycle(c))
+                 columns[row][column].setBoostValue(columns[row][column]
+                         .boostFunction(minimumActiveDutyCycle));
+    
+                 // 2) boost if overlapDutyCycle is too low
+                 /// overlapDutyCycle(c) = updateOverlapDutyCycle(c)
+                 this.updateOverlapDutyCycle(row, column);
+    
+                 /// if overlapDutyCycle(c) < minDutyCycle(c) then
+                 if (columns[row][column].getOverlapDutyCycle() < minimumActiveDutyCycle
+                         && this.getLearningState()) {
+                     /// increasePermanences(c, 0.1*connectedPerm)
+                     columns[row][column]
+                             .increaseProximalSegmentSynapsePermanences(1);
+                 }
+             }
+         }
+     }
+}
+```
+
+The actual [SpatialPooler.java](./src/main/java/model/MARK_II/SpatialPooler.java) class contains 
+the above code and additional code and clarifying comments.
+
+# Object oriented temporal pooling algorithm
+
+The following section will not make sense until you have first read and tried to understand the temporal pooling
+algorithm explained in detail in this [white paper](https://db.tt/FuQWQuwE).
+
+The following is the temporal pooling algorithm(combined inference and learning) pseudocode in the 
+white paper pages 39-46:
+
+<b>Phase 1</b>
+```
+for c in activeColumns(t) // line 18
+ 
+    buPredicted = false 
+    lcChosen = false
+    for i = 0 to cellsPerColumn - 1 
+        if predictiveState(c, i, t-1) == true then 
+            s = getActiveSegment(c, i, t-1, activeState) 
+            if s.sequenceSegment == true then 
+                buPredicted = true 
+                activeState(c, i, t) = 1 
+                if segmentActive(s, t-1, learnState) then 
+                    lcChosen = true 
+                    learnState(c, i, t) = 1 
+
+ 
+    if buPredicted == false then 
+        for i = 0 to cellsPerColumn - 1 
+            activeState(c, i, t) = 1 
+    
+    if lcChosen == false then 
+        i,s = getBestMatchingCell(c, t-1) 
+        learnState(c, i, t) = 1 
+        sUpdate = getSegmentActiveSynapses (c, i, s, t-1, true) 
+        sUpdate.sequenceSegment = true 
+        segmentUpdateList.add(sUpdate) // line 41
+```
+
+<b>Phase 2</b>
+```
+for c, i in cells // line 42
+    for s in segments(c, i) 
+        if segmentActive(s, t, activeState) then 
+            predictiveState(c, i, t) = 1 
+ 
+            activeUpdate = getSegmentActiveSynapses (c, i, s, t, false) 
+            segmentUpdateList.add(activeUpdate) 
+ 
+            predSegment = getBestMatchingSegment(c, i, t-1) 
+            predUpdate = getSegmentActiveSynapses( 
+                              c, i, predSegment, t-1, true) 
+            segmentUpdateList.add(predUpdate) // line 53
+```
+
+<b>Phase 3</b>
+```
+for c, i in cells // line 54
+    if learnState(s, i, t) == 1 then 
+        adaptSegments (segmentUpdateList(c, i), true) 
+        segmentUpdateList(c, i).delete() 
+    else if predictiveState(c, i, t) == 0 and predictiveState(c, i, t-1)==1 then 
+        adaptSegments (segmentUpdateList(c,i), false) 
+        segmentUpdateList(c, i).delete()  // line 60
+```
+
+The following is the temporal pooling algorithm pseudocode in the white paper
+implemented using object oriented design. Notice how the pseudocode from above is
+placed immediately above the object oriented Java code that is equivalent to the
+pseudocode and always begins with `///` to differentiate from regular comments.
+
+The temporal pooling algorithm is run once my creating a `TemporalPooler` class 
+object and calling the `performPooling()` method on that object.
+
+```java
+public void performPooling() {
+    Set<Column> activeColumns = this.spatialPooler.getActiveColumns();
+    if (super.getLearningState()) {
+        this.phaseOne(activeColumns);
+        this.phaseTwo(activeColumns);
+        this.phaseThree(activeColumns);
+    } else {
+        this.computeActiveStateOfAllNeuronsInActiveColumn(activeColumns);
+        this.computePredictiveStateOfAllNeurons(activeColumns);
+    }
+}
+```
+
+<b>Phase 1: pseudocode implemented using object oriented design</b>
+
+```java
+void phaseOne(Set<Column> activeColumns) {
+    /// for c in activeColumns(t)
+    for (Column column : activeColumns) {
+        /// buPredicted = false
+        boolean bottomUpPredicted = false;
+        /// lcChosen = false
+        boolean learningCellChosen = false;
+
+        Neuron[] neurons = column.getNeurons();
+        /// for i = 0 to cellsPerColumn - 1
+        for (int i = 0; i < neurons.length; i++) {
+            /// predictiveState(c, i, t-1) == true then
+            if (neurons[i].getPreviousActiveState() == true) {
+                /// s = getActiveSegment(c, i, t-1, activeState)
+                DistalSegment bestSegment = neurons[i]
+                        .getBestPreviousActiveSegment();
+
+                /// if s.sequenceSegment == true then
+                if (bestSegment != null
+                        && bestSegment
+                        .getSequenceStatePredictsFeedFowardInputOnNextStep()) {
+                    /// buPredicted = true
+                    bottomUpPredicted = true;
+                    /// activeState(c, i, t) = 1
+                    neurons[i].setActiveState(true);
+
+                    /// if segmentActive(s, t-1, learnState) then
+                    if (bestSegment.getPreviousActiveState()) {
+                        /// lcChosen = true
+                        learningCellChosen = true;
+                        /// learnState(c, i, t) = 1
+                        column.setLearningNeuronPosition(i);
+                        this.currentLearningNeurons.add(neurons[i]);
+                    }
+                }
+            }
+        }
+        /// if buPredicted == false then
+        if (bottomUpPredicted == false) {
+            /// for i = 0 to cellsPerColumn - 1
+            for (Neuron neuron : column.getNeurons()) {
+                /// activeState(c, i, t) = 1
+                neuron.setActiveState(true);
+            }
+        }
+
+        /// if lcChosen == false then
+        if (learningCellChosen == false) {
+            /// l,s = getBestMatchingCell(c, t-1)
+            int bestNeuronIndex = this.getBestMatchingNeuronIndex(column);
+            /// learnState(c, i, t) = 1
+            column.setLearningNeuronPosition(bestNeuronIndex);
+            this.currentLearningNeurons.add(column
+                    .getNeuron(bestNeuronIndex));
+
+            DistalSegment segment = neurons[bestNeuronIndex]
+                    .getBestPreviousActiveSegment();
+            /// sUpdate = getSegmentActiveSynapses(c, i, s, t-1, true)
+            SegmentUpdate segmentUpdate = this.getSegmentActiveSynapses(
+                    column.getCurrentPosition(), bestNeuronIndex, segment,
+                    true, true);
+            /// sUpdate.sequenceSegment = true
+            segmentUpdate.setSequenceState(true);
+            segment.setSequenceState(true);
+
+            /// segmentUpdateList.add(sUpdate)
+            this.segmentUpdateList.add(segmentUpdate);
+        }
+    }
+}
+```
+
+<b>Phase 2: pseudocode implemented using object oriented design</b>
+
+```java
+void phaseTwo(Set<Column> activeColumns) {
+    /// for c, i in cells
+    for (Column column : activeColumns) {
+        Neuron[] neurons = column.getNeurons();
+        for (int i = 0; i < neurons.length; i++) {
+            // we must compute the best segment here because
+            // if we compute it where it is commented out below
+            // then we would be iterating over the neuron's list
+            // of segments again
+            Segment predictingSegment = neurons[i]
+                    .getBestPreviousActiveSegment();
+
+            /// for s in segments(c, i)
+            for (Segment segment : neurons[i].getDistalSegments()) {
+                // NOTE: segment may become active during the spatial pooling
+                // between temporal pooling iterations
+                /// if segmentActive(s, t, activeState) then
+                if (segment.getActiveState()) {
+                    /// predictiveState(c, i, t) = 1
+                    neurons[i].setPredictingState(true);
+
+                    /// activeUpdate = getSegmentActiveSynapses(c, i, s, t, false)
+                    SegmentUpdate activeUpdate = this
+                            .getSegmentActiveSynapses(
+                                    column.getCurrentPosition(), i,
+                                    segment, false, false);
+                    /// segmentUpdateList.add(activeUpdate)
+                    this.segmentUpdateList.add(activeUpdate);
+                    // Segment predictingSegment = neurons[i]
+                    // .getBestPreviousActiveSegment();
+
+                    /// predSegment = getBestMatchingSegment(c, i, t-1)
+                    /// predUpdate = getSegmentActiveSynapses(c, i, predSegment, t-1, true)
+                    SegmentUpdate predictionUpdate = this
+                            .getSegmentActiveSynapses(
+                                    column.getCurrentPosition(), i,
+                                    predictingSegment, true, true);
+                    /// segmentUpdateList.add(predUpdate)
+                    this.segmentUpdateList.add(predictionUpdate);
+                }
+            }
+        }
+    }
+}
+```
+
+<b>Phase 3: pseudocode implemented using object oriented design</b>
+
+```java
+void phaseThree(Set<Column> activeColumns) {
+    /// for c, i in cells
+    for (Column column : activeColumns) {
+        ColumnPosition c = column.getCurrentPosition();
+        Neuron[] neurons = column.getNeurons();
+        for (int i = 0; i < neurons.length; i++) {
+            /// if learnState(s, i, t) == 1 then
+            if (i == column.getLearningNeuronPosition()) {
+                /// adaptSegments(segmentUpdateList(c, i), true)
+                this.adaptSegments(
+                        this.segmentUpdateList.getSegmentUpdate(c, i), true);
+                /// segmentUpdateList(c, i).delete()
+                this.segmentUpdateList.deleteSegmentUpdate(c, i);
+            /// else if predictiveState(c, i, t) == 0 and predictiveState(c, i, t-1)==1 then
+            } else if (neurons[i].getPredictingState() == false
+                    && neurons[i].getPreviousPredictingState() == true) {
+                /// adaptSegments(segmentUpdateList(c, i), false)
+                this.adaptSegments(
+                        this.segmentUpdateList.getSegmentUpdate(c, i),
+                        false);
+                /// segmentUpdateList(c, i).delete()
+                this.segmentUpdateList.deleteSegmentUpdate(c, i);
+            }
+        }
+    }
+}
+```
+
+The actual [TemporalPooler.java](./src/main/java/model/MARK_II/TemporalPooler.java) class contains 
+the above code and additional code and clarifying comments.
