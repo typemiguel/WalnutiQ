@@ -802,7 +802,8 @@ void phaseTwo(Set<Column> activeColumns) {
                     // .getBestPreviousActiveSegment();
 
                     /// predSegment = getBestMatchingSegment(c, i, t-1)
-                    /// predUpdate = getSegmentActiveSynapses(c, i, predSegment, t-1, true)
+                    /// predUpdate = getSegmentActiveSynapses(c, i, predSegment, 
+                    ///                                       t-1, true)
                     SegmentUpdate predictionUpdate = this
                             .getSegmentActiveSynapses(
                                     column.getCurrentPosition(), i,
@@ -832,7 +833,8 @@ void phaseThree(Set<Column> activeColumns) {
                         this.segmentUpdateList.getSegmentUpdate(c, i), true);
                 /// segmentUpdateList(c, i).delete()
                 this.segmentUpdateList.deleteSegmentUpdate(c, i);
-            /// else if predictiveState(c, i, t) == 0 and predictiveState(c, i, t-1)==1 then
+            /// else if predictiveState(c, i, t) == 0 
+            ///     and predictiveState(c, i, t-1)==1 then
             } else if (neurons[i].getPredictingState() == false
                     && neurons[i].getPreviousPredictingState() == true) {
                 /// adaptSegments(segmentUpdateList(c, i), false)
