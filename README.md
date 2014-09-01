@@ -214,20 +214,22 @@ programming. For more information please:
 
 # Approach to building an intelligent machine
 
-  Reverse engineering the learning abilities of the brain is hard because the parts of the brain 
+Reverse engineering the learning abilities of the brain is hard because the parts of the brain 
 that allow it to stay alive, allow neurons to communicate with each other, and process streams 
 of sensory data are highly tangled. One approach to determine what parts of the brain are for 
 information processing is if a biological property in the brain is similar to an organization 
 property of the world it is likely the biological property is important to how the brain learns 
 about the world. Theories that use these biological properties to solve information processing 
 problems can then be modeled using a popular object oriented programming language for 
-understandability, experimentation, and expandability.
+understandability, experimentation, and expandability.  
+  
   I believe the first step is to start with functions we know the neocortex has to solve and 
 then learn the neuroscience to develop a theory it’s done. One problem the neocortex needs to 
 solve is how to deal with noisy input. Numenta has open sourced an algorithm called spatial 
 pooling that makes columns of neurons in the neocortex act as threshold detectors. The 
 details of this theory solve the noisy input problem and provides a theoretical reason for 
-the sparse neuron spiking activity seen in the neocortex due to the algorithm’s inhibition.
+the sparse neuron spiking activity seen in the neocortex due to the algorithm’s inhibition.  
+  
   A second important problem the neocortex needs to solve is being able to predict its future 
 input. A key unused idea for being able to predict future input is that different images of the 
 same object are likely to occur close together in time compared to different images of different 
@@ -235,14 +237,16 @@ objects. Based on this principle an algorithm called temporal pooling is used to
 of the input stream of data and becomes successful once it can correctly predict the next input. 
 By using both the spatial and temporal pooling algorithms in each node of a hierarchical 
 tree where each node is a region with a 2D array of columns of neurons, stable representations 
-of the input can be formed as you ascend the nodes of the tree.
+of the input can be formed as you ascend the nodes of the tree.  
+  
   The spatial and temporal pooling algorithm can then be applied to two types of predictive 
 models; a sensorimotor model and a high-order model. The sensorimotor model predicts the next 
 input given the previous input plus the previous motor command that led to the change in the 
 input. A simple sensorimotor model of the retina within a bounding box looking at an image 
 can be used. A high-order model can also be created that predicts the next input based 
 only on the previous stream of input. These two basic types of predictive models can then 
-be tweaked to apply to all sensory domains including vision, hearing, and touch.
+be tweaked to apply to all sensory domains including vision, hearing, and touch.  
+  
   The goal of the spatial/temporal learning algorithms is to achieve the generalization and 
 prediction capabilities of the human brain. To do so we must continue to theorize and 
 discover the computational principles that exploit the same basic assumptions for all 
