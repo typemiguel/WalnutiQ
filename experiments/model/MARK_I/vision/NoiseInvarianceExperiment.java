@@ -51,6 +51,7 @@ public class NoiseInvarianceExperiment extends TestCase {
 
     public void test_NoiseInvarianceExperiment() throws IOException {
         // View all three images of digit 2 @ https://db.tt/ElvG0WLM
+        // fix this test
         this.retina.seeBMPImage("2.bmp");
         this.spatialPooler.performPooling();
         assertEquals("((6, 2), (1, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
