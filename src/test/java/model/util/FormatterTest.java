@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * @author Quinn Liu (quinnliu@vt.edu)
+ * @author Kyle
  * @version August 1, 2014
  */
 public class FormatterTest extends TestCase {
