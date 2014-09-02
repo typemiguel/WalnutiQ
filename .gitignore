@@ -17,3 +17,5 @@ classes/
 # Eclipse
 .classpath
 bin/**
+/bin/
+.settings/
