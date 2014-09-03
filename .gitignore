@@ -1,5 +1,9 @@
-# This file contains names of files/folders not to add to the remote
-# Git repository but to keep in your WalnutiQ folder on your local computer
+# This file contains names of files/folders not to add to
+# the remote Git repository but to keep in your local
+# WalnutiQ folder
+
+# Java
+*.class
 
 # Gradle 
 .gradle
@@ -11,12 +15,23 @@
 *.iws
 classes/
 
-# Java
-*.class
-
 # Eclipse
 .classpath
-bin/**
-/bin/
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
 .settings/
-/bin
+.loadpath
+
+# Eclipse external tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
