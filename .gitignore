@@ -29,6 +29,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
+out/
 
 # Eclipse external tool builders
 .externalToolBuilders/
