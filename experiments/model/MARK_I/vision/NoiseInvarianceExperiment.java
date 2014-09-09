@@ -71,19 +71,21 @@ public class NoiseInvarianceExperiment extends TestCase {
         // fix this test
         this.retina.seeBMPImage("2.bmp");
         this.spatialPooler.performPooling();
+
+        // set1 = ((6,2), (1,5))
         assertEquals(set1, this.spatialPooler.getActiveColumnPositions());
-        //assertEquals("((6, 2), (1, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
 
         this.retina.seeBMPImage("2_with_some_noise.bmp");
         this.spatialPooler.performPooling();
+
+        // set1 = ((6,2), (1,5))
         assertEquals(set1, this.spatialPooler.getActiveColumnPositions());
-        //assertEquals("((6, 2), (1, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
 
         this.retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
         this.spatialPooler.performPooling();
         // when there is a lot of noise notice how the active columns are no longer the same?
 
+        // set2 = ((6,2), (2,5))
         assertEquals(set2, this.spatialPooler.getActiveColumnPositions());
-        //assertEquals("((6, 2), (2, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
     }
 }
