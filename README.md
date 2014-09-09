@@ -223,8 +223,8 @@ about the world. Theories that use these biological properties to solve informat
 problems can then be modeled using a popular object oriented programming language for 
 understandability, experimentation, and expandability.  
   
-  I believe the first step is to start with functions we know the neocortex has to solve and 
-then learn the neuroscience to develop a theory it’s done. One problem the neocortex needs to 
+  I believe the first step is to start with functions we know the neocortex(75% of the human brain)
+has to solve and then learn the neuroscience to develop a theory of how it’s done. One problem the neocortex needs to 
 solve is how to deal with noisy input. Numenta has open sourced an algorithm called spatial 
 pooling that makes columns of neurons in the neocortex act as threshold detectors. The 
 details of this theory solve the noisy input problem and provides a theoretical reason for 
