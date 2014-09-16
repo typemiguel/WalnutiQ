@@ -11,6 +11,7 @@ import model.util.Formatter;
 
 import java.io.IOException;
 import java.util.Set;
+import java.util.HashSet;
 
 /**
  * -------------------------------Purpose---------------------------------------
@@ -50,19 +51,41 @@ public class NoiseInvarianceExperiment extends TestCase {
     }
 
     public void test_NoiseInvarianceExperiment() throws IOException {
+
+        // create columns that should be in the set
+        ColumnPosition cp1 = new ColumnPosition(6, 2);
+        ColumnPosition cp2 = new ColumnPosition(1, 5);
+        ColumnPosition cp3 = new ColumnPosition(2, 5);
+
+        // create a set to test against the first two images
+        Set<ColumnPosition> set1 = new HashSet<ColumnPosition>();
+        set1.add(cp1);
+        set1.add(cp2);
+
+        // set to use for the final image
+        Set<ColumnPosition> set2 = new HashSet<ColumnPosition>();
+        set2.add(cp1);
+        set2.add(cp3);
+
         // View all three images of digit 2 @ https://db.tt/ElvG0WLM
         // fix this test
         this.retina.seeBMPImage("2.bmp");
         this.spatialPooler.performPooling();
-        assertEquals("((6, 2), (1, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
+
+        // set1 = ((6,2), (1,5))
+        assertEquals(set1, this.spatialPooler.getActiveColumnPositions());
 
         this.retina.seeBMPImage("2_with_some_noise.bmp");
         this.spatialPooler.performPooling();
-        assertEquals("((6, 2), (1, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
+
+        // set1 = ((6,2), (1,5))
+        assertEquals(set1, this.spatialPooler.getActiveColumnPositions());
 
         this.retina.seeBMPImage("2_with_a_lot_of_noise.bmp");
         this.spatialPooler.performPooling();
         // when there is a lot of noise notice how the active columns are no longer the same?
-        assertEquals("((6, 2), (2, 5))", Formatter.format(this.spatialPooler.getActiveColumnPositions()));
+
+        // set2 = ((6,2), (2,5))
+        assertEquals(set2, this.spatialPooler.getActiveColumnPositions());
     }
 }

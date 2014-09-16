@@ -30,6 +30,22 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 
     public void setUp() throws IOException {
 
+        // declare sets to test on
+        Set<ColumnPosition> emptySet = new HashSet<ColumnPosition>();
+        Set<ColumnPosition> filledSet = new HashSet<ColumnPosition>();
+
+        // create columns that should be in the filledSet
+        ColumnPosition cp1 = new ColumnPosition(6, 2);
+        ColumnPosition cp2 = new ColumnPosition(1, 3);
+        ColumnPosition cp3 = new ColumnPosition(1, 5);
+        ColumnPosition cp4 = new ColumnPosition(4, 4);
+
+        // add the column positions to the filledSet
+        filledSet.add(cp1);
+        filledSet.add(cp2);
+        filledSet.add(cp3);
+        filledSet.add(cp4);
+
         // images this oldRetina will see are all 66x66 pixels
         this.retina = new Retina(66, 66);
 
@@ -43,8 +59,9 @@ public class TemporalPoolerTest extends junit.framework.TestCase {
 
         this.retina.seeBMPImage("2.bmp");
         this.spatialPooler.performPooling();
-        assertEquals("((6, 2), (1, 3), (1, 5), (4, 4))",
-                Formatter.format(this.spatialPooler.getActiveColumnPositions()));
+
+        // filledSet contains ((6, 2), (1, 3), (1, 5), (4, 4))
+        assertEquals(filledSet, this.spatialPooler.getActiveColumnPositions());
 
         this.temporalPooler = new TemporalPooler(this.spatialPooler, 25);
         this.temporalPooler.setLearningState(true);
